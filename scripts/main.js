@@ -247,7 +247,7 @@ function openInit(){
 CREATE NEW FILE
 ***************/
 function createNewFile() {
-    var t = getId() + ".txt";
+    var t = "untitled" + ".txt";
     gapi.client.load('drive', 'v2', function() {
         var request = gapi.client.request({
             'path': '/drive/v2/files',
@@ -1245,16 +1245,6 @@ function checkDir(folderId, testString, callback) {
       'folderId' : folderId
     });
   retrievePageOfChildren(initialRequest, []);
-}
-function getId()
-{
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for( var i=0; i < 10; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    return text;
 }
 TogetherJSConfig_on_ready = function () {
   TOpen = true;

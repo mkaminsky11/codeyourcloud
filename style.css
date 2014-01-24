@@ -35,6 +35,7 @@ body {
 	position: relative;
 	float:left;
 	background-color: white;
+	overflow-x: hide;
 }
 #col_button{
 	margin-top: 8px;
@@ -178,7 +179,7 @@ nt-face {
 /*side*/
 #placeholder {
 	/*background-color: #c0c0c0;*/
-	background-color: #F1C40F;
+	background-color: #BDC3C7;
 	width: 100%;
 	height: 100%;
 	display: block;
@@ -189,7 +190,6 @@ nt-face {
 	padding: 0px;
 	margin: 0px;
 	background-color: #E67E22;
-	margin-left: 2px;
 }
 #docs {
 	height: 100%;
