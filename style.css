@@ -177,9 +177,8 @@ nt-face {
 }
 /*side*/
 #placeholder {
-	background-image: url('/images/linen.jpg');
-	background-repeat: no-repeat;
 	/*background-color: #c0c0c0;*/
+	background-color: #F1C40F;
 	width: 100%;
 	height: 100%;
 	display: block;
@@ -309,16 +308,10 @@ nt-face {
 .logo {
 	background-color: #68d86a;
 	border: thick solid #68d86a;
-	font-family: Brazilia;
 	font-size: 30px;
 }
 .logo > {
-	font-family: Brazilia;
 	font-size: 30px;
-}
-@font-face {
-	font-family: Brazilia;
-	src: url('/img/Brazilia.otf');
 }
 #theTabs {
 	width: 100%;
