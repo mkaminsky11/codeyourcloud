@@ -1,0 +1,21 @@
+<!DOCTYPE html
+	<head>
+		<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+		<script src="https://codeyourcloud.com/api/goauth.js"></script>
+		<script>
+			var c = "793253492408-hg2sunf6fs5ertbrve1ogb6cbmi45m3m.apps.googleusercontent.com";
+			var s = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/userinfo.profile'];
+			var go = new goauth(c,s);
+			function handleClientLoad(){
+				console.log("hi");
+			}
+			function t(){
+				console.log("ok");
+			}
+		</script>
+		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+	</head>
+	<body>
+		<p>hello</p>
+	</body>
+</html>

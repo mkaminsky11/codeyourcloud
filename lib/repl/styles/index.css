@@ -1,0 +1,17 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+.message {
+    color: #000000 !important;
+    font-weight: normal !important;
+}
+
+.error {
+    color: #FF0000 !important;
+    font-weight: bold;
+}

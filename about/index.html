@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<link rel="icon" type="image/png" href="http://codeyourcloud.com/favicon.ico">	
+  	<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+  	<script src="/about/flat/js/jquery-1.8.3.min.js"></script>
+    	<script type="text/javascript">
+    	  	var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
+      		//var SCOPES = ['https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/userinfo.email','https://www.googleapis.com/auth/userinfo.profile'];
+      		var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/userinfo.profile'];
+		function handleClientLoad() {
+        		checkAuth();
+      		}	
+      		function checkAuth() {
+        		gapi.auth.authorize(
+            	{'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate': true},
+            	handleAuthResult);
+      		}
+      		function handleAuthResult(authResult) {
+        		if (authResult) {
+          			// Access token has been successfully retrieved, requests can be sent to the API
+          			loadClient(test);
+        		} else {
+        	 		// No access token could be retrieved, force the authorization flow.
+        			//popUp();
+				redirect();
+			}
+      		}
+      		function loadClient(callback) {
+  				gapi.client.load('drive', 'v2', callback);
+			}
+			function test() {
+			var request = gapi.client.drive.about.get();
+    				request.execute(function(resp) {
+			});	
+    			//redirect to home
+    			window.location.href = 'https://codeyourcloud.com'; 
+		}
+			function popUp(){
+				gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false},handleAuthResult);
+			}
+    		function checkB() {
+                	var ua= navigator.userAgent, tem,
+                	M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*([\d\.]+)/i) || [];
+                	if(/trident/i.test(M[1])){
+                		tem=  /\brv[ :]+(\d+(\.\d+)?)/g.exec(ua) || [];
+                		return 'IE '+(tem[1] || '');
+                	}
+           		M= M[2]? [M[1], M[2]]:[navigator.appName, navigator.appVersion, '-?'];
+              		if((tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
+                	var browser = M.join(' ');
+                	if(browser.indexOf("Chrome") == -1 && browser.indexOf("Firefox"))
+               			window.location.href = "https://codeyourcloud.com/error/browser";
+			 }
+			 function redirect(){
+				 window.location.href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.install + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.file&state=%2Fprofile&redirect_uri=https%3A%2F%2Fcodeyourcloud.com&response_type=token&client_id=953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com";
+			 }
+			 </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Code Your Cloud | About</title>
+
+    <!-- Bootstrap core CSS -->
+   	<link href="/about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
+   	<link rel='stylesheet' type='text/css' href='/about/flat/css/flat-ui.css'>
+
+    <!-- Add custom CSS here -->
+    <!--link href="simple-sidebar.css" rel="stylesheet"-->
+    <link href="/lib/Font/css/font-awesome.css" rel="stylesheet">
+    
+    <link href="/about/aboutCss.css" rel="stylesheet">
+    
+    <link rel='stylesheet' type='text/css' href='/lib/LigatureSymbols/style.css'>
+	<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css'>
+	
+	<link rel="stylesheet" type="text/css" href="/lib/grid/grid.css">
+	<script src="/lib/grid/grid.js"></script>
+    
+  </head>
+
+  <body>
+  		<div class="navbar-fixed-top">
+	  	<div class="btn-toolbar">
+	  		<div class="btn-group">
+	  			<button type="button" class="btn btn-danger" onclick="handleClientLoad()"><i class="fa fa-google-plus"></i> | Login with Google</button>
+		  		<button id="drop" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
+		  		<ul class="dropdown-menu" role="menu">
+			  		<li><a href="#about">About</a></li>
+			  		<li><a href="#features">Features</a></li>
+			  		<li><a href="#help">Help</a></li>
+			  		<li><a href="#contact">Contact Us</a></li>
+			  	</ul>
+			</div>
+	  	</div>
+  		</div>
+  		
+  		<div id="main_logo"><h1><span id="logo">[ Y ]</span> Code Your Cloud</h1></div>
+  		
+        <h2 id="about">About</h1>
+        <p>
+        Code Your Cloud is an in-browser collaborative code editor for Google Drive, which combines the capabilities of Google's cloud services with the functionality of CodeMirror syntax highlighting and editing.
+        </p>
+        <h2 id="features">Features</h1>
+        <div class="row">
+        	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-pencil"></i></h4>
+            		<h3 class="tile-title">Syntax Highlighting</h3>
+            		<p>Support for dozens of languages</p>
+            		<a class="btn btn-primary btn-large btn-block" href="#lang">Full List</a>
+			</div>
+         	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-comment"></i></h4>
+					<h3 class="tile-title">Collaboration</h3>
+					<p>Collaborate using TogetherJS</p>
+					<a class="btn btn-primary btn-large btn-block" href="https://togetherjs.com/">See how</a>
+		 	</div>
+		 	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-picture-o"></i></h4>
+					<h3 class="tile-title">Colors</h3>
+					<p>Built-in color picker</p>
+					<a class="btn btn-primary btn-large btn-block" href="http://www.eyecon.ro/colorpicker/">JQuery Color Picker</a>
+		 	</div>
+        </div>
+		<div class="row">
+        	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-eye"></i></h4>
+            		<h3 class="tile-title">Preview</h3>
+            		<p>Preview your work</p>
+            		<a class="btn btn-primary btn-large btn-block" href="http://codemirror.net/demo/preview.html">Example</a>
+			</div>
+         	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-question"></i></h4>
+					<h3 class="tile-title">Autocomplete</h3>
+					<p>For supported languages</p>
+					<a class="btn btn-primary btn-large btn-block" href="https://togetherjs.com/">See list</a>
+		 	</div>
+		 	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-terminal"></i></h4>
+					<h3 class="tile-title">Console</h3>
+					<p>Javascript console</p>
+					<a class="btn btn-primary btn-large btn-block" href="https://codeyourcloud.com/repl">Demo</a>
+		 	</div>
+        </div>
+        <div class="row">
+        	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-file"></i></h4>
+            		<h3 class="tile-title">Notepad</h3>
+            		<p>Jot down your ideas</p>
+            		<a class="btn btn-primary btn-large btn-block" href="http://codemirror.net">How</a>
+			</div>
+         	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-list-ol"></i></h4>
+					<h3 class="tile-title">Todo list</h3>
+					<p>A built-in todo list</p>
+					<a class="btn btn-primary btn-large btn-block" href="#todo-list">Instructions</a>
+		 	</div>
+		 	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-globe"></i></h4>
+					<h3 class="tile-title">Browser</h3>
+					<p>View documentation</p>
+					<a class="btn btn-primary btn-large btn-block" href="http://devdocs.io">Docs</a>
+		 	</div>
+        </div>
+        <div class="row">
+        	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-keyboard-o"></i></h4>
+            		<h3 class="tile-title">Keyboard Shortcuts</h3>
+            		<p>Speed up basic functions</p>
+            		<a class="btn btn-primary btn-large btn-block" href="#key">List</a>
+			</div>
+         	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-pencil-square-o"></i></i></h4>
+					<h3 class="tile-title">VIM</h3>
+					<p>Basic vim mode</p>
+					<a class="btn btn-primary btn-large btn-block" href="#vim">Supported functions</a>
+		 	</div>
+		 	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-globe"></i></h4>
+					<h3 class="tile-title">Preferences</h3>
+					<p>Personalize your editor</p>
+					<a class="btn btn-primary btn-large btn-block" href="#pref">Options</a>
+		 	</div>
+        </div>
+        <div class="row">
+        	<div class="col-md-3 tile">
+            		<h4><i class="fa fa-share"></i></h4>
+            		<h3 class="tile-title">Google Drive</h3>
+            		<p>Integrated with Google Drive</p>
+            		<a class="btn btn-primary btn-large btn-block" href="#drive">Explanation</a>
+			</div>
+        </div>
+        <h2 id="help">Help</h1>
+        <h4>Supported Languages</h4>
+        <p>The following languages support syntax highlighting</p>
+        <ul id="lang">
+        	<!--li>Java</li>
+        	<li>C</li>
+        	<li>C++</li>
+        	<li>C#</li>
+        	<li>Sass</li>
+        	<li>Css</li>
+        	<li>Html</li>
+        	<li>Php</li>
+        	<li>Javascript</li>
+        	<li>Coffeescript</li>
+        	<li>Python</li>
+        	<li>Perl</li>
+        	<li>Xml</li>
+        	<li>Ruby</li>
+        	<li>SQL</li>
+        	<li>Groovy</li>
+        	<li>Go</li>
+        	<li>Cobol</li>
+        	<li>Pascal</li>
+        	<li>Less</li>
+        	<li>Clojure</li>
+        	<li>Lua</li>
+        	<li>Shell</li>
+        	<li>Jade</li>
+        	<li>Markdown</li>
+        	<li>D</li>
+        	<li>Erlang</li>
+        	<li>Apl</li>
+        	<li>Asterisk</li>
+        	<li>Diff</li>
+        	<li>Haml</li>
+        	<li>Haskell</li>
+        	<li>Haxe</li>
+        	<li>Jinja</li>
+        	<li>Nginx</li>
+        	<li>Octave</li>
+        	<li>Properties</li>
+        	<li>Q</li>
+        	<li>R</li>
+        	<li>Rust</li>
+        	<li>Scheme</li>
+        	<li>Sieve</li>
+        	<li>Xquery</li-->
+        </ul>
+        <div class="gridster">
+		<ul>
+        	<li class="gr-1" data-row="1" data-col="1" data-sizex="1" data-sizey="1"><span>Java</span></li>
+        	<li class="gr-2" data-row="2" data-col="1" data-sizex="1" data-sizey="1"><span>C</span></li>
+        	<li class="gr-2" data-row="3" data-col="1" data-sizex="1" data-sizey="1"><span>C++</span></li>
+ 
+        	<li class="gr-1" data-row="1" data-col="2" data-sizex="2" data-sizey="1"><span>C#</span></li>
+        	<li class="gr-3" data-row="2" data-col="2" data-sizex="2" data-sizey="2"><span>Markdown</span></li>
+ 
+        	<li class="gr-3" data-row="1" data-col="4" data-sizex="1" data-sizey="1"><span>CSS</span></li>
+        	<li class="gr-2" data-row="2" data-col="4" data-sizex="2" data-sizey="1"><span>HTML</span></li>
+        	<li class="gr-1" data-row="3" data-col="4" data-sizex="1" data-sizey="1"><span>PHP</span></li>
+ 
+        	<li class="gr-1" data-row="1" data-col="5" data-sizex="1" data-sizey="1"><span>Scheme</span></li>
+        	<li class="gr-1" data-row="3" data-col="5" data-sizex="1" data-sizey="1"><span>Go</span></li>
+ 
+        	<li class="gr-3" data-row="1" data-col="6" data-sizex="1" data-sizey="1"><span>Python</span></li>
+        	<li class="gr-2" data-row="2" data-col="6" data-sizex="1" data-sizey="2"><span>Perl</span></li>
+        	
+        	<li class="gr-1" data-row="1" data-col="1" data-sizex="1" data-sizey="1"><span>XML</span></li>
+        	<li class="gr-2" data-row="2" data-col="1" data-sizex="1" data-sizey="1"><span>Ruby</span></li>
+        	<li class="gr-2" data-row="3" data-col="1" data-sizex="1" data-sizey="1"><span>SQL</span></li>
+ 
+        	<li class="gr-3" data-row="1" data-col="2" data-sizex="2" data-sizey="1"><span>Groovy</span></li>
+        	<li class="gr-2" data-row="2" data-col="2" data-sizex="2" data-sizey="2"><span>Coffeescript</span></li>
+ 
+        	<li class="gr-1" data-row="1" data-col="4" data-sizex="1" data-sizey="1"><span>Cobol</span></li>
+        	<li class="gr-2" data-row="2" data-col="4" data-sizex="2" data-sizey="1"><span>Pascal</span></li>
+        	<li class="gr-3" data-row="3" data-col="4" data-sizex="1" data-sizey="1"><span>Less</span></li>
+ 
+        	<li class="gr-1" data-row="1" data-col="5" data-sizex="1" data-sizey="1"><span>Clojure</span></li>
+        	<li class="gr-1" data-row="3" data-col="5" data-sizex="1" data-sizey="1"><span>Lua</span></li>
+ 
+        	<li class="gr-3" data-row="1" data-col="6" data-sizex="1" data-sizey="1"><span>Shell</span></li>
+        	<li class="gr-2" data-row="2" data-col="6" data-sizex="1" data-sizey="2"><span>Jade</span></li>
+        	
+        	<li class="gr-3" data-row="1" data-col="1" data-sizex="1" data-sizey="1"><span>Sass</span></li>
+        	<li class="gr-2" data-row="2" data-col="1" data-sizex="1" data-sizey="1"><span>D</span></li>
+        	<li class="gr-2" data-row="3" data-col="1" data-sizex="1" data-sizey="1"><span>Erlang</span></li>
+ 
+        	<li class="gr-1" data-row="1" data-col="2" data-sizex="2" data-sizey="1"><span>Apl</span></li>
+        	<li class="gr-1" data-row="2" data-col="2" data-sizex="2" data-sizey="2"><span>Asterisk</span></li>
+ 
+        	<li class="gr-1" data-row="1" data-col="4" data-sizex="1" data-sizey="1"><span>Diff</span></li>
+        	<li class="gr-2" data-row="2" data-col="4" data-sizex="2" data-sizey="1"><span>Haml</span></li>
+        	<li class="gr-3" data-row="3" data-col="4" data-sizex="1" data-sizey="1"><span>Haskell</span></li>
+ 
+        	<li class="gr-3" data-row="1" data-col="5" data-sizex="1" data-sizey="1"><span>Haxe</span></li>
+        	<li class="gr-3" data-row="3" data-col="5" data-sizex="1" data-sizey="1"><span>Jinja</span></li>
+ 
+        	<li class="gr-1" data-row="1" data-col="6" data-sizex="1" data-sizey="1"><span>Nginx</span></li>
+        	<li class="gr-2" data-row="2" data-col="6" data-sizex="1" data-sizey="2"><span>Octave</span></li>
+        	
+        	<li class="gr-2" data-row="1" data-col="1" data-sizex="1" data-sizey="1"><span>Rust</span></li>
+        	<li class="gr-3" data-row="2" data-col="1" data-sizex="1" data-sizey="1"><span>Q</span></li>
+        	<li class="gr-1" data-row="3" data-col="1" data-sizex="1" data-sizey="1"><span>R</span></li>
+ 
+        	<li class="gr-1" data-row="1" data-col="2" data-sizex="2" data-sizey="1"><span>Properties</span></li>
+        	<li class="gr-1" data-row="2" data-col="2" data-sizex="2" data-sizey="2"><span>Javascript</span></li>
+ 
+        	<li class="gr-2" data-row="1" data-col="4" data-sizex="1" data-sizey="1"><span>Sieve</span></li>
+        	<li class="gr-3" data-row="2" data-col="4" data-sizex="2" data-sizey="1"><span>XQuery</span></li>
+		</ul>
+		</div>
+
+        <h4>Autocomplete</h4>
+        <p>The following languages support autocomplete, which can be triggered with Ctrl+space</p>
+        <ul id="auto">
+        	<li>Javascript</li>
+        	<li>Html</li>
+        	<li>SQL</li>
+        	<li>Python</li>
+        	<li>XML</li>
+        </ul>
+        <h4 id="todo-list">Todo List</h4>
+        <p>In order to use the todo list, use the 3 keywords</p>
+        <pre>
+        //NOTE: a note
+        //TODO: a todo item
+        //FIXME: help!</pre>
+        <p>Each of these will result in an item for the todo list. Once the item is checked off, it, along with the note, disappears. For example, if the first "NOTE" is clicked, the content will be changed to:</p>
+        <pre>
+        //
+        //TODO: a todo item
+        //FIXME: help!</pre>
+        <h4 id="key">Keyboard Shortcuts</h4>
+        <!--
+        
+        keyboard
+        
+        -->
+        <h4 id="vim">Vim</h4>
+        <!--
+        
+        
+        vim mode
+        
+        
+        -->
+        <h4 id="pref">Preferences</h4>
+        <p>The supported preferences are:</p>
+        <ul>
+        	<li>Mode (language)</li>
+        	<li>Theme</li>
+        	<li>Font size</li>
+        	<li>Line wrap</li>
+        	<li>Line Numbers</li>
+        	<li><a href="#vim">Vim</a> mode</li>
+        </ul>
+        <h4 id="drive">Google Drive Integration</h4>
+        <p>With Code Your Cloud, you can open, share, edit, upload, and save Google Drive files</p>
+        <h2 id="contact">Contact Us</h1>
+        <input class="form-control" id="contact_name" value="" placeholder="Name"/>
+        <br/>
+        <input class="form-control" id="contact_mail" value="" placeholder="Email"/>
+        <br/>
+        <textarea class="form-control" id="contact_comment" value="" placeholder="Comment" rows="10"></textarea>
+        <br/>
+        <button class="btn btn-success" onclick="comment">Comment</button>
+        <button class="btn btn-danger" type="reset" value="Reset">Reset</button>
+
+    <!-- JavaScript -->
+    	<script src="/about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="/about/flat/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/about/flat/js/bootstrap.min.js"></script>
+		<script src="/about/flat/js/bootstrap-select.js"></script>
+		<script src="/about/flat/js/bootstrap-switch.js"></script>
+		<script src="/about/flat/js/flatui-checkbox.js"></script>
+		<script src="/about/flat/js/flatui-radio.js"></script>
+		<script src="/about/flat/js/jquery.tagsinput.js"></script>
+		<script src="/about/flat/js/jquery.placeholder.js"></script>
+		<script src="/about/flat/js/jquery.stacktable.js"></script>
+		<script src="/about/flat/js/application.js"></script>
+
+    <!-- Custom JavaScript for the Menu Toggle -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });
+    $(function(){ //DOM Ready
+ 
+    $(".gridster ul").gridster({
+        widget_margins: [10, 10],
+        widget_base_dimensions: [140, 140]
+    });
+	});
+    </script>
+	<script src="about.js"></script>
+  </body>
+
+</html>

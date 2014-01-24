@@ -1,0 +1,93 @@
+window.location.href = "http://www.yourdomain.com/somepage.html";
+****************************************************************************
+953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com
+AIzaSyBTSFIgQkLly9v6Xuqc2Nqm-vX0jpyEbZk
+********
+http://davidwalsh.name/html5-context-menu
+http://davidwalsh.name/html5-prefetch
+
+codeMirror.on("inputRead", function(){
+		//javascript
+		/*
+		GOOD TO GO!
+		*/
+		if(autoC && title.indexOf(".js") !== -1 && autoC){
+			var isComment = isComment(codeMirror.getDoc().getCursor().line, codeMirror.getDoc().getCursor().line);
+			var back1 = new Object();
+			var back2 = new Object();
+			back1.line = codeMirror.getDoc().getCursor().line;
+			back2.line = codeMirror.getDoc().getCursor().line;
+			back1.ch = codeMirror.getDoc().getCursor().ch - 1;
+			back2.ch = codeMirror.getDoc().getCursor().ch - 2;
+			var diff1 = "null";
+			if(codeMirror.getDoc().getCursor().ch >= 1){
+				diff1 = codeMirror.getDoc().getRange(back1, codeMirror.getDoc().getCursor());
+			}
+			var diff2 = "null";
+			if(codeMirror.getDoc().getCursor().ch >= 2){
+				diff1 = codeMirror.getDoc().getRange(back2, codeMirror.getDoc().getCursor());
+			}
+			if(codeMirror.getDoc().getCursor().ch !== 1 && diff1.indexOf(";") === -1 && diff1 !=="va" && diff1.indexOf("v") === -1 && diff1.charAt(1) !== ' ' && diff1.charAt(1) !== "F"){
+				server.complete(codeMirror);
+			}
+		}
+		//html
+		if(autoC && title.indexOf(".html") !== -1 && autoC){
+			var back1 = new Object();
+			var back2 = new Object();
+			back1.line = codeMirror.getDoc().getCursor().line;
+			back2.line = codeMirror.getDoc().getCursor().line;
+			back1.ch = codeMirror.getDoc().getCursor().ch - 1;
+			back2.ch = codeMirror.getDoc().getCursor().ch - 2;
+			var diff1 = "null";
+			if(codeMirror.getDoc().getCursor().ch >= 1){
+				diff1 = codeMirror.getDoc().getRange(back1, codeMirror.getDoc().getCursor());
+			}
+			var diff2 = "null";
+			if(codeMirror.getDoc().getCursor().ch >= 2){
+				diff1 = codeMirror.getDoc().getRange(back2, codeMirror.getDoc().getCursor());
+			}
+			if(codeMirror.getDoc().getCursor().ch !== 1 && diff1.indexOf(">") === -1){
+				CodeMirror.showHint(codeMirror, CodeMirror.hint.html);
+			}
+		}
+		//css
+		if(autoC && title.indexOf(".py") !== -1 && autoC){
+			var back1 = new Object();
+			var back2 = new Object();
+			back1.line = codeMirror.getDoc().getCursor().line;
+			back2.line = codeMirror.getDoc().getCursor().line;
+			back1.ch = codeMirror.getDoc().getCursor().ch - 1;
+			back2.ch = codeMirror.getDoc().getCursor().ch - 2;
+			var diff1 = "null";
+			if(codeMirror.getDoc().getCursor().ch >= 1){
+				diff1 = codeMirror.getDoc().getRange(back1, codeMirror.getDoc().getCursor());
+			}
+			var diff2 = "null";
+			if(codeMirror.getDoc().getCursor().ch >= 2){
+				diff1 = codeMirror.getDoc().getRange(back2, codeMirror.getDoc().getCursor());
+			}
+			if(codeMirror.getDoc().getCursor().ch !== 1){
+				CodeMirror.showHint(codeMirror, CodeMirror.hint.python);
+			}
+		}
+		if(autoC && title.indexOf(".sql") !== -1 && autoC){
+			var back1 = new Object();
+			var back2 = new Object();
+			back1.line = codeMirror.getDoc().getCursor().line;
+			back2.line = codeMirror.getDoc().getCursor().line;
+			back1.ch = codeMirror.getDoc().getCursor().ch - 1;
+			back2.ch = codeMirror.getDoc().getCursor().ch - 2;
+			var diff1 = "null";
+			if(codeMirror.getDoc().getCursor().ch >= 1){
+				diff1 = codeMirror.getDoc().getRange(back1, codeMirror.getDoc().getCursor());
+			}
+			var diff2 = "null";
+			if(codeMirror.getDoc().getCursor().ch >= 2){
+				diff1 = codeMirror.getDoc().getRange(back2, codeMirror.getDoc().getCursor());
+			}
+			if(codeMirror.getDoc().getCursor().ch !== 1){
+				CodeMirror.showHint(codeMirror, CodeMirror.hint.sql);
+			}
+		}
+});

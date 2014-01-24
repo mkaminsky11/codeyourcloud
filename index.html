@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+	<head>
+		<link rel="icon" type="image/png" href="http://codeyourcloud.com/favicon.ico">
+		<title>Code Your Cloud</title>
+		<meta name="google-site-verification" content="2jBshOtCyauLPt-Tdw0HRkOOizbDnw6IJTM_4dNNLQQ" />
+		<script src="/about/flat/js/jquery-1.8.3.min.js"></script>
+		<script src="/lib/angular/angular.js"></script>
+		<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+		<script src="/lib/knob/js/jquery.knob.js"></script>
+		<script>
+			var current = "";
+			if(document.URL.indexOf("#") !== -1){
+				current = document.URL.split("#")[1];
+			}
+			function reloadNow() {
+				console.log("reload");
+				location.reload();
+			}
+			function checkB() {
+    				var ua= navigator.userAgent, tem,
+    				M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*([\d\.]+)/i) || [];
+   				if(/trident/i.test(M[1])){
+        				tem=  /\brv[ :]+(\d+(\.\d+)?)/g.exec(ua) || [];
+        			return 'IE '+(tem[1] || '');
+    				}
+    				M= M[2]? [M[1], M[2]]:[navigator.appName, navigator.appVersion, '-?'];
+    				if((tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
+    				var browser = M.join(' ');
+        			if(browser.indexOf("MSIE") !== -1){
+                			window.location.href = "https://codeyourcloud.com/error/browser";
+        			}
+        			if(browser.indexOf("Firefox") !== -1){
+	        			document.getElementById("ok_rename").innerHTML = "OK";
+	        			document.getElementById("cancel_rename").innerHTML = "NO";
+        			}
+			}
+            $(function($) {
+                $(".knob").knob({
+                    change : function (value) {
+                    },
+                    release : function (value) {
+                    },
+                    cancel : function () {
+                    },
+                    draw : function () {
+                    }
+                });
+            });
+        </script>
+		<!--JQUERY-->
+		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+		<!--CODEMIRROR-->
+		<script src = "codemirror.js"></script>
+		<link rel='stylesheet' type='text/css' href='codemirror.css'>
+		<!-- Latest compiled and minified CSS -->
+		<link href="/about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+		<!--MODES-->
+		<script src = '/code/modes/clike.js'></script>
+    	<script src = '/code/modes/coffeescript.js'></script>
+    	<script src = '/code/modes/css.js'></script>
+    	<script src = '/code/modes/htmlembedded.js'></script>
+    	<script src = '/code/modes/htmlmixed.js'></script>
+    	<script src = '/code/modes/http.js'></script>
+    	<script src = '/code/modes/javascript.js'></script>
+    	<script src = '/code/modes/perl.js'></script>
+    	<script src = '/code/modes/php.js'></script>
+    	<script src = '/code/modes/python.js'></script>
+    	<script src = '/code/modes/ruby.js'></script>
+    	<script src = '/code/modes/sql.js'></script>
+    	<script src = '/code/modes/xml.js'></script>
+    	<script src = '/code/modes/groovy.js'></script>
+    	<script src = '/code/modes/go.js'></script>
+    	<script src = '/code/modes/pascal.js'></script>
+    	<script src = '/code/modes/cobol.js'></script>
+    	<script src = '/code/modes/lua.js'></script>
+		<script src = '/code/modes/clojure.js'></script>
+		<script src = '/code/modes/jade.js'></script>
+		<script src = '/code/modes/markdown.js'></script>
+		<script src = '/code/modes/sass.js'></script>
+		<script src = '/code/modes/shell.js'></script>
+		<script src = '/code/modes/d.js'></script>
+		<script src = '/code/modes/erlang.js'></script>
+		
+		<script src = '/code/modes/apl.js'></script>
+		<script src = '/code/modes/asterisk.js'></script>
+		<script src = '/code/modes/diff.js'></script>
+		<script src = '/code/modes/haml.js'></script>
+		<script src = '/code/modes/haskell.js'></script>
+		<script src = '/code/modes/haxe.js'></script>
+		<script src = '/code/modes/jinja2.js'></script>
+		<script src = '/code/modes/julia.js'></script>
+		<script src = '/code/modes/nginx.js'></script>
+		<script src = '/code/modes/octave.js'></script>
+		<script src = '/code/modes/properties.js'></script>
+		<script src = '/code/modes/q.js'></script>
+		<script src = '/code/modes/r.js'></script>
+		<script src = '/code/modes/rust.js'></script>
+		<script src = '/code/modes/scheme.js'></script>
+		<script src = '/code/modes/sieve.js'></script>
+		<script src = '/code/modes/xquery.js'></script>
+		
+		<!--THEMES-->
+		<link rel='stylesheet' type='text/css' href='/code/themes/3024-day.css'>
+		<link rel='stylesheet' type='text/css' href='/code/themes/3024-night.css'>
+		<link rel='stylesheet' type='text/css' href='/code/themes/ambiance.css'>
+		<link rel='stylesheet' type='text/css' href='/code/themes/cobalt.css'>
+		<link rel='stylesheet' type='text/css' href='/code/themes/mbo.css'>
+		<link rel='stylesheet' type='text/css' href='/code/themes/lesser-dark.css'>
+		<link rel='stylesheet' type='text/css' href='/code/themes/paraiso-light.css'>
+		<link rel='stylesheet' type='text/css' href='/code/themes/rubyblue.css'>
+		<link rel='stylesheet' type='text/css' href='/code/themes/the-matrix.css'>
+		
+    		<script>
+    			var isTopen = false;
+    			var userName = "user";
+    			var userUrl = "https://codeyourcloud.com/images/logo.png"
+    			var TogetherJSConfig_includeHashInUrl = true;
+    			var TogetherJSConfig_findRoom = current;
+    			var TogetherJSConfig_suppressInvite = true;
+    			var TogetherJSConfig_suppressJoinConfirmation = true;
+			//var TogetherJSConfig_hubBase = "https://codeyourcloud.com";
+			var TogetherJSConfig_dontShowClicks = true
+			//var TogetherJSConfig_autoStart = true;
+			var TogetherJSConfig_getUserName = function () {return userName;};
+			var TogetherJSConfig_getUserAvatar = function () {return userUrl;};
+    		</script>
+    	<script src="https://togetherjs.com/togetherjs-min.js"></script>
+		<!--addons-->
+		<link rel="stylesheet" href='/code/addon/dialog/dialog.css'>
+    		<script src = '/code/addon/dialog/dialog.js'></script>
+    		<script src = '/code/addon/search/search.js'></script>
+    		<script src = '/code/addon/search/searchcursor.js'></script>
+    		<script src = '/code/addon/edit/matchbrackets.js'></script>
+    		<script src = '/code/addon/edit/closebrackets.js'></script>
+		<script src = '/code/addon/edit/closetag.js'></script>
+		<script src = '/code/addon/tern/tern.js'></script>
+		<script src="/lib/auto/acorn.js"></script>
+		<script src="/lib/auto/acorn_loose.js"></script>
+		<script src="/lib/auto/walk.js"></script>
+		<script src="/lib/auto/polyfill.js"></script>
+		<script src="/lib/auto/signal.js"></script>
+		<script src="/lib/auto/tern.js"></script>
+		<script src="/lib/auto/def.js"></script>
+		<script src="/lib/auto/comment.js"></script>
+		<script src="/lib/auto/infer.js"></script>
+		<script src="/lib/auto/doc_comment.js"></script>
+		<script src="/lib/auto/ecma5.json"></script>
+		<script src = '/code/addon/hint/show-hint.js'></script>
+		<link rel='stylesheet' type='text/css' href='/code/addon/hint/show-hint.css'/>
+		<link rel='stylesheet' type='text/css' href='/code/addon/tern/tern.css'/>
+		<script id="cssScript" type="text/javascript" src="/code/addon/hint/css-hint.js"></script>
+		<script id="xmlScript" type="text/javascript" src="/code/addon/hint/xml-hint.js"></script>
+		<script id="htmlScript" type="text/javascript" src="/code/addon/hint/html-hint.js"></script>
+		<script id="pythonScript" type="text/javascript" src="/code/addon/hint/python-hint.js"></script>
+		<script type="text/javascript" src="/code/addon/hint/show-hint.js"></script>
+		<script id="sqlScript" type="text/javascript" src="/code/addon/hint/sql-hint.js"></script>
+		<!--OPEN-->
+		<script src = 'code2.js'></script>
+		<!--KEYBOARD-->
+		<script src = '/code/keyboard/jwerty.js'></script>
+		<script src = '/code/vim.js'></script>
+		<!--BOOTSTRAP LIBRARIES-->
+		<script src = '/lib/colorpicker/js/bootstrap-colorpicker.js'></script>
+		<link rel="stylesheet" type="text/css" href="/lib/colorpicker/css/colorpicker.css">
+		<link rel='stylesheet' type='text/css' href='/lib/LigatureSymbols/style.css'>
+		<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css'>
+		
+		<link rel='stylesheet' type='text/css' href='codeCss.css'>
+		<!--flat-->
+		<link rel='stylesheet' type='text/css' href='/about/flat/css/flat-ui.css'>
+	</head>
+	<body onload = "checkB()">
+		<link rel='stylesheet' type='text/css' href='codeCss.css'>
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="just-light logo"><a id="navA" href="https://codeyourcloud.com/about">[ Y ]</a></li>
+					<li class="dropdown red-dark" id="codedropdown">
+						<a class="dropdown-toggle" id="dropdown-toggle-code" data-toggle="dropdown">   File</a>
+						<ul class="dropdown-menu">
+							<li onclick="save()"><a><i class="fa fa-floppy-o"></i>   Save</a></li>
+							<li onclick="loadOPicker()"><a><span class="glyphicon glyphicon-folder-open"></span>   Open</a></li>
+							<li onclick="folderPickerNew()"><a><i class="fa fa-file"></i>	New</a></li>
+							<li onclick="uploadPicker()"><a><i class="fa fa-cloud-upload"></i>	Upload</a></li>
+							<li onclick="loadShare()"><a><span class="glyphicon glyphicon-cloud"></span>   Share</a></li>
+							<li onclick="downloadFile()"><a><span class="glyphicon glyphicon-download"></span>   Download</a></li>
+						</ul>
+					</li>
+					<li class="dropdown blue-light" id="codedropdown">
+						<a class="dropdown-toggle" id="dropdown-toggle-code" data-toggle="dropdown">Edit</a>
+						<ul class="dropdown-menu">
+							<li onclick="navUndo()"><a><i class="fa fa-reply"></i>   Undo</a></li>
+							<li onclick="navRedo()"><a><i class="fa fa-share"></i>   Redo</a></li>
+						</ul>
+					</li>
+					<li class="dropdown green-light" id="codedropdown">
+						<a class="dropdown-toggle" id="dropdown-toggle-code" data-toggle="dropdown">Code</a>
+						<ul class="dropdown-menu">
+							<li onclick=""><a onclick="showColor()"><span class="glyphicon glyphicon-picture" id="colorpicker" data-color-format="hex" data-color="rgb(255, 255, 255)"></span> Color</a></li>
+							<li onclick="show_terminal()"><a><i class="fa fa-terminal"></i>  Terminal</a></li>
+							<li onclick="show_todo()"><a><i class="fa fa-list-ol">  Todo</i></a></li>
+							<li onclick="show_note()"><a><i class="fa fa-file-text-o"></i>  Notepad</a></li>
+							<li onclick="$('#previewModal').modal('show')"><a>Preview</a></li>
+							<li id="autoButton" onclick="getHint()"><a><i class="fa fa-question"></i>  Autocomplete</a></li>
+						</ul>
+					</li>
+					<li class="or-dark" id="will_close">
+						<div class="btn-group">
+							<button id="col_button" class="btn btn-success" onclick="TogetherJS(this);return false"><i class="fa fa-comment"></i></button>
+							<button id ="note" class="btn btn-default" onclick="save()">All Changes Saved To Drive</button>
+						</div>	
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+					<div class="btn-group toolBAR">
+					<button class="btn btn-primary" onclick="loadOPicker()"><span class="glyphicon glyphicon-folder-open"></span></button>
+					<button class="btn btn-primary" onclick="save()" id="headerButton_save_right"><i class="fa fa-floppy-o"></i></button>
+					<button class="btn btn-primary" onclick="navUndo()"><i class="fa fa-reply"></i></button>
+					<button class="btn btn-primary" onclick="navRedo()"><i class="fa fa-share"></i></button>
+					</div>
+					</li>
+					<li class="dropdown green-dark">
+						<a class="dropdown-toggle" data-toggle="dropdown" onclick="FIND()" id="dropdown-toggle-code"><span class="glyphicon glyphicon-search"></span></b></a>
+						<ul class="dropdown-menu">
+							<li onclick="FIND()"><a>Find</a></li>
+							<li onclick="REPLACE()"><a>Replace</a></li>
+						</ul>
+					</li>
+					<li class="dropdown or-light" id="cogLI">
+						<a class="dropdown-toggle" data-toggle="dropdown" id="dropdown-toggle-code"><span class="glyphicon glyphicon-cog"></span></a>
+						<ul class="dropdown-menu">
+							<li onclick="pref()"><a>Preferences</a></li>
+							<li onclick="navFaq()"><a><span class="glyphicon glyphicon-info-sign"></span> Help</a></li>
+							<li onclick="navContactUs()"><a><span class="glyphicon glyphicon-envelope"></span> Contact Us</a></li>
+							<li onclick="signout()"><a><i class="fa fa-sign-out"></i> Sign out from Google</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</nav>
+		<!--end menu-->
+		<nav class="navbar navbar-inverse navbar-embossed navbar-fixed-bottom" role="navigation" id="theNavBar2">
+			<div class="navbar-header">
+		    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNav2" id="toggleButton">
+		          		<span class="sr-only">Toggle navigation</span>
+			        	<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse white-top" id="myNav2">
+				<ul class="nav navbar-nav">
+					<!--actions-->
+					<li class="just-dark" onclick="openSide()" id="side-arrow"><a id="the-arrow"><i class="fa fa-caret-square-o-left"></i></a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Welcome" id = "renameInput" val="">
+					</div>
+				</form>
+				<ul class="nav navbar-nav navbar-left">
+					<li>
+					<div class="btn-group just-light" id="ok_cancel_group">
+						<button onclick="okRename()" class="btn btn-success" id="ok_rename"><i class="fa fa-check"></i></button>
+						<button onclick="cancelRename()" class="btn btn-danger" id="cancel_rename"><i class="fa fa-ban"></i></button>
+					</div>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<br/>
+		<br/>
+		<br/>
+		<!--
+		THE LOADING MODAL
+		-->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">LOADING: GRIT, SPIT, AND JAVASCRIPT</h4>
+					</div>
+					<div class="modal-body">
+						<div class="progress progress-striped active">																					<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="prog">
+						       		<span class="sr-only" id="desc">0% Complete</span>																			</div>
+						</div>
+					</div>
+					<div class="modal-footer">				  
+						<button class="btn btn-danger float-left" onclick="reloadNow()">RETRY</button><span id="loading" class="float-right">Loading...</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		PREF MODAL
+		-->
+		<div class="modal fade" id="prefModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">PREFERENCES</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-lg-4 theme-div">
+								<h5>Theme</h5>
+								<ul id="theme_ul">
+				            		<li onclick = "setTheme('3024-day')">3024-day</li>
+            		    			<li onclick = "setTheme('3024-night')">3024-night</li>
+            						<li onclick = "setTheme('ambiance')">ambiance</li>
+              						<li onclick = "setTheme('cobalt')">cobalt</li>
+            		  				<li onclick = "setTheme('mbo')">mbo</li>
+           		    				<li onclick = "setTheme('lesser-dark')">lesser-dark</li>
+          		    				<li onclick = "setTheme('paraiso-light')">paraiso-light</li>
+            						<li onclick = "setTheme('rubyblue')">rubyblue</li>
+              						<li onclick = "setTheme('the-matrix')">matrix</li>
+								</ul>
+					</li>
+								</ul>
+							</div>
+							<div class="col-lg-4 theme-div">
+								<h5>Mode</h5>
+								<ul id="theme_ul">	
+									<li onclick="setMode('.java')">Java</li>
+									<li onclick="setMode('.c')">C</li>
+									<li onclick="setMode('.cpp')">C++</li>
+									<li onclick="setMode('.cs')">C#</li>
+									<li onclick="setMode('.sass')">Sass</li>
+									<li onclick="setMode('.css')">CSS</li>
+									<li onclick="setMode('.html')">HTML</li>
+									<li onclick="setMode('.php')">PHP</li>
+						    		<li onclick="setMode('.js')">Javascript</li>
+									<li onclick="setMode('.coffee')">Coffeescript</li>
+									<li onclick="setMode('.py')">Python</li>
+            						<li onclick="setMode('.pl')">Perl</li>
+            						<li onclick="setMode('.xml')">XML</li>
+            						<li onclick="setMode('.ru')">Ruby</li>
+            						<li onclick="setMode('.sql')">SQL</li>
+            						<li onclick="setMode('.groovy')">Groovy</li>
+            						<li onclick="setMode('.go')">Go</li>
+            						<li onclick="setMode('.cob')">Cobol</li>
+            						<li onclick="setMode('.pas')">Pascal</li>
+            						<li onclick="setMode('.less')">Less</li>
+            						<li onclick="setMode('.clj')">Clojure</li>
+            						<li onclick="setMode('.lua')">Lua</li>
+            						<li onclick="setMode('.sh')">Shell</li>
+            						<li onclick="setMode('.jade')">Jade</li>
+            						<li onclick="setMode('.md')">Markdown</li>
+									<li onclick="setMode('.d')">D</li>
+									<li onclick="setMode('.erl')">Erlang</li>
+									<li onclick="setMode('.apl')">Apl</li>
+									<li onclick="setMode('.asterisk')">Asterisk</li>
+									<li onclick="setMode('.diff')">Diff</li>
+									<li onclick="setMode('.haml')">Haml</li>
+									<li onclick="setMode('.hs')">Haskell</li>
+									<li onclick="setMode('.haxe')">Haxe</li>
+									<li onclick="setMode('.jinja2')">Jinja</li>
+									<li onclick="setMode('.nginx')">Nginx</li>
+									<li onclick="setMode('.octave')">Octave</li>
+									<li onclick="setMode('.properties')">Properties</li>
+									<li onclick="setMode('.q')">Q</li>
+									<li onclick="setMode('.r')">R</li>
+									<li onclick="setMode('.rc')">Rust</li>
+									<li onclick="setMode('.ss')">Scheme</li>
+									<li onclick="setMode('.sieve')">Sieve</li>
+									<li onclick="setMode('.xquery')">Xquery</li>
+								</ul>
+							</div>
+							<div class="col-lg-4">
+								<div id="slider" class="ui-slider">
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+									<div class="ui-slider-segment"></div>
+								</div>
+								<h6>Line Numbers</h6>
+								<input type="checkbox" checked="" data-toggle="switch" id="line_num_switch" onchange="line_numbers()" />
+								<h6>Line Wrap</h6>
+								<input type="checkbox" data-toggle="switch" id="line_wrap_switch" onchange="line_wrap()"/>
+								<h6>Vim mode</h6>
+								<input type="checkbox" data-toggle="switch" id="vim_bind_switch" onchange="vimBind()"/>
+								<p id="user_p">Not available</p>
+								<img height="100%" src="" id="pic_img"/>
+								<p id="user_id_p">Not available</p>
+								<h6>Capacity used</h6>
+								<!--spinner thing-->
+								<input id="knob" class="knob" data-width="100" data-fgColor="chartreuse" data-thickness=".4" readonly value="10">		
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">				  
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		PREVIEW
+		-->
+		<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">PREVIEW</h4>
+					</div>
+					<div class="modal-body">
+						<iframe id="preview"></iframe>
+					</div>
+					<div class="modal-footer">				  
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--
+		CONTENT
+		-->
+		<div id = "container">
+		<div id = "content"></div>		
+			<div id="side">
+				<div class="btn-group" id="theTabs">
+					<button class="btn btn-primary" onclick="notes()"><i class="fa fa-file"></i></button>
+					<button class="btn btn-primary" onclick="docs()"><i class="fa fa-terminal"></i></button>
+					<button class="btn btn-primary" onclick="todo()"><i class="fa fa-list-ol"></i></button>
+					<button class="btn btn-primary" onclick="brow()"><i class="fa fa-globe"></i></button>
+				</div>
+				<div id = "placeholder">
+				</div>
+				<div id="pad" placeholder="jot down your ideas!">
+				</div>
+				<div id="docs">
+					<iframe id="iframe" src="https://codeyourcloud.com/lib/repl/index.html"></iframe>
+				</div>
+				<div id="todo" class="todo">
+				</div>
+				<div id="brow">
+				</div>
+			</div>
+		</div>
+		<script src="/about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="/about/flat/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/about/flat/js/bootstrap.min.js"></script>
+		<script src="/about/flat/js/bootstrap-select.js"></script>
+		<script src="/about/flat/js/bootstrap-switch.js"></script>
+		<script src="/about/flat/js/flatui-checkbox.js"></script>
+		<script src="/about/flat/js/flatui-radio.js"></script>
+		<script src="/about/flat/js/jquery.tagsinput.js"></script>
+		<script src="/about/flat/js/jquery.placeholder.js"></script>
+		<script src="/about/flat/js/jquery.stacktable.js"></script>
+		<script src="/about/flat/js/application.js"></script>
+		<script src="code.js"></script>
+		<script src="frontend.js"></script>
+		<script src="/lib/knob/js/jquery.knob.js"></script>
+		<script>
+			document.getElementById("renameInput").style.lineHeight = "normal";
+			handleClientLoad();
+			checkData();
+		</script>
+		<script>	
+			jwerty.key('ctrl+o/cmd+o', function() {
+				setTimeout(function() {
+					loadOPicker();
+					return false;
+				},0);
+				return false;
+			});
+			jwerty.key('ctrl+s/cmd+s', function() {
+                                setTimeout(function() {
+                                        save();
+					return false;
+                                },0);
+                                return false;
+                        });
+			jwerty.key('ctrl+d/cmd+d', function() {
+                                setTimeout(function() {
+                                        downloadFile();
+					return false;
+                                },0);
+                                return false;
+                        });
+			jwerty.key('ctrl+z/cmd+z', function() {
+				setTimeout(function() {
+					navUndo();
+					return false;
+				},0);
+				return false;
+			});	
+			jwerty.key('ctrl+shift+z/cmd+shift+z', function() {
+				setTimeout(function() {
+					navRedo();
+					return false;
+				},0);
+				return false;
+			});
+			jwerty.key('ctrl+space', function() {
+				getHint();
+			});
+		</script>
+		<link rel='stylesheet' type='text/css' href='codeCss.css'>
+	</body>
+</html>
