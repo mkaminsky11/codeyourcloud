@@ -119,11 +119,9 @@
     			var TogetherJSConfig_findRoom = current;
     			var TogetherJSConfig_suppressInvite = true;
     			var TogetherJSConfig_suppressJoinConfirmation = true;
-			//var TogetherJSConfig_hubBase = "https://codeyourcloud.com";
-			var TogetherJSConfig_dontShowClicks = true
-			//var TogetherJSConfig_autoStart = true;
-			var TogetherJSConfig_getUserName = function () {return userName;};
-			var TogetherJSConfig_getUserAvatar = function () {return userUrl;};
+				var TogetherJSConfig_dontShowClicks = true
+				var TogetherJSConfig_getUserName = function () {return userName;};
+				var TogetherJSConfig_getUserAvatar = function () {return userUrl;};
     		</script>
     	<script src="https://togetherjs.com/togetherjs-min.js"></script>
 		<!--addons-->
@@ -156,7 +154,7 @@
 		<script type="text/javascript" src="/code/addon/hint/show-hint.js"></script>
 		<script id="sqlScript" type="text/javascript" src="/code/addon/hint/sql-hint.js"></script>
 		<!--OPEN-->
-		<script src = 'code2.js'></script>
+		<script src = 'picker.js'></script>
 		<!--KEYBOARD-->
 		<script src = '/code/keyboard/jwerty.js'></script>
 		<script src = '/code/vim.js'></script>
@@ -166,12 +164,12 @@
 		<link rel='stylesheet' type='text/css' href='/lib/LigatureSymbols/style.css'>
 		<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css'>
 		
-		<link rel='stylesheet' type='text/css' href='codeCss.css'>
+		<link rel='stylesheet' type='text/css' href='style.css'>
 		<!--flat-->
 		<link rel='stylesheet' type='text/css' href='/about/flat/css/flat-ui.css'>
 	</head>
 	<body onload = "checkB()">
-		<link rel='stylesheet' type='text/css' href='codeCss.css'>
+		<link rel='stylesheet' type='text/css' href='style.css'>
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -475,7 +473,7 @@
 		<script src="/about/flat/js/jquery.placeholder.js"></script>
 		<script src="/about/flat/js/jquery.stacktable.js"></script>
 		<script src="/about/flat/js/application.js"></script>
-		<script src="code.js"></script>
+		<script src="main.js"></script>
 		<script src="frontend.js"></script>
 		<script src="/lib/knob/js/jquery.knob.js"></script>
 		<script>
@@ -523,6 +521,6 @@
 				getHint();
 			});
 		</script>
-		<link rel='stylesheet' type='text/css' href='codeCss.css'>
+		<link rel='stylesheet' type='text/css' href='style.css'>
 	</body>
 </html>
