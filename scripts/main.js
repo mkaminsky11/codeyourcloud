@@ -1,3 +1,4 @@
+var server;
 scrollTo(0,0);
 //
 var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
@@ -619,7 +620,6 @@ $('#colorpicker').colorpicker().on('changeColor', function(ev){
 		codeMirror.getDoc().setSelection(before,after);
 	}
 });
-var server;
 function getURL(url, c) {
     var xhr = new XMLHttpRequest();
     xhr.open("get", url, true);
@@ -637,18 +637,20 @@ function startTern(){
 		if (err) throw new Error("Request for ecma5.json: " + err);
 		server = new CodeMirror.TernServer({defs: [JSON.parse(code)]});
 		codeMirror.setOption("extraKeys", {
-			"Ctrl-Space": function(cm) { server.complete(cm); },
+			"Ctrl-Space": function(cm) {
+				console.log("stuff");
+				server.complete(codeMirror); 
+			},
 			"Ctrl-I": function(cm) { server.showType(cm); },
-			"Alt-.": function(cm) { server.jumpToDef(cm); },
-			"Alt-,": function(cm) { server.jumpBack(cm); },
+			"Ctrl-.": function(cm) { server.jumpToDef(cm); },
+			"Ctrl-,": function(cm) { server.jumpBack(cm); },
 			"Ctrl-Q": function(cm) { server.rename(cm); },
-			})
-			codeMirror.on("cursorActivity", function(cm) { server.updateArgHints(cm); });
-			});
+		})
+		codeMirror.on("cursorActivity", function(cm) { server.updateArgHints(codeMirror); });
+		});
 }
 function getHint(){
 	if(title.indexOf(".js") !== -1){
-		server.complete(codeMirror);
 	}
 	if(title.indexOf(".css") !== -1){
 		CodeMirror.showHint(codeMirror, CodeMirror.hint.css);
@@ -1021,48 +1023,6 @@ function pref(){
 //
 //
 //
-document.getElementById("renameInput").style.lineHeight = "normal";
-handleClientLoad();
-checkData();
-jwerty.key('ctrl+o/cmd+o', function() {
-	setTimeout(function() {
-		loadOPicker();
-		return false;
-	},0);
-	return false;
-});
-jwerty.key('ctrl+s/cmd+s', function() {
-	setTimeout(function() {
-		save();
-		return false;
-	},0);
-	return false;
-});
-jwerty.key('ctrl+d/cmd+d', function() {
-	setTimeout(function() {
-		downloadFile();
-		return false;
-	},0);
-	return false;
-});
-jwerty.key('ctrl+z/cmd+z', function() {
-	setTimeout(function() {
-		navUndo();
-		return false;
-	},0);
-	return false;
-});	
-jwerty.key('ctrl+shift+z/cmd+shift+z', function() {
-	setTimeout(function() {
-		navRedo();
-		return false;
-	},0);
-	return false;
-});
-jwerty.key('ctrl+space', function() {
-	getHint();
-});
-closeSide();
 /**********
 FONT SIZE
 **********/

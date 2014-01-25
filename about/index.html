@@ -330,6 +330,80 @@
         keyboard
         
         -->
+        <table class="table table-striped">
+        	<tr>
+        		<th>Function</th>
+        		<th>Mac</th>
+        		<th>Windows/Linux</th>
+        		<th>For javascript only</th>
+        	</tr>
+        	<tr>
+        		<td>Autocomplete</td>
+        		<td>Ctrl + space</td>
+        		<td>Ctrl + space</td>
+        		<td><i class="fa fa-ban"></i></td>
+        	</tr>
+        	<tr>
+        		<td>Save</td>
+        		<td>&#8984; + s</td>
+        		<td>Ctrl + s</td>
+        		<td><i class="fa fa-ban"></i></td>
+        	</tr>
+        	<tr>
+        		<td>Open</td>
+        		<td>&#8984; + o</td>
+        		<td>Ctrl + o</td>
+        		<td><i class="fa fa-ban"></i></td>
+        	</tr>
+        	<tr>
+        		<td>Find</td>
+        		<td>&#8984; + f</td>
+        		<td>Ctrl + f</td>
+        		<td><i class="fa fa-ban"></i></td>
+        	</tr>
+        	<tr>
+        		<td>Replace</td>
+        		<td>&#8984; + option + f</td>
+        		<td>Shift + ctrl + f</td>
+        		<td><i class="fa fa-ban"></i></td>
+        	</tr>
+        	<tr>
+        		<td>Find next</td>
+        		<td>&#8984; + g</td>
+        		<td>Ctrl + g</td>
+        		<td><i class="fa fa-ban"></i></td>
+        	</tr>
+        	<tr>
+        		<td>Replace all</td>
+        		<td>Shift + &#8984; + option + f</td>
+        		<td>Shift + ctrl + r</td>
+        		<td><i class="fa fa-ban"></i></td>
+        	</tr>
+        	<tr>
+        		<td>Rename variable</td>
+        		<td>Ctrl + q</td>
+        		<td>Ctrl + q</td>
+        		<td><i class="fa fa-check"></i></td>
+        	</tr>
+        	<tr>
+        		<td>Jump to definition</td>
+        		<td>Ctrl + .</td>
+        		<td>Ctrl + .</td>
+        		<td><i class="fa fa-check"></i></td>
+        	</tr>
+        	<tr>
+        		<td>Jump back(see above)</td>
+        		<td>Ctrl + ,</td>
+        		<td>Ctrl + ,</td>
+        		<td><i class="fa fa-check"></i></td>
+        	</tr>
+        	<tr>
+        		<td>Type at cursor</td>
+        		<td>Ctrl + i</td>
+        		<td>Ctrl + i</td>
+        		<td><i class="fa fa-check"></i></td>
+        	</tr>
+        </table>
         <h4 id="vim">Vim</h4>
         <p>For users who enjoy using the vim code editor, Code Your Cloud has a very basic vim mode. So far, only the basic modes (visual, insert, etc.), arrow keys, and save (:w) are functional. Look for more additions in the future.
         <h4 id="pref">Preferences</h4>
@@ -353,7 +427,17 @@
         <br/>
         <button class="btn btn-success" onclick="comment">Comment</button>
         <button class="btn btn-danger" type="reset" value="Reset">Reset</button>
-
+		<h2 id="donate">Donate</h2>
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+			<input type="hidden" name="cmd" value="_donations">
+			<input type="hidden" name="business" value="mkaminsky11@gmail.com">
+			<input type="hidden" name="lc" value="US">
+			<input type="hidden" name="item_name" value="Code Your Cloud">
+			<input type="hidden" name="no_note" value="0">
+			<input type="hidden" name="currency_code" value="USD">
+			<input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
+			<input type="image" class="btn btn-warning" border="0" name="submit" alt="Donate With Paypal">
+		</form>
     <!-- JavaScript -->
     	<script src="/about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
 		<script src="/about/flat/js/jquery.ui.touch-punch.min.js"></script>

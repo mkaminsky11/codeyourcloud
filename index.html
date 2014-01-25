@@ -52,12 +52,16 @@
         </script>
 		<!--JQUERY-->
 		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
-		<!--CODEMIRROR-->
-		<script src = "/lib/codemirror/codemirror.js"></script>
-		<link rel='stylesheet' type='text/css' href='/lib/codemirror/codemirror.css'>
 		<!-- Latest compiled and minified CSS -->
 		<link href="/about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+
+		<script src = "/lib/codemirror/codemirror.js"></script>
+		<link rel='stylesheet' type='text/css' href='/lib/codemirror/codemirror.css'>
+		
+		<link rel='stylesheet' type='text/css' href='style.css'>
+		<!--flat-->
+		<link rel='stylesheet' type='text/css' href='/about/flat/css/flat-ui.css'>
 		<!--MODES-->
 		<script src = '/lib/codemirror/modes/clike.js'></script>
     		<script src = '/lib/codemirror/modes/coffeescript.js'></script>
@@ -127,29 +131,8 @@
 				var TogetherJSConfig_getUserAvatar = function () {return userUrl;};
     		</script>
     	<script src="https://togetherjs.com/togetherjs-min.js"></script>
-		<!--addons-->
-		<link rel="stylesheet" href='/lib/codemirror/addon/dialog/dialog.css'>
-    		<script src = '/lib/codemirror/addon/dialog/dialog.js'></script>
-    		<script src = '/lib/codemirror/addon/search/search.js'></script>
-    		<script src = '/lib/codemirror/addon/search/searchcursor.js'></script>
-    		<script src = '/lib/codemirror/addon/edit/matchbrackets.js'></script>
-    		<script src = '/lib/codemirror/addon/edit/closebrackets.js'></script>
-		<script src = '/lib/codemirror/addon/edit/closetag.js'></script>
-		<script src = '/lib/codemirror/addon/tern/tern.js'></script>
-		<script src="/lib/auto/acorn.js"></script>
-		<script src="/lib/auto/acorn_loose.js"></script>
-		<script src="/lib/auto/walk.js"></script>
-		<script src="/lib/auto/polyfill.js"></script>
-		<script src="/lib/auto/signal.js"></script>
-		<script src="/lib/auto/tern.js"></script>
-		<script src="/lib/auto/def.js"></script>
-		<script src="/lib/auto/comment.js"></script>
-		<script src="/lib/auto/infer.js"></script>
-		<script src="/lib/auto/doc_comment.js"></script>
-		<script src="/lib/auto/ecma5.json"></script>
-		<script src = '/lib/codemirror/addon/hint/show-hint.js'></script>
-		<link rel='stylesheet' type='text/css' href='/lib/codemirror/addon/hint/show-hint.css'/>
-		<link rel='stylesheet' type='text/css' href='/lib/codemirror/addon/tern/tern.css'/>
+		<!--addons-->		
+		
 		<script id="cssScript" type="text/javascript" src="/lib/codemirror/addon/hint/css-hint.js"></script>
 		<script id="xmlScript" type="text/javascript" src="/lib/codemirror/addon/hint/xml-hint.js"></script>
 		<script id="htmlScript" type="text/javascript" src="/lib/codemirror/addon/hint/html-hint.js"></script>
@@ -167,9 +150,30 @@
 		<link rel='stylesheet' type='text/css' href='/lib/LigatureSymbols/style.css'>
 		<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css'>
 		
-		<link rel='stylesheet' type='text/css' href='style.css'>
-		<!--flat-->
-		<link rel='stylesheet' type='text/css' href='/about/flat/css/flat-ui.css'>
+		
+		<!--
+		addons
+		
+		-->
+		<link rel="stylesheet" href="/lib/codemirror/addon/dialog/dialog.css">
+		<link rel="stylesheet" href="/lib/codemirror/addon/hint/show-hint.css">
+		<link rel="stylesheet" href="/lib/codemirror/addon/tern/tern.css">
+		
+		<script src="/lib/codemirror/addon/dialog/dialog.js"></script>
+		<script src="/lib/codemirror/addon/hint/show-hint.js"></script>
+		<script src="/lib/codemirror/addon/tern/tern.js"></script>
+		
+		
+		<script src="/lib/auto/acorn.js"></script>
+		<script src="/lib/auto/acorn_loose.js"></script>
+		<script src="/lib/auto/walk.js"></script>
+		<script src="/lib/auto/polyfill.js"></script>
+		<script src="/lib/auto/signal.js"></script>
+		<script src="/lib/auto/tern.js"></script>
+		<script src="/lib/auto/def.js"></script>
+		<script src="/lib/auto/comment.js"></script>
+		<script src="/lib/auto/infer.js"></script>
+		<script src="/lib/auto/doc_comment.js"></script>
 	</head>
 	<body onload = "checkB()">
 		<link rel='stylesheet' type='text/css' href='style.css'>
@@ -467,5 +471,50 @@
 		<script src="/lib/knob/js/jquery.knob.js"></script>
 
 		<link rel='stylesheet' type='text/css' href='style.css'>
+		
+		<script>
+			document.getElementById("renameInput").style.lineHeight = "normal";
+			handleClientLoad();
+			checkData();
+			jwerty.key('ctrl+o/cmd+o', function() {
+				setTimeout(function() {
+					loadOPicker();
+					return false;
+				},0);
+				return false;
+			});
+			jwerty.key('ctrl+s/cmd+s', function() {
+				setTimeout(function() {
+					save();
+					return false;
+				},0);
+				return false;
+			});
+			jwerty.key('ctrl+d/cmd+d', function() {
+				setTimeout(function() {
+					downloadFile();
+					return false;
+				},0);
+				return false;
+			});
+			jwerty.key('ctrl+z/cmd+z', function() {
+				setTimeout(function() {
+					navUndo();
+					return false;
+				},0);
+				return false;
+			});	
+			jwerty.key('ctrl+shift+z/cmd+shift+z', function() {
+				setTimeout(function() {
+					navRedo();
+					return false;
+				},0);
+				return false;
+			});
+			jwerty.key('ctrl+space/cmd+space', function() {
+				getHint();
+			});
+			closeSide();
+			</script>
 	</body>
 </html>
