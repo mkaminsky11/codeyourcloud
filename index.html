@@ -8,9 +8,10 @@
 		<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
 		<script src="/lib/knob/js/jquery.knob.js"></script>
 		<script>
+			var doc_url = document.URL;
 			var current = "";
-			if(document.URL.indexOf("#") !== -1){
-				current = document.URL.split("#")[1];
+			if(doc_url.indexOf("#") !== -1){
+				current = doc_url.split("#")[1];
 			}
 			function reloadNow() {
 				console.log("reload");
@@ -181,7 +182,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="just-light logo"><a id="navA" href="https://codeyourcloud.com/about">[ Y ]</a></li>
+					<li class="logo"><a id="navA" href="https://codeyourcloud.com/about"><span id="logo_left">[</span> <span id="logo_mid">Y</span> <span id="logo_right">]</span></a></li>
 					<li class="dropdown red-dark" id="codedropdown">
 						<a class="dropdown-toggle" id="dropdown-toggle-code" data-toggle="dropdown">   File</a>
 						<ul class="dropdown-menu">
@@ -259,7 +260,7 @@
 			<div class="collapse navbar-collapse white-top" id="myNav2">
 				<ul class="nav navbar-nav">
 					<!--actions-->
-					<li class="just-dark" onclick="openSide()" id="side-arrow"><a id="the-arrow"><i class="fa fa-caret-square-o-left"></i></a></li>
+					<li class=" " onclick="openSide()" id="side-arrow"><a id="the-arrow"><i class="fa fa-caret-square-o-left"></i></a></li>
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
@@ -268,7 +269,7 @@
 				</form>
 				<ul class="nav navbar-nav navbar-left">
 					<li>
-					<div class="btn-group just-light" id="ok_cancel_group">
+					<div class="btn-group " id="ok_cancel_group">
 						<button onclick="okRename()" class="btn btn-success" id="ok_rename"><i class="fa fa-check"></i></button>
 						<button onclick="cancelRename()" class="btn btn-danger" id="cancel_rename"><i class="fa fa-ban"></i></button>
 					</div>
@@ -376,27 +377,11 @@
 								</ul>
 							</div>
 							<div class="col-lg-4">
-								<div id="slider" class="ui-slider">
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
-									<div class="ui-slider-segment"></div>
+								<h6>Font Size</h6>
+								<!--stepper goes here-->
+								<div class="btn-group">
+									<button class="btn btn-primary" onclick="fontUp()"><i class="fa fa-caret-square-o-up"></i></button>
+									<button class="btn btn-primary" onclick="fontDown()"><i class="fa fa-caret-square-o-down"></i></button>
 								</div>
 								<h6>Line Numbers</h6>
 								<input type="checkbox" checked="" data-toggle="switch" id="line_num_switch" onchange="line_numbers()" />
@@ -473,54 +458,11 @@
 		<script src="/about/flat/js/jquery.placeholder.js"></script>
 		<script src="/about/flat/js/jquery.stacktable.js"></script>
 		<script src="/about/flat/js/application.js"></script>
+		<script src="/scripts/drive.js"></script>
 		<script src="/scripts/main.js"></script>
 		<script src="/scripts/frontend.js"></script>
 		<script src="/lib/knob/js/jquery.knob.js"></script>
-		<script>
-			document.getElementById("renameInput").style.lineHeight = "normal";
-			handleClientLoad();
-			checkData();
-		</script>
-		<script>	
-			jwerty.key('ctrl+o/cmd+o', function() {
-				setTimeout(function() {
-					loadOPicker();
-					return false;
-				},0);
-				return false;
-			});
-			jwerty.key('ctrl+s/cmd+s', function() {
-                                setTimeout(function() {
-                                        save();
-					return false;
-                                },0);
-                                return false;
-                        });
-			jwerty.key('ctrl+d/cmd+d', function() {
-                                setTimeout(function() {
-                                        downloadFile();
-					return false;
-                                },0);
-                                return false;
-                        });
-			jwerty.key('ctrl+z/cmd+z', function() {
-				setTimeout(function() {
-					navUndo();
-					return false;
-				},0);
-				return false;
-			});	
-			jwerty.key('ctrl+shift+z/cmd+shift+z', function() {
-				setTimeout(function() {
-					navRedo();
-					return false;
-				},0);
-				return false;
-			});
-			jwerty.key('ctrl+space', function() {
-				getHint();
-			});
-		</script>
+
 		<link rel='stylesheet' type='text/css' href='style.css'>
 	</body>
 </html>

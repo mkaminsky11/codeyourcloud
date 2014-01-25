@@ -11,7 +11,7 @@ AUTHORIZATION
 ***********/
 //this should refresh the token every 300000 milliseconds = 3000 seconds = 50 minutes 
 window.onbeforeunload = function () {
-	if($("#note").html() === "Unsaved Changes" || $("#note").html() === "Saving..." && document.URL !== "https://codeyourcloud.com/"){
+	if($("#note").html() === "Unsaved Changes" || $("#note").html() === "Saving..." && doc_url !== "https://codeyourcloud.com/"){
 		//it's ok
 		if(isWelcome === false){
 			TogetherJS(this);
@@ -141,48 +141,6 @@ function getB() {
 		}
 	}
 }
-/**********************
-GET CONTENTS OF A FILE
-**********************/
-function getContentOfFile(theID){ //gets the content of the file
-    current = theID;
-    gapi.client.request({'path': '/drive/v2/files/'+theID,'method': 'GET',callback: function ( theResponseJS, theResponseTXT ) {
-        var myToken = gapi.auth.getToken();
-		//userInfoInit(myToken);
-        //console.log(myToken);
-		var myXHR   = new XMLHttpRequest();
-        myXHR.open('GET', theResponseJS.downloadUrl, true );
-        myXHR.setRequestHeader('Authorization', 'Bearer ' + myToken.access_token );
-        myXHR.onreadystatechange = function( theProgressEvent ) {
-            if (myXHR.readyState == 4) {
-                if ( myXHR.status == 200 ) {
-                	var code = myXHR.response;
-                    codeMirror.setValue(code); //sets the value of the codemirror
-               		setState("saved");
-			   		ok = true;
-			   		setPercent("100");
-			   		refreshTodo();
-			   	}
-            }
-        }
-        myXHR.send();
-        }
-    });
-}
-function getTitle(fileId){
-	var request = gapi.client.drive.files.get({
-    'fileId': fileId
-  	});
-  	request.execute(function(resp) {
-  		title = resp.title;
-		if(typeof title === 'undefined' || title === "undefined"){
-			document.location.href = "https://codeyourcloud.com/error/fileNotFound";
-			return false;
-		}
-  		document.getElementById('renameInput').value = title;
-    		checkFileName(resp.title);
-  	});
-}
 /*********
 SAVE FILE
 **********/
@@ -204,7 +162,7 @@ INITIALIZATION
 function openInit(){
 	setPercent("75");
 	initBoot();
-	var url = document.URL;
+	var url = doc_url;
 	if(url.indexOf("#") === -1 && url.indexOf("?") === -1){
 		//console.log("default");
 		welcome()	
@@ -215,14 +173,14 @@ function openInit(){
 				document.getElementById("will_close").style.visibility="visible";
 				//console.log("with hash");
 				isWelcome = false;
-				var theID = document.URL.split("#")[1];
+				var theID = doc_url.split("#")[1];
 				getContentOfFile(theID);
 				getTitle(theID);
 				}
 				if(url.indexOf("#") === -1 && url.indexOf("?") !== -1 && url.indexOf("ssh") === -1){
 					//console.log("with query");
 					if(url.indexOf("action%22:%22open") !== -1){
-						var temp1 = document.URL.split("%5B%22")[1];
+						var temp1 = doc_url.split("%5B%22")[1];
 						var temp2 = temp1.split("%22")[0];
 						//console.log(temp2);
 						openFile(temp2);
@@ -242,105 +200,6 @@ function openInit(){
 			welcome();
 		}
 	}
-}
-/***************
-CREATE NEW FILE
-***************/
-function createNewFile() {
-    var t = "untitled" + ".txt";
-    gapi.client.load('drive', 'v2', function() {
-        var request = gapi.client.request({
-            'path': '/drive/v2/files',
-            'method': 'POST',
-            'body':{
-                "title" : t,
-                "description" : "A file"
-            }
-        });
-        request.execute(function(resp) { 
-        	//console.log(resp); 
-        });
-    });
-}
-function insertNewFile(folderId) {
-	setPercent("85");
-	var content = " ";
-	var contentArray = new Array(content.length);
-        for (var i = 0; i < contentArray.length; i++) {
-            contentArray[i] = content.charCodeAt(i);
-        }
-        var byteArray = new Uint8Array(contentArray);
-        var blob = new Blob([byteArray], {type: 'text/plain'}); //this is the only way I could get this to work
-	insertFile(blob, fileInserted, folderId);
-}
-function fileInserted(d) {
-	setPercent("100");
-	//console.log(d);
-	var temp1 = document.URL.split("%22folderId%22:%22")[1];
-        var FI = temp1.split("%22,%22action%22")[0];
-	if(FI !== myRootFolderId){	
-		insertFileIntoFolder(FI, d.id);
-		removeFileFromFolder(d.parents[0].id,d.id);
-	}
-	openFile(d.id);
-}
-function insertFileIntoFolder(folderId, fileId) {
-  var body = {'id': folderId};
-  var request = gapi.client.drive.parents.insert({
-    'fileId': fileId,
-    'resource': body
-  });
-  request.execute(function(resp) { });
-}
-function removeFileFromFolder(folderId, fileId) {
-  var request = gapi.client.drive.parents.delete({
-    'parentId': folderId,
-    'fileId': fileId
-  });
-  request.execute(function(resp) { });
-}
-function insertFile(fileData, callback, folderId) {
-	setPercent("90");
-  const boundary = '-------314159265358979323846';
-  const delimiter = "\r\n--" + boundary + "\r\n";
-  const close_delim = "\r\n--" + boundary + "--";
-
-  var reader = new FileReader();
-  reader.readAsBinaryString(fileData);
-  reader.onload = function(e) {
-    var contentType = fileData.type || 'application/octet-stream';
-    var metadata = {
-      'title': "untitled.txt",
-      'mimeType': contentType
-    };
-
-    var base64Data = btoa(reader.result);
-    var multipartRequestBody =
-        delimiter +
-        'Content-Type: application/json\r\n\r\n' +
-        JSON.stringify(metadata) +
-        delimiter +
-        'Content-Type: ' + contentType + '\r\n' +
-        'Content-Transfer-Encoding: base64\r\n' +
-        '\r\n' +
-        base64Data +
-        close_delim;
-
-    var request = gapi.client.request({
-        'path': '/upload/drive/v2/files',
-        'method': 'POST',
-        'params': {'uploadType': 'multipart'},
-        'headers': {
-          'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
-        },
-        'body': multipartRequestBody});
-    if (!callback) {
-      callback = function(file) {
-        //console.log(file)
-      };
-    }
-    request.execute(callback);
-  }
 }
 /*************
 OPEN THE FILE
@@ -379,46 +238,6 @@ function saveFile(fileId, content){
         });
     }
 }
-function updateFile(fileId, fileMetadata, fileData, callback) { //is the callback necessary?
-  if(ok){
-  const boundary = '-------314159265358979323846';
-  const delimiter = "\r\n--" + boundary + "\r\n";
-  const close_delim = "\r\n--" + boundary + "--";
-
-  var reader = new FileReader();
-  reader.readAsBinaryString(fileData);
-  reader.onload = function(e) {
-    var contentType = fileData.type || 'application/octet-stream';
-    var base64Data = btoa(reader.result);
-    //console.log(base64Data);
-    var multipartRequestBody =
-        delimiter +
-        'Content-Type: application/json\r\n\r\n' +
-        JSON.stringify(fileMetadata) +
-        delimiter +
-        'Content-Type: ' + contentType + '\r\n' +
-        'Content-Transfer-Encoding: base64\r\n' +
-        '\r\n' +
-        base64Data +
-        close_delim;
-
-    var request = gapi.client.request({
-        'path': '/upload/drive/v2/files/' + fileId,
-        'method': 'PUT',
-        'params': {'uploadType': 'multipart', 'alt': 'json'},
-        'headers': {
-          'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
-        },
-        'body': multipartRequestBody});
-    if (!callback) {//this isn't necessary
-      callback = function(file) {
-        //console.log(file) //for some reason, this is important
-      };
-    }
-    request.execute(callback);//not needed
-  }
-	}
-}
 /***********
 DOWNLOAD FILE
 ************/
@@ -432,33 +251,6 @@ if(ok){
     window.location.assign(resp.webContentLink);
   });
 }
-}
-/***************
-SHARING FILES
-***************/
-function getP(fileId) {
-	var request = gapi.client.drive.permissions.list({
-		'fileId': fileId
-	});
-	request.execute(function(resp) {
-		console.log(resp.items);
-		console.log(resp.items.length);
-		var ret = false;
-		for(i = 0; i < resp.items.length; i++){
-			console.log(resp.items[i]);
-			if(resp.items[i].id === userId || resp.items[i].id === "anyone" || resp.items[i].id === "anyoneWithLink"){
-				ret = true;
-			}
-		}
-		console.log(ret);
-		if(ret === false){
-			window.location.href = "https://codeyourcloud.com/error/permission";
-		}
-	});
-}
-function changesSaved() {
-	console.log("changes saved");
-	setState("saved");
 }
 /*********
 FILE NAME
@@ -599,25 +391,6 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
 		codeMirror.setOptino("mode", "markdown");
 		 
 	}
-	/*
-			<script src = '/code/modes/apl.js'></script>
-		<script src = '/code/modes/asterisk.js'></script>
-		<script src = '/code/modes/diff.js'></script>
-		<script src = '/code/modes/haml.js'></script>
-		<script src = '/code/modes/haskell.js'></script>
-		<script src = '/code/modes/haxe.js'></script>
-		<script src = '/code/modes/jinja2.js'></script>
-		<script src = '/code/modes/julia.js'></script>
-		<script src = '/code/modes/nginx.js'></script>
-		<script src = '/code/modes/octave.js'></script>
-		<script src = '/code/modes/properties.js'></script>
-		<script src = '/code/modes/q.js'></script>
-		<script src = '/code/modes/r.js'></script>
-		<script src = '/code/modes/rust.js'></script>
-		<script src = '/code/modes/scheme.js'></script>
-		<script src = '/code/modes/sieve.js'></script>
-		<script src = '/code/modes/xquery.js'></script>
-	*/
 	if(e === "apl"){
 		codeMirror.setOptino("mode", "text/apl");
 	}
@@ -783,7 +556,7 @@ $('#line_wrap_switch').button( "refresh" );
 LINKS TO OTHER
 *************/
 function navFaq() {
-	window.location.href = "https://codeyourcloud.com/about#faq";
+	window.location.href = "https://codeyourcloud.com/about#help";
 	//$('#faqModal').modal('show');
 }
 function navContactUs() {
@@ -1219,33 +992,6 @@ function setMode(mode){
 function setModeNoSend(mode){
 	checkFileName(mode);
 }
-$('[data-toggle="tooltip"]').tooltip({
-    'placement': 'left'
-});
-/************
-CHECK IF NO DUPLICATES
-**************/
-function checkDir(folderId, testString, callback) {
-  var retrievePageOfChildren = function(request, result) {
-    request.execute(function(resp) {
-      result = result.concat(resp.items);
-      var nextPageToken = resp.nextPageToken;
-      if (nextPageToken) {
-        request = gapi.client.drive.children.list({
-          'folderId' : folderId,
-          'pageToken': nextPageToken
-        });
-        retrievePageOfChildren(request, result);
-      } else {
-        callback(result);
-      }
-    });
-  }
-  var initialRequest = gapi.client.drive.children.list({
-      'folderId' : folderId
-    });
-  retrievePageOfChildren(initialRequest, []);
-}
 TogetherJSConfig_on_ready = function () {
   TOpen = true;
 };
@@ -1259,19 +1005,77 @@ function addClass(id, className){
 	document.getElementById(id).className =document.getElementById(id).className + " "+className;
 }
 function notify(name){
-	if(TOpen === false && document.URL.indexOf("#") !== -1){
+	if(TOpen === false && doc_url.indexOf("#") !== -1){
 		setTimeout(function(){
 		TogetherJS(this);
 		}, 1000);	
 	}
 }
 function checkData(){
-	//if line numbers
 	
-	//if line wrap
-	
-	//if vim
 }
 function pref(){
 	$("#prefModal").modal('show');
+}
+//
+//
+//
+document.getElementById("renameInput").style.lineHeight = "normal";
+handleClientLoad();
+checkData();
+jwerty.key('ctrl+o/cmd+o', function() {
+	setTimeout(function() {
+		loadOPicker();
+		return false;
+	},0);
+	return false;
+});
+jwerty.key('ctrl+s/cmd+s', function() {
+	setTimeout(function() {
+		save();
+		return false;
+	},0);
+	return false;
+});
+jwerty.key('ctrl+d/cmd+d', function() {
+	setTimeout(function() {
+		downloadFile();
+		return false;
+	},0);
+	return false;
+});
+jwerty.key('ctrl+z/cmd+z', function() {
+	setTimeout(function() {
+		navUndo();
+		return false;
+	},0);
+	return false;
+});	
+jwerty.key('ctrl+shift+z/cmd+shift+z', function() {
+	setTimeout(function() {
+		navRedo();
+		return false;
+	},0);
+	return false;
+});
+jwerty.key('ctrl+space', function() {
+	getHint();
+});
+closeSide();
+/**********
+FONT SIZE
+**********/
+function fontUp(){
+	var old = Number($("#content").css("fontSize").replace("px", ""));
+	if(old < 100){
+		old = old + 2;
+	}
+	$("#content").css("fontSize", old+"px");
+}
+function fontDown(){
+	var old = Number($("#content").css("fontSize").replace("px", ""));
+	if(old > 4){
+		old = old - 2;
+	}
+	$("#content").css("fontSize", old+"px");
 }

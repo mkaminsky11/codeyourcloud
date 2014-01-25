@@ -52,13 +52,13 @@ function OpenInNewTab(stuff){
 init = function() {
 	//var once = true;
 	var s = new gapi.drive.share.ShareClient('953350323460');
-	s.setItemIds([document.URL.split("#")[1]]);
+	s.setItemIds([doc_url.split("#")[1]]);
 	s.showSettingsDialog()
 	//return false;
 }
 function loadShare() {
 	//console.log("window onload");
-	if(document.URL.indexOf("#") !== -1){
+	if(doc_url.indexOf("#") !== -1){
 		gapi.load('drive-share', init);
 		//return false;
 	}

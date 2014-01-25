@@ -310,12 +310,18 @@ nt-face {
 }
 
 .logo {
-	background-color: #68d86a;
-	border: thick solid #68d86a;
+	background-color: white;
+	border: thick solid white;
 	font-size: 30px;
 }
-.logo > {
-	font-size: 30px;
+#logo_left {
+	color: #E74C3C;
+}
+#logo_right {
+	color: #3498DB;
+}
+#logo_mid {
+	color: #2ECC71;
 }
 #theTabs {
 	width: 100%;
@@ -404,8 +410,8 @@ table {
 	width: 100%;
 	float:left;
 	margin: 0px;
-	padding: 20px;
-	background-color: #95A5A6;
+	height: 800px;
+	overflow-y: scroll;
 }
 #theme_ul > li {
 	background-color: #34495E;
