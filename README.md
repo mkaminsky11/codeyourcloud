@@ -1,5 +1,4 @@
 #Code Your Cloud#
-=============
 ####<a href="https://codeyourcloud.com">The Project</a>####
 ####<a href="https://codeyourcloud.com/about">About</a>####
 ###Code Snippets###
