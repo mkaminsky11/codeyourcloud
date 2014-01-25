@@ -500,7 +500,6 @@ function navRedo() {
 }
 function line_numbers() {
 	if(codeMirror.getOption("lineNumbers")){
-		//cm.getOption("indentUnit")//
 		codeMirror.setOption("lineNumbers",false);
 	}
 	else{
@@ -546,7 +545,6 @@ else{
 	$("#line_num_switch").prop('checked', false);
 }
 $('#line_num_switch').button( "refresh" );
-//wrap
 if(codeMirror.getOption("lineWrapping")){
 	$("#line_wrap_switch").prop('checked', true);
 }	
