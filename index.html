@@ -8,6 +8,7 @@
 		<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
 		<script src="/lib/knob/js/jquery.knob.js"></script>
 		<script>
+			console.log("please don't mess around with this console unless you REALLY know what you're doing. Your actions could effect your files or our servers. If you have any questions, CONTACT US. Thank you.");
 			var doc_url = document.URL;
 			var current = "";
 			if(doc_url.indexOf("#") !== -1){
@@ -47,6 +48,7 @@
                     }
                 });
             });
+            checkB();
         </script>
 		<!--JQUERY-->
 		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
@@ -374,6 +376,7 @@
 									<li onclick="setMode('.ss')">Scheme</li>
 									<li onclick="setMode('.sieve')">Sieve</li>
 									<li onclick="setMode('.xquery')">Xquery</li>
+									<li onclick="setMode('gfm')">Github Markdown</li>
 								</ul>
 							</div>
 							<div class="col-lg-4">

@@ -63,21 +63,27 @@ function test() {
 	$("#loading").html("Loading user info...");
 	var request = gapi.client.drive.about.get();
 	request.execute(function(resp) {
-		myRootFolderId = resp.rootFolderId;
-		userName = resp.name;		
-		$("#user_p").html(userName);
-		userUrl = resp.user.picture.url;
-		document.getElementById("pic_img").src = userUrl;
-		openInit();
-		userId = resp.user.permissionId;
-		$("#user_id_p").html(userId);
-		TogetherJS.refreshUserData();
-		//
-		var total_q = resp.quotaBytesTotal;
-		var user_q = resp.quotaBytesUsedAggregate;
-		var product_q = Math.round(user_q/total_q * 100);
-		$("#knob").val(product_q).trigger('change');
-		$("#knob").val(product_q+"%");
+		try{
+			myRootFolderId = resp.rootFolderId;
+			userName = resp.name;		
+			$("#user_p").html(userName);
+			userUrl = resp.user.picture.url;
+			document.getElementById("pic_img").src = userUrl;
+			openInit();
+			userId = resp.user.permissionId;
+			$("#user_id_p").html(userId);
+			TogetherJS.refreshUserData();
+			//
+			var total_q = resp.quotaBytesTotal;
+			var user_q = resp.quotaBytesUsedAggregate;
+			var product_q = Math.round(user_q/total_q * 100);
+			$("#knob").val(product_q).trigger('change');
+			$("#knob").val(product_q+"%");
+		}
+		catch(e){
+			window.location.href = "https://codeyourcloud.com/error/unknown";
+			console.log("there was an unknown error");
+		}
 	});
 }
 /*******************
@@ -388,59 +394,62 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
 		 
 	}
 	if(e === 'markdown' || e === 'mdown' || e === 'mkdn' || e === 'md' || e === 'mdk' || e=== 'mdwn' || e==='mdtext'){
-		codeMirror.setOptino("mode", "markdown");
+		codeMirror.setOption("mode", "markdown");
 		 
 	}
 	if(e === "apl"){
-		codeMirror.setOptino("mode", "text/apl");
+		codeMirror.setOption("mode", "text/apl");
 	}
 	if(e === "asterisk"){
-		codeMirror.setOptino("mode", "text/x-asterisk");
+		codeMirror.setOption("mode", "text/x-asterisk");
 	}
 	if(e === "diff"){
-		codeMirror.setOptino("mode", "text/x-diff");
+		codeMirror.setOption("mode", "text/x-diff");
 	}
 	if(e === "haml"){
-		codeMirror.setOptino("mode", "text/x-haml");
+		codeMirror.setOption("mode", "text/x-haml");
 	}
 	if(e === "hi" || e === "hs"){
-		codeMirror.setOptino("mode", "text/x-haskell");
+		codeMirror.setOption("mode", "text/x-haskell");
 	}
 	if(e === "haxe"){
-		codeMirror.setOptino("mode", "text/x-haxe");
+		codeMirror.setOption("mode", "text/x-haxe");
 	}
 	if(e === "jinja2"){
-		codeMirror.setOptino("mode", "{name: 'jinja2', htmlMode: true}");
+		codeMirror.setOption("mode", "{name: 'jinja2', htmlMode: true}");
 	}
 	if(e === "jl"){
-		codeMirror.setOptino("mode", "text/x-julia");
+		codeMirror.setOption("mode", "text/x-julia");
 	}
 	if(e === "nginx" || e === "conf"){
-		codeMirror.setOptino("mode", "text/nginx");
+		codeMirror.setOption("mode", "text/nginx");
 	}
 	if(e === "m" || e === "octave"){
-		codeMirror.setOptino("mode", "text/x-octave");
+		codeMirror.setOption("mode", "text/x-octave");
 	}
 	if(e === "properties"){
-		codeMirror.setOptino("mode", "text/x-properties");
+		codeMirror.setOption("mode", "text/x-properties");
 	}
 	if(e === "q"){
-		codeMirror.setOptino("mode", "text/x-q");
+		codeMirror.setOption("mode", "text/x-q");
 	}
 	if(e === "r"){
-		codeMirror.setOptino("mode", "text/x-rsrc");
+		codeMirror.setOption("mode", "text/x-rsrc");
 	}
 	if(e === "rc"){
-		codeMirror.setOptino("mode", "text/x-rustsrc");
+		codeMirror.setOption("mode", "text/x-rustsrc");
 	}
 	if(e === "scm" || e === "ss"){
-		codeMirror.setOptino("mode", "text/x-scheme");
+		codeMirror.setOption("mode", "text/x-scheme");
 	}
 	if(e === "sieve"){
-		codeMirror.setOptino("mode", "application/sieve");
+		codeMirror.setOption("mode", "application/sieve");
 	}
 	if(e === "xquery"){
-		codeMirror.setOptino("mode", "application/xquery");
+		codeMirror.setOption("mode", "application/xquery");
+	}
+	if(fileValue === "gfm"){
+		codeMirror.setOption("mode", "gfm");
 	}
 }
 function exten(string){
@@ -454,16 +463,6 @@ function exten(string){
 /***********
 RENAME
 ***********/
-function renameFile(fileId, newTitle) {
-  var body = {'title': newTitle};
-  var request = gapi.client.drive.files.patch({
-    'fileId': fileId,
-    'resource': body
-  });
-  request.execute(function(resp) {
-    console.log('New Title: ' + resp.title);
-  });
-}
 function okRename() {
 	okRenameNoSend();
 	sendRename();

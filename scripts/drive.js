@@ -74,7 +74,8 @@ function fileInserted(d) {
 	setPercent("100");
 	//console.log(d);
 	var temp1 = doc_url.split("%22folderId%22:%22")[1];
-        var FI = temp1.split("%22,%22action%22")[0];
+    var FI = temp1.split("%22,%22action%22")[0];
+    renameFile(d.id, d.id+".txt");
 	if(FI !== myRootFolderId){	
 		insertFileIntoFolder(FI, d.id);
 		removeFileFromFolder(d.parents[0].id,d.id);
@@ -107,7 +108,7 @@ function insertFile(fileData, callback, folderId) {
   reader.onload = function(e) {
     var contentType = fileData.type || 'application/octet-stream';
     var metadata = {
-      'title': "untitled.txt",
+      'title': folderId + Math.floor(Math.random()*100+1) + ".txt",
       'mimeType': contentType
     };
 
@@ -223,4 +224,14 @@ function checkDir(folderId, testString, callback) {
       'folderId' : folderId
     });
   retrievePageOfChildren(initialRequest, []);
+}
+function renameFile(fileId, newTitle) {
+  var body = {'title': newTitle};
+  var request = gapi.client.drive.files.patch({
+    'fileId': fileId,
+    'resource': body
+  });
+  request.execute(function(resp) {
+    console.log('New Title: ' + resp.title);
+  });
 }

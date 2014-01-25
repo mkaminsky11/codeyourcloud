@@ -209,7 +209,7 @@ nt-face {
 	padding: 0px;
 	margin: 0px;
 	overflow-y: scroll;
-	background-color: #E74C3C;
+	background-color: #BDC3C7;
 }
 #the-arrow {
 	color: white;
@@ -411,7 +411,7 @@ table {
 	float:left;
 	margin: 0px;
 	height: 800px;
-	overflow-y: scroll;
+	overflow: auto;
 }
 #theme_ul > li {
 	background-color: #34495E;
