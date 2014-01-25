@@ -1,6 +1,8 @@
 #Code Your Cloud#
 ####<a href="https://codeyourcloud.com">The Project</a>####
+<p>Check out the progress so far far here</p>
 ####<a href="https://codeyourcloud.com/about">About</a>####
+<p>A comprehensive about page with a help section, comment box, and code snippets</p>
 ###Code Snippets###
 ####<a href="https://gist.github.com/mkaminsky11/8624455">Google Drive</a>####
 <p>Code snippets to manipulate Google Drive files, including content, title, etc.</p>
