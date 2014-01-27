@@ -51,8 +51,10 @@ To allow people around the globe to collaborate on coding projects via Google Dr
 </ul>
 ###Todo###
 ======
-1. improved mobile support
-2. integrate AngularJS
+<ol>
+	<li>improved mobile support</li>
+	<li>integrate AngularJS</li>
+</ol>
 ###License###
 ====
 The MIT License (MIT)
