@@ -29,9 +29,30 @@ To allow people around the globe to collaborate on coding projects via Google Dr
   <li>Preferences</li>
   <li>Google Drive integration</li>
 </ul>
+###Resources###
 ====
+<p>These resources were used in the creation of this project. For a more detailed list, go <a href="https://codeyourcloud.com/about#lib">here</a></p>
+<ul>
+	<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
+	<li><a href="https://togetherjs.com/">TogetherJS</a></li>
+	<li><a href="http://angularjs.org/">AngularJS</a></li>		
+	<li><a href="http://fortawesome.github.io/Font-Awesome/">FontAwesome</a></li>
+	<li><a href="http://kudakurage.com/ligature_symbols/">LigatureSymbols</a></li>
+	<li><a href="http://codemirror.net/">CodeMirror</a></li>
+	<li><a href="http://www.eyecon.ro/bootstrap-colorpicker/">Color Picker</a></li>
+	<li><a href="http://designmodo.github.io/Flat-UI/">FlatUI</a></li>
+	<li><a href="http://gridster.net/">Gridster</a></li>
+	<li><a href="http://github.com/aaditmshah/codemirror-repl">CodeMirror REPL</a></li>
+	<li><a href="https://jquery.com/">JQuery</a></li>
+	<li><a href="http://anthonyterrien.com/knob/">JQuery knob</a></li>	
+	<li><a href="http://nodejs.org/">Node.js</a></li>	
+	<li><a href="http://www.websocket.org/">Websocket</a></li>	
+	<li><a href="https://github.com/nodejitsu/forever">Forever</a></li>
+</ul>
 ###Todo###
-1. secure websocket. Right now, Firefox only accepts websocket connections to a https website that are secure. This still needs to be done. There are not many negative effects for Firefox users, but this will improve security and functionality
+======
+1. improved mobile support
+2. integrate AngularJS
 ###License###
 ====
 The MIT License (MIT)

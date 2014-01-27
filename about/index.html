@@ -83,8 +83,8 @@ function handleClientLoad() {
 			  		<li><a href="#features">Features</a></li>
 			  		<li><a href="#code">The Code</a></li>
 			  		<li><a href="#help">Help</a></li>
-			  		<li><a href="#donate">Donate</a></li>
 			  		<li><a href="#contact">Contact Us</a></li>
+					<li><a href="#donate">Donate</a></li>
 			  	</ul>
 			</div>
 	  	</div>
@@ -181,7 +181,7 @@ function handleClientLoad() {
             		<h4><i class="fa fa-share"></i></h4>
             		<h3 class="tile-title">Google Drive</h3>
             		<p>Integrated with Google Drive</p>
-            		<a class="btn btn-primary btn-large btn-block" href="#drive">Explanation</a>
+            		<a class="btn btn-primary btn-large btn-block" href="#drive">Learn more</a>
 			</div>
         </div>
         
@@ -195,20 +195,99 @@ function handleClientLoad() {
         <script src="https://gist.github.com/mkaminsky11/8624150.js"></script>
         <h5>CodeMirror</h5>
         <script src="https://gist.github.com/mkaminsky11/8624455.js"></script>      
-        <h5>Libraries</h5>
+        <h5 id="lib">Libraries</h5>
         <p>These are the libraries and resources used in the creation of Code Your Cloud</p>
+	<blockquote>
+		<p>No man will make a great leader who wants to do it all himself or get all the credit for doing it.</p>
+		<small>-Andrew Carnegie</small>
+	</blockquote>
         <table class="table table-striped">
         	<tr>
         		<th>Name</th>
         		<th>Link</th>
         		<th>Note</th>
         	</tr>
+		<tr>
+			<td>Bootstrap</td>
+			<td><a href="http://getbootstrap.com/">getbootstrap.com</a></td>
+			<td>Styling for Code Your Cloud</td>
+		</tr>
+		<tr>
+			<td>TogetherJS</td>
+			<td><a href="https://togetherjs.com/">togetherjs.com</a></td>
+			<td>The driving force between the collaboration functionality in Code Your Cloud</td>
+		</tr>
+		<tr>
+			<td>AngularJS</td>
+			<td><a href="http://angularjs.org/">angularjs.org</a></td>
+			<td>Helps to dynamically generate content</td>
+		</tr>
+		<tr>
+			<td>FontAwesome</td>
+			<td><a href="http://fortawesome.github.io/Font-Awesome/">fortawesome.github.io/Font-Awesome/</a></td>
+			<td>A great alternative to Bootstrap's glyphs. Unlike glyphs, it also works on Firefox</td>
+		</tr>
+		<tr>
+			<td>Ligature Symbols</td>
+			<td><a href="http://kudakurage.com/ligature_symbols/">kudakurage.com/ligature_symbols/</a></td>
+			<td>Great brand icons. Higher quality, but there are less of them</td>
+		</tr>
+		<tr>
+			<td>CodeMirror</td>
+			<td><a href="http://codemirror.net/">codemirror.net</a></td>
+			<td>The backbone of this project. Its usefullness cannot be overstressed</td>
+		</tr>
+		<tr>
+			<td>Colorpicker</td>
+			<td><a href="http://www.eyecon.ro/bootstrap-colorpicker/">eyecon.ro/bootstrap-colorpicker/</a></td>
+			<td>A simple colorpicker</td>
+		</tr>
+		<tr>
+			<td>FlatUI</td>
+			<td><a href="http://designmodo.github.io/Flat-UI/">designmodo.github.io/Flat-UI/</a></td>
+			<td>The theme for Code Your Cloud. High quality, with a free verion available</td>
+		</tr>
+		<tr>
+			<td>Gridster</td>
+			<td><a href="http://gridster.net">gridster.net</a></td>
+			<td>Makes the cool grid of <a href="#lang">supported languages</a> possible</td>
+		</tr>
+		<tr>
+			<td>CodeMirror REPL</td>
+			<td><a href="https://github.com/aaditmshah/codemirror-repl">github.com/aaditmshah/codemirror-repl</a></td>
+			<td>Used for the built-in javascript console</td>
+		</tr>
+		<tr>
+			<td>JQuery</td>
+			<td><a href="https://jquery.com">jquery.com</a></td>
+			<td>Simplifies basic javascript functions</td>
+		</tr>
+		<tr>
+			<td>JQuery knob</td>
+			<td><a href="http://anthonyterrien.com/knob/">anthonyterrien.com/knob/</a></td>
+			<td>Makes the "capacity" indicator possible</td>
+		</tr>
+		<tr>
+			<td>Node.js</td>
+			<td><a href="http://nodejs.org/">nodejs.org/</a></td>
+			<td>Runs the websocket server which faciltates collaboration</td>
+		</tr>
+		<tr>
+			<td>Websocket</td>
+			<td><a href="http://www.websocket.org/">websocket.org</a></td>
+			<td>Simple client-to-server communication</td>
+		</tr>
+		<tr>
+			<td>Forever</td>
+			<td><a href="https://github.com/nodejitsu/forever">github.com/nodejitsu/forever</a></td>
+			<td>Continuously runs the Node.js server</td>
+		</tr>
         </table>
         
         
         <h2 id="help">Help</h1>
         <h4>Supported Browsers</h4>
-        <table class="table">
+        <table class="table table-striped">
         	<tr>
         		<th>Browser</th>
         		<th>Version</th>
@@ -218,7 +297,7 @@ function handleClientLoad() {
         	<tr>
         		<td>Firefox</td>
         		<td>26</td>
-        		<td>Has some problems with collaboration</td>
+        		<td>Recommended</td>
         		<td><i class="fa fa-check"></i></td>
         	</tr>
         	<tr>
