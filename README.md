@@ -29,6 +29,9 @@ To allow people around the globe to collaborate on coding projects via Google Dr
   <li>Preferences</li>
   <li>Google Drive integration</li>
 </ul>
+====
+###Todo###
+1. secure websocket. Right now, Firefox only accepts websocket connections to a https website that are secure. This still needs to be done. There are not many negative effects for Firefox users, but this will improve security and functionality
 ###License###
 ====
 The MIT License (MIT)

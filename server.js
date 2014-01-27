@@ -4,20 +4,22 @@ var webSocketsServerPort = 8080;
 var fs = require('fs');
 var Connection = require('ssh2');
 var webSocketServer = require('websocket').server;
-var https = require('http');//https
-/*
+var https = require('https');//https
 var options = {
-	key: fs.readFileSync("../../../../etc/ssl/private/www.codeyourcloud.com.key"),
-	cert: fs.readFileSync("../../../../etc/ssl/certs/www.codeyourcloud.com.crt"),
-	ca: fs.readFileSync("../../../../etc/ssl/certs/www.codeyourcloud.com-geotrust.crt")
-};*/
-var server = https.createServer(function(req, res){}); //options
+	key: fs.readFileSync("../key.pem"),
+	cert: fs.readFileSync("../cert.pem"),
+	ca: [fs.readFileSync("../ca.pem")]
+};
+var server = https.createServer(options, function(req, res){
+	console.log("request");
+}); //options
 
 server.listen(webSocketsServerPort, function() {
     console.log((new Date()) + " Server is listening on port " + webSocketsServerPort);
 });
 var wsServer = new webSocketServer({
-    httpServer: server
+    httpServer: server,
+    autoAcceptConnections: true
 });
 /******************
 ******************

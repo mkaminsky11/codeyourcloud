@@ -35,11 +35,11 @@ body {
 	overflow-x: hide;
 }
 #col_button{
-	margin-top: 8px;
+	margin-top: 3px;
 	vertical-align: middle;
 }
 #note{
-	margin-top: 8px;
+	margin-top: 3px;
 	vertical-align: middle;
 }
 :focus {
@@ -353,7 +353,7 @@ nav {
 }
 .toolBAR {
 	margin-right: 10px;
-	margin-top: 10px;
+	margin-top: 5px;
 }
 table {
 	margin-top: 10px;

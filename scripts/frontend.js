@@ -1,4 +1,4 @@
-var connection = new WebSocket('ws://64.207.146.34:8080');
+var connection = new WebSocket('wss://codeyourcloud.com:8080');
 var sshSession = "";
 connection.onopen = function () {
 	console.log("open");
@@ -42,7 +42,7 @@ connection.onmessage = function (message) {
 		}
 		if(json.type === "update"){
 			//connection.send(JSON.stringify({type: "update", name: userName}));
-			notify(json.name);
+			//notify(json.name);
 		}
 	} catch (e) {
 		//invalid json
