@@ -24,7 +24,7 @@ body {
 	position: relative;
     height: 100%;
     width: 100%;
-    margin-top: -25px;
+    margin-top: -40px;
 }
 #side{
 	height: 100%;
@@ -305,11 +305,8 @@ nt-face {
 	height: 90%;
 	width: 100%;
 }
-
-.logo {
-	background-color: white;
-	border: thick solid white;
-	font-size: 30px;
+#logo {
+	
 }
 #logo_left {
 	color: #E74C3C;
@@ -465,3 +462,7 @@ markdown
 .CodeMirror-empty { outline: 1px solid #c22; }
 .CodeMirror-empty.CodeMirror-focused { outline: none; }
 .CodeMirror pre.CodeMirror-placeholder { color: #999; }
+
+#logo_pic {
+	margin-top: 2px;
+}

@@ -4,13 +4,16 @@
 ####<a href="https://codeyourcloud.com/about">About</a>####
 <p>A comprehensive about page with a help section, comment box, and code snippets</p>
 ###Code Snippets###
+=====
 ####<a href="https://gist.github.com/mkaminsky11/8624455">Google Drive</a>####
 <p>Code snippets to manipulate Google Drive files, including content, title, etc.</p>
 ####<a href="https://gist.github.com/mkaminsky11/8624150">CodeMirror</a>####
 <p>Code snippets to control and optimize CodeMirrors</p>
 ###Goal###
+====
 To allow people around the globe to collaborate on coding projects via Google Drive
 ###Features###
+===
 <ul>
   <li>Syntax highlighting</li>
   <li>Collaboration</li>
@@ -27,6 +30,7 @@ To allow people around the globe to collaborate on coding projects via Google Dr
   <li>Google Drive integration</li>
 </ul>
 ###License###
+====
 The MIT License (MIT)
 
 Copyright (c) 2014 @mrmrs
