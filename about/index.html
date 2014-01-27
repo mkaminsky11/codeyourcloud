@@ -1,62 +1,48 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>	
 	<link rel="icon" type="image/png" href="http://codeyourcloud.com/favicon.ico">	
   	<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
   	<script src="/about/flat/js/jquery-1.8.3.min.js"></script>
-    	<script type="text/javascript">
-    	  	var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
-      		//var SCOPES = ['https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/userinfo.email','https://www.googleapis.com/auth/userinfo.profile'];
-      		var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/userinfo.profile'];
-		function handleClientLoad() {
-        		checkAuth();
-      		}	
-      		function checkAuth() {
-        		gapi.auth.authorize(
-            	{'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate': true},
-            	handleAuthResult);
-      		}
-      		function handleAuthResult(authResult) {
-        		if (authResult) {
-          			// Access token has been successfully retrieved, requests can be sent to the API
-          			loadClient(test);
-        		} else {
-        	 		// No access token could be retrieved, force the authorization flow.
-        			//popUp();
-				redirect();
-			}
-      		}
-      		function loadClient(callback) {
-  				gapi.client.load('drive', 'v2', callback);
-			}
-			function test() {
-			var request = gapi.client.drive.about.get();
-    				request.execute(function(resp) {
-			});	
-    			//redirect to home
-    			window.location.href = 'https://codeyourcloud.com'; 
+	<script type="text/javascript">
+  	var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
+		//var SCOPES = ['https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/userinfo.email','https://www.googleapis.com/auth/userinfo.profile'];
+		var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/userinfo.profile'];
+function handleClientLoad() {
+		checkAuth();
+		}	
+		function checkAuth() {
+		gapi.auth.authorize(
+    	{'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate': true},
+    	handleAuthResult);
 		}
-			function popUp(){
-				gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false},handleAuthResult);
-			}
-    		function checkB() {
-                	var ua= navigator.userAgent, tem,
-                	M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*([\d\.]+)/i) || [];
-                	if(/trident/i.test(M[1])){
-                		tem=  /\brv[ :]+(\d+(\.\d+)?)/g.exec(ua) || [];
-                		return 'IE '+(tem[1] || '');
-                	}
-           		M= M[2]? [M[1], M[2]]:[navigator.appName, navigator.appVersion, '-?'];
-              		if((tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
-                	var browser = M.join(' ');
-                	if(browser.indexOf("Chrome") == -1 && browser.indexOf("Firefox"))
-               			window.location.href = "https://codeyourcloud.com/error/browser";
-			 }
-			 function redirect(){
-				 window.location.href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.install + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.file&state=%2Fprofile&redirect_uri=https%3A%2F%2Fcodeyourcloud.com&response_type=token&client_id=953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com";
-			 }
-			 </script>
+		function handleAuthResult(authResult) {
+		if (authResult) {
+  			// Access token has been successfully retrieved, requests can be sent to the API
+  			loadClient(test);
+		} else {
+	 		// No access token could be retrieved, force the authorization flow.
+			//popUp();
+		redirect();
+	}
+		}
+		function loadClient(callback) {
+			gapi.client.load('drive', 'v2', callback);
+	}
+	function test() {
+		var request = gapi.client.drive.about.get();
+			request.execute(function(resp) {
+		});	
+		//redirect to home
+		window.location.href = 'https://codeyourcloud.com'; 
+	}
+	function popUp(){
+		gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false},handleAuthResult);
+	}
+	 function redirect(){
+		 window.location.href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.install + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.file&state=%2Fprofile&redirect_uri=https%3A%2F%2Fcodeyourcloud.com&response_type=token&client_id=953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com";
+	 }
+	 </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -214,6 +200,33 @@
         
         
         <h2 id="help">Help</h1>
+        <h4>Supported Browsers</h4>
+        <table class="table">
+        	<tr>
+        		<th>Browser</th>
+        		<th>Version</th>
+        		<th>Notes</th>
+        		<th>Supported</th>
+        	</tr>
+        	<tr>
+        		<td>Firefox</td>
+        		<td>26</td>
+        		<td>Has some problems with collaboration</td>
+        		<td><i class="fa fa-check"></i></td>
+        	</tr>
+        	<tr>
+        		<td>Chrome</td>
+        		<td>32.0.1700.77</td>
+        		<td>Recommended</td>
+        		<td><i class="fa fa-check"></i></td>
+        	</tr>
+        	<tr>
+        		<td>Internet Explorer</td>
+        		<td>All</td>
+        		<td>Does NOT work!</td>
+        		<td><i class="fa fa-ban"></i></td>
+        	</tr>
+        </table>
         <h4>Supported Languages</h4>
         <p>The following languages support syntax highlighting</p>
         <ul id="lang">
@@ -463,17 +476,17 @@
 			<input type="image" class="btn btn-warning" border="0" name="submit" alt="Donate With Paypal">
 		</form>
     <!-- JavaScript -->
-    	<script src="/about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
-		<script src="/about/flat/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="/about/flat/js/bootstrap.min.js"></script>
-		<script src="/about/flat/js/bootstrap-select.js"></script>
-		<script src="/about/flat/js/bootstrap-switch.js"></script>
-		<script src="/about/flat/js/flatui-checkbox.js"></script>
-		<script src="/about/flat/js/flatui-radio.js"></script>
-		<script src="/about/flat/js/jquery.tagsinput.js"></script>
-		<script src="/about/flat/js/jquery.placeholder.js"></script>
-		<script src="/about/flat/js/jquery.stacktable.js"></script>
-		<script src="/about/flat/js/application.js"></script>
+	<script src="/about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="/about/flat/js/jquery.ui.touch-punch.min.js"></script>
+	<script src="/about/flat/js/bootstrap.min.js"></script>
+	<script src="/about/flat/js/bootstrap-select.js"></script>
+	<script src="/about/flat/js/bootstrap-switch.js"></script>
+	<script src="/about/flat/js/flatui-checkbox.js"></script>
+	<script src="/about/flat/js/flatui-radio.js"></script>
+	<script src="/about/flat/js/jquery.tagsinput.js"></script>
+	<script src="/about/flat/js/jquery.placeholder.js"></script>
+	<script src="/about/flat/js/jquery.stacktable.js"></script>
+	<script src="/about/flat/js/application.js"></script>
 
     <!-- Custom JavaScript for the Menu Toggle -->
     <script>

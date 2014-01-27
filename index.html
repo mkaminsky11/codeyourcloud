@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 	<head>
 		<link rel="icon" type="image/png" href="http://codeyourcloud.com/favicon.ico">
 		<title>Code Your Cloud</title>
@@ -177,7 +178,7 @@
 	</head>
 	<body onload = "checkB()">
 		<link rel='stylesheet' type='text/css' href='style.css'>
-		<nav id="nav1" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav1">
 					<span class="sr-only">Toggle navigation</span>
@@ -186,7 +187,7 @@
 					<span class="icon-bar"></span>
 				</button>
 			</div>
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse" id="nav1">
 				<ul class="nav navbar-nav">
 					<li class="logo" id="logo" onclick="window.location.href='https://codeyourcloud.com/about'"><img id="logo_pic" src="icon_128.png " height="47px" /></li>
 					<li class="dropdown red-dark" id="codedropdown">
@@ -254,7 +255,7 @@
 			</div><!-- /.navbar-collapse -->
 		</nav>
 		<!--end menu-->
-		<nav class="navbar navbar-inverse navbar-embossed navbar-fixed-bottom" role="navigation" id="theNavBar2">
+		<nav class="navbar navbar-inverse navbar-embossed navbar-fixed-bottom" role="navigation">
 			<div class="navbar-header">
 		    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNavBar2" id="toggleButton">
 		          		<span class="sr-only">Toggle navigation</span>
@@ -263,7 +264,7 @@
 					<span class="icon-bar"></span>
 				</button>
 			</div>
-			<div class="collapse navbar-collapse white-top" id="myNav2">
+			<div class="collapse navbar-collapse white-top" id="theNavBar2">
 				<ul class="nav navbar-nav">
 					<!--actions-->
 					<li class=" " onclick="openSide()" id="side-arrow"><a id="the-arrow"><i class="fa fa-caret-square-o-left"></i></a></li>
@@ -336,7 +337,7 @@
 							</div>
 							<div class="col-lg-4 theme-div">
 								<h5>Mode</h5>
-								<ul id="theme_ul">	
+								<ul id="mode_ul">	
 									<li onclick="setMode('.java')">Java</li>
 									<li onclick="setMode('.c')">C</li>
 									<li onclick="setMode('.cpp')">C++</li>

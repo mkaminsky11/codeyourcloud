@@ -404,8 +404,6 @@ table {
 	width: 100%;
 	float:left;
 	margin: 0px;
-	height: 800px;
-	overflow: auto;
 }
 #theme_ul > li {
 	background-color: #34495E;
@@ -417,6 +415,29 @@ table {
 	border-bottom: thin solid #2C3E50;
 }
 #theme_ul > li:hover {
+	background-color: #2C3E50;
+	color: #1abc9c;
+}
+
+
+#mode_ul {
+	list-style-type: none;
+	width: 100%;
+	float:left;
+	margin: 0px;
+	height: 800px;
+	overflow: auto;
+}
+#mode_ul > li {
+	background-color: #34495E;
+	color: #ECF0F1;
+	width: 100%;
+	margin: 0px;
+	padding: 10px;
+	border-radius: 2px;
+	border-bottom: thin solid #2C3E50;
+}
+#mode_ul > li:hover {
 	background-color: #2C3E50;
 	color: #1abc9c;
 }
