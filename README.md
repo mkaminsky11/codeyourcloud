@@ -1,19 +1,20 @@
 #Code Your Cloud#
 ####<a href="https://codeyourcloud.com">The Project</a>####
 <p>Check out the progress so far far here</p>
+=====
 ####<a href="https://codeyourcloud.com/about">About</a>####
 <p>A comprehensive about page with a help section, comment box, and code snippets</p>
+====
 ###Code Snippets###
-=====
 ####<a href="https://gist.github.com/mkaminsky11/8624455">Google Drive</a>####
 <p>Code snippets to manipulate Google Drive files, including content, title, etc.</p>
 ####<a href="https://gist.github.com/mkaminsky11/8624150">CodeMirror</a>####
 <p>Code snippets to control and optimize CodeMirrors</p>
+=====
 ###Goal###
-====
 To allow people around the globe to collaborate on coding projects via Google Drive
+=====
 ###Features###
-===
 <ul>
   <li>Syntax highlighting</li>
   <li>Collaboration</li>
@@ -29,8 +30,8 @@ To allow people around the globe to collaborate on coding projects via Google Dr
   <li>Preferences</li>
   <li>Google Drive integration</li>
 </ul>
+=====
 ###Resources###
-====
 <p>These resources were used in the creation of this project. For a more detailed list, go <a href="https://codeyourcloud.com/about#lib">here</a></p>
 <ul>
 	<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
@@ -49,14 +50,14 @@ To allow people around the globe to collaborate on coding projects via Google Dr
 	<li><a href="http://www.websocket.org/">Websocket</a></li>	
 	<li><a href="https://github.com/nodejitsu/forever">Forever</a></li>
 </ul>
-###Todo###
 ======
+###Todo###
 <ol>
 	<li>improved mobile support</li>
 	<li>integrate AngularJS</li>
 </ol>
+=====
 ###License###
-====
 The MIT License (MIT)
 
 Copyright (c) 2014 @mrmrs
