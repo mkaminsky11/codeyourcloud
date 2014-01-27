@@ -42,11 +42,18 @@ function handleClientLoad() {
 	 function redirect(){
 		 window.location.href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.install + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.file&state=%2Fprofile&redirect_uri=https%3A%2F%2Fcodeyourcloud.com&response_type=token&client_id=953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com";
 	 }
+	 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-47415821-1', 'codeyourcloud.com');
+	ga('send', 'pageview');
 	 </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Code Your Cloud | About</title>
+    <meta name="description" content="The about page for Code Your Cloud, an in-browser code editor">
 
     <!-- Bootstrap core CSS -->
    	<link href="/about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -475,6 +482,12 @@ function handleClientLoad() {
 			<input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
 			<input type="image" class="btn btn-warning" border="0" name="submit" alt="Donate With Paypal">
 		</form>
+		<h4>Where Donations Go</h4>
+		<ul>
+			<li>Paying for servers</li>
+			<li>Upgrading servers</li>
+			<li>Paying for encryption(https)</li>
+		</ul>
     <!-- JavaScript -->
 	<script src="/about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="/about/flat/js/jquery.ui.touch-punch.min.js"></script>
