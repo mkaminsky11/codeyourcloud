@@ -11,8 +11,8 @@
 ####<a href="https://gist.github.com/mkaminsky11/8624150">CodeMirror</a>####
 <p>Code snippets to control and optimize CodeMirrors</p>
 =====
-###Goal###
-To allow people around the globe to collaborate on coding projects via Google Drive
+<h3>Goal</h3>
+<p>To allow people around the globe to collaborate on coding projects via Google Drive</p>
 =====
 ###Features###
 <ul>
