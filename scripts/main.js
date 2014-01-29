@@ -1,6 +1,7 @@
 var server;
 scrollTo(0,0);
 //
+$("#content").height($("#container").height() - 12 );
 var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
 var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/userinfo.profile'];
 var ok = false;
@@ -100,6 +101,7 @@ var codeMirror = CodeMirror(document.getElementById("content"), {
 codeMirror.on("change", function(cm, change) {
 	setState("unsaved");
 	//
+	checkUndo();
 	clearTimeout(delay);
     delay = setTimeout(updatePreview, 300);
 });
@@ -493,15 +495,37 @@ MENU-SPECIFIC
 var numUndo = 0;
 var numRedo = 0;
 function navUndo() {
-	if(numUndo < codeMirror.getDoc().historySize().undo - 1){
+	if(numUndo < codeMirror.getDoc().historySize().undo){
 		codeMirror.getDoc().undo();
 		numUndo++;
+		numRedo--;
+	}
+	else{
+		addClass("undoB", "disabled");
+	}
+}
+function checkUndo(){
+	if(numUndo < codeMirror.getDoc().historySize().undo){
+		removeClass("undoB", "disabled");	
+	}
+	else{
+		addClass("undoB", "disabled");
+	}
+	if(numRedo < codeMirror.getDoc().historySize().redo){
+		removeClass("redoB", "disabled");
+	}
+	else{
+		addClass("redoB", "disabled");
 	}
 }
 function navRedo() {
 	if(numRedo < codeMirror.getDoc().historySize().redo){
 		codeMirror.getDoc().redo();
 		numRedo++;
+		nunUndo--;
+	}
+	else{
+		addClass("redoB", "disabled");
 	}
 }
 function line_numbers() {
@@ -1017,6 +1041,7 @@ function fontUp(){
 	}
 	$("#content").css("fontSize", old+"px");
 }
+$("#content").css("fontSize", "14px");
 function fontDown(){
 	var old = Number($("#content").css("fontSize").replace("px", ""));
 	if(old > 4){

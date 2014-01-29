@@ -99,4 +99,7 @@ body {
 .gr-3{
 	background-color: #2ECC71;
 }
+.navbar-fixed-top > .btn-toolbar > .btn-group > button {
+	border-radius: 0px;
+}
 

@@ -2,9 +2,8 @@
 process.title = 'codeyourcloud';
 var webSocketsServerPort = 8080;
 var fs = require('fs');
-var Connection = require('ssh2');
 var webSocketServer = require('websocket').server;
-var https = require('https');//https
+var https = require('https');
 var options = {
 	key: fs.readFileSync("../key.pem"),
 	cert: fs.readFileSync("../cert.pem"),
@@ -21,17 +20,8 @@ var wsServer = new webSocketServer({
     httpServer: server,
     autoAcceptConnections: true
 });
-/******************
-******************
-*****************
-***************
-**************
-************
-**********
-********
-******
-***
-*/
+
+
 var sessionIndex = [];
 //for every client, the index of the session
 /*
@@ -150,24 +140,8 @@ wsServer.on('request', function(request) {
 			       	clients[array[i]-1].send(JSON.stringify({type:"update", name: json.name}));
 		    	}
 	
-		}
-        	/********
-        	SSH
-        	*********/
-        	if(json.type === "ssh"){
-	        	if(json.ssh === "init"){
-		        	//	
-		        	ssh_port = json.port;
-		        	ssh_host = json.host;
-		        	ssh_login = json.login;
-		        	ssh_pass = json.password;
-		        	startSSH();
-	        	}
-	        	if(json.ssh === "folder"){
-		        	ssh_dir(json.path);
-	        	}
-        	}
-        }
+		}        
+	}
         catch(e){
         }
     });
@@ -212,64 +186,5 @@ function removeSession(session){
 	//
 	FILE.splice(index,1);
 	sessions.split(index,1);
-}
-/***********
-SSH
-************/
-var c;
-function startSSH(){
-	c = new Connection();
-	c.on('ready', function() {
-		ssh_dir('/');
-	});
- 	c.on('error', function(err) {
- 		//console.log('Connection :: error :: ' + err);
- 	});
- 	c.on('end', function() {
- 		//console.log('Connection :: end');
- 	});
- 	c.on('close', function(had_error) {
-  		//console.log('Connection :: close');
-  	});
-	c.connect({
-		host: ssh_host,
-		port: ssh_port,
-		username: ssh_login,
-		password: ssh_pass
-	});
-	ssh_dir('/');
-}
-function stopSSH(){
-	sftp.close(handle, function(err) {
-		if (err) throw err;
-		//console.log('SFTP :: Handle closed');
-		sftp.end();
-	});
-}
-function ssh_dir(path){
-	c.sftp(function(err, sftp) {
-		if (err){
-			connection.send(JSON.stringify({type: "bad"}));
-			throw err;
-		}
-		connection.send(JSON.stringify({type: "ok"}));
-		sftp.on('end', function() {
-		});		
-		sftp.opendir(path, function readdir(err, handle) {
-			if (err) throw err;
-			sftp.readdir(handle, function(err, list) {
-    	    	if (err) throw err;
-				if (list === false) {
-					return;
-				}
-				var array = [];
-				for(var i = 0; i < list.length; i++){
-					array.push(list[i].filename);
-				}
-				connection.send(JSON.stringify({type: "ssh", ssh: "folder", path: path, data: array}));
-				readdir(undefined, handle);
-			});
-		});
-	});
 }
 });
