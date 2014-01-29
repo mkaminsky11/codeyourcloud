@@ -203,32 +203,32 @@
 				<ul class="nav navbar-nav">
 					<li class="logo" id="logo" onclick="window.location.href='https://codeyourcloud.com/about'"><img id="logo_pic" src="icon_128.png " height="47px" /></li>
 					<li class="dropdown" id="codedropdown">
-						<a class="dropdown-toggle" id="dropdown-toggle-code" data-toggle="dropdown">   File</a>
+						<a class="dropdown-toggle" id="dropdown-toggle-code" data-toggle="dropdown">File</a>
 						<ul class="dropdown-menu">
-							<li onclick="save()"><a><i class="fa fa-floppy-o"></i>   Save</a></li>
-							<li onclick="loadOPicker()"><a><span class="glyphicon glyphicon-folder-open"></span>   Open</a></li>
-							<li onclick="folderPickerNew()"><a><i class="fa fa-file"></i>	New</a></li>
-							<li onclick="uploadPicker()"><a><i class="fa fa-cloud-upload"></i>	Upload</a></li>
-							<li onclick="loadShare()"><a><span class="glyphicon glyphicon-cloud"></span>   Share</a></li>
-							<li onclick="downloadFile()"><a><span class="glyphicon glyphicon-download"></span>   Download</a></li>
+							<li onclick="save()"><a>Save</a></li>
+							<li onclick="loadOPicker()"><a>Open</a></li>
+							<li onclick="folderPickerNew()"><a>New</a></li>
+							<li onclick="uploadPicker()"><a>Upload</a></li>
+							<li onclick="loadShare()"><a>Share</a></li>
+							<li onclick="downloadFile()"><a>Download</a></li>
 						</ul>
 					</li>
 					<li class="dropdown" id="codedropdown">
 						<a class="dropdown-toggle" id="dropdown-toggle-code" data-toggle="dropdown">Edit</a>
 						<ul class="dropdown-menu">
-							<li onclick="navUndo()"><a><i class="fa fa-reply"></i>   Undo</a></li>
-							<li onclick="navRedo()"><a><i class="fa fa-share"></i>   Redo</a></li>
+							<li onclick="navUndo()"><a>Undo</a></li>
+							<li onclick="navRedo()"><a>Redo</a></li>
 						</ul>
 					</li>
 					<li class="dropdown" id="codedropdown">
 						<a class="dropdown-toggle" id="dropdown-toggle-code" data-toggle="dropdown">Code</a>
 						<ul class="dropdown-menu">
-							<li onclick=""><a onclick="showColor()"><span class="glyphicon glyphicon-picture" id="colorpicker" data-color-format="hex" data-color="rgb(255, 255, 255)"></span> Color</a></li>
-							<li onclick="show_terminal()"><a><i class="fa fa-terminal"></i>  Terminal</a></li>
-							<li onclick="show_todo()"><a><i class="fa fa-list-ol">  Todo</i></a></li>
-							<li onclick="show_note()"><a><i class="fa fa-file-text-o"></i>  Notepad</a></li>
+							<li onclick=""><a onclick="showColor()"><span id="colorpicker" data-color-format="hex" data-color="rgb(255, 255, 255)"></span> Color</a></li>
+							<li onclick="show_terminal()"><a>Terminal</a></li>
+							<li onclick="show_todo()"><a>Todo</a></li>
+							<li onclick="show_note()"><a>Notepad</a></li>
 							<li onclick="$('#previewModal').modal('show')"><a>Preview</a></li>
-							<li id="autoButton" onclick="getHint()"><a><i class="fa fa-question"></i>  Autocomplete</a></li>
+							<li id="autoButton" onclick="getHint()"><a>Autocomplete</a></li>
 						</ul>
 					</li>
 					<li class="" id="will_close">

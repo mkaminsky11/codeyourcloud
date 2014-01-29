@@ -1,7 +1,6 @@
 var server;
 scrollTo(0,0);
 //
-$("#content").height($("#container").height() - 12 );
 var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
 var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/userinfo.profile'];
 var ok = false;
@@ -68,12 +67,15 @@ function test() {
 	$("#loading").html("Loading user info...");
 	var request = gapi.client.drive.about.get();
 	request.execute(function(resp) {
-		try{
 			myRootFolderId = resp.rootFolderId;
 			userName = resp.name;
 			$("#user_p").html(userName);
-			userUrl = resp.user.picture.url;
-			$("#pic_img").attr("src", userUrl);
+			try{
+				userUrl = resp.user.picture.url;
+				$("#pic_img").attr("src", userUrl);
+			}
+			catch(e){
+			}
 			openInit();
 			userId = resp.user.permissionId;
 			$("#user_id_p").html(userId);
@@ -84,10 +86,6 @@ function test() {
 			var product_q = Math.round(user_q/total_q * 100);
 			$("#knob").val(product_q).trigger('change');
 			$("#knob").val(product_q+"%");
-		}
-		catch(e){
-			console.log("there was an unknown error");
-		}
 	});
 }
 /*******************
@@ -103,7 +101,10 @@ codeMirror.on("change", function(cm, change) {
 	//
 	checkUndo();
 	clearTimeout(delay);
-    delay = setTimeout(updatePreview, 300);
+    	delay = setTimeout(updatePreview, 300);
+	if(title.indexOf(".js") !== -1 && change.text === " "){
+		server.complete(codeMirror);
+	}
 });
 codeMirror.setOption("autoCloseBrackets",true);
 codeMirror.setOption("matchBrackets",true);
@@ -223,13 +224,22 @@ function welcome() {
 	document.getElementById("ok_rename").style.visibility="hidden";
 	document.getElementById("cancel_rename").style.visibility="hidden";
 	isWelcome = true;
-	document.getElementById("note").innerHTML = "All Changes Saved To Drive";
+        document.getElementById("note").innerHTML = "All Changes Saved To Drive";
 	setPercent("100");
 	codeMirror.setValue("Welcome to Code Your Cloud!");
+	var txtFile = new XMLHttpRequest();
+	txtFile.open("GET", "https://codeyourcloud.com/intro.txt", true);
+	txtFile.onreadystatechange = function()
+	{
+		if (txtFile.readyState === 4) {  // document is ready to parse.
+			if (txtFile.status === 200) {  // file is found
+				allText = txtFile.responseText; 
+				codeMirror.setValue(allText);
+			}
+		}
+	}
+	txtFile.send(null);
 }
-/**********
-SAVE FILE
-**********/
 function saveFile(fileId, content){
     //console.log(content);
     if(typeof content !== "undefined"){ //if nothing is "null"
@@ -666,13 +676,12 @@ function startTern(){
 		server = new CodeMirror.TernServer({defs: [JSON.parse(code)]});
 		codeMirror.setOption("extraKeys", {
 			"Ctrl-Space": function(cm) {
-				console.log("stuff");
 				server.complete(codeMirror); 
 			},
 			"Ctrl-I": function(cm) { server.showType(cm); },
 			"Ctrl-.": function(cm) { server.jumpToDef(cm); },
 			"Ctrl-,": function(cm) { server.jumpBack(cm); },
-			"Ctrl-Q": function(cm) { server.rename(cm); },
+			"Ctrl-Q": function(cm) { server.rename(cm); }
 		})
 		codeMirror.on("cursorActivity", function(cm) { server.updateArgHints(codeMirror); });
 		});
