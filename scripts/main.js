@@ -3,7 +3,6 @@ scrollTo(0,0);
 //
 var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
 var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/userinfo.profile'];
-var userId = null;
 var ok = false;
 var myRootFolderId = null;
 var autoC = true;
@@ -14,15 +13,17 @@ AUTHORIZATION
 ***********/
 //this should refresh the token every 300000 milliseconds = 3000 seconds = 50 minutes 
 window.onbeforeunload = function () {
-	if($("#note").html() === "Unsaved Changes" || $("#note").html() === "Saving..." && doc_url !== "https://codeyourcloud.com/"){
+	if($("#note").html() !== "All Changes Saved To Drive" || $("#note").html() === "Saving..." && doc_url !== "https://codeyourcloud.com/"){
 		//it's ok
-		if(isWelcome === false){
+		if(isWelcome === false && TOpen === true){
 			TogetherJS(this);
 			return "You Have Unsaved Changes. Are Your Sure You Want To Exit?";
 		}
 	}
 	else{
-		TogetherJS(this);
+		if(TOpen && isWelcome === false){
+			TogetherJS(this);
+		}
 		window.onbeforeunload = undefined;
 	}
 }
@@ -68,10 +69,10 @@ function test() {
 	request.execute(function(resp) {
 		try{
 			myRootFolderId = resp.rootFolderId;
-			userName = resp.name;		
+			userName = resp.name;
 			$("#user_p").html(userName);
 			userUrl = resp.user.picture.url;
-			document.getElementById("pic_img").src = userUrl;
+			$("#pic_img").attr("src", userUrl);
 			openInit();
 			userId = resp.user.permissionId;
 			$("#user_id_p").html(userId);
@@ -84,7 +85,6 @@ function test() {
 			$("#knob").val(product_q+"%");
 		}
 		catch(e){
-			window.location.href = "https://codeyourcloud.com/error/unknown";
 			console.log("there was an unknown error");
 		}
 	});
@@ -200,9 +200,6 @@ function openInit(){
 						insertNewFile(FI);	
 					}
 				}
-				if(url.indexOf("ssh") !== -1){
-					//
-				}
 		}
 		else{
 			//console.log("default");
@@ -294,6 +291,7 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
         codeMirror.setOption("mode", "text/html");
         startHtml();
         removeClass("autoButton","hide");
+	codeMirror.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
     }
     else{
 	    codeMirror.setOption("extraKeys", {});
@@ -492,11 +490,19 @@ function cancelRename() {
 /****************
 MENU-SPECIFIC
 ****************/
+var numUndo = 0;
+var numRedo = 0;
 function navUndo() {
-	codeMirror.getDoc().undo();
+	if(numUndo < codeMirror.getDoc().historySize().undo - 1){
+		codeMirror.getDoc().undo();
+		numUndo++;
+	}
 }
 function navRedo() {
-	codeMirror.getDoc().redo();
+	if(numRedo < codeMirror.getDoc().historySize().redo){
+		codeMirror.getDoc().redo();
+		numRedo++;
+	}
 }
 function line_numbers() {
 	if(codeMirror.getOption("lineNumbers")){
@@ -738,8 +744,8 @@ function startXml(){
 function startHtml(){
 	codeMirror.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
 	codeMirror.on("inputRead", function(cm, change){
-		if(change.text[0] === "/"){
-			CodeMirror.showHint(cm, CodeMirror.hint.html);	
+		if(change.text[0] === "/" || change.text[0] === "<"){
+			CodeMirror.showHint(codeMirror, CodeMirror.hint.html);	
 		}
 	});
 }
@@ -758,57 +764,38 @@ SIDEBAR
 var sideOpen = false;
 var sideView = 1; //1 = notes 2 = docs 3 = todo;
 function openSide(){
+	$("#side").css("z-index", -1);
 	sideOpen = true;
-	removeClass("side","hide");
-	document.getElementById("side").className = document.getElementById("side").className + " expandSide";
 	document.getElementById("content").className = document.getElementById("content").className + " shrinkContent";
 	setTimeout(function(){
-		removeClass("side","expandSide");
 		removeClass("content","shrinkContent");
 		document.getElementById("content").style.width = "80%";
-		document.getElementById("side").style.width = "20%";
 		document.getElementById("the-arrow").innerHTML = "<i class='fa fa-caret-square-o-right'></i>";
 		$("#side-arrow").attr("onclick","closeSide()");
 		//
-		removeClass("theTabs","hide");
-		if(sideView === 1){
-			removeClass("pad","hide");
-		}
-		if(sideView === 2){
-			removeClass("docs","hide");
-		}
-		if(sideView === 3){
-			removeClass("todo", "hide");
-		}
-		if(sideView === 4){
-			removeClass("brow", "hide");
-		}
-		bootHide("placeholder");
 		//
+		$("#side").css("z-index", 0);	
 	}, 500);
 }
 function closeSide(){
+	$("#side").css("z-index", -1);
 	sideOpen = false;
 	//
-	bootHide("theTabs");
-	bootHide("pad");
-	bootHide("todo");
-	bootHide("docs");
-	bootHide("brow");
-	removeClass("placeholder", "hide");
 	//
-	document.getElementById("side").className = document.getElementById("side").className + " shrinkSide";
 	document.getElementById("content").className = document.getElementById("content").className + " expandContent";
 	setTimeout(function(){
 		removeClass("content","expandContent");
-		removeClass("side","shrinkSide");
 		document.getElementById("content").style.width = "100%";
-		document.getElementById("side").style.width = "0%";
-		bootHide("side");
 		document.getElementById("the-arrow").innerHTML = "<i class='fa fa-caret-square-o-left'></i>";
 		$("#side-arrow").attr("onclick","openSide()");
 	}, 500);
 }
+//on startup
+sideOpen = false;
+document.getElementById("content").style.width = "100%";
+document.getElementById("the-arrow").innerHTML = "<i class='fa fa-caret-square-o-left'></i>";
+$("#side-arrow").attr("onclick","openSide()");
+
 function bootHide(id){
 	document.getElementById(id).className = document.getElementById(id).className + " hide";
 }
@@ -961,7 +948,6 @@ function removeClass(id, classToRemove){
 	var fin = s.join("");
 	e.className = fin;
 }
-bootHide("side");
 function show_terminal(){
 	if(sideOpen === false){
 		openSide();
