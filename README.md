@@ -1,18 +1,19 @@
 #Code Your Cloud#
 ####<a href="https://codeyourcloud.com">The Project</a>####
-<p>Check out the progress so far far here</p>
-=====
+<p>Check out the result of the project so far here. Keep in mind that it's not quite done yet, so please excuse any technical difficulties. All of the major functions, however, are fully operational, and ready to be used. Enjoy!</p>
+
 ####<a href="https://codeyourcloud.com/about">About</a>####
-<p>A comprehensive about page with a help section, comment box, and code snippets</p>
+<p>A comprehensive about page with a help section, comment box, and code snippets. The about page is similar to this document, but more thorough. For a full explanation of the features of Code Your Cloud, check this out. It can also be accessed by clicking on the icon in the top-left corner of the main editor.</p>
 ====
 ###Code Snippets###
+<p>Snippets of all the major functions of Code Your Cloud (for those who don't want to go digging through the source) can be found at the following links. They are all <a href="https://gist.github.com/">Gists</a>, and are updated with the source code itself.</p>
 ####<a href="https://gist.github.com/mkaminsky11/8624455">Google Drive</a>####
-<p>Code snippets to manipulate Google Drive files, including content, title, etc.</p>
+<p>Code snippets to manipulate Google Drive files, including content, title, etc. These are the the backbone of the editor, as they allow Code Your Cloud to access files from Google Drive.</p>
 ####<a href="https://gist.github.com/mkaminsky11/8624150">CodeMirror</a>####
-<p>Code snippets to control and optimize CodeMirrors</p>
+<p>Code snippets to control and optimize the editor itself, created using CodeMirror. These functions are aimed primarily at faciliting the ease of using the editor.</p>
 =====
 <h3>Goal</h3>
-<p>To allow people around the globe to collaborate on coding projects via Google Drive</p>
+<p>To allow people around the globe to collaborate on coding projects via Google Drive. It's that simple. So far, I have yet to see a website or program that accomplishes these tasks for all major programming languages. This is an attempt to change that.</p>
 =====
 ###Features###
 <ul>
