@@ -17,7 +17,6 @@
 			ga('create', 'UA-47415821-1', 'codeyourcloud.com');
 			ga('send', 'pageview');
 			//
-			//
 			console.log("please don't mess around with this console unless you REALLY know what you're doing. Your actions could effect your files or our servers. If you have any questions, CONTACT US. Thank you.");
 			var doc_url = document.URL;
 			var current = "";
@@ -46,20 +45,20 @@
 	        			document.getElementById("cancel_rename").innerHTML = "NO";
         			}
 			}
-            		$(function($) {
-                		$(".knob").knob({
-                    			change : function (value) {
-                    			},
-                    			release : function (value) {
-                    			},
-                    			cancel : function () {
-                    			},
-                    			draw : function () {
-                    			}
-                		});
-            		});
-            		checkB();
-        	</script>
+            $(function($) {
+                $(".knob").knob({
+                    	change : function (value) {
+                		},
+            			release : function (value) {
+            			},
+            			cancel : function () {
+            			},
+            			draw : function () {
+            			}
+            	});
+        	});
+            checkB();
+        </script>
 		<!--JQUERY-->
 		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 		<!-- Latest compiled and minified CSS -->
@@ -356,23 +355,23 @@
 									<li onclick="setMode('.css')">CSS</li>
 									<li onclick="setMode('.html')">HTML</li>
 									<li onclick="setMode('.php')">PHP</li>
-						    			<li onclick="setMode('.js')">Javascript</li>
+						    		<li onclick="setMode('.js')">Javascript</li>
 									<li onclick="setMode('.coffee')">Coffeescript</li>
 									<li onclick="setMode('.py')">Python</li>
-            								<li onclick="setMode('.pl')">Perl</li>
-            								<li onclick="setMode('.xml')">XML</li>
-            								<li onclick="setMode('.ru')">Ruby</li>
-            								<li onclick="setMode('.sql')">SQL</li>
-            								<li onclick="setMode('.groovy')">Groovy</li>
-            								<li onclick="setMode('.go')">Go</li>
-            								<li onclick="setMode('.cob')">Cobol</li>
-            								<li onclick="setMode('.pas')">Pascal</li>
-            								<li onclick="setMode('.less')">Less</li>
-            								<li onclick="setMode('.clj')">Clojure</li>
-            								<li onclick="setMode('.lua')">Lua</li>
-            								<li onclick="setMode('.sh')">Shell</li>
-            								<li onclick="setMode('.jade')">Jade</li>
-            								<li onclick="setMode('.md')">Markdown</li>
+            						<li onclick="setMode('.pl')">Perl</li>
+            						<li onclick="setMode('.xml')">XML</li>
+            						<li onclick="setMode('.ru')">Ruby</li>
+            	    				<li onclick="setMode('.sql')">SQL</li>
+            						<li onclick="setMode('.groovy')">Groovy</li>
+            						<li onclick="setMode('.go')">Go</li>
+            						<li onclick="setMode('.cob')">Cobol</li>
+            						<li onclick="setMode('.pas')">Pascal</li>
+            						<li onclick="setMode('.less')">Less</li>
+            						<li onclick="setMode('.clj')">Clojure</li>
+            						<li onclick="setMode('.lua')">Lua</li>
+            						<li onclick="setMode('.sh')">Shell</li>
+            						<li onclick="setMode('.jade')">Jade</li>
+            						<li onclick="setMode('.md')">Markdown</li>
 									<li onclick="setMode('.d')">D</li>
 									<li onclick="setMode('.erl')">Erlang</li>
 									<li onclick="setMode('.apl')">Apl</li>
@@ -391,7 +390,7 @@
 									<li onclick="setMode('.ss')">Scheme</li>
 									<li onclick="setMode('.sieve')">Sieve</li>
 									<li onclick="setMode('.xquery')">Xquery</li>
-									<li onclick="setMode('gfm')">Github Markdown</li>
+									<li onclick="setMode('.gfm')">Github Markdown</li>
 								</ul>
 							</div>
 							<div class="col-lg-4">
@@ -435,7 +434,8 @@
 					<div class="modal-body">
 						<iframe id="preview"></iframe>
 					</div>
-					<div class="modal-footer">				  
+					<div class="modal-footer">
+					    <button class="btn btn-danger" onclick="$('#previewModal').modal('hide')">Close</button>
 					</div>
 				</div>
 			</div>

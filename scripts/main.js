@@ -94,7 +94,7 @@ CODEMIRROR/VIM STUFF
 var delay;
 var title = "";
 var codeMirror = CodeMirror(document.getElementById("content"), {
-    lineNumbers: true,mode: "text",theme: "cobalt",lineWrapping: true
+    lineNumbers: true,mode: "text",theme: "cobalt",lineWrapping: false
 });
 codeMirror.on("change", function(cm, change) {
 	setState("unsaved");
@@ -224,9 +224,8 @@ function welcome() {
 	document.getElementById("ok_rename").style.visibility="hidden";
 	document.getElementById("cancel_rename").style.visibility="hidden";
 	isWelcome = true;
-        document.getElementById("note").innerHTML = "All Changes Saved To Drive";
+    document.getElementById("note").innerHTML = "All Changes Saved To Drive";
 	setPercent("100");
-	codeMirror.setValue("Welcome to Code Your Cloud!");
 	var txtFile = new XMLHttpRequest();
 	txtFile.open("GET", "https://codeyourcloud.com/intro.txt", true);
 	txtFile.onreadystatechange = function()
@@ -276,194 +275,181 @@ FILE NAME
 function checkFileName(fileValue) { //adjusts the mode based on the file name
 	bootHide("autoButton");
     var e = exten(fileValue);
-    if (e === "java") {
-        codeMirror.setOption("mode", "text/x-java");
+    codeMirror.setOption("extraKeys", {});
+    switch(e){
+        case "java":
+            codeMirror.setOption("mode", "text/x-java");
+            break;
+        case "py":
+            codeMirror.setOption("mode", "text/x-python");
+            startPython();
+            removeClass("autoButton","hide");
+            break;
+        case "c":
+            codeMirror.setOption("mode", "text/x-csrc");
+            break;
+        case "css":
+            codeMirror.setOption("mode", "text/css");
+            startCss();
+            removeClass("autoButton","hide");
+            break;
+        case "html":
+            codeMirror.setOption("mode", "text/html");
+            startHtml();
+            removeClass("autoButton","hide");
+	        codeMirror.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
+	        break;
+        case "js":
+            codeMirror.setOption("mode", "text/javascript");
+            startTern();
+            removeClass("autoButton","hide");
+            break;
+        case "coffee":
+            codeMirror.setOption("mode", "coffeescript");
+            break;
+        case "pl":
+            codeMirror.setOption("mode", "perl");
+            break;
+        case "php":
+            codeMirror.setOption("mode", "php");
+            break;
+        case "xml":
+            codeMirror.setOption("mode", "xml");
+            startXml();
+            removeClass("autoButton","hide");
+            break;
+        case "rb":
+            codeMirror.setOption("mode", "text/x-ruby");
+            break;
+        case "ru":
+            codeMirror.setOption("mode", "text/x-ruby");
+            break;
+        case "sql":
+            codeMirror.setOption("mode", "sql");
+            startSql();
+            removeClass("autoButton","hide");
+            break;
+        case "cpp":
+            codeMirror.setOption("mode", "text/x-c++src");
+            break;
+        case "cs":
+             codeMirror.setOption("mode", "text/x-csharp");
+             break;
+        case "groovy":
+            codeMirror.setOption("mode", "text/x-groovy");
+            break;
+        case "go":
+            codeMirror.setOption("mode", "text/x-go");
+            break;
+        case "cob":
+            codeMirror.setOption("mode", "cobol");
+            break;
+        case "COB":
+            codeMirror.setOption("mode", "cobol");
+            break;
+        case "pas":
+            codeMirror.setOption("mode", "text/x-pascal");
+            break;
+        case "pp":
+            codeMirror.setOption("mode", "text/x-pascal");
+            break;
+        case "less":
+            codeMirror.setOption("mode", "text/css");
+            break;
+        case "lua":
+            codeMirror.setOption("mode", "text/x-lua");
+            break;
+        case "clj":
+            codeMirror.setOption("mode", "text/x-clojure");
+            break;
+        case "jade":
+            codeMirror.setOption("mode", "text/x-jade");
+            break;
+        case "sh":
+            codeMirror.setOption("mode", "text/x-sh");
+            break;
+        case "sass":
+            codeMirror.setOption("mode", "text/x-sass");
+            break;
+        case "d":
+            codeMirror.setOption("mode", "text/x-d");
+            break;
+        case "erl":
+            codeMirror.setOption("mode", "text/x-erlang");
+            break;
+        case "scala":
+            codeMirror.setOption("mode", "text/x-scala");
+            break;
+        case "md":
+            codeMirror.setOption("mode", "markdown");
+            break;
+        case "apl":
+            codeMirror.setOption("mode", "text/apl");
+            break;
+        case "asterisk":
+            codeMirror.setOption("mode", "text/x-asterisk");
+            break;
+        case "diff":
+            codeMirror.setOption("mode", "text/x-diff");
+            break;
+        case "haml":
+            codeMirror.setOption("mode", "text/x-haml");
+            break;
+        case "hi":
+            codeMirror.setOption("mode", "text/x-haskell");
+            break;
+        case "hs":
+            codeMirror.setOption("mode", "text/x-haskell");
+            break;
+        case "haxe":
+            codeMirror.setOption("mode", "text/x-haxe");
+            break;
+        case "jinja2":
+            codeMirror.setOption("mode", "{name: 'jinja2', htmlMode: true}");
+            break;
+        case "jl":
+            codeMirror.setOption("mode", "text/x-julia");
+            break;
+        case "nginx":
+            codeMirror.setOption("mode", "text/nginx");
+            break;
+        case "conf":
+            codeMirror.setOption("mode", "text/nginx");
+            break;
+        case "m":
+            codeMirror.setOption("mode", "text/x-octave");
+            break;
+        case "octave":
+            codeMirror.setOption("mode", "text/x-octave");
+            break;
+        case "properties":
+            codeMirror.setOption("mode", "text/x-properties");
+            break;
+        case "q":
+            codeMirror.setOption("mode", "text/x-q");
+            break;
+        case "r":
+            codeMirror.setOption("mode", "text/x-rsrc");
+            break;
+        case "rc":
+            codeMirror.setOption("mode", "text/x-rustsrc");
+            break;
+        case "scm":
+            codeMirror.setOption("mode", "text/x-scheme");
+            break;
+        case "ss":
+            codeMirror.setOption("mode", "text/x-scheme");
+            break;
+        case "sieve":
+            codeMirror.setOption("mode", "application/sieve");
+            break;
+        case "xquery":
+            codeMirror.setOption("mode", "application/xquery");
+            break;
+        case "gfm":
+            codeMirror.setOption("mode", "gfm");
+            break;
     }
-    if (e === "py") {
-        codeMirror.setOption("mode", "text/x-python");
-        startPython();
-        removeClass("autoButton","hide");
-    }
-    else{
-	   codeMirror.setOption("extraKeys", {}); 
-    }
-    if (e === "c") {
-        codeMirror.setOption("mode", "text/x-csrc");
-         
-    }
-    if (e === "css") {
-        codeMirror.setOption("mode", "text/css");
-        startCss();
-        removeClass("autoButton","hide");
-    }
-    else{
-	     codeMirror.setOption("extraKeys", {});
-    }
-    if (e === "html") {
-        codeMirror.setOption("mode", "text/html");
-        startHtml();
-        removeClass("autoButton","hide");
-	codeMirror.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
-    }
-    else{
-	    codeMirror.setOption("extraKeys", {});
-    }
-    if (e === "js") {
-        codeMirror.setOption("mode", "text/javascript");
-        startTern();
-        removeClass("autoButton","hide");
-    }
-    if (e === "coffee") {
-        codeMirror.setOption("mode", "coffeescript");
-         
-    }
-    if (e === "pl") {
-        codeMirror.setOption("mode", "perl");
-         
-    }
-    if (e === "php") {
-        codeMirror.setOption("mode", "php");
-         
-    }
-    if (e === "xml") {
-        codeMirror.setOption("mode", "xml");
-        startXml();
-        removeClass("autoButton","hide");
-    }
-    if (e === "rb" || e === "ru") {
-        codeMirror.setOption("mode", "ruby");
-         
-    }
-    if (e === "sql") {
-        codeMirror.setOption("mode", "sql");
-        startSql();
-        removeClass("autoButton","hide");
-    }
-    else{
-	    codeMirror.setOption("extraKeys", {});
-    }
-    if( e === "cpp"){
-        codeMirror.setOption("mode", "text/x-c++src");
-         
-    }
-    if( e === "cs"){
-        codeMirror.setOption("mode", "text/x-csharp");
-         
-    }
-    if( e === "groovy"){
-    	codeMirror.setOption("mode", "text/x-groovy");
-    	 
-    }
-    if( e === "go"){
-    	codeMirror.setOption("mode", "text/x-go");
-    	 
-    }
-    if( e === "COB" || e === "cob"){
-    	codeMirror.setOption("mode", "cobol");
-    	 	
-    }
-    if( e === "pas" || e === "pp"){
-    	codeMirror.setOption("mode", "text/x-pascal");
-    	 	
-    }
-    if( e === "rb" || e === "ru"){
-	codeMirror.setOption("mode", "text/x-ruby");
-	 
-    }
-    if( e === "less"){
-	    codeMirror.setOption("mode", "text/css");
-	     
-    }
-    if( e === "lua"){
-	    codeMirror.setOption("mode", "text/x-lua");
-	     
-    }
-	if(e === 'clj'){
-		codeMirror.setOption("mode", "text/x-clojure");
-		 
-	}
-	if(e === 'sh'){
-		codeMirror.setOption("mode", "text/x-sh");
-		 
-	}
-	if(e === 'jade'){
-		codeMirror.setOption("mode", "text/x-jade");
-		 
-	}
-	if(e === 'sass'){
-		codeMirror.setOption("mode", "text/x-sass");
-		 
-	}
-	if(e === 'd'){
-		codeMirror.setOption("mode", "text/x-d");
-		 
-	}
-	if(e === 'erl'){
-		codeMirror.setOption("mode", "text/x-erlang");
-		 
-	}
-	if(e === 'scala'){
-		codeMirror.setOption("mode", "text/x-scala");
-		 
-	}
-	if(e === 'markdown' || e === 'mdown' || e === 'mkdn' || e === 'md' || e === 'mdk' || e=== 'mdwn' || e==='mdtext'){
-		codeMirror.setOption("mode", "markdown");
-		 
-	}
-	if(e === "apl"){
-		codeMirror.setOption("mode", "text/apl");
-	}
-	if(e === "asterisk"){
-		codeMirror.setOption("mode", "text/x-asterisk");
-	}
-	if(e === "diff"){
-		codeMirror.setOption("mode", "text/x-diff");
-	}
-	if(e === "haml"){
-		codeMirror.setOption("mode", "text/x-haml");
-	}
-	if(e === "hi" || e === "hs"){
-		codeMirror.setOption("mode", "text/x-haskell");
-	}
-	if(e === "haxe"){
-		codeMirror.setOption("mode", "text/x-haxe");
-	}
-	if(e === "jinja2"){
-		codeMirror.setOption("mode", "{name: 'jinja2', htmlMode: true}");
-	}
-	if(e === "jl"){
-		codeMirror.setOption("mode", "text/x-julia");
-	}
-	if(e === "nginx" || e === "conf"){
-		codeMirror.setOption("mode", "text/nginx");
-	}
-	if(e === "m" || e === "octave"){
-		codeMirror.setOption("mode", "text/x-octave");
-	}
-	if(e === "properties"){
-		codeMirror.setOption("mode", "text/x-properties");
-	}
-	if(e === "q"){
-		codeMirror.setOption("mode", "text/x-q");
-	}
-	if(e === "r"){
-		codeMirror.setOption("mode", "text/x-rsrc");
-	}
-	if(e === "rc"){
-		codeMirror.setOption("mode", "text/x-rustsrc");
-	}
-	if(e === "scm" || e === "ss"){
-		codeMirror.setOption("mode", "text/x-scheme");
-	}
-	if(e === "sieve"){
-		codeMirror.setOption("mode", "application/sieve");
-	}
-	if(e === "xquery"){
-		codeMirror.setOption("mode", "application/xquery");
-	}
-	if(fileValue === "gfm"){
-		codeMirror.setOption("mode", "gfm");
-	}
 }
 function exten(string){
     var ret = "none"; 
@@ -515,7 +501,7 @@ function navUndo() {
 	}
 }
 function checkUndo(){
-	if(numUndo < codeMirror.getDoc().historySize().undo){
+	if(numUndo < codeMirror.getDoc().historySize().undo - 1){
 		removeClass("undoB", "disabled");	
 	}
 	else{
@@ -532,7 +518,7 @@ function navRedo() {
 	if(numRedo < codeMirror.getDoc().historySize().redo){
 		codeMirror.getDoc().redo();
 		numRedo++;
-		nunUndo--;
+		numUndo--;
 	}
 	else{
 		addClass("redoB", "disabled");
