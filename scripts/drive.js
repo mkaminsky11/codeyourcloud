@@ -15,6 +15,9 @@ function getContentOfFile(theID){ //gets the content of the file
                 if ( myXHR.status == 200 ) {
                 	var code = myXHR.response;
                     codeMirror.setValue(code); //sets the value of the codemirror
+                    if(code === ""){
+                        wasBlank = true;
+                    }
                		setState("saved");
 			   		ok = true;
 			   		setPercent("100");

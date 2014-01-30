@@ -461,7 +461,9 @@
 				<div id="todo" class="todo">
 				</div>
 				<div id="brow">
-					<input class="form-control" value="https://google.com"/>
+                    <input class="form-control" id="u-r-l" type="text" value="Type a URL Here" onfocus="if(typeof foc=='undefined'){this.value='';foc=1}" name="url" />
+                    <input class="btn btn-success" id="go" type="button" onclick="iframe.location.href=this.form.url.value" value="Go!" /><br />
+                    <iframe src="https://codeyourcloud.com/error/browser/start.html" name="iframe" height="100%" width="100%"></iframe>
 				</div>
 			</div>
 		</div>
@@ -477,6 +479,7 @@
 		<script src="/about/flat/js/jquery.stacktable.js"></script>
 		<script src="/about/flat/js/application.js"></script>
 		<script src="/scripts/drive.js"></script>
+		<script src="/scripts/visual.js"></script>
 		<script src="/scripts/main.js"></script>
 		<script src="/scripts/frontend.js"></script>
 		<script src="/lib/knob/js/jquery.knob.js"></script>
@@ -508,7 +511,11 @@
 				},0);
 				return false;
 			});
-			jwerty.key('ctrl+z/cmd+z', function(){					    });	
+			jwerty.key('ctrl+z/cmd+z', function(){
+			    if(wasBlank !== true && codeMirror.getValue() === ""){
+			        codeMirror.getDoc().redo();
+			    }
+			});	
 			jwerty.key('ctrl+shift+z/cmd+shift+z', function() {
 			});
 			jwerty.key('ctrl+space/cmd+space', function() {

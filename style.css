@@ -154,6 +154,7 @@ nt-face {
 	width: 100%;
 	padding: 0px;
 	margin: 0px;
+	display: inline;
 }
 #todo {
 	height: 100%;
@@ -432,4 +433,25 @@ markdown
 
 #logo_pic {
 	margin-top: 2px;
+}
+form {
+    width: 100%;
+    height: 100%;
+}
+iframe {
+    width: 100%;
+    height: 90%;
+}
+#go {
+    float: right;
+    display: inline;
+    width: 20%;
+    border-radius: 0px;
+    padding-bottom: 11px;
+}
+#u-r-l {
+    float: left;
+    width: 80%;
+    display: inline;
+    border-radius: 0px;
 }
