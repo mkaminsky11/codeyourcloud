@@ -397,6 +397,7 @@ function handleClientLoad() {
         //
         //TODO: a todo item
         //FIXME: help!</pre>
+        <p>The todo list is refreshed with every save, and can be found by clicking the "todo" menu item underneath the "code" menu, or by clicking <i class="fa fa-list-ol"></i> in the sidebar.</p>
         <h4 id="key">Keyboard Shortcuts</h4>
         <!--
         
@@ -489,16 +490,28 @@ function handleClientLoad() {
         	<li>Line Numbers</li>
         	<li><a href="#vim">Vim</a> mode</li>
         </ul>
+        <p>The menu item to trigger the preferences window is found under the <i class="fa fa-cog"></i> menu at the top-right corner of hte editor.</p>
         <h4 id="drive">Google Drive Integration</h4>
-        <p>With Code Your Cloud, you can open, share, edit, upload, and save Google Drive files</p>
+        <p>With Code Your Cloud, you can open, share, edit, upload, and save Google Drive files.</p>
+        <h6>Opening</h6>
+        <p>Click the <i class="fa fa-folder-open"></i> icon, or the "open" menu item.<br/>Note: code your cloud CANNOT open Google Docs or Microsoft Office documents.</p>
+        <h6>Sharing</h6>
+        <p>In order to allow other people to access your files, click the "share" menu item. If you have not added people to the list of authorized collaborators, they will not be allowed to access the file.</p>
+        <h6>Creating</h6>
+        <p>Click the "new" menu item. The document will be titled by its unique file id (a very long string of characters) to prevent name collisions. The file will be created in the root folder of your Google Drive.</p>
+        <h6>Saving</h6>
+        <p>Click the "save" menu item, <i class="fa fa-floppy-o"></i> icon, or the save state indicator (to the right of the collaboration button).</p>
+        <h6>Uploading</h6>
+        <p>Select the "upload" menu item to upload a file to Google Drive. The file will appear in your root (main) folder.</p>
         <h2 id="contact">Contact Us</h1>
-        <input class="form-control" id="contact_name" value="" placeholder="Name"/>
+        <p>If you have any questions or comments, please use the comment box below. Please not that any HTML will be stripped out of your comments.</p>
+        <input class="form-control" id="comment_name" value="" placeholder="Name"/>
         <br/>
-        <input class="form-control" id="contact_mail" value="" placeholder="Email"/>
+        <input class="form-control" id="comment_mail" value="" placeholder="Email"/>
         <br/>
-        <textarea class="form-control" id="contact_comment" value="" placeholder="Comment" rows="10"></textarea>
+        <textarea class="form-control" id="comment_comment" value="" placeholder="Comment" rows="10"></textarea>
         <br/>
-        <button class="btn btn-success" onclick="comment">Comment</button>
+        <button class="btn btn-success" onclick="comment()">Comment</button>
         <button class="btn btn-danger" type="reset" value="Reset">Reset</button>
 		<h2 id="donate">Donate</h2>
 		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">

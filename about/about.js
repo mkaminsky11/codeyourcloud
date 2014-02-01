@@ -1,4 +1,4 @@
-var connection = new WebSocket('wss://64.207.146.34:8080');
+var connection = new WebSocket('wss://codeyourcloud.com:8080');
 connection.onopen = function () {
 	console.log("open");
 };

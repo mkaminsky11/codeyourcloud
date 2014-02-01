@@ -1,5 +1,4 @@
 var connection = new WebSocket('wss://codeyourcloud.com:8080');
-var sshSession = "";
 connection.onopen = function () {
 	console.log("open");
     /*INITIALIZE*/

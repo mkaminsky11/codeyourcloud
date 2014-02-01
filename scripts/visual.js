@@ -249,8 +249,20 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
         case "gfm":
             codeMirror.setOption("mode", "gfm");
             break;
+        case "docx":
+            badType();
+            break;
+        case "xls":
+            badType();
+            break;
+        case "ppt":
+            badType();
+            break;
     }
 }
+function badType(){
+    window.location.href="https://codeyourcloud.com/error/file"
+};
 function exten(string){
     var ret = "none"; 
     if(string.indexOf(".") !== -1){
@@ -429,21 +441,6 @@ function setPercent(per){
 		$('#myModal').modal('show');
 	}
 }
-function showColor() {
-	$('#colorpicker').colorpicker('show');
-}
-$('#colorpicker').colorpicker().on('changeColor', function(ev){
-	  //bodyStyle.backgroundColor = ev.color.toHex();
-	if(codeMirror.getDoc().somethingSelected()){
-		codeMirror.replaceSelection(ev.color.toHex());
-	}
-	else{
-		var before = codeMirror.getDoc().getCursor();
-		codeMirror.getDoc().replaceRange(ev.color.toHex(), before);
-		var after = codeMirror.getDoc().getCursor();
-		codeMirror.getDoc().setSelection(before,after);
-	}
-});
 function getURL(url, c) {
     var xhr = new XMLHttpRequest();
     xhr.open("get", url, true);
@@ -694,7 +691,7 @@ function removeTodo(todoId){
 	document.getElementById(todoId).className = document.getElementById(todoId).className + " removeTodo";
 	setTimeout(function(){
 		removeClass(todoId, "removeTodo");
-		document.getElementById(todoId).remove();
+		$("#"+todoId).remove();
 	}, 500);
 }
 function createTodo(note, line, character, kind){
@@ -727,16 +724,6 @@ function createTodo(note, line, character, kind){
 	document.getElementById("todo_ul").innerHTML = document.getElementById("todo_ul").innerHTML+fin;
 	}
 	catch(e){}
-}
-Element.prototype.remove = function() {
-    this.parentElement.removeChild(this);
-}
-NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-    for(var i = 0, len = this.length; i < len; i++) {
-        if(this[i] && this[i].parentElement) {
-            this[i].parentElement.removeChild(this[i]);
-        }
-    }
 }
 function refreshTodo(){
 	document.getElementById("todo").innerHTML = "<ul id='todo_ul'></ul>";
@@ -844,3 +831,37 @@ function fontDown(){
 	}
 	$("#content").css("fontSize", old+"px");
 }
+/**********
+COLOR
+*************/
+$('#color').colorpicker();
+function showColor(){
+    $('#color').colorpicker('show');
+    $('.colorpicker').css("opacity", 100);
+    $('.colorpicker').css('visibility', 'visible');
+    //if something is selected, TRY to set the color to it.
+    if(codeMirror.getDoc().somethingSelected()){
+    	try{
+	    	$("#color").colorpicker('setValue', codeMirror.getDoc().getSelection());
+	    }
+	    catch(e){
+	    }
+    }
+    
+}
+var before = null;
+var after = null;
+$('#color').colorpicker().on('changeColor', function(ev){
+  //bodyStyle.backgroundColor = ev.color.toHex();
+  //if something is selected, change it
+  if(codeMirror.getDoc().somethingSelected()){
+	  codeMirror.getDoc().replaceSelection(ev.color.toHex());
+  }
+  else{
+	  before = codeMirror.getDoc().getCursor();
+	  codeMirror.getDoc().replaceRange(""+ev.color.toHex(), before);
+	  after = codeMirror.getDoc().getCursor();
+	  codeMirror.getDoc().setSelection(before, after);
+  }
+  //else, insert it
+});

@@ -155,12 +155,12 @@
 		<script src = '/lib/codemirror/keyboard/jwerty.js'></script>
 		<script src = '/lib/codemirror/vim.js'></script>
 		<!--BOOTSTRAP LIBRARIES-->
-		<script src = '/lib/colorpicker/js/bootstrap-colorpicker.js'></script>
-		<link rel="stylesheet" type="text/css" href="/lib/colorpicker/css/colorpicker.css">
 		<link rel='stylesheet' type='text/css' href='/lib/LigatureSymbols/style.css'>
 		<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css'>
 		
-		
+		<!--
+		Colorpicker
+		-->
 		<!--
 		addons
 		
@@ -186,7 +186,10 @@
 		<script src="/lib/auto/def.js"></script>
 		<script src="/lib/auto/comment.js"></script>
 		<script src="/lib/auto/infer.js"></script>
-		<script src="/lib/auto/doc_comment.js"></script>	</head>
+		<script src="/lib/auto/doc_comment.js"></script>
+		
+		<link rel="stylesheet" href="/lib/color/css/bootstrap-colorpicker.min.css">
+	</head>
 	<body>
 		<link rel='stylesheet' type='text/css' href='style.css'>
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -222,7 +225,7 @@
 					<li class="dropdown" id="codedropdown">
 						<a class="dropdown-toggle" id="dropdown-toggle-code" data-toggle="dropdown">Code</a>
 						<ul class="dropdown-menu">
-							<li onclick=""><a onclick="showColor()"><span id="colorpicker" data-color-format="hex" data-color="rgb(255, 255, 255)"></span> Color</a></li>
+							<li id="color" onclick="showColor()"><a>Color</a></li>
 							<li onclick="show_terminal()"><a>Terminal</a></li>
 							<li onclick="show_todo()"><a>Todo</a></li>
 							<li onclick="show_note()"><a>Notepad</a></li>
@@ -467,6 +470,7 @@
 				</div>
 			</div>
 		</div>
+		<script src="/lib/color/js/bootstrap-colorpicker.min.js"></script>
 		<script src="/about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
 		<script src="/about/flat/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="/about/flat/js/bootstrap.min.js"></script>

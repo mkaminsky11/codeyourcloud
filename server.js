@@ -1,4 +1,4 @@
-"use strict";
+"user strict";
 process.title = 'codeyourcloud';
 var webSocketsServerPort = 8080;
 var fs = require('fs');
@@ -14,11 +14,11 @@ var server = https.createServer(options, function(req, res){
 }); //options
 
 server.listen(webSocketsServerPort, function() {
-    console.log((new Date()) + " Server is listening on port " + webSocketsServerPort);
+    
 });
 var wsServer = new webSocketServer({
     httpServer: server,
-    autoAcceptConnections: true
+    autoAcceptConnections: false
 });
 
 
@@ -56,18 +56,9 @@ SAVING TO ALL PEOPLE IN A SESSION
 !remember...the session is the INDEXES which can be located in the clients array
 */
 //
-/*********
-SSH
-********/
-var ssh_port;
-var ssh_host;
-var ssh_login;
-var ssh_pass;
-//
-//
 wsServer.on('request', function(request) {
-    //console.log((new Date()) + ' Connection from origin ' + request.origin + '.');
-    var connection = request.accept(null, request.origin); 
+    if(request.origin === "https://codeyourcloud.com"){
+    var connection = request.accept(null, request.origin);
     connection.id = ++total;
     if(clients.length < connection.id){
 	    clients.push(connection);
@@ -136,10 +127,8 @@ wsServer.on('request', function(request) {
 
 			var array = sessions[sessionIndex[connection.id - 1]];
 		        for(var i = 0; i < array.length; i++){
-
 			       	clients[array[i]-1].send(JSON.stringify({type:"update", name: json.name}));
-		    	}
-	
+		        }
 		}        
 	}
         catch(e){
@@ -186,5 +175,6 @@ function removeSession(session){
 	//
 	FILE.splice(index,1);
 	sessions.split(index,1);
+}
 }
 });

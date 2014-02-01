@@ -12,13 +12,17 @@ AUTHORIZATION
 window.onbeforeunload = function () {
 	if($("#note").html() !== "All Changes Saved To Drive" || $("#note").html() === "Saving..." && doc_url !== "https://codeyourcloud.com/"){
 		//it's ok
-		if(isWelcome === false && TOpen === true){
-			TogetherJS(this);
+		var didTurnOff = false;
+		if(isWelcome === false){
+			if(TOpen === true){
+				TogetherJS(this);
+				didTurnOff = true;
+			}
 			return "You Have Unsaved Changes. Are Your Sure You Want To Exit?";
 		}
 	}
 	else{
-		if(TOpen && isWelcome === false){
+		if(TOpen && isWelcome === false && didTurnOff){
 			TogetherJS(this);
 		}
 		window.onbeforeunload = undefined;
@@ -146,7 +150,12 @@ function openInit(){
 				//console.log("with hash");
 				isWelcome = false;
 				var theID = doc_url.split("#")[1];
-				getContentOfFile(theID);
+				try{
+				    getContentOfFile(theID);
+				}
+				catch(e){
+				    badType();
+				}
 				getTitle(theID);
 				}
 				if(url.indexOf("#") === -1 && url.indexOf("?") !== -1 && url.indexOf("ssh") === -1){
