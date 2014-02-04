@@ -22,7 +22,7 @@ window.onbeforeunload = function () {
 		}
 	}
 	else{
-		if(TOpen && isWelcome === false && didTurnOff){
+		if(TOpen && isWelcome === false){
 			TogetherJS(this);
 		}
 		window.onbeforeunload = undefined;

@@ -1,4 +1,5 @@
 #Code Your Cloud#
+####Now available on the <a href="https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail">Chrome Store</a>####
 ####<a href="https://codeyourcloud.com">The Project</a>####
 <p>Check out the result of the project so far here. Keep in mind that it's not quite done yet, so please excuse any technical difficulties. All of the major functions, however, are fully operational, and ready to be used. Enjoy!</p>
 
@@ -30,6 +31,54 @@
   <li>Vim modes</li>
   <li>Preferences</li>
   <li>Google Drive integration</li>
+</ul>
+=====
+###Supported Languages###
+<ul>
+	<li>Java</li>
+	<li>C</li>
+	<li>C++</li>
+	<li>C#</li>
+	<li>Markdown</li>
+	<li>CSS</li>
+	<li>HTML</li>
+	<li>PHP</li>
+	<li>Scheme</li>
+	<li>Go</li>
+	<li>Python</li>
+	<li>Perl</li>
+	<li>XML</li>
+	<li>Ruby</li>
+	<li>SQL</li>
+	<li>Groovy</li>
+	<li>Coffeescript</li>
+	<li>Cobol</li>
+	<li>Pascal</li>
+	<li>Less</li>
+	<li>Clojure</li>
+	<li>Lua</li>
+	<li>Shell</li>
+	<li>Jade</li>
+	<li>Sass</li>
+	<li>D</li>
+	<li>Erlang</li>
+	<li>Apl</li>
+	<li>Asterisk</li>
+	<li>Diff</li>
+	<li>Haml</li>
+	<li>Haskell</li>
+	<li>Haxe</li>
+	<li>Jinja</li>
+	<li>Nginx</li>
+	<li>Octave</li>
+	<li>Rust</li>
+	<li>Q</li>
+	<li>R</li>
+	<li>Properties</li>
+	<li>Javascript</li>
+	<li>Sieve</li>
+	<li>XQuery</li>
+	<li>Github-flavored Markdown</li>
 </ul>
 =====
 ###Resources###
