@@ -21,6 +21,7 @@ function getContentOfFile(theID){ //gets the content of the file
                		setState("saved");
 			   		ok = true;
 			   		setPercent("100");
+			   		sendMessage("good to go!");
 			   		refreshTodo();
 			   	}
             }
@@ -58,7 +59,6 @@ function createNewFile() {
             }
         });
         request.execute(function(resp) { 
-        	//console.log(resp); 
         });
     });
 }
@@ -75,7 +75,6 @@ function insertNewFile(folderId) {
 }
 function fileInserted(d) {
 	setPercent("100");
-	//console.log(d);
 	var temp1 = doc_url.split("%22folderId%22:%22")[1];
     var FI = temp1.split("%22,%22action%22")[0];
     renameFile(d.id, d.id+".txt");
@@ -137,7 +136,6 @@ function insertFile(fileData, callback, folderId) {
         'body': multipartRequestBody});
     if (!callback) {
       callback = function(file) {
-        //console.log(file)
       };
     }
     request.execute(callback);
@@ -174,12 +172,11 @@ function updateFile(fileId, fileMetadata, fileData, callback) { //is the callbac
           'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
         },
         'body': multipartRequestBody});
-    if (!callback) {//this isn't necessary
+    if (!callback) {
       callback = function(file) {
-        //console.log(file) //for some reason, this is important
       };
     }
-    request.execute(callback);//not needed
+    request.execute(callback);
   }
 	}
 }
@@ -204,7 +201,7 @@ function getP(fileId) {
 	});
 }
 function changesSaved() {
-	console.log("changes saved");
+	sendMessage("changes saved!", "success")
 	setState("saved");
 }
 function checkDir(folderId, testString, callback) {
@@ -235,6 +232,6 @@ function renameFile(fileId, newTitle) {
     'resource': body
   });
   request.execute(function(resp) {
-    console.log('New Title: ' + resp.title);
+    sendMessage('new Title: ' + resp.title, "success");
   });
 }

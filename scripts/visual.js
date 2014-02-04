@@ -31,6 +31,11 @@ CodeMirror.commands.save = function() {
 	//:w -> save
 	save();
 }
+$("#container").css('backgroundColor', $(".CodeMirror").css('backgroundColor'));
+Messenger.options = {
+    extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
+    theme: 'flat'
+}
 function updatePreview() {
        	var previewFrame = document.getElementById('preview');
 		var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
@@ -258,6 +263,21 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
         case "ppt":
             badType();
             break;
+        case "pdf":
+            badType();
+            break;
+        case "jpg":
+            badType();
+            break;
+        case "jpeg":
+            badType();
+            break;
+        case "png":
+            badType();
+            break;
+        case "gif":
+            badType();
+            break;
     }
 }
 function badType(){
@@ -290,6 +310,7 @@ function okRenameNoSend(){
 	return false;
 }
 function cancelRename() {
+    sendMessage("rename canceled", "error");
 	document.getElementById("renameInput").style.borderColor = "red";
 	setTimeout(function(){
 		document.getElementById("renameInput").style.borderColor = "white";
@@ -353,11 +374,13 @@ function line_wrap() {
 	}
 }
 function setTheme(theme){
-	codeMirror.setOption("theme", theme);
+	setThemeNoSend(theme);
 	sendTheme(theme);
 }
 function setThemeNoSend(theme){
 	codeMirror.setOption("theme", theme);
+	$("#container").css('backgroundColor', $(".CodeMirror").css('backgroundColor'));
+	sendMessage("theme is now: "+codeMirror.getOption("theme"));
 }
 function vimBind() {
 	if(codeMirror.getOption("keyMap") === "vim"){
@@ -779,11 +802,12 @@ function show_notepad(){
 	}
 }
 function setMode(mode){
-	checkFileName(mode);
+	setModeNoSend(mode);
 	sendMode(mode);
 }
 function setModeNoSend(mode){
 	checkFileName(mode);
+	sendMessage("mode is now: "+ codeMirror.getOption("mode"), "info");
 }
 TogetherJSConfig_on_ready = function () {
   TOpen = true;
@@ -822,6 +846,7 @@ function fontUp(){
 		old = old + 2;
 	}
 	$("#content").css("fontSize", old+"px");
+	sendMessage("font size is now "+old+" px", "info");
 }
 $("#content").css("fontSize", "14px");
 function fontDown(){
@@ -830,6 +855,7 @@ function fontDown(){
 		old = old - 2;
 	}
 	$("#content").css("fontSize", old+"px");
+	sendMessage("font size is now "+old+" px", "info");
 }
 /**********
 COLOR
@@ -865,3 +891,6 @@ $('#color').colorpicker().on('changeColor', function(ev){
   }
   //else, insert it
 });
+function sendMessage(message, type){
+    Messenger().post({message:message,showCloseButton: true, hideAfter: 5, type: type});
+}

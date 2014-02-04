@@ -140,14 +140,12 @@ function openInit(){
 	initBoot();
 	var url = doc_url;
 	if(url.indexOf("#") === -1 && url.indexOf("?") === -1){
-		//console.log("default");
 		welcome()	
 	}
 	else{
 		if(url.indexOf("#state") === -1){
 			if(url.indexOf("#") !== -1 && url.indexOf("?") === -1){
 				document.getElementById("will_close").style.visibility="visible";
-				//console.log("with hash");
 				isWelcome = false;
 				var theID = doc_url.split("#")[1];
 				try{
@@ -190,7 +188,6 @@ function saveFile(fileId, content){
         var blob = new Blob([byteArray], {type: 'text/plain'}); //this is the only way I could get this to work
         var request = gapi.client.drive.files.get({'fileId': fileId});//gets the metadata, which is left alone
         request.execute(function(resp) {
-            //console.log(content);
             updateFile(fileId,resp,blob,changesSaved);
         });
     }
@@ -207,5 +204,31 @@ if(ok){
   request.execute(function(resp) {
     window.location.assign(resp.webContentLink);
   });
+  sendMessage("file downloaded", "success");
 }
+}
+function goBrowser(){
+   var current_url = $("#url_input").val()
+    if(current_url.indexOf("https://") !== -1){
+        try{
+            $("#browser_window").attr('src', current_url);
+        }
+        catch(e){
+            $("#browser_window").attr('src', 'https://codeyourcloud.com/error/browser/https.html');
+        }
+    }
+    else{
+        if(current_url.indexOf("http://") === -1){
+            $("#url_input").val("https://"+current_url);
+            try{
+                $("#browser_window").attr('src', "https://"+current_url);
+            }
+            catch(e){
+                $("#browser_window").attr('src', 'https://codeyourcloud.com/error/browser/https.html');
+            }
+        }
+        else{
+            $("#browser_window").attr('src', 'https://codeyourcloud.com/error/browser/https.html');
+        }
+    }
 }

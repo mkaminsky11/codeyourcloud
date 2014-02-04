@@ -157,10 +157,6 @@
 		<!--BOOTSTRAP LIBRARIES-->
 		<link rel='stylesheet' type='text/css' href='/lib/LigatureSymbols/style.css'>
 		<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css'>
-		
-		<!--
-		Colorpicker
-		-->
 		<!--
 		addons
 		
@@ -189,6 +185,11 @@
 		<script src="/lib/auto/doc_comment.js"></script>
 		
 		<link rel="stylesheet" href="/lib/color/css/bootstrap-colorpicker.min.css">
+		
+		<script src="lib/messenger/build/js/messenger.min.js"></script>
+		<script src="lib/messenger/build/js/messenger-theme-flat.js"></script>
+		<link rel="stylesheet" href="lib/messenger/build/css/messenger.css">
+		<link rel="stylesheet" href="lib/messenger/build/css/messenger-theme-flat.css">
 	</head>
 	<body>
 		<link rel='stylesheet' type='text/css' href='style.css'>
@@ -335,69 +336,70 @@
 						<div class="row">
 							<div class="col-lg-4 theme-div">
 								<h5>Theme</h5>
-								<ul id="theme_ul">
-				            				<li onclick = "setTheme('3024-day')">3024-day</li>
-            		    						<li onclick = "setTheme('3024-night')">3024-night</li>
-            								<li onclick = "setTheme('ambiance')">ambiance</li>
-              								<li onclick = "setTheme('cobalt')">cobalt</li>
-            		  						<li onclick = "setTheme('mbo')">mbo</li>
-           		    						<li onclick = "setTheme('lesser-dark')">lesser-dark</li>
-          		    						<li onclick = "setTheme('paraiso-light')">paraiso-light</li>
-            								<li onclick = "setTheme('rubyblue')">rubyblue</li>
-              								<li onclick = "setTheme('the-matrix')">matrix</li>
+								<ul id="theme_ul" class="list-group">
+				            				<li class="list-group-item" onclick = "setTheme('3024-day')">3024-day</li>
+            		    					<li class="list-group-item" onclick = "setTheme('3024-night')">3024-night</li>
+            								<li class="list-group-item" onclick = "setTheme('ambiance')">ambiance</li>
+              								<li class="list-group-item" onclick = "setTheme('cobalt')">cobalt</li>
+            		  						<li class="list-group-item" onclick = "setTheme('mbo')">mbo</li>
+           		    						<li class="list-group-item" onclick = "setTheme('lesser-dark')">lesser-dark</li>
+          		    						<li class="list-group-item" onclick = "setTheme('paraiso-light')">paraiso-light</li>
+            								<li class="list-group-item" onclick = "setTheme('rubyblue')">rubyblue</li>
+              								<li class="list-group-item" onclick = "setTheme('the-matrix')">matrix</li>
 								</ul>
 							</div>
 							<div class="col-lg-4 theme-div">
 								<h5>Mode</h5>
-								<ul id="mode_ul">	
-									<li onclick="setMode('.java')">Java</li>
-									<li onclick="setMode('.c')">C</li>
-									<li onclick="setMode('.cpp')">C++</li>
-									<li onclick="setMode('.cs')">C#</li>
-									<li onclick="setMode('.sass')">Sass</li>
-									<li onclick="setMode('.css')">CSS</li>
-									<li onclick="setMode('.html')">HTML</li>
-									<li onclick="setMode('.php')">PHP</li>
-						    		<li onclick="setMode('.js')">Javascript</li>
-									<li onclick="setMode('.coffee')">Coffeescript</li>
-									<li onclick="setMode('.py')">Python</li>
-            						<li onclick="setMode('.pl')">Perl</li>
-            						<li onclick="setMode('.xml')">XML</li>
-            						<li onclick="setMode('.ru')">Ruby</li>
-            	    				<li onclick="setMode('.sql')">SQL</li>
-            						<li onclick="setMode('.groovy')">Groovy</li>
-            						<li onclick="setMode('.go')">Go</li>
-            						<li onclick="setMode('.cob')">Cobol</li>
-            						<li onclick="setMode('.pas')">Pascal</li>
-            						<li onclick="setMode('.less')">Less</li>
-            						<li onclick="setMode('.clj')">Clojure</li>
-            						<li onclick="setMode('.lua')">Lua</li>
-            						<li onclick="setMode('.sh')">Shell</li>
-            						<li onclick="setMode('.jade')">Jade</li>
-            						<li onclick="setMode('.md')">Markdown</li>
-									<li onclick="setMode('.d')">D</li>
-									<li onclick="setMode('.erl')">Erlang</li>
-									<li onclick="setMode('.apl')">Apl</li>
-									<li onclick="setMode('.asterisk')">Asterisk</li>
-									<li onclick="setMode('.diff')">Diff</li>
-									<li onclick="setMode('.haml')">Haml</li>
-									<li onclick="setMode('.hs')">Haskell</li>
-									<li onclick="setMode('.haxe')">Haxe</li>
-									<li onclick="setMode('.jinja2')">Jinja</li>
-									<li onclick="setMode('.nginx')">Nginx</li>
-									<li onclick="setMode('.octave')">Octave</li>
-									<li onclick="setMode('.properties')">Properties</li>
-									<li onclick="setMode('.q')">Q</li>
-									<li onclick="setMode('.r')">R</li>
-									<li onclick="setMode('.rc')">Rust</li>
-									<li onclick="setMode('.ss')">Scheme</li>
-									<li onclick="setMode('.sieve')">Sieve</li>
-									<li onclick="setMode('.xquery')">Xquery</li>
-									<li onclick="setMode('.gfm')">Github Markdown</li>
+								<ul id="mode_ul">
+								    <li class="list-group-item" onclick="setMode('.txt')">Text</li>
+									<li class="list-group-item" onclick="setMode('.java')">Java</li>
+									<li class="list-group-item" onclick="setMode('.c')">C</li>
+									<li class="list-group-item" onclick="setMode('.cpp')">C++</li>
+									<li class="list-group-item" onclick="setMode('.cs')">C#</li>
+									<li class="list-group-item" onclick="setMode('.sass')">Sass</li>
+									<li class="list-group-item" onclick="setMode('.css')">CSS</li>
+									<li class="list-group-item" onclick="setMode('.html')">HTML</li>
+									<li class="list-group-item" onclick="setMode('.php')">PHP</li>
+						    		<li class="list-group-item" onclick="setMode('.js')">Javascript</li>
+									<li class="list-group-item" onclick="setMode('.coffee')">Coffeescript</li>
+									<li class="list-group-item" onclick="setMode('.py')">Python</li>
+            						<li class="list-group-item" onclick="setMode('.pl')">Perl</li>
+            						<li class="list-group-item" onclick="setMode('.xml')">XML</li>
+            						<li class="list-group-item" onclick="setMode('.ru')">Ruby</li>
+            	    				<li class="list-group-item" onclick="setMode('.sql')">SQL</li>
+            						<li class="list-group-item" onclick="setMode('.groovy')">Groovy</li>
+            						<li class="list-group-item" onclick="setMode('.go')">Go</li>
+            						<li class="list-group-item" onclick="setMode('.cob')">Cobol</li>
+            						<li class="list-group-item" onclick="setMode('.pas')">Pascal</li>
+            						<li class="list-group-item" onclick="setMode('.less')">Less</li>
+            						<li class="list-group-item" onclick="setMode('.clj')">Clojure</li>
+            						<li class="list-group-item" onclick="setMode('.lua')">Lua</li>
+            						<li class="list-group-item" onclick="setMode('.sh')">Shell</li>
+            						<li class="list-group-item" onclick="setMode('.jade')">Jade</li>
+            						<li class="list-group-item" onclick="setMode('.md')">Markdown</li>
+									<li class="list-group-item" onclick="setMode('.d')">D</li>
+									<li class="list-group-item" onclick="setMode('.erl')">Erlang</li>
+									<li class="list-group-item" onclick="setMode('.apl')">Apl</li>
+									<li class="list-group-item" onclick="setMode('.asterisk')">Asterisk</li>
+									<li class="list-group-item" onclick="setMode('.diff')">Diff</li>
+									<li class="list-group-item" onclick="setMode('.haml')">Haml</li>
+									<li class="list-group-item" onclick="setMode('.hs')">Haskell</li>
+									<li class="list-group-item" onclick="setMode('.haxe')">Haxe</li>
+									<li class="list-group-item" onclick="setMode('.jinja2')">Jinja</li>
+									<li class="list-group-item" onclick="setMode('.nginx')">Nginx</li>
+									<li class="list-group-item" onclick="setMode('.octave')">Octave</li>
+									<li class="list-group-item" onclick="setMode('.properties')">Properties</li>
+									<li class="list-group-item" onclick="setMode('.q')">Q</li>
+									<li class="list-group-item" onclick="setMode('.r')">R</li>
+									<li class="list-group-item" onclick="setMode('.rc')">Rust</li>
+									<li class="list-group-item" onclick="setMode('.ss')">Scheme</li>
+									<li class="list-group-item" onclick="setMode('.sieve')">Sieve</li>
+									<li class="list-group-item" onclick="setMode('.xquery')">Xquery</li>
+									<li class="list-group-item" onclick="setMode('.gfm')">Github Markdown</li>
 								</ul>
 							</div>
 							<div class="col-lg-4">
-								<h6>Font Size</h6>
+								<h5>Font Size</h5>
 								<!--stepper goes here-->
 								<div class="btn-group">
 									<button class="btn btn-primary" onclick="fontUp()"><i class="fa fa-caret-square-o-up"></i></button>
@@ -464,9 +466,9 @@
 				<div id="todo" class="todo">
 				</div>
 				<div id="brow">
-                    <input class="form-control" id="u-r-l" type="text" value="Type a URL Here" onfocus="if(typeof foc=='undefined'){this.value='';foc=1}" name="url" />
-                    <input class="btn btn-success" id="go" type="button" onclick="iframe.location.href=this.form.url.value" value="Go!" /><br />
-                    <iframe src="https://codeyourcloud.com/error/browser/start.html" name="iframe" height="100%" width="100%"></iframe>
+                    <input class="form-control" id="url_input" type="text" placeholder="Type a URL Here" value=""/>
+                    <button id="go" class="btn btn-success" onclick="goBrowser()">Go!</button>
+                    <iframe id="browser_window" src="https://codeyourcloud.com/error/browser/start.html" height="100%" width="100%"></iframe>
 				</div>
 			</div>
 		</div>
