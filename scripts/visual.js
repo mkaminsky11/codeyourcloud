@@ -603,7 +603,6 @@ SIDEBAR
 var sideOpen = false;
 var sideView = 1; //1 = notes 2 = docs 3 = todo;
 function openSide(){
-	$("#side").css("z-index", -1);
 	sideOpen = true;
 	document.getElementById("content").className = document.getElementById("content").className + " shrinkContent";
 	setTimeout(function(){
@@ -613,11 +612,9 @@ function openSide(){
 		$("#side-arrow").attr("onclick","closeSide()");
 		//
 		//
-		$("#side").css("z-index", 0);	
 	}, 500);
 }
 function closeSide(){
-	$("#side").css("z-index", -1);
 	sideOpen = false;
 	//
 	//
