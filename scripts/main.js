@@ -125,7 +125,7 @@ function save(){
 	sendSave();
 }
 function saveNoSend(){
-	refreshTodo();
+	refreshTodo("");
 	if(ok && !isWelcome){
 		setState("saving");
 		var theID = current;

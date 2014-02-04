@@ -745,8 +745,9 @@ function createTodo(note, line, character, kind){
 	}
 	catch(e){}
 }
-function refreshTodo(){
-	document.getElementById("todo").innerHTML = "<ul id='todo_ul'></ul>";
+function refreshTodo(sort){
+	$("#todo_ul").html("");
+	$("#search_todo").val(sort);
 	var code = codeMirror.getValue();
 	var lines = code.split("\n");
 	for(var i = 0; i < lines.length; i++){
@@ -754,19 +755,28 @@ function refreshTodo(){
 		if(lines[i].indexOf("NOTE:") !== -1){
 			done = true;
 			var token = lines[i].split("NOTE:")[1];
-			createTodo(token, i, 0, "note");
+			if(token.indexOf(sort) !== -1){
+				createTodo(token, i, 0, "note");
+			}
 		}
 		if(lines[i].indexOf("TODO:") !== -1 && done === false){
 			done = true;
 			var token = lines[i].split("TODO:")[1];
-			createTodo(token, i, 1, "todo");
+			if(token.indexOf(sort) !== -1){
+				createTodo(token, i, 1, "todo");
+			}
 		}
 		if(lines[i].indexOf("FIXME:") !== -1 && done === false){
 			var token = lines[i].split("FIXME:")[1];
-			createTodo(token, i, 2, "fixme");
+			if(token.indexOf(sort) !== -1){
+				createTodo(token, i, 2, "fixme");
+			}
 		}
 	}
 }
+$( "#search_todo" ).keypress(function() {
+  refreshTodo($("#search_todo").val());
+});
 function removeClass(id, classToRemove){
 	var e = document.getElementById(id);
 	var classes = ""+e.className;
