@@ -471,8 +471,12 @@
 					</ul>
 				</div>
 				<div id="brow">
-                    <input class="form-control" id="url_input" type="text" placeholder="Type a URL Here" value=""/>
-                    <button id="go" class="btn btn-success" onclick="goBrowser()">Go!</button>
+                    <div class="input-group">
+						<span class="input-group-btn">
+							<button id="go" class="btn btn-default" type="button" onclick="goBrowser()">Go!</button>
+						</span>
+						<input class="form-control" id="url_input" type="text" placeholder="Type a URL Here" value=""/>
+					</div>
                     <iframe id="browser_window" src="https://codeyourcloud.com/error/browser/start.html" height="100%" width="100%"></iframe>
 				</div>
 			</div>
