@@ -2,12 +2,7 @@ var connection = new WebSocket('wss://codeyourcloud.com:8080');
 connection.onopen = function () {
 	console.log("open");
     /*INITIALIZE*/
-    if(document.URL.indexOf("ssh") === -1){
-    	websocketInit();
-    }
-    else{
-	    
-    }
+    websocketInit();
 };
 function websocketInit(){
 	//get the init info

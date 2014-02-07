@@ -73,7 +73,6 @@ wsServer.on('request', function(request) {
 	        	if(json.data === "init"){
 		        	addToSession(json.session, connection.id);
 		        	connection.send(JSON.stringify({type: "init", id: connection.id, session: sessionIndex[connection.id-1]}));
-		        	
 	        	}
         	}
         	if(json.type === "command"){
@@ -82,6 +81,7 @@ wsServer.on('request', function(request) {
 		        	for(var i = 0; i < array.length; i++){
 		        		if(array[i] !== connection.id){
 			        		clients[array[i]-1].send(JSON.stringify({type:"command",command:"save"}));
+			        		console.log("*");
 			        	}
 		        	}
 	        	}
@@ -142,6 +142,7 @@ wsServer.on('request', function(request) {
     );
     // user disconnected
     connection.on('close', function(connection) {
+        /*
     	try{
 			var index = connection.id - 1;
 			var id = connection.id;
@@ -157,7 +158,11 @@ wsServer.on('request', function(request) {
 			FILE.splice(s, 1);
 
 		}
-		catch(e){}
+		catch(e){}*/
+		try{
+		    
+		}
+		catch(e){};
     });
  
 function addToSession(session, id){
