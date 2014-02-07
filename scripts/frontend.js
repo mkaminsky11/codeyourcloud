@@ -8,12 +8,10 @@ connection.onopen = function () {
     else{
 	    
     }
-	connection.send(JSON.stringify({type: "update", name: userName}));
 };
 function websocketInit(){
 	//get the init info
 	connection.send(JSON.stringify({type: "request", data: "init", session: current}));
-	connection.send(JSON.stringify({type: "update", name: userName}));
 }
 connection.onmessage = function (message) {
 	try {
@@ -40,11 +38,10 @@ connection.onmessage = function (message) {
 			}
 		}
 		if(json.type === "update"){
-			//connection.send(JSON.stringify({type: "update", name: userName}));
-			//notify(json.name);
+			var name = json.name;
+			//notify(name);
 		}
 	} catch (e) {
-		//invalid json
 		return;
 	}
 };

@@ -123,17 +123,23 @@ wsServer.on('request', function(request) {
 
 				});
         	}
-		if(json.type === "update"){
-
-			var array = sessions[sessionIndex[connection.id - 1]];
+        	/*
+        	WORK ON THIS
+        	*/
+		    if(json.type === "update"){
+			    var array = sessions[sessionIndex[connection.id - 1]];
 		        for(var i = 0; i < array.length; i++){
-			       	clients[array[i]-1].send(JSON.stringify({type:"update", name: json.name}));
+			        clients[array[i]-1].send(JSON.stringify({type:"update", name: json.name}));
 		        }
-		}        
+		    }
+		    if(json.type === "return"){
+		    
+		    }
 	}
         catch(e){
         }
-    });
+    }
+    );
     // user disconnected
     connection.on('close', function(connection) {
     	try{

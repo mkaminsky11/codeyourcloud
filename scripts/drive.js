@@ -36,6 +36,7 @@ function getTitle(fileId){
   	});
   	request.execute(function(resp) {
   		title = resp.title;
+  		$("title").html(title);
 		if(typeof title === 'undefined' || title === "undefined"){
 			document.location.href = "https://codeyourcloud.com/error/fileNotFound";
 			return false;

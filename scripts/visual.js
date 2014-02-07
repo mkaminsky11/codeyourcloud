@@ -306,8 +306,8 @@ function okRenameNoSend(){
 	}, 300);
 	renameFile(current, document.getElementById('renameInput').value);
 	title = document.getElementById('renameInput').value;
+	$("title").html(title);
 	checkFileName(title);
-	return false;
 }
 function cancelRename() {
     sendMessage("rename canceled", "error");
@@ -450,9 +450,6 @@ function setState(state){
 /************
 BOOTSTRAP
 ***********/
-function initBoot(){
-
-}
 function setPercent(per){
 	document.getElementById("desc").innerHTML = per + "% complete";
 	document.getElementById("prog").style.width = per + "%";
@@ -829,11 +826,7 @@ function addClass(id, className){
 	document.getElementById(id).className =document.getElementById(id).className + " "+className;
 }
 function notify(name){
-	if(TOpen === false && doc_url.indexOf("#") !== -1){
-		setTimeout(function(){
-		TogetherJS(this);
-		}, 1000);	
-	}
+	sendMessage(name+" is online", "info");
 }
 function checkData(){
 	
