@@ -8,7 +8,7 @@ CODEMIRROR/VIM STUFF
 var delay;
 var title = "";
 var codeMirror = CodeMirror(document.getElementById("content"), {
-    lineNumbers: true,mode: "text",theme: "cobalt",lineWrapping: false
+    lineNumbers: true,mode: "text",theme: "cobalt", lineWrapping: false, indentUnit: 4, indentWithTabs: true
 });
 codeMirror.on("change", function(cm, change) {
 	setState("unsaved");

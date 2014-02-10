@@ -239,3 +239,30 @@ function goBrowser(){
         }
     }
 }
+var handler = {
+    online: function() {
+        sendMessage("online", "success");
+    },
+    offline: function() {
+        sendMessage("offline", "error");
+    }
+};
+function isOnline() {
+
+    var status = navigator.onLine ? 'online' : 'offline',
+        indicator = document.getElementById('indicator'),
+        current = indicator.textContent;
+
+    // only update if it has change
+    if (current != status) {
+
+        // update DOM
+        indicator.textContent = status;
+
+        // trigger handler
+        handler[status]();
+    };
+};
+
+setInterval(isOnline, 500);
+isOnline();
