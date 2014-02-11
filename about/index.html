@@ -25,10 +25,10 @@
 	<link rel="stylesheet" type="text/css" href="/lib/grid/grid.css">
 	<script src="/lib/grid/grid.js"></script>
     
-    <script src="lib/messenger/build/js/messenger.min.js"></script>
-	<script src="lib/messenger/build/js/messenger-theme-flat.js"></script>
-	<link rel="stylesheet" href="lib/messenger/build/css/messenger.css">
-	<link rel="stylesheet" href="lib/messenger/build/css/messenger-theme-flat.css">
+    <script src="/lib/messenger/build/js/messenger.min.js"></script>
+	<script src="/lib/messenger/build/js/messenger-theme-flat.js"></script>
+	<link rel="stylesheet" href="/lib/messenger/build/css/messenger.css">
+	<link rel="stylesheet" href="/lib/messenger/build/css/messenger-theme-flat.css">
   </head>
 
   <body onload="check_login()">
@@ -139,7 +139,7 @@
 					<a class="btn btn-primary btn-large btn-block" href="#vim">Supported functions</a>
 		 	</div>
 		 	<div class="col-md-3 tile">
-            		<h4><i class="fa fa-globe"></i></h4>
+            		<h4><i class="fa fa-cog"></i></h4>
 					<h3 class="tile-title">Preferences</h3>
 					<p>Personalize your editor</p>
 					<a class="btn btn-primary btn-large btn-block" href="#pref">Options</a>
@@ -477,7 +477,7 @@
         	<li>Line Numbers</li>
         	<li><a href="#vim">Vim</a> mode</li>
         </ul>
-        <p>The menu item to trigger the preferences window is found under the <i class="fa fa-cog"></i> menu at the top-right corner of hte editor.</p>
+        <p>The menu item to trigger the preferences window is found under the <i class="fa fa-cog"></i> menu at the top-right corner of the editor.</p>
         <h4 id="drive">Google Drive Integration</h4>
         <p>With Code Your Cloud, you can open, share, edit, upload, and save Google Drive files.</p>
         <h6>Opening</h6>
@@ -492,11 +492,11 @@
         <p>Select the "upload" menu item to upload a file to Google Drive. The file will appear in your root (main) folder.</p>
         <h2 id="contact">Contact Us</h1>
         <p>If you have any questions or comments, please use the comment box below. Please not that any HTML will be stripped out of your comments.</p>
-        <input class="form-control" id="comment_name" value="" placeholder="Name"/>
+        <input class="form-control login-field" id="comment_name" value="" placeholder="Name"/>
         <br/>
-        <input class="form-control" id="comment_mail" value="" placeholder="Email"/>
+        <input class="form-control login-field" id="comment_mail" value="" placeholder="Email"/>
         <br/>
-        <textarea class="form-control" id="comment_comment" value="" placeholder="Comment" rows="10"></textarea>
+        <textarea class="form-control login-field" id="comment_comment" value="" placeholder="Comment" rows="10"></textarea>
         <br/>
         <button class="btn btn-success" onclick="comment()">Comment</button>
         <button class="btn btn-danger" type="reset" value="Reset">Reset</button>

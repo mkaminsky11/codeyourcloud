@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>	
+	<link rel="icon" type="image/png" href="http://codeyourcloud.com/favicon.ico">	
+  	<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+  	<script src="/about/flat/js/jquery-1.8.3.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Code Your Cloud | Login</title>
+    <meta name="description" content="Login to code your cloud">
+
+    <!-- Bootstrap core CSS -->
+   	<link href="/about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
+   	<link rel='stylesheet' type='text/css' href='/about/flat/css/flat-ui.css'>
+    <link rel='stylesheet' type='text/css' href='/about/flat/css/demo.css'>
+    <!-- Add custom CSS here -->
+    <link href="/lib/Font/css/font-awesome.css" rel="stylesheet">
+    
+    <link rel='stylesheet' type='text/css' href='/lib/LigatureSymbols/style.css'>
+	<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css'>
+	
+	<link rel="stylesheet" type="text/css" href="/lib/grid/grid.css">
+	<script src="/lib/grid/grid.js"></script>
+    
+    <script src="/lib/messenger/build/js/messenger.min.js"></script>
+	<script src="/lib/messenger/build/js/messenger-theme-flat.js"></script>
+	<link rel="stylesheet" href="/lib/messenger/build/css/messenger.css">
+	<link rel="stylesheet" href="/lib/messenger/build/css/messenger-theme-flat.css">
+	
+	<link rel="stylesheet" href="dash.css">
+	<script>
+        var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
+        var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file'];
+	    function check_login(){
+            gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate': true},handleLogin);
+        }
+        function handleLogin(authResult) {
+            if (authResult) {
+                window.location.href="https://codeyourcloud.com";
+            } 
+            else {
+            }
+        }
+        function redirect(){
+            window.location.href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.install + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.file&state=%2Fprofile&redirect_uri=https%3A%2F%2Fcodeyourcloud.com&response_type=token&client_id=953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com";
+        }
+	</script>
+  </head>
+
+  <body onload="check_login()">
+  	<h1>You are not logged in to Code Your Cloud</h1>
+  	<hr/>
+  	<div class="btn-group">
+  	<a class="btn btn-large btn-danger" onclick="redirect()"><i class="fa fa-google-plus"></i> | Login with Google</a>
+  	<a class="btn btn-large btn-primary" href="https://codeyourcloud.com/about">About</a>
+  	<a class="btn btn-large btn-warning" href="https://github.com/mkaminsky11/codeyourcloud">Github page</a>
+  	</div>
+  	<br/>
+  	<br/>
+  	<div class="login">
+        <div class="login-screen">
+        </div>
+    </div>
+    <!-- JavaScript -->
+	<script src="/about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="/about/flat/js/jquery.ui.touch-punch.min.js"></script>
+	<script src="/about/flat/js/bootstrap.min.js"></script>
+	<script src="/about/flat/js/bootstrap-select.js"></script>
+	<script src="/about/flat/js/bootstrap-switch.js"></script>
+	<script src="/about/flat/js/flatui-checkbox.js"></script>
+	<script src="/about/flat/js/flatui-radio.js"></script>
+	<script src="/about/flat/js/jquery.tagsinput.js"></script>
+	<script src="/about/flat/js/jquery.placeholder.js"></script>
+	<script src="/about/flat/js/jquery.stacktable.js"></script>
+	<script src="/about/flat/js/application.js"></script>
+	<link rel="stylesheet" href="dash.css">
+  </body>
+
+</html>

@@ -56,7 +56,7 @@ function handleAuthResult(authResult) {
 		loadClient(test);
 	} 
 	else {
-		window.location.href = 'https://codeyourcloud.com/about'; 
+		window.location.href = 'https://codeyourcloud.com/dashboard'; 
 	}
 }
 function loadClient(callback) {
@@ -186,7 +186,7 @@ function openInit(){
 }
 function saveFile(fileId, content){
     //console.log(content);
-    if(typeof content !== "undefined"){ //if nothing is "null"
+    if(typeof content !== "undefined" && online){ //if nothing is "null"
         var contentArray = new Array(content.length);
         for (var i = 0; i < contentArray.length; i++) {
             contentArray[i] = content.charCodeAt(i);
@@ -198,12 +198,15 @@ function saveFile(fileId, content){
             updateFile(fileId,resp,blob,changesSaved);
         });
     }
+    if(!online){
+	    $('#offlineModal').modal('show');
+    }
 }
 /***********
 DOWNLOAD FILE
 ************/
 function downloadFile() {
-if(ok){
+if(ok && online){
   var fileId = current;
   var request = gapi.client.drive.files.get({
     'fileId': fileId
@@ -213,6 +216,9 @@ if(ok){
   });
   sendMessage("file downloaded", "success");
 }
+if(!online){
+	    $('#offlineModal').modal('show');
+    }
 }
 function goBrowser(){
    var current_url = $("#url_input").val()
@@ -239,30 +245,41 @@ function goBrowser(){
         }
     }
 }
-var handler = {
-    online: function() {
-        sendMessage("online", "success");
-    },
-    offline: function() {
-        sendMessage("offline", "error");
-    }
-};
+var online = false;
 function isOnline() {
-
-    var status = navigator.onLine ? 'online' : 'offline',
-        indicator = document.getElementById('indicator'),
-        current = indicator.textContent;
-
-    // only update if it has change
-    if (current != status) {
-
-        // update DOM
-        indicator.textContent = status;
-
-        // trigger handler
-        handler[status]();
-    };
+    var status = navigator.onLine; 
+    if(status !== online){
+	    //if there is a change
+	    online = status;
+	    if(online === true){
+		    sendMessage("online", "success");
+	    }
+	    else{
+		    sendMessage("offline", "error");
+	    }
+    }
 };
 
 setInterval(isOnline, 500);
 isOnline();
+
+function to_pdf(){
+    var doc = new jsPDF();
+    //doc.text(20, 20, codeMirror.getValue());
+    var s = codeMirror.getValue().split("\n");
+    var temp = "";
+    var count = 0;
+    for(var i = 0; i < s.length; i++){
+	    if(count === 35 || i === s.length-1){
+		    count = 0;
+		    doc.text(20,20,temp);
+		    temp="";
+		    doc.addPage();
+	    }
+	    else{
+		    temp = temp + "\n" + s[i];
+		    count++;
+	    }
+    }
+    doc.save('PDF.pdf');
+}

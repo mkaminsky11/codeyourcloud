@@ -195,6 +195,8 @@
 		<script src="lib/messenger/build/js/messenger-theme-flat.js"></script>
 		<link rel="stylesheet" href="lib/messenger/build/css/messenger.css">
 		<link rel="stylesheet" href="lib/messenger/build/css/messenger-theme-flat.css">
+		
+		<script src="/lib/jsPDF/jspdf.min.js"></script>
 	</head>
 	<body>
 		<link rel='stylesheet' type='text/css' href='style.css'>
@@ -219,6 +221,7 @@
 							<li onclick="uploadPicker()"><a>Upload</a></li>
 							<li onclick="loadShare()"><a>Share</a></li>
 							<li onclick="downloadFile()"><a>Download</a></li>
+							<li onclick="to_pdf()"><a>Download as PDF</a></li>
 						</ul>
 					</li>
 					<li class="dropdown" id="codedropdown">
@@ -451,7 +454,25 @@
 				</div>
 			</div>
 		</div>
-
+		<!--
+		OFFLINE
+		-->
+		<div class="modal fade" id="offlineModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Warning!</h4>
+					</div>
+					<div class="modal-body">
+						<h4>You are now offline. Please re-establish internet connection</h4>
+					</div>
+					<div class="modal-footer">
+					    <button class="btn btn-danger" onclick="$('#offlineModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!--
 		CONTENT
 		-->
@@ -536,6 +557,5 @@
 				getHint();
 			});
 		</script>
-		<span id="indicator" class="hide"></span>
 	</body>
 </html>
