@@ -8,10 +8,8 @@ var TOpen = false;
 /************
 AUTHORIZATION
 ***********/
-//this should refresh the token every 300000 milliseconds = 3000 seconds = 50 minutes 
 window.onbeforeunload = function () {
 	if($("#note").html() !== "All Changes Saved To Drive" || $("#note").html() === "Saving..." && doc_url !== "https://codeyourcloud.com/"){
-		//it's ok
 		var didTurnOff = false;
 		if(isWelcome === false){
 			if(TOpen === true){
@@ -28,6 +26,7 @@ window.onbeforeunload = function () {
 		window.onbeforeunload = undefined;
 	}
 }
+//this should refresh the token every 300000 milliseconds = 3000 seconds = 50 minutes 
 window.setInterval(function(){
 	refreshToken();
 },3000000);
@@ -40,9 +39,11 @@ function refreshToken() {
 function tokenRefreshed(result){
 }
 function handleClientLoad() {
-	setPercent("0");
-	$("#loading").html("Authorizing...");
-	checkAuth();
+    if(online){
+        setPercent("0");
+	    $("#loading").html("Authorizing...");
+	    checkAuth();
+    }
 }	
 function checkAuth() {
 	setPercent("10");
@@ -221,31 +222,33 @@ if(!online){
     }
 }
 function goBrowser(){
-   var current_url = $("#url_input").val()
-    if(current_url.indexOf("https://") !== -1){
-        try{
-            $("#browser_window").attr('src', current_url);
-        }
-        catch(e){
-            $("#browser_window").attr('src', 'https://codeyourcloud.com/error/browser/https.html');
-        }
-    }
-    else{
-        if(current_url.indexOf("http://") === -1){
-            $("#url_input").val("https://"+current_url);
+    if(online){
+        var current_url = $("#url_input").val()
+        if(current_url.indexOf("https://") !== -1){
             try{
-                $("#browser_window").attr('src', "https://"+current_url);
+                $("#browser_window").attr('src', current_url);
             }
             catch(e){
                 $("#browser_window").attr('src', 'https://codeyourcloud.com/error/browser/https.html');
             }
         }
         else{
-            $("#browser_window").attr('src', 'https://codeyourcloud.com/error/browser/https.html');
+            if(current_url.indexOf("http://") === -1){
+                $("#url_input").val("https://"+current_url);
+                try{
+                    $("#browser_window").attr('src', "https://"+current_url);
+                }
+                catch(e){
+                    $("#browser_window").attr('src', 'https://codeyourcloud.com/error/browser/https.html');
+                }
+            }
+            else{
+                $("#browser_window").attr('src', 'https://codeyourcloud.com/error/browser/https.html');
+            }
         }
     }
 }
-var online = false;
+var online = true;
 function isOnline() {
     var status = navigator.onLine; 
     if(status !== online){

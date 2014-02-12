@@ -2,6 +2,7 @@
 GET CONTENTS OF A FILE
 **********************/
 function getContentOfFile(theID){ //gets the content of the file
+    if(online){
     current = theID;
     gapi.client.request({'path': '/drive/v2/files/'+theID,'method': 'GET',callback: function ( theResponseJS, theResponseTXT ) {
         var myToken = gapi.auth.getToken();
@@ -29,8 +30,10 @@ function getContentOfFile(theID){ //gets the content of the file
         myXHR.send();
         }
     });
+    }
 }
 function getTitle(fileId){
+    if(online){
 	var request = gapi.client.drive.files.get({
     'fileId': fileId
   	});
@@ -44,11 +47,13 @@ function getTitle(fileId){
   		document.getElementById('renameInput').value = title;
     		checkFileName(resp.title);
   	});
+    }
 }
 /***************
 CREATE NEW FILE
 ***************/
 function createNewFile() {
+    if(online){
     var t = "untitled" + ".txt";
     gapi.client.load('drive', 'v2', function() {
         var request = gapi.client.request({
@@ -62,6 +67,7 @@ function createNewFile() {
         request.execute(function(resp) { 
         });
     });
+    }
 }
 function insertNewFile(folderId) {
 	setPercent("85");
@@ -86,21 +92,26 @@ function fileInserted(d) {
 	openFile(d.id);
 }
 function insertFileIntoFolder(folderId, fileId) {
+  if(online){
   var body = {'id': folderId};
   var request = gapi.client.drive.parents.insert({
     'fileId': fileId,
     'resource': body
   });
   request.execute(function(resp) { });
+  }
 }
 function removeFileFromFolder(folderId, fileId) {
+  if(online){
   var request = gapi.client.drive.parents.delete({
     'parentId': folderId,
     'fileId': fileId
   });
   request.execute(function(resp) { });
+  }
 }
 function insertFile(fileData, callback, folderId) {
+    if(online){
 	setPercent("90");
   const boundary = '-------314159265358979323846';
   const delimiter = "\r\n--" + boundary + "\r\n";
@@ -141,9 +152,10 @@ function insertFile(fileData, callback, folderId) {
     }
     request.execute(callback);
   }
+    }
 }
 function updateFile(fileId, fileMetadata, fileData, callback) { //is the callback necessary?
-  if(ok){
+  if(ok && online){
   const boundary = '-------314159265358979323846';
   const delimiter = "\r\n--" + boundary + "\r\n";
   const close_delim = "\r\n--" + boundary + "--";
@@ -182,6 +194,7 @@ function updateFile(fileId, fileMetadata, fileData, callback) { //is the callbac
 	}
 }
 function getP(fileId) {
+    if(online){
 	var request = gapi.client.drive.permissions.list({
 		'fileId': fileId
 	});
@@ -200,33 +213,14 @@ function getP(fileId) {
 			window.location.href = "https://codeyourcloud.com/error/permission";
 		}
 	});
+    }
 }
 function changesSaved() {
 	sendMessage("changes saved!", "success")
 	setState("saved");
 }
-function checkDir(folderId, testString, callback) {
-  var retrievePageOfChildren = function(request, result) {
-    request.execute(function(resp) {
-      result = result.concat(resp.items);
-      var nextPageToken = resp.nextPageToken;
-      if (nextPageToken) {
-        request = gapi.client.drive.children.list({
-          'folderId' : folderId,
-          'pageToken': nextPageToken
-        });
-        retrievePageOfChildren(request, result);
-      } else {
-        callback(result);
-      }
-    });
-  }
-  var initialRequest = gapi.client.drive.children.list({
-      'folderId' : folderId
-    });
-  retrievePageOfChildren(initialRequest, []);
-}
 function renameFile(fileId, newTitle) {
+    if(online){
   var body = {'title': newTitle};
   var request = gapi.client.drive.files.patch({
     'fileId': fileId,
@@ -235,4 +229,5 @@ function renameFile(fileId, newTitle) {
   request.execute(function(resp) {
     sendMessage('new Title: ' + resp.title, "success");
   });
+    }
 }
