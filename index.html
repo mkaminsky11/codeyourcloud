@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <script>
+	        function checkB() {
+    			var ua= navigator.userAgent, tem,
+    			M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*([\d\.]+)/i) || [];
+   				if(/trident/i.test(M[1])){
+        				tem=  /\brv[ :]+(\d+(\.\d+)?)/g.exec(ua) || [];
+        			return 'IE '+(tem[1] || '');
+    				}
+    				M= M[2]? [M[1], M[2]]:[navigator.appName, navigator.appVersion, '-?'];
+    				if((tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
+    				var browser = M.join(' ');
+    				console.log(browser);
+        			if(browser.indexOf("MSIE") !== -1){
+                			window.location.href = "https://codeyourcloud.com/error/browser";
+        			}
+        			if(browser.indexOf("Firefox") !== -1){
+	        			document.getElementById("ok_rename").innerHTML = "OK";
+	        			document.getElementById("cancel_rename").innerHTML = "NO";
+        			}
+			}
+			checkB();
+	    </script>
 		<meta charset="utf-8">
 		<link rel="icon" type="image/png" href="http://codeyourcloud.com/favicon.ico">
 		<title>Code Your Cloud</title>
@@ -27,24 +50,6 @@
 				console.log("reload");
 				location.reload();
 			}
-			function checkB() {
-    				var ua= navigator.userAgent, tem,
-    				M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*([\d\.]+)/i) || [];
-   				if(/trident/i.test(M[1])){
-        				tem=  /\brv[ :]+(\d+(\.\d+)?)/g.exec(ua) || [];
-        			return 'IE '+(tem[1] || '');
-    				}
-    				M= M[2]? [M[1], M[2]]:[navigator.appName, navigator.appVersion, '-?'];
-    				if((tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
-    				var browser = M.join(' ');
-        			if(browser.indexOf("MSIE") !== -1){
-                			window.location.href = "https://codeyourcloud.com/error/browser";
-        			}
-        			if(browser.indexOf("Firefox") !== -1){
-	        			document.getElementById("ok_rename").innerHTML = "OK";
-	        			document.getElementById("cancel_rename").innerHTML = "NO";
-        			}
-			}
             $(function($) {
                 $(".knob").knob({
                     	change : function (value) {
@@ -57,7 +62,6 @@
             			}
             	});
         	});
-            checkB();
         </script>
 		<!--JQUERY-->
 		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>

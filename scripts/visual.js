@@ -1,7 +1,7 @@
-scrollTo(0,0);
 var autoC = true;
 var isWelcome = false;
 var wasBlank = false;
+$("#side").css("z-index", -1);
 /*******************
 CODEMIRROR/VIM STUFF
 *******************/
@@ -601,6 +601,7 @@ var sideOpen = false;
 var sideView = 1; //1 = notes 2 = docs 3 = todo;
 function openSide(){
 	sideOpen = true;
+	$("#side").css("z-index", 0);
 	document.getElementById("content").className = document.getElementById("content").className + " shrinkContent";
 	setTimeout(function(){
 		removeClass("content","shrinkContent");
@@ -613,14 +614,13 @@ function openSide(){
 }
 function closeSide(){
 	sideOpen = false;
-	//
-	//
 	document.getElementById("content").className = document.getElementById("content").className + " expandContent";
 	setTimeout(function(){
 		removeClass("content","expandContent");
 		document.getElementById("content").style.width = "100%";
 		document.getElementById("the-arrow").innerHTML = "<i class='fa fa-caret-square-o-left'></i>";
 		$("#side-arrow").attr("onclick","openSide()");
+		$("#side").css("z-index", -1);
 	}, 500);
 }
 //on startup
