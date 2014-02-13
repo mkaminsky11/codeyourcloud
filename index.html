@@ -4,23 +4,35 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <script>
 	        function checkB() {
-    			var ua= navigator.userAgent, tem,
-    			M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*([\d\.]+)/i) || [];
-   				if(/trident/i.test(M[1])){
-        				tem=  /\brv[ :]+(\d+(\.\d+)?)/g.exec(ua) || [];
-        			return 'IE '+(tem[1] || '');
-    				}
-    				M= M[2]? [M[1], M[2]]:[navigator.appName, navigator.appVersion, '-?'];
-    				if((tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
-    				var browser = M.join(' ');
-    				console.log(browser);
-        			if(browser.indexOf("MSIE") !== -1){
-                			window.location.href = "https://codeyourcloud.com/error/browser";
-        			}
-        			if(browser.indexOf("Firefox") !== -1){
-	        			document.getElementById("ok_rename").innerHTML = "OK";
-	        			document.getElementById("cancel_rename").innerHTML = "NO";
-        			}
+				var ua= navigator.userAgent, tem, 
+				M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*([\d\.]+)/i) || [];
+				if(/trident/i.test(M[1])){
+					tem=  /\brv[ :]+(\d+(\.\d+)?)/g.exec(ua) || [];
+					return 'IE '+(tem[1] || '');
+				}
+				M= M[2]? [M[1], M[2]]:[navigator.appName, navigator.appVersion, '-?'];
+				if((tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
+				var browser = M.join(' ');
+				if(browser.indexOf("MSIE") !== -1){
+					window.location.href = "https://codeyourcloud.com/error/browser";
+				}
+				else{
+					if(browser.indexOf("Chrome") !== -1){
+						var ver = browser.split(" ")[1];
+						if(Number(ver.split(".")[0]) < 30){
+							window.location.href = "https://codeyourcloud.com/error/browser";
+						}
+					}
+					if(browser.indexOf("Firefox") !== -1){
+						
+					}
+					if(browser.indexOf("Opera") !== -1){
+
+					}
+					if(browser.indexOf("Safari") !== -1){
+		    
+					}
+				}
 			}
 			checkB();
 	    </script>
@@ -75,6 +87,7 @@
 		<link rel='stylesheet' type='text/css' href='style.css'>
 		<!--flat-->
 		<link rel='stylesheet' type='text/css' href='/about/flat/css/flat-ui.css'>
+		<link rel='stylesheet' type='text/css' href='/about/flat/css/demo.css'>
 		<!--MODES-->
 		<script src = '/lib/codemirror/modes/clike.js'></script>
 		<script src = '/lib/codemirror/modes/coffeescript.js'></script>
@@ -233,6 +246,8 @@
 						<ul class="dropdown-menu">
 							<li onclick="navUndo()"><a>Undo</a></li>
 							<li onclick="navRedo()"><a>Redo</a></li>
+							<li onclick="moveLeft()"><a>Move left</a></li>
+							<li onclick="moveRight()"><a>Move right</a></li>
 						</ul>
 					</li>
 					<li class="dropdown" id="codedropdown">
@@ -244,6 +259,7 @@
 							<li onclick="show_note()"><a>Notepad</a></li>
 							<li onclick="$('#previewModal').modal('show')"><a>Preview</a></li>
 							<li id="autoButton" onclick="getHint()"><a>Autocomplete</a></li>
+							<li onclick="$('#randomModal').modal('show')"><a>Lorem generator</a></li>
 						</ul>
 					</li>
 					<li class="" id="will_close">
@@ -478,6 +494,36 @@
 			</div>
 		</div>
 		<!--
+		RANDOM
+		-->
+		<div class="modal fade" id="randomModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Your Random Text</h4>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" id="num_lorem" value="6"/>
+						<div class="col-xs-3">
+                            <select name="lorem_combo" value="s" class="select-block" id="lorem_choose">
+                                <option value="s" selected="selected">Sentences</option>
+                                <option value="w">Words</option>
+                                <option value="p">Paragraphs</option>
+                            </select>
+                        </div>
+                        <button onclick="generate()" class="btn btn-primary">Generate</button>
+                        <hr/>
+						<div id="lorem" data-lorem="6s"></div>
+						<!--dropdown-->
+					</div>
+					<div class="modal-footer">
+					    <button class="btn btn-danger" onclick="$('#randomModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
 		CONTENT
 		-->
 		<div id = "container">
@@ -524,6 +570,9 @@
 		<script src="/about/flat/js/jquery.placeholder.js"></script>
 		<script src="/about/flat/js/jquery.stacktable.js"></script>
 		<script src="/about/flat/js/application.js"></script>
+		
+		<script src="/lib/loremjs/lorem.js"></script>
+		
 		<script src="/scripts/drive.js"></script>
 		<script src="/scripts/visual.js"></script>
 		<script src="/scripts/main.js"></script>

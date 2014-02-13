@@ -379,3 +379,7 @@ iframe {
 .theme-div > h5 {
     float: right;
 }
+#num_lorem {
+	width: 20%;
+	float: left;
+}

@@ -105,34 +105,6 @@ function test() {
 		openFile(temp2);
     }
 }
-/***********
-BROWSER DATA
-************/
-function getB() {
-    var ua= navigator.userAgent, tem, 
-    M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*([\d\.]+)/i) || [];
-    if(/trident/i.test(M[1])){
-        tem=  /\brv[ :]+(\d+(\.\d+)?)/g.exec(ua) || [];
-        return 'IE '+(tem[1] || '');
-    }
-    M= M[2]? [M[1], M[2]]:[navigator.appName, navigator.appVersion, '-?'];
-    if((tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
-    var browser = M.join(' ');
-	if(browser.indexOf("MSIE") !== -1){
-		window.location.href = "https://codeyourcloud.com/error/browser";
-	}
-	else{
-		if(browser.indexOf("Chrome") !== -1){
-
-		}
-		if(browser.indexOf("Firefox") !== -1){
-
-		}
-		if(browser.indexOf("Opera") !== -1){
-
-		}
-	}
-}
 /*********
 SAVE FILE
 **********/
@@ -285,4 +257,11 @@ function to_pdf(){
 	    }
     }
     doc.save('PDF.pdf');
+}
+function generate(){
+    $("#lorem").html("");
+    var lorem = new Lorem;
+    lorem.type = Lorem.TEXT;
+    lorem.query = $("#num_lorem").val() + $("#lorem_choose").val();
+    lorem.createLorem(document.getElementById('lorem'));
 }

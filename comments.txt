@@ -3,3 +3,11 @@ andrew.tiltman@wholistical.com.au
 Installed your app in google business apps, associates fine with filetyles (xml, php etc)... however every time I try to open a file to edit, I get sent to this stupid about page. I log in with google to your about page, go back to google drive, looks like its loading the document and then redirects back to about.
 Unfortunate, I was really excited to try this.
 *******************************
+Eric Schnabel
+schnabel45@gmail.com
+Hello,
+I've been having issues opening files when I have both my personal and corporate google accounts logged in. It seems it is unable to differentiate which account it is supposed to use with the file. A work around for now is that I've shared the file with both accounts, and it seems to randomly choose which account is in use, but it works.
+
+Thanks for providing such an awesome tool! It is very well polished and I am very impressed. It has made group projects at school way easier to accomplish!
+Eric Schnabel
+*******************************

@@ -99,6 +99,7 @@
 	<li><a href="http://www.websocket.org/">Websocket</a></li>	
 	<li><a href="https://github.com/nodejitsu/forever">Forever</a></li>
 	<li><a href="https://github.com/HubSpot/messenger">Messenger</a></li>
+	<li><a href="https://github.com/f/loremjs">LoremJS</a></li>
 </ul>
 ======
 ###Todo###

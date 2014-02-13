@@ -894,3 +894,30 @@ $('#color').colorpicker().on('changeColor', function(ev){
 function sendMessage(message, type){
     Messenger().post({message:message,showCloseButton: true, hideAfter: 5, type: type});
 }
+
+function moveLeft(){
+    if(codeMirror.getDoc().somethingSelected()){
+        var old_value = codeMirror.getDoc().getSelection().split("\n");
+        for(var i = 0; i < old_value.length; i++){
+            old_value[i]=old_value[i].replace("\t", "");
+        }
+        var new_value = old_value.join("\n");
+        codeMirror.getDoc().replaceSelection(new_value);
+    }
+    else{
+        sendMessage("nothing selected", "error");
+    }
+}
+function moveRight(){
+    if(codeMirror.getDoc().somethingSelected()){
+        var old_value = codeMirror.getDoc().getSelection().split("\n");
+        for(var i = 0; i < old_value.length; i++){
+            old_value[i]="\t"+old_value[i];
+        }
+        var new_value = old_value.join("\n");
+        codeMirror.getDoc().replaceSelection(new_value);
+    }
+    else{
+        sendMessage("nothing selected", "error");
+    }
+}
