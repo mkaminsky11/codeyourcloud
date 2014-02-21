@@ -159,10 +159,6 @@ wsServer.on('request', function(request) {
 
 		}
 		catch(e){}*/
-		try{
-		    
-		}
-		catch(e){};
     });
  
 function addToSession(session, id){

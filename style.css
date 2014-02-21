@@ -241,17 +241,21 @@ nt-face {
 @-webkit-keyframes removeTodo {
 	from {
 		margin-left: 0%;
+		margin-right: 0%;
 	}
 	to {
-		margin-left: -98%;
+		margin-left: -100%;
+		margin-right: 100%;
 	}
 }
 @keyframes removeTodo {
 	from {
 		margin-left: 0%;
+		margin-right: 0%;
 	}
 	to {
-		margin-left: -98%;
+		margin-left: -100%;
+		margin-right: 100%;
 	}
 }
 .removeTodo{
@@ -382,4 +386,21 @@ iframe {
 #num_lorem {
 	width: 20%;
 	float: left;
+}
+#screen {
+  background: white; 
+  width:      100%;
+  height:     100%; 
+  z-index:    9999;
+  top:        0; 
+  left:       0; 
+  position:   fixed;
+}
+#in-screen {
+	text-align: center;
+	height: 60%;
+	padding-top: 15%;
+}
+#screen-name {
+	font-size: 200%;
 }

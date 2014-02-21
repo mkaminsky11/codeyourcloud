@@ -418,11 +418,9 @@ LINKS TO OTHER
 *************/
 function navFaq() {
 	window.location.href = "https://codeyourcloud.com/about#help";
-	//$('#faqModal').modal('show');
 }
 function navContactUs() {
 	window.location.href = "https://codeyourcloud.com/about#contact"
-	//$('#contactModal').modal('show');
 }
 function signout() {
 	window.location.href = "https://accounts.google.com/logout";
@@ -455,10 +453,14 @@ function setPercent(per){
 	document.getElementById("prog").style.width = per + "%";
 	document.getElementById("prog").ariaValuenow = per + "";		
 	if(per === "100"){
-		$('#myModal').modal('hide');
+		$( "#screen" ).animate({
+			bottom: "+=50",top: "-=50",
+			height: "toggle"
+			}, 500, function() {
+    			$('#screen').remove();
+		});
 	}
 	if(per === "0"){
-		$('#myModal').modal('show');
 	}
 }
 function getURL(url, c) {
@@ -633,33 +635,45 @@ function bootHide(id){
 	document.getElementById(id).className = document.getElementById(id).className + " hide";
 }
 function notes(){
-	sideView = 1;
-	removeClass("pad", "hide");
-	bootHide("todo");
-	bootHide("docs");
-	bootHide("brow");
-	notepad.refresh();
+    if(sideView !== 1){
+		sideView = 1;
+		removeClass("pad", "hide");
+		removeClass("pad", " hide");
+		bootHide("todo");
+		bootHide("docs");
+		bootHide("brow");
+    }
 }
 function docs(){
-	sideView = 2;
-	removeClass("docs", "hide");
-	bootHide("pad");
-	bootHide("todo");
-	bootHide("brow");
+    if(sideView !== 2){
+		sideView = 2;
+		removeClass("docs", "hide");
+		removeClass("docs", " hide");
+		bootHide("pad");
+		bootHide("todo");
+		bootHide("brow");
+    }
 }
 function todo(){
-	sideView = 3;
-	removeClass("todo", "hide");
-	bootHide("docs");
-	bootHide("pad");
-	bootHide("brow");
+    if(sideView !== 3){
+		sideView = 3;
+		removeClass("todo", "hide");
+		removeClass("todo", " hide");
+		bootHide("docs");
+		bootHide("pad");
+		bootHide("brow");
+		refreshTodo("");
+    }
 }
 function brow(){
-	sideView = 4;
-	removeClass("brow", "hide");
-	bootHide("docs");
-	bootHide("pad");
-	bootHide("todo");
+	if(sideView !== 4){
+		sideView = 4;
+		removeClass("brow", "hide");
+		removeClass("brow", " hide");
+		bootHide("docs");
+		bootHide("pad");
+		bootHide("todo");
+	}
 }
 function httpGet(theUrl)
 {
@@ -779,7 +793,7 @@ function removeClass(id, classToRemove){
 	var classes = ""+e.className;
 	var s = classes.split(classToRemove);
 	var fin = s.join("");
-	e.className = fin;
+	document.getElementById(id).className = fin;
 }
 function show_terminal(){
 	if(sideOpen === false){

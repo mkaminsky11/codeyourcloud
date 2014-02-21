@@ -312,7 +312,7 @@
 					<!--actions-->
 					<li class=" " onclick="openSide()" id="side-arrow"><a id="the-arrow"><i class="fa fa-caret-square-o-left"></i></a></li>
 				</ul>
-				<form class="navbar-form navbar-left" role="search">
+				<form id="rename_form" class="navbar-form navbar-left no_submit" role="search">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Welcome" id = "renameInput" val="">
 					</div>
@@ -330,30 +330,8 @@
 		<br/>
 		<br/>
 		<br/>
-		<!--
-		THE LOADING MODAL
-		-->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel">LOADING: GRIT, SPIT, AND JAVASCRIPT</h4>
-					</div>
-					<div class="modal-body">
-						<div class="progress progress-striped active">																					<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="prog">
-						       		<span class="sr-only" id="desc">0% Complete</span>																			</div>
-						</div>
-						<p>If this is taking a long time, Google Drive is probably down <i class="fa fa-frown-o"></i></p>
-					</div>
-					<div class="modal-footer">				  
-						<button class="btn btn-danger float-left" onclick="reloadNow()">RETRY</button><span id="loading" class="float-right">Loading...</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--
-		PREF MODAL
-		-->
+		
+		
 		<div class="modal fade" id="prefModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -504,7 +482,9 @@
 						<h4 class="modal-title" id="myModalLabel">Your Random Text</h4>
 					</div>
 					<div class="modal-body">
-						<input type="text" class="form-control" id="num_lorem" value="6"/>
+					    <form class="no_submit">
+						        <input type="text" class="form-control" id="num_lorem" value="6"/>
+						</form>
 						<div class="col-xs-3">
                             <select name="lorem_combo" value="s" class="select-block" id="lorem_choose">
                                 <option value="s" selected="selected">Sentences</option>
@@ -513,8 +493,8 @@
                             </select>
                         </div>
                         <button onclick="generate()" class="btn btn-primary">Generate</button>
-                        <hr/>
-						<div id="lorem" data-lorem="6s"></div>
+                        <br/>
+						<div id="lorem" data-lorem="6s" class="well"></div>
 						<!--dropdown-->
 					</div>
 					<div class="modal-footer">
@@ -526,6 +506,22 @@
 		<!--
 		CONTENT
 		-->
+		<div id = "screen">
+			<div>
+				<a href="https://codeyourcloud.com/about"><img id="logo_pic" src="icon_128.png " height="47px" /></a>
+				<span id="screen-name">  Code Your Cloud</span>
+			</div>
+			<div id="in-screen">
+				<h1>Loading: Grit, Spit, and Javascript</h1>
+				<div class="progress progress-striped active">																					
+					<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="prog">
+					<span class="sr-only" id="desc">0% Complete</span>																			
+				</div>
+				</div>
+				<span id="loading"></span>
+				<h6>If this is taking a long time, Google Drive is probably not working</h6>
+			</div>
+		</div>
 		<div id = "container">
 		<div id = "content"></div>		
 			<div id="side">
@@ -574,7 +570,7 @@
 		<script src="/lib/loremjs/lorem.js"></script>
 		
 		<script src="/scripts/drive.js"></script>
-		<script src="/scripts/visual.js"></script>
+			<script src="/scripts/visual.js"></script>
 		<script src="/scripts/main.js"></script>
 		<script src="/scripts/frontend.js"></script>
 		<script src="/lib/knob/js/jquery.knob.js"></script>

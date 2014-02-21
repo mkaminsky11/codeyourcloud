@@ -265,3 +265,6 @@ function generate(){
     lorem.query = $("#num_lorem").val() + $("#lorem_choose").val();
     lorem.createLorem(document.getElementById('lorem'));
 }
+$('.no_submit').submit(function(e) {
+    e.preventDefault();
+});
