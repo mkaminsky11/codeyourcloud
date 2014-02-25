@@ -102,8 +102,11 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
             codeMirror.setOption("mode", "text/html");
             startHtml();
             removeClass("autoButton","hide");
-	        codeMirror.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
-	        break;
+			codeMirror.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
+			break;
+		case "h":
+			codeMirror.setOption("mode", "text/x-csrc");
+			break;
         case "js":
             codeMirror.setOption("mode", "text/javascript");
             startTern();
@@ -222,7 +225,7 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
             codeMirror.setOption("mode", "text/nginx");
             break;
         case "m":
-            codeMirror.setOption("mode", "text/x-octave");
+            codeMirror.setOption("mode", "text/x-csrc");
             break;
         case "octave":
             codeMirror.setOption("mode", "text/x-octave");
@@ -453,11 +456,15 @@ function setPercent(per){
 	document.getElementById("prog").style.width = per + "%";
 	document.getElementById("prog").ariaValuenow = per + "";		
 	if(per === "100"){
+		/*
 		$( "#screen" ).animate({
-			bottom: "+=50",top: "-=50",
+			marginBottom: "+=50",
 			height: "toggle"
-			}, 500, function() {
+			}, 750, function() {
     			$('#screen').remove();
+		});*/
+		$("#screen").slideUp(750,function(){
+			$("#screen").remove();
 		});
 	}
 	if(per === "0"){

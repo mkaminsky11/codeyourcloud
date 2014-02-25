@@ -48,7 +48,17 @@ function handleClientLoad() {
 function checkAuth() {
 	setPercent("10");
 	$("#loading").html("Checking authorization...");
-	gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate': true},handleAuthResult);
+	try{
+		try{
+			gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate': true},handleAuthResult);
+		}
+		catch(e){
+			checkAuth();
+		}
+	}
+	catch(e){
+		checkAuth();
+	}
 }
 function handleAuthResult(authResult) {
 	setPercent("30");

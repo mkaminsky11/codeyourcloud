@@ -256,7 +256,7 @@
 							<li id="color" onclick="showColor()"><a>Color</a></li>
 							<li onclick="show_terminal()"><a>Terminal</a></li>
 							<li onclick="show_todo()"><a>Todo</a></li>
-							<li onclick="show_note()"><a>Notepad</a></li>
+							<li onclick="show_notepad()"><a>Notepad</a></li>
 							<li onclick="$('#previewModal').modal('show')"><a>Preview</a></li>
 							<li id="autoButton" onclick="getHint()"><a>Autocomplete</a></li>
 							<li onclick="$('#randomModal').modal('show')"><a>Lorem generator</a></li>
@@ -519,7 +519,8 @@
 				</div>
 				</div>
 				<span id="loading"></span>
-				<h6>If this is taking a long time, Google Drive is probably not working</h6>
+				<h6>If this is taking a long time, retry. There may be a problem with Google Drive.</h6>
+				<button class="btn btn-danger" onclick="reloadNow()">Retry</button>
 			</div>
 		</div>
 		<div id = "container">

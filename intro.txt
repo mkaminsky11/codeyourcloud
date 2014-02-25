@@ -39,10 +39,3 @@
 / __/ _ \/ _ \  / __/ _ \/ _ \/ / _ \/ _ `/ __/                                  
 \__/\___/ .__/  \__/\___/\___/_/_.__/\_,_/_/                                     
        /_/                                                                       
-Code your cloud is an code editor for Google Drive, with collaboration capabilities.
-For more information, visit:
-    About page: https://codeyourcloud.com/about
-    Github page: https://github.com/mkaminsky11/codeyourcloud
-
-Code Your Cloud is also availabe in the chrome web store:
-    https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail

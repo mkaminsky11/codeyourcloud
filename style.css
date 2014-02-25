@@ -375,6 +375,10 @@ markdown
 
 #logo_pic {
 	margin-top: 2px;
+	border: none;
+}
+#logo_pic:hover {
+	border: solid thin white;
 }
 iframe {
     width: 100%;
@@ -393,8 +397,8 @@ iframe {
   height:     100%; 
   z-index:    9999;
   top:        0; 
-  left:       0; 
-  position:   fixed;
+  left:       0;
+  position: fixed;
 }
 #in-screen {
 	text-align: center;
