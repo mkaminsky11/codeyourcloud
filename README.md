@@ -113,7 +113,8 @@
 <ol>
 	<li>improved mobile support</li>
 	<li>integrate AngularJS</li>
-	<li>Less or sass?</li>
+	<li>Comment/uncomment function</li>
+	<li>Objective-C mode (for now, just <b>C</b> used)</li>
 </ol>
 =====
 ###License###

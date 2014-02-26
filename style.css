@@ -329,9 +329,11 @@ table {
 }
 #mode_ul {
 	list-style-type: none;
-	width: 100%;
-	float:left;	height: 600px;
+	width: auto;
+	float:left;	
+	height: 600px;
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 #user_p,
 #user_id_p {
