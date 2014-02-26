@@ -408,3 +408,9 @@ iframe {
 #screen-name {
 	font-size: 200%;
 }
+.ruler1 { border-left: 1px solid #fcc; }
+.ruler2 { border-left: 1px solid #f5f577; }
+.ruler3 { border-left: 1px solid #cfc; }
+.ruler4 { border-left: 1px solid #aff; }
+.ruler5 { border-left: 1px solid #ccf; }
+.ruler6 { border-left: 1px solid #fcf; }

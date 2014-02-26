@@ -5,11 +5,27 @@ $("#side").css("z-index", -1);
 /*******************
 CODEMIRROR/VIM STUFF
 *******************/
+
+//rulers
+var nums = "0123456789", space = "    ";
+  var rulers = [], value = "";
+  for (var i = 1; i <= 6; i++) {
+    rulers.push({className: "ruler" + i, column: i * 10});
+    for (var j = 1; j < i; j++) value += space;
+    value += nums + "\n";
+}
+//other
 var delay;
 var title = "";
 var codeMirror = CodeMirror(document.getElementById("content"), {
-    lineNumbers: true,mode: "text",theme: "cobalt", lineWrapping: false, indentUnit: 4, indentWithTabs: true
+    lineNumbers: true,
+    mode: "text",
+    theme: "cobalt", 
+    lineWrapping: false, 
+    indentUnit: 4, 
+    indentWithTabs: true
 });
+//for rulers add: rulers: rulers
 codeMirror.on("change", function(cm, change) {
 	setState("unsaved");
 	//
@@ -251,7 +267,7 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
         case "sieve":
             codeMirror.setOption("mode", "application/sieve");
             break;
-        case "xquery":
+        case "xq":
             codeMirror.setOption("mode", "application/xquery");
             break;
         case "gfm":
@@ -281,11 +297,29 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
         case "gif":
             badType();
             break;
+        case "lisp":
+			codeMirror.setOption("mode", "text/x-common-lisp");
+			break;
+		case "dtd":
+			codeMirror.setOption("mode", "application/xml-dtd");
+			break;
+		case "e":
+			codeMirror.setOption("mode", "text/x-eiffel");
+			break;
+		case "mrc":
+			codeMirror.setOption("mode", "text/mirc");
+			break;
+		case "tcl":
+			codeMirror.setOption("mode", "text/x-tcl");
+			break;
+		case "tex":
+			codeMirror.setOption("mode", "text/x-stex");
+			break;
     }
 }
 function badType(){
-    window.location.href="https://codeyourcloud.com/error/file"
-};
+    window.location.href="https://codeyourcloud.com/error/file";
+}
 function exten(string){
     var ret = "none"; 
     if(string.indexOf(".") !== -1){

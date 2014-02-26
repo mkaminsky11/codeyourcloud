@@ -79,6 +79,13 @@
 	<li>Sieve</li>
 	<li>XQuery</li>
 	<li>Github-flavored Markdown</li>
+	<li>CommonLisp</li>
+	<li>DTD</li>
+	<li>Eiffel</li>
+	<li>Mirc</li>
+	<li>Tcl</li>
+	<li>STex</li>
+	<li>LaTex</li>
 </ul>
 =====
 ###Resources###
