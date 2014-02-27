@@ -323,9 +323,12 @@ table {
 }
 #theme_ul {
 	list-style-type: none;
-	width: 100%;
+	width: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 	float:left;
 	margin: 0px;
+	height: 600px;
 }
 #mode_ul {
 	list-style-type: none;

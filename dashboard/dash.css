@@ -39,14 +39,6 @@ h1,a,body {
 h3 {
     color:#34495E;
 }
-.login-screen {
-    margin-top: -1px;
-    height: 474px;
-    width: 865px;
-    background-image:url('/images/screenshots/sc1.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
-}
-.login {
-    margin-left: 10%;
+img {
+	max-width:100%;
 }

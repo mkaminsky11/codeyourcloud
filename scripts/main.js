@@ -5,6 +5,7 @@ var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googl
 var ok = false;
 var myRootFolderId = null;
 var TOpen = false;
+var done = false;
 /************
 AUTHORIZATION
 ***********/
@@ -53,14 +54,19 @@ function checkAuth() {
 			gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate': true},handleAuthResult);
 		}
 		catch(e){
-			checkAuth();
+			if(!done){
+				checkAuth();
+			}
 		}
 	}
 	catch(e){
-		checkAuth();
+		if(!done){
+			checkAuth();
+		}
 	}
 }
 function handleAuthResult(authResult) {
+	done = true;
 	setPercent("30");
 	$("#loading").html("Checking results...");
 	if (authResult) {
@@ -130,6 +136,24 @@ function saveNoSend(){
 		saveFile(theID, codeMirror.getValue());
 	}
 }
+function saveFile(fileId, content){
+    //console.log(content);
+    if(typeof content !== "undefined" && online){ //if nothing is "null"
+        var contentArray = new Array(content.length);
+        for (var i = 0; i < contentArray.length; i++) {
+            contentArray[i] = content.charCodeAt(i);
+        }
+        var byteArray = new Uint8Array(contentArray);
+        var blob = new Blob([byteArray], {type: 'text/plain'}); //this is the only way I could get this to work
+        var request = gapi.client.drive.files.get({'fileId': fileId});//gets the metadata, which is left alone
+        request.execute(function(resp) {
+            updateFile(fileId,resp,blob,changesSaved);
+        });
+    }
+    if(!online){
+	    $('#offlineModal').modal('show');
+    }
+}
 /*************
 INITIALIZATION
 *************/
@@ -167,24 +191,6 @@ function openInit(){
 		}
 	}
 }
-function saveFile(fileId, content){
-    //console.log(content);
-    if(typeof content !== "undefined" && online){ //if nothing is "null"
-        var contentArray = new Array(content.length);
-        for (var i = 0; i < contentArray.length; i++) {
-            contentArray[i] = content.charCodeAt(i);
-        }
-        var byteArray = new Uint8Array(contentArray);
-        var blob = new Blob([byteArray], {type: 'text/plain'}); //this is the only way I could get this to work
-        var request = gapi.client.drive.files.get({'fileId': fileId});//gets the metadata, which is left alone
-        request.execute(function(resp) {
-            updateFile(fileId,resp,blob,changesSaved);
-        });
-    }
-    if(!online){
-	    $('#offlineModal').modal('show');
-    }
-}
 /***********
 DOWNLOAD FILE
 ************/
@@ -203,6 +209,9 @@ if(!online){
 	    $('#offlineModal').modal('show');
     }
 }
+/*********
+BROWSER
+*********/
 function goBrowser(){
     if(online){
         var current_url = $("#url_input").val()
@@ -230,6 +239,9 @@ function goBrowser(){
         }
     }
 }
+/**********
+ONLINE/OFFLINE
+***********/
 var online = true;
 function isOnline() {
     var status = navigator.onLine; 
@@ -247,7 +259,9 @@ function isOnline() {
 
 setInterval(isOnline, 500);
 isOnline();
-
+/**********
+PDF
+**********/
 function to_pdf(){
     var doc = new jsPDF();
     //doc.text(20, 20, codeMirror.getValue());
@@ -268,6 +282,9 @@ function to_pdf(){
     }
     doc.save('PDF.pdf');
 }
+/*********
+RANDOM
+**********/
 function generate(){
     $("#lorem").html("");
     var lorem = new Lorem;

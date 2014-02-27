@@ -1,26 +1,18 @@
-var autoC = true;
-var isWelcome = false;
-var wasBlank = false;
+var autoC = true; //autocomplete
+var isWelcome = false; //welcome screen
+var wasBlank = false; //if data was originally blank
 $("#side").css("z-index", -1);
+$("#container").css('backgroundColor', $(".CodeMirror").css('backgroundColor'));
 /*******************
 CODEMIRROR/VIM STUFF
 *******************/
-
-//rulers
-var nums = "0123456789", space = "    ";
-  var rulers = [], value = "";
-  for (var i = 1; i <= 6; i++) {
-    rulers.push({className: "ruler" + i, column: i * 10});
-    for (var j = 1; j < i; j++) value += space;
-    value += nums + "\n";
-}
 //other
 var delay;
 var title = "";
 var codeMirror = CodeMirror(document.getElementById("content"), {
     lineNumbers: true,
     mode: "text",
-    theme: "cobalt", 
+    theme: "mbo", 
     lineWrapping: false, 
     indentUnit: 4, 
     indentWithTabs: true
@@ -28,30 +20,40 @@ var codeMirror = CodeMirror(document.getElementById("content"), {
 //for rulers add: rulers: rulers
 codeMirror.on("change", function(cm, change) {
 	setState("unsaved");
-	//
-	checkUndo();
+	checkUndo(); //can you undo?
 	clearTimeout(delay);
     	delay = setTimeout(updatePreview, 300);
-	if(title.indexOf(".js") !== -1 && change.text === " "){
+	if(codeMirror.getOption("mode").indexOf("javascript") !== -1 && change.text === " "){
 		server.complete(codeMirror);
 	}
 });
 codeMirror.setOption("autoCloseBrackets",true);
 codeMirror.setOption("matchBrackets",true);
+CodeMirror.commands.save = function() {
+	//:w -> save
+	save();
+}
+/****************
+NOTEPAD
+****************/
 var notepad = CodeMirror(document.getElementById("pad"), {
     lineNumbers: true, mode: "text",lineWrapping: true
 });
 notepad.refresh();
 notes();
-CodeMirror.commands.save = function() {
-	//:w -> save
-	save();
-}
-$("#container").css('backgroundColor', $(".CodeMirror").css('backgroundColor'));
+/************
+MESSENGER
+************/
 Messenger.options = {
     extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
     theme: 'flat'
 }
+function sendMessage(message, type){
+    Messenger().post({message:message,showCloseButton: true, hideAfter: 5, type: type});
+}
+/***********
+PREVIEW
+***********/
 function updatePreview() {
        	var previewFrame = document.getElementById('preview');
 		var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
@@ -67,6 +69,7 @@ function openFile(theId){
 	window.location.assign("https://codeyourcloud.com/#"+theId);
 }
 function welcome() {
+	//hide things
 	document.getElementById("will_close").style.visibility = "hidden";
 	document.getElementById("note").style.visibility="hidden";
 	document.getElementById("headerButton_save_right").style.visibility="hidden";
@@ -337,6 +340,7 @@ function okRename() {
 	return false;
 }
 function okRenameNoSend(){
+	//don't send it to other users
 	document.getElementById("renameInput").style.borderColor="green";
 	setTimeout(function() {
 		document.getElementById("renameInput").style.borderColor="white";
@@ -356,7 +360,7 @@ function cancelRename() {
 	return false;
 }
 /****************
-MENU-SPECIFIC
+UNDO/REDO
 ****************/
 var numUndo = 0;
 var numRedo = 0;
@@ -394,6 +398,9 @@ function navRedo() {
 		addClass("redoB", "disabled");
 	}
 }
+/************
+PREFERENCES
+************/
 function line_numbers() {
 	if(codeMirror.getOption("lineNumbers")){
 		codeMirror.setOption("lineNumbers",false);
@@ -418,6 +425,14 @@ function setThemeNoSend(theme){
 	codeMirror.setOption("theme", theme);
 	$("#container").css('backgroundColor', $(".CodeMirror").css('backgroundColor'));
 	sendMessage("theme is now: "+codeMirror.getOption("theme"));
+}
+function setMode(mode){
+	setModeNoSend(mode);
+	sendMode(mode);
+}
+function setModeNoSend(mode){
+	checkFileName(mode);
+	sendMessage("mode is now: "+ codeMirror.getOption("mode"), "info");
 }
 function vimBind() {
 	if(codeMirror.getOption("keyMap") === "vim"){
@@ -462,12 +477,18 @@ function navContactUs() {
 function signout() {
 	window.location.href = "https://accounts.google.com/logout";
 }
+/**************
+FIND/REPLACE
+**************/
 function FIND(){
 	CodeMirror.commands["findNext"](codeMirror);
 }
 function REPLACE(){
 	CodeMirror.commands["replace"](codeMirror)
 }
+/****************
+SAVE STATE
+****************/
 function setState(state){
 	if(state === "saved"){
 		document.getElementById("note").innerHTML = "All Changes Saved To Drive";
@@ -490,13 +511,6 @@ function setPercent(per){
 	document.getElementById("prog").style.width = per + "%";
 	document.getElementById("prog").ariaValuenow = per + "";		
 	if(per === "100"){
-		/*
-		$( "#screen" ).animate({
-			marginBottom: "+=50",
-			height: "toggle"
-			}, 750, function() {
-    			$('#screen').remove();
-		});*/
 		$("#screen").slideUp(750,function(){
 			$("#screen").remove();
 		});
@@ -504,6 +518,9 @@ function setPercent(per){
 	if(per === "0"){
 	}
 }
+/*************
+TERN
+*************/
 function getURL(url, c) {
     var xhr = new XMLHttpRequest();
     xhr.open("get", url, true);
@@ -532,25 +549,31 @@ function startTern(){
 		codeMirror.on("cursorActivity", function(cm) { server.updateArgHints(codeMirror); });
 		});
 }
+/**********
+SHOW HINT
+**********/
 function getHint(){
-	if(title.indexOf(".js") !== -1){
+	if(codeMirror.getOption("mode").indexOf("javascript") !== -1){
 	}
-	if(title.indexOf(".css") !== -1){
+	if(codeMirror.getOption("mode").indexOf("css") !== -1){
 		CodeMirror.showHint(codeMirror, CodeMirror.hint.css);
 	}
-	if(title.indexOf(".xml") !== -1){
+	if(codeMirror.getOption("mode").indexOf("xml") !== -1){
 		CodeMirror.showHint(codeMirror, CodeMirror.hint.xml, {schemaInfo: tags});
 	}
-	if(title.indexOf(".html") !== -1){
+	if(codeMirror.getOption("mode").indexOf("html") !== -1){
 		CodeMirror.showHint(codeMirror, CodeMirror.hint.html);
 	}
-	if(title.indexOf(".py") !== -1){
+	if(codeMirror.getOption("mode").indexOf("py") !== -1){
 		CodeMirror.showHint(codeMirror, CodeMirror.hint.python);
 	}
-	if(title.indexOf(".sql") !== -1){
+	if(codeMirror.getOption("mode").indexOf("sql") !== -1){
 		CodeMirror.showHint(codeMirror, CodeMirror.hint.sql);
 	}
 }
+/*********
+XML
+*********/
 var dummy = null;
 var tags = null;
 
@@ -620,6 +643,9 @@ function startXml(){
           }
         });
 }
+/**********
+HTML
+**********/
 function startHtml(){
 	codeMirror.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
 	codeMirror.on("inputRead", function(cm, change){
@@ -628,12 +654,21 @@ function startHtml(){
 		}
 	});
 }
+/********
+CSS
+********/
 function startCss(){
 	codeMirror.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
 }
+/*******
+SQL
+*******/
 function startSql(){
 	codeMirror.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
 }
+/********
+PYTHON
+********/
 function startPython(){
 	codeMirror.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
 }
@@ -860,14 +895,6 @@ function show_notepad(){
 		notes();
 	}
 }
-function setMode(mode){
-	setModeNoSend(mode);
-	sendMode(mode);
-}
-function setModeNoSend(mode){
-	checkFileName(mode);
-	sendMessage("mode is now: "+ codeMirror.getOption("mode"), "info");
-}
 TogetherJSConfig_on_ready = function () {
   TOpen = true;
 };
@@ -889,9 +916,6 @@ function checkData(){
 function pref(){
 	$("#prefModal").modal('show');
 }
-//
-//
-//
 /**********
 FONT SIZE
 **********/
@@ -933,8 +957,6 @@ function showColor(){
 var before = null;
 var after = null;
 $('#color').colorpicker().on('changeColor', function(ev){
-  //bodyStyle.backgroundColor = ev.color.toHex();
-  //if something is selected, change it
   if(codeMirror.getDoc().somethingSelected()){
 	  codeMirror.getDoc().replaceSelection(ev.color.toHex());
   }
@@ -944,12 +966,10 @@ $('#color').colorpicker().on('changeColor', function(ev){
 	  after = codeMirror.getDoc().getCursor();
 	  codeMirror.getDoc().setSelection(before, after);
   }
-  //else, insert it
 });
-function sendMessage(message, type){
-    Messenger().post({message:message,showCloseButton: true, hideAfter: 5, type: type});
-}
-
+/************
+MOVE RIGHT/LEFT
+************/
 function moveLeft(){
     if(codeMirror.getDoc().somethingSelected()){
         var old_value = codeMirror.getDoc().getSelection().split("\n");
