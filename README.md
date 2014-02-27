@@ -113,7 +113,7 @@
 <ol>
 	<li>improved mobile support</li>
 	<li>integrate AngularJS</li>
-	<li>~~Comment/uncomment function~~<b>done!</b></li>
+	<li>Comment/uncomment function<b>[done!]</b></li>
 	<li>Objective-C mode (for now, just <b>C</b> used)</li>
 </ol>
 =====
