@@ -212,6 +212,8 @@
 		<link rel="stylesheet" href="/lib/codemirror/addon/hint/show-hint.css">
 		<link rel="stylesheet" href="/lib/codemirror/addon/tern/tern.css">
 		
+		<script src="/lib/codemirror/addon/comment/comment.js"></script>
+		
 		<script src="/lib/codemirror/addon/dialog/dialog.js"></script>
 		<script src="/lib/codemirror/addon/hint/show-hint.js"></script>
 		<script src="/lib/codemirror/addon/tern/tern.js"></script>
@@ -281,6 +283,8 @@
 							<li onclick="navRedo()"><a>Redo</a></li>
 							<li onclick="moveLeft()"><a>Move left</a></li>
 							<li onclick="moveRight()"><a>Move right</a></li>
+							<li onclick="comment()"><a>Comment</a></li>
+							<li onclick="uncomment()"><a>Uncomment</a></li>
 						</ul>
 					</li>
 					<li class="dropdown" id="codedropdown">

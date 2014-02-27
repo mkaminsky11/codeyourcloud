@@ -195,7 +195,7 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
         case "sh":
             codeMirror.setOption("mode", "text/x-sh");
             break;
-        case "sass":
+        case "scss":
             codeMirror.setOption("mode", "text/x-sass");
             break;
         case "d":
@@ -995,4 +995,27 @@ function moveRight(){
     else{
         sendMessage("nothing selected", "error");
     }
+}
+/*****************
+COMMENTS
+*****************/
+function comment(){
+	if(codeMirror.getDoc().somethingSelected()){
+		var begin = codeMirror.getCursor(true);
+		var end = codeMirror.getCursor(false);
+		codeMirror.blockComment(begin, end);
+	}
+	else{
+		sendMessage("nothing selected", "error");
+	}
+}
+function uncomment(){
+	if(codeMirror.getDoc().somethingSelected()){
+		var begin = codeMirror.getCursor(true);
+		var end = codeMirror.getCursor(false);
+		codeMirror.uncomment(begin, end);
+	}
+	else{
+		sendMessage("nothing selected", "error");
+	}	
 }
