@@ -65,9 +65,6 @@ setTimeout(updatePreview, 300);
 /*************
 OPEN THE FILE
 *************/
-function openFile(theId){
-	window.location.assign("https://codeyourcloud.com/#"+theId);
-}
 function welcome() {
 	//hide things
 	document.getElementById("will_close").style.visibility = "hidden";

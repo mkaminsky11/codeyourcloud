@@ -82,44 +82,64 @@ function loadClient(callback) {
 	gapi.client.load('drive', 'v2', callback);
 }
 function test() {
-    if(doc_url.indexOf("userId") === -1 || doc_url.indexOf("create") !== -1){
-        setPercent("65");
-        $("#loading").html("Loading user info...");
-        var request = gapi.client.drive.about.get();
-        request.execute(function(resp) {
-            myRootFolderId = resp.rootFolderId;
-            $("#loading").html("Retrieved root folder...");
-            userName = resp.name;
-            $("#loading").html("Got user name");
-            $("#user_p").html(userName);
-            try{
-                userUrl = resp.user.picture.url;
-                $("#pic_img").attr("src", userUrl);
-                $("#loading").html("Retrieved profile picture...");
-            }
-            catch(e){}
-            try{
-                userId = resp.user.permissionId;
-                $("#loading").html("Retrieved user id...");
-                $("#user_id_p").html(userId);
-            }
-            catch(e){}
-            TogetherJS.refreshUserData();
-            var total_q = resp.quotaBytesTotal;
-            $("#loading").html("Retrieved user quota...");
-            var user_q = resp.quotaBytesUsedAggregate;
-            $("#loading").html("Retrieved user usage...");
-            var product_q = Math.round(user_q/total_q * 100);
-            $("#knob").val(product_q).trigger('change');
-            $("#knob").val(product_q+"%");
-            openInit();
-	    });
-    }
-    else{
-		var temp1 = doc_url.split("%5B%22")[1];
-		var temp2 = temp1.split("%22")[0];
-		openFile(temp2);
-    }
+	//if # but not ?
+	if(doc_url.indexOf("#") !== -1 && doc_url.indexOf("?") === -1){
+		get_info();
+		getContentOfFile(doc_url.split("#")[1]);
+		getTitle(doc_url.split("#")[1]);
+	}
+	//if neither
+	else if(doc_url.indexOf("#") === -1 && doc_url.indexOf("?") === -1){
+		welcome();
+		get_info();
+	}
+	//? but not #
+	else if(doc_url.indexOf("?") !== -1 && doc_url.indexOf("#") === -1){
+		var query = window.location.href.split("?")[1];
+		if(query.indexOf("create") !== -1){
+			var query_folder_id = query.split("%22")[3];
+			insertNewFile(query_folder_id);
+		}
+		else if(query.indexOf("open") !== -1){
+			var query_id = query.split("%22")[3];
+			window.location.href = "https://codeyourcloud.com#" + query_id;
+		}
+		else{
+			welcome();
+		}
+	}
+}
+function get_info(){
+	setPercent("65");
+    $("#loading").html("Loading user info...");
+    var request = gapi.client.drive.about.get();
+    request.execute(function(resp) {
+        myRootFolderId = resp.rootFolderId;
+        $("#loading").html("Retrieved root folder...");
+        userName = resp.name;
+        $("#loading").html("Got user name");
+        $("#user_p").html(userName);
+        try{
+            userUrl = resp.user.picture.url;
+            $("#pic_img").attr("src", userUrl);
+            $("#loading").html("Retrieved profile picture...");
+        }
+        catch(e){}
+        try{
+            userId = resp.user.permissionId;
+            $("#loading").html("Retrieved user id...");
+            $("#user_id_p").html(userId);
+        }
+        catch(e){}
+        TogetherJS.refreshUserData();
+        var total_q = resp.quotaBytesTotal;
+        $("#loading").html("Retrieved user quota...");
+        var user_q = resp.quotaBytesUsedAggregate;
+        $("#loading").html("Retrieved user usage...");
+        var product_q = Math.round(user_q/total_q * 100);
+        $("#knob").val(product_q).trigger('change');
+        $("#knob").val(product_q+"%");
+    });
 }
 /*********
 SAVE FILE
@@ -164,31 +184,28 @@ function openInit(){
 		welcome()	
 	}
 	else{
-		if(url.indexOf("#state") === -1){
 			if(url.indexOf("#") !== -1 && url.indexOf("?") === -1){
 				document.getElementById("will_close").style.visibility="visible";
 				isWelcome = false;
 				var theID = doc_url.split("#")[1];
 				getContentOfFile(theID);
 				getTitle(theID);
-				connection.send(JSON.stringify({type: "update", name: userName}));
 			}
-			if(url.indexOf("#") === -1 && url.indexOf("?") !== -1){
+			else if(url.indexOf("#") === -1 && url.indexOf("?") !== -1){
 				if(url.indexOf("action%22:%22open") !== -1){
 					var temp1 = doc_url.split("%5B%22")[1];
 					var temp2 = temp1.split("%22")[0];
 					openFile(temp2);
 			    }
-				if(url.indexOf("action%22:%22create") !== -1){
+				else if(url.indexOf("action%22:%22create") !== -1){
 					var temp1 = url.split("%22folderId%22:%22")[1];
 					var FI = temp1.split("%22,%22action%22")[0];
 					insertNewFile(FI);	
 				}
+				else{
+					welcome();
+				}
 			}
-		}
-		else{
-			welcome();
-		}
 	}
 }
 /***********
@@ -295,3 +312,14 @@ function generate(){
 $('.no_submit').submit(function(e) {
     e.preventDefault();
 });
+/*********
+ANALYTICS
+********/
+function start_anaytics(){
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-47415821-1', 'codeyourcloud.com');
+			ga('send', 'pageview');
+}

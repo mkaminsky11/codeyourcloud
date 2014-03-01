@@ -73,23 +73,24 @@ function insertNewFile(folderId) {
 	setPercent("85");
 	var content = " ";
 	var contentArray = new Array(content.length);
-        for (var i = 0; i < contentArray.length; i++) {
-            contentArray[i] = content.charCodeAt(i);
-        }
-        var byteArray = new Uint8Array(contentArray);
-        var blob = new Blob([byteArray], {type: 'text/plain'}); //this is the only way I could get this to work
-	insertFile(blob, fileInserted, folderId);
+    for (var i = 0; i < contentArray.length; i++) {
+    	contentArray[i] = content.charCodeAt(i);
+    }
+    var byteArray = new Uint8Array(contentArray);
+    var blob = new Blob([byteArray], {type: 'text/plain'}); //this is the only way I could get this to work
+	insertFile(blob, folderId, fileInserted);
 }
 function fileInserted(d) {
 	setPercent("100");
-	var temp1 = doc_url.split("%22folderId%22:%22")[1];
-    var FI = temp1.split("%22,%22action%22")[0];
+	//get folderid
+	var query = window.location.href.split("?")[1];
+	var FI = query.split("%22")[3];
     renameFile(d.id, d.id+".txt");
 	if(FI !== myRootFolderId){	
 		insertFileIntoFolder(FI, d.id);
 		removeFileFromFolder(d.parents[0].id,d.id);
 	}
-	openFile(d.id);
+	window.location.href = "https://codeyourcloud.com#"+d.id;
 }
 function insertFileIntoFolder(folderId, fileId) {
   if(online){
@@ -110,7 +111,7 @@ function removeFileFromFolder(folderId, fileId) {
   request.execute(function(resp) { });
   }
 }
-function insertFile(fileData, callback, folderId) {
+function insertFile(fileData, folderId, callback) {
     if(online){
 	setPercent("90");
   const boundary = '-------314159265358979323846';
@@ -122,7 +123,7 @@ function insertFile(fileData, callback, folderId) {
   reader.onload = function(e) {
     var contentType = fileData.type || 'application/octet-stream';
     var metadata = {
-      'title': folderId + Math.floor(Math.random()*100+1) + ".txt",
+      'title': folderId + ".txt",
       'mimeType': contentType
     };
 
