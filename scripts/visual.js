@@ -318,7 +318,7 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
     }
 }
 function badType(){
-    window.location.href="https://codeyourcloud.com/error/file";
+    window.location="https://codeyourcloud.com/error/file";
 }
 function exten(string){
     var ret = "none"; 
@@ -466,13 +466,13 @@ $('#line_wrap_switch').button( "refresh" );
 LINKS TO OTHER
 *************/
 function navFaq() {
-	window.location.href = "https://codeyourcloud.com/about#help";
+	window.location = "https://codeyourcloud.com/about#help";
 }
 function navContactUs() {
-	window.location.href = "https://codeyourcloud.com/about#contact"
+	window.location = "https://codeyourcloud.com/about#contact"
 }
 function signout() {
-	window.location.href = "https://accounts.google.com/logout";
+	window.location = "https://accounts.google.com/logout";
 }
 /**************
 FIND/REPLACE
@@ -508,9 +508,11 @@ function setPercent(per){
 	document.getElementById("prog").style.width = per + "%";
 	document.getElementById("prog").ariaValuenow = per + "";		
 	if(per === "100"){
-		$("#screen").slideUp(750,function(){
-			$("#screen").remove();
-		});
+		setTimeout(function(){
+			$("#screen").slideUp(750,function(){
+				$("#screen").remove();
+			});
+		}, 500);
 	}
 	if(per === "0"){
 	}
@@ -963,6 +965,24 @@ $('#color').colorpicker().on('changeColor', function(ev){
 	  after = codeMirror.getDoc().getCursor();
 	  codeMirror.getDoc().setSelection(before, after);
   }
+});
+
+$('#nav_color').colorpicker();
+function showNavColor(){
+    $('#nav_color').colorpicker('show');
+    $('.colorpicker').css("opacity", 100);
+    $('.colorpicker').css('visibility', 'visible');
+    //if something is selected, TRY to set the color to it.
+    try{
+	    //$("#color").colorpicker('setValue', codeMirror.getDoc().getSelection());
+	    $("#nav_color").colorpicker('setValue', $(".navbar-inverse").css("background-color"));
+	}
+	catch(e){
+	}    
+}
+$('#nav_color').colorpicker().on('changeColor', function(ev){
+    //codeMirror.getDoc().replaceSelection(ev.color.toHex());
+    $(".navbar-inverse").css("background-color", ev.color.toHex());
 });
 /************
 MOVE RIGHT/LEFT

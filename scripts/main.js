@@ -28,14 +28,11 @@ window.onbeforeunload = function () {
 	}
 }
 //this should refresh the token every 300000 milliseconds = 3000 seconds = 50 minutes 
-window.setInterval(function(){
+setInterval(function(){
 	refreshToken();
 },3000000);
 function refreshToken() {
 	gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate':true},tokenRefreshed);
-	window.setInterval(function(){
-		refreshToken();
-	},3000000);
 }
 function tokenRefreshed(result){
 }
@@ -70,28 +67,29 @@ function handleAuthResult(authResult) {
 	setPercent("30");
 	$("#loading").html("Checking results...");
 	if (authResult) {
-		loadClient(test);
+		loadClient(init);
 	} 
 	else {
-		window.location.href = 'https://codeyourcloud.com/dashboard'; 
+		window.location = 'https://codeyourcloud.com/dashboard'; 
 	}
 }
 function loadClient(callback) {
-	setPercent("60");
 	$("#loading").html("Loading Google Drive...");
 	gapi.client.load('drive', 'v2', callback);
 }
-function test() {
+function init() {
 	//if # but not ?
 	if(doc_url.indexOf("#") !== -1 && doc_url.indexOf("?") === -1){
 		get_info();
 		getContentOfFile(doc_url.split("#")[1]);
 		getTitle(doc_url.split("#")[1]);
+		setPercent("80");
 	}
 	//if neither
 	else if(doc_url.indexOf("#") === -1 && doc_url.indexOf("?") === -1){
 		welcome();
 		get_info();
+		setPercent("65");
 	}
 	//? but not #
 	else if(doc_url.indexOf("?") !== -1 && doc_url.indexOf("#") === -1){
@@ -102,7 +100,9 @@ function test() {
 		}
 		else if(query.indexOf("open") !== -1){
 			var query_id = query.split("%22")[3];
-			window.location.href = "https://codeyourcloud.com#" + query_id;
+			setTimeout(function(){
+				window.location = "https://codeyourcloud.com#" + query_id;
+			}, 1000);
 		}
 		else{
 			welcome();
@@ -110,7 +110,6 @@ function test() {
 	}
 }
 function get_info(){
-	setPercent("65");
     $("#loading").html("Loading user info...");
     var request = gapi.client.drive.about.get();
     request.execute(function(resp) {
@@ -173,40 +172,6 @@ function saveFile(fileId, content){
     if(!online){
 	    $('#offlineModal').modal('show');
     }
-}
-/*************
-INITIALIZATION
-*************/
-function openInit(){
-	setPercent("75");
-	var url = doc_url;
-	if(url.indexOf("#") === -1 && url.indexOf("?") === -1){
-		welcome()	
-	}
-	else{
-			if(url.indexOf("#") !== -1 && url.indexOf("?") === -1){
-				document.getElementById("will_close").style.visibility="visible";
-				isWelcome = false;
-				var theID = doc_url.split("#")[1];
-				getContentOfFile(theID);
-				getTitle(theID);
-			}
-			else if(url.indexOf("#") === -1 && url.indexOf("?") !== -1){
-				if(url.indexOf("action%22:%22open") !== -1){
-					var temp1 = doc_url.split("%5B%22")[1];
-					var temp2 = temp1.split("%22")[0];
-					openFile(temp2);
-			    }
-				else if(url.indexOf("action%22:%22create") !== -1){
-					var temp1 = url.split("%22folderId%22:%22")[1];
-					var FI = temp1.split("%22,%22action%22")[0];
-					insertNewFile(FI);	
-				}
-				else{
-					welcome();
-				}
-			}
-	}
 }
 /***********
 DOWNLOAD FILE

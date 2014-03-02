@@ -19,6 +19,7 @@ function getContentOfFile(theID){ //gets the content of the file
                     if(code === ""){
                         wasBlank = true;
                     }
+                    getP(theID);
                		setState("saved");
 			   		ok = true;
 			   		setPercent("100");
@@ -90,7 +91,7 @@ function fileInserted(d) {
 		insertFileIntoFolder(FI, d.id);
 		removeFileFromFolder(d.parents[0].id,d.id);
 	}
-	window.location.href = "https://codeyourcloud.com#"+d.id;
+	window.location = "https://codeyourcloud.com#"+d.id;
 }
 function insertFileIntoFolder(folderId, fileId) {
   if(online){
@@ -200,8 +201,6 @@ function getP(fileId) {
 		'fileId': fileId
 	});
 	request.execute(function(resp) {
-		console.log(resp.items);
-		console.log(resp.items.length);
 		var ret = false;
 		for(i = 0; i < resp.items.length; i++){
 			console.log(resp.items[i]);
@@ -211,7 +210,7 @@ function getP(fileId) {
 		}
 		console.log(ret);
 		if(ret === false){
-			window.location.href = "https://codeyourcloud.com/error/permission";
+			window.location = "https://codeyourcloud.com/error/permission";
 		}
 	});
     }

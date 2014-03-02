@@ -110,3 +110,19 @@ body {
 .large_main {
     
 }
+
+#col_left{
+	float: left;
+	width: 50%;
+	height: 100%;
+	background-color: #eee;
+}
+#col_right{
+	float: right;
+	width: 50%;
+	height: 100%;
+	background-color: #eee;
+}
+.b-left{
+	border-left: thin #736f6f solid;
+}

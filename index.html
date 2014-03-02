@@ -45,7 +45,6 @@
 		<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
 		<script src="/lib/knob/js/jquery.knob.js"></script>
 		<script>
-			//
 			console.log("please don't mess around with this console unless you REALLY know what you're doing. Your actions could effect your files or our servers. If you have any questions, CONTACT US. Thank you.");
 			var doc_url = document.URL;
 			var current = "";
@@ -183,13 +182,13 @@
 			var TogetherJSConfig_getUserName = function () {return userName;};
 			var TogetherJSConfig_getUserAvatar = function () {return userUrl;};
 		</script>
-    		<script src="https://togetherjs.com/togetherjs-min.js"></script>
+    	<script src="https://togetherjs.com/togetherjs-min.js"></script>
 		<!--addons-->		
 		
-		<script id="cssScript" type="text/javascript" src="/lib/codemirror/addon/hint/css-hint.js"></script>
-		<script id="xmlScript" type="text/javascript" src="/lib/codemirror/addon/hint/xml-hint.js"></script>
-		<script id="htmlScript" type="text/javascript" src="/lib/codemirror/addon/hint/html-hint.js"></script>
-		<script id="pythonScript" type="text/javascript" src="/lib/codemirror/addon/hint/python-hint.js"></script>
+		<script type="text/javascript" src="/lib/codemirror/addon/hint/css-hint.js"></script>
+		<script type="text/javascript" src="/lib/codemirror/addon/hint/xml-hint.js"></script>
+		<script type="text/javascript" src="/lib/codemirror/addon/hint/html-hint.js"></script>
+		<script type="text/javascript" src="/lib/codemirror/addon/hint/python-hint.js"></script>
 		<script type="text/javascript" src="/lib/codemirror/addon/hint/show-hint.js"></script>
 		<script id="sqlScript" type="text/javascript" src="/lib/codemirror/addon/hint/sql-hint.js"></script>
 		<!--OPEN-->
@@ -461,6 +460,8 @@
 								</ul>
 							</div>
 							<div class="col-lg-4">
+								<h5>Navbar color</h5>
+								<a id="nav_color" onclick="showNavColor()" class="btn btn-primary">Change</a>
 								<h5>Font Size</h5>
 								<!--stepper goes here-->
 								<div class="btn-group">

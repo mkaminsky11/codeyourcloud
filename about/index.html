@@ -19,7 +19,6 @@
     
     <link href="aboutCss.css" rel="stylesheet">
     
-    <link rel='stylesheet' type='text/css' href='/lib/LigatureSymbols/style.css'>
 	<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css'>
 	
 	<link rel="stylesheet" type="text/css" href="/lib/grid/grid.css">
@@ -43,16 +42,38 @@
 			  		<li><a href="#code">The Code</a></li>
 			  		<li><a href="#help">Help</a></li>
 			  		<li><a href="#contact">Contact Us</a></li>
+			  		<li><a href="#donate">Donate</a></li>
 			  	</ul>
 			</div>
 	  	</div>
 		<a href="https://github.com/mkaminsky11/codeyourcloud"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>  		</div>
   		<div id="main_logo"><h1 class="large_main"><img id="logo_pic" src="../icon_128.png " height="47px" /> Code Your Cloud</h1></div>
-  		<div class="jumbotron">
-            <h3>Now available in the Chrome Web Store</h3>
-            <h6>Download Code Your Cloud for Google Chrome</h6>
+        <div class="jumbotron">
+        	<div class="row">
+        		<div class="col-md-6 b-right">
+        			<h4>Now available in the Chrome Web Store</h4>
             <img src="chrome.png" height="200px"/>
+            <br/><br/>
             <a href="https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail" class="btn btn-primary btn-lg">Learn more</a>
+        			<h6>Download Code Your Cloud for Google Chrome</h6>
+        		</div>
+        		<div class="col-md-6 b-left">
+        			<h4>Follow <a href="https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts">+Code Your Cloud</a></h4>
+
+					<div class="g-post" data-href="https://plus.google.com/109834723365906365793/posts/LwnWya2Aaj7"></div>
+					<!-- Place this tag where you want the +1 button to render. -->
+					<div class="g-plusone" data-annotation="inline" data-width="300"></div>
+
+					<!-- Place this tag after the last +1 button tag. -->
+					<script type="text/javascript">
+					  (function() {
+					    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					    po.src = 'https://apis.google.com/js/platform.js';
+					    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					  })();
+					</script>
+        		</div>
+        	</div>
         </div>
         <h2 id="about">About</h1>
         <p>
@@ -265,7 +286,7 @@
         <table class="table table-striped">
         	<tr>
         		<th>Browser</th>
-        		<th>Version</th>
+        		<th>Latest tested version</th>
         		<th>Notes</th>
         		<th>Supported</th>
         	</tr>
@@ -277,7 +298,7 @@
         	</tr>
         	<tr>
         		<td>Chrome</td>
-        		<td>32.0.1700.77</td>
+        		<td>34.0.1847.11 beta</td>
         		<td>Recommended</td>
         		<td><i class="fa fa-check"></i></td>
         	</tr>
@@ -507,7 +528,22 @@
         <button class="btn btn-success" onclick="comment()">Comment</button>
         <button class="btn btn-danger" type="reset" value="Reset">Reset</button>
         
-        
+        <h2 id="donate">Donate</h2>
+        <h6>Where do donations go?</h6>
+        <ul>
+        	<li>Paying for servers</li>
+        	<li>Premium fonts and themes</li>
+        	<li>Encryption</li>
+        </ul>
+        <h6>What are the benefits?</h6>
+        <p>Knowing that you are a good person, and help to support free, open source code editors.</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
     <!-- JavaScript -->
 	<script src="/about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="/about/flat/js/jquery.ui.touch-punch.min.js"></script>
@@ -537,6 +573,7 @@
     </script>
 	<script src="about.js"></script>
 	<link href="aboutCss.css" rel="stylesheet">
+	<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
   </body>
 
 </html>
