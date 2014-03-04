@@ -80,10 +80,17 @@ function loadClient(callback) {
 function init() {
 	//if # but not ?
 	if(doc_url.indexOf("#") !== -1 && doc_url.indexOf("?") === -1){
-		get_info();
-		getContentOfFile(doc_url.split("#")[1]);
-		getTitle(doc_url.split("#")[1]);
-		setPercent("80");
+		if(doc_url.indexOf("state") === -1){
+			get_info();
+			getContentOfFile(doc_url.split("#")[1]);
+			getTitle(doc_url.split("#")[1]);
+			setPercent("80");
+		}
+		else{
+			welcome();
+			get_info();
+			setPercent("65");
+		}
 	}
 	//if neither
 	else if(doc_url.indexOf("#") === -1 && doc_url.indexOf("?") === -1){
@@ -136,10 +143,28 @@ function get_info(){
         var user_q = resp.quotaBytesUsedAggregate;
         $("#loading").html("Retrieved user usage...");
         var product_q = Math.round(user_q/total_q * 100);
-        $("#knob").val(product_q).trigger('change');
-        $("#knob").val(product_q+"%");
+        //$("#knob").val(product_q).trigger('change');
+        //$("#knob").val(product_q+"%");
+        $("#capacity_used").html(bytesToSize(user_q));
+        $("#capacity_total").html(bytesToSize(total_q));
+        $("#capacity_percent").html(product_q+"%");
+        if(product_q > 75){
+        	$("#capacity_percent").css("color", "#E74C3C");
+        }
+        else if(product_q > 40){
+        	$("#capacity_percent").css("color", "#F39C12");
+        }
+        else{
+        	$("#capacity_percent").css("color", "#27AE60");
+        }
     });
 }
+function bytesToSize(bytes) {
+   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+   if (bytes == 0) return '0 Bytes';
+   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+};
 /*********
 SAVE FILE
 **********/

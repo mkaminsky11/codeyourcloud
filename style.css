@@ -326,15 +326,14 @@ table {
 	width: auto;
 	overflow-y: auto;
 	overflow-x: hidden;
-	float:left;
-	margin: 0px;
-	height: 600px;
+	float: none;
+	height: 775px;
 }
 #mode_ul {
 	list-style-type: none;
 	width: auto;
-	float:left;	
-	height: 600px;
+	float: none;	
+	height: 775px;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -419,3 +418,19 @@ iframe {
 .ruler4 { border-left: 1px solid #aff; }
 .ruler5 { border-left: 1px solid #ccf; }
 .ruler6 { border-left: 1px solid #fcf; }
+
+#capacity_percent {
+	background-color: #ECF0F1;
+	border-radius: 5px;
+	width: 70px;
+	padding: 10px;
+}
+.jumbotron {
+	width: 836px;
+}
+.b-left {
+	width: 300px;
+}
+.b-right {
+	width: 440px;
+}

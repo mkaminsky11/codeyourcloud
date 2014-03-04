@@ -75,6 +75,7 @@ body {
 .tile {
 	margin-right: 5%;
 	margin-bottom: 5%;
+	width: 28%;
 	height: 100%;
 }
 .gridster > ul > li {
@@ -125,4 +126,16 @@ body {
 }
 .b-left{
 	border-left: thin #736f6f solid;
+}
+.jumbotron {
+	width: 836px;
+}
+.b-left {
+	width: 440px;
+}
+.b-right {
+	width: 300px;
+}
+.go-right {
+	margin-left: 10%;
 }

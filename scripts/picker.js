@@ -2,7 +2,7 @@
 OPEN FILE
 ***********/
 function purge(){
-    $(".dcs-bd-dcs-c-dcs-ad").remove();
+    $(".dcs-wc-dcs-c-dcs-vc").remove();
 }
 function loadOPicker() {
     purge();
