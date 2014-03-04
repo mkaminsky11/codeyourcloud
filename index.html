@@ -352,8 +352,8 @@
 				<ul class="nav navbar-nav navbar-left">
 					<li>
 					<div class="btn-group " id="ok_cancel_group">
-						<button onclick="okRename()" class="btn btn-success" id="ok_rename"><i class="fa fa-check"></i></button>
-						<button onclick="cancelRename()" class="btn btn-danger" id="cancel_rename"><i class="fa fa-ban"></i></button>
+						<button data-toggle="tooltip" data-placement="top" title="Rename the file" onclick="okRename()" class="btn btn-success" id="ok_rename"><i class="fa fa-check"></i></button>
+						<button data-toggle="tooltip" data-placement="top" title="Don't rename the file"onclick="cancelRename()" class="btn btn-danger" id="cancel_rename"><i class="fa fa-ban"></i></button>
 					</div>
 					</li>
 				</ul>
@@ -416,7 +416,7 @@
 									<li class="list-group-item" onclick="setMode('.html')">HTML</li>
 									<li class="list-group-item" onclick="setMode('.php')">PHP</li>
 						    		<li class="list-group-item" onclick="setMode('.js')">Javascript</li>
-									<li class="list-group-item" onclick="setMode('.coffee')">Coffeescript</li>
+									<li class="list-group-item" onclick="setMode('.coffee')">Coffee<br/>script</li>
 									<li class="list-group-item" onclick="setMode('.py')">Python</li>
             						<li class="list-group-item" onclick="setMode('.pl')">Perl</li>
             						<li class="list-group-item" onclick="setMode('.xml')">XML</li>
@@ -451,7 +451,7 @@
 									<li class="list-group-item" onclick="setMode('.sieve')">Sieve</li>
 									<li class="list-group-item" onclick="setMode('.xquery')">Xquery</li>
 									<li class="list-group-item" onclick="setMode('.gfm')">Github Markdown</li>
-									<li class="list-group-item" onclick="setMode('.lisp')">CommonLisp</li>
+									<li class="list-group-item" onclick="setMode('.lisp')">Common<br/>Lisp</li>
 									<li class="list-group-item" onclick="setMode('.dtd')">DTD</li>
 									<li class="list-group-item" onclick="setMode('.e')">Eiffel</li>
 									<li class="list-group-item" onclick="setMode('.mrc')">Mirc</li>
@@ -666,6 +666,8 @@
 			jwerty.key('ctrl+space/cmd+space', function() {
 				getHint();
 			});
+			$('#ok_rename').tooltip('hide');
+			$('#cancel_rename').tooltip('hide');
 		</script>
 	</body>
 </html>
