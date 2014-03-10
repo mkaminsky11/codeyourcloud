@@ -147,16 +147,7 @@ function get_info(){
         //$("#knob").val(product_q+"%");
         $("#capacity_used").html(bytesToSize(user_q));
         $("#capacity_total").html(bytesToSize(total_q));
-        $("#capacity_percent").html(product_q+"%");
-        if(product_q > 75){
-        	$("#capacity_percent").css("color", "#E74C3C");
-        }
-        else if(product_q > 40){
-        	$("#capacity_percent").css("color", "#F39C12");
-        }
-        else{
-        	$("#capacity_percent").css("color", "#27AE60");
-        }
+        clock.setTime(product_q);
     });
 }
 function bytesToSize(bytes) {
@@ -165,6 +156,13 @@ function bytesToSize(bytes) {
    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
 };
+/**********
+CLOCK
+***********/
+var clock = $('.clock').FlipClock(0, {
+	clockFace: 'Counter'
+});
+clock.stop(function(){});
 /*********
 SAVE FILE
 **********/
@@ -214,36 +212,6 @@ if(ok && online){
 }
 if(!online){
 	    $('#offlineModal').modal('show');
-    }
-}
-/*********
-BROWSER
-*********/
-function goBrowser(){
-    if(online){
-        var current_url = $("#url_input").val()
-        if(current_url.indexOf("https://") !== -1){
-            try{
-                $("#browser_window").attr('src', current_url);
-            }
-            catch(e){
-                $("#browser_window").attr('src', 'https://codeyourcloud.com/error/browser/https.html');
-            }
-        }
-        else{
-            if(current_url.indexOf("http://") === -1){
-                $("#url_input").val("https://"+current_url);
-                try{
-                    $("#browser_window").attr('src', "https://"+current_url);
-                }
-                catch(e){
-                    $("#browser_window").attr('src', 'https://codeyourcloud.com/error/browser/https.html');
-                }
-            }
-            else{
-                $("#browser_window").attr('src', 'https://codeyourcloud.com/error/browser/https.html');
-            }
-        }
     }
 }
 /**********

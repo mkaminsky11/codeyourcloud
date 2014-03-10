@@ -282,8 +282,16 @@ nt-face {
 	width: 100%;
 }
 #theTabs > button {
-	width: 25%;
 	border-radius: 0px;
+}
+#b-left {
+	width:33%;
+}
+#b-right {
+	width:33%;
+}
+#b-mid {
+	width:34%;
 }
 .float-left {
 	float: left;
@@ -376,13 +384,17 @@ markdown
 .CodeMirror-empty { outline: 1px solid #c22; }
 .CodeMirror-empty.CodeMirror-focused { outline: none; }
 .CodeMirror pre.CodeMirror-placeholder { color: #999; }
-
-#logo_pic {
-	margin-top: 2px;
-	border: none;
+#img_a {
+	background-image: url('images/logo.svg');
+	visibility: visible;
+	height: 53px;
+	width: 70px;
+	background-size: 53px 53px;
+	background-repeat: no-repeat;
+	padding: 2px;
 }
-#logo_pic:hover {
-	border: solid thin white;
+#img_a:hover {
+	opacity: 0.5;
 }
 iframe {
     width: 100%;
@@ -433,4 +445,11 @@ iframe {
 }
 .b-right {
 	width: 440px;
+}
+#logo_pic {
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+#line_num_switch>small{
+	left: 20px;
 }

@@ -3,6 +3,16 @@ var isWelcome = false; //welcome screen
 var wasBlank = false; //if data was originally blank
 $("#side").css("z-index", -1);
 $("#container").css('backgroundColor', $(".CodeMirror").css('backgroundColor'));
+var yes_context = true;
+/**************
+CONTEXT MENU
+**************/
+$(window).bind('contextmenu', function(e) {
+   // do stuff here instead of normal context menu
+   if(!yes_context){
+   	return false;
+   }
+});
 /*******************
 CODEMIRROR/VIM STUFF
 *******************/
@@ -22,10 +32,12 @@ codeMirror.on("change", function(cm, change) {
 	setState("unsaved");
 	checkUndo(); //can you undo?
 	clearTimeout(delay);
-    	delay = setTimeout(updatePreview, 300);
-	if(codeMirror.getOption("mode").indexOf("javascript") !== -1 && change.text === " "){
-		server.complete(codeMirror);
-	}
+    delay = setTimeout(updatePreview, 300);
+	yes_context = true;
+});
+codeMirror.on("cursorActivity", function(cm, change) {
+var display = codeMirror.getDoc().getCursor().ch + "|" + codeMirror.getDoc().getCursor().line; 
+$("#indicator").html(display);
 });
 codeMirror.setOption("autoCloseBrackets",true);
 codeMirror.setOption("matchBrackets",true);
@@ -77,6 +89,10 @@ function welcome() {
 	addClass("ok_rename", "disabled");
 	//document.getElementById("cancel_rename").style.visibility="hidden";
 	addClass("cancel_rename", "disabled");
+	
+	$("#save_li").remove();
+	$("#share_li").remove();
+	$("#autoButton").remove();
 	isWelcome = true;
     document.getElementById("note").innerHTML = "All Changes Saved To Drive";
 	setPercent("100");
@@ -518,7 +534,7 @@ function setPercent(per){
 				$('#ok_rename').tooltip('hide');
 				$('#cancel_rename').tooltip('hide');
 			});
-		}, 500);
+		}, 1000);
 	}
 	if(per === "0"){
 	}
@@ -558,6 +574,7 @@ function startTern(){
 SHOW HINT
 **********/
 function getHint(){
+	yes_context = false;
 	if(codeMirror.getOption("mode").indexOf("javascript") !== -1){
 	}
 	if(codeMirror.getOption("mode").indexOf("css") !== -1){
@@ -713,7 +730,7 @@ document.getElementById("the-arrow").innerHTML = "<i class='fa fa-caret-square-o
 $("#side-arrow").attr("onclick","openSide()");
 
 function bootHide(id){
-	document.getElementById(id).className = document.getElementById(id).className + " hide";
+	$("#"+id).addClass("hide");
 }
 function notes(){
     if(sideView !== 1){
@@ -722,7 +739,6 @@ function notes(){
 		removeClass("pad", " hide");
 		bootHide("todo");
 		bootHide("docs");
-		bootHide("brow");
     }
 }
 function docs(){
@@ -732,7 +748,6 @@ function docs(){
 		removeClass("docs", " hide");
 		bootHide("pad");
 		bootHide("todo");
-		bootHide("brow");
     }
 }
 function todo(){
@@ -742,19 +757,8 @@ function todo(){
 		removeClass("todo", " hide");
 		bootHide("docs");
 		bootHide("pad");
-		bootHide("brow");
 		refreshTodo("");
     }
-}
-function brow(){
-	if(sideView !== 4){
-		sideView = 4;
-		removeClass("brow", "hide");
-		removeClass("brow", " hide");
-		bootHide("docs");
-		bootHide("pad");
-		bootHide("todo");
-	}
 }
 function httpGet(theUrl)
 {
@@ -870,11 +874,7 @@ $( "#search_todo" ).keypress(function() {
   refreshTodo($("#search_todo").val());
 });
 function removeClass(id, classToRemove){
-	var e = document.getElementById(id);
-	var classes = ""+e.className;
-	var s = classes.split(classToRemove);
-	var fin = s.join("");
-	document.getElementById(id).className = fin;
+	$("#" + id).removeClass(classToRemove);
 }
 function show_terminal(){
 	if(sideOpen === false){
@@ -1022,7 +1022,17 @@ function moveRight(){
 /*****************
 COMMENTS
 *****************/
-function comment(){
+function line_comment(){
+	if(codeMirror.getDoc().somethingSelected()){
+		var begin = codeMirror.getCursor(true);
+		var end = codeMirror.getCursor(false);
+		codeMirror.lineComment(begin, end);
+	}
+	else{
+		sendMessage("nothing selected", "error");
+	}
+}
+function block_comment(){
 	if(codeMirror.getDoc().somethingSelected()){
 		var begin = codeMirror.getCursor(true);
 		var end = codeMirror.getCursor(false);
