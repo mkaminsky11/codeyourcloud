@@ -163,7 +163,8 @@ nt-face {
 	padding-top: 5px;
 	margin: 0px;
 	overflow-y: scroll;
-	background-color: white;
+	background-color: #ecf0f1;
+	border-radius: 0px;
 }
 #the-arrow {
 	color: white;

@@ -39,11 +39,13 @@ function comment(){
 	document.getElementById("comment_name").value = "";
 	document.getElementById("comment_mail").value = "";
 	document.getElementById("comment_comment").value = "";
+	sendMessage("thank you!", "success");
 }
 function resetForm(){
 	document.getElementById("comment_name").value = "";
 	document.getElementById("comment_mail").value = "";
 	document.getElementById("comment_comment").value = "";	
+	sendMessage("form reset", "error");
 }
 function strip(string){
 	return string.replace(/(<([^>]+)>)/ig,"");

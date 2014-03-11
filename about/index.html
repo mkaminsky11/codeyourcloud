@@ -10,7 +10,6 @@
     <title>Code Your Cloud | About</title>
     <meta name="description" content="The about page for Code Your Cloud, an in-browser code editor">
 
-    <!-- Loading Bootstrap -->
     <link href="/about/fl/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Loading Flat UI -->
@@ -287,6 +286,16 @@
 		    <td><a href="https://github.com/f/loremjs">github.com/f/loremjs</a></td>
 		    <td>Random "latin" text generator</td>
 		</tr>
+		<tr>
+			<td>Switchery</td>
+			<td><a href="http://abpetkov.github.io/switchery/">abpetkov.github.io/switchery/</a></td>
+			<td>iOS-style switches</td>
+		</tr>
+		<td>
+			<td>FlipClock.js</td>
+			<td><a href="http://flipclockjs.com/">flipclockjs.com</a></td>
+			<td>Flipclocks and counters</td>
+		</td>
         </table>
         
         
@@ -399,7 +408,7 @@
 		</ul>
 		</div>
 
-        <h4>Autocomplete  <img src="flat/images/icons/svg/retina.svg" height="20px"/></h4>
+        <h4>Autocomplete</h4>
         <p>The following languages support autocomplete, which can be triggered with Ctrl+space</p>
         <ul id="auto">
         	<li>Javascript</li>
@@ -408,7 +417,7 @@
         	<li>Python</li>
         	<li>XML</li>
         </ul>
-        <h4 id="todo-list">Todo List  <img src="flat/images/icons/svg/clipboard.svg" height="20px"/></h4>
+        <h4 id="todo-list">Todo List</h4>
         <p>In order to use the todo list, use the 3 keywords</p>
         <pre>
         //NOTE: a note
@@ -517,7 +526,7 @@
         <p>With Code Your Cloud, you can open, share, edit, upload, and save Google Drive files.</p>
         <h6>Opening</h6>
         <p>Click the <i class="fa fa-folder-open"></i> icon, or the "open" menu item.<br/>Note: code your cloud CANNOT open Google Docs or Microsoft Office documents.</p>
-        <h6>Sharing  <img src="flat/images/icons/svg/chat.svg" height="20px"/></h6>
+        <h6>Sharing</h6>
         <p>In order to allow other people to access your files, click the "share" menu item. If you have not added people to the list of authorized collaborators, they will not be allowed to access the file.</p>
         <h6>Creating</h6>
         <p>Click the "new" menu item. The document will be titled by its unique file id (a very long string of characters) to prevent name collisions. The file will be created in the root folder of your Google Drive.</p>
@@ -535,7 +544,7 @@
         <textarea class="form-control login-field" id="comment_comment" value="" placeholder="Comment" rows="10"></textarea>
         <br/>
         <button class="btn btn-success" onclick="comment()">Comment</button>
-        <button class="btn btn-danger" type="reset" value="Reset">Reset</button>
+        <button class="btn btn-danger" onclick="resetForm()" value="Reset">Reset</button>
         
         <h2 id="donate">Donate</h2>
         <h6>Where do donations go?</h6>

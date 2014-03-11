@@ -41,6 +41,7 @@ $("#indicator").html(display);
 });
 codeMirror.setOption("autoCloseBrackets",true);
 codeMirror.setOption("matchBrackets",true);
+
 CodeMirror.commands.save = function() {
 	//:w -> save
 	save();
@@ -736,7 +737,6 @@ function notes(){
     if(sideView !== 1){
 		sideView = 1;
 		removeClass("pad", "hide");
-		removeClass("pad", " hide");
 		bootHide("todo");
 		bootHide("docs");
     }
@@ -745,7 +745,6 @@ function docs(){
     if(sideView !== 2){
 		sideView = 2;
 		removeClass("docs", "hide");
-		removeClass("docs", " hide");
 		bootHide("pad");
 		bootHide("todo");
     }
@@ -754,7 +753,6 @@ function todo(){
     if(sideView !== 3){
 		sideView = 3;
 		removeClass("todo", "hide");
-		removeClass("todo", " hide");
 		bootHide("docs");
 		bootHide("pad");
 		refreshTodo("");
@@ -842,6 +840,7 @@ function createTodo(note, line, character, kind){
 	catch(e){}
 }
 function refreshTodo(sort){
+	var found_one = false;
 	$("#todo_ul").html("");
 	$("#search_todo").val(sort);
 	var code = codeMirror.getValue();
@@ -853,6 +852,8 @@ function refreshTodo(sort){
 			var token = lines[i].split("NOTE:")[1];
 			if(token.indexOf(sort) !== -1){
 				createTodo(token, i, 0, "note");
+				$("#nothing").addClass("hide");
+				found_one = true;
 			}
 		}
 		if(lines[i].indexOf("TODO:") !== -1 && done === false){
@@ -860,14 +861,21 @@ function refreshTodo(sort){
 			var token = lines[i].split("TODO:")[1];
 			if(token.indexOf(sort) !== -1){
 				createTodo(token, i, 1, "todo");
+				$("#nothing").addClass("hide");
+				found_one = true;
 			}
 		}
 		if(lines[i].indexOf("FIXME:") !== -1 && done === false){
 			var token = lines[i].split("FIXME:")[1];
 			if(token.indexOf(sort) !== -1){
 				createTodo(token, i, 2, "fixme");
+				$("#nothing").addClass("hide");
+				found_one = true;
 			}
 		}
+	}
+	if(!found_one){
+		$("#nothing").removeClass("hide");
 	}
 }
 $( "#search_todo" ).keypress(function() {
