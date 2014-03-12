@@ -79,16 +79,12 @@ setTimeout(updatePreview, 300);
 OPEN THE FILE
 *************/
 function welcome() {
-	//hide things
+	$("#col_li").remove();
 	document.getElementById("will_close").style.visibility = "hidden";
 	document.getElementById("note").style.visibility="hidden";
-	//document.getElementById("headerButton_save_right").style.visibility="hidden";
 	addClass("headerButton_save_right", "disabled");
-	//document.getElementById("renameInput").style.visibility="hidden";
 	$("#renameInput").attr("disabled", "disabled");
-	//document.getElementById("ok_rename").style.visibility="hidden";
 	addClass("ok_rename", "disabled");
-	//document.getElementById("cancel_rename").style.visibility="hidden";
 	addClass("cancel_rename", "disabled");
 	
 	$("#save_li").remove();

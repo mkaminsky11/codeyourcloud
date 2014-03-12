@@ -143,8 +143,6 @@ function get_info(){
         var user_q = resp.quotaBytesUsedAggregate;
         $("#loading").html("Retrieved user usage...");
         var product_q = Math.round(user_q/total_q * 100);
-        //$("#knob").val(product_q).trigger('change');
-        //$("#knob").val(product_q+"%");
         $("#capacity_used").html(bytesToSize(user_q));
         $("#capacity_total").html(bytesToSize(total_q));
         clock.setTime(product_q);

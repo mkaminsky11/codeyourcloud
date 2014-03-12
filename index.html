@@ -148,15 +148,16 @@
 		
 		<script src="lib/messenger/build/js/messenger.min.js"></script>
 		<script src="lib/messenger/build/js/messenger-theme-flat.js"></script>
-		<link rel="stylesheet" href="lib/messenger/build/css/messenger.css" async="true">
-		<link rel="stylesheet" href="lib/messenger/build/css/messenger-theme-flat.css" async="true">
+		<link rel="stylesheet" href="lib/messenger/build/css/messenger.css" async="true"/>
+		<link rel="stylesheet" href="lib/messenger/build/css/messenger-theme-flat.css" async="true"/>
 		
 		<script src="/lib/jsPDF/jspdf.min.js" async="true"></script>
 		
-		<link rel="stylesheet" href="lib/switchery/dist/switchery.min.css" async="true">
+		<link rel="stylesheet" href="lib/switchery/dist/switchery.min.css" async="true"/>
 		<script src="lib/switchery/dist/switchery.min.js"></script>
 		
-		<link rel="stylesheet" href="lib/FlipClock/compiled/flipclock.css" async="true">
+		<link rel="stylesheet" href="lib/FlipClock/compiled/flipclock.css" async="true"/>
+		
 	</head>
 	<body onload="handleClientLoad()">
 		<link rel='stylesheet' type='text/css' href='style.css'>
@@ -183,8 +184,11 @@
 							<li onclick="folderPickerNew()"><a>New</a></li>
 							<li onclick="uploadPicker()"><a>Upload</a></li>
 							<li id="share_li" onclick="loadShare()"><a>Share</a></li>
+							<li class="divider"></li>
 							<li onclick="downloadFile()"><a>Download</a></li>
 							<li onclick="to_pdf()"><a>Download as PDF</a></li>
+							<li class="divider"></li>
+							<li onclick="TogetherJS(this);return false" id="col_li"><a>Collaborate</a></li>
 						</ul>
 					</li>
 					<li class="dropdown" id="codedropdown">
@@ -192,8 +196,10 @@
 						<ul class="dropdown-menu">
 							<li onclick="navUndo()"><a>Undo</a></li>
 							<li onclick="navRedo()"><a>Redo</a></li>
+							<li class="divider"></li>
 							<li onclick="moveLeft()"><a>Move left</a></li>
 							<li onclick="moveRight()"><a>Move right</a></li>
+							<li class="divider"></li>
 							<li onclick="line_comment()"><a>Line comment</a></li>
 							<li onclick="block_comment()"><a>Block comment</a></li>
 							<li onclick="uncomment()"><a>Uncomment</a></li>
@@ -213,7 +219,7 @@
 					</li>
 					<li class="" id="will_close">
 						<div class="btn-group">
-							<button id="col_button" class="btn btn-success" onclick="TogetherJS(this);return false"><i class="fa fa-comment"></i></button>
+							<button data-toggle="tooltip" data-placement="bottom" title="Start/stop collaboration" id="col_button" class="btn btn-success" onclick="TogetherJS(this);return false"><i class="fa fa-comment"></i></button>
 							<button id ="note" class="btn btn-default" onclick="save()">All Changes Saved To Drive</button>
 						</div>	
 					</li>
@@ -260,7 +266,7 @@
 			<div class="collapse navbar-collapse" id="theNavBar2">
 				<ul class="nav navbar-nav">
 					<!--actions-->
-					<li class=" " onclick="openSide()" id="side-arrow"><a id="the-arrow"><i class="fa fa-caret-square-o-left"></i></a></li>
+					<li class=" " onclick="openSide()" id="side-arrow"><a data-position='top' id="the-arrow"><i class="fa fa-caret-square-o-left"></i></a></li>
 				</ul>
 				<form id="rename_form" class="navbar-form navbar-left no_submit" role="search">
 					<div class="form-group">
@@ -291,7 +297,7 @@
 					</div>
 					<div class="modal-body">
 						<div class="row">
-							<div class="col-md-4">
+							<div class="col-sm-4">
 								<h5>Theme</h5>
 								<ul id="theme_ul" class="list-group">
 				            				<li class="list-group-item" onclick = "setTheme('3024-day')">3024-day</li>
@@ -321,7 +327,7 @@
               								<li class="list-group-item" onclick = "setTheme('solarized')">solarized</li>
 								</ul>
 							</div>
-							<div class="col-md-4">
+							<div class="col-sm-4">
 								<h5>Mode</h5>
 								<ul id="mode_ul">
 								    <li class="list-group-item" onclick="setMode('.txt')">Text</li>
@@ -377,7 +383,7 @@
 									<li class="list-group-item" onclick="setMode('.tex')">LaTex</li>
 								</ul>
 							</div>
-							<div class="col-md-4">
+							<div class="col-sm-4">
 								<h5>Other</h5>
 								<h6>Navbar color</h6>
 								<a id="nav_color" onclick="showNavColor()" class="btn btn-primary">Change</a>
@@ -569,6 +575,7 @@
 			});
 			$('#ok_rename').tooltip('hide');
 			$('#cancel_rename').tooltip('hide');
+			$('#col_button').tooltip('hide');
 			
 			var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
