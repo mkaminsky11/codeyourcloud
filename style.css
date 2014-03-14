@@ -395,7 +395,8 @@ markdown
 	padding: 2px;
 }
 #img_a:hover {
-	opacity: 0.5;
+	/*-webkit-filter: hue-rotate(270deg); */
+	-webkit-filter: brightness(2.8);
 }
 iframe {
     width: 100%;

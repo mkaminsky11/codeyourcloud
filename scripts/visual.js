@@ -27,7 +27,6 @@ var codeMirror = CodeMirror(document.getElementById("content"), {
     indentUnit: 4, 
     indentWithTabs: true
 });
-//for rulers add: rulers: rulers
 codeMirror.on("change", function(cm, change) {
 	setState("unsaved");
 	checkUndo(); //can you undo?
