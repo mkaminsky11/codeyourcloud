@@ -45,7 +45,17 @@
         }
         function handleLogin(authResult) {
             if (authResult) {
-                window.location.href="https://codeyourcloud.com";
+            	if(document.URL.indexOf("#") !== -1){
+            		var r = document.URL.split("#")[1];
+					window.location = 'https://codeyourcloud.com#' + r;
+            	}
+            	if(document.URL.indexOf("?") !== -1 && (document.URL.indexOf("create") !== -1 || document.URL.indexOf("open")) !== -1){
+					var r1 = document.URL.split("?")[1];
+					window.location = 'https://codeyourcloud.com?' + r1;
+				}
+            	else{
+                	window.location.href="https://codeyourcloud.com";
+            	}
             } 
             else {
             }

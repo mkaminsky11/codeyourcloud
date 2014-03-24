@@ -32,6 +32,7 @@
   <li>Vim modes</li>
   <li>Preferences</li>
   <li>Google Drive integration</li>
+  <li>Run (javascript only, for now)</li>
 </ul>
 =====
 ###Supported Languages###

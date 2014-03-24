@@ -113,6 +113,7 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
     var e = exten(fileValue);
     codeMirror.setOption("mode", "text"); //default
     codeMirror.setOption("extraKeys", {});
+    $(".run-button").addClass("hide");
     switch(e){
         case "java":
             codeMirror.setOption("mode", "text/x-java");
@@ -143,6 +144,7 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
             codeMirror.setOption("mode", "text/javascript");
             startTern();
             removeClass("autoButton","hide");
+            $(".run-button").removeClass("hide");
             break;
         case "coffee":
             codeMirror.setOption("mode", "coffeescript");

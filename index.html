@@ -215,6 +215,7 @@
 							<li onclick="$('#previewModal').modal('show')"><a>Preview</a></li>
 							<li id="autoButton" onclick="getHint()"><a>Autocomplete</a></li>
 							<li onclick="$('#randomModal').modal('show')"><a>Lorem generator</a></li>
+							<li onclick="run()" class="run-button"><a>Run</a></li>
 						</ul>
 					</li>
 					<li class="" id="will_close">
@@ -229,6 +230,7 @@
 					<div class="btn-group toolBAR">
 					<button class="btn btn-primary" id="openB" onclick="loadOPicker()"><span class="glyphicon glyphicon-folder-open"></span></button>
 					<button class="btn btn-primary" onclick="save()" id="headerButton_save_right"><i class="fa fa-floppy-o"></i></button>
+					<button class="btn btn-primary run-button" onclick="run()"><i class="fa fa-play"></i></button>
 					<button class="btn btn-primary" id="undoB" onclick="navUndo()"><i class="fa fa-reply"></i></button>
 					<button class="btn btn-primary" id="redoB" onclick="navRedo()"><i class="fa fa-share"></i></button>
 					</div>

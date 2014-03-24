@@ -70,7 +70,17 @@ function handleAuthResult(authResult) {
 		loadClient(init);
 	} 
 	else {
-		window.location = 'https://codeyourcloud.com/dashboard'; 
+		if(document.URL.indexOf("#") !== -1){
+			var r = document.URL.split("#")[1];
+			window.location = 'https://codeyourcloud.com/dashboard#' + r;
+		}
+		if(document.URL.indexOf("?") !== -1 && (document.URL.indexOf("create") !== -1 || document.URL.indexOf("open")) !== -1){
+			var r1 = document.URL.split("?")[1];
+			window.location = 'https://codeyourcloud.com/dashboard?' + r1;
+		}
+		else{
+			window.location = 'https://codeyourcloud.com/dashboard';
+		}
 	}
 }
 function loadClient(callback) {
@@ -278,4 +288,12 @@ function start_anaytics(){
 				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 			ga('create', 'UA-47415821-1', 'codeyourcloud.com');
 			ga('send', 'pageview');
+}
+/***********
+RUN
+***********/
+function run(){
+	if(codeMirror.getOption("mode").indexOf("javascript") !== -1){
+		eval(codeMirror.getValue());
+	}
 }
