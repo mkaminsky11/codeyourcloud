@@ -133,16 +133,16 @@
 		
 		<script src="/lib/codemirror/addon/edit/edit.min.js"></script>
 		
-		<script src="/lib/auto/acorn.js"></script>
-		<script src="/lib/auto/acorn_loose.js"></script>
-		<script src="/lib/auto/walk.js"></script>
-		<script src="/lib/auto/polyfill.js"></script>
-		<script src="/lib/auto/signal.js"></script>
-		<script src="/lib/auto/tern.js"></script>
-		<script src="/lib/auto/def.js"></script>
-		<script src="/lib/auto/comment.js"></script>
-		<script src="/lib/auto/infer.js"></script>
-		<script src="/lib/auto/doc_comment.js"></script>
+		<script src="lib/auto/acorn.js"></script>
+		<script src="lib/auto/acorn_loose.js"></script>
+		<script src="lib/auto/walk.js"></script>
+		<script src="lib/auto/polyfill.js"></script>
+		<script src="lib/auto/signal.js"></script>
+		<script src="lib/auto/tern.js"></script>
+		<script src="lib/auto/def.js"></script>
+		<script src="lib/auto/comment.js"></script>
+		<script src="lib/auto/infer.js"></script>
+		<script src="lib/auto/doc_comment.js"></script>
 		
 		<link rel="stylesheet" href="/lib/color/css/bootstrap-colorpicker.min.css">
 		
@@ -151,18 +151,19 @@
 		<link rel="stylesheet" href="lib/messenger/build/css/messenger.css" async="true"/>
 		<link rel="stylesheet" href="lib/messenger/build/css/messenger-theme-flat.css" async="true"/>
 		
-		<script src="/lib/jsPDF/jspdf.min.js" async="true"></script>
+		<script src="lib/jsPDF/jspdf.min.js" async="true"></script>
 		
 		<link rel="stylesheet" href="lib/switchery/dist/switchery.min.css" async="true"/>
 		<script src="lib/switchery/dist/switchery.min.js"></script>
 		
 		<link rel="stylesheet" href="lib/FlipClock/compiled/flipclock.css" async="true"/>
 		
+		<script src="lib/Snap.svg/dist/snap.svg-min.js"></script>
+		
 	</head>
 	<body onload="handleClientLoad()">
 		<link rel='stylesheet' type='text/css' href='style.css'>
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<!--nav class="navbar navbar-default navbar-fixed-top" role="navigation"-->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav1">
 					<span class="sr-only">Toggle navigation</span>
@@ -173,9 +174,10 @@
 			</div>
 			<div class="collapse navbar-collapse" id="nav1">
 				<ul class="nav navbar-nav">
-					<li class="logo" id="logo">
+					<li class="logo_svg"><a id = "img_a_svg" href="https://codeyourcloud.com/about"><svg id="svg"></svg></a></li>
+					<!--li class="logo" id="logo">
 						<a id="img_a" href="https://codeyourcloud.com/about"></a>
-					</li>
+					</li-->
 					<li class="dropdown" id="codedropdown">
 						<a class="dropdown-toggle" id="dropdown-toggle-code" data-toggle="dropdown">File</a>
 						<ul class="dropdown-menu">

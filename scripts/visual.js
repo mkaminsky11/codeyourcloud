@@ -3,6 +3,7 @@ var isWelcome = false; //welcome screen
 var wasBlank = false; //if data was originally blank
 $("#side").css("z-index", -1);
 $("#container").css('backgroundColor', $(".CodeMirror").css('backgroundColor'));
+$(".run-button").addClass('hide');
 var yes_context = true;
 /**************
 CONTEXT MENU
@@ -1057,3 +1058,41 @@ function uncomment(){
 		sendMessage("nothing selected", "error");
 	}	
 }
+/*
+SNAP
+*/
+/*
+if(document.URL.indexOf("0ByWSHHBN-zyoaGs2WVgxNE1Cczg") === -1){
+	$(".logo_svg").remove();
+	$("#svg").remove();
+}
+else{
+	$("#img_a").remove();
+	$(".logo").remove();
+}*/
+var snap = Snap("#svg");
+//var background = snap.rect(0,0,52,52);
+var background = snap.path("M0 0L52 0L52 52L0 52Z");
+background.attr({
+    fill: "#2C3E50"
+});
+//var left_red = snap.rect(2,2,23,48);
+var left_red = snap.path("M2 2L25 2L25 50L2 50Z");
+left_red.attr({
+	fill: "#C0392B"
+});
+//var right_blue = snap.rect(27,2,23,48);
+var right_blue = snap.path("M27 2L50 2L50 50L27 50Z");
+right_blue.attr({
+	fill: "#3498DB"
+});
+//var middle_gray = snap.rect(10,10,32,32);
+var middle_gray = snap.path("M10 10L42 10L42 42L10 42Z");
+middle_gray.attr({
+    fill: "#2C3E50"
+});
+//var middle_green = snap.rect(12,12,28,28);
+var middle_green = snap.path("M12 12L40 12L40 40L12 40Z");
+middle_green.attr({
+	fill: "#2ECC71"
+});
