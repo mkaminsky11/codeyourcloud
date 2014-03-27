@@ -4,6 +4,7 @@ var wasBlank = false; //if data was originally blank
 $("#side").css("z-index", -1);
 $("#container").css('backgroundColor', $(".CodeMirror").css('backgroundColor'));
 $(".run-button").addClass('hide');
+$("#console_toggle").addClass("hide");
 var yes_context = true;
 /**************
 CONTEXT MENU
@@ -99,7 +100,7 @@ function welcome() {
 	{
 		if (txtFile.readyState === 4) {  // document is ready to parse.
 			if (txtFile.status === 200) {  // file is found
-				allText = txtFile.responseText; 
+				var allText = txtFile.responseText; 
 				codeMirror.setValue(allText);
 			}
 		}
@@ -115,6 +116,7 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
     codeMirror.setOption("mode", "text"); //default
     codeMirror.setOption("extraKeys", {});
     $(".run-button").addClass("hide");
+    $("#console_toggle").addClass("hide");
     switch(e){
         case "java":
             codeMirror.setOption("mode", "text/x-java");
@@ -146,6 +148,7 @@ function checkFileName(fileValue) { //adjusts the mode based on the file name
             startTern();
             removeClass("autoButton","hide");
             $(".run-button").removeClass("hide");
+            $("#console_toggle").removeClass("hide");
             break;
         case "coffee":
             codeMirror.setOption("mode", "coffeescript");
@@ -1096,3 +1099,50 @@ var middle_green = snap.path("M12 12L40 12L40 40L12 40Z");
 middle_green.attr({
 	fill: "#2ECC71"
 });
+
+/************
+CONSOLE
+************/
+var console_open = false;
+function openConsole(){
+	if(!console_open){
+		console_open = true;
+		$("#content").animate({
+			height: "61%"
+		}, 1000);
+	}
+	codeMirror.refresh();
+}
+function closeConsole(){
+	if(console_open){
+		console_open = false;
+		$("#content").animate({
+			height: "99%"
+		}, 1000);
+	}
+	codeMirror.refresh();
+}
+var con = CodeMirror(document.getElementById("console_screen"), {
+    mode: "text/javascript",
+    lineWrapping: false, 
+    theme: "cobalt",
+    indentUnit: 4, 
+    indentWithTabs: true,
+    readOnly: true
+});
+
+clearConsole();
+function printToConsole(toPrint){
+	con.setValue(con.getValue() + "\n>> " + toPrint);
+}
+function clearConsole(){
+	con.setValue(">>");
+}
+function toggle_console(){
+	if(console_open){
+		closeConsole();
+	}
+	else{
+		openConsole();
+	}
+}

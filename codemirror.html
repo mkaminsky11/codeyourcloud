@@ -56,14 +56,11 @@
 				location.reload();
 			}
         </script>
-        <!--********
-        *
-        *ACE
-        *
-        *******-->
         
+		<script src = "/lib/codemirror/lib/codemirror.js"></script>
+		<link rel='stylesheet' type='text/css' href='/lib/codemirror/lib/codemirror.css' async="true">
 		
-		<link rel='stylesheet' type='text/css' href='style.ace.css'>
+		<link rel='stylesheet' type='text/css' href='style.css'>
 		<!--
 		*
 		*
@@ -87,6 +84,12 @@
       			<script src="/about/fljs/respond.min.js"></script>
     		<![endif]-->
 		<!--MODES-->
+
+
+		<script src = '/lib/codemirror/mode/css/css.js' async="true"></script>
+		<script src = "/lib/codemirror/mode/mode.js" async="true"></script>
+		<!--THEMES-->
+		<link rel='stylesheet' type='text/css' href='/lib/codemirror/theme/theme.css' async="true">
 		
 		<script>
 			var isTopen = false;
@@ -103,16 +106,43 @@
 		</script>
 		<!--addons-->		
 		
+		<script src="/lib/codemirror/addon/hint/hint.js" async="true"></script>
 		<!--OPEN-->
-		<script src = 'scripts/picker.ace.js'></script>
+		<script src = '/scripts/picker.js'></script>
 		<!--KEYBOARD-->
-		<script src = 'lib/keyboard/jwerty.js'></script>
+		<script src = '/lib/keyboard/jwerty.js'></script>
+		<script src = '/lib/codemirror/keymap/vim.js' async="true"></script>
 		<!--BOOTSTRAP LIBRARIES-->
 		<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css' async="true">
 		<!--
 		addons
 		
 		-->
+		<link rel="stylesheet" href="/lib/codemirror/addon/dialog/dialog.css" async="true">
+		<link rel="stylesheet" href="/lib/codemirror/addon/hint/show-hint.css" async="true">
+		<link rel="stylesheet" href="/lib/codemirror/addon/tern/tern.css" async="true">
+		
+		<script src="/lib/codemirror/addon/comment/comment.js" async="true"></script>
+		
+		<script src="/lib/codemirror/addon/dialog/dialog.js" async="true"></script>
+		<script src="/lib/codemirror/addon/hint/show-hint.js" async="true"></script>
+		<script src="/lib/codemirror/addon/tern/tern.js" async="true"></script>
+		
+		
+		<script src="/lib/codemirror/addon/search/search.all.js" async="true"></script>
+		
+		<script src="/lib/codemirror/addon/edit/edit.min.js"></script>
+		
+		<script src="lib/auto/acorn.js"></script>
+		<script src="lib/auto/acorn_loose.js"></script>
+		<script src="lib/auto/walk.js"></script>
+		<script src="lib/auto/polyfill.js"></script>
+		<script src="lib/auto/signal.js"></script>
+		<script src="lib/auto/tern.js"></script>
+		<script src="lib/auto/def.js"></script>
+		<script src="lib/auto/comment.js"></script>
+		<script src="lib/auto/infer.js"></script>
+		<script src="lib/auto/doc_comment.js"></script>
 		
 		<link rel="stylesheet" href="/lib/color/css/bootstrap-colorpicker.min.css">
 		
@@ -132,7 +162,7 @@
 		
 	</head>
 	<body onload="handleClientLoad()">
-		<link rel='stylesheet' type='text/css' href='style.ace.css'>
+		<link rel='stylesheet' type='text/css' href='style.css'>
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav1">
@@ -172,7 +202,9 @@
 							<li onclick="moveLeft()"><a>Move left</a></li>
 							<li onclick="moveRight()"><a>Move right</a></li>
 							<li class="divider"></li>
-							<li onclick="toggle_comment()"><a>Toggle comment/uncomment</a></li>
+							<li onclick="line_comment()"><a>Line comment</a></li>
+							<li onclick="block_comment()"><a>Block comment</a></li>
+							<li onclick="uncomment()"><a>Uncomment</a></li>
 						</ul>
 					</li>
 					<li class="dropdown" id="codedropdown">
@@ -277,11 +309,87 @@
 							<div class="col-sm-4">
 								<h5>Theme</h5>
 								<ul id="theme_ul" class="list-group">
+				            				<li class="list-group-item" onclick = "setTheme('3024-day')">3024-day</li>
+            		    					<li class="list-group-item" onclick = "setTheme('3024-night')">3024-night</li>
+            								<li class="list-group-item" onclick = "setTheme('ambiance')">ambiance</li>
+              								<li class="list-group-item" onclick = "setTheme('cobalt')">cobalt</li>
+            		  						<li class="list-group-item" onclick = "setTheme('mbo')">mbo</li>
+           		    						<li class="list-group-item" onclick = "setTheme('lesser-dark')">lesser-dark</li>
+          		    						<li class="list-group-item" onclick = "setTheme('paraiso-light')">paraiso-light</li>
+            								<li class="list-group-item" onclick = "setTheme('rubyblue')">rubyblue</li>
+              								<li class="list-group-item" onclick = "setTheme('the-matrix')">matrix</li>
+              								
+              								<li class="list-group-item" onclick = "setTheme('ambiance-mobile')">ambiance-mobile</li>
+              								<li class="list-group-item" onclick = "setTheme('base16-dark')">base16-dark</li>
+              								<li class="list-group-item" onclick = "setTheme('base16-light')">base16-light</li>
+              								<li class="list-group-item" onclick = "setTheme('blackboard')">blackboard</li>
+              								<li class="list-group-item" onclick = "setTheme('eclipse')">eclipse</li>
+              								<li class="list-group-item" onclick = "setTheme('elegant')">elegant</li>
+              								<li class="list-group-item" onclick = "setTheme('erlang-dark')">erlang-dark</li>
+              								<li class="list-group-item" onclick = "setTheme('lesser-dark')">lesser-dark</li>
+              								<li class="list-group-item" onclick = "setTheme('mdn-like')">mdn-like</li>
+              								<li class="list-group-item" onclick = "setTheme('midnight')">midnight</li>
+              								<li class="list-group-item" onclick = "setTheme('monokai')">monokai</li>
+              								<li class="list-group-item" onclick = "setTheme('neat')">neat</li>
+              								<li class="list-group-item" onclick = "setTheme('night')">night</li>
+              								<li class="list-group-item" onclick = "setTheme('pastel')">pastel</li>
+              								<li class="list-group-item" onclick = "setTheme('solarized')">solarized</li>
 								</ul>
 							</div>
 							<div class="col-sm-4">
 								<h5>Mode</h5>
-								<ul id="mode_ul" class="list-group">
+								<ul id="mode_ul">
+								    <li class="list-group-item" onclick="setMode('.txt')">Text</li>
+									<li class="list-group-item" onclick="setMode('.java')">Java</li>
+									<li class="list-group-item" onclick="setMode('.c')">C</li>
+									<li class="list-group-item" onclick="setMode('.cpp')">C++</li>
+									<li class="list-group-item" onclick="setMode('.cs')">C#</li>
+									<li class="list-group-item" onclick="setMode('.sass')">Sass</li>
+									<li class="list-group-item" onclick="setMode('.css')">CSS</li>
+									<li class="list-group-item" onclick="setMode('.html')">HTML</li>
+									<li class="list-group-item" onclick="setMode('.php')">PHP</li>
+						    		<li class="list-group-item" onclick="setMode('.js')">Javascript</li>
+									<li class="list-group-item" onclick="setMode('.coffee')">Coffee<br/>script</li>
+									<li class="list-group-item" onclick="setMode('.py')">Python</li>
+            						<li class="list-group-item" onclick="setMode('.pl')">Perl</li>
+            						<li class="list-group-item" onclick="setMode('.xml')">XML</li>
+            						<li class="list-group-item" onclick="setMode('.ru')">Ruby</li>
+            	    				<li class="list-group-item" onclick="setMode('.sql')">SQL</li>
+            						<li class="list-group-item" onclick="setMode('.groovy')">Groovy</li>
+            						<li class="list-group-item" onclick="setMode('.go')">Go</li>
+            						<li class="list-group-item" onclick="setMode('.cob')">Cobol</li>
+            						<li class="list-group-item" onclick="setMode('.pas')">Pascal</li>
+            						<li class="list-group-item" onclick="setMode('.less')">Less</li>
+            						<li class="list-group-item" onclick="setMode('.clj')">Clojure</li>
+            						<li class="list-group-item" onclick="setMode('.lua')">Lua</li>
+            						<li class="list-group-item" onclick="setMode('.sh')">Shell</li>
+            						<li class="list-group-item" onclick="setMode('.jade')">Jade</li>
+            						<li class="list-group-item" onclick="setMode('.md')">Markdown</li>
+									<li class="list-group-item" onclick="setMode('.d')">D</li>
+									<li class="list-group-item" onclick="setMode('.erl')">Erlang</li>
+									<li class="list-group-item" onclick="setMode('.apl')">Apl</li>
+									<li class="list-group-item" onclick="setMode('.asterisk')">Asterisk</li>
+									<li class="list-group-item" onclick="setMode('.diff')">Diff</li>
+									<li class="list-group-item" onclick="setMode('.haml')">Haml</li>
+									<li class="list-group-item" onclick="setMode('.hs')">Haskell</li>
+									<li class="list-group-item" onclick="setMode('.haxe')">Haxe</li>
+									<li class="list-group-item" onclick="setMode('.jinja2')">Jinja</li>
+									<li class="list-group-item" onclick="setMode('.nginx')">Nginx</li>
+									<li class="list-group-item" onclick="setMode('.octave')">Octave</li>
+									<li class="list-group-item" onclick="setMode('.properties')">Properties</li>
+									<li class="list-group-item" onclick="setMode('.q')">Q</li>
+									<li class="list-group-item" onclick="setMode('.r')">R</li>
+									<li class="list-group-item" onclick="setMode('.rc')">Rust</li>
+									<li class="list-group-item" onclick="setMode('.ss')">Scheme</li>
+									<li class="list-group-item" onclick="setMode('.sieve')">Sieve</li>
+									<li class="list-group-item" onclick="setMode('.xquery')">Xquery</li>
+									<li class="list-group-item" onclick="setMode('.gfm')">Github Markdown</li>
+									<li class="list-group-item" onclick="setMode('.lisp')">Common<br/>Lisp</li>
+									<li class="list-group-item" onclick="setMode('.dtd')">DTD</li>
+									<li class="list-group-item" onclick="setMode('.e')">Eiffel</li>
+									<li class="list-group-item" onclick="setMode('.mrc')">Mirc</li>
+									<li class="list-group-item" onclick="setMode('.tcl')">TCL</li>
+									<li class="list-group-item" onclick="setMode('.tex')">LaTex</li>
 								</ul>
 							</div>
 							<div class="col-sm-4">
@@ -297,9 +405,9 @@
 								<h6>Line Numbers</h6>
 								<input type="checkbox" class="js-switch" checked id="line_num_switch" onchange="line_numbers()" />
 								<h6>Line Wrap</h6>
-								<input type="checkbox" class="js-switch" checked id="line_wrap_switch" onchange="line_wrap()"/>
-								<h6>Autocomplete</h6>
-								<input type="checkbox" class="js-switch" ehecked id="auto_bind_switch" onchange="auto_bind()"/>
+								<input type="checkbox" class="js-switch"id="line_wrap_switch" onchange="line_wrap()"/>
+								<h6>Vim mode</h6>
+								<input type="checkbox" class="js-switch" id="vim_bind_switch" onchange="vimBind()"/>
 								<p id="user_p">Not Available</p>
 								<img height="100%" src="icon_128.png" id="pic_img"/>
 								<p id="user_id_p">Not Available</p>
@@ -370,16 +478,11 @@
 						        <input type="text" class="form-control" id="num_lorem" value="6"/>
 						</form>
 						<div class="col-xs-3">
-                            <div class="btn-group">
-								<button id="lorem_choose" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-									Sentences <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li onclick="lorem_s()"><a>Sentences</a></li>
-									<li onclick="lorem_w()"><a>World</a></li>
-									<li onclick="lorem_p()"><a>Paragraphs</a></li>
-								</ul>
-							</div>
+                            <select name="lorem_combo" value="s" class="select-block" id="lorem_choose">
+                                <option value="s" selected="selected">Sentences</option>
+                                <option value="w">Words</option>
+                                <option value="p">Paragraphs</option>
+                            </select>
                         </div>
                         <button onclick="generate()" class="btn btn-primary">Generate</button>
                         <br/>
@@ -452,25 +555,28 @@
 				</div>
 			</div>
 		</div>
-		
-		<script src= "lib/ace/src/ace.js"></script>
-        <script src= "lib/ace/src/modes_all.js"></script>
-        <script src=" lib/ace/src/themes_all.js"></script>
-        <script src=" lib/ace/src/ext-language_tools.js"></script>
-        
 		<script src="lib/color/js/bootstrap-colorpicker.min.js"></script>
 		
+    	<!--script src="/about/fl/js/jquery-ui-1.10.3.custom.min.js"></script>
+    	<script src="/about/fl/js/jquery.ui.touch-punch.min.js"></script>
+    	<script src="/about/fl/js/bootstrap.min.js"></script>
+    	<script src="/about/fl/js/bootstrap-select.js"></script>
+    	<script src="/about/fl/js/bootstrap-switch.js"></script>
+    	<script src="/about/fl/js/flatui-checkbox.js"></script>
+    	<script src="/about/fl/js/flatui-radio.js"></script>
+    	<script src="/about/fl/js/jquery.tagsinput.js"></script>
+    	<script src="/about/fl/js/jquery.placeholder.js"></script-->
     	<script src="/about/fl/js/flatjs.js"></script>
 		
 		<script src="lib/loremjs/lorem.js" async="true"></script>
 		<script src="lib/FlipClock/compiled/flipclock.min.js"></script>
 		
-		<script src="scripts/drive.ace.js"></script>
-		<script src="scripts/visual.ace.js"></script>
-		<script src="scripts/main.ace.js"></script>
-		<script src="scripts/frontend.ace.js"></script>
+		<script src="scripts/drive.js"></script>
+		<script src="scripts/visual.js"></script>
+		<script src="scripts/main.js"></script>
+		<script src="scripts/frontend.js"></script>
 
-		<link rel='stylesheet' type='text/css' href='style.ace.css'>
+		<link rel='stylesheet' type='text/css' href='style.css'>
 		
 		<script>
 			document.getElementById("renameInput").style.lineHeight = "normal";
@@ -488,6 +594,10 @@
 				downloadFile();
 				return false;
 			});
+			jwerty.key('ctrl+space/cmd+space', function() {
+				getHint();
+				return false;
+			});
 			$('#ok_rename').tooltip('hide');
 			$('#cancel_rename').tooltip('hide');
 			$('#col_button').tooltip('hide');
@@ -498,9 +608,8 @@
   				var switchery = new Switchery(html);
 			});
 			$("#line_num_switch>small").css("left", "20px");
-			editor.session.selection.clearSelection(); 
 		</script>
-		<a id="indicator" style="
+		<p id="indicator" style="
     		z-index: 100;
     		position: fixed;
     		visibility: visible;
@@ -511,11 +620,17 @@
     		width: 5%;
     		margin-left: 95%;
     		/* margin-top: 34%; */
+    		background-color: #ECF0F1;
+    		color: #3498DB;
     		padding: 5px;
     		/* right: 0px; */
-    		bottom: 50px;	
-		" class="btn btn-info">26|9</a>
-		<button onclick="toggle_console()" class="btn btn-primary run-button" id="console_toggle" style="
+    		text-align: center;
+    		border-radius: 5px;
+    		bottom: 35px;
+    		border: thin solid #7F8C8D;
+    		font-size: 12px;	
+		">test</p>
+		<button onclick="toggle_console()" class="btn btn-primary run-button hide" id="console_toggle" style="
     		z-index: 100;
     		position: fixed;
     		visibility: visible;
@@ -527,7 +642,7 @@
     		padding: 5px;
     		bottom: 50px;
         "><i class="fa fa-terminal"></i></button>
-		<link rel='stylesheet' type='text/css' href='style.ace.css'>
+		<link rel='stylesheet' type='text/css' href='style.css'>
 		<script src="/lib/TogetherJS/togetherjs.min.js" async="true"></script>
 	</body>
 </html>

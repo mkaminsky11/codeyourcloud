@@ -173,7 +173,7 @@ function saveNoSend(){
 	if(ok && !isWelcome){
 		setState("saving");
 		var theID = current;
-		saveFile(theID, codeMirror.getValue());
+		saveFile(theID, editor.getValue());
 	}
 }
 function saveFile(fileId, content){
@@ -235,10 +235,10 @@ isOnline();
 /**********
 PDF
 **********/
+
 function to_pdf(){
     var doc = new jsPDF();
-    //doc.text(20, 20, codeMirror.getValue());
-    var s = codeMirror.getValue().split("\n");
+    var s = editor.getValue().split("\n");
     var temp = "";
     var count = 0;
     for(var i = 0; i < s.length; i++){
@@ -258,16 +258,30 @@ function to_pdf(){
 /*********
 RANDOM
 **********/
+var lorem_type = "s";
 function generate(){
     $("#lorem").html("");
     var lorem = new Lorem;
     lorem.type = Lorem.TEXT;
-    lorem.query = $("#num_lorem").val() + $("#lorem_choose").val();
+    lorem.query = $("#num_lorem").val() + lorem_type;
     lorem.createLorem(document.getElementById('lorem'));
 }
 $('.no_submit').submit(function(e) {
     e.preventDefault();
 });
+function lorem_s(){
+	lorem_type = "s";
+	$("#lorem_choose").html('Sentences <span class="caret"></span>');
+}
+function lorem_w(){
+	lorem_type = "w";
+	$("#lorem_choose").html('Words <span class="caret"></span>');
+}
+function lorem_p(){
+	lorem_type = "p";
+	$("#lorem_choose").html('Paragraphs <span class="caret"></span>');
+}
+
 /*********
 ANALYTICS
 ********/
@@ -283,16 +297,12 @@ function start_anaytics(){
 RUN
 ***********/
 function run(){
-	/*
-	if(codeMirror.getOption("mode").indexOf("javascript") !== -1){
-		eval(codeMirror.getValue());
-	}*/
-	if(codeMirror.getOption("mode").indexOf("javascript") !== -1){
-		var code_before_replace = codeMirror.getValue();
+	if(editor.getSession().getMode().$id.indexOf("javascript") !== -1 || editor.getSession().getMode().$id.indexOf("js") !== -1){
+		var code_before_replace = editor.getValue();
 		var find = 'console.log';
 		var re = new RegExp(find, 'g');
 		code_before_replace = code_before_replace.replace(re, 'printToConsole');
-		if(codeMirror.getValue().indexOf("console.log") !== -1 && !console_open){
+		if(editor.getValue().indexOf("console.log") !== -1 && !console_open){
 			openConsole();
 		}
 		eval(code_before_replace);

@@ -11,7 +11,7 @@
 <p>Snippets of all the major functions of Code Your Cloud (for those who don't want to go digging through the source) can be found at the following links. They are all <a href="https://gist.github.com/">Gists</a>, and are updated with the source code itself.</p>
 ####<a href="https://gist.github.com/mkaminsky11/8624455">Google Drive</a>####
 <p>Code snippets to manipulate Google Drive files, including content, title, etc. These are the the backbone of the editor, as they allow Code Your Cloud to access files from Google Drive. This is an especially useful resource if you are having trouble with your own projects that involve the Google Drive SDK.</p>
-####<a href="https://gist.github.com/mkaminsky11/8624150">CodeMirror</a>####
+####<a href="https://gist.github.com/mkaminsky11/8624150">CodeMirror (soon to be changed to Ace)</a>####
 <p>Code snippets to control and optimize the editor itself, created using CodeMirror. These are the functions behind the "editing" part of the editor.</p>
 =====
 <h3>Goal</h3>
@@ -29,70 +29,161 @@
   <li>Built-in todo list</li>
   <li>Browser</li>
   <li>Keyboard shortcuts</li>
-  <li>Vim modes</li>
   <li>Preferences</li>
   <li>Google Drive integration</li>
   <li>Run (javascript only, for now)</li>
 </ul>
 =====
-###Supported Languages###
+###Supported Languages (106)###
 <ul>
-	<li>Java</li>
-	<li>C</li>
-	<li>C++</li>
-	<li>C#</li>
-	<li>Markdown</li>
-	<li>CSS</li>
-	<li>HTML</li>
-	<li>PHP</li>
-	<li>Scheme</li>
-	<li>Go</li>
-	<li>Python</li>
-	<li>Perl</li>
-	<li>XML</li>
-	<li>Ruby</li>
-	<li>SQL</li>
-	<li>Groovy</li>
-	<li>Coffeescript</li>
-	<li>Cobol</li>
-	<li>Pascal</li>
-	<li>Less</li>
+	<li>ABAP</li>
+	<li>ActionScript</li>
+	<li>ADA</li>
+	<li>Apache Conf</li>
+	<li>AsciiDoc</li>
+	<li>Assembly x86</li>
+	<li>AutoHotKey</li>
+	<li>BatchFile</li>
+	<li>C9Search</li>
+	<li>C/C++</li>
+	<li>Cirru</li>
 	<li>Clojure</li>
-	<li>Lua</li>
-	<li>Shell</li>
-	<li>Jade</li>
-	<li>Sass</li>
+	<li>Cobol</li>
+	<li>CoffeeScript</li>
+	<li>ColdFusion</li>
+	<li>C#</li>
+	<li>CSS</li>
+	<li>Curly</li>
 	<li>D</li>
-	<li>Erlang</li>
-	<li>Apl</li>
-	<li>Asterisk</li>
+	<li>Dart</li>
 	<li>Diff</li>
-	<li>Haml</li>
+	<li>Dot</li>
+	<li>Erlang</li>
+	<li>EJS</li>
+	<li>Forth</li>
+	<li>FreeMarker</li>
+	<li>Gherkin</li>
+	<li>Glsl</li>
+	<li>Go</li>
+	<li>Groovy</li>
+	<li>HAML</li>
+	<li>Handlebars</li>
 	<li>Haskell</li>
-	<li>Haxe</li>
-	<li>Jinja</li>
-	<li>Nginx</li>
-	<li>Octave</li>
-	<li>Rust</li>
-	<li>Q</li>
-	<li>R</li>
+	<li>haXe</li>
+	<li>HTML</li>
+	<li>HTML (Ruby)</li>
+	<li>INI</li>
+	<li>Jack</li>
+	<li>Jade</li>
+	<li>Java</li>
+	<li>JavaScript</li>
+	<li>JSON</li>
+	<li>JSONiq</li>
+	<li>JSP</li>
+	<li>JSX</li>
+	<li>Julia</li>
+	<li>LaTeX</li>
+	<li>LESS</li>
+	<li>Liquid</li>
+	<li>Lisp</li>
+	<li>LiveScript</li>
+	<li>LogiQL</li>
+	<li>LSL</li>
+	<li>Lua</li>
+	<li>LuaPage</li>
+	<li>Lucene</li>
+	<li>Makefile</li>
+	<li>MATLAB</li>
+	<li>Markdown</li>
+	<li>MEL</li>
+	<li>MySQL</li>
+	<li>MUSHCode</li>
+	<li>Nix</li>
+	<li>Objective-C</li>
+	<li>OCaml</li>
+	<li>Pascal</li>
+	<li>Perl</li>
+	<li>pgSQL</li>
+	<li>PHP</li>
+	<li>Powershell</li>
+	<li>Prolog</li>
 	<li>Properties</li>
-	<li>Javascript</li>
-	<li>Sieve</li>
-	<li>XQuery</li>
-	<li>Github-flavored Markdown</li>
-	<li>CommonLisp</li>
-	<li>DTD</li>
-	<li>Eiffel</li>
-	<li>Mirc</li>
+	<li>Protobuf</li>
+	<li>Python</li>
+	<li>R</li>
+	<li>RDoc</li>
+	<li>RHTML</li>
+	<li>Ruby</li>
+	<li>Rust</li>
+	<li>SASS</li>
+	<li>SCAD</li>
+	<li>Scala</li>
+	<li>Smarty</li>
+	<li>Scheme</li>
+	<li>SCSS</li>
+	<li>SH</li>
+	<li>SJS</li>
+	<li>Space</li>
+	<li>snippets</li>
+	<li>Soy Template</li>
+	<li>SQL</li>
+	<li>Stylus</li>
+	<li>SVG</li>
 	<li>Tcl</li>
-	<li>STex</li>
-	<li>LaTex</li>
+	<li>Tex</li>
+	<li>Text</li>
+	<li>Textile</li>
+	<li>Toml</li>
+	<li>Twig</li>
+	<li>Typescript</li>
+	<li>VBScript</li>
+	<li>Velocity</li>
+	<li>Verilog</li>
+	<li>XML</li>
+	<li>XQuery</li>
+	<li>YAML</li> 
+</ul>
+=====
+###Themes###
+<ul>
+	<li>Chrome</li>
+	<li>Clouds</li>
+	<li>Crimson Editor</li>
+	<li>Dawn</li>
+	<li>Dreamweaver</li>
+	<li>Eclipse</li>
+	<li>GitHub</li>
+	<li>Solarized Light</li>
+	<li>TextMate</li>
+	<li>Tomorrow</li>
+	<li>XCode</li>
+	<li>Kuroir</li>
+	<li>KatzenMilch</li>
+	<li>Ambiance</li>
+	<li>Chaos</li>
+	<li>Clouds Midnight</li>
+	<li>Cobalt</li>
+	<li>idle Fingers</li>
+	<li>krTheme</li>
+	<li>Merbivore</li>
+	<li>Merbivore Soft</li>
+	<li>Mono Industrial</li>
+	<li>Monokai</li>
+	<li>Pastel on dark</li>
+	<li>Solarized Dark</li>
+	<li>Terminal</li>
+	<li>Tomorrow Night</li>
+	<li>Tomorrow Night Blue</li>
+	<li>Tomorrow Night Bright</li>
+	<li>Tomorrow Night 80s</li>
+	<li>Twilight</li>
+	<li>Vibrant Ink</li> 
 </ul>
 =====
 ###Resources###
 <p>These resources were used in the creation of this project. For a more detailed list, go <a href="https://codeyourcloud.com/about#lib">here</a></p>
 <ul>
+	<li><a href="http://ace.c9.io/">Ace</a></li>
 	<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
 	<li><a href="https://togetherjs.com/">TogetherJS</a></li>
 	<li><a href="http://fortawesome.github.io/Font-Awesome/">FontAwesome</a></li>
@@ -118,7 +209,7 @@
 	<li>improved mobile support</li>
 	<li>integrate AngularJS</li>
 	<li>Comment/uncomment function<b>[done!]</b></li>
-	<li>Objective-C mode (for now, just <b>C</b> used)</li>
+	<li>Objective-C mode <b>[done with the usage of Ace!]</b></li>
 </ol>
 =====
 ###License###

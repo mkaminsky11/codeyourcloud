@@ -13,7 +13,6 @@ body {
     width: 100%;
     margin: 0px;
     float: right;
-    padding-bottom: -30px;
     display: inline-block;
     z-index: 2;
 }
@@ -21,7 +20,7 @@ body {
     position: absolute;
     height: calc(100% - 95px);
     width: 100%;
-    margin-top: -40px;
+    margin-top: -38px;
 }
 #side{
 	display: inline-block;
@@ -473,12 +472,13 @@ iframe {
 #console {
 	width: 100%;
 	height: 40%;
-	/*background-color: red;*/
-	position: relative;
 	bottom: 0;
 	position: fixed;
 	font-size: 14px;
-	z-index: 1;
+	z-index: -1;
+	float: right;
+	margin-left: 0%;
+	z-index: 0;
 }
 #console_header {
 }

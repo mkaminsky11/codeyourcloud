@@ -68,8 +68,7 @@
         		<div class="col-md-6 b-left">
         			<h4>Follow <a href="https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts">+Code Your Cloud</a></h4>
 
-					<div class="g-post" data-href="https://plus.google.com/109834723365906365793/posts/6uk64zLLQDn"></div>
-					<!-- Place this tag where you want the +1 button to render. -->
+					<div class="g-post" data-href="https://plus.google.com/109834723365906365793/posts/czb14YATcbC"></div>
 					<div class="g-plusone" data-annotation="inline" data-width="300"></div>
 
 					<!-- Place this tag after the last +1 button tag. -->
@@ -138,7 +137,7 @@
             		<h4><i class="fa fa-file"></i></h4>
             		<h3 class="tile-title">Notepad</h3>
             		<p>Jot down your ideas</p>
-            		<a class="btn btn-primary btn-large btn-block" href="http://codemirror.net">How</a>
+            		<a class="btn btn-primary btn-large btn-block" href="http://ace.c9.io">How</a>
 			</div>
          	<div class="col-md-3 tile">
             		<h4><i class="fa fa-list-ol"></i></h4>
@@ -146,12 +145,12 @@
 					<p>A built-in todo list</p>
 					<a class="btn btn-primary btn-large btn-block" href="#todo-list">Instructions</a>
 		 	</div>
-		 	<div class="col-md-3 tile">
-            		<h4><i class="fa fa-globe"></i></h4>
-					<h3 class="tile-title">Browser</h3>
-					<p>View documentation</p>
-					<a class="btn btn-primary btn-large btn-block" href="http://devdocs.io">Docs</a>
-		 	</div>
+			<div class="col-md-3 tile">
+            		<h4><i class="fa fa-play"></i></h4>
+            		<h3 class="tile-title">Run code</h3>
+            		<p>Run javascript code</p>
+            		<a class="btn btn-primary btn-large btn-block" href="http://javascript.cs.lmu.edu/runner/">Demo</a>
+			</div>
         </div>
         <div class="row go-right">
         	<div class="col-md-3 tile">
@@ -160,12 +159,12 @@
             		<p>Speed up basic functions</p>
             		<a class="btn btn-primary btn-large btn-block" href="#key">List</a>
 			</div>
-         	<div class="col-md-3 tile">
-            		<h4><i class="fa fa-pencil-square-o"></i></i></h4>
-					<h3 class="tile-title">VIM</h3>
-					<p>Basic vim mode</p>
-					<a class="btn btn-primary btn-large btn-block" href="#vim">Supported functions</a>
-		 	</div>
+			<div class="col-md-3 tile">
+            		<h4><i class="fa fa-font"></i></h4>
+            		<h3 class="tile-title">Lorem generator</h3>
+            		<p>Built-in random text generator</p>
+            		<a class="btn btn-primary btn-large btn-block" href="https://github.com/f/loremjs">GitHub page</a>
+			</div>
 		 	<div class="col-md-3 tile">
             		<h4><i class="fa fa-cog"></i></h4>
 					<h3 class="tile-title">Preferences</h3>
@@ -180,18 +179,6 @@
             		<p>Integrated with Google Drive</p>
             		<a class="btn btn-primary btn-large btn-block" href="#drive">Learn more</a>
 			</div>
-			<div class="col-md-3 tile">
-            		<h4><i class="fa fa-font"></i></h4>
-            		<h3 class="tile-title">Lorem generator</h3>
-            		<p>Built-in random text generator</p>
-            		<a class="btn btn-primary btn-large btn-block" href="https://github.com/f/loremjs">GitHub page</a>
-			</div>
-			<div class="col-md-3 tile">
-            		<h4><i class="fa fa-play"></i></h4>
-            		<h3 class="tile-title">Run code</h3>
-            		<p>Run javascript code</p>
-            		<a class="btn btn-primary btn-large btn-block" href="http://javascript.cs.lmu.edu/runner/">Demo</a>
-			</div>
         </div>
         
         <h2 id="code">The Code</h2>
@@ -199,6 +186,7 @@
         <h5>Google Drive</h5>
         <script src="https://gist.github.com/mkaminsky11/8624150.js"></script>
         <h5>CodeMirror</h5>
+        <div class="alert alert-info">NOTE: codemirror is being replaced with Ace. Documentation coming soon...</div>
         <script src="https://gist.github.com/mkaminsky11/8624455.js"></script>      
         <h5 id="lib">Libraries</h5>
         <p>These are the libraries and resources used in the creation of Code Your Cloud</p>
@@ -233,8 +221,8 @@
 			<td>Great brand icons. Higher quality, but there are fewer of them</td>
 		</tr>
 		<tr>
-			<td>CodeMirror</td>
-			<td><a href="http://codemirror.net/">codemirror.net</a></td>
+			<td>Ace</td>
+			<td><a href="http://ace.c9.io">codemirror.net</a></td>
 			<td>The backbone of this project</td>
 		</tr>
 		<tr>
@@ -261,11 +249,6 @@
 			<td>JQuery</td>
 			<td><a href="https://jquery.com">jquery.com</a></td>
 			<td>Simplifies basic javascript functions</td>
-		</tr>
-		<tr>
-			<td>JQuery knob</td>
-			<td><a href="http://anthonyterrien.com/knob/">anthonyterrien.com/knob/</a></td>
-			<td>Makes the "capacity" indicator possible</td>
 		</tr>
 		<tr>
 			<td>Node.js</td>
@@ -349,7 +332,7 @@
         <p>The following languages support syntax highlighting</p>
         <div class="gridster">
 		<ul>
-        	<li class="gr-1" data-row="1" data-col="1" data-sizex="1" data-sizey="1"><span>Java</span></li>
+        	<!--li class="gr-1" data-row="1" data-col="1" data-sizex="1" data-sizey="1"><span>Java</span></li>
         	<li class="gr-2" data-row="2" data-col="1" data-sizex="1" data-sizey="1"><span>C</span></li>
         	<li class="gr-2" data-row="3" data-col="1" data-sizex="1" data-sizey="1"><span>C++</span></li>
  
@@ -410,19 +393,119 @@
         	<li class="gr-2" data-row="1" data-col="4" data-sizex="1" data-sizey="1"><span>Sieve</span></li>
         	<li class="gr-3" data-row="2" data-col="4" data-sizex="2" data-sizey="1"><span>XQuery</span></li>
         	
-        	<li class="gr-3" data-row="2" data-col="4" data-sizex="2" data-sizey="1"><span>Github-flavored<br/>Markdown</span></li>
+        	<li class="gr-3" data-row="2" data-col="4" data-sizex="2" data-sizey="1"><span>Github-flavored<br/>Markdown</span></li-->
+        	
+        	<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>ABAP</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>ActionScript</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>ADA</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Apache Conf</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>AsciiDoc</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Assembly x86</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>AutoHotKey</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>BatchFile</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>C9Search</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>C/C++</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Cirru</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Clojure</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Cobol</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>CoffeeScript</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>ColdFusion</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>C#</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>CSS</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Curly</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>D</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Dart</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Diff</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Dot</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Erlang</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>EJS</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Forth</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>FreeMarker</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Gherkin</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Glsl</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Go</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Groovy</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>HAML</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Handlebars</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Haskell</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>haXe</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>HTML</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>HTML (Ruby)</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>INI</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Jack</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Jade</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Java</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>JavaScript</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>JSON</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>JSONiq</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>JSP</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>JSX</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Julia</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>LaTeX</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>LESS</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Liquid</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Lisp</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>LiveScript</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>LogiQL</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>LSL</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Lua</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>LuaPage</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Lucene</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Makefile</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>MATLAB</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Markdown</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>MEL</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>MySQL</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>MUSHCode</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Nix</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Objective-C</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>OCaml</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Pascal</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Perl</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>pgSQL</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>PHP</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Powershell</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Prolog</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Properties</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Protobuf</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Python</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>R</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>RDoc</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>RHTML</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Ruby</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Rust</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>SASS</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>SCAD</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Scala</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Smarty</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Scheme</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>SCSS</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>SH</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>SJS</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Space</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>snippets</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Soy Template</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>SQL</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Stylus</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>SVG</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Tcl</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Tex</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Text</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Textile</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Toml</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Twig</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Typescript</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>VBScript</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Velocity</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Verilog</span></li>
+			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>XML</span></li>
+			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>XQuery</span></li>
+			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>YAML</span></li>
 		</ul>
 		</div>
 
         <h4>Autocomplete</h4>
-        <p>The following languages support autocomplete, which can be triggered with Ctrl+space</p>
-        <ul id="auto">
-        	<li>Javascript</li>
-        	<li>Html</li>
-        	<li>SQL</li>
-        	<li>Python</li>
-        	<li>XML</li>
-        </ul>
+        <p>Autocomplete can be triggered with Ctrl + space, and is also triggered automatically at the beginning of a "word"</p>
         <h4 id="todo-list">Todo List</h4>
         <p>In order to use the todo list, use the 3 keywords</p>
         <pre>
@@ -446,77 +529,43 @@
         		<th>Function</th>
         		<th>Mac</th>
         		<th>Windows/Linux</th>
-        		<th>For javascript only</th>
         	</tr>
         	<tr>
         		<td>Autocomplete</td>
         		<td>Ctrl + space</td>
         		<td>Ctrl + space</td>
-        		<td><i class="fa fa-ban"></i></td>
         	</tr>
         	<tr>
         		<td>Save</td>
         		<td>&#8984; + s</td>
         		<td>Ctrl + s</td>
-        		<td><i class="fa fa-ban"></i></td>
         	</tr>
         	<tr>
         		<td>Open</td>
         		<td>&#8984; + o</td>
         		<td>Ctrl + o</td>
-        		<td><i class="fa fa-ban"></i></td>
         	</tr>
         	<tr>
         		<td>Find</td>
         		<td>&#8984; + f</td>
         		<td>Ctrl + f</td>
-        		<td><i class="fa fa-ban"></i></td>
         	</tr>
         	<tr>
         		<td>Replace</td>
         		<td>&#8984; + option + f</td>
         		<td>Shift + ctrl + f</td>
-        		<td><i class="fa fa-ban"></i></td>
         	</tr>
         	<tr>
         		<td>Find next</td>
         		<td>&#8984; + g</td>
         		<td>Ctrl + g</td>
-        		<td><i class="fa fa-ban"></i></td>
         	</tr>
         	<tr>
         		<td>Replace all</td>
         		<td>Shift + &#8984; + option + f</td>
         		<td>Shift + ctrl + r</td>
-        		<td><i class="fa fa-ban"></i></td>
-        	</tr>
-        	<tr>
-        		<td>Rename variable</td>
-        		<td>Ctrl + q</td>
-        		<td>Ctrl + q</td>
-        		<td><i class="fa fa-check"></i></td>
-        	</tr>
-        	<tr>
-        		<td>Jump to definition</td>
-        		<td>Ctrl + .</td>
-        		<td>Ctrl + .</td>
-        		<td><i class="fa fa-check"></i></td>
-        	</tr>
-        	<tr>
-        		<td>Jump back(see above)</td>
-        		<td>Ctrl + ,</td>
-        		<td>Ctrl + ,</td>
-        		<td><i class="fa fa-check"></i></td>
-        	</tr>
-        	<tr>
-        		<td>Type at cursor</td>
-        		<td>Ctrl + i</td>
-        		<td>Ctrl + i</td>
-        		<td><i class="fa fa-check"></i></td>
         	</tr>
         </table>
-        <h4 id="vim">Vim</h4>
-        <p>For users who enjoy using the vim code editor, Code Your Cloud has a very basic vim mode. So far, only the basic modes (visual, insert, etc.), arrow keys, and save (:w) are functional. Look for more additions in the future.
         <h4 id="pref">Preferences</h4>
         <p>The supported preferences are:</p>
         <ul>
@@ -525,7 +574,7 @@
         	<li>Font size</li>
         	<li>Line wrap</li>
         	<li>Line Numbers</li>
-        	<li><a href="#vim">Vim</a> mode</li>
+        	<li>Autocomplete</li>
         </ul>
         
         <p>The menu item to trigger the preferences window is found under the <i class="fa fa-cog"></i> menu at the top-right corner of the editor.</p>
