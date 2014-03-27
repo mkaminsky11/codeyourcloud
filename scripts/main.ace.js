@@ -1,19 +1,18 @@
+
 var server;
 //
 var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
 var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive'];
-var ok = false;
 var myRootFolderId = null;
-var TOpen = false;
 var done = false;
 /************
 AUTHORIZATION
 ***********/
 window.onbeforeunload = function () {
-	if($("#note").html() !== "All Changes Saved To Drive" || $("#note").html() === "Saving..." && doc_url !== "https://codeyourcloud.com/"){
+	if($("#note").html() !== "All Changes Saved To Drive" || $("#note").html() === "Saving..." && document.URL !== "https://codeyourcloud.com/"){
 		var didTurnOff = false;
 		if(isWelcome === false){
-			if(TOpen === true){
+			if(isTOpen === true){
 				TogetherJS(this);
 				didTurnOff = true;
 			}
@@ -21,7 +20,7 @@ window.onbeforeunload = function () {
 		}
 	}
 	else{
-		if(TOpen && !isWelcome){
+		if(isTOpen && !isWelcome){
 			TogetherJS(this);
 		}
 		window.onbeforeunload = undefined;
@@ -79,11 +78,11 @@ function loadClient(callback) {
 }
 function init() {
 	//if # but not ?
-	if(doc_url.indexOf("#") !== -1 && doc_url.indexOf("?") === -1){
-		if(doc_url.indexOf("state") === -1){
+	if(document.URL.indexOf("#") !== -1 && document.URL.indexOf("?") === -1){
+		if(document.URL.indexOf("state") === -1){
 			get_info();
-			getContentOfFile(doc_url.split("#")[1]);
-			getTitle(doc_url.split("#")[1]);
+			getContentOfFile(document.URL.split("#")[1]);
+			getTitle(document.URL.split("#")[1]);
 			setPercent("80");
 		}
 		else{
@@ -93,13 +92,13 @@ function init() {
 		}
 	}
 	//if neither
-	else if(doc_url.indexOf("#") === -1 && doc_url.indexOf("?") === -1){
+	else if(document.URL.indexOf("#") === -1 && document.URL.indexOf("?") === -1){
 		welcome();
 		get_info();
 		setPercent("65");
 	}
 	//? but not #
-	else if(doc_url.indexOf("?") !== -1 && doc_url.indexOf("#") === -1){
+	else if(document.URL.indexOf("?") !== -1 && document.URL.indexOf("#") === -1){
 		var query = window.location.href.split("?")[1];
 		if(query.indexOf("create") !== -1){
 			var query_folder_id = query.split("%22")[3];
@@ -117,6 +116,7 @@ function init() {
 	}
 }
 function get_info(){
+	ok = true;
     $("#loading").html("Loading user info...");
     var request = gapi.client.drive.about.get();
     request.execute(function(resp) {

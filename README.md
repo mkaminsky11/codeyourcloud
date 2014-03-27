@@ -1,9 +1,9 @@
 #Code Your Cloud#
 ######created by Michael Kaminsky######
-####Now available on the <a href="https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail">Chrome Store</a> (over 500 users so far)####
+####Now available on the <a href="https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail">Chrome Store</a> (over 650 users so far)####
 ####<a href="https://codeyourcloud.com">The Project</a>####
 <p>Check out the result of the project so far here. It is now completely functional. Enjoy!</p>
-![Screenshot](https://codeyourcloud.com/images/screenshots/sc1.png)
+![Screenshot](https://codeyourcloud.com/images/screenshots/sc2.png)
 ####<a href="https://codeyourcloud.com/about">About</a>####
 <p>A comprehensive about page with a help section, comment box, and code snippets. The about page is similar to this document, but more thorough. For a full explanation of the features of Code Your Cloud, check this out. It can also be accessed by clicking on the icon in the top-left corner of the main editor.</p>
 ====

@@ -29,6 +29,7 @@ editor.on("change", function(e){
 	clearTimeout(delay);
     delay = setTimeout(updatePreview, 300);
 	yes_context = true;
+	console.log(e);
 	if(autoC && (e.data.text === " " || e.data.text === "\n")){
 		trigger_auto = true;
 	}
@@ -77,6 +78,7 @@ setTimeout(updatePreview, 300);
 OPEN THE FILE
 *************/
 function welcome() {
+	ok = true;
 	$("#col_li").remove();
 	$(".run-button").addClass("hide");
 	$("#console_toggle").addClass("hide");
@@ -755,12 +757,6 @@ function show_notepad(){
 		notes();
 	}
 }
-TogetherJSConfig_on_ready = function () {
-  TOpen = true;
-};
-TogetherJSConfig_on_close = function () {
-  TOpen = false;
-};
 /***************
 USERS ARE ONLINE
 ****************/

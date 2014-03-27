@@ -48,7 +48,7 @@
 			console.log("please don't mess around with this console unless you REALLY know what you're doing. Your actions could effect your files or our servers. If you have any questions, CONTACT US. Thank you.");
 			var doc_url = document.URL;
 			var current = "";
-			if(doc_url.indexOf("#") !== -1){
+			if(document.URL.indexOf("#") !== -1){
 				current = doc_url.split("#")[1];
 			}
 			function reloadNow() {
@@ -89,7 +89,8 @@
 		<!--MODES-->
 		
 		<script>
-			var isTopen = false;
+			var ok = false;
+			var isTOpen = false;
 			var userName = "user";
 			var userUrl = "https://codeyourcloud.com/icon_128.png";
 			var userId = null;
@@ -100,6 +101,15 @@
 			var TogetherJSConfig_dontShowClicks = true
 			var TogetherJSConfig_getUserName = function () {return userName;};
 			var TogetherJSConfig_getUserAvatar = function () {return userUrl;};
+			TogetherJSConfig_on_ready = function () {
+				isTOpen = true;
+				if(!ok){
+					TogetherJS(this);
+				}
+			};
+			TogetherJSConfig_on_close = function () {
+				isTOpen = false;
+			};
 		</script>
 		<!--addons-->		
 		
@@ -528,6 +538,6 @@
     		bottom: 50px;
         "><i class="fa fa-terminal"></i></button>
 		<link rel='stylesheet' type='text/css' href='style.ace.css'>
-		<script src="/lib/TogetherJS/togetherjs.min.js" async="true"></script>
+		<script src="https://togetherjs.com/togetherjs-min.js"></script>
 	</body>
 </html>
