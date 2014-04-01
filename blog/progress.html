@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Code Your Cloud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="../about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="../about/flat/css/flat-ui.css" rel="stylesheet">
+    <link href="blog.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="../about/flat/js/html5shiv.js"></script>
+      <script src="../about/flat/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+    
+    
+<p>Code Your Cloud did not start as a code editor for Google Drive, but as an experiment with <a href="https://www.firebase.com/">Firebase</a>, which has a very simple Realtime API. On Firebase's website, there are several examples of collaborative code editors that use <a href="http://codemirror.net">CodeMirror</a> for syntax highlighting. 
+<pre><code>//firebase's exampe
+var firepadRef = getExampleRef();
+var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
+	lineNumbers: true,
+	mode: 'javascript'
+});
+var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
+firepad.on('ready', function() {
+	if (firepad.isHistoryEmpty()) {
+		firepad.setText('// JavaScript Editing with Firepad!');
+	}
+});
+</code></pre>
+Using my <a href="http://koding.com">Koding</a> server, I ran a simple collaborative code editor, which I was very proud of. At this point, I knew no javascript, and was simply copying and pasting code. I had yet to start learning any other programming language, so I was starting from scratch. Furthermore, I had yet to figure out how to manage multiple collaborative documents. Would firebase keep track of all of them? Do they need different urls? Do I need to know javascript?</p>
+
+<br/>
+
+<p>Around this time, I began to take various computer science courses, taught in Java. To complete many of them, I stored .java files on Google Drive, so I could work on them from anywhere. To edit them, however, I needed a code editor for Google Drive. Originally, I began with <a href="http://drivenotepad.appspot.com">Drive Notepad</a>. It was a robust option, but very ugly, and without any sort of collaboration. Upset, I decided to combine the Realtime API of Firebase with the storage capabilities of Google Drive, and the syntax highlighting of CodeMirror.</p>
+
+<br/>
+
+<p>The first step was to master Google's Drive API, a formidable challenge for a novice programmer. At the time, I considered the documentation to be extremely poor, and I didn't understand the authorization process. However, after multiple attempts and many tutorials , I managed to link my Google Drive account to my primitive app. At this point, I was running codeyourcloud (althoug it was called "drivecode") using the Google App Engine. After mastering authorization, getting the contents of a file was soon to follow. My next challenge was to <b>save</b> the file.</p>
+
+<p>Google's documentation lists the arguments as
+	<pre><code>/**
+ * Update an existing file's metadata and content.
+ *
+ * @param {String} fileId ID of the file to update.
+ * @param {Object} fileMetadata existing Drive file's metadata.
+ * @param {File} fileData File object to read data from.
+ * @param {Function} callback Callback function to call when the request is complete.
+ */</code></pre>
+ This was seriously confusing. I had no idea what an <code>Object</code> even was, never mind how to get the file's metadata. I solved the metadata problem by using 
+ 	<pre><code>
+ var request = gapi.client.drive.files.get({'fileId': fileId});
+ request.execute(function(resp) {
+ 	//resp is the metadata
+ });
+ 	</code></pre>
+ 	Another function from the Drive API. Still, I had the problem with the <code>File</code>. After hunting around the internet, I found out about <code>Blob</code>. Finally, I was able to get the data I wanted to write into a <code>File</code>, and send it to the <code>updateFile()</code> function.
+ 	<pre><code>
+var contentArray = new Array(content.length); //content is the data
+for (var i = 0; i < contentArray.length; i++) {
+	contentArray[i] = content.charCodeAt(i);
+}
+ar byteArray = new Uint8Array(contentArray);
+var blob = new Blob([byteArray], {type: 'text/plain'}); //the file object
+ 	</code></pre>
+</p>
+
+<br/>
+
+<p>Still confused by Firebase's API, I discarded it, determined to first make a robust code editor. The editor itself wasn't...</p>
+
+    </div>
+    <!-- /.container -->
+
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="../about/flat/js/jquery-1.8.3.min.js"></script>
+    <script src="../about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../about/flat/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../about/flat/js/bootstrap.min.js"></script>
+    <script src="../about/flat/js/bootstrap-select.js"></script>
+    <script src="../about/flat/js/bootstrap-switch.js"></script>
+    <script src="../about/flat/js/flatui-checkbox.js"></script>
+    <script src="../about/flat/js/flatui-radio.js"></script>
+    <script src="../about/flat/js/jquery.tagsinput.js"></script>
+    <script src="../about/flat/js/jquery.placeholder.js"></script>
+  </body>
+</html>

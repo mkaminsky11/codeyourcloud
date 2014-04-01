@@ -218,6 +218,7 @@ function getP(fileId) {
 function changesSaved() {
 	sendMessage("changes saved!", "success")
 	setState("saved");
+	isSaving = false;
 }
 function renameFile(fileId, newTitle) {
     if(online){

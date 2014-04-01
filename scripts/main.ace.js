@@ -5,6 +5,8 @@ var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleuserco
 var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive'];
 var myRootFolderId = null;
 var done = false;
+var auto_save = true;
+var auto_save_int = 30000;
 /************
 AUTHORIZATION
 ***********/
@@ -34,6 +36,15 @@ function refreshToken() {
 	gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate':true},tokenRefreshed);
 }
 function tokenRefreshed(result){
+}
+autoSave();
+function autoSave(){
+	setTimeout(function(){
+		if(document.URL.indexOf("#") !== -1 && auto_save){
+			save();
+			autoSave();
+		}
+	}, auto_save_int);
 }
 function handleClientLoad() {
     if(online){
@@ -165,12 +176,15 @@ clock.stop(function(){});
 SAVE FILE
 **********/
 function save(){
+	if(!isSaving){
 	saveNoSend();
 	sendSave();
+	}
 }
 function saveNoSend(){
 	refreshTodo("");
 	if(ok && !isWelcome){
+		isSaving = true;
 		setState("saving");
 		var theID = current;
 		saveFile(theID, editor.getValue());
@@ -307,4 +321,13 @@ function run(){
 		}
 		eval(code_before_replace);
 	}
+}
+/**********
+AUTOSAVE
+**********/
+function auto_save_switch(){
+	auto_save = false;
+}
+function auto_save_update(){
+	auto_save_int = Number($("#save_int").val()) * 1000;
 }

@@ -21,6 +21,7 @@ ACE
 //other
 var delay;
 var title = "";
+var isSaving = false;
 var editor = ace.edit("content");
 ace.require("ace/ext/language_tools");
 editor.on("change", function(e){
@@ -29,14 +30,14 @@ editor.on("change", function(e){
 	clearTimeout(delay);
     delay = setTimeout(updatePreview, 300);
 	yes_context = true;
-	console.log(e);
+	/*
 	if(autoC && (e.data.text === " " || e.data.text === "\n")){
 		trigger_auto = true;
 	}
 	if(autoC && trigger_auto && (e.data.text !== " " && e.data.text !== "\n") ){
 		getHint();
 		trigger_auto = false;
-	}
+	}*/
 });
 editor.session.setUseWrapMode(true);
 editor.session.setWrapLimitRange();
@@ -93,6 +94,7 @@ function welcome() {
 	$("#share_li").remove();
 	isWelcome = true;
     document.getElementById("note").innerHTML = "All Changes Saved To Drive";
+    setPercent("90");
 	setPercent("100");
 	var txtFile = new XMLHttpRequest();
 	txtFile.open("GET", "https://codeyourcloud.com/intro.txt", true);
@@ -246,16 +248,14 @@ for (var name in supportedModes) {
     var onclick_html = new String("checkFileName('" + onclick_name + "')");
     var new_html = "<li class='list-group-item' onclick=\"" + onclick_html + "\">" + displayName + "</li>";  
     
-    $("#mode_ul").html($("#mode_ul").html() + new_html);
+    $(".mode_ul").html($(".mode_ul").html() + new_html);
 }
 
 function checkFileName(fileName){
 	$(".run-button").addClass("hide");
 	$("#console_toggle").addClass("hide");
-	
 	//BASIC AUTOCOMPLETE
 	basicAuto();
-	
 	/*
 	JAVASCRIPT
 	*/
@@ -264,19 +264,22 @@ function checkFileName(fileName){
 		$(".run-button").removeClass("hide");
 		$("#console_toggle").removeClass("hide");
 	}
-	
-	
-	 var e = exten(fileName);
-	 for(var a = 0; a < extensions.length; a++){
-	 	for(var b = 0; b < extensions[a].length; b++){
-	 		var s = extensions[a][b].split("|");
-	 		for(var c= 0; c < s.length; c++){
-	 			if(s[c] === e){
-	 				editor.getSession().setMode(new modes[a]());
-	 			}
-	 		}
-	 	}
-	 }
+	var e = exten(fileName);
+	if(e !== "docx" && e !== "jpg" && e !== "png" && e !== "pptx" && e !== "jpeg" && e !== "xls"){
+		for(var a = 0; a < extensions.length; a++){
+				for(var b = 0; b < extensions[a].length; b++){
+					var s = extensions[a][b].split("|");
+					for(var c= 0; c < s.length; c++){
+					if(s[c] === e){
+						editor.getSession().setMode(new modes[a]());
+					}
+				}
+			}
+		}
+	}
+	else{
+		badType();
+	}
 }
 function basicAuto(){
 	editor.setOptions({
@@ -343,7 +346,7 @@ for(var i = 0; i < themeData.length; i++){
 		theme_formal_name = themeData[i][0].toLowerCase();
 	}
 	var theme_html = "<li class='list-group-item' onclick=\"setTheme('" + theme_formal_name + "')\">" + theme_name + "</li>"
-	$("#theme_ul").html($("#theme_ul").html() + theme_html);
+	$(".theme_ul").html($(".theme_ul").html() + theme_html);
 }
 setTheme("merbivore_soft");
 function setTheme(theme_name){
@@ -496,6 +499,7 @@ function setPercent(per){
 	if(per === "100"){
 		setTimeout(function(){
 			$("#screen").slideUp(750,function(){
+				$("#pre").remove();
 				$("#screen").remove();
 				$('#ok_rename').tooltip('hide');
 				$('#cancel_rename').tooltip('hide');
@@ -783,7 +787,7 @@ function fontUp(){
 	$("#content").css("fontSize", old+"px");
 	sendMessage("font size is now "+old+" px", "info");
 }
-$("#content").css("fontSize", "14px");
+$("#content").css("fontSize", "12px");
 function fontDown(){
 	var old = Number($("#content").css("fontSize").replace("px", ""));
 	if(old > 4){
@@ -931,4 +935,22 @@ function toggle_console(){
 	else{
 		openConsole();
 	}
+}
+/***************
+MORE MODALS
+***************/
+function showMainModal(){
+	$("#mainModal").modal('show');
+}
+function showModeModal(){
+	$("#modeModal").modal('show');
+}
+function showThemeModal(){
+	$("#themeModal").modal('show');
+}
+function showInfoModal(){
+	$("#infoModal").modal('show');
+}
+function showOptionsModal(){
+	$("#optionsModal").modal('show');
 }
