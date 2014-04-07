@@ -136,3 +136,7 @@ body {
 .go-right {
 	margin-left: 10%;
 }
+
+.tile > h4 > .fa {
+	padding: 35px;
+}

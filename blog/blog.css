@@ -1,6 +1,12 @@
-.large_h1 {
-	color: #ECF0F1;	
+#main_container {
+	margin-top: 50px;
+}
+#search_div {
+	margin-right: 10px;
+	width:200px;
+}
+#contact_group {
+	width: 50%;
+	margin-left: 25%;
 	padding: 20px;
-	background-color: #1ABC9C;
-	border-radius: 5px;
 }

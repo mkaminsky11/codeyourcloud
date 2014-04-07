@@ -13,6 +13,7 @@
     <link href="blog.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../lib/Font/css/font-awesome.min.css">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
@@ -21,37 +22,120 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container">
-		<h1><center>THE CODE YOUR CLOUD BLOG</center></h1>
-		<hr/>
-		<div class="media">
-  			<a class="pull-left" href="https://codeyourcloud.com/blog/comp.html">
-    			<img class="media-object" src="http://www.maximumpc.com/files/u166440/google_drive_logo.jpg" alt="Google Drive" width="100px">
-  			</a>
-  			<div class="media-body">
-    			<h4 class="media-heading">A comparison of Google Drive Code Editors</h4>
-    		Searching for the perfect editor for Google Drive? We've got you covered. This article examines 4 code editors:
-    		<ol>
-    			<li>Code Your Cloud</li>
-    			<li>Editey</li>
-    			<li>Drive Notepad</li>
-    			<li>DriveAce</li>
-    		</ol>
-    		and attempts to which one is best for different kinds of people. Enjoy!
-  		</div>
-  		<hr/>
-  		<div class="media">
-  			<a class="pull-left" href="https://codeyourcloud.com/blog/progress.html">
-    			<img class="media-object" src="../icon_128.png" alt="Code Your Cloud" width="100px">
-  			</a>
-  			<div class="media-body">
-    			<h4 class="media-heading">The Development of Code Your Cloud</h4>
-    		This code editor had an interesting journey, full of wild code, fearsome bugs, helpful people, and some good lessons.
-  		</div>
-  		<hr/>
-</div>
-    </div>
-    <!-- /.container -->
+		<header class="navbar navbar-default navbar-fixed-top" role="banner">
+		<div class="navbar-header">
+		  <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+		    <span class="sr-only">Toggle navigation</span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		  </button>
+		  <a href="https://codeyourcloud.com" class="navbar-brand">Home</a>
+		</div>
+		<nav class="collapse navbar-collapse" role="navigation">
+		  <ul class="nav navbar-nav">
+		    <li>
+		      <a href="https://codeyourcloud.com/about">About</a>
+		    </li>
+		    <li>
+		      <a href="https://codeyourcloud.com/about">Blog</a>
+		    </li>
+		    <li>
+		      <a href="https://github.com/mkaminsky11/codeyourcloud">Github</a>
+		    </li>
+		  </ul>
+		  <ul class="nav navbar-right navbar-nav">
+		  </ul>
+		</nav>
+		</header>
+		
+		<div id="masthead">  
+		<div class="container" id="main_container">
+		<div class="row">
+		  <div class="col-lg-9">
+		    <h1><img src="../icon_128.png" width="60px">  Code Your Cloud | Blog
+		      <p class="lead">Code, design, and more</p>
+		    </h1>
+		  </div>
+		</div> 
+		</div><!-- /cont -->
+		
+		
+		</div>
+		
+		
+		<div class="container">
+		<div class="row">
+		
+		<div class="col-md-12"> 
+		  
+		  <div class="panel">
+		    <div class="panel-body">
+		    
+		      
+		      <!--comparison-->
+			  <div class="row">    
+		        <br>
+		        <div class="col-md-2 col-sm-3 text-center">
+		          <a class="story-img" href="comp.html"><img src="../images/blog/google_drive_logo.jpg" style="width:100px;height:100px" class="img-circle"></a>
+		        </div>
+		        <div class="col-md-10 col-sm-9">
+		          <h3>Comparing Google Drive Code Editors</h3>
+		          <div class="row">
+		            <div class="col-xs-9">
+		              <p>There are plenty of Google Drive code editors available, but which one is the best? In this article, we examine the pros and cons of 4 different editors(Drive Notepad, DriveAce, Code Your Cloud, and Editey)...</p>
+		              <p class="lead"><a href="comp.html" class="btn btn-default">Read More</a></p>
+		              </div>
+		            <div class="col-xs-3"></div>
+		          </div>
+		          <br><br>
+		        </div>
+		      </div>
+		    <!--development-->
+		    <div class="row">    
+		        <br>
+		        <div class="col-md-2 col-sm-3 text-center">
+		          <a class="story-img" href="progress.html"><img src="../icon_128.png" style="width:100px;height:100px" class="img-circle"></a>
+		        </div>
+		        <div class="col-md-10 col-sm-9">
+		          <h3>Development of Code Your Cloud</h3>
+		          <div class="row">
+		            <div class="col-xs-9">
+		              <p>Code Your Cloud has had a long trip to completion, full of faulty code and design changes. I started with no javascript experience, and attempted to build a full-featured code editor, with great success...</p>
+		              <p class="lead"><a href="comp.html" class="btn btn-default">Read More</a></p>
+		              </div>
+		            <div class="col-xs-3"></div>
+		          </div>
+		          <br><br>
+		        </div>
+		      </div>
+		      
+		    </div>
+		  </div>
+		                                                                                   
+		                                                
+		                                                  
+			</div><!--/col-12-->
+		</div>
+		</div>
+		                                            
+		                                                                            
+		<hr>
+		
+		
+		<hr>
+		
+		<footer>
+		<div class="container">
+		<div class="row">
+		  <div class="btn-group" id="contact_group">
+		   <a class="btn btn-primary btn-lg" href="https://codeyourcloud.com/about#contact"><i class="fa fa-envelope"></i> Email</a>
+		   <a class="btn btn-default btn-lg" href="http://github.com/mkaminsky11/codeyourcloud"><i class="fa fa-github"></i> Github</a>
+		   <a class="btn btn-danger btn-lg" href=""><i class="fa fa-google-plus-square"></i> Google+</a>
+		  </div>
+		</div>
+		</div>
+		</footer>
 
 
     <!-- Load JS here for greater good =============================-->

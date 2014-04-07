@@ -1,4 +1,4 @@
-var autoC = true; //autocomplete
+var autoC = false; //autocomplete
 var trigger_auto = false;
 var isWelcome = false; //welcome screen
 var wasBlank = false; //if data was originally blank
@@ -27,17 +27,14 @@ ace.require("ace/ext/language_tools");
 editor.on("change", function(e){
 	setState("unsaved");
 	checkUndo(); //can you undo?
-	clearTimeout(delay);
-    delay = setTimeout(updatePreview, 300);
 	yes_context = true;
-	/*
 	if(autoC && (e.data.text === " " || e.data.text === "\n")){
 		trigger_auto = true;
 	}
 	if(autoC && trigger_auto && (e.data.text !== " " && e.data.text !== "\n") ){
 		getHint();
 		trigger_auto = false;
-	}*/
+	}
 });
 editor.session.setUseWrapMode(true);
 editor.session.setWrapLimitRange();
@@ -74,7 +71,9 @@ function updatePreview() {
 		preview.write(editor.getValue());
 		preview.close();
 }
-setTimeout(updatePreview, 300);
+setInterval(function(){
+	updatePreview();
+}, 3000);
 /*************
 OPEN THE FILE
 *************/
@@ -264,6 +263,11 @@ function checkFileName(fileName){
 		$(".run-button").removeClass("hide");
 		$("#console_toggle").removeClass("hide");
 	}
+	else{
+		if(console_open){
+			closeConsole();
+		}
+	}
 	var e = exten(fileName);
 	if(e !== "docx" && e !== "jpg" && e !== "png" && e !== "pptx" && e !== "jpeg" && e !== "xls"){
 		for(var a = 0; a < extensions.length; a++){
@@ -272,6 +276,7 @@ function checkFileName(fileName){
 					for(var c= 0; c < s.length; c++){
 					if(s[c] === e){
 						editor.getSession().setMode(new modes[a]());
+						sendMessage("Mode changed!", "success");
 					}
 				}
 			}
@@ -348,7 +353,7 @@ for(var i = 0; i < themeData.length; i++){
 	var theme_html = "<li class='list-group-item' onclick=\"setTheme('" + theme_formal_name + "')\">" + theme_name + "</li>"
 	$(".theme_ul").html($(".theme_ul").html() + theme_html);
 }
-setTheme("merbivore_soft");
+setTheme("monokai");
 function setTheme(theme_name){
 	editor.setTheme("ace/theme/" + theme_name);
 }
@@ -624,41 +629,12 @@ function contentSize(wid){
 }
 function removeTodo(todoId){
 	var s = todoId.split("-");
-	var line = parseInt(s[1]);
-	var lines=editor.getValue().split("\n");
-	if(s[0] === "todo"){
-		var start = new Object();
-		var end = new Object();
-		start.row = line;
-		end.row = line;
-		start.column = lines[line].indexOf("TODO:");
-		end.column = (""+lines[line]).length;
-		
-		var range = new Range(start.column, start.row, end.column, end.row);
-		editor.session.doc.replace(range, "");
-	}
-	if(s[0] === "fixme"){
-		var start = new Object();
-		var end = new Object();
-		start.row = line;
-		end.row = line;
-		start.column = lines[line].indexOf("FIXME:");
-		end.column = (""+lines[line]).length;
-		
-		var range = new Range(start.column, start.row, end.column, end.row);
-		editor.session.doc.replace(range, "");
-	}
-	if(s[0] === "note"){
-		var start = new Object();
-		var end = new Object();
-		start.row = line;
-		end.row = line;
-		start.column = lines[line].indexOf("NOTE:");
-		end.column = (""+lines[line]).length;
-		
-		var range = new Range(start.column, start.row, end.column, end.row);
-		editor.session.doc.replace(range, "");
-	}
+	var line = Number(s[1]);
+	var lines= editor.getValue().split("\n");
+	console.log(lines);
+	lines[line] = "";
+	var fin = lines.join("\n");
+	editor.setValue(fin,-1);
 	$("#"+todoId).remove();
 }
 function createTodo(note, line, character, kind){
@@ -785,7 +761,7 @@ function fontUp(){
 		old = old + 2;
 	}
 	$("#content").css("fontSize", old+"px");
-	sendMessage("font size is now "+old+" px", "info");
+	$("#spinner-font").val(old);
 }
 $("#content").css("fontSize", "12px");
 function fontDown(){
@@ -794,7 +770,7 @@ function fontDown(){
 		old = old - 2;
 	}
 	$("#content").css("fontSize", old+"px");
-	sendMessage("font size is now "+old+" px", "info");
+	$("#spinner-font").val(old);
 }
 /**********
 COLOR
@@ -953,4 +929,31 @@ function showInfoModal(){
 }
 function showOptionsModal(){
 	$("#optionsModal").modal('show');
+}
+function showHelpModal(){
+	$("#helpModal").modal('show');
+}
+function showExpModal(){
+	$("#expModal").modal('show');
+}
+function showPreviewModal(){
+	$('#previewModal').modal('show');
+	setTimeout(function(){
+		updatePreview();
+	}, 500);
+}
+/**********
+MINIFY
+*********/
+function minify(){
+	var find = '\n';
+	var re = new RegExp(find, 'g');
+
+	var str = editor.getValue().replace(re, '');
+
+	find = " ";
+	re = new RegExp(find, 'g');
+	str = str.replace(re, '');
+
+	editor.setValue(str, -1);
 }

@@ -310,18 +310,8 @@ nav {
 	margin-right: 10px;
 	margin-top: 5px;
 }
-table {
-	margin-top: 10px;
-	padding: 2px;
-	border-radius: 4px;
-}
 .switch {
 	margin-top: 5px;
-	margin-left: 5px;
-}
-table {
-	background-color: #253342;
-	padding-top: 5px;
 	margin-left: 5px;
 }
 .theme_ul {
@@ -342,8 +332,7 @@ table {
 }
 #user_p,
 #user_id_p {
-	color: #7F8C8D;
-	font-size: 15px;
+	color: white;
 }
 hr {
 	background-color: #7F8C8D;
@@ -378,7 +367,8 @@ iframe {
 }
 #screen {
   /*background-image: url('images/iso.jpg');*/
-  background-image: url('images/subway.png');
+  /*background-image: url('images/subway.png');*/
+  background-color: #34495E;
   width:      100%;
   height:     100%; 
   z-index:    9999;
@@ -388,17 +378,36 @@ iframe {
 }
 #in-screen {
 	text-align: center;
-	padding-top: 5%;
-	padding-bottom:5%;
+	padding-top: 1%;
+	padding-bottom:2%;
 	background-color:white;
+	height: 30%;
+	width: 90%;
+	border-radius: 10px;
+	padding: 30px;
+	margin-left: 5%;
 }
 #screen-name {
 	font-size: 150%;
-	color: #ECF0F1;
-	background-color: #1ABC9C;
-	padding: 5px;
-	border-radius: 3px;
+	color: white;
+	padding: 8px;
 }
+.main_load {
+	text-align: center;
+	margin-bottom: 100px;
+}
+.main_load > a {
+	color: #2ECC71;
+}
+.main_load > a:hover {
+	color: #E74C3C
+}
+#pre {
+	
+}
+
+
+
 .ruler1 { border-left: 1px solid #fcc; }
 .ruler2 { border-left: 1px solid #f5f577; }
 .ruler3 { border-left: 1px solid #cfc; }
@@ -475,6 +484,9 @@ MODALS
 #save_span {
 	margin-left: 10px;
 }
+/************
+COLORS
+************/
 .auto_form {
 	margin-top: 10px;
 }
@@ -507,4 +519,59 @@ MODALS
 	background-color: #27AE60;
 	color: white;
 	padding: 20px;	
+}
+.clouds {
+	background-color: #ECF0F1;
+	padding: 20px;
+}
+
+
+#console_toggle{
+	z-index: 100;
+    position: fixed;
+   	visibility: visible;
+   	display: block;
+   	margin-right: 30px;
+   	float: right;
+   	width: 5%;
+   	margin-left: 90%;
+   	padding: 5px;
+   	bottom: 50px;
+}
+#indicator {
+	z-index: 100;
+    position: fixed;
+    visibility: visible;
+    display: block;
+    margin-right: 30px;
+    color: white;
+    float: right;
+    width: 5%;
+    margin-left: 95%;
+    /* margin-top: 34%; */
+    padding: 5px;
+   	/* right: 0px; */
+   	bottom: 50px;
+}
+#know_info {
+	
+}
+#know {
+	margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+    width: 70%;
+    margin-left: 15%;
+    background-color: #ECF0F1;
+    border-radius: 10px;
+}
+.ace_replacebtn {
+	color: #7F8C8D;
+}
+.ace_search_field {
+	color: #7F8C8D;
+}
+.full_width_button {
+	width: 100%;
+	padding: 20px;
 }

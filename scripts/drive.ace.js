@@ -203,12 +203,10 @@ function getP(fileId) {
 	request.execute(function(resp) {
 		var ret = false;
 		for(i = 0; i < resp.items.length; i++){
-			console.log(resp.items[i]);
 			if(resp.items[i].id === userId || resp.items[i].id === "anyone" || resp.items[i].id === "anyoneWithLink"){
 				ret = true;
 			}
 		}
-		console.log(ret);
 		if(ret === false){
 			window.location = "https://codeyourcloud.com/error/permission";
 		}

@@ -38,6 +38,16 @@ String.prototype.repeat = function(num) {
 
     // Tooltips
     $("[data-toggle=tooltip]").tooltip("show");
+    
+    /******
+    INSERTED: TOOLTIP
+    *******/
+    $(".tooltip").addClass(function() {
+      if ($(this).prev().attr("data-tooltip-style")) {
+        return "tooltip-" + $(this).prev().attr("data-tooltip-style");
+      }
+    });
+    /*******/
 
     // Tags Input
     $(".tagsinput").tagsInput();
@@ -64,6 +74,31 @@ String.prototype.repeat = function(num) {
         range: "min"
       }).addSliderSegments($verticalSlider.slider("option").max, "vertical");
     }
+    
+    /*******
+    SPINNER
+    *******/
+    $.widget( "ui.customspinner", $.ui.spinner, {
+      _buttonHtml: function() { // Remove arrows on the buttons
+        return "" +
+        "<a class='ui-spinner-button ui-spinner-up ui-corner-tr'>" +
+          "<span class='ui-icon " + "'></span>" +
+        "</a>" +
+        "<a class='ui-spinner-button ui-spinner-down ui-corner-br'>" +
+          "<span class='ui-icon " + "'></span>" +
+        "</a>";
+      }
+    });
+
+    $('#spinner-01').customspinner({
+      min: -99,
+      max: 99
+    }).on('focus', function () {
+      $(this).closest('.ui-spinner').addClass('focus');
+    }).on('blur', function () {
+      $(this).closest('.ui-spinner').removeClass('focus');
+    });
+    /********/
 
     // Placeholders for input/textarea
     $(":text, textarea").placeholder();
