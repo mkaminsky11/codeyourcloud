@@ -42,16 +42,6 @@ pre {
 /*
 
 */
-.content-header {
-	background-image: url('img/Blurred-Backgrounds-4.jpg');
-	background-size:cover;
-	width: 100%;
-	text-align: center;
-}
-.content-header > h1 {
-	text-align: center;
-	color: white;
-}
 #logo {
 	color: #68d86a;;
 	margin-right: 3px;
@@ -59,7 +49,7 @@ pre {
 .btn-danger:hover {
 	background-color: red;
 }
-body {
+#content {
 	float: left;
 	margin-left: 10%;
 	margin-right: 10%;
@@ -109,7 +99,6 @@ body {
 .gist-meta a:hover{color:#0e4071 !important}
 
 .large_main {
-    
 }
 
 #col_left{

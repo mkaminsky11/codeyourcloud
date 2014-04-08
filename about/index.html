@@ -39,6 +39,7 @@
   </head>
 
   <body onload="check_login()">
+  		<div id="content">
   		<div class="navbar-fixed-top">
 	  	<div class="btn-toolbar">
 	  		<div class="btn-group">
@@ -77,7 +78,7 @@
         <p>
         Code Your Cloud is an in-browser collaborative code editor for Google Drive, which combines the capabilities of Google's cloud services with the functionality of CodeMirror syntax highlighting and editing.
         <hr/>
-        This project was born out of a deep frustration for the lack of competent code editors for Google Drive. Although some code editors (namely <a href="http://www.editey.com/">Editey</a> and <a href="https://drivenotepad.appspot.com/app">Drive Notepad</a>) do exist, they do not provide the functionality, polish, and usefullness required for many projects. This is an attempt to fix that.
+        This project was born out of a deep frustration for the lack of competent code editors for Google Drive. Although some code editors (namely <a href="http://www.editey.com/">Editey</a> and <a href="https://drivenotepad.appspot.com/app">Drive Notepad</a>) do exist, they do not provide the functionality, polish, and usefullness required for many projects. This is an attempt to fix that.<br/>
         
         <table class="table table-striped">
         	<tr>
@@ -186,20 +187,17 @@
             		<h4><img src="../images/icon/Retina-Ready.png"></h4>
             		<h3 class="tile-title">Syntax Highlighting</h3>
             		<p>Support for over 100 languages</p>
-            		<a class="btn btn-primary btn-large btn-block" href="#lang">Full List</a>
 			</div>
          	<div class="col-md-3 tile">
             		<h4><img src="../images/icon/Chat.png"></h4>
 					<h3 class="tile-title">Collaboration</h3>
 					<p>Collaborate using TogetherJS</p>
-					<a class="btn btn-primary btn-large btn-block" href="https://togetherjs.com/">See how</a>
 		 	</div>
 		 	
 		 	<div class="col-md-3 tile">
             		<h4><i class="fa fa-picture-o"></i></h4>
 					<h3 class="tile-title">Colors</h3>
 					<p>Built-in color picker</p>
-					<a class="btn btn-primary btn-large btn-block" href="http://www.eyecon.ro/bootstrap-colorpicker">Bootstrap Color Picker</a>
 		 	</div>
         </div>
 		<div class="row go-right">
@@ -207,19 +205,16 @@
             		<h4><img src="../images/icon/Search.png"></h4>
             		<h3 class="tile-title">Preview</h3>
             		<p>Preview your work</p>
-            		<a class="btn btn-primary btn-large btn-block" href="http://codemirror.net/demo/preview.html">Example</a>
 			</div>
          	<div class="col-md-3 tile">
             		<h4><img src="../images/icon/Bulb.png"></h4>
 					<h3 class="tile-title">Autocomplete</h3>
 					<p>For supported languages</p>
-					<a class="btn btn-primary btn-large btn-block" href="#auto">See list</a>
 		 	</div>
 		 	<div class="col-md-3 tile">
             		<h4><i class="fa fa-terminal"></i></h4>
 					<h3 class="tile-title">Console</h3>
 					<p>Javascript console</p>
-					<a class="btn btn-primary btn-large btn-block" href="https://codeyourcloud.com/lib/repl">Demo</a>
 		 	</div>
         </div>
         <div class="row go-right">
@@ -227,19 +222,16 @@
             		<h4><img src="../images/icon/Book.png"></h4>
             		<h3 class="tile-title">Notepad</h3>
             		<p>Jot down your ideas</p>
-            		<a class="btn btn-primary btn-large btn-block" href="http://ace.c9.io">How</a>
 			</div>
          	<div class="col-md-3 tile">
             		<h4><img src="../images/icon/Clipboard.png"></h4>
 					<h3 class="tile-title">Todo list</h3>
 					<p>A built-in todo list</p>
-					<a class="btn btn-primary btn-large btn-block" href="#todo-list">Instructions</a>
 		 	</div>
 			<div class="col-md-3 tile">
-            		<h4><i class="fa fa-play"></i></h4>
+            		<h4><img src="../images/icon/javascript.png" width="100px"></h4>
             		<h3 class="tile-title">Run code</h3>
             		<p>Run javascript code</p>
-            		<a class="btn btn-primary btn-large btn-block" href="http://javascript.cs.lmu.edu/runner/">Demo</a>
 			</div>
         </div>
         <div class="row go-right">
@@ -247,19 +239,16 @@
             		<h4><img src="../images/icon/Key.png"></h4>
             		<h3 class="tile-title">Keyboard Shortcuts</h3>
             		<p>Speed up basic functions</p>
-            		<a class="btn btn-primary btn-large btn-block" href="#key">List</a>
 			</div>
 			<div class="col-md-3 tile">
             		<h4><i class="fa fa-font"></i></h4>
             		<h3 class="tile-title">Lorem generator</h3>
             		<p>Built-in random text generator</p>
-            		<a class="btn btn-primary btn-large btn-block" href="https://github.com/f/loremjs">GitHub page</a>
 			</div>
 		 	<div class="col-md-3 tile">
             		<h4><img src="../images/icon/Settings.png"></h4>
 					<h3 class="tile-title">Preferences</h3>
 					<p>Personalize your editor</p>
-					<a class="btn btn-primary btn-large btn-block" href="#pref">Options</a>
 		 	</div>
         </div>
         <div class="row go-right">
@@ -267,21 +256,18 @@
             		<h4><img src="../images/blog/google_drive_logo.jpg" width="100px"></h4>
             		<h3 class="tile-title">Google Drive</h3>
             		<p>Integrated with Google Drive</p>
-            		<a class="btn btn-primary btn-large btn-block" href="#drive">Learn more</a>
 			</div>
 			
 			<div class="col-md-3 tile">
             		<h4><img src="../images/icon/Earth.png"></h4>
             		<h3 class="tile-title">Mobility</h3>
             		<p>Access your code anywhere...</p>
-            		<a class="btn btn-primary btn-large btn-block" href="#drive">See how</a>
 			</div>
 			
 			<div class="col-md-3 tile">
             		<h4><img src="../images/icon/Responsive.png"></h4>
             		<h3 class="tile-title">Portability</h3>
             		<p>...on any device</p>
-            		<a class="btn btn-primary btn-large btn-block" href="#drive">More</a>
 			</div>
         </div>
         
@@ -669,7 +655,7 @@
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
 ">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<input type="image" src="paypal.png" name="submit" alt="PayPal - The safer, easier way to pay online!">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
     <!-- JavaScript -->
@@ -700,6 +686,7 @@
 	<script src="about.js"></script>
 	<link href="aboutCss.css" rel="stylesheet">
 	<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+	</div>
   </body>
 
 </html>

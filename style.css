@@ -369,6 +369,7 @@ iframe {
   /*background-image: url('images/iso.jpg');*/
   /*background-image: url('images/subway.png');*/
   background-color: #34495E;
+  background-image: url('images/patterns/p4.png');
   width:      100%;
   height:     100%; 
   z-index:    9999;
@@ -381,7 +382,7 @@ iframe {
 	padding-top: 1%;
 	padding-bottom:2%;
 	background-color:white;
-	height: 30%;
+	height: auto;
 	width: 90%;
 	border-radius: 10px;
 	padding: 30px;
@@ -397,10 +398,10 @@ iframe {
 	margin-bottom: 100px;
 }
 .main_load > a {
-	color: #2ECC71;
+	color: white;
 }
 .main_load > a:hover {
-	color: #E74C3C
+	color: #2ECC71;
 }
 #pre {
 	

@@ -503,7 +503,10 @@ function setPercent(per){
 	document.getElementById("prog").ariaValuenow = per + "";		
 	if(per === "100"){
 		setTimeout(function(){
-			$("#screen").slideUp(750,function(){
+			$("#screen").animate({
+				marginTop: "-100%",
+				marginBottom: "100%"
+			},750,function(){
 				$("#pre").remove();
 				$("#screen").remove();
 				$('#ok_rename').tooltip('hide');

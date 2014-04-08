@@ -42,3 +42,19 @@ h3 {
 img {
 	max-width:100%;
 }
+.large-text {
+	padding: 3%;
+}
+
+#imaged {
+	margin-top: 0px;
+	padding: 30px;
+	background-image: url('../images/patterns/p2.png');
+	color: white;
+}
+#footer {
+	margin-top: 10px;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+}

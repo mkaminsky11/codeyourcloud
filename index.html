@@ -618,6 +618,8 @@
 				<span id="loading"></span>
 				<br/>
 				<button class="btn btn-danger btn-embossed" onclick="reloadNow()"><i class="fa fa-refresh"></i> Retry</button>
+				<br/>
+				<small id="credits"><a href="http://www.julienrenvoye.com/">Shattered Island by Julien Renvoye</a></small>
 			</div>
 		</div>
 		<div id = "container">
@@ -731,7 +733,9 @@
 			var p_val = 1+Math.floor(Math.random()*10) //1 + 0-9 = 1-10
 			$("#pre").attr("src", "images/preload/p" + p_val + ".gif");
 			
-			$('#col_button').tooltip('hide');
+			//var screen_val = 1+Math.floor(Math.random()*18);
+			//$("#screen").css("background-image", "url('images/patterns/p" + screen_val + ".png')");
+			
 			
 			
 		</script>
