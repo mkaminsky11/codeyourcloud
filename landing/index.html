@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Code Your Cloud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="../about/flat/css/flat-ui.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="../about/flat/js/html5shiv.js"></script>
+      <script src="../about/flat/js/respond.min.js"></script>
+    <![endif]-->
+    
+    <link href="landing.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="fullpage">
+    	<div class="section" id="intro">
+    		<!--INTRO
+    		*editing is boring, right?
+    		
+    		No! Code your cloud -> button
+    		-->
+    		<div id="intro_main">
+    			<h1>SET YOUR CODE FREE</h1>
+    			<h2>WITH CODE YOUR CLOUD</h2>
+    		</div>
+    		<br/>
+    		<img width="100px" src="../images/icon/Spaceship.png">
+    		<br/>
+    		<br/>
+    		<a onclick="redirect()" class="btn btn-embossed btn-info btn-lg">Login with Google</a>
+    		<p class="scroll"><i class="fa fa-arrow-circle-down"></i></p>
+    	</div>
+    	<div class="section" id="syntax">
+    		<!--
+    		Highlighting
+    		-->
+    		<h1>GOT SYNTAX?</h1>
+    		<h6>We know that staring at a bunch of monochromatic text is annoying. Give your work some color! Take control of your code with over 100 supported syntax highlighting languages, as well as autocompletion.</h6>
+    		<br/>
+    		<br/>
+    		
+<pre class="dark_code"><code>function doStuff(){
+  alert("awesome!");
+}</code></pre>
+<pre class="light_code"><code><b class="pink">function</b> <b class="orange">doStuff()</b>{
+  alert(<i class="green">"awesome!"</i>);
+}</code></pre>
+    	</div>
+    	<div class="section" id="console">
+    		<!--
+    		Console
+    		-->
+    		<h1>CONSOLES GALORE</h1>
+    		<h6>Why settle with just writing code? Test it, too! With code your cloud, you can run javascript code right in the browser. You can also use the built-in javascript console to make calculations or test code.</h6>
+    		
+    		
+    		
+    		
+    		<!--
+    		
+    		NOTE TO SELF: video gif here!
+    		
+    		-->
+    		
+    		
+    		
+    		
+    	</div>
+    	<div class="section" id="preview">
+    		<!--
+    		Preview
+    		-->
+    		<h1>MEASURE TWICE, CUT ONCE</h1>
+    		<h6>Test out your masterpiece at every step of development with our built-in previewer. See how your HTML files look in real life, test the appearance of SVGs, and more.</h6>
+    	</div>
+    	<div class="section" id="colors">
+    		<!--
+    		Colors!
+    		-->
+    	</div>
+    	<div class="section" id="random">
+    		<!--
+    		Randomness
+    		-->
+    	</div>
+    	<div class="section" id="open">
+    		<!--
+    		Free + open source
+    		-->
+    	</div>
+    	<div class="section" id="contact">
+    		<!--
+    		Contact us
+    		-->
+    		<h1>CONTACT US!</h1>
+    		<h6>Need help? Want a new feature? We're all ears.</h6>
+    		<br/>
+    		<br/>
+    		<a class="btn btn-inverse btn-embossed btn-lg" href="https://github.com/mkaminsky11/codeyourcloud"><i class="fa fa-github"></i>|Github</a>
+    		<br/>
+    		<br/>
+    		<a class="btn btn-danger btn-embossed btn-lg" href="https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts"><i class="fa fa-google-plus"></i>|Google+</a>
+    		<br/>
+    		<br/>
+    		<a class="btn btn-info btn-embossed btn-lg" href="https://codeyourcloud.com/about/#contact"><i class="fa fa-envelope"></i>|Email</a>
+    	</div>
+    	<div class="section" id="screenshot">
+    		<!--
+    		Screenshot
+    		-->
+    		<h1>LOOKS NICE, DOESN'T IT?</h1>
+    		<img class="screenshot_img" src="../images/screenshots/sc2.png">
+    	</div>
+    	<div class="section" id ="start">
+    		<!--
+    		Get started
+    		
+    		*to top
+    		-->
+    		<h1>SO, WHAT ARE YOU WAITING FOR?</h1>
+    		<br/>
+    		<div class="btn-group">
+    			<a class="btn btn-embossed btn-lg btn-danger" onclick="$.fn.fullpage.moveSectionDown();">Go To Top</a>
+    			<a class="btn btn-embossed btn-lg btn-success" onclick="redirect()">Get Started</a>
+    		</div>
+    	</div>
+	</div>
+    <!-- /.container -->
+	<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css' async="true">
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="../about/flat/js/jquery-1.8.3.min.js"></script>
+    <script src="../about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../about/flat/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../about/flat/js/bootstrap.min.js"></script>
+    <script src="../about/flat/js/bootstrap-select.js"></script>
+    <script src="../about/flat/js/bootstrap-switch.js"></script>
+    <script src="../about/flat/js/flatui-checkbox.js"></script>
+    <script src="../about/flat/js/flatui-radio.js"></script>
+    <script src="../about/flat/js/jquery.tagsinput.js"></script>
+    <script src="../about/flat/js/jquery.placeholder.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="../lib/fullPage/jquery.fullPage.css" />
+
+	<script src="../lib/fullPage/vendors/jquery.easings.min.js"></script>   
+
+	<script type="text/javascript" src="../lib/fullPage/vendors/jquery.slimscroll.min.js"></script>
+
+	<script type="text/javascript" src="../lib/fullPage/jquery.fullPage.js"></script>
+    
+    <script src="landing.js"></script>
+  </body>
+</html>

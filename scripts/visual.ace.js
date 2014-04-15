@@ -1,7 +1,6 @@
 var autoC = false; //autocomplete
 var trigger_auto = false;
 var isWelcome = false; //welcome screen
-var wasBlank = false; //if data was originally blank
 $("#side").css("z-index", -1);
 $("#container").css('backgroundColor', $(".CodeMirror").css('backgroundColor'));
 $(".run-button").addClass('hide');
@@ -844,32 +843,6 @@ COMMENTS
 function toggle_comment(){
 	editor.toggleCommentLines()
 }
-/*
-SNAP
-*/
-
-var snap = Snap("#svg");
-var background = snap.path("M0 0L52 0L52 52L0 52Z");
-background.attr({
-    fill: "#2C3E50"
-});
-var left_red = snap.path("M2 2L25 2L25 50L2 50Z");
-left_red.attr({
-	fill: "#C0392B"
-});
-var right_blue = snap.path("M27 2L50 2L50 50L27 50Z");
-right_blue.attr({
-	fill: "#3498DB"
-});
-var middle_gray = snap.path("M10 10L42 10L42 42L10 42Z");
-middle_gray.attr({
-    fill: "#2C3E50"
-});
-var middle_green = snap.path("M12 12L40 12L40 40L12 40Z");
-middle_green.attr({
-	fill: "#2ECC71"
-});
-
 /************
 CONSOLE
 ************/

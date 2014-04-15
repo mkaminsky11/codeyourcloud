@@ -16,14 +16,11 @@ function getContentOfFile(theID){ //gets the content of the file
                 if ( myXHR.status == 200 ) {
                 	var code = myXHR.response;
                     editor.setValue(code, -1); //sets the value of the codemirror
-                    if(code === ""){
-                        wasBlank = true;
-                    }
                     getP(theID);
                		setState("saved");
 			   		ok = true;
 			   		setPercent("100");
-			   		sendMessage("good to go!");
+			   		sendMessage("good to go!", "success");
 			   		refreshTodo();
 			   	}
             }
@@ -45,8 +42,8 @@ function getTitle(fileId){
 			document.location.href = "https://codeyourcloud.com/error/fileNotFound";
 			return false;
 		}
-  		document.getElementById('renameInput').value = title;
-    		checkFileName(resp.title);
+  		document.getElementById('renameInput').value = title; //set the input
+    	checkFileName(resp.title); //what kind of file is it?
   	});
     }
 }

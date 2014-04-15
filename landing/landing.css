@@ -1,0 +1,82 @@
+#intro{
+	background-color: #E74C3C;
+	background-image: url('../images/patterns/p2.png');
+}
+#syntax{
+	background-color: #2ECC71;
+}
+#console{
+	background-color: #3498DB;
+}
+#preview{
+	background-color: #9B59B6;	
+}
+#colors{
+	background-color: #E67E22;
+}
+#random{
+	background-color: #1ABC9C;
+}
+#open{
+	background-color: #C0392B;
+}
+#contact{
+	background-color: #2980B9;
+}
+#screenshot{
+	background-color: #16A085;
+}
+#start{
+	background-color: #F39C12;
+}
+
+.section {
+	margin-bottom: 0;
+}
+body, html {
+	color: white;
+	text-align: center;
+}
+h6{
+	width: 90%;
+    margin-left: 5%;
+}
+.dark_code {
+	color: #2C3E50;
+	float: left;
+	text-align: left;
+	margin-left: 20%;
+	font-size: 20px;
+}
+.light_code {
+	background-color: #2C3E50;
+	color: white;
+	float: right;
+	text-align: left;
+	margin-right: 20%;
+	font-size: 20px;
+}
+.green {
+	color: #2ECC71;
+}
+.pink {
+	color: #9B59B6;
+}
+.orange {
+	color: #E67E22;
+}
+.screenshot_img {
+	width: 80%;
+	border: 10px solid #34495E;
+}
+.scroll {
+	display: block;
+	margin-top: 200px;
+}
+#intro_main{
+	background-color: #34495E;
+	width: 80%;
+	margin-left: 10%;
+	padding: 20px;
+	border-radius: 10px;
+}

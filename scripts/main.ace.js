@@ -135,7 +135,7 @@ function get_info(){
         $("#loading").html("Retrieved root folder...");
         userName = resp.name;
         $("#loading").html("Got user name");
-        $("#user_p").html(userName);
+        $("#user_p").html("welcome, <b>"+userName+"</b>!");
         try{
             userUrl = resp.user.picture.url;
             $("#pic_img").attr("src", userUrl);
@@ -145,7 +145,7 @@ function get_info(){
         try{
             userId = resp.user.permissionId;
             $("#loading").html("Retrieved user id...");
-            $("#user_id_p").html(userId);
+            $("#user_id_p").html("Your user id: <b>" + userId + "</b>");
         }
         catch(e){}
         TogetherJS.refreshUserData();

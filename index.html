@@ -147,8 +147,6 @@
 		
 		<link rel="stylesheet" href="lib/FlipClock/compiled/flipclock.css" async="true"/>
 		
-		<script src="lib/Snap.svg/dist/snap.svg-min.js"></script>
-		
 		<link href="lib/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
 		
 	</head>
@@ -162,7 +160,11 @@
             </div>
 			<div class="collapse navbar-collapse" id="nav1">
 				<ul class="nav navbar-nav">
-					<li class="logo_svg"><a id = "img_a_svg" href="https://codeyourcloud.com/about"><svg id="svg"></svg></a></li>
+					<li class="logo_svg"><a id="img_a_svg" href="https://codeyourcloud.com/about" style="
+						padding: 0;
+					"><img src="icon_128.png" style="
+						height: 50px;
+					"></a></li>
 					<li class="dropdown" id="codedropdown">
 						<a class="dropdown-toggle" id="dropdown-toggle-code" data-toggle="dropdown">File</a>
 						<span class="dropdown-arrow"></span>
@@ -404,31 +406,25 @@
 						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-pencil-square-o"></i> OPTIONS</h4>
 					</div>
 					<div class="modal-body">
-							<div class="green">
 							<h6>Navbar Color</h6>
 							<a id="nav_color" onclick="showNavColor()" class="btn btn-primary  btn-embossed">Change</a>
-							</div>
-							<div class="red">
+							<hr/>
 							<h6>Font Size</h6>
 							<span class="ui-spinner ui-widget ui-widget-content ui-corner-all">
 								<input type="text" id="spinner-font" placeholder="" value="12" class="spinner ui-spinner-input form-control" aria-valuemin="-99" aria-valuemax="99" aria-valuenow="2" autocomplete="off" role="spinbutton">
 								<a onclick="fontUp()" class="ui-spinner-button ui-spinner-up ui-corner-tr btn btn-primary" tabindex="-1">+</a>
 								<a onclick="fontDown()" class="ui-spinner-button ui-spinner-down ui-corner-br btn btn-primary" tabindex="-1">-</a>
 							</span>
-							</div>
-							<div class="blue">
+							<hr/>
 							<h6>Line Numbers</h6>
 							<input type="checkbox" class="js-switch" checked id="line_num_switch" onchange="line_numbers()" />
-							</div>
-							<div class="gray">
+							<hr/>
 							<h6>Line Wrap</h6>
 							<input type="checkbox" class="js-switch" checked id="line_wrap_switch" onchange="line_wrap()"/>
-							</div>
-							<div class="orange">
+							<hr/>
 							<h6>Autocomplete</h6>
 							<input type="checkbox" class="js-switch" id="auto_bind_switch" onchange="auto_bind()"/>
-							</div>
-							<div class="dark-green">
+							<hr/>
 							<h6>Autosave</h6>
 							<input type="checkbox" class="js-switch" checked id="auto_save_switch" onchange="auto_save_switch()"/>
 							<br/>
@@ -442,7 +438,6 @@
 								    padding: 12px;
 								    padding-right: 30px;
 								">sec</span>
-							</div>
 							</div>
 					</div>
 					<div class="modal-footer">
@@ -462,20 +457,13 @@
 						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-info-circle"></i> INFO</h4>
 					</div>
 					<div class="modal-body">
-						<div class="green">
-							<h6 class="green" id="user_p">Not Available</h6>
-						</div>
-						<div class="blue">
-							<img height="100%" src="icon_128.png" id="pic_img"/>
-						</div>
-						<div class="orange">
-							<h6 id="user_id_p">Not Available</h6>
-						</div>
-						<div class="red">
-							<h6>Capacity used</h6>
-							<p><span id="capacity_used">0</span> of <span id="capacity_total">0</span></p>
-							<div class="clock"></div>
-						</div>
+						<h6 id="user_p">Not Available</h6>
+						<img height="100%" src="icon_128.png" id="pic_img"/>
+						<hr/>
+						<h6 id="user_id_p">Not Available</h6>
+						<hr/>
+						<p><span id="capacity_used">0</span> of <span id="capacity_total">0</span> Used</h6>
+						<div class="clock"></div><h6 id="capacity_per">%</h6>
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-danger btn-embossed" onclick="$('#infoModal').modal('hide')">Close</button>
@@ -619,7 +607,7 @@
 				<br/>
 				<button class="btn btn-danger btn-embossed" onclick="reloadNow()"><i class="fa fa-refresh"></i> Retry</button>
 				<br/>
-				<small id="credits"><a href="http://www.julienrenvoye.com/">Shattered Island by Julien Renvoye</a></small>
+				<small id="credits"><a href="http://thepatternlibrary.com/#shattered-island">Shattered Island</a> | <a href="http://www.julienrenvoye.com/">Julien Renvoye</a></small>
 			</div>
 		</div>
 		<div id = "container">
@@ -691,8 +679,6 @@
 		
 		<script src="lib/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
 		<script src="lib/bootstrap-modal/js/bootstrap-modal.js"></script>
-		
-		<script src="lib/Snap.svg/dist/snap.svg-min.js"></script>
 		
 		<script src="scripts/drive.ace.js"></script>
 		<script src="scripts/visual.ace.js"></script>
