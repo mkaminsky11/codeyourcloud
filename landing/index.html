@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Code Your Cloud</title>
+    <link rel="icon" type="image/png" href="http://codeyourcloud.com/favicon.ico">	
+  	<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="../about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -20,119 +22,212 @@
     
     <link href="landing.css" rel="stylesheet">
   </head>
-  <body>
+  <body onload="check_login()">
     <div id="fullpage">
-    	<div class="section" id="intro">
+    	<section id="intro">
     		<!--INTRO
     		*editing is boring, right?
     		
     		No! Code your cloud -> button
     		-->
-    		<div id="intro_main">
-    			<h1>SET YOUR CODE FREE</h1>
-    			<h2>WITH CODE YOUR CLOUD</h2>
+    		<div>
+	    		<div id="intro_main">
+	    			<h1>SET YOUR CODE FREE</h1>
+	    			<h2>WITH CODE YOUR CLOUD</h2>
+	    		</div>
+	    		<br/>
+	    		<img width="100px" src="../images/icon/Spaceship.png">
+	    		<br/>
+	    		<br/>
+	    		<a onclick="redirect()" class="btn btn-embossed btn-info btn-lg btn-huge login_button"><i class="fa fa-google-plus"></i>+<i class="fa fa-code"></i>|Login with Google</a>
+	    		<p class="scroll"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
-    		<br/>
-    		<img width="100px" src="../images/icon/Spaceship.png">
-    		<br/>
-    		<br/>
-    		<a onclick="redirect()" class="btn btn-embossed btn-info btn-lg">Login with Google</a>
-    		<p class="scroll"><i class="fa fa-arrow-circle-down"></i></p>
-    	</div>
-    	<div class="section" id="syntax">
+    	</section>
+    	<section id="syntax">
     		<!--
     		Highlighting
     		-->
-    		<h1>GOT SYNTAX?</h1>
-    		<h6>We know that staring at a bunch of monochromatic text is annoying. Give your work some color! Take control of your code with over 100 supported syntax highlighting languages, as well as autocompletion.</h6>
-    		<br/>
-    		<br/>
+    		<div>
+    			<h1>GOT SYNTAX?</h1>
+				<h6>We know that staring at a bunch of monochromatic text is annoying. Give your work some color! Take control of your code with over 100 supported syntax highlighting languages, as well as autocompletion.</h6>
     		
-<pre class="dark_code"><code>function doStuff(){
-  alert("awesome!");
-}</code></pre>
-<pre class="light_code"><code><b class="pink">function</b> <b class="orange">doStuff()</b>{
-  alert(<i class="green">"awesome!"</i>);
-}</code></pre>
-    	</div>
-    	<div class="section" id="console">
-    		<!--
-    		Console
-    		-->
-    		<h1>CONSOLES GALORE</h1>
-    		<h6>Why settle with just writing code? Test it, too! With code your cloud, you can run javascript code right in the browser. You can also use the built-in javascript console to make calculations or test code.</h6>
-    		
-    		
-    		
-    		
-    		<!--
-    		
-    		NOTE TO SELF: video gif here!
-    		
-    		-->
-    		
-    		
-    		
-    		
-    	</div>
-    	<div class="section" id="preview">
-    		<!--
-    		Preview
-    		-->
-    		<h1>MEASURE TWICE, CUT ONCE</h1>
-    		<h6>Test out your masterpiece at every step of development with our built-in previewer. See how your HTML files look in real life, test the appearance of SVGs, and more.</h6>
-    	</div>
-    	<div class="section" id="colors">
+				<img class="screenshot_img syntax" src="../images/screenshots/syntax.gif">
+    		</div>
+    	</section>
+    	<section id="colors">
     		<!--
     		Colors!
     		-->
-    	</div>
-    	<div class="section" id="random">
+    		<div>
+    			<h1>SUCH COLORS. MUCH CHOICE</h1>
+				<h6>No more guessing about what colors you're going to use, with the built-in color picker.</h6>
+    		
+				<img class="screenshot_img color" src="../images/screenshots/color.gif">
+    		</div>
+    	</section>
+    	<section id="colab">
+    		<div>
+    			<h1>TWO HEADS ARE BETTER THAN ONE</h1>
+    			<h6>Combine brainpower with others by collaborating via TogetherJS.</h6>
+    			
+    			<img class="screenshot_img console" src="../images/screenshots/colab.gif">
+    		</div>
+    	</section>
+    	<section id="google">
+    		<div>
+    			<h1>GOOGLE!</h1>
+				<h6>Open, save, upload, and create files easily with a high level of Google Drive integration. Code Your Cloud is also compatible with Drive's contextual menu</h6>
+				<div id="drive">
+					<h6>The reliability of Google Drive + capabilities of Code Your Cloud = awesomeness</h6>
+					<img src="../images/blog/google_drive_logo.jpg" height="200px">
+				</div>
+    		</div>
+    	</section>
+    	<section id="anywhere">
+    		<div>
+	    		<h1>ACCESS YOUR CODE ANYWHERE...</h1>
+	    		<h6>Have internet access? Great! You could be viewing, editing, and testing your code right now.</h6>
+	    		<div id="earth">
+	    			<h6>You code is here. And here. And here.</h6>
+	    			<img src="../images/icon/Earth@2x.png">
+	    		</div>
+    		</div>
+    	</section>
+    	<section id="device">
+    		<div>
+    			<h1>...ON ANY DEVICE</h1>
+    			<h6>Code Your Cloud is based on Bootstrap, which is designed to work well on mobile devices. As a result, so does Code Your Cloud.</h6>
+    			<div id="devices">
+    				<h6>Mac, Windows, iPhone, oh my!</h6>
+    				<img src="../images/icon/iMac@2x.png">
+    				<img src="../images/icon/iPad@2x.png">
+    				<img src="../images/icon/iPhone@2x.png">
+    				<img src="../images/icon/MacBook-Pro@2x.png">
+    			</div>
+    		</div>
+    	</section>
+    	<section id="console">
+    		<!--
+    		Console
+    		-->
+    		<div>
+	    		<h1>CONSOLES GALORE</h1>
+	    		<h6>Why settle with just writing code? Test it, too! With code your cloud, you can run javascript code right in the browser. You can also use the built-in javascript console to make calculations or test code.</h6>
+	    		
+	    		<img class="screenshot_img console" src="../images/screenshots/console.gif">
+    		</div>
+    	</section>
+    	<section id="preview">
+    		<!--
+    		Preview
+    		-->
+    		<div>
+    			<h1>MEASURE <s>ONCE</s> TWICE, CUT ONCE</h1>
+				<h6>Test out your masterpiece at every step of development with our built-in previewer. See how your HTML files look in real life, test the appearance of SVGs, and more.</h6>
+				<div id="search">
+					<h6>Mistakes are important, but shouldn't be part of your final product.</h6>
+    				<img src="../images/icon/Search@2x.png">
+				</div>
+    		</div>
+    	</section>
+    	<section id="random">
     		<!--
     		Randomness
     		-->
-    	</div>
-    	<div class="section" id="open">
+    		<div>
+    			<h1>LOREM IPSUM DOLOR...</h1>
+    			<h6>If you need to test how your project looks with large amounts of text, random text generators are invaluable tools. Luckily, Code Your Cloud has a built-in lorem generator. Create any number of words, sentences, or paragraphs in seconds.</h6>
+    			
+    			<img class="screenshot_img" src="../images/screenshots/random.gif">
+    		</div>
+    	</section>
+    	<section id="open">
     		<!--
     		Free + open source
     		-->
-    	</div>
-    	<div class="section" id="contact">
-    		<!--
-    		Contact us
-    		-->
-    		<h1>CONTACT US!</h1>
-    		<h6>Need help? Want a new feature? We're all ears.</h6>
-    		<br/>
-    		<br/>
-    		<a class="btn btn-inverse btn-embossed btn-lg" href="https://github.com/mkaminsky11/codeyourcloud"><i class="fa fa-github"></i>|Github</a>
-    		<br/>
-    		<br/>
-    		<a class="btn btn-danger btn-embossed btn-lg" href="https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts"><i class="fa fa-google-plus"></i>|Google+</a>
-    		<br/>
-    		<br/>
-    		<a class="btn btn-info btn-embossed btn-lg" href="https://codeyourcloud.com/about/#contact"><i class="fa fa-envelope"></i>|Email</a>
-    	</div>
-    	<div class="section" id="screenshot">
+    		<div>
+    			<h1>YOUR EDITOR, YOUR WAY</h1>
+    			<h6>Customize your editor with almost 40 themes, along with various other options. Variety is the spice of life, so change up your editor.</h6>
+    			<img class="screenshot_img console" src="../images/screenshots/theme.gif">
+    		</div>
+    	</section>
+    	<section id="contact">
+    		<div>
+	    		<!--
+	    		Contact us
+	    		-->
+	    		<h1>CONTACT US!</h1>
+	    		<h6>Need help? Want a new feature? We're all ears.</h6>
+	    		<br/>
+	    		<div class="btn-group-vertical">
+	    			<a class="btn btn-inverse btn-embossed btn-lg btn-huge" href="https://github.com/mkaminsky11/codeyourcloud"><i class="fa fa-github"></i>|Github</a>
+					<a class="btn btn-danger btn-embossed btn-lg btn-huge" href="https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts"><i class="fa fa-google-plus"></i>|Google+</a>
+					<a class="btn btn-info btn-embossed btn-lg btn-huge" href="https://codeyourcloud.com/about/#contact"><i class="fa fa-envelope"></i>|Email</a>
+					<a class="btn btn-success btn-embossed btn-lg btn-huge" href="https://codeyourcloud.com/about#contact">Website</a>
+	    		</div>
+    		</div>
+    	</section>
+    	<section id="screenshot">
     		<!--
     		Screenshot
     		-->
-    		<h1>LOOKS NICE, DOESN'T IT?</h1>
-    		<img class="screenshot_img" src="../images/screenshots/sc2.png">
-    	</div>
-    	<div class="section" id ="start">
-    		<!--
-    		Get started
-    		
-    		*to top
-    		-->
-    		<h1>SO, WHAT ARE YOU WAITING FOR?</h1>
-    		<br/>
-    		<div class="btn-group">
-    			<a class="btn btn-embossed btn-lg btn-danger" onclick="$.fn.fullpage.moveSectionDown();">Go To Top</a>
-    			<a class="btn btn-embossed btn-lg btn-success" onclick="redirect()">Get Started</a>
+    		<div>
+    			<h1>LOOKS NICE, DOESN'T IT?</h1>
+				<img class="screenshot_png" src="../images/screenshots/sc2.png">
     		</div>
-    	</div>
+    	</section>
+    	<section id ="start">
+    		<div>
+	    		<!--
+	    		Get started
+	    		
+	    		*to top
+	    		-->
+	    		<h1>SO, WHAT ARE YOU WAITING FOR?</h1>
+	    		<br/>
+	    		<div class="btn-group">
+	    			<a class="btn btn-embossed btn-lg btn-danger" onclick="$('#fullpage').moveTo(1);">Go To Top</a>
+	    			<a class="btn btn-embossed btn-lg btn-success login_button" onclick="redirect()">Get Started</a>
+	    		</div>
+	    		<br/><br/>
+	    		<code id="typer"></code>
+	    		<br/>
+	    		<br/>
+	    		<h6>Start coding in the cloud. All you need is a Google account.</h6>
+	    		<br/>
+	    		<a href="https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail?utm_source=chrome-ntp-icon">
+	    			<div class="jumbotron">
+	    				<h6>Download Code Your Cloud from the Chrome Web Store</h6>
+	    				<img src="../images/blog/chromewebstore.png" height="200px">
+					</div>
+	    		</a>
+    		</div>
+    	</section>
+    	<section id="credits">
+    		<div>
+    			<h1>CREDITS</h1>
+    			<br/>
+    			<table class="table table-striped credit_table">
+    				<tr>
+    					<th>Item</th>
+    					<th>Author</th>
+    					<th>Link</th>
+    				</tr>
+    				<tr>
+    					<td>Background of first slide</td>
+    					<td>Sanja Kusturica</td>
+    					<td><a href="http://thepatternlibrary.com/#asteroids">the pattern library</a></td>
+    				</tr>
+    				<tr>
+    					<td>Image of phone</td>
+    					<td>Pete Bangkok</td>
+    					<td><a href="http://www.thepetedesign.com/">thepetedesign.com</a></td>
+    				</tr>
+    			</table>
+    			<br/>
+    			<h6>Thank you for helping to make this page look great!</h6>
+    		</div>
+    	</section>
 	</div>
     <!-- /.container -->
 	<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css' async="true">
@@ -149,14 +244,16 @@
     <script src="../about/flat/js/jquery.tagsinput.js"></script>
     <script src="../about/flat/js/jquery.placeholder.js"></script>
     
-    <link rel="stylesheet" type="text/css" href="../lib/fullPage/jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="../lib/scroll/scroll.css" />
 
-	<script src="../lib/fullPage/vendors/jquery.easings.min.js"></script>   
+	<script src="../lib/scroll/scroll.js"></script>   
 
-	<script type="text/javascript" src="../lib/fullPage/vendors/jquery.slimscroll.min.js"></script>
-
-	<script type="text/javascript" src="../lib/fullPage/jquery.fullPage.js"></script>
     
     <script src="landing.js"></script>
+    <style>
+    section {
+    	padding-top: 30px;
+	}
+    </style>
   </body>
 </html>

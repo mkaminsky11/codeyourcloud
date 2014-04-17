@@ -5,6 +5,12 @@
 #syntax{
 	background-color: #2ECC71;
 }
+#colab{
+	background-color: #2C3E50;
+}
+#google{
+	background-color: #E74C3C;
+}
 #console{
 	background-color: #3498DB;
 }
@@ -16,6 +22,12 @@
 }
 #random{
 	background-color: #1ABC9C;
+}
+#anywhere{
+	background-color: #95A5A6;
+}
+#device{
+	background: #2ECC71 url('../images/blog/back-phone.png') no-repeat;
 }
 #open{
 	background-color: #C0392B;
@@ -29,9 +41,12 @@
 #start{
 	background-color: #F39C12;
 }
+#credits{
+	background-color: #16A085;
+}
 
-.section {
-	margin-bottom: 0;
+section {
+	margin: 0;
 }
 body, html {
 	color: white;
@@ -66,8 +81,18 @@ h6{
 	color: #E67E22;
 }
 .screenshot_img {
-	width: 80%;
-	border: 10px solid #34495E;
+	margin: 5%;
+	width: 70%;
+	border: thick solid #ECF0F1;
+}
+.syntax {
+	width: 50%;
+}
+.console {
+	width: 50%;
+}
+.color {
+	width: 50%;
 }
 .scroll {
 	display: block;
@@ -75,8 +100,96 @@ h6{
 }
 #intro_main{
 	background-color: #34495E;
-	width: 80%;
-	margin-left: 10%;
+	width: 50%;
+	margin-left: 25%;
 	padding: 20px;
 	border-radius: 10px;
+}
+#search{
+	float: right;
+	width: 60%;
+	padding: 20px;
+	margin-top: 200px;
+	background-color: #8E44AD;
+}
+#earth{
+	margin-top: 200px;
+	width: 60%;
+	padding: 20px;
+	background-color: #7F8C8D;
+}
+#devices{
+	margin-top: 200px;
+	width: 60%;
+	padding: 20px;
+	background-color: #27AE60;
+}
+#drive{
+	margin-top: 150px;
+	width: 60%;
+	padding: 20px;
+	background-color: #C0392B;
+	float: right;
+}
+#comp{
+	width: 40%;
+	padding: 20px;
+	background-color: #27AE60;
+}
+.onepage-pagination {
+	background-color: #ecf0f1;
+	padding: 10px;
+	border-radius: 2px;
+	padding-right: 15px;
+}
+.btn,th,td,code
+{
+  font-size: 17px;    /* old */
+  font-size: 1.7vm;   /* IE9 */
+  font-size: 1.7vmin;
+}
+.btn-huge {
+	width: 40%;
+	padding: 20px;
+	font-size: 25px;
+	font-size: 2.5vm;
+	font-size: 2.5vmin;
+}
+section > div {
+	height: 95%;
+	margin-top: 2%;
+	margin-bottom: 3%;
+}
+.screenshot_png {
+	margin-top: 2%;
+	width: 60%;
+	border: thick solid #ECF0F1;
+}
+.jumbotron{
+	width: 50%;
+	margin-left: 25%;
+	border-radius: 5px;
+}
+.credit_table{
+	color: #2C3E50;
+	text-align: left;
+	background-color: #ECF0F1;
+}
+h1
+{
+  font-size: 61px;    /* old */
+  font-size: 6.1vm;   /* IE9 */
+  font-size: 6.1vmin;
+}
+h2
+{
+  font-size: 53px;    /* old */
+  font-size: 5.3vm;   /* IE9 */
+  font-size: 5.3vmin;
+}
+h6
+{
+  font-size: 24px;    /* old */
+  font-size: 2.4vm;   /* IE9 */
+  font-size: 2.4vmin;
 }

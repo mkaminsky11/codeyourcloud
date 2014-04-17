@@ -80,7 +80,7 @@ function handleAuthResult(authResult) {
 		loadClient(init);
 	} 
 	else {
-		window.location = 'https://codeyourcloud.com/dashboard';
+		window.location = 'https://codeyourcloud.com/landing';
 	}
 }
 function loadClient(callback) {
