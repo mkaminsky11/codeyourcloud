@@ -68,6 +68,16 @@ pre {
 	width: 28%;
 	height: 100%;
 }
+@media only screen and (max-width: 991px) {
+	.tile{
+		width: 80%;
+	}
+}
+@media only screen and (max-width: 400px) {
+	#ribbon{
+		display: none;
+	}
+}
 .gridster > ul > li {
 	color: white;
 	text-align: center;

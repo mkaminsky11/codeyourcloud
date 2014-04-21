@@ -1,0 +1,10 @@
+{
+  "node": true,
+  "globals": {
+    "describe" : true,
+    "it"       : true,
+    "Node"     : true,
+    "suite"    : true,
+    "test"     : true
+  }
+}

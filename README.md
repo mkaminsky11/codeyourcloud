@@ -1,6 +1,6 @@
 #Code Your Cloud#
 ######created by Michael Kaminsky######
-####Now available on the <a href="https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail">Chrome Store</a> (over 650 users so far)####
+####Now available on the <a href="https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail">Chrome Store</a> (over 1000 users so far)####
 ####<a href="https://codeyourcloud.com">The Project</a>####
 <p>Check out the result of the project so far here. It is now completely functional. Enjoy!</p>
 ![Screenshot](https://codeyourcloud.com/images/screenshots/sc2.png)

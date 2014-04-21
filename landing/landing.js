@@ -34,7 +34,7 @@ $(document).ready(function() {
 	  	},
 		loop: true,                     // You can have the page loop back to the top/bottom when the user navigates at up/down on the first/last page.
 		keyboard: true,                  // You can activate the keyboard controls
-		responsiveFallback: false        // You can fallback to normal page scroll by defining the width of the browser in whic
+		responsiveFallback: false        // You can fallback to normal page scroll by defining the width of the browser in which
 	});
 });
 var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
@@ -77,4 +77,12 @@ $("#drive").slideUp();
 //DEVICES
 $("#devices").slideUp();
 
+$("#space").hover(function(){
+	$("#space").addClass("buzz");
+},function(){
+	try{
+		$("#space").removeClass("buzz");
+	}
+	catch(e){}
+});
    

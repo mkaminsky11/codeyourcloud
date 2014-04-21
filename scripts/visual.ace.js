@@ -70,9 +70,6 @@ function updatePreview() {
 		preview.write(editor.getValue());
 		preview.close();
 }
-setInterval(function(){
-	updatePreview();
-}, 3000);
 /*************
 OPEN THE FILE
 *************/

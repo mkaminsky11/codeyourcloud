@@ -7,6 +7,8 @@ var myRootFolderId = null;
 var done = false;
 var auto_save = true;
 var auto_save_int = 30000;
+var sql_loaded = false;
+var user_loaded = false;
 /************
 AUTHORIZATION
 ***********/
@@ -146,6 +148,11 @@ function get_info(){
             userId = resp.user.permissionId;
             $("#loading").html("Retrieved user id...");
             $("#user_id_p").html("Your user id: <b>" + userId + "</b>");
+            user_loaded = true;
+            if(sql_loaded){
+	            
+            }
+            
         }
         catch(e){}
         TogetherJS.refreshUserData();
