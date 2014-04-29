@@ -10,7 +10,7 @@
 
     <!-- Loading Flat UI -->
     <link href="../about/flat/css/flat-ui.css" rel="stylesheet">
-	<link href="mobile.css" rel="stylesheet">
+	<!--link href="mobile.css" rel="stylesheet"-->
 
     <link rel="shortcut icon" href="../favicon.ico">
 
@@ -87,7 +87,7 @@
 	<link href="../lib/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
   </head>
   <body onload="handleClientLoad()">
-      <nav id="nav" class="navbar navbar-inverse navbar-embossed" role="navigation">
+      <nav id="nav" class="navbar navbar-inverse navbar-embossed hide" role="navigation">
       	<div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
             <span class="sr-only">Toggle navigation</span>
@@ -150,7 +150,7 @@
 			</ul>
         </div><!-- /.navbar-collapse -->
       </nav>
-      <div id = "screen">
+      <div id = "screen" class="hide">
 			<div>
 				<h1 class="main_load"><a href="https://codeyourcloud.com/about">L<i class="fa fa-power-off"></i>ADING: GRIT, SPIT, AND JAVASCRIPT</a></h1>
 			</div>
@@ -167,10 +167,12 @@
 				<button class="btn btn-danger btn-embossed" onclick="reloadNow()"><i class="fa fa-refresh"></i> Retry</button>
 			</div>
 		</div>
+	<div id="mask">
       <div id="container">
       	<div id="content">
       	</div>
       </div>
+	</div>
       
       <!--
 		NEW PREF
@@ -551,7 +553,7 @@
 		</div>
       
           
-    <script src= "../lib/ace/src/ace_mod.js"></script>
+    <script src= "../lib/ace/src/ace.js"></script>
     <script src= "../lib/ace/src/modes_all.js"></script>
     <script src=" ../lib/ace/src/themes_all.js"></script>
     <script src=" ../lib/ace/src/ext-language_tools.js"></script>
@@ -613,12 +615,33 @@
 		
 		
 	</script>
-	<a id="indicator" class="btn btn-info">26|9</a>
+	<a id="indicator" class="btn btn-info hide">26|9</a>
 	<link href="../lib/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
 	<script src="https://togetherjs.com/togetherjs-min.js"></script>
 
     
     <script src="mobile.js"></script>
+    
+    <style>
+      #content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+#container {
+    position: relative;
+    height: 10000px;
+}
+#mask {
+    height: 1000px;
+    overflow-y: hidden;
+}
+      </style>
+      <script>
+      
+      </script>
     
   </body>
 </html>

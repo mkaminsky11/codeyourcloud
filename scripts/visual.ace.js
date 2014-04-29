@@ -25,6 +25,7 @@ var editor = ace.edit("content");
 ace.require("ace/ext/language_tools");
 editor.on("change", function(e){
 	setState("unsaved");
+	changes_made = true;
 	checkUndo(); //can you undo?
 	yes_context = true;
 	if(autoC && (e.data.text === " " || e.data.text === "\n")){
@@ -271,7 +272,12 @@ function checkFileName(fileName){
 					var s = extensions[a][b].split("|");
 					for(var c= 0; c < s.length; c++){
 					if(s[c] === e){
-						editor.getSession().setMode(new modes[a]());
+						if(e === "ino" || e === "pde"){
+							editor.getSession().setMode(new modes[39]());
+						}
+						else{
+							editor.getSession().setMode(new modes[a]());
+						}
 						sendMessage("Mode changed!", "success");
 					}
 				}
@@ -930,3 +936,51 @@ function minify(){
 
 	editor.setValue(str, -1);
 }
+
+function switch_site(){
+	var ext = "";
+	if(document.URL.indexOf("#") !== -1){
+		ext = document.URL.split("#")[1];
+		ext = "#" + ext;
+	}
+	window.location = "https://codeyourcloud.com/mobile" + ext;
+}
+
+var Environment = {
+    //mobile or desktop compatible event name, to be used with '.on' function
+    TOUCH_DOWN_EVENT_NAME: 'mousedown touchstart',
+    TOUCH_UP_EVENT_NAME: 'mouseup touchend',
+    TOUCH_MOVE_EVENT_NAME: 'mousemove touchmove',
+    TOUCH_DOUBLE_TAB_EVENT_NAME: 'dblclick dbltap',
+
+    isAndroid: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    isBlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    isIOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    isOpera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    isWindows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    isMobile: function() {
+        return (Environment.isAndroid() || Environment.isBlackBerry() || Environment.isIOS() || Environment.isOpera() || Environment.isWindows());
+    }
+};
+if(Environment.isMobile() !== null){
+	to_mobile();
+}
+function to_mobile(){
+	$('#typeModal').modal('show');
+}
+
+function startIntro(){
+	var intro = introJs();
+
+	intro.start();
+ }

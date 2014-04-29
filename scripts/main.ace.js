@@ -9,11 +9,12 @@ var auto_save = true;
 var auto_save_int = 30000;
 var sql_loaded = false;
 var user_loaded = false;
+var changes_made = false;
 /************
 AUTHORIZATION
 ***********/
 window.onbeforeunload = function () {
-	if($("#note").html() !== "All Changes Saved To Drive" || $("#note").html() === "Saving..." && document.URL !== "https://codeyourcloud.com/"){
+	if($("#note").html() !== "All Changes Saved To Drive" || $("#note").html() === "Saving..." && document.URL !== "https://codeyourcloud.com/" && document.URL !== "https://codeyourcloud.com/mobile"){
 		var didTurnOff = false;
 		if(isWelcome === false){
 			if(isTOpen === true){
@@ -43,7 +44,9 @@ autoSave();
 function autoSave(){
 	setTimeout(function(){
 		if(document.URL.indexOf("#") !== -1 && auto_save){
-			save();
+			if(changes_made){
+				save();
+			}
 			autoSave();
 		}
 	}, auto_save_int);
@@ -120,7 +123,12 @@ function init() {
 		else if(query.indexOf("open") !== -1){
 			var query_id = query.split("%22")[3];
 			setTimeout(function(){
-				window.location = "https://codeyourcloud.com#" + query_id;
+				if(document.URL.indexOf("mobile") !== -1){
+					window.location = "https://codeyourcloud.com/mobile#" + query_id;
+				}
+				else{
+					window.location = "https://codeyourcloud.com#" + query_id;
+				}
 			}, 1000);
 		}
 		else{
@@ -184,8 +192,9 @@ SAVE FILE
 **********/
 function save(){
 	if(!isSaving){
-	saveNoSend();
-	sendSave();
+		changes_made = false;
+		saveNoSend();
+		sendSave();
 	}
 }
 function saveNoSend(){

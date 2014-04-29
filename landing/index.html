@@ -38,8 +38,9 @@
 	    		<img id="space" width="100px" src="../images/icon/Spaceship.png">
 	    		<br/>
 	    		<br/>
+	    		<p>Created by <a href="https://plus.google.com/u/0/+michaelkaminsky/posts">Michael Kaminsky</a></p>
 	    		<a onclick="redirect()" class="btn btn-embossed btn-info btn-lg btn-huge login_button"><i class="fa fa-google-plus"></i>+<i class="fa fa-code"></i>|Login with Google</a>
-	    		<p class="scroll"><i class="fa fa-arrow-circle-down"></i></p>
+	    		<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="syntax">
@@ -47,10 +48,12 @@
     		Highlighting
     		-->
     		<div>
+    			<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
     			<h1>GOT SYNTAX?</h1>
 				<h6>We know that staring at a bunch of monochromatic text is annoying. Give your work some color! Take control of your code with over 100 supported syntax highlighting languages, as well as autocompletion.</h6>
     		
 				<img class="screenshot_img syntax" src="../images/screenshots/syntax.gif">
+				<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="colors">
@@ -58,42 +61,51 @@
     		Colors!
     		-->
     		<div>
+    			<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
     			<h1>SUCH COLORS. MUCH CHOICE</h1>
 				<h6>No more guessing about what colors you're going to use, with the built-in color picker.</h6>
     		
 				<img class="screenshot_img color" src="../images/screenshots/color.gif">
+				<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="colab">
     		<div>
+    			<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
     			<h1>TWO HEADS ARE BETTER THAN ONE</h1>
     			<h6>Combine brainpower with others by collaborating via TogetherJS.</h6>
     			
     			<img class="screenshot_img console" src="../images/screenshots/colab.gif">
+    			<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="google">
     		<div>
+    			<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
     			<h1>GOOGLE!</h1>
 				<h6>Open, save, upload, and create files easily with a high level of Google Drive integration. Code Your Cloud is also compatible with Drive's contextual menu</h6>
 				<div id="drive">
 					<h6>The reliability of Google Drive + capabilities of Code Your Cloud = awesomeness</h6>
-					<img src="../images/blog/google_drive_logo.jpg" height="200px">
+					<img src="https://codeyourcloud.com/images/blog/drive.svg" height="200px">
 				</div>
+				<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="anywhere">
     		<div>
+    			<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
 	    		<h1>ACCESS YOUR CODE ANYWHERE...</h1>
 	    		<h6>Have internet access? Great! You could be viewing, editing, and testing your code right now.</h6>
 	    		<div id="earth">
 	    			<h6>You code is here. And here. And here.</h6>
 	    			<img src="../images/icon/Earth@2x.png">
 	    		</div>
+	    		<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="device">
     		<div>
+    			<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
     			<h1>...ON ANY DEVICE</h1>
     			<h6>Code Your Cloud is based on Bootstrap, which is designed to work well on mobile devices. As a result, so does Code Your Cloud.</h6>
     			<div id="devices">
@@ -103,6 +115,7 @@
     				<img src="../images/icon/iPhone@2x.png">
     				<img src="../images/icon/MacBook-Pro@2x.png">
     			</div>
+    			<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="console">
@@ -110,10 +123,12 @@
     		Console
     		-->
     		<div>
+    			<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
 	    		<h1>CONSOLES GALORE</h1>
 	    		<h6>Why settle with just writing code? Test it, too! With code your cloud, you can run javascript code right in the browser. You can also use the built-in javascript console to make calculations or test code.</h6>
 	    		
 	    		<img class="screenshot_img console" src="../images/screenshots/console.gif">
+	    		<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="preview">
@@ -121,12 +136,14 @@
     		Preview
     		-->
     		<div>
+    			<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
     			<h1>MEASURE <s>ONCE</s> TWICE, CUT ONCE</h1>
 				<h6>Test out your masterpiece at every step of development with our built-in previewer. See how your HTML files look in real life, test the appearance of SVGs, and more.</h6>
 				<div id="search">
 					<h6>Mistakes are important, but shouldn't be part of your final product.</h6>
     				<img src="../images/icon/Search@2x.png">
 				</div>
+				<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="random">
@@ -134,10 +151,12 @@
     		Randomness
     		-->
     		<div>
+    			<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
     			<h1>LOREM IPSUM DOLOR...</h1>
     			<h6>If you need to test how your project looks with large amounts of text, random text generators are invaluable tools. Luckily, Code Your Cloud has a built-in lorem generator. Create any number of words, sentences, or paragraphs in seconds.</h6>
     			
     			<img class="screenshot_img" src="../images/screenshots/random.gif">
+    			<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="open">
@@ -145,9 +164,11 @@
     		Free + open source
     		-->
     		<div>
+    			<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
     			<h1>YOUR EDITOR, YOUR WAY</h1>
     			<h6>Customize your editor with almost 40 themes, along with various other options. Variety is the spice of life, so change up your editor.</h6>
     			<img class="screenshot_img console" src="../images/screenshots/theme.gif">
+    			<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="contact">
@@ -155,6 +176,7 @@
 	    		<!--
 	    		Contact us
 	    		-->
+	    		<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
 	    		<h1>CONTACT US!</h1>
 	    		<h6>Need help? Want a new feature? We're all ears.</h6>
 	    		<br/>
@@ -164,6 +186,7 @@
 					<a class="btn btn-info btn-embossed btn-lg btn-huge" href="https://codeyourcloud.com/about/#contact"><i class="fa fa-envelope"></i>|Email</a>
 					<a class="btn btn-success btn-embossed btn-lg btn-huge" href="https://codeyourcloud.com/about#contact">Website</a>
 	    		</div>
+	    		<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="screenshot">
@@ -171,8 +194,10 @@
     		Screenshot
     		-->
     		<div>
+    			<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
     			<h1>LOOKS NICE, DOESN'T IT?</h1>
 				<img class="screenshot_png" src="../images/screenshots/sc2.png">
+				<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id ="start">
@@ -182,6 +207,7 @@
 	    		
 	    		*to top
 	    		-->
+	    		<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
 	    		<h1>SO, WHAT ARE YOU WAITING FOR?</h1>
 	    		<br/>
 	    		<div class="btn-group">
@@ -198,13 +224,15 @@
 	    			<div class="jumbotron">
 	    				<h6>Download Code Your Cloud from the Chrome Web Store</h6>
 	    				<hr/>
-	    				<img src="../images/blog/chromewebstore.png" height="200px">
+	    				<img src="../images/blog/chromewebstore.png" height="50px">
 					</div>
 	    		</a>
+	    		<p class="scroll_down" onclick="$('#fullpage').moveDown()"><i class="fa fa-arrow-circle-down"></i></p>
     		</div>
     	</section>
     	<section id="credits">
     		<div>
+    			<p class="scroll_up" onclick="$('#fullpage').moveUp()"><i class="fa fa-arrow-circle-up"></i></p>
     			<h1>CREDITS</h1>
     			<br/>
     			<table class="table table-striped credit_table">

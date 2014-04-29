@@ -81,7 +81,10 @@ h6{
 	color: #E67E22;
 }
 .screenshot_img {
-	margin: 5%;
+	margin-top: 5%;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-bottom: 0%;
 	width: 70%;
 	border: thick solid #ECF0F1;
 }
@@ -94,9 +97,19 @@ h6{
 .color {
 	width: 50%;
 }
-.scroll {
+.scroll_down {
 	display: block;
-	margin-top: 200px;
+	margin: 0;
+	margin-top: 10px;
+	width:100%;
+	display: inline-block;
+}
+.scroll_up {
+	display: block;
+	margin: 0;
+	margin-bottom: 10px;
+	width:100%;
+	display: inline-block;
 }
 #intro_main{
 	/*background-color: #34495E;*/
@@ -162,6 +175,7 @@ section > div {
 }
 .screenshot_png {
 	margin-top: 2%;
+	margin-bottom: 0%;
 	width: 60%;
 	border: thick solid #ECF0F1;
 }

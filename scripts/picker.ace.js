@@ -32,6 +32,9 @@ function pickerOCallback(data) {
 			var fileId = data.docs[i].id;
 			console.log(fileId);
 			var v = "https://codeyourcloud.com/#"+fileId;
+			if(document.URL.indexOf("mobile") !== -1){
+				"https://codeyourcloud.com/mobile#"+fileId;
+			}
 			window.location.href = v;
 			location.reload();
 			reloadNow();

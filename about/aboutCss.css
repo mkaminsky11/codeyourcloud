@@ -72,6 +72,9 @@ pre {
 	.tile{
 		width: 80%;
 	}
+	.gr-1, .gr-2, .gr-3{
+		width: 80%;
+	}
 }
 @media only screen and (max-width: 400px) {
 	#ribbon{
