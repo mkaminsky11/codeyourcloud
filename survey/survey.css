@@ -4,5 +4,7 @@ body{
 }
 .other_textarea{
 	font-size: 12px;
-	width: 50%;
+}
+body{
+	padding: 50px;
 }
