@@ -596,7 +596,7 @@ var Environment = {
     }
 };
 if(Environment.isMobile() === null){
-	to_regular();
+	//to_regular();
 }
 function to_regular(){
 	$('#typeModal').modal('show');

@@ -1,14 +1,9 @@
 
 var server;
-//
 var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
 var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive'];
 var myRootFolderId = null;
 var done = false;
-var auto_save = true;
-var auto_save_int = 30000;
-var sql_loaded = false;
-var user_loaded = false;
 var changes_made = false;
 /************
 AUTHORIZATION
@@ -52,11 +47,9 @@ function autoSave(){
 	}, auto_save_int);
 }
 function handleClientLoad() {
-    if(online){
         setPercent("0");
 	    $("#loading").html("Authorizing...");
 	    checkAuth();
-    }
 }	
 function checkAuth() {
 	setPercent("10");
@@ -93,7 +86,6 @@ function loadClient(callback) {
 	gapi.client.load('drive', 'v2', callback);
 }
 function init() {
-	//if # but not ?
 	if(document.URL.indexOf("#") !== -1 && document.URL.indexOf("?") === -1){
 		if(document.URL.indexOf("state") === -1){
 			get_info();
@@ -158,7 +150,7 @@ function get_info(){
             $("#user_id_p").html("Your user id: <b>" + userId + "</b>");
             user_loaded = true;
             if(sql_loaded){
-	            
+	            get_sql();
             }
             
         }
@@ -208,7 +200,7 @@ function saveNoSend(){
 }
 function saveFile(fileId, content){
     //console.log(content);
-    if(typeof content !== "undefined" && online){ //if nothing is "null"
+    if(typeof content !== "undefined"){ //if nothing is "null"
         var contentArray = new Array(content.length);
         for (var i = 0; i < contentArray.length; i++) {
             contentArray[i] = content.charCodeAt(i);
@@ -220,15 +212,12 @@ function saveFile(fileId, content){
             updateFile(fileId,resp,blob,changesSaved);
         });
     }
-    if(!online){
-	    $('#offlineModal').modal('show');
-    }
 }
 /***********
 DOWNLOAD FILE
 ************/
 function downloadFile() {
-if(ok && online){
+if(ok){
   var fileId = current;
   var request = gapi.client.drive.files.get({
     'fileId': fileId
@@ -238,30 +227,14 @@ if(ok && online){
   });
   sendMessage("file downloaded", "success");
 }
-if(!online){
-	    $('#offlineModal').modal('show');
-    }
 }
 /**********
-ONLINE/OFFLINE
+OFFLINE
 ***********/
 var online = true;
 function isOnline() {
-    var status = navigator.onLine; 
-    if(status !== online){
-	    //if there is a change
-	    online = status;
-	    if(online === true){
-		    sendMessage("online", "success");
-	    }
-	    else{
-		    sendMessage("offline", "error");
-	    }
-    }
+    
 };
-
-setInterval(isOnline, 500);
-isOnline();
 /**********
 PDF
 **********/
@@ -330,7 +303,12 @@ function run(){
 AUTOSAVE
 **********/
 function auto_save_switch(){
-	auto_save = false;
+	if(auto_save === true){
+		auto_save = false;
+	}
+	else{
+		auto_save = true;
+	}
 }
 function auto_save_update(){
 	auto_save_int = Number($("#save_int").val()) * 1000;

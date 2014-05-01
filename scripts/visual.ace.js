@@ -1,4 +1,3 @@
-var autoC = false; //autocomplete
 var trigger_auto = false;
 var isWelcome = false; //welcome screen
 $("#side").css("z-index", -1);
@@ -355,9 +354,11 @@ for(var i = 0; i < themeData.length; i++){
 	var theme_html = "<li class='list-group-item' onclick=\"setTheme('" + theme_formal_name + "')\">" + theme_name + "</li>"
 	$(".theme_ul").html($(".theme_ul").html() + theme_html);
 }
-setTheme("monokai");
+editor.setTheme("ace/theme/monokai");
 function setTheme(theme_name){
 	editor.setTheme("ace/theme/" + theme_name);
+	theme_sql = theme_name;
+	set_sql();
 }
 /***********
 RENAME
@@ -426,7 +427,6 @@ function navRedo() {
 /************
 PREFERENCES
 ************/
-var line_number = true;
 function line_numbers() {
 	if(line_number){
 		editor.renderer.setShowGutter(false); 
@@ -436,6 +436,7 @@ function line_numbers() {
 		editor.renderer.setShowGutter(true);
 		line_number = true;
 	}
+	set_sql();
 }
 function line_wrap() {
 	if(editor.session.getUseWrapMode()){
@@ -445,6 +446,7 @@ function line_wrap() {
 		editor.session.setUseWrapMode(true);
 		editor.session.setWrapLimitRange();
 	}
+	set_sql();
 }
 function auto_bind(){
 	if(autoC === true){
@@ -453,6 +455,7 @@ function auto_bind(){
 	else{
 		autoC = true;
 	}
+	set_sql();
 }
 /**************
 LINKS TO OTHER
@@ -555,8 +558,6 @@ function openSide(){
 		document.getElementById("content").style.width = "80%";
 		document.getElementById("the-arrow").innerHTML = "<i class='fa fa-caret-square-o-right'></i>";
 		$("#side-arrow").attr("onclick","closeSide()");
-		//
-		//
 		$("#console").animate({
 			width: "80%",
 			marginLeft: "20%"
@@ -654,7 +655,6 @@ function createTodo(note, line, character, kind){
 		temp = note;
 	}
 	todoId = kind + "-" + line + "-" + character;
-	//var todoButton = "<span><button class='btn btn-default' onclick='removeTodo(\"" + todoId + "\")'><i class='fa fa-check-square-o'></i></button></
 	var div1 = "";
 	if(kind === "note"){
 		div1 = "<div class='todo-icon fui-check'></div>";
@@ -767,6 +767,8 @@ function fontUp(){
 	}
 	$("#content").css("fontSize", old+"px");
 	$("#spinner-font").val(old);
+	sql_font = old;
+	set_sql();
 }
 $("#content").css("fontSize", "12px");
 function fontDown(){
@@ -776,6 +778,8 @@ function fontDown(){
 	}
 	$("#content").css("fontSize", old+"px");
 	$("#spinner-font").val(old);
+	sql_font = old;
+	set_sql();
 }
 /**********
 COLOR
@@ -925,16 +929,12 @@ function showPreviewModal(){
 MINIFY
 *********/
 function minify(){
-	var find = '\n';
-	var re = new RegExp(find, 'g');
+	var lines = editor.getValue().split("\n");
+	for(var i = 0; i < lines.length; i++){
+		lines[i] = lines[i].trim();
+	}
 
-	var str = editor.getValue().replace(re, '');
-
-	find = " ";
-	re = new RegExp(find, 'g');
-	str = str.replace(re, '');
-
-	editor.setValue(str, -1);
+	editor.setValue(lines.join(""), -1);
 }
 
 function switch_site(){
@@ -976,7 +976,7 @@ if(Environment.isMobile() !== null){
 	to_mobile();
 }
 function to_mobile(){
-	$('#typeModal').modal('show');
+	//$('#typeModal').modal('show');
 }
 
 function startIntro(){
@@ -984,3 +984,14 @@ function startIntro(){
 
 	intro.start();
  }
+ /*************
+ OFFLINE
+ *************/
+ Offline.on("down", function(){
+	 $(".offline-ui-content").html("Reconnecting...");
+	 $(".offline-ui-retry").html("Retry");
+ });
+ Offline.on("up", function(){
+	 $(".offline-ui-content").html("Reconnected!");
+	 get_sql();
+ });

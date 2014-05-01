@@ -122,23 +122,23 @@ h6{
 	float: right;
 	width: 60%;
 	padding: 20px;
-	margin-top: 200px;
+	margin-top: 50px;
 	background-color: #8E44AD;
 }
 #earth{
-	margin-top: 200px;
+	margin-top: 50px;
 	width: 60%;
 	padding: 20px;
 	background-color: #7F8C8D;
 }
 #devices{
-	margin-top: 200px;
-	width: 60%;
+	margin-top: 50px;
+	width: 90%;
 	padding: 20px;
 	background-color: #27AE60;
 }
 #drive{
-	margin-top: 150px;
+	margin-top: 50px;
 	width: 60%;
 	padding: 20px;
 	background-color: #C0392B;

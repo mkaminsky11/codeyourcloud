@@ -3,16 +3,13 @@
 	<head>
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-47415821-1', 'codeyourcloud.com');
-  ga('send', 'pageview');
-
-		</script>
-	    <script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-47415821-1', 'codeyourcloud.com');
+			ga('send', 'pageview');
 	        function checkB() {
 				var ua= navigator.userAgent, tem, 
 				M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*([\d\.]+)/i) || [];
@@ -45,6 +42,22 @@
 				}
 			}
 			checkB();
+			
+			/***********
+			SQL
+			************/
+			var theme_sql = "monokai";
+			var auto_save = true;
+			var auto_save_int = 30000;
+			
+			var sql_loaded = false;
+			var user_loaded = false;
+			
+			var sql_font = 12;
+			var autoC = false;
+			var line_number = true;
+			var line_wrap = true;
+			//***************
 	    </script>
 		<meta charset="utf-8">
 		<link rel="icon" type="image/png" href="http://codeyourcloud.com/favicon.ico">
@@ -133,6 +146,7 @@
 		<link rel="stylesheet" href="lib/FlipClock/compiled/flipclock.css" async="true"/>
 		<link href="lib/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
 		<link rel="stylesheet" href="lib/intro/intro.css"/>
+		<link rel="stylesheet" href="lib/offline/themes/offline-theme-chrome.css"/>
 		
 	</head>
 	<body onload="handleClientLoad()">
@@ -287,7 +301,7 @@
 							<a class="btn btn-success btn-embossed full_width_button btn-lg" onclick="showExpModal()"><i class="fa fa-flask"></i> Experimental</a>
 							<a class="btn btn-warning btn-embossed full_width_button btn-lg" onclick="showInfoModal()"><i class="fa fa-info-circle"></i> Info</a>
 							<a class="btn btn-info btn-embossed full_width_button btn-lg" onclick="showHelpModal()"><i class="fa fa-question"></i> Help</a>
-							<a class="btn btn-default btn-embossed full_width_button btn-lg" href="https://codeyourcloud.com/about#contact"><i class="fa fa-bug"></i> Report A Bug</a>
+							<a class="btn btn-default btn-embossed full_width_button btn-lg" href="https://github.com/mkaminsky11/codeyourcloud/issues"><i class="fa fa-bug"></i> Report A Bug</a>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -681,12 +695,13 @@
 		<script src="lib/FlipClock/compiled/flipclock.min.js"></script>
 		<script src="lib/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
 		<script src="lib/bootstrap-modal/js/bootstrap-modal.js"></script>
-		<script src="lib/intro/intro.js"></srcipt>
+		<script src="lib/intro/intro.js"></script>
+		<script src="lib/offline/offline.min.js"></script>
 		
 		<script src="scripts/drive.ace.js"></script>
+		<script src="scripts/frontend.ace.js"></script>
 		<script src="scripts/visual.ace.js"></script>
 		<script src="scripts/main.ace.js"></script>
-		<script src="scripts/frontend.ace.js"></script>
 
 		<link rel='stylesheet' type='text/css' href='style.css'>
 		
