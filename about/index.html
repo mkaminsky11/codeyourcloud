@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>	
-	<link rel="icon" type="image/png" href="http://codeyourcloud.com/favicon.ico">	
+  <head>
+	<link rel="icon" type="image/png" href="http://codeyourcloud.com/favicon.ico">
   	<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
-  	<script src="/about/fl/js/jquery-1.8.3.min.js"></script>
+  	<script src="../about/fl/js/jquery-1.8.3.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Code Your Cloud | About</title>
     <meta name="description" content="The about page for Code Your Cloud, an in-browser code editor">
 
-    <link href="/about/fl/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../about/fl/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Loading Flat UI -->
-    <link href="/about/fl/css/flat-ui.css" rel="stylesheet">
+    <link href="../about/fl/css/flat-ui.css" rel="stylesheet">
 
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
-      <script src="/about/fl/js/html5shiv.js"></script>
-      <script src="/about/fl/js/respond.min.js"></script>
+      <script src="../about/fl/js/html5shiv.js"></script>
+      <script src="../about/fl/js/respond.min.js"></script>
     <![endif]-->
 
     <!-- Add custom CSS here -->
-    <link href="/lib/Font/css/font-awesome.css" rel="stylesheet">
-    
+    <link href="../lib/Font/css/font-awesome.css" rel="stylesheet">
+
     <link href="aboutCss.css" rel="stylesheet">
-    
+
 	<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css'>
-	
-	<link rel="stylesheet" type="text/css" href="/lib/grid/grid.css">
-	<script src="/lib/grid/grid.js"></script>
-    
-    <script src="/lib/messenger/build/js/messenger.min.js"></script>
-	<script src="/lib/messenger/build/js/messenger-theme-flat.js"></script>
-	<link rel="stylesheet" href="/lib/messenger/build/css/messenger.css">
-	<link rel="stylesheet" href="/lib/messenger/build/css/messenger-theme-flat.css">
+
+	<link rel="stylesheet" type="text/css" href="../lib/grid/grid.css">
+	<script src="../lib/grid/grid.js"></script>
+
+    <script src="../lib/messenger/build/js/messenger.min.js"></script>
+	<script src="../lib/messenger/build/js/messenger-theme-flat.js"></script>
+	<link rel="stylesheet" href="../lib/messenger/build/css/messenger.css">
+	<link rel="stylesheet" href="../lib/messenger/build/css/messenger-theme-flat.css">
   </head>
 
   <body onload="check_login()">
@@ -48,38 +48,23 @@
 		  		<ul class="dropdown-menu" role="menu">
 			  		<li><a href="#about">About</a></li>
 			  		<li><a href="#features">Features</a></li>
-			  		<li><a href="#code">The Code</a></li>
 			  		<li><a href="#help">Help</a></li>
 			  		<li><a href="#contact">Contact Us</a></li>
 			  		<li><a href="#donate">Donate</a></li>
 			  	</ul>
 			</div>
 	  	</div>
-		<a id="ribbon" href="https://github.com/mkaminsky11/codeyourcloud"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>  		</div>
-  		<div id="main_logo"><h1 class="large_main"><img id="logo_pic" src="../icon_128.png " height="47px" /> Code Your Cloud</h1></div>
-  		<div class="alert alert-danger">Created by <a class="alert-link" href="https://plus.google.com/u/0/+michaelkaminsky/posts">Michael Kaminsky</a></div>
-        <div class="alert alert-info">
-  			Download Code Your Cloud in the <a href="https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail" class="alert-link">Chrome Web Store</a>
-		</div>
-        <div class="alert alert-success">
-        	Follow <a class="alert-link" href="https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts">+Code Your Cloud</a>
-        </div>
-        <div class="alert alert-warning">
-        	Take a <a class="alert-link" href="https://codeyourcloud.com/survey">survey</a>
-        </div>
-        <h2 id="about">About</h1>
-        <div class="well">
-        <p>
-        <h6>More Technical</h6>
-        Code Your Cloud is an in-browser collaborative code editor for Google Drive, which combines the capabilities of Google's cloud services with the functionality of Ace syntax highlighting and editing. It currently has over 1,000 downloads on the Chrome Web Store. Code Your Cloud also has many built-in features to boost your productivity, such as a color picker and lorem generator.
-        <h6>Less Technical</h6>
-        Code Your Cloud is a web application capable of editing files stored on Google Drive. This includes JAVA, HTML, and CSS files, among others. What sets Code Your Cloud apart is the ability to collaborate. If both you and your friend are accessing the same file, you can see each the changes made in real-time. Code Your Cloud CANNOT open files such as Microsoft Office documents or Google Docs documents. To use Code Your Cloud, you must have a Google account (this will allow you to access Google Drive).
-        </p>
-        </div>
+		<a href="https://github.com/mkaminsky11/codeyourcloud"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>  		</div>
+	<div id="main_div">
+  		<div id="main_logo"><h1 class="large_main">Code Your Cloud</h1></div>
+  	</div>	
+  	<div id="about_div">
+  		<img class="sep icon" src="../icon_128.png " height="47px" />
+        <p id="about">
+        Code Your Cloud is an in-browser collaborative code editor for Google Drive, which combines the capabilities of Google's cloud services with the functionality of CodeMirror syntax highlighting and editing.
         <hr/>
         This project was born out of a deep frustration for the lack of competent code editors for Google Drive. Although some code editors (namely <a href="http://www.editey.com/">Editey</a> and <a href="https://drivenotepad.appspot.com/app">Drive Notepad</a>) do exist, they do not provide the functionality, polish, and usefullness required for many projects. This is an attempt to fix that.<br/>
-        
-        
+
         <table class="table table-striped">
         	<tr>
         		<th>Feature</th>
@@ -181,21 +166,23 @@
         <hr/>
         This project is open source, so that anybody can copy and learn from it. This product would not be possible without the generosity of others, who have made their code open to the world.
         </p>
-        <h2 id="features">Features</h1>
+      </div>
+      <div id="feature_div">
+        <h2 id="features" class="sep">Features</h1>
         <div class="row go-right">
-        	<div class="col-md-3 tile">
+        	<div class="col-md-3 tile tile-hot">
             		<h4><img src="../images/icon/Retina-Ready.png"></h4>
             		<h3 class="tile-title">Syntax Highlighting</h3>
             		<p>Support for over 100 languages</p>
 			</div>
-         	<div class="col-md-3 tile">
+         	<div class="col-md-3 tile tile-hot">
             		<h4><img src="../images/icon/Chat.png"></h4>
 					<h3 class="tile-title">Collaboration</h3>
 					<p>Collaborate using TogetherJS</p>
 		 	</div>
-		 	
+
 		 	<div class="col-md-3 tile">
-            		<h4><i class="fa fa-picture-o"></i></h4>
+            		<h4><img src="../images/icon/colors.png"></h4>
 					<h3 class="tile-title">Colors</h3>
 					<p>Built-in color picker</p>
 		 	</div>
@@ -229,7 +216,7 @@
 					<p>A built-in todo list</p>
 		 	</div>
 			<div class="col-md-3 tile">
-            		<h4><img src="../images/icon/javascript.png" width="100px"></h4>
+            		<h4><img src="../images/icon/File.png"></h4>
             		<h3 class="tile-title">Run code</h3>
             		<p>Run javascript code</p>
 			</div>
@@ -257,32 +244,28 @@
             		<h3 class="tile-title">Google Drive</h3>
             		<p>Integrated with Google Drive</p>
 			</div>
-			
+
 			<div class="col-md-3 tile">
             		<h4><img src="../images/icon/Earth.png"></h4>
             		<h3 class="tile-title">Mobility</h3>
             		<p>Access your code anywhere...</p>
 			</div>
-			
+
 			<div class="col-md-3 tile">
             		<h4><img src="../images/icon/Responsive.png"></h4>
             		<h3 class="tile-title">Portability</h3>
             		<p>...on any device</p>
 			</div>
         </div>
-        
-        <h2 id="code">The Code</h2>
-        <p>This is the fun part. In this section, you can find the tools, techniques, and code used in the creation of Code Your Cloud</p>
-        <h5>Google Drive</h5>
-        <script src="https://gist.github.com/mkaminsky11/8624150.js"></script>
-        <h5>Ace</h5>
-        <script src="https://gist.github.com/mkaminsky11/8624455.js"></script>      
-        <h5 id="lib">Libraries</h5>
+      </div>
+      
+      <div id="lib_div">
+        <h2 id="lib" class="sep">Libraries</h2>
         <p>These are the libraries and resources used in the creation of Code Your Cloud</p>
-	<blockquote>
-		<p>No man will make a great leader who wants to do it all himself or get all the credit for doing it.</p>
-		<small>-Andrew Carnegie</small>
-	</blockquote>
+		<blockquote>
+			<p>No man will make a great leader who wants to do it all himself or get all the credit for doing it.</p>
+			<small>-Andrew Carnegie</small>
+		</blockquote>
         <table class="table table-striped">
         	<tr>
         		<th>Name</th>
@@ -375,9 +358,10 @@
 			<td>Flipclocks and counters</td>
 		</tr>
         </table>
-        
-        
-        <h2 id="help">Help</h1>
+
+	</div>
+	<div id="help_div">
+        <h2 id="help" class="sep">Help</h1>
         <h4>Supported Browsers</h4>
         <table class="table table-striped">
         	<tr>
@@ -418,115 +402,115 @@
         	</tr>
         </table>
         <h4 id="lang">Supported Languages</h4>
-        <p>The following languages support syntax highlighting</p>
-        <div class="gridster">
-		<ul>
-        	<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>ABAP</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>ActionScript</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>ADA</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Apache Conf</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>AsciiDoc</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Assembly x86</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>AutoHotKey</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>BatchFile</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>C9Search</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>C/C++</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Cirru</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Clojure</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Cobol</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>CoffeeScript</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>ColdFusion</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>C#</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>CSS</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Curly</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>D</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Dart</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Diff</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Dot</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Erlang</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>EJS</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Forth</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>FreeMarker</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Gherkin</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Glsl</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Go</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Groovy</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>HAML</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Handlebars</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Haskell</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>haXe</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>HTML</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>HTML (Ruby)</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>INI</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Jack</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Jade</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Java</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>JavaScript</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>JSON</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>JSONiq</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>JSP</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>JSX</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Julia</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>LaTeX</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>LESS</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Liquid</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Lisp</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>LiveScript</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>LogiQL</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>LSL</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Lua</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>LuaPage</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Lucene</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Makefile</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>MATLAB</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Markdown</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>MEL</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>MySQL</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>MUSHCode</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Nix</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Objective-C</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>OCaml</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Pascal</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Perl</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>pgSQL</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>PHP</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Powershell</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Prolog</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Properties</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Protobuf</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Python</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>R</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>RDoc</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>RHTML</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Ruby</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Rust</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>SASS</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>SCAD</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Scala</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Smarty</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Scheme</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>SCSS</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>SH</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>SJS</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Space</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>snippets</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Soy Template</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>SQL</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Stylus</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>SVG</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Tcl</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Tex</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Text</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Textile</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>Toml</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Twig</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Typescript</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>VBScript</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>Velocity</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>Verilog</span></li>
-			<li class="gr-2"data-row="2"data-col="1" data-sizex="1" data-sizey="1"><span>XML</span></li>
-			<li class="gr-3"data-row="3"data-col="1" data-sizex="1" data-sizey="1"><span>XQuery</span></li>
-			<li class="gr-1"data-row="1"data-col="1" data-sizex="1" data-sizey="1"><span>YAML</span></li>
+        <p>The following languages support syntax highlighting</p> 
+        <p><span class="fui-check-inverted float_left"></span> = important</p>
+        <div class="list-group modes">
+        	<li class="list-group-item">ABAP</li>
+			<li class="list-group-item">ActionScript</li>
+			<li class="list-group-item">ADA</li>
+			<li class="list-group-item">Apache Conf</li>
+			<li class="list-group-item">AsciiDoc</li>
+			<li class="list-group-item">Assembly x86</li>
+			<li class="list-group-item">AutoHotKey</li>
+			<li class="list-group-item">BatchFile</li>
+			<li class="list-group-item">C9Search</li>
+			<li class="list-group-item">C/C++ <span class="fui-check-inverted"></span></li>
+			<li class="list-group-item">Cirru</li>
+			<li class="list-group-item">Clojure</li>
+			<li class="list-group-item">Cobol</li>
+			<li class="list-group-item">CoffeeScript</li>
+			<li class="list-group-item">ColdFusion</li>
+			<li class="list-group-item">C# <span class="fui-check-inverted"></span></li>
+			<li class="list-group-item">CSS <span class="fui-check-inverted"></span></li>
+			<li class="list-group-item">Curly</li>
+			<li class="list-group-item">D</li>
+			<li class="list-group-item">Dart</li>
+			<li class="list-group-item">Diff</li>
+			<li class="list-group-item">Dot</li>
+			<li class="list-group-item">Erlang</li>
+			<li class="list-group-item">EJS</li>
+			<li class="list-group-item">Forth</li>
+			<li class="list-group-item">FreeMarker</li>
+			<li class="list-group-item">Gherkin</li>
+			<li class="list-group-item">Glsl</li>
+			<li class="list-group-item">Go</li>
+			<li class="list-group-item">Groovy</li>
+			<li class="list-group-item">HAML</li>
+			<li class="list-group-item">Handlebars</li>
+			<li class="list-group-item">Haskell</li>
+			<li class="list-group-item">haXe</li>
+			<li class="list-group-item">HTML <span class="fui-check-inverted"></span></li>
+			<li class="list-group-item">HTML (Ruby)</li>
+			<li class="list-group-item">INI</li>
+			<li class="list-group-item">Jack</li>
+			<li class="list-group-item">Jade</li>
+			<li class="list-group-item">Java <span class="fui-check-inverted"></span></li>
+			<li class="list-group-item">JavaScript <span class="fui-check-inverted"></span></li>
+			<li class="list-group-item">JSON</li>
+			<li class="list-group-item">JSONiq</li>
+			<li class="list-group-item">JSP</li>
+			<li class="list-group-item">JSX</li>
+			<li class="list-group-item">Julia</li>
+			<li class="list-group-item">LaTeX</li>
+			<li class="list-group-item">LESS</li>
+			<li class="list-group-item">Liquid</li>
+			<li class="list-group-item">Lisp</li>
+			<li class="list-group-item">LiveScript</li>
+			<li class="list-group-item">LogiQL</li>
+			<li class="list-group-item">LSL</li>
+			<li class="list-group-item">Lua</li>
+			<li class="list-group-item">LuaPage</li>
+			<li class="list-group-item">Lucene</li>
+			<li class="list-group-item">Makefile</li>
+			<li class="list-group-item">MATLAB</li>
+			<li class="list-group-item">Markdown</li>
+			<li class="list-group-item">MEL</li>
+			<li class="list-group-item">MySQL</li>
+			<li class="list-group-item">MUSHCode</li>
+			<li class="list-group-item">Nix</li>
+			<li class="list-group-item">Objective-C <span class="fui-check-inverted"></span></li>
+			<li class="list-group-item">OCaml</li>
+			<li class="list-group-item">Pascal</li>
+			<li class="list-group-item">Perl <span class="fui-check-inverted"></span></li>
+			<li class="list-group-item">pgSQL</li>
+			<li class="list-group-item">PHP <span class="fui-check-inverted"></span></li>
+			<li class="list-group-item">Powershell</li>
+			<li class="list-group-item">Prolog</li>
+			<li class="list-group-item">Properties</li>
+			<li class="list-group-item">Protobuf</li>
+			<li class="list-group-item">Python</li>
+			<li class="list-group-item">R</li>
+			<li class="list-group-item">RDoc</li>
+			<li class="list-group-item">RHTML</li>
+			<li class="list-group-item">Ruby <span class="fui-check-inverted"></span></li>
+			<li class="list-group-item">Rust</li>
+			<li class="list-group-item">SASS</li>
+			<li class="list-group-item">SCAD</li>
+			<li class="list-group-item">Scala</li>
+			<li class="list-group-item">Smarty</li>
+			<li class="list-group-item">Scheme</li>
+			<li class="list-group-item">SCSS</li>
+			<li class="list-group-item">SH</li>
+			<li class="list-group-item">SJS</li>
+			<li class="list-group-item">Space</li>
+			<li class="list-group-item">snippets</li>
+			<li class="list-group-item">Soy Template</li>
+			<li class="list-group-item">SQL</li>
+			<li class="list-group-item">Stylus</li>
+			<li class="list-group-item">SVG</li>
+			<li class="list-group-item">Tcl</li>
+			<li class="list-group-item">Tex</li>
+			<li class="list-group-item">Text</li>
+			<li class="list-group-item">Textile</li>
+			<li class="list-group-item">Toml</li>
+			<li class="list-group-item">Twig</li>
+			<li class="list-group-item">Typescript</li>
+			<li class="list-group-item">VBScript</li>
+			<li class="list-group-item">Velocity</li>
+			<li class="list-group-item">Verilog</li>
+			<li class="list-group-item">XML</li>
+			<li class="list-group-item">XQuery</li>
+			<li class="list-group-item">YAML</li>
 		</ul>
 		</div>
 
@@ -546,9 +530,9 @@
         <p>The todo list is refreshed with every save, and can be found by clicking the "todo" menu item underneath the "code" menu, or by clicking <i class="fa fa-list-ol"></i> in the sidebar.</p>
         <h4 id="key">Keyboard Shortcuts</h4>
         <!--
-        
+
         keyboard
-        
+
         -->
         <table class="table table-striped">
         	<tr>
@@ -602,47 +586,78 @@
         	<li>Line Numbers</li>
         	<li>Autocomplete</li>
         </ul>
-        
+
         <p>The menu item to trigger the preferences window is found under the <i class="fa fa-cog"></i> menu at the top-right corner of the editor.</p>
-        
+
         <h4 id="drive">Google Drive Integration</h4>
-        
+
         <p>With Code Your Cloud, you can open, share, edit, upload, and save Google Drive files.</p>
-        
+
         <h6>Opening</h6>
         <p>Click the <i class="fa fa-folder-open"></i> icon, or the "open" menu item.<br/>Note: code your cloud CANNOT open Google Docs or Microsoft Office documents.</p>
-        
+
         <h6>Sharing</h6>
         <p>In order to allow other people to access your files, click the "share" menu item. If you have not added people to the list of authorized collaborators, they will not be allowed to access the file.</p>
-        
+
         <h6>Creating</h6>
         <p>Click the "new" menu item. The document will be titled by its unique file id (a very long string of characters) to prevent name collisions. The file will be created in the root folder of your Google Drive.</p>
-        
+
         <h6>Saving</h6>
         <p>Click the "save" menu item, <i class="fa fa-floppy-o"></i> icon, or the save state indicator (to the right of the collaboration button).</p>
-        
+
         <h6>Uploading</h6>
         <p>Select the "upload" menu item to upload a file to Google Drive. The file will appear in your root (main) folder.</p>
-       
+
         <h4 id="collab">Collaboration</h4>
         <p>Navigate to the document that you want to work on, and press the <i class="fa fa-comment"></i> button.</p>
-        
+
         <h4 id="running">Running Code</h4>
         <p>You can run code (for now, only javascript) using the <i class="fa fa-play"></i> button.</p>
-        
-        <h2 id="contact">Contact Us</h1>
-        <h5>hostmaster@codeyourcloud.com</h5>
-        <p>If you have any questions or comments, you can also use the comment box below. Please not that any HTML will be stripped out of your comments.</p>
-        <input class="form-control login-field" id="comment_name" value="" placeholder="Name"/>
-        <br/>
-        <input class="form-control login-field" id="comment_mail" value="" placeholder="Email"/>
-        <br/>
-        <textarea class="form-control login-field" id="comment_comment" value="" placeholder="Comment" rows="10"></textarea>
-        <br/>
-        <button class="btn btn-success" onclick="comment()">Comment</button>
-        <button class="btn btn-danger" onclick="resetForm()" value="Reset">Reset</button>
-        
-        <h2 id="donate">Donate</h2>
+	</div>
+	<div id="contact_div">
+        <h2 id="contact" class="sep">Contact Us</h1>
+        <div id="comment" class="row">
+        	<div id="comment_left" class="col-lg-3">
+        		<p>If you have any questions or comments, you can also use the comment box below. Please note that any HTML will be stripped out of your comments.</p>
+        		<button class="btn btn-success" onclick="comment()">Comment</button>
+        		<button class="btn btn-danger" onclick="resetForm()" value="Reset">Reset</button>
+        	</div>
+        	<div id="comment_right" class="col-lg-9">
+        		<input class="form-control login-field" id="comment_name" value="" placeholder="Name"/>
+      	 	 	<br/>
+     		    <input class="form-control login-field" id="comment_mail" value="" placeholder="Email"/>
+     		    <br/>
+     		    <textarea class="form-control login-field" id="comment_comment" value="" placeholder="Comment" rows="10"></textarea>
+        	</div>
+       	 </div>
+       	 
+       	 <div id="social">
+       	 	<h4>Get Social</h4>
+       	 	<table class="table social_table">
+       	 		<tbody>
+       	 		<tr class="google_plus">
+       	 			<td class="btn-danger" onclick="window.location=''"><i class="fa fa-google-plus-square"></i>  Google+</td>
+       	 			<td>Get the latest news on features and problems regarding Code Your Cloud from our official page.</td>
+	       	 	</tr>
+	       	 	<tr class="github_social">
+	       	 		<td class="btn-inverse" onclick="window.location=''"><i class="fa fa-github-square"></i>  Github</td>
+	       	 		<td>View the code that makes Code Your Cloud tick, and submit issues for fixing</td>
+	       	 	</tr>
+	       	 	<tr class="email_social">
+	       	 		<td class="btn-info" onclick="window.location=''"><i class="fa fa-envelope"></i>  Email</td>
+	       	 		<td>Send an email to <b>hostmaster@codeyourcloud.com</b> for personal help and advice</td>
+	       	 	</tr>
+	       	 	<tr class="survey_social">
+	       	 		<td class="btn-primary" onclick="window.location=''"><i class="fa fa-th-list"></i>  Survey</td>
+   	    	 		<td>Take a survey to help make Code Your Cloud better!</td>
+   	    	 	</tr>
+   	    	 	</tbody>
+   	    	 </table>
+       	 </div>
+       	 
+	</div>
+	<div id="donate_div">
+        <h2 id="donate" class="sep">Donate</h2>
         <h6>Where do donations go?</h6>
         <ul>
         	<li>Paying for servers</li>
@@ -658,16 +673,17 @@
 <input type="image" src="paypal.png" name="submit" alt="PayPal - The safer, easier way to pay online!">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
+</div>
     <!-- JavaScript -->
-    <script src="/about/fl/js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="/about/fl/js/jquery.ui.touch-punch.min.js"></script>
-    <script src="/about/fl/js/bootstrap.min.js"></script>
-    <script src="/about/fl/js/bootstrap-select.js"></script>
-    <script src="/about/fl/js/bootstrap-switch.js"></script>
-    <script src="/about/fl/js/flatui-checkbox.js"></script>
-    <script src="/about/fl/js/flatui-radio.js"></script>
-    <script src="/about/fl/js/jquery.tagsinput.js"></script>
-    <script src="/about/fl/js/jquery.placeholder.js"></script>
+    <script src="../about/fl/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../about/fl/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../about/fl/js/bootstrap.min.js"></script>
+    <script src="../about/fl/js/bootstrap-select.js"></script>
+    <script src="../about/fl/js/bootstrap-switch.js"></script>
+    <script src="../about/fl/js/flatui-checkbox.js"></script>
+    <script src="../about/fl/js/flatui-radio.js"></script>
+    <script src="../about/fl/js/jquery.tagsinput.js"></script>
+    <script src="../about/fl/js/jquery.placeholder.js"></script>
 
     <!-- Custom JavaScript for the Menu Toggle -->
     <script>
@@ -675,13 +691,6 @@
         e.preventDefault();
         $("#wrapper").toggleClass("active");
     });
-    $(function(){ //DOM Ready
- 
-    $(".gridster ul").gridster({
-        widget_margins: [10, 10],
-        widget_base_dimensions: [140, 140]
-    });
-	});
     </script>
 	<script src="about.js"></script>
 	<link href="aboutCss.css" rel="stylesheet">
