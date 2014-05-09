@@ -104,6 +104,9 @@ function print_sql(message){
 function get_sql(){
 	connection.send(JSON.stringify({type:"get", id:userId}));
 }
+function publish(){
+	connection.send(JSON.stringify({type:"publish", id:userId, lines:editor.getValue().split("\n")}));
+}
 /*********
 LEAVE THESE ALONE FOR NOW
 **********/

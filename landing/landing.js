@@ -90,21 +90,6 @@ function redirect(){
 		window.location.href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.install + https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.file&state=%2Fprofile&redirect_uri=https%3A%2F%2Fcodeyourcloud.com%2Fmobile&response_type=token&client_id=953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com";
 	}
 }*/
-var string_to_type = "window.href = \"https://codeyourcloud.com\";";
-var char_type = 0;
-window.setInterval(function(){
-	if(char_type === string_to_type.length){
-		char_type=0;
-		$("#typer").html("");
-	}
-	else{
-    	addChar(char_type);
-		char_type++;
-	}
-},200);
-function addChar(i){
-	$("#typer").html($("#typer").html() + string_to_type.charAt(i));
-}
 //SEARCH
 $("#search").slideUp();
 //EARTH

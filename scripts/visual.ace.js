@@ -3,6 +3,7 @@ var isWelcome = false; //welcome screen
 $("#side").css("z-index", -1);
 $("#container").css('backgroundColor', $(".CodeMirror").css('backgroundColor'));
 $(".run-button").addClass('hide');
+$(".html-button").addClass('hide');
 var yes_context = true;
 /**************
 CONTEXT MENU
@@ -76,7 +77,10 @@ OPEN THE FILE
 function welcome() {
 	ok = true;
 	$("#col_li").remove();
+	
 	$(".run-button").addClass("hide");
+	$(".html-button").addClass("hide");
+	
 	$("#console_toggle").addClass("hide");
 	document.getElementById("will_close").style.visibility = "hidden";
 	document.getElementById("note").style.visibility="hidden";
@@ -248,6 +252,8 @@ for (var name in supportedModes) {
 
 function checkFileName(fileName){
 	$(".run-button").addClass("hide");
+	$(".html-button").addClass("hide");
+	
 	$("#console_toggle").addClass("hide");
 	//BASIC AUTOCOMPLETE
 	basicAuto();
@@ -258,6 +264,9 @@ function checkFileName(fileName){
 		//javascript
 		$(".run-button").removeClass("hide");
 		$("#console_toggle").removeClass("hide");
+	}
+	if(fileName.indexOf(".html") !== -1){
+		$(".html-button").removeClass("hide");
 	}
 	else{
 		if(console_open){
@@ -503,24 +512,27 @@ function setState(state){
 BOOTSTRAP
 ***********/
 function setPercent(per){
+	/*
 	document.getElementById("desc").innerHTML = per + "% complete";
 	document.getElementById("prog").style.width = per + "%";
-	document.getElementById("prog").ariaValuenow = per + "";		
+	document.getElementById("prog").ariaValuenow = per + "";	
+	*/	
 	if(per === "100"){
 		setTimeout(function(){
 			$("#screen").animate({
 				marginTop: "-100%",
 				marginBottom: "100%"
 			},750,function(){
-				$("#pre").remove();
+				//$("#pre").remove();
 				$("#screen").remove();
-				$('#ok_rename').tooltip('hide');
-				$('#cancel_rename').tooltip('hide');
+				//$('#ok_rename').tooltip('hide');
+				//$('#cancel_rename').tooltip('hide');
 			});
 		}, 1000);
 	}
+	/*
 	if(per === "0"){
-	}
+	}*/
 }
 /*************
 TERN

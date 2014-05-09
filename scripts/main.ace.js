@@ -48,12 +48,12 @@ function autoSave(){
 }
 function handleClientLoad() {
         setPercent("0");
-	    $("#loading").html("Authorizing...");
+	    //$("#loading").html("Authorizing...");
 	    checkAuth();
 }	
 function checkAuth() {
 	setPercent("10");
-	$("#loading").html("Checking authorization...");
+	//$("#loading").html("Checking authorization...");
 	try{
 		try{
 			gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate': true},handleAuthResult);
@@ -73,7 +73,7 @@ function checkAuth() {
 function handleAuthResult(authResult) {
 	done = true;
 	setPercent("30");
-	$("#loading").html("Checking results...");
+	//$("#loading").html("Checking results...");
 	if (authResult) {
 		loadClient(init);
 	} 
@@ -82,7 +82,7 @@ function handleAuthResult(authResult) {
 	}
 }
 function loadClient(callback) {
-	$("#loading").html("Loading Google Drive...");
+	//$("#loading").html("Loading Google Drive...");
 	gapi.client.load('drive', 'v2', callback);
 }
 function init() {
@@ -130,23 +130,24 @@ function init() {
 }
 function get_info(){
 	ok = true;
-    $("#loading").html("Loading user info...");
+    //$("#loading").html("Loading user info...");
     var request = gapi.client.drive.about.get();
     request.execute(function(resp) {
         myRootFolderId = resp.rootFolderId;
-        $("#loading").html("Retrieved root folder...");
+        //$("#loading").html("Retrieved root folder...");
         userName = resp.name;
-        $("#loading").html("Got user name");
+        //$("#loading").html("Got user name");
         $("#user_p").html("welcome, <b>"+userName+"</b>!");
         try{
             userUrl = resp.user.picture.url;
             $("#pic_img").attr("src", userUrl);
-            $("#loading").html("Retrieved profile picture...");
+            //$("#loading").html("Retrieved profile picture...");
         }
         catch(e){}
         try{
             userId = resp.user.permissionId;
-            $("#loading").html("Retrieved user id...");
+            $("#publish").attr("href", "https://codeyourcloud.com/pub/"+userId+"/index.html");
+            //$("#loading").html("Retrieved user id...");
             $("#user_id_p").html("Your user id: <b>" + userId + "</b>");
             user_loaded = true;
             if(sql_loaded){
@@ -157,9 +158,9 @@ function get_info(){
         catch(e){}
         TogetherJS.refreshUserData();
         var total_q = resp.quotaBytesTotal;
-        $("#loading").html("Retrieved user quota...");
+        //$("#loading").html("Retrieved user quota...");
         var user_q = resp.quotaBytesUsedAggregate;
-        $("#loading").html("Retrieved user usage...");
+        //$("#loading").html("Retrieved user usage...");
         var product_q = Math.round(user_q/total_q * 100);
         $("#capacity_used").html(bytesToSize(user_q));
         $("#capacity_total").html(bytesToSize(total_q));

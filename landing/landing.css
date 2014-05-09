@@ -44,6 +44,9 @@
 #credits{
 	background-color: #16A085;
 }
+#publish{
+	background-color: #1ABC9C;
+}
 
 section {
 	margin: 0;
@@ -248,4 +251,15 @@ h6
   animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
+}
+
+#credit_p{
+	width: 80%;
+	margin-left: 10%;
+}
+#credit_p > a{
+	color: #34495E;
+}
+#credit_p > a:hover{
+	color: #2C3E50;
 }

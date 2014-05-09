@@ -10,14 +10,14 @@
 
     <!-- Loading Flat UI -->
     <link href="../about/flat/css/flat-ui.css" rel="stylesheet">
-	<link href="mobile.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="../favicon.ico">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
+      <script src="../about/flat/js/html5shiv.js"></script>
+      <script src="../about/flat/js/respond.min.js"></script>
     <![endif]-->
     
     <script type="text/javascript" src="../api.js"></script>
@@ -32,6 +32,22 @@
 			console.log("reload");
 			location.reload();
 		}
+		
+		/***********
+			SQL
+			************/
+			var theme_sql = "monokai";
+			var auto_save = true;
+			var auto_save_int = 30000;
+			
+			var sql_loaded = false;
+			var user_loaded = false;
+			
+			var sql_font = 12;
+			var autoC = false;
+			var line_number = true;
+			var line_wrap = true;
+			//***************
 	</script>
 	<script type="text/javascript" src="../client.js"></script>
 	<script>
@@ -57,14 +73,50 @@
 			isTOpen = false;
 		};
 	</script>
+	
+	<script src = "../lib/codemirror/lib/codemirror.js"></script>
+	<link rel='stylesheet' type='text/css' href='../lib/codemirror/lib/codemirror.css'>
+		
+	<link rel='stylesheet' type='text/css' href='style.css'>
+	
+	<script src = '../lib/codemirror/mode/css/css.js'></script>
+	<script src = "../lib/codemirror/mode/mode.js"></script>
+	
+		<link rel='stylesheet' type='text/css' href='../lib/codemirror/theme/theme.css'>
 	<!--addons-->		
+
+	<link rel="stylesheet" href="../lib/codemirror/addon/dialog/dialog.css" >
+	<link rel="stylesheet" href="../lib/codemirror/addon/hint/show-hint.css" >
+	<link rel="stylesheet" href="../lib/codemirror/addon/tern/tern.css" >
+	
+	<script src="../lib/codemirror/addon/comment/comment.js" ></script>
+	
+	<script src="../lib/codemirror/addon/dialog/dialog.js" ></script>
+	<script src="../lib/codemirror/addon/hint/show-hint.js" ></script>
+	<script src="../lib/codemirror/addon/tern/tern.js" ></script>
+	
+	
+	<script src="../lib/codemirror/addon/search/search.all.js" ></script>
+	
+	<script src="../lib/codemirror/addon/edit/edit.min.js"></script>
+	
+	<script src="../lib/auto/acorn.js"></script>
+	<script src="../lib/auto/acorn_loose.js"></script>
+	<script src="../lib/auto/walk.js"></script>
+	<script src="../lib/auto/polyfill.js"></script>
+	<script src="../lib/auto/signal.js"></script>
+	<script src="../lib/auto/tern.js"></script>
+	<script src="../lib/auto/def.js"></script>
+	<script src="../lib/auto/comment.js"></script>
+	<script src="../lib/auto/infer.js"></script>
+	<script src="../lib/auto/doc_comment.js"></script>
 	
 	<!--OPEN-->
-	<script src = '../scripts/picker.ace.js'></script>
+	<script src = '../scripts/picker.codemirror.js'></script>
 	<!--KEYBOARD-->
 	<script src = '../lib/keyboard/jwerty.js'></script>
 	<!--BOOTSTRAP LIBRARIES-->
-	<link rel='stylesheet' type='text/css' href='../lib/Font/css/font-awesome.min.css' async="true">
+	<link rel='stylesheet' type='text/css' href='../lib/Font/css/font-awesome.min.css' >
 	<!--
 	addons
 	
@@ -74,17 +126,20 @@
 	
 	<script src="../lib/messenger/build/js/messenger.min.js"></script>
 	<script src="../lib/messenger/build/js/messenger-theme-flat.js"></script>
-	<link rel="stylesheet" href="../lib/messenger/build/css/messenger.css" async="true"/>
-	<link rel="stylesheet" href="../lib/messenger/build/css/messenger-theme-flat.css" async="true"/>
+	<link rel="stylesheet" href="../lib/messenger/build/css/messenger.css" />
+	<link rel="stylesheet" href="../lib/messenger/build/css/messenger-theme-flat.css" />
 	
-	<script src="../lib/jsPDF/jspdf.min.js" async="true"></script>
+	<script src="../lib/jsPDF/jspdf.min.js" ></script>
 	
-	<link rel="stylesheet" href="../lib/switchery/dist/switchery.min.css" async="true"/>
+	<link rel="stylesheet" href="../lib/switchery/dist/switchery.min.css" />
 	<script src="../lib/switchery/dist/switchery.min.js"></script>
 	
-	<link rel="stylesheet" href="../lib/FlipClock/compiled/flipclock.css" async="true"/>
+	<link rel="stylesheet" href="../lib/FlipClock/compiled/flipclock.css" />
 	
 	<link href="../lib/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
+	
+	
+	
   </head>
   <body onload="handleClientLoad()">
       <nav id="nav" class="navbar navbar-inverse navbar-embossed" role="navigation">
@@ -106,6 +161,7 @@
                 <li onclick="tools()"><a>Tools</a></li>
                 <li onclick="showRename()"><a>Rename</a></li>
                 <li id="color" onclick="showColor()"><a>Color</a></li>
+                <li class="html-button" onclick="showPub()"><a>Publish</a></li>
               </ul>
             </li>
             <li id="will_close">
@@ -150,12 +206,14 @@
 			</ul>
         </div><!-- /.navbar-collapse -->
       </nav>
+      
       <div id = "screen">
 			<div>
+				<br/>
 				<h1 class="main_load"><a href="https://codeyourcloud.com/about">L<i class="fa fa-power-off"></i>ADING: GRIT, SPIT, AND JAVASCRIPT</a></h1>
 			</div>
 			<div id="in-screen">
-				<img id="pre" src="" alt=""/>
+				<!--img id="pre" src="" alt=""/>
 				<br/>
 				<div class="progress progress-striped active">																					
 					<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="prog">
@@ -164,13 +222,19 @@
 				</div>
 				<span id="loading"></span>
 				<br/>
-				<button class="btn btn-danger btn-embossed" onclick="reloadNow()"><i class="fa fa-refresh"></i> Retry</button>
+				<button class="btn btn-danger btn-embossed" onclick="reloadNow()"><i class="fa fa-refresh"></i> Retry</button-->
+				<img src="../images/preload/p1.svg" width="10%">
 			</div>
 		</div>
+		
+		
+		
       <div id="container">
       	<div id="content">
       	</div>
       </div>
+      
+      
       
       <!--
 		NEW PREF
@@ -390,6 +454,31 @@
 					</div>
 					<div class="modal-body">
 						<ul class="theme_ul" class="list-group">
+							<li class="list-group-item" onclick = "setTheme('3024-day')">3024-day</li>
+	    					<li class="list-group-item" onclick = "setTheme('3024-night')">3024-night</li>
+							<li class="list-group-item" onclick = "setTheme('ambiance')">ambiance</li>
+							<li class="list-group-item" onclick = "setTheme('cobalt')">cobalt</li>
+	  						<li class="list-group-item" onclick = "setTheme('mbo')">mbo</li>
+	    					<li class="list-group-item" onclick = "setTheme('lesser-dark')">lesser-dark</li>
+	    					<li class="list-group-item" onclick = "setTheme('paraiso-light')">paraiso-light</li>
+							<li class="list-group-item" onclick = "setTheme('rubyblue')">rubyblue</li>
+							<li class="list-group-item" onclick = "setTheme('the-matrix')">matrix</li>
+								
+							<li class="list-group-item" onclick = "setTheme('ambiance-mobile')">ambiance-mobile</li>
+							<li class="list-group-item" onclick = "setTheme('base16-dark')">base16-dark</li>
+							<li class="list-group-item" onclick = "setTheme('base16-light')">base16-light</li>
+							<li class="list-group-item" onclick = "setTheme('blackboard')">blackboard</li>
+							<li class="list-group-item" onclick = "setTheme('eclipse')">eclipse</li>
+							<li class="list-group-item" onclick = "setTheme('elegant')">elegant</li>
+							<li class="list-group-item" onclick = "setTheme('erlang-dark')">erlang-dark</li>
+							<li class="list-group-item" onclick = "setTheme('lesser-dark')">lesser-dark</li>
+							<li class="list-group-item" onclick = "setTheme('mdn-like')">mdn-like</li>
+							<li class="list-group-item" onclick = "setTheme('midnight')">midnight</li>
+							<li class="list-group-item" onclick = "setTheme('monokai')">monokai</li>
+							<li class="list-group-item" onclick = "setTheme('neat')">neat</li>
+							<li class="list-group-item" onclick = "setTheme('night')">night</li>
+							<li class="list-group-item" onclick = "setTheme('pastel')">pastel</li>
+							<li class="list-group-item" onclick = "setTheme('solarized')">solarized</li>
 						</ul>
 					</div>
 					<div class="modal-footer">
@@ -413,25 +502,6 @@
 					</div>
 					<div class="modal-footer">
 					    <button class="btn btn-danger btn-embossed" onclick="$('#previewModal').modal('hide')">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--
-		OFFLINE
-		-->
-		<div class="modal fade" id="offlineModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">Warning!</h4>
-					</div>
-					<div class="modal-body">
-						<h4>You are now offline. Please re-establish internet connection</h4>
-					</div>
-					<div class="modal-footer">
-					    <button class="btn btn-danger btn-embossed" onclick="$('#offlineModal').modal('hide')">Close</button>
 					</div>
 				</div>
 			</div>
@@ -517,11 +587,35 @@
 							<a class="btn btn-primary btn-emobssed full_width_button btn-lg" onclick="showPreviewModal();">Preview</a>
 							<a class="btn btn-info btn-embossed full_width_button btn-lg" onclick="moveLeft()">Move Left</a>
 							<a class="btn btn-success btn-embossed full_width_button btn-lg" onclick="moveRight()">Move Right</a>
-							<a class="btn btn-warning btn-embossed full_width_button btn-lg" onclick="toggle_comment()">Toggle Comment/Uncomment</a>
+							<a class="btn btn-warning btn-embossed full_width_button btn-lg" onclick="line_comment()">Line Comment</a>
+							<a class="btn btn-danger btn-embossed full_width_button btn-lg" onclick="block_comment()">Block Comment</a>
+							<a class="btn btn-primary btn-embossed full_width_button btn-lg" onclick="uncomment()">Uncomment</a>
 						</div>						
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-danger btn-embossed" onclick="$('#toolModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		PUBLISH
+		-->
+		<div class="modal fade" id="publishModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">PUBLISH</h4>
+					</div>
+					<div class="modal-body">
+						<div class="btn-group-vertical full_width_button">
+							<a class="btn btn-danger btn-embossed full_width_button btn-lg" onclick="publish()">Publish HTML</a>
+							<a class="btn btn-primary btn-emobssed full_width_button btn-lg" id="publish">Go to site</a>
+						</div>						
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-danger btn-embossed" onclick="$('#publishModal').modal('hide')">Close</button>
 					</div>
 				</div>
 			</div>
@@ -551,10 +645,6 @@
 		</div>
       
           
-    <script src= "../lib/ace/src/ace_mod.js"></script>
-    <script src= "../lib/ace/src/modes_all.js"></script>
-    <script src=" ../lib/ace/src/themes_all.js"></script>
-    <script src=" ../lib/ace/src/ext-language_tools.js"></script>
     
     <script src="../about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="../about/flat/js/jquery.ui.touch-punch.min.js"></script>
@@ -575,10 +665,10 @@
 	<script src="../lib/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
 	<script src="../lib/bootstrap-modal/js/bootstrap-modal.js"></script>
 	
-	<script src="../scripts/drive.ace.js"></script>
-	<!--script src="../scripts/visual.ace.js"></script-->
-	<script src="../scripts/main.ace.js"></script>
-	<script src="../scripts/frontend.ace.js"></script>
+	<script src="../scripts/drive.codemirror.js"></script>
+	<script src="../scripts/visual.codemirror.js"></script>
+	<script src="../scripts/main.codemirror.js"></script>
+	<script src="../scripts/frontend.codemirror.js"></script>
 
 	
 	<script>
@@ -616,9 +706,6 @@
 	<a id="indicator" class="btn btn-info">26|9</a>
 	<link href="../lib/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
 	<script src="https://togetherjs.com/togetherjs-min.js"></script>
-
-    
-    <script src="mobile.js"></script>
     
   </body>
 </html>

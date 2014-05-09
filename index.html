@@ -206,11 +206,14 @@
 							<li onclick="showPreviewModal();"><a>Preview</a></li>
 							<li id="autoButton" onclick="getHint()"><a>Autocomplete</a></li>
 							<li onclick="$('#randomModal').modal('show')"><a>Lorem generator</a></li>
-							<li class="divider"></li>
+							<li class="run-button divider"></li>
 							<li onclick="run()" class="run-button"><a>Run</a></li>
 							<li onclick="openConsole()" class="run-button"><a>Open console</a></li>
 							<li onclick="closeConsole()" class="run-button"><a>Close console</a></li>
 							<li onclick="clearConsole()" class="run-button"><a>Clear console</a></li>
+							<li class="html-button divider"></li>
+							<li onclick="publish()" class="html-button"><a>Publish</a></li>
+							<li class="html-button"><a href="" id="publish" target="_blank">Go to page</a></li>
 						</ul>
 					</li>
 					<li class="" id="will_close">
@@ -295,13 +298,13 @@
 					</div>
 					<div class="modal-body">
 						<div class="btn-group-vertical full_width_button">
-							<a class="btn btn-danger btn-embossed full_width_button btn-lg" onclick="showModeModal()"><i class="fa fa-code"></i> Modes</a>
-							<a class="btn btn-primary btn-emobssed full_width_button btn-lg" onclick="showThemeModal()"><i class="fa fa-magic"></i> Themes</a>
-							<a class="btn btn-info btn-embossed full_width_button btn-lg" onclick="showOptionsModal()"><i class="fa fa-pencil-square-o"></i> Options</a>
-							<a class="btn btn-success btn-embossed full_width_button btn-lg" onclick="showExpModal()"><i class="fa fa-flask"></i> Experimental</a>
-							<a class="btn btn-warning btn-embossed full_width_button btn-lg" onclick="showInfoModal()"><i class="fa fa-info-circle"></i> Info</a>
-							<a class="btn btn-info btn-embossed full_width_button btn-lg" onclick="showHelpModal()"><i class="fa fa-question"></i> Help</a>
-							<a class="btn btn-default btn-embossed full_width_button btn-lg" href="https://github.com/mkaminsky11/codeyourcloud/issues"><i class="fa fa-bug"></i> Report A Bug</a>
+							<a class="btn btn-danger full_width_button btn-lg" onclick="showModeModal()"><i class="fa fa-code"></i> Modes</a>
+							<a class="btn btn-primary full_width_button btn-lg" onclick="showThemeModal()"><i class="fa fa-magic"></i> Themes</a>
+							<a class="btn btn-info full_width_button btn-lg" onclick="showOptionsModal()"><i class="fa fa-pencil-square-o"></i> Options</a>
+							<a class="btn btn-success full_width_button btn-lg" onclick="showExpModal()"><i class="fa fa-flask"></i> Experimental</a>
+							<a class="btn btn-warning full_width_button btn-lg" onclick="showInfoModal()"><i class="fa fa-info-circle"></i> Info</a>
+							<a class="btn btn-info full_width_button btn-lg" onclick="showHelpModal()"><i class="fa fa-question"></i> Help</a>
+							<a class="btn btn-default full_width_button btn-lg" href="https://github.com/mkaminsky11/codeyourcloud/issues"><i class="fa fa-bug"></i> Report A Bug</a>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -617,10 +620,11 @@
 		-->
 		<div id = "screen">
 			<div>
+				<br/>
 				<h1 class="main_load"><a href="https://codeyourcloud.com/about">L<i class="fa fa-power-off"></i>ADING: GRIT, SPIT, AND JAVASCRIPT</a></h1>
 			</div>
 			<div id="in-screen">
-				<img id="pre" src="" alt=""/>
+				<!--img id="pre" src="" alt=""/>
 				<br/>
 				<div class="progress progress-striped active">																					
 					<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="prog">
@@ -629,7 +633,8 @@
 				</div>
 				<span id="loading"></span>
 				<br/>
-				<button class="btn btn-danger btn-embossed" onclick="reloadNow()"><i class="fa fa-refresh"></i> Retry</button>
+				<button class="btn btn-danger btn-embossed" onclick="reloadNow()"><i class="fa fa-refresh"></i> Retry</button-->
+				<img src="../images/preload/p1.svg" width="10%">
 			</div>
 		</div>
 		<div id = "container">
@@ -732,7 +737,7 @@
 			editor.session.selection.clearSelection(); 
 			
 			var p_val = 1+Math.floor(Math.random()*17) //1 + 0-9 = 1-10
-			$("#pre").attr("src", "images/preload/p" + p_val + ".gif");
+			//$("#pre").attr("src", "images/preload/p" + p_val + ".gif");
 			
 			//var screen_val = 1+Math.floor(Math.random()*18);
 			//$("#screen").css("background-image", "url('images/patterns/p" + screen_val + ".png')");

@@ -31,13 +31,7 @@ function pickerOCallback(data) {
 		for(i = 0; i < data.docs.length; i++){
 			var fileId = data.docs[i].id;
 			console.log(fileId);
-			var v = "https://codeyourcloud.com/#"+fileId;
-			if(document.URL.indexOf("mobile") !== -1){
-				"https://codeyourcloud.com/mobile#"+fileId;
-			}
-			window.location.href = v;
-			location.reload();
-			reloadNow();
+			window.location.href = "https://codeyourcloud.com/#"+fileId;
 		}
     }
     return false;

@@ -124,8 +124,8 @@ pre {
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 2%;
-    background-color: #2ECC71;
-    color: white;
+    /*background-color: #2ECC71;
+    color: white;*/
     border-bottom: solid thick #34495E;
     padding-bottom: 2%;
 
@@ -136,8 +136,8 @@ pre {
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 2%;
-    background-color: #95A5A6;
-    color: white;
+    /*background-color: #95A5A6;
+    color: white;*/
     border-bottom: solid thick #34495E;
 }
 #lib_div{
@@ -146,8 +146,8 @@ pre {
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 2%;
-    background-color: #E74C3C;
-    color: white;
+    /*background-color: #E74C3C;
+    color: white;*/
  	padding-bottom:2%;
     border-bottom: solid thick #34495E;
 }
@@ -157,8 +157,8 @@ pre {
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 2%;
-    background-color: #3498DB;
-    color: white;
+    /*background-color: #3498DB;
+    color: white;*/
     border-bottom: solid thick #34495E;
     padding-bottom: 2%;
 }
@@ -168,8 +168,8 @@ pre {
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 2%;
-    background-color: #E67E22;
-    color: white;
+    /*background-color: #E67E22;
+    color: white;*/
     padding-bottom: 2%;
 }
 #contact_div{
@@ -178,8 +178,8 @@ pre {
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 2%;
-    background-color: #ECF0F1;
-    color: #34495E;
+    /*background-color: #ECF0F1;
+    color: #34495E;*/
     border-bottom: solid thick #34495E;
     padding-bottom: 2%;
 }
@@ -192,6 +192,7 @@ pre {
     background-color: #34495E;
     color: white;
  	padding-bottom:2%;
+ 	background-image:url('../images/patterns/stardust.png');
 }
 #about_div>a,#feature_div>a,#lib_div>a,#help_div>a,#donate_div>a,#contact_div>a{
 	color: #34495E;
@@ -328,5 +329,5 @@ a:hover{
     vertical-align: middle;
 }
 .survey_social > .btn-primary:hover{
-	background-color:#2980B9;
+	background-color:#29ac47;
 }

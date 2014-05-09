@@ -369,8 +369,11 @@ iframe {
 #screen {
   /*background-image: url('images/iso.jpg');*/
   /*background-image: url('images/subway.png');*/
-  background-color: #34495E;
+  background-color: #27AE60;
+  
+  /*
   background-image: url('images/patterns/nebula.jpg');
+  */
   width:      100%;
   height:     100%; 
   z-index:    9999;
@@ -382,7 +385,12 @@ iframe {
 	text-align: center;
 	padding-top: 1%;
 	padding-bottom:2%;
+	
+	/*
 	background-color:white;
+	*/
+	
+	
 	height: auto;
 	width: 90%;
 	border-radius: 10px;
@@ -402,7 +410,7 @@ iframe {
 	color: white;
 }
 .main_load > a:hover {
-	color: #2ECC71;
+	color: #BDC3C7;
 }
 #pre {
 	
