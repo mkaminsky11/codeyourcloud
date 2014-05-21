@@ -76,7 +76,7 @@ function handleAuthResult(authResult) {
 		loadClient(init);
 	} 
 	else {
-		window.location = 'https://codeyourcloud.com/landing';
+		window.location = 'https://codeyourcloud.com/about';
 	}
 }
 function loadClient(callback) {

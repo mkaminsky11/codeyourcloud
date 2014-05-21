@@ -4,6 +4,8 @@ body {
    padding:0;
    height:100%;
    text-align: center;
+   background-color: #2C3E50;
+   color: white;
 }
 #container {
    min-height:100%;
@@ -21,4 +23,7 @@ body {
    bottom:0;
    width:100%;
    height:60px;   /* Height of the footer */
+}
+#logo_pic{
+	border: solid thick white;
 }

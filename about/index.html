@@ -1,73 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-	<link rel="icon" type="image/png" href="http://codeyourcloud.com/favicon.ico">
-  	<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
-  	<script src="../about/fl/js/jquery-1.8.3.min.js"></script>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html>
+<head lang="en">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	
+	<title>Code Your Cloud</title> 
+	<meta name="description" content="Code Your Cloud: in browser code editor for google drive" />	    
 
-    <title>Code Your Cloud | About</title>
-    <meta name="description" content="The about page for Code Your Cloud, an in-browser code editor">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="fancybox/jquery.fancybox-v=2.1.5.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/font-awesome.min.css" rel="stylesheet">
+	
+	<link rel='stylesheet' type='text/css' href='../lib/Font/css/font-awesome.min.css'>
+	
+	<link rel="stylesheet" type="text/css" href="css/style.css">	
+	
+	<link href='font/font2/font.css' rel='stylesheet' type='text/css'>
+	
+	<link rel="prefetch" href="images/zoom.png">
+	<script src="js/jquery-1.10.2.min.js"></script>
+	
 
-    <link href="../about/fl/bootstrap/css/bootstrap.css" rel="stylesheet">
+	
+	
+	<script src="../api.js"></script>
+	<script src="../client.js"></script>
+	<script src="js/proto.js"></script>
+		
+</head>
 
-    <!-- Loading Flat UI -->
-    <link href="../about/fl/css/flat-ui.css" rel="stylesheet">
-
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-      <script src="../about/fl/js/html5shiv.js"></script>
-      <script src="../about/fl/js/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Add custom CSS here -->
-    <link href="../lib/Font/css/font-awesome.css" rel="stylesheet">
-
-    <link href="aboutCss.css" rel="stylesheet">
-
-	<link rel='stylesheet' type='text/css' href='/lib/Font/css/font-awesome.min.css'>
-
-	<link rel="stylesheet" type="text/css" href="../lib/grid/grid.css">
-	<script src="../lib/grid/grid.js"></script>
-
-    <script src="../lib/messenger/build/js/messenger.min.js"></script>
-	<script src="../lib/messenger/build/js/messenger-theme-flat.js"></script>
-	<link rel="stylesheet" href="../lib/messenger/build/css/messenger.css">
-	<link rel="stylesheet" href="../lib/messenger/build/css/messenger-theme-flat.css">
-  </head>
-
-  <body onload="check_login()">
-  		<div id="content">
-  		<div class="navbar-fixed-top">
-	  	<div class="btn-toolbar">
-	  		<div class="btn-group">
-	  			<button type="button" class="btn btn-danger" id="login_button" onclick="go()"><i class="fa fa-google-plus"></i> | Login with Google</button>
-		  		<button id="drop" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-		  		<ul class="dropdown-menu" role="menu">
-			  		<li><a href="#about">About</a></li>
-			  		<li><a href="#features">Features</a></li>
-			  		<li><a href="#help">Help</a></li>
-			  		<li><a href="#contact">Contact Us</a></li>
-			  		<li><a href="#donate">Donate</a></li>
-			  	</ul>
+<body onload="check_login()">
+	<div class="navbar navbar-fixed-top" data-activeslide="1">
+		<div class="container">
+		
+			<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			
+			<div class="nav-collapse collapse navbar-responsive-collapse">
+				<ul class="nav row">
+					<li data-slide="1" class="col-12 col-sm-2"><a id="menu-link-1" href="#slide-1" title="Home"><span class="icon icon-home"></span> <span class="text">HOME</span></a></li>
+					<li data-slide="2" class="col-12 col-sm-2"><a id="menu-link-2" href="#slide-2" title="About"><span class="icon icon-user"></span> <span class="text">ABOUT US</span></a></li>
+					<li data-slide="3" class="col-12 col-sm-2"><a id="menu-link-3" href="#features" title="Features"><span class="icon icon-briefcase"></span> <span class="text">FEATURES</span></a></li>
+					<li data-slide="4" class="col-12 col-sm-2"><a id="menu-link-4" href="#slide-4" title="Help"><span class="icon icon-gears"></span> <span class="text">HELP</span></a></li>
+					<li data-slide="5" class="col-12 col-sm-2"><a id="menu-link-6" href="#slide-5" title="Contact us"><span class="icon icon-envelope"></span> <span class="text">CONTACT</span></a></li>
+					<div class="col-12 col-sm-2 login-btn btn btn-danger" id="login_button" onclick="go()"><span class="icon icon-google-plus-sign"></span> <span class="text">LOGIN</span></div>
+				</ul>
+				<div class="row">
+					<div class="col-sm-2 active-menu"></div>
+				</div>
+				
+			
+			</div><!-- /.nav-collapse -->
+		</div><!-- /.container -->
+	</div><!-- /.navbar -->
+	
+	
+	<!-- === Arrows === -->
+	<div id="arrows">
+		<div id="arrow-up" class="disabled"></div>
+		<div id="arrow-down"></div>
+		<div id="arrow-left" class="disabled visible-lg"></div>
+		<div id="arrow-right" class="disabled visible-lg"></div>
+	</div><!-- /.arrows -->
+	
+	
+	<!-- === MAIN Background === -->
+	<div class="slide story" id="slide-1" data-slide="1">
+		<div class="container" id="main">
+			<div id="home-row-1" class="row clearfix">
+				<div class="col-12">
+					<h1 class="font-semibold">CODE YOUR CLOUD</h1>
+					<h4 class="font-thin">An <span class="font-semibold">open-source</span> code editor for Google Drive</h4>
+					<h4 class="font-thin">Created by <a href="https://plus.google.com/u/0/+michaelkaminsky/posts">Michael Kaminsky</a></h4>
+					<div class="row line-row">
+						<div class="hr">&nbsp;</div>
+					</div><!-- /row -->
+					<br/><iframe src="https://codeyourcloud.com/about/fl/github.html?user=mkaminsky11&repo=codeyourcloud&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
+					<br>
+					<br>
+				</div><!-- /col-12 -->
+			</div><!-- /row -->
+			<div id="home-row-2" class="row clearfix">
+				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3"><img src="../../images/icon/Chat.png"></div><span>COLLABORATIVE</span></div>
+				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3"><img src="../../images/icon/Pensils.png"></div><span>USEFUL</span></div>
+				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="2"><img src="../../images/icon/Money.png"></div><span>FREE</span></div>
+			</div><!-- /row -->
+		</div><!-- /container -->
+	</div><!-- /slide1 -->
+	
+	<!-- === Slide 2 === -->
+	<div class="slide story" id="slide-2" data-slide="2">
+		<div class="container" id="about">
+			<div class="row title-row">
+				<div class="col-12 font-thin"><span class="font-semibold">Code Your Cloud</span> is on a mission</div>
+			</div><!-- /row -->
+			<div class="row line-row">
+				<div class="hr">&nbsp;</div>
+			</div><!-- /row -->
+			<div class="row content-row">
+				<h4 class="font-thin">Code Your Cloud is an in-browser collaborative code editor for Google Drive, which combines the capabilities of Google's cloud services with the functionality of CodeMirror syntax highlighting and editing.</h4>
+				<br/>
+				<h4 class="font-thin">This project was born out of a deep frustration for the lack of competent code editors for Google Drive. Although some code editors (namely <a href="http://www.editey.com/">Editey</a> and <a href="https://chrome.google.com/webstore/detail/drive-notepad/gpgjomejfimnbmobcocilppikhncegaj?hl=en-GB">Drive Notepad</a>) do exist, they do not provide the functionality, polish, and usefullness required for many projects. This is an attempt to fix that.</h4>
+			</div><!-- /row -->
+			<div class="row title-row">
+				<div class="col-12 font-thin">So, how does Code Your Cloud stack up?</div>
 			</div>
-	  	</div>
-		<a href="https://github.com/mkaminsky11/codeyourcloud"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>  		</div>
-	<div id="main_div">
-  		<div id="main_logo"><h1 class="large_main">Code Your Cloud</h1></div>
-  	</div>	
-  	<div id="about_div">
-  		<img class="sep icon" src="../icon_128.png " height="47px" />
-  		<center>Created by <a href="https://plus.google.com/u/0/+michaelkaminsky/posts">Michael Kaminsky</a></center>
-  		<hr/>
-        <p id="about">
-        Code Your Cloud is an in-browser collaborative code editor for Google Drive, which combines the capabilities of Google's cloud services with the functionality of CodeMirror syntax highlighting and editing.
-        <hr/>
-        This project was born out of a deep frustration for the lack of competent code editors for Google Drive. Although some code editors (namely <a href="http://www.editey.com/">Editey</a> and <a href="https://drivenotepad.appspot.com/app">Drive Notepad</a>) do exist, they do not provide the functionality, polish, and usefullness required for many projects. This is an attempt to fix that.<br/>
-
-        <table class="table table-striped">
+		</div><!-- /container -->
+		<table class="table comp_table">
         	<tr>
         		<th>Feature</th>
 				<th>Drive Notepad</th>
@@ -82,75 +127,75 @@
         	</tr>
         	<tr>
         		<td>Work with Google Drive</td>
-        		<td><i class="fa fa-check"></i></td>
-        		<td><i class="fa fa-check"></i></td>
-        		<td><i class="fa fa-check"></i></td>
+        		<td><span class="icon icon-check"></span></td>
+        		<td><span class="icon icon-check"></span></td>
+        		<td><span class="icon icon-check"></span></td>
         	</tr>
         	<tr>
         		<td>Collaboration</td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-check"></i></td>
-        		<td><i class="fa fa-check"></i></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-check"></span></td>
+        		<td><span class="icon icon-check"></span></td>
         	</tr>
         	<tr>
         		<td>Autocomplete</td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-check"></i></td>
-        		<td><i class="fa fa-check"></i></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-check"></span></td>
+        		<td><span class="icon icon-check"></span></td>
         	</tr>
         	<tr>
         		<td>Run javascript files</td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-check"></i></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-check"></span></td>
         	</tr>
         	<tr>
         		<td>Preview</td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-check"></i></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-check"></span></td>
         	</tr>
         	<tr>
         		<td>Random text generator</td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-check"></i></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-check"></span></td>
         	</tr>
         	<tr>
         		<td>Color picker</td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-check"></i></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-check"></span></td>
         	</tr>
         	<tr>
         		<td>Todo list</td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-check"></i></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-check"></span></td>
         	</tr>
         	<tr>
         		<td>Notepad</td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-check"></i></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-check"></span></td>
         	</tr>
         	<tr>
         		<td>Terminal</td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-check"></i></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-check"></span></td>
         	</tr>
         	<tr>
         		<td>Host websites on Google Drive</td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-check"></i></td>
-        		<td><i class="fa fa-ban"></i></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-check"></span></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
         	</tr>
         	<tr>
         		<td>Open source</td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-ban"></i></td>
-        		<td><i class="fa fa-check"></i></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-ban-circle"></span></td>
+        		<td><span class="icon icon-check"></span></td>
         	</tr>
         	<tr>
         		<td>Number of themes</td>
@@ -165,448 +210,484 @@
         		<td>Free</td>
         	</tr>
         </table>
-        <hr/>
-        This project is open source, so that anybody can copy and learn from it. This product would not be possible without the generosity of others, who have made their code open to the world.
-        </p>
-      </div>
-      <div id="feature_div">
-        <h2 id="features" class="sep">Features</h1>
-        <div class="row go-right">
-        	<div class="col-md-3 tile tile-hot">
-            		<h4><img src="../images/icon/Retina-Ready.png"></h4>
-            		<h3 class="tile-title">Syntax Highlighting</h3>
-            		<p>Support for over 100 languages</p>
-			</div>
-         	<div class="col-md-3 tile tile-hot">
-            		<h4><img src="../images/icon/Chat.png"></h4>
-					<h3 class="tile-title">Collaboration</h3>
-					<p>Collaborate using TogetherJS</p>
-		 	</div>
-
-		 	<div class="col-md-3 tile">
-            		<h4><img src="../images/icon/colors.png"></h4>
-					<h3 class="tile-title">Colors</h3>
-					<p>Built-in color picker</p>
-		 	</div>
-        </div>
-		<div class="row go-right">
-        	<div class="col-md-3 tile">
-            		<h4><img src="../images/icon/Search.png"></h4>
-            		<h3 class="tile-title">Preview</h3>
-            		<p>Preview your work</p>
-			</div>
-         	<div class="col-md-3 tile">
-            		<h4><img src="../images/icon/Bulb.png"></h4>
-					<h3 class="tile-title">Autocomplete</h3>
-					<p>For supported languages</p>
-		 	</div>
-		 	<div class="col-md-3 tile">
-            		<h4><i class="fa fa-terminal"></i></h4>
-					<h3 class="tile-title">Console</h3>
-					<p>Javascript console</p>
-		 	</div>
-        </div>
-        <div class="row go-right">
-        	<div class="col-md-3 tile">
-            		<h4><img src="../images/icon/Book.png"></h4>
-            		<h3 class="tile-title">Notepad</h3>
-            		<p>Jot down your ideas</p>
-			</div>
-         	<div class="col-md-3 tile">
-            		<h4><img src="../images/icon/Clipboard.png"></h4>
-					<h3 class="tile-title">Todo list</h3>
-					<p>A built-in todo list</p>
-		 	</div>
-			<div class="col-md-3 tile">
-            		<h4><img src="../images/icon/File.png"></h4>
-            		<h3 class="tile-title">Run code</h3>
-            		<p>Run javascript code</p>
-			</div>
-        </div>
-        <div class="row go-right">
-        	<div class="col-md-3 tile">
-            		<h4><img src="../images/icon/Key.png"></h4>
-            		<h3 class="tile-title">Keyboard Shortcuts</h3>
-            		<p>Speed up basic functions</p>
-			</div>
-			<div class="col-md-3 tile">
-            		<h4><i class="fa fa-font"></i></h4>
-            		<h3 class="tile-title">Lorem generator</h3>
-            		<p>Built-in random text generator</p>
-			</div>
-		 	<div class="col-md-3 tile">
-            		<h4><img src="../images/icon/Settings.png"></h4>
-					<h3 class="tile-title">Preferences</h3>
-					<p>Personalize your editor</p>
-		 	</div>
-        </div>
-        <div class="row go-right">
-        	<div class="col-md-3 tile">
-            		<h4><img src="../images/blog/google_drive_logo.jpg" width="100px"></h4>
-            		<h3 class="tile-title">Google Drive</h3>
-            		<p>Integrated with Google Drive</p>
-			</div>
-
-			<div class="col-md-3 tile">
-            		<h4><img src="../images/icon/Earth.png"></h4>
-            		<h3 class="tile-title">Mobility</h3>
-            		<p>Access your code anywhere...</p>
-			</div>
-
-			<div class="col-md-3 tile">
-            		<h4><img src="../images/icon/Responsive.png"></h4>
-            		<h3 class="tile-title">Portability</h3>
-            		<p>...on any device</p>
-			</div>
-        </div>
-      </div>
-      
-      <div id="lib_div">
-        <h2 id="lib" class="sep">Libraries</h2>
-		<blockquote>
-			<p>No man will make a great leader who wants to do it all himself or get all the credit for doing it.</p>
-			<small>-Andrew Carnegie</small>
-		</blockquote>
-        <p>Code Your Cloud would not have been possible without the generosity of many developers. A list of credits is available <a href="https://codeyourcloud.com/credit">here</a>. We highly recommend that you check them out, and thank the creators.
-        </p>
 	</div>
-	<div id="help_div">
-        <h2 id="help" class="sep">Help</h1>
-        <h4>Supported Browsers</h4>
-        <table class="table table-striped">
-        	<tr>
-        		<th>Browser</th>
-        		<th>Latest tested version</th>
-        		<th>Notes</th>
-        		<th>Supported</th>
-        	</tr>
-        	<tr>
-        		<td>Firefox</td>
-        		<td>26</td>
-        		<td>Recommended</td>
-        		<td><i class="fa fa-check"></i></td>
-        	</tr>
-        	<tr>
-        		<td>Chrome</td>
-        		<td>34.0.1847.11 beta</td>
-        		<td>Recommended</td>
-        		<td><i class="fa fa-check"></i></td>
-        	</tr>
-        	<tr>
-        		<td>Internet Explorer</td>
-        		<td>All</td>
-        		<td>Does NOT work!</td>
-        		<td><i class="fa fa-ban"></i></td>
-        	</tr>
-        	<tr>
-        	    <td>Safari</td>
-        	    <td>7.0.1</td>
-        	    <td>Some hiccups</td>
-        	    <td><i class="fa fa-check"></i></td>
-        	</tr>
-        	<tr>
-        	    <td>Safari(iOS)</td>
-        	    <td>7.0.1</td>
-        	    <td>Some formatting problems</td>
-        	    <td><i class="fa fa-check"></i></td>
-        	</tr>
-        </table>
-        <h4 id="lang">Supported Languages</h4>
-        <p>The following languages support syntax highlighting</p> 
-        <p><span class="fui-check-inverted float_left"></span> = important</p>
-        <div class="list-group modes">
-        	<li class="list-group-item">ABAP</li>
-			<li class="list-group-item">ActionScript</li>
-			<li class="list-group-item">ADA</li>
-			<li class="list-group-item">Apache Conf</li>
-			<li class="list-group-item">AsciiDoc</li>
-			<li class="list-group-item">Assembly x86</li>
-			<li class="list-group-item">AutoHotKey</li>
-			<li class="list-group-item">BatchFile</li>
-			<li class="list-group-item">C9Search</li>
-			<li class="list-group-item">C/C++ <span class="fui-check-inverted"></span></li>
-			<li class="list-group-item">Cirru</li>
-			<li class="list-group-item">Clojure</li>
-			<li class="list-group-item">Cobol</li>
-			<li class="list-group-item">CoffeeScript</li>
-			<li class="list-group-item">ColdFusion</li>
-			<li class="list-group-item">C# <span class="fui-check-inverted"></span></li>
-			<li class="list-group-item">CSS <span class="fui-check-inverted"></span></li>
-			<li class="list-group-item">Curly</li>
-			<li class="list-group-item">D</li>
-			<li class="list-group-item">Dart</li>
-			<li class="list-group-item">Diff</li>
-			<li class="list-group-item">Dot</li>
-			<li class="list-group-item">Erlang</li>
-			<li class="list-group-item">EJS</li>
-			<li class="list-group-item">Forth</li>
-			<li class="list-group-item">FreeMarker</li>
-			<li class="list-group-item">Gherkin</li>
-			<li class="list-group-item">Glsl</li>
-			<li class="list-group-item">Go</li>
-			<li class="list-group-item">Groovy</li>
-			<li class="list-group-item">HAML</li>
-			<li class="list-group-item">Handlebars</li>
-			<li class="list-group-item">Haskell</li>
-			<li class="list-group-item">haXe</li>
-			<li class="list-group-item">HTML <span class="fui-check-inverted"></span></li>
-			<li class="list-group-item">HTML (Ruby)</li>
-			<li class="list-group-item">INI</li>
-			<li class="list-group-item">Jack</li>
-			<li class="list-group-item">Jade</li>
-			<li class="list-group-item">Java <span class="fui-check-inverted"></span></li>
-			<li class="list-group-item">JavaScript <span class="fui-check-inverted"></span></li>
-			<li class="list-group-item">JSON</li>
-			<li class="list-group-item">JSONiq</li>
-			<li class="list-group-item">JSP</li>
-			<li class="list-group-item">JSX</li>
-			<li class="list-group-item">Julia</li>
-			<li class="list-group-item">LaTeX</li>
-			<li class="list-group-item">LESS</li>
-			<li class="list-group-item">Liquid</li>
-			<li class="list-group-item">Lisp</li>
-			<li class="list-group-item">LiveScript</li>
-			<li class="list-group-item">LogiQL</li>
-			<li class="list-group-item">LSL</li>
-			<li class="list-group-item">Lua</li>
-			<li class="list-group-item">LuaPage</li>
-			<li class="list-group-item">Lucene</li>
-			<li class="list-group-item">Makefile</li>
-			<li class="list-group-item">MATLAB</li>
-			<li class="list-group-item">Markdown</li>
-			<li class="list-group-item">MEL</li>
-			<li class="list-group-item">MySQL</li>
-			<li class="list-group-item">MUSHCode</li>
-			<li class="list-group-item">Nix</li>
-			<li class="list-group-item">Objective-C <span class="fui-check-inverted"></span></li>
-			<li class="list-group-item">OCaml</li>
-			<li class="list-group-item">Pascal</li>
-			<li class="list-group-item">Perl <span class="fui-check-inverted"></span></li>
-			<li class="list-group-item">pgSQL</li>
-			<li class="list-group-item">PHP <span class="fui-check-inverted"></span></li>
-			<li class="list-group-item">Powershell</li>
-			<li class="list-group-item">Prolog</li>
-			<li class="list-group-item">Properties</li>
-			<li class="list-group-item">Protobuf</li>
-			<li class="list-group-item">Python</li>
-			<li class="list-group-item">R</li>
-			<li class="list-group-item">RDoc</li>
-			<li class="list-group-item">RHTML</li>
-			<li class="list-group-item">Ruby <span class="fui-check-inverted"></span></li>
-			<li class="list-group-item">Rust</li>
-			<li class="list-group-item">SASS</li>
-			<li class="list-group-item">SCAD</li>
-			<li class="list-group-item">Scala</li>
-			<li class="list-group-item">Smarty</li>
-			<li class="list-group-item">Scheme</li>
-			<li class="list-group-item">SCSS</li>
-			<li class="list-group-item">SH</li>
-			<li class="list-group-item">SJS</li>
-			<li class="list-group-item">Space</li>
-			<li class="list-group-item">snippets</li>
-			<li class="list-group-item">Soy Template</li>
-			<li class="list-group-item">SQL</li>
-			<li class="list-group-item">Stylus</li>
-			<li class="list-group-item">SVG</li>
-			<li class="list-group-item">Tcl</li>
-			<li class="list-group-item">Tex</li>
-			<li class="list-group-item">Text</li>
-			<li class="list-group-item">Textile</li>
-			<li class="list-group-item">Toml</li>
-			<li class="list-group-item">Twig</li>
-			<li class="list-group-item">Typescript</li>
-			<li class="list-group-item">VBScript</li>
-			<li class="list-group-item">Velocity</li>
-			<li class="list-group-item">Verilog</li>
-			<li class="list-group-item">XML</li>
-			<li class="list-group-item">XQuery</li>
-			<li class="list-group-item">YAML</li>
-		</ul>
+	<div class="slide story" data-slide="3" id="features">
+		<div class="container">
+			<div class="row title-row">
+				<div class="col-12 font-thin">Such <span class="font-semibold">Features</span>. Much wow</div>
+			</div>
+			<div class="row line-row">
+				<div class="hr">&nbsp;</div>
+			</div>
+			
+			<div class="row content-row">
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-code"></i></p>
+					<h2 class="font-thin">Syntax Highlighting</h2>
+					<h4 class="font-thin">Support for over 100 languages (non-mobile).</h4>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-comment"></i></p>
+					<h2 class="font-thin">Collaboration</h2>
+					<h4 class="font-thin"><span class="font-semibold">Don't go alone!</span> Collaborate with anyone around the globe.</h4>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-picture"></i></p>
+					<h2 class="font-thin">Colors</h2>
+					<h4 class="font-thin">Choose the perfect hue with a <span class="font-semibold">built-in color picker</span>.</h4>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-search"></i></p>
+					<h2 class="font-thin">Preview</h2>
+					<h4 class="font-thin">Check how everything looks every step of the way.</h4>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-check"></i></p>
+					<h2 class="font-thin">Autocomplete</h2>
+					<h4 class="font-thin">Supported for selected languages, and designed to speed up your life.</h4>
+				</div><!-- /col12 -->
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+				
+			</div><!-- /row -->
+			
+
+			
+			<div class="row content-row">
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-terminal"></i></p>
+					<h2 class="font-thin">Javascript console</h2>
+					<h4 class="font-thin">Test your code or perform calculations.</h4>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-list"></i></p>
+					<h2 class="font-thin">Todo list</h2>
+					<h4 class="font-thin">Stay organized with a built-in todo list. Add items right from your code.</h4>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-file-text-alt"></i></p>
+					<h2 class="font-thin">Notepad</h2>
+					<h4 class="font-thin">Jot down some ideas for future reference.</h4>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-play"></i></p>
+					<h2 class="font-thin">Run code</h2>
+					<h4 class="font-thin">Publish HTML code and run javascript files.</h4>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-keyboard"></i></p>
+					<h2 class="font-thin">Keyboard shortcuts</h2>
+					<h4 class="font-thin">Speed up basic functions. Becuase your time is valuable.</h4>
+				</div><!-- /col12 -->
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+			</div><!-- /row -->
+			
+			
+			
+			<div class="row content-row">
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-font"></i></p>
+					<h2 class="font-thin">Lorem generator</h2>
+					<h4 class="font-thin">Lorem ipsum...oodles of random text</h4>
+				</div><!-- /col12 -->
+				
+				
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-cog"></i></p>
+					<h2 class="font-thin">Preferences</h2>
+					<h4 class="font-thin">You shouldn't be using an editor designed by someone else. Customize the theme, font size, and more.</h4>
+				</div><!-- /col12 -->
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-upload"></i></p>
+					<h2 class="font-thin">Publish HTML</h2>
+					<h4 class="font-thin">Send your HTML code, and view it from anywhere.</h4>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-globe"></i></p>
+					<h2 class="font-thin">Access your code anywhere...</h2>
+					<h4 class="font-thin">By the power of the internet!</h4>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2">
+					<p><i class="icon icon-mobile-phone"></i></p>
+					<h2 class="font-thin">...on any device</h2>
+					<h4 class="font-thin">With both desktop and mobile versions, plus upcoming iOS and Android apps.</h4>
+				</div><!-- /col12 -->
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+				
+			</div><!-- /row -->
+			
+			<div class="row title-row">
+				<div class="col-12 font-thin">Check out the gallery</div>
+			</div>
+			<div class="row line-row">
+				<div class="hr">&nbsp;</div>
+			</div>
+			
+			<h3 class="font-thin">Click on a picture to see an animated gif of <span class="font-semibold">Code Your Cloud</span> in action</h3>
+			
 		</div>
-
-        <h4>Autocomplete</h4>
-        <p>Autocomplete can be triggered with Ctrl + space, and is also triggered automatically at the beginning of a "word"</p>
-        <h4 id="todo-list">Todo List</h4>
-        <p>In order to use the todo list, use the 3 keywords</p>
-        <pre>
-//NOTE: a note
-//TODO: a todo item
-//FIXME: help!</pre>
-        <p>Each of these will result in an item for the todo list. Once the item is checked off, it, along with the note, disappears. For example, if the first "NOTE" is clicked, the content will be changed to:</p>
-        <pre>
-//
-//TODO: a todo item
-//FIXME: help!</pre>
-        <p>The todo list is refreshed with every save, and can be found by clicking the "todo" menu item underneath the "code" menu, or by clicking <i class="fa fa-list-ol"></i> in the sidebar.</p>
-        <h4 id="key">Keyboard Shortcuts</h4>
-        <!--
-
-        keyboard
-
-        -->
-        <table class="table table-striped">
-        	<tr>
-        		<th>Function</th>
-        		<th>Mac</th>
-        		<th>Windows/Linux</th>
-        	</tr>
-        	<tr>
-        		<td>Autocomplete</td>
-        		<td>Ctrl + space</td>
-        		<td>Ctrl + space</td>
-        	</tr>
-        	<tr>
-        		<td>Save</td>
-        		<td>&#8984; + s</td>
-        		<td>Ctrl + s</td>
-        	</tr>
-        	<tr>
-        		<td>Open</td>
-        		<td>&#8984; + o</td>
-        		<td>Ctrl + o</td>
-        	</tr>
-        	<tr>
-        		<td>Find</td>
-        		<td>&#8984; + f</td>
-        		<td>Ctrl + f</td>
-        	</tr>
-        	<tr>
-        		<td>Replace</td>
-        		<td>&#8984; + option + f</td>
-        		<td>Shift + ctrl + f</td>
-        	</tr>
-        	<tr>
-        		<td>Find next</td>
-        		<td>&#8984; + g</td>
-        		<td>Ctrl + g</td>
-        	</tr>
-        	<tr>
-        		<td>Replace all</td>
-        		<td>Shift + &#8984; + option + f</td>
-        		<td>Shift + ctrl + r</td>
-        	</tr>
-        </table>
-        <h4 id="pref">Preferences</h4>
-        <p>The supported preferences are:</p>
-        <ul>
-        	<li>Mode (language)</li>
-        	<li>Theme</li>
-        	<li>Font size</li>
-        	<li>Line wrap</li>
-        	<li>Line Numbers</li>
-        	<li>Autocomplete</li>
-        </ul>
-
-        <p>The menu item to trigger the preferences window is found under the <i class="fa fa-cog"></i> menu at the top-right corner of the editor.</p>
-
-        <h4 id="drive">Google Drive Integration</h4>
-
-        <p>With Code Your Cloud, you can open, share, edit, upload, and save Google Drive files.</p>
-
-        <h6>Opening</h6>
-        <p>Click the <i class="fa fa-folder-open"></i> icon, or the "open" menu item.<br/>Note: code your cloud CANNOT open Google Docs or Microsoft Office documents.</p>
-
-        <h6>Sharing</h6>
-        <p>In order to allow other people to access your files, click the "share" menu item. If you have not added people to the list of authorized collaborators, they will not be allowed to access the file.</p>
-
-        <h6>Creating</h6>
-        <p>Click the "new" menu item. The document will be titled by its unique file id (a very long string of characters) to prevent name collisions. The file will be created in the root folder of your Google Drive.</p>
-
-        <h6>Saving</h6>
-        <p>Click the "save" menu item, <i class="fa fa-floppy-o"></i> icon, or the save state indicator (to the right of the collaboration button).</p>
-
-        <h6>Uploading</h6>
-        <p>Select the "upload" menu item to upload a file to Google Drive. The file will appear in your root (main) folder.</p>
-
-        <h4 id="collab">Collaboration</h4>
-        <p>Navigate to the document that you want to work on, and press the <i class="fa fa-comment"></i> button.</p>
-
-        <h4 id="running">Running Code</h4>
-        <p>You can run code (for now, only javascript) using the <i class="fa fa-play"></i> button.</p>
 	</div>
-	<div id="contact_div">
-        <h2 id="contact" class="sep">Contact Us</h1>
-        <div id="comment" class="row">
-        	<div id="comment_left" class="col-lg-3">
-        		<p>If you have any questions or comments, you can also use the comment box below. Please note that any HTML will be stripped out of your comments.</p>
-        		<button class="btn btn-success" onclick="comment()">Comment</button>
-        		<button class="btn btn-danger" onclick="resetForm()" value="Reset">Reset</button>
-        	</div>
-        	<div id="comment_right" class="col-lg-9">
-        		<input class="form-control login-field" id="comment_name" value="" placeholder="Name"/>
+	<div class="slide" id="slide-3">
+		<div class="row" id="gallery">
+			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../../images/screenshots/colab.gif"><img class="thumb" src="../images/screenshots/colab_small.png" alt=""></a></div>
+			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../../images/screenshots/color.gif"><img class="thumb" src="../images/screenshots/color_small.png" alt=""></a></div>
+			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../../images/screenshots/console.gif"><img class="thumb" src="../images/screenshots/console_small.png" alt=""></a></div>
+			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../../images/screenshots/html_test.gif"><img class="thumb" src="../images/screenshots/html_small.png" alt=""></a></div>
+			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../../images/screenshots/random.gif"><img class="thumb" src="../images/screenshots/random_small.png" alt=""></a></div>
+			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../../images/screenshots/syntax.gif"><img class="thumb" src="../images/screenshots/syntax_small.png" alt=""></a></div>
+			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../../images/screenshots/theme.gif"><img class="thumb" src="../images/screenshots/theme_small.png" alt=""></a></div>
+		</div><!-- /row -->
+	</div><!-- /slide3 -->
+	
+	<!-- === Slide 4 - Process === -->
+	<div class="slide story" id="slide-4" data-slide="4">
+		<div class="container" id="help">
+			<div class="row title-row">
+				<div class="col-12 font-thin"><span class="font-semibold">Help!</span></div>
+			</div><!-- /row -->
+			<div class="row line-row">
+				<div class="hr">&nbsp;</div>
+			</div><!-- /row -->
+			<br/>
+			
+			<h4 class="font-thin">Fear not, as the Code Your Cloud team is here to help. A basic overview of some of Code Your Cloud's functions are shown below.</h4>
+			<br/>
+			<h2 class="font-semibold">Keyboard shortcuts</h2>	
+			<table class="table comp_table">
+	        	<tr>
+	        		<th>Function</th>
+	        		<th>Mac</th>
+	        		<th>Windows/Linux</th>
+	        	</tr>
+	        	<tr>
+	        		<td>Autocomplete</td>
+	        		<td>Ctrl + space</td>
+	        		<td>Ctrl + space</td>
+	        	</tr>
+	        	<tr>
+	        		<td>Save</td>
+	        		<td>&#8984; + s</td>
+	        		<td>Ctrl + s</td>
+	        	</tr>
+	        	<tr>
+	        		<td>Open</td>
+	        		<td>&#8984; + o</td>
+	        		<td>Ctrl + o</td>
+	        	</tr>
+	        	<tr>
+	        		<td>Find</td>
+	        		<td>&#8984; + f</td>
+	        		<td>Ctrl + f</td>
+	        	</tr>
+	        	<tr>
+	        		<td>Replace</td>
+	        		<td>&#8984; + option + f</td>
+	        		<td>Shift + ctrl + f</td>
+	        	</tr>
+	        	<tr>
+	        		<td>Find next</td>
+	        		<td>&#8984; + g</td>
+	        		<td>Ctrl + g</td>
+	        	</tr>
+	        	<tr>
+	        		<td>Replace all</td>
+	        		<td>Shift + &#8984; + option + f</td>
+	        		<td>Shift + ctrl + r</td>
+	        	</tr>
+			</table>
+			<br/>
+			<h2 class="font-semibold">Browsers</h2>
+			<h4>Supported Browsers</h4>
+	        <table class="table comp_table">
+	        	<tr>
+	        		<th>Browser</th>
+	        		<th>Latest tested version</th>
+	        		<th>Notes</th>
+	        		<th>Supported</th>
+	        	</tr>
+	        	<tr>
+	        		<td>Firefox</td>
+	        		<td>26</td>
+	        		<td>Recommended</td>
+	        		<td><span class="icon icon-check"></span></td>
+	        	</tr>
+	        	<tr>
+	        		<td>Chrome</td>
+	        		<td>34.0.1847.11 beta</td>
+	        		<td>Recommended</td>
+	        		<td><span class="icon icon-check"></span></td>
+	        	</tr>
+	        	<tr>
+	        		<td>Internet Explorer</td>
+	        		<td>All</td>
+	        		<td>Does NOT work!</td>
+	        		<td><span class="icon icon-ban-circle"></span></td>
+	        	</tr>
+	        	<tr>
+	        	    <td>Safari</td>
+	        	    <td>7.0.1</td>
+	        	    <td>Some hiccups</td>
+	        	    <td><span class="icon icon-check"></span></td>
+	        	</tr>
+	        	<tr>
+	        	    <td>Safari(iOS)</td>
+	        	    <td>7.0.1</td>
+	        	    <td>Some formatting problems</td>
+	        	    <td><span class="icon icon-check"></span></td>
+	        	</tr>
+	        </table>
+			<br/>
+			<h2 class="font-semibold">Supported Languages</h2>	
+			<div class="list-group modes">
+			
+	        	<li class="list-group-item">ABAP</li>
+				<li class="list-group-item">ActionScript</li>
+				<li class="list-group-item">ADA</li>
+				<li class="list-group-item">Apache Conf</li>
+				<li class="list-group-item">AsciiDoc</li>
+				<li class="list-group-item">Assembly x86</li>
+				<li class="list-group-item">AutoHotKey</li>
+				<li class="list-group-item">BatchFile</li>
+				<li class="list-group-item">C9Search</li>
+				<li class="list-group-item">C/C++ <span class="fui-check-inverted"></span></li>
+				<li class="list-group-item">Cirru</li>
+				<li class="list-group-item">Clojure</li>
+				<li class="list-group-item">Cobol</li>
+				<li class="list-group-item">CoffeeScript</li>
+				<li class="list-group-item">ColdFusion</li>
+				<li class="list-group-item">C# <span class="fui-check-inverted"></span></li>
+				<li class="list-group-item">CSS <span class="fui-check-inverted"></span></li>
+				<li class="list-group-item">Curly</li>
+				<li class="list-group-item">D</li>
+				<li class="list-group-item">Dart</li>
+				<li class="list-group-item">Diff</li>
+				<li class="list-group-item">Dot</li>
+				<li class="list-group-item">Erlang</li>
+				<li class="list-group-item">EJS</li>
+				<li class="list-group-item">Forth</li>
+				<li class="list-group-item">FreeMarker</li>
+				<li class="list-group-item">Gherkin</li>
+				<li class="list-group-item">Glsl</li>
+				<li class="list-group-item">Go</li>
+				<li class="list-group-item">Groovy</li>
+				<li class="list-group-item">HAML</li>
+				<li class="list-group-item">Handlebars</li>
+				<li class="list-group-item">Haskell</li>
+				<li class="list-group-item">haXe</li>
+				<li class="list-group-item">HTML <span class="fui-check-inverted"></span></li>
+				<li class="list-group-item">HTML (Ruby)</li>
+				<li class="list-group-item">INI</li>
+				<li class="list-group-item">Jack</li>
+				<li class="list-group-item">Jade</li>
+				<li class="list-group-item">Java <span class="fui-check-inverted"></span></li>
+				<li class="list-group-item">JavaScript <span class="fui-check-inverted"></span></li>
+				<li class="list-group-item">JSON</li>
+				<li class="list-group-item">JSONiq</li>
+				<li class="list-group-item">JSP</li>
+				<li class="list-group-item">JSX</li>
+				<li class="list-group-item">Julia</li>
+				<li class="list-group-item">LaTeX</li>
+				<li class="list-group-item">LESS</li>
+				<li class="list-group-item">Liquid</li>
+				<li class="list-group-item">Lisp</li>
+				<li class="list-group-item">LiveScript</li>
+				<li class="list-group-item">LogiQL</li>
+				<li class="list-group-item">LSL</li>
+				<li class="list-group-item">Lua</li>
+				<li class="list-group-item">LuaPage</li>
+				<li class="list-group-item">Lucene</li>
+				<li class="list-group-item">Makefile</li>
+				<li class="list-group-item">MATLAB</li>
+				<li class="list-group-item">Markdown</li>
+				<li class="list-group-item">MEL</li>
+				<li class="list-group-item">MySQL</li>
+				<li class="list-group-item">MUSHCode</li>
+				<li class="list-group-item">Nix</li>
+				<li class="list-group-item">Objective-C <span class="fui-check-inverted"></span></li>
+				<li class="list-group-item">OCaml</li>
+				<li class="list-group-item">Pascal</li>
+				<li class="list-group-item">Perl <span class="fui-check-inverted"></span></li>
+				<li class="list-group-item">pgSQL</li>
+				<li class="list-group-item">PHP <span class="fui-check-inverted"></span></li>
+				<li class="list-group-item">Powershell</li>
+				<li class="list-group-item">Prolog</li>
+				<li class="list-group-item">Properties</li>
+				<li class="list-group-item">Protobuf</li>
+				<li class="list-group-item">Python</li>
+				<li class="list-group-item">R</li>
+				<li class="list-group-item">RDoc</li>
+				<li class="list-group-item">RHTML</li>
+				<li class="list-group-item">Ruby <span class="fui-check-inverted"></span></li>
+				<li class="list-group-item">Rust</li>
+				<li class="list-group-item">SASS</li>
+				<li class="list-group-item">SCAD</li>
+				<li class="list-group-item">Scala</li>
+				<li class="list-group-item">Smarty</li>
+				<li class="list-group-item">Scheme</li>
+				<li class="list-group-item">SCSS</li>
+				<li class="list-group-item">SH</li>
+				<li class="list-group-item">SJS</li>
+				<li class="list-group-item">Space</li>
+				<li class="list-group-item">snippets</li>
+				<li class="list-group-item">Soy Template</li>
+				<li class="list-group-item">SQL</li>
+				<li class="list-group-item">Stylus</li>
+				<li class="list-group-item">SVG</li>
+				<li class="list-group-item">Tcl</li>
+				<li class="list-group-item">Tex</li>
+				<li class="list-group-item">Text</li>
+				<li class="list-group-item">Textile</li>
+				<li class="list-group-item">Toml</li>
+				<li class="list-group-item">Twig</li>
+				<li class="list-group-item">Typescript</li>
+				<li class="list-group-item">VBScript</li>
+				<li class="list-group-item">Velocity</li>
+				<li class="list-group-item">Verilog</li>
+				<li class="list-group-item">XML</li>
+				<li class="list-group-item">XQuery</li>
+				<li class="list-group-item">YAML</li>
+			</div>
+			<br/>
+			<h3 class="font-semibold">For full documentation, go <a href="https://codeyourcloud.com/help">here</a>!</h3>	
+		</div><!-- /container -->
+	</div><!-- /Slide 6 -->
+	
+	
+	<div class="slide story" id="slide-5" data-slide="5">
+		<div class="container" id="contact">
+			<div class="row title-row">
+				<div class="col-12 font-light">We're <span class="font-semibold">all ears</span></div>
+			</div><!-- /row -->
+			<div class="row line-row">
+				<div class="hr">&nbsp;</div>
+			</div><!-- /row -->
+			<div class="row subtitle-row">
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+				<div class="col-12 col-sm-10 font-light">Have a question? A suggestion? A problem? A case of rocket-riding dinosaurs? Contact us!</div>
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+			</div><!-- /row -->
+			<div class="row">
+				<br/>
+				<img src="../images/svg/rocket_dino.svg" height="200px">
+			</div>
+			<div id="contact-row-4" class="row">	
+			
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+				<div class="col-12 col-sm-2 with-hover-text">
+					<p><a class="contact_a" target="_blank" href="https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts"><i class="icon icon-google-plus"></i></a></p>
+					<span class="hover-text font-light ">+Code Your Cloud</span></a>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2 with-hover-text">
+					<p><a class="contact_a" target="_blank" href="mailto:hostmaster@codeyourcloud.com"><i class="icon icon-envelope"></i></a></p>
+					<span class="hover-text font-light ">hostmaster@codeyourcloud.com</span></a>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2 with-hover-text">
+					<p><a class="contact_a" target="_blank" href="https://dribbble.com/mkaminsky"><i class="fa fa-dribbble"></i></a></p>
+					<span class="hover-text font-light ">Michael Kaminsky</span></a>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2 with-hover-text">
+					<p><a class="contact_a" target="_blank" href="https://codeyourcloud.com/survey"><i class="icon icon-comment"></i></a></p>
+					<span class="hover-text font-light ">Take a survey</span></a>
+				</div><!-- /col12 -->
+				
+				<div class="col-12 col-sm-2 with-hover-text">
+					<p><a class="contact_a" target="_blank" href="https://github.com/mkaminsky11/codeyourcloud"><i class="icon icon-github"></i></a></p>
+					<span class="hover-text font-light ">Github</span></a>
+				</div><!-- /col12 -->
+				
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+			</div><!-- /row -->
+			<div class="row">
+			<input class="form-control login-field" id="comment_name" value="" placeholder="Name"/>
       	 	 	<br/>
      		    <input class="form-control login-field" id="comment_mail" value="" placeholder="Email"/>
      		    <br/>
      		    <textarea class="form-control login-field" id="comment_comment" value="" placeholder="Comment" rows="10"></textarea>
-        	</div>
-       	 </div>
-       	 
-       	 <div id="social">
-       	 	<h4>Get Social</h4>
-       	 	<table class="table social_table">
-       	 		<tbody>
-       	 		<tr class="google_plus">
-       	 			<td class="btn-danger" onclick="window.location=''"><i class="fa fa-google-plus-square"></i>  Google+</td>
-       	 			<td>Get the latest news on features and problems regarding Code Your Cloud from our official page.</td>
-	       	 	</tr>
-	       	 	<tr class="github_social">
-	       	 		<td class="btn-inverse" onclick="window.location=''"><i class="fa fa-github-square"></i>  Github</td>
-	       	 		<td>View the code that makes Code Your Cloud tick, and submit issues for fixing</td>
-	       	 	</tr>
-	       	 	<tr class="email_social">
-	       	 		<td class="btn-info" onclick="window.location=''"><i class="fa fa-envelope"></i>  Email</td>
-	       	 		<td>Send an email to <b>hostmaster@codeyourcloud.com</b> for personal help and advice</td>
-	       	 	</tr>
-	       	 	<tr class="survey_social">
-	       	 		<td class="btn-primary" onclick="window.location=''"><i class="fa fa-th-list"></i>  Survey</td>
-   	    	 		<td>Take a survey to help make Code Your Cloud better!</td>
-   	    	 	</tr>
-   	    	 	</tbody>
-   	    	 </table>
-       	 </div>
-       	 
+     		    <br/>
+     		    <div class="btn-group">
+     		    	<button class="btn btn-success" onclick="comment()">Submit</button>
+     		    	<button class="btn btn-danger" onclick="resetForm()">Cancel</button>
+     		    </div>
+			</div>
+		</div><!-- /container -->
+	</div><!-- /Slide 6 -->
+	
+	<div class="slide" id="slide-6">
+		<div class="container" id="donate">
+			<div class="row title-row">
+				<div class="col-12 font-light">Plus, it's <span class="font-semibold">FREE</span></div>
+			</div><!-- /row -->
+			<div class="row line-row">
+				<div class="hr">&nbsp;</div>
+			</div><!-- /row -->
+			<br/>
+			<h4 class="font-thin">Which means that we need other ways to keep paying for our servers and encryption keys....</h4>
+			<br/>
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+			<input type="hidden" name="cmd" value="_s-xclick">
+			<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+			">
+			<input type="image" src="paypal.png" name="submit" alt="PayPal - The safer, easier way to pay online!">
+			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+			</form>
+				
+			<h4 class="font-thin">Your donations pay for our servers, encryption, and premium themes. These then get passed on to your in the form of better visuals and faster loading times. Also, with your donations, you get an aura of awesomeness, and the knowledge that you help to sustain open-source software.</h4>
+		</div>
 	</div>
-	<div id="donate_div">
-        <h2 id="donate" class="sep">Donate</h2>
-        <h6>Where do donations go?</h6>
-        <ul>
-        	<li>Paying for servers</li>
-        	<li>Premium fonts and themes</li>
-        	<li>Encryption</li>
-        	<li>Keeping Code Your Cloud free</li>
-        </ul>
-        <h6>What are the benefits?</h6>
-        <p>Knowing that you are a good person, and help to support free, open source code editors.</p>
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
-">
-<input type="image" src="paypal.png" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-</div>
-    <!-- JavaScript -->
-    <script src="../about/fl/js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="../about/fl/js/jquery.ui.touch-punch.min.js"></script>
-    <script src="../about/fl/js/bootstrap.min.js"></script>
-    <script src="../about/fl/js/bootstrap-select.js"></script>
-    <script src="../about/fl/js/bootstrap-switch.js"></script>
-    <script src="../about/fl/js/flatui-checkbox.js"></script>
-    <script src="../about/fl/js/flatui-radio.js"></script>
-    <script src="../about/fl/js/jquery.tagsinput.js"></script>
-    <script src="../about/fl/js/jquery.placeholder.js"></script>
+	
+	<div class="slide" id="slide-7">
+		<div class="container" id="credits">
+			<div class="row title-row">
+				<div class="col-12 font-light">Thank you!</div>
+			</div><!-- /row -->
+			<h4 class="font-thin">Code Your Cloud would not have been possible without the generosity of many developers. A list of credits is available <a href="https://codeyourcloud.com/credit">here</a>. We highly recommend that you check them out, and thank the creators.</h4>
+			<br/>
+			<h4 class="font-semibold">This about page was built using the <a href="http://www.blacktie.co/demo/munter/">Munter</a> theme from <a href="http://www.blacktie.co/">Blacktie</a>. They make some kick-ass Boostrap-based templates, so you should check it out.</h4>
+			<br/>
+		</div>
+	</div>
+	
+</body>
 
-    <!-- Custom JavaScript for the Menu Toggle -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("active");
-    });
-    </script>
-	<script src="about.js"></script>
-	<link href="aboutCss.css" rel="stylesheet">
-	<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-	</div>
-  </body>
+	<!-- SCRIPTS -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="fancybox/jquery.fancybox.pack-v=2.1.5.js"></script>
+	<script src="js/script.js"></script>
+	
+	<!-- fancybox init -->
+	<script>
+	$(document).ready(function(e) {
+		var lis = $('.nav > li');
+		menu_focus( lis[0], 1 );
+		
+		$(".fancybox").fancybox({
+			padding: 10,
+			helpers: {
+				overlay: {
+					locked: false
+				}
+			}
+		});
+	
+	});
+	</script>
 
 </html>

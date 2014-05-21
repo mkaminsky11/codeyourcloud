@@ -32,6 +32,7 @@ function pickerOCallback(data) {
 			var fileId = data.docs[i].id;
 			console.log(fileId);
 			window.location.href = "https://codeyourcloud.com/#"+fileId;
+			reloadNow();
 		}
     }
     return false;

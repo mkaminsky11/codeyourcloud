@@ -6,8 +6,6 @@ function getContentOfFile(theID){ //gets the content of the file
     current = theID;
     gapi.client.request({'path': '/drive/v2/files/'+theID,'method': 'GET',callback: function ( theResponseJS, theResponseTXT ) {
         var myToken = gapi.auth.getToken();
-		//userInfoInit(myToken);
-        //console.log(myToken);
 		var myXHR   = new XMLHttpRequest();
         myXHR.open('GET', theResponseJS.downloadUrl, true );
         myXHR.setRequestHeader('Authorization', 'Bearer ' + myToken.access_token );
@@ -18,10 +16,10 @@ function getContentOfFile(theID){ //gets the content of the file
                     editor.setValue(code, -1); //sets the value of the codemirror
                     getP(theID);
                		setState("saved");
-			   		ok = true;
+			   		ok = true; //good to go, file loaded
 			   		setPercent("100");
 			   		sendMessage("good to go!", "success");
-			   		refreshTodo();
+			   		refreshTodo(); //refreshed the todo list (non-mobile only)
 			   	}
             }
         }
@@ -193,14 +191,13 @@ function updateFile(fileId, fileMetadata, fileData, callback) { //is the callbac
 	}
 }
 function getP(fileId) {
-    if(online){
 	var request = gapi.client.drive.permissions.list({
 		'fileId': fileId
 	});
 	request.execute(function(resp) {
 		var ret = false;
-		for(i = 0; i < resp.items.length; i++){
-			if(resp.items[i].id === userId || resp.items[i].id === "anyone" || resp.items[i].id === "anyoneWithLink"){
+		for(var i = 0; i < resp.items.length; i++){
+			if(resp.items[i].id === userId || resp.items[i].id === "anyone" || resp.items[i].id === "anyoneWithLink" || resp.items[i].emailAddress === myEmail){
 				ret = true;
 			}
 		}
@@ -208,7 +205,6 @@ function getP(fileId) {
 			window.location = "https://codeyourcloud.com/error/permission";
 		}
 	});
-    }
 }
 function changesSaved() {
 	sendMessage("changes saved!", "success")

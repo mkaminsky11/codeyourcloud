@@ -5,6 +5,7 @@ $("#container").css('backgroundColor', $(".CodeMirror").css('backgroundColor'));
 $(".run-button").addClass('hide');
 $(".html-button").addClass('hide');
 var yes_context = true;
+var is_html = false;
 /**************
 CONTEXT MENU
 **************/
@@ -21,20 +22,12 @@ ACE
 var delay;
 var title = "";
 var isSaving = false;
-var editor = ace.edit("content");
+var editor = ace.edit("editor");
 ace.require("ace/ext/language_tools");
 editor.on("change", function(e){
 	setState("unsaved");
 	changes_made = true;
 	checkUndo(); //can you undo?
-	yes_context = true;
-	if(autoC && (e.data.text === " " || e.data.text === "\n")){
-		trigger_auto = true;
-	}
-	if(autoC && trigger_auto && (e.data.text !== " " && e.data.text !== "\n") ){
-		getHint();
-		trigger_auto = false;
-	}
 });
 editor.session.setUseWrapMode(true);
 editor.session.setWrapLimitRange();
@@ -240,7 +233,7 @@ for (var name in supportedModes) {
     var displayName = (nameOverrides[name] || name).replace(/_/g, " ");
     modeNames.push(displayName);
     var filename = name.toLowerCase();
-    var mode = require("ace/mode/" + filename).Mode;
+    var mode = require("ace/mode/" + filename).Mode; 	
     modesByName[filename] = mode;
     modes.push(mode);
     var onclick_name = "stuff." + data[0].split("|")[0];
@@ -251,12 +244,12 @@ for (var name in supportedModes) {
 }
 
 function checkFileName(fileName){
+	is_html = false;
 	$(".run-button").addClass("hide");
 	$(".html-button").addClass("hide");
 	
 	$("#console_toggle").addClass("hide");
 	//BASIC AUTOCOMPLETE
-	basicAuto();
 	/*
 	JAVASCRIPT
 	*/
@@ -267,10 +260,12 @@ function checkFileName(fileName){
 	}
 	if(fileName.indexOf(".html") !== -1){
 		$(".html-button").removeClass("hide");
+		is_html = true;
 	}
 	else{
 		if(console_open){
 			closeConsole();
+			editor.resize();
 		}
 	}
 	var e = exten(fileName);
@@ -282,6 +277,9 @@ function checkFileName(fileName){
 					if(s[c] === e){
 						if(e === "ino" || e === "pde"){
 							editor.getSession().setMode(new modes[39]());
+						}
+						else if(e === "php" || e === "phtml"){
+							editor.getSession().setMode({path:"ace/mode/php", inline:true})
 						}
 						else{
 							editor.getSession().setMode(new modes[a]());
@@ -866,25 +864,28 @@ function toggle_comment(){
 CONSOLE
 ************/
 var console_open = false;
+var wys = false; //wysiwyg = what you see is what you get
 function openConsole(){
 	if(!console_open){
 		console_open = true;
 		$("#content").animate({
 			height: "61%"
-		}, 1000);
+		}, 1000, function(){
+			editor.resize();
+			con.resize();
+		});
 	}
-	editor.resize();
-	con.resize();
 }
 function closeConsole(){
 	if(console_open){
 		console_open = false;
 		$("#content").animate({
 			height: "99%"
-		}, 1000);
+		}, 1000, function(){
+			editor.resize();
+			con.resize();
+		});
 	}
-	editor.resize();
-	con.resize();
 }
 
 var con = ace.edit("console_screen");
@@ -1007,3 +1008,37 @@ function startIntro(){
 	 $(".offline-ui-content").html("Reconnected!");
 	 get_sql();
  });
+ 
+ /**************
+ WYSIWYG
+ **************/
+ function open_wys(){
+	if(!wys){
+		wys = true;
+		$("#editor").animate({
+			height: '0%'
+		}, { duration: 1000, queue: false });
+		$("#edit").animate({
+			height: '100%'
+		}, { duration: 1000, queue: false });
+	}
+ }
+ function close_wys(){
+	if(wys){
+		wys = false;
+		$("#editor").animate({
+			height: '100%'
+		}, { duration: 1000, queue: false });
+		$("#edit").animate({
+			height: '0%'
+		}, { duration: 1000, queue: false });
+	}
+ }
+ 
+ 
+
+var quill = new Quill('#quill');
+quill.addModule('toolbar', {
+  container: '#toolbar'
+});
+
