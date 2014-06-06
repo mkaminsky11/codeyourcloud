@@ -212,7 +212,6 @@ function changesSaved() {
 	isSaving = false;
 }
 function renameFile(fileId, newTitle) {
-    if(online){
   var body = {'title': newTitle};
   var request = gapi.client.drive.files.patch({
     'fileId': fileId,
@@ -221,5 +220,4 @@ function renameFile(fileId, newTitle) {
   request.execute(function(resp) {
     sendMessage('new Title: ' + resp.title, "success");
   });
-    }
 }

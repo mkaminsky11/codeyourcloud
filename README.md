@@ -7,13 +7,6 @@
 ####<a href="https://codeyourcloud.com/about">About</a>####
 <p>A comprehensive about page with a help section, comment box, and code snippets. The about page is similar to this document, but more thorough. For a full explanation of the features of Code Your Cloud, check this out. It can also be accessed by clicking on the icon in the top-left corner of the main editor.</p>
 ====
-###Code Snippets###
-<p>Snippets of all the major functions of Code Your Cloud (for those who don't want to go digging through the source) can be found at the following links. They are all <a href="https://gist.github.com/">Gists</a>, and are updated with the source code itself.</p>
-####<a href="https://gist.github.com/mkaminsky11/8624455">Google Drive</a>####
-<p>Code snippets to manipulate Google Drive files, including content, title, etc. These are the the backbone of the editor, as they allow Code Your Cloud to access files from Google Drive. This is an especially useful resource if you are having trouble with your own projects that involve the Google Drive SDK.</p>
-####<a href="https://gist.github.com/mkaminsky11/8624150">CodeMirror (soon to be changed to Ace)</a>####
-<p>Code snippets to control and optimize the editor itself, created using CodeMirror. These are the functions behind the "editing" part of the editor.</p>
-=====
 <h3>Goal</h3>
 <p>To allow people around the globe to collaborate on coding projects via Google Drive. It's that simple. So far, I have yet to see a website or program that accomplishes these tasks for all major programming languages. This is an attempt to change that, and it seems to be working well so far.</p>
 =====
@@ -34,158 +27,135 @@
   <li>Run (javascript only, for now)</li>
 </ul>
 =====
-###Supported Languages (106)###
+###Supported Languages (86)###
 <ul>
-	<li>ABAP</li>
-	<li>ActionScript</li>
-	<li>ADA</li>
-	<li>Apache Conf</li>
-	<li>AsciiDoc</li>
-	<li>Assembly x86</li>
-	<li>AutoHotKey</li>
-	<li>BatchFile</li>
-	<li>C9Search</li>
-	<li>C/C++</li>
-	<li>Cirru</li>
-	<li>Clojure</li>
-	<li>Cobol</li>
-	<li>CoffeeScript</li>
-	<li>ColdFusion</li>
-	<li>C#</li>
-	<li>CSS</li>
-	<li>Curly</li>
-	<li>D</li>
-	<li>Dart</li>
-	<li>Diff</li>
-	<li>Dot</li>
-	<li>Erlang</li>
-	<li>EJS</li>
-	<li>Forth</li>
-	<li>FreeMarker</li>
-	<li>Gherkin</li>
-	<li>Glsl</li>
-	<li>Go</li>
-	<li>Groovy</li>
-	<li>HAML</li>
-	<li>Handlebars</li>
-	<li>Haskell</li>
-	<li>haXe</li>
-	<li>HTML</li>
-	<li>HTML (Ruby)</li>
-	<li>INI</li>
-	<li>Jack</li>
-	<li>Jade</li>
-	<li>Java</li>
-	<li>JavaScript</li>
-	<li>JSON</li>
-	<li>JSONiq</li>
-	<li>JSP</li>
-	<li>JSX</li>
-	<li>Julia</li>
-	<li>LaTeX</li>
-	<li>LESS</li>
-	<li>Liquid</li>
-	<li>Lisp</li>
-	<li>LiveScript</li>
-	<li>LogiQL</li>
-	<li>LSL</li>
-	<li>Lua</li>
-	<li>LuaPage</li>
-	<li>Lucene</li>
-	<li>Makefile</li>
-	<li>MATLAB</li>
-	<li>Markdown</li>
-	<li>MEL</li>
-	<li>MySQL</li>
-	<li>MUSHCode</li>
-	<li>Nix</li>
-	<li>Objective-C</li>
-	<li>OCaml</li>
-	<li>Pascal</li>
-	<li>Perl</li>
-	<li>pgSQL</li>
-	<li>PHP</li>
-	<li>Powershell</li>
-	<li>Prolog</li>
-	<li>Properties</li>
-	<li>Protobuf</li>
-	<li>Python</li>
-	<li>R</li>
-	<li>RDoc</li>
-	<li>RHTML</li>
-	<li>Ruby</li>
-	<li>Rust</li>
-	<li>SASS</li>
-	<li>SCAD</li>
-	<li>Scala</li>
-	<li>Smarty</li>
-	<li>Scheme</li>
-	<li>SCSS</li>
-	<li>SH</li>
-	<li>SJS</li>
-	<li>Space</li>
-	<li>snippets</li>
-	<li>Soy Template</li>
-	<li>SQL</li>
-	<li>Stylus</li>
-	<li>SVG</li>
-	<li>Tcl</li>
-	<li>Tex</li>
-	<li>Text</li>
-	<li>Textile</li>
-	<li>Toml</li>
-	<li>Twig</li>
-	<li>Typescript</li>
-	<li>VBScript</li>
-	<li>Velocity</li>
-	<li>Verilog</li>
-	<li>XML</li>
-	<li>XQuery</li>
-	<li>YAML</li> 
+	<li class="list-group-item text-center mode-li" onclick="">Javascript</li>
+	<li class="list-group-item text-center mode-li" onclick="">APL</li>
+	<li class="list-group-item text-center mode-li" onclick="">Asterisk</li>
+	<li class="list-group-item text-center mode-li" onclick="">C</li>
+	<li class="list-group-item text-center mode-li" onclick="">C++</li>
+	<li class="list-group-item text-center mode-li" onclick="">C#</li>
+	<li class="list-group-item text-center mode-li" onclick="">Java</li>
+	<li class="list-group-item text-center mode-li" onclick="">Clojure</li>
+	<li class="list-group-item text-center mode-li" onclick="">Cobol</li>
+	<li class="list-group-item text-center mode-li" onclick="">CoffeeScript</li>
+	<li class="list-group-item text-center mode-li" onclick="">Common Lisp</li>
+	<li class="list-group-item text-center mode-li" onclick="">CSS</li>
+	<li class="list-group-item text-center mode-li" onclick="">SCSS</li>
+	<li class="list-group-item text-center mode-li" onclick="">LESS</li>
+	<li class="list-group-item text-center mode-li" onclick="">Cypher</li>
+	<li class="list-group-item text-center mode-li" onclick="">Python</li>
+	<li class="list-group-item text-center mode-li" onclick="">Cython</li>
+	<li class="list-group-item text-center mode-li" onclick="">D</li>
+	<li class="list-group-item text-center mode-li" onclick="">Django</li>
+	<li class="list-group-item text-center mode-li" onclick="">Diff</li>
+	<li class="list-group-item text-center mode-li" onclick="">DTD</li>
+	<li class="list-group-item text-center mode-li" onclick="">Dylan</li>
+	<li class="list-group-item text-center mode-li" onclick="">ECL</li>
+	<li class="list-group-item text-center mode-li" onclick="">Eiffel</li>
+	<li class="list-group-item text-center mode-li" onclick="">Erlang</li>
+	<li class="list-group-item text-center mode-li" onclick="">Fortan</li>
+	<li class="list-group-item text-center mode-li" onclick="">OCaml</li>
+	<li class="list-group-item text-center mode-li" onclick="">F#</li>
+	<li class="list-group-item text-center mode-li" onclick="">Gas</li>
+	<li class="list-group-item text-center mode-li" onclick="">Gherkin</li>
+	<li class="list-group-item text-center mode-li" onclick="">Go</li>
+	<li class="list-group-item text-center mode-li" onclick="">Groovy</li>
+	<li class="list-group-item text-center mode-li" onclick="">HAML</li>
+	<li class="list-group-item text-center mode-li" onclick="">Haskell</li>
+	<li class="list-group-item text-center mode-li" onclick="">Haxe</li>
+	<li class="list-group-item text-center mode-li" onclick="">JSP</li>
+	<li class="list-group-item text-center mode-li" onclick="">EJS</li>
+	<li class="list-group-item text-center mode-li" onclick="">ASP.NET</li>
+	<li class="list-group-item text-center mode-li" onclick="">HTML</li>
+	<li class="list-group-item text-center mode-li" onclick="">HTTP</li>
+	<li class="list-group-item text-center mode-li" onclick="">Jade</li>
+	<li class="list-group-item text-center mode-li" onclick="">JSON</li>
+	<li class="list-group-item text-center mode-li" onclick="">TypeScript</li>
+	<li class="list-group-item text-center mode-li" onclick="">Julia</li>
+	<li class="list-group-item text-center mode-li" onclick="">LiveScript</li>
+	<li class="list-group-item text-center mode-li" onclick="">Lua</li>
+	<li class="list-group-item text-center mode-li" onclick="">Markdown</li>
+	<li class="list-group-item text-center mode-li" onclick="">Github Markdown</li>
+	<li class="list-group-item text-center mode-li" onclick="">mIRC</li>
+	<li class="list-group-item text-center mode-li" onclick="">nginx</li>
+	<li class="list-group-item text-center mode-li" onclick="">NTriples</li>
+	<li class="list-group-item text-center mode-li" onclick="">Octave</li>
+	<li class="list-group-item text-center mode-li" onclick="">Pascal</li>
+	<li class="list-group-item text-center mode-li" onclick="">Perl</li>
+	<li class="list-group-item text-center mode-li" onclick="">PHP</li>
+	<li class="list-group-item text-center mode-li" onclick="">PHP/HTML</li>
+	<li class="list-group-item text-center mode-li" onclick="">Pig Latin</li>
+	<li class="list-group-item text-center mode-li" onclick="">Properties</li>
+	<li class="list-group-item text-center mode-li" onclick="">Puppet</li>
+	<li class="list-group-item text-center mode-li" onclick="">Q</li>
+	<li class="list-group-item text-center mode-li" onclick="">R</li>
+	<li class="list-group-item text-center mode-li" onclick="">Ruby</li>
+	<li class="list-group-item text-center mode-li" onclick="">Rust</li>
+	<li class="list-group-item text-center mode-li" onclick="">Sass</li>
+	<li class="list-group-item text-center mode-li" onclick="">Scala</li>
+	<li class="list-group-item text-center mode-li" onclick="">Shell</li>
+	<li class="list-group-item text-center mode-li" onclick="">Scheme</li>
+	<li class="list-group-item text-center mode-li" onclick="">Sieve</li>
+	<li class="list-group-item text-center mode-li" onclick="">Smalltalk</li>
+	<li class="list-group-item text-center mode-li" onclick="">Smarty</li>
+	<li class="list-group-item text-center mode-li" onclick="">Solr</li>
+	<li class="list-group-item text-center mode-li" onclick="">SQL</li>
+	<li class="list-group-item text-center mode-li" onclick="">mySQL</li>
+	<li class="list-group-item text-center mode-li" onclick="">sText</li>
+	<li class="list-group-item text-center mode-li" onclick="">TCL</li>
+	<li class="list-group-item text-center mode-li" onclick="">LaTex</li>
+	<li class="list-group-item text-center mode-li" onclick="">Tiki</li>
+	<li class="list-group-item text-center mode-li" onclick="">Toml</li>
+	<li class="list-group-item text-center mode-li" onclick="">Turtle</li>
+	<li class="list-group-item text-center mode-li" onclick="">VB.NET</li>
+	<li class="list-group-item text-center mode-li" onclick="">VBScript</li>
+	<li class="list-group-item text-center mode-li" onclick="">Velocity</li>
+	<li class="list-group-item text-center mode-li" onclick="">Verilog</li>
+	<li class="list-group-item text-center mode-li" onclick="">XML</li>
+	<li class="list-group-item text-center mode-li" onclick="">XQuery</li>
+	<li class="list-group-item text-center mode-li" onclick="">Swift</li>
 </ul>
 =====
 ###Themes###
 <ul>
-	<li>Chrome</li>
-	<li>Clouds</li>
-	<li>Crimson Editor</li>
-	<li>Dawn</li>
-	<li>Dreamweaver</li>
-	<li>Eclipse</li>
-	<li>GitHub</li>
-	<li>Solarized Light</li>
-	<li>TextMate</li>
-	<li>Tomorrow</li>
-	<li>XCode</li>
-	<li>Kuroir</li>
-	<li>KatzenMilch</li>
-	<li>Ambiance</li>
-	<li>Chaos</li>
-	<li>Clouds Midnight</li>
-	<li>Cobalt</li>
-	<li>idle Fingers</li>
-	<li>krTheme</li>
-	<li>Merbivore</li>
-	<li>Merbivore Soft</li>
-	<li>Mono Industrial</li>
-	<li>Monokai</li>
-	<li>Pastel on dark</li>
-	<li>Solarized Dark</li>
-	<li>Terminal</li>
-	<li>Tomorrow Night</li>
-	<li>Tomorrow Night Blue</li>
-	<li>Tomorrow Night Bright</li>
-	<li>Tomorrow Night 80s</li>
-	<li>Twilight</li>
-	<li>Vibrant Ink</li> 
+	<li class="list-group-item text-center theme-li" onclick="">3024 Day</li>
+	<li class="list-group-item text-center theme-li" onclick="">3024 Night</li>
+	<li class="list-group-item text-center theme-li" onclick="">Ambiance Mobile</li>
+	<li class="list-group-item text-center theme-li" onclick="">Ambiance</li>
+	<li class="list-group-item text-center theme-li" onclick="">Base16 Light</li>
+	<li class="list-group-item text-center theme-li" onclick="">Base16 Dark</li>
+	<li class="list-group-item text-center theme-li" onclick="">Blackboard</li>
+	<li class="list-group-item text-center theme-li" onclick="">Cobalt</li>
+	<li class="list-group-item text-center theme-li" onclick="">Eclipse</li>
+	<li class="list-group-item text-center theme-li" onclick="">Elegant</li>
+	<li class="list-group-item text-center theme-li" onclick="">Erlang Dark</li>
+	<li class="list-group-item text-center theme-li" onclick="">Lesser Dark</li>
+	<li class="list-group-item text-center theme-li" onclick="">Mbo</li>
+	<li class="list-group-item text-center theme-li" onclick="">Mdn Like</li>
+	<li class="list-group-item text-center theme-li" onclick="">Midnight</li>
+	<li class="list-group-item text-center theme-li" onclick="">Monokai</li>
+	<li class="list-group-item text-center theme-li" onclick="">Neat</li>
+	<li class="list-group-item text-center theme-li" onclick="">Night</li>
+	<li class="list-group-item text-center theme-li" onclick="">Paraiso Dark</li>
+	<li class="list-group-item text-center theme-li" onclick="">Paraiso Light</li>
+	<li class="list-group-item text-center theme-li" onclick="">Pastel On Dark</li>
+	<li class="list-group-item text-center theme-li" onclick="">RubyBlue</li>
+	<li class="list-group-item text-center theme-li" onclick="">Solarized</li>
+	<li class="list-group-item text-center theme-li" onclick="">The Matrix</li>
+	<li class="list-group-item text-center theme-li" onclick="">Tomorrow Night Eighties</li>
+	<li class="list-group-item text-center theme-li" onclick="">Twilight</li>
+	<li class="list-group-item text-center theme-li" onclick="">Vibrant Ink</li>
+	<li class="list-group-item text-center theme-li" onclick="">Xq light</li>
+	<li class="list-group-item text-center theme-li" onclick="">Xq dark</li>
+	<li class="list-group-item text-center theme-li" onclick="">Neo</li>
 </ul>
 =====
 ###Resources###
 <p>These resources were used in the creation of this project. For a more detailed list, go <a href="https://codeyourcloud.com/about#lib">here</a></p>
 <ul>
-	<li><a href="http://ace.c9.io/">Ace</a></li>
+	<li><a href="http://codemirror.net/">CodeMirror</a></li>
 	<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
-	<li><a href="https://togetherjs.com/">TogetherJS</a></li>
 	<li><a href="http://fortawesome.github.io/Font-Awesome/">FontAwesome</a></li>
 	<li><a href="http://kudakurage.com/ligature_symbols/">LigatureSymbols</a></li>
 	<li><a href="http://codemirror.net/">CodeMirror</a></li>
@@ -209,7 +179,8 @@
 	<li>improved mobile support</li>
 	<li>integrate AngularJS</li>
 	<li>Comment/uncomment function<b>[done!]</b></li>
-	<li>Objective-C mode <b>[done with the usage of Ace!]</b></li>
+	<li>Objective-C mode</li>
+	<li>Swift mode <b>done!</b></li>
 </ol>
 =====
 ###License###

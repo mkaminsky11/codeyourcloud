@@ -7,7 +7,7 @@ function check_login(){
 function handleLogin(authResult) {
 	if (authResult) {
 		//ok
-		$("#login_button").html('Start Editing');
+		$("#login_button").html('<span class="fa fa-file-code-o"></span> Start Editing');
 		is_logged_in = true;
 	} 
 	else {
@@ -31,21 +31,53 @@ connection.onopen = function () {
 	console.log("open");
 };
 function comment(){
+	$("#comment_name").css("border","none");
+	$("#comment_mail").css("border","none");
+	$("#comment_comment").css("border","none");
+	
 	var name = strip(document.getElementById("comment_name").value);
 	var mail = strip(document.getElementById("comment_mail").value);
 	var text = strip(document.getElementById("comment_comment").value);
-	connection.send(JSON.stringify({type: "comment", sender: name, email: mail, comment: text}));
-	document.getElementById("comment_name").value = "";
-	document.getElementById("comment_mail").value = "";
-	document.getElementById("comment_comment").value = "";
+	if(mail.indexOf("@") !== -1){
+		connection.send(JSON.stringify({type: "comment", sender: name, email: mail, comment: text}));
+		document.getElementById("comment_name").value = "";
+		document.getElementById("comment_mail").value = "";
+		document.getElementById("comment_comment").value = "";
+		
+		$("#comment_name").css("border","solid thin #2ECC71");
+		$("#comment_mail").css("border","solid thin #2ECC71D");
+		$("#comment_comment").css("border","solid thin #2ECC71");
+		setTimeout(function(){
+				$("#comment_name").css("border","none");
+				$("#comment_mail").css("border","none");
+				$("#comment_comment").css("border","none");
+			},1000);
+	}
+	else{
+		$("#comment_mail").css("border","solid thin #E74C3C");
+	}
 }
 function resetForm(){
 	document.getElementById("comment_name").value = "";
 	document.getElementById("comment_mail").value = "";
 	document.getElementById("comment_comment").value = "";	
+	
+	$("#comment_name").css("border","solid thin #7F8C8D");
+	$("#comment_mail").css("border","solid thin #7F8C8D");
+	$("#comment_comment").css("border","solid thin #7F8C8D");
+	setTimeout(function(){
+		$("#comment_name").css("border","none");
+		$("#comment_mail").css("border","none");
+		$("#comment_comment").css("border","none");
+		
+	},1000);
 }
 function strip(string){
-	return string.replace(/(<([^>]+)>)/ig,"");
+	var ret = string.split("(").join("").split(")").join("");
+	ret = ret.split("{").join("").split("}").join("");
+	ret = ret.split("+").join("").split("-").join("");
+	ret = ret.split(";").join("").split("<").join("").split(">").join("");
+	return ret;
 }
 /*******
 REDIRECT

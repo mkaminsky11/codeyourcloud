@@ -671,3 +671,6 @@ body {
 .contact_a:hover{
 	text-decoration: none;
 }
+#comment_name,#comment_mail,#comment_comment{
+	border:none;
+}

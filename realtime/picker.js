@@ -1,10 +1,11 @@
-/**********
-OPEN FILE
-***********/
+/*===========
+OPENING
+============*/
+var developerKey = 'AIzaSyBTSFIgQkLly9v6Xuqc2Nqm-vX0jpyEbZk';
 function purge(){
     $(".dcs-wc-dcs-c-dcs-vc").remove();
 }
-function loadOPicker() {
+function open_picker() {
     purge();
 	gapi.load('picker', {'callback': createOPicker});
 }
@@ -30,44 +31,16 @@ function pickerOCallback(data) {
 	if (data.action === google.picker.Action.PICKED) {
 		for(i = 0; i < data.docs.length; i++){
 			var fileId = data.docs[i].id;
-			console.log(fileId);
-			window.location = "https://codeyourcloud.com/mobile#"+fileId;
+			window.location = "https://codeyourcloud.com/realtime#"+fileId;
 		}
     }
-    return false;
     purge();
 }
-function redirect(id) {
-        var u = "https://codeyourcloud.com/#" + id;
-	    window.location.href = url;
-}
-var developerKey = 'AIzaSyBTSFIgQkLly9v6Xuqc2Nqm-vX0jpyEbZk';
-function loadOPicker() {
-        gapi.load('picker', {'callback': createOPicker});
-}
-function loadShare() {
-	purge();
-	if(doc_url.indexOf("#") !== -1){
-		gapi.load('drive-share', function() {
-		    purge();
-	        var s = new gapi.drive.share.ShareClient('953350323460');
-	        s.setItemIds([doc_url.split("#")[1]]);
-	        s.showSettingsDialog();
-	        purge(); 
-		});
-		purge();
-	}
-}
-/****
-new
-****/
-function folderPickerNew() {
-	window.location.href= "https://codeyourcloud.com/?%22folderId%22:%22" +  myRootFolderId + "%22,%22action%22:%22create";
-}
-/*****
-upload
-****/
-function uploadPicker() {
+
+/*=============
+UPLOADING
+=============*/
+function upload_picker() {
     purge();
 	gapi.load('picker', {'callback': createUploadPicker});
 }
@@ -92,4 +65,32 @@ function uploadCallback(data) {
     }
     purge();
     return false;
+}
+/*===============
+DOWNLOAD
+==============*/
+function download_file() {
+  var fileId = current;
+  var request = gapi.client.drive.files.get({
+    'fileId': fileId
+  });
+  request.execute(function(resp) {
+    window.location.assign(resp.webContentLink);
+  });
+  sendMessage("file downloaded", "success");
+} 
+
+/*===========
+SHARE
+===========*/
+function show_share() {
+	purge();
+	gapi.load('drive-share', function() {
+		purge();
+	    var s = new gapi.drive.share.ShareClient('953350323460');
+	    s.setItemIds(current);
+	    s.showSettingsDialog();
+        purge(); 
+	});
+	purge();
 }

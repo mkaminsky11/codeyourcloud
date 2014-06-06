@@ -80,7 +80,7 @@
 			var current = "";
 			//file id
 			if(document.URL.indexOf("#") !== -1){
-				current = doc_url.split("#")[1];
+				current = window.location.href.split("#")[1];
 			}
 			function reloadNow() {
 				console.log("reload");
@@ -104,22 +104,25 @@
 			var userName = "user";
 			var userUrl = "https://codeyourcloud.com/icon_128.png";
 			var userId = null;
+			var TogetherJSConfig_dontShowClicks = true;
 			var TogetherJSConfig_includeHashInUrl = true;
 			var TogetherJSConfig_findRoom = current;
 			var TogetherJSConfig_suppressInvite = true;
 			var TogetherJSConfig_suppressJoinConfirmation = true;
-			var TogetherJSConfig_dontShowClicks = true
+			var TogetherJSConfig_cloneClicks = ".clone-click";
+			var TogetherJSConfig_autoStart = false;
+			var TogetherJSConfig_disableWebRTC = true;
 			var TogetherJSConfig_getUserName = function () {return userName;};
 			var TogetherJSConfig_getUserAvatar = function () {return userUrl;};
 			TogetherJSConfig_on_ready = function () {
 				isTOpen = true;
-				if(!ok){
-					TogetherJS(this);
-				}
 			};
 			TogetherJSConfig_on_close = function () {
 				isTOpen = false;
 			};
+			var others = [];
+			var use_col = false;
+			var trigger = 0;
 		</script>
 		<script src = 'scripts/picker.ace.js'></script>
 		<script src = 'lib/keyboard/jwerty.js'></script>
@@ -149,11 +152,17 @@
             </div>
 			<div class="collapse navbar-collapse" id="nav1">
 				<ul class="nav navbar-nav">
-					<li class="logo_svg" data-intro="Welcome to Code Your Cloud" data-step="1"><a id="img_a_svg" href="https://codeyourcloud.com/about" style="
-						padding: 0;
-					"><img src="icon_128.png" style="
-						height: 50px;
-					"></a></li>
+					<li class="flip-container" ontouchstart="this.classList.toggle('hover');">
+						 <a href="https://codeyourcloud.com/about" class="flipper">
+							<div class="front">
+								<!-- front content -->
+							</div>
+							<div class="back">
+								<!-- back content -->
+							</div>
+						
+						</a>
+					</li>
 					<li class="dropdown" id="codedropdown">
 						<a class="dropdown-toggle" id="dropdown-toggle-code" data-toggle="dropdown" data-intro="With this menu you can open, upload, and create new files" data-step="2">File</a>
 						<span class="dropdown-arrow"></span>
@@ -209,7 +218,7 @@
 					<li class="" id="will_close">
 						<div class="btn-group">
 							<button data-intro="If you are accessing a file, you can use this button to start collaboration (if you cannot see a button, it is just because you are on the 'welcome' screen)" data-step="4" id="col_button" class="btn btn-success btn-embossed" onclick="TogetherJS(this);return false"><i class="fa fa-comment"></i></button>
-							<button id ="note" class="btn btn-default btn-embossed" onclick="save()">All Changes Saved To Drive</button>
+							<button id ="note" class="btn btn-default btn-embossed clone-click" onclick="save()">All Changes Saved To Drive</button>
 						</div>	
 					</li>
 				</ul>
@@ -619,18 +628,6 @@
 		</div>
 		<div id = "container">
 			<div id = "content">
-				<div id="editor">
-					
-				</div>
-				<div id="edit">
-					<div id="toolbar" class="btn-group">
-						<button class="btn btn-default sc-bold"><i class="fa fa-bold"></i></button>
-						<button class="btn btn-default sc-italic"><i class="fa fa-italic"></i></button>
-						<button class="btn btn-default sc-underline"><i class="fa fa-underline"></i></button>
-						<button class="btn btn-default sc-strike"><i class="fa fa-strikethrough"></i></button>
-					</div>
-					<div id="quill"></div>
-				</div>
 			</div>
 			<div id="console" style="
     			position: absolute;
@@ -672,7 +669,19 @@
 				</div>
 			</div>
 		</div>
-		
+		<div id="chat">
+			<div id='col_online'>
+				<ul class='media-list' id='online_ul'>
+				</ul>
+			</div>
+			<hr/>
+			<div id='col_chat'>
+			</div>
+			<div id='col_text'>
+				<textarea class='form-control login-field' id='text_text' value='' placeholder='...' rows='10'></textarea>
+			</div>
+		</div>
+		<textarea id="sync" style="display:none"></textarea>
 		<script src= "lib/ace/src/ace.js"></script>
         <script src= "lib/ace/src/modes_all.js"></script>
         <script src=" lib/ace/src/themes_all.js"></script>
@@ -741,5 +750,12 @@
 		<link rel='stylesheet' type='text/css' href='style.css'>
 		<link href="lib/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
 		<script src="https://togetherjs.com/togetherjs-min.js"></script>
+		<script>
+			if(window.location.href.indexOf("#") !== -1 && window.location.href.indexOf("state") === -1){
+				TogetherJS(this);
+			}
+			
+		
+		</script>
 	</body>
 </html>

@@ -82,19 +82,19 @@ function loadClient(callback) {
 function init() {
 	if(document.URL.indexOf("#") !== -1 && document.URL.indexOf("?") === -1){
 		if(document.URL.indexOf("state") === -1){
-			get_info();
-			getContentOfFile(document.URL.split("#")[1]);
+			get_info(true);
+			//getContentOfFile(document.URL.split("#")[1]);
 			getTitle(document.URL.split("#")[1]);
 		}
 		else{
 			welcome();
-			get_info();
+			get_info(false);
 		}
 	}
 	//if neither
 	else if(document.URL.indexOf("#") === -1 && document.URL.indexOf("?") === -1){
 		welcome();
-		get_info();
+		get_info(false);
 	}
 	//? but not #
 	else if(document.URL.indexOf("?") !== -1 && document.URL.indexOf("#") === -1){
@@ -119,7 +119,7 @@ function init() {
 		}
 	}
 }
-function get_info(){
+function get_info(read){
 	ok = true;
     var request = gapi.client.drive.about.get();
     request.execute(function(resp) {
@@ -150,6 +150,11 @@ function get_info(){
         $("#capacity_used").html(bytesToSize(user_q));
         $("#capacity_total").html(bytesToSize(total_q));
         clock.setTime(product_q);
+        
+        if(read){
+        	console.log("reading file...")
+        	getContentOfFile(document.URL.split("#")[1]);
+        }
     });
 }
 function bytesToSize(bytes) {

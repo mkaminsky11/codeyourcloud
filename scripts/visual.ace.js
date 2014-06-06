@@ -6,6 +6,8 @@ $(".run-button").addClass('hide');
 $(".html-button").addClass('hide');
 var yes_context = true;
 var is_html = false;
+var chat_open = false;
+var side_width = "20%";
 /**************
 CONTEXT MENU
 **************/
@@ -17,17 +19,23 @@ $(window).bind('contextmenu', function(e) {
 });
 /*******************
 ACE
-*******************/
+*************/
 //other
 var delay;
 var title = "";
 var isSaving = false;
-var editor = ace.edit("editor");
+var editor = ace.edit("content");
 ace.require("ace/ext/language_tools");
 editor.on("change", function(e){
 	setState("unsaved");
 	changes_made = true;
 	checkUndo(); //can you undo?
+	if(use_col && trigger === 0){
+		sendChange(e);
+	}
+	if(trigger!== 0){
+		trigger--;
+	}
 });
 editor.session.setUseWrapMode(true);
 editor.session.setWrapLimitRange();
@@ -36,6 +44,33 @@ editor.setShowPrintMargin(false);
 editor.getSession().selection.on('changeCursor', function(e){
 	var display = editor.getCursorPosition().column + "|" + editor.getCursorPosition().row; 
 	$("#indicator").html(display);
+	if(use_col){
+		//editor.session.selection
+		//sendCursor(editor.getCursorPosition().row, editor.getCursorPosition().column);
+	}
+});
+editor.getSession().selection.on('changeSelection', function(e){
+	if(use_col){
+		var s = editor.session.selection.getRange();
+		var col = s.start.column;
+		var row = s.start.row;
+		var endcol = s.end.column;
+		var endrow = s.end.row;
+		if(col===endcol && row===endrow){
+			//no selection
+			if(col === 0){
+				//at left edge
+				endcol++;
+			}
+			else{
+				endcol--;
+			}
+		}
+		else{
+		}
+		//send it!
+		sendSelect(row, col, endrow,endcol);
+	}
 });
 var Range = require('ace/range').Range;
 /****************
@@ -196,7 +231,7 @@ var supportedModes = {
     Space:       ["space"],
     snippets:    ["snippets"],
     Soy_Template:["soy"],
-    SQL:         ["sql"],
+    SQL:         ["sql|pls|plb"],
     Stylus:      ["styl|stylus"],
     SVG:         ["svg"],
     Tcl:         ["tcl"],
@@ -510,27 +545,17 @@ function setState(state){
 BOOTSTRAP
 ***********/
 function setPercent(per){
-	/*
-	document.getElementById("desc").innerHTML = per + "% complete";
-	document.getElementById("prog").style.width = per + "%";
-	document.getElementById("prog").ariaValuenow = per + "";	
-	*/	
 	if(per === "100"){
 		setTimeout(function(){
 			$("#screen").animate({
 				marginTop: "-100%",
 				marginBottom: "100%"
 			},750,function(){
-				//$("#pre").remove();
 				$("#screen").remove();
-				//$('#ok_rename').tooltip('hide');
-				//$('#cancel_rename').tooltip('hide');
+
 			});
 		}, 1000);
 	}
-	/*
-	if(per === "0"){
-	}*/
 }
 /*************
 TERN
@@ -558,7 +583,7 @@ function getHint(){
 SIDEBAR
 ********/
 var sideOpen = false;
-var sideView = 1; //1 = notes 2 = docs 3 = todo;
+var sideView = 1; //1 = notes 2 = docs 3 = todo 4 = chat;
 function openSide(){
 	sideOpen = true;
 	$("#side").css("z-index", 0);
@@ -605,25 +630,25 @@ function bootHide(id){
 function notes(){
     if(sideView !== 1){
 		sideView = 1;
-		removeClass("pad", "hide");
-		bootHide("todo");
-		bootHide("docs");
+		$("#pad").removeClass("hide");
+		$("#todo").addClass("hide");
+		$("#docs").addClass("hide");
     }
 }
 function docs(){
     if(sideView !== 2){
 		sideView = 2;
-		removeClass("docs", "hide");
-		bootHide("pad");
-		bootHide("todo");
+		$("#docs").removeClass("hide");
+		$("#todo").addClass("hide");
+		$("#pad").addClass("hide");
     }
 }
 function todo(){
     if(sideView !== 3){
 		sideView = 3;
-		removeClass("todo", "hide");
-		bootHide("docs");
-		bootHide("pad");
+		$("#todo").removeClass("hide");
+		$("#pad").addClass("hide");
+		$("#docs").addClass("hide");
 		refreshTodo("");
 		editor.focus();
 		editor.session.selection.moveCursorLeft();
@@ -1012,7 +1037,8 @@ function startIntro(){
  /**************
  WYSIWYG
  **************/
- function open_wys(){
+ 
+ /*function open_wys(){
 	if(!wys){
 		wys = true;
 		$("#editor").animate({
@@ -1040,5 +1066,35 @@ function startIntro(){
 var quill = new Quill('#quill');
 quill.addModule('toolbar', {
   container: '#toolbar'
-});
+});*/
 
+/************
+CHAT
+*************/
+var chat_elem = ["<div id='col_online'>","<p id='online_sep'>Online</p>","<ul class='media-list' id='online_ul'>","</ul>","</div>","<div id='col_chat'>","<p id='chat_sep'>Chat</p>","</div>","<div id='col_text'>","<textarea class='form-control login-field' id='text_text' value='' placeholder='...' rows='10'></textarea>","</div>"];
+function showChat(){
+	//$("#side").html(chat_elem.join("\n"));
+	$("#chat").css("display","block");
+	$( "#container" ).animate({
+          width:"80%",marginRight:"20%"
+		}, 1000, function() {
+		//stuff goes here
+	});
+	$("#side").animate({
+			width:"16%"
+		}, 1000, function(){
+		
+	});
+}
+function closeChat(){
+	$( "#container" ).animate({
+          width:"100%",marginRight:"0%"
+		}, 1000, function() {
+		//stuff goes here
+	});
+	$("#side").animate({
+			width:"20%"
+		}, 1000, function(){
+		$("#chat").css("display","none");
+	});
+}
