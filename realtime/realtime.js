@@ -395,6 +395,7 @@ function welcome(){
 	$("#save_button").addClass("disabled");
 	$("#save_li").remove();
 	$("#share_li").remove();
+	lift_screen();
 }
 /*============
 CURSOR
@@ -454,7 +455,11 @@ function init_realtime(model){
 	console.log("init3");
 	getContentOfFile(current, model);
 }
-function errorFn(){
+function errorFn(error){
+	console.log(error);
+	if(error.Fe.toLowerCase() === "not found"){
+		document.location.href = "https://codeyourcloud.com/error/fileNotFound";
+	}
 	console.log("error");
 	was_error = true;
 	main_error();

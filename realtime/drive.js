@@ -51,7 +51,7 @@ function getTitle(fileId, model){
   		the_title = resp.title;
   		$("title").html(title);
 		if(typeof the_title === 'undefined' || typeof the_title === undefined){
-			document.location.href = "https://codeyourcloud.com/error/fileNotFound";
+			location.href = "https://codeyourcloud.com/error/fileNotFound";
 			return false;
 		}
   		model.getRoot().set("title", model.createString(resp.title));

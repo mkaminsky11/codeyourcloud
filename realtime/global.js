@@ -67,7 +67,7 @@ var modes = [
 	["JSP","application/x-jsp","jsp"],
 	["EJS","application/x-ejs","ejs"],
 	["ASP.NET","application/x-aspx","asp"],
-	["HTML","text/html","html"],
+	["HTML","text/html","html|svg"],
 	["HTTP","message/http",""],
 	["Jade","text/x-jade","jade"],
 	["JSON","application/json","json"],

@@ -216,20 +216,18 @@ body {
 }
 
 #slide-1 {
-	background-image: url('../../images/patterns/stardust_@2X.png');
+	background-image: url('../../images/patterns/wood.jpg');
 	color: #ffffff;
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+	background-repeat: repeat;
     width: 100%;
-	background-attachment: relative;
-	background-position: center center;
+    color:#34495E;
+}
+#overlay{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	opacity: 0.7;
+	background-color: white;
 }
 
 #slide-1 h1 {
