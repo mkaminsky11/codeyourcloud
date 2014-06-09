@@ -14,7 +14,14 @@ connection.onmessage = function (message) {
 		var json = JSON.parse(message.data);
 		if(json.type === "get"){
 			rec = true;
-			theme_sql = json.theme;
+			theme_sql = json.theme.split("_").join("-");
+			if(themes_name.indexOf(theme_sql) !== -1){
+				setTheme(theme_sql);
+			}
+			else{
+				theme_sql = "monokai";
+				set_sql();
+			}
 			//FONT_SIZE *done
 			$(".CodeMirror").css("fontSize", json.font_size+"px");
 			$("#spinner-font").val(json.font_size);

@@ -131,7 +131,7 @@ function fileInserted(d) {
 		insertFileIntoFolder(FI, d.id);
 		removeFileFromFolder(d.parents[0].id,d.id);
 	}
-	window.location = "https://codeyourcloud.com/realtime#"+d.id;
+	window.location = "https://codeyourcloud.com#"+d.id;
 }
 function insertFileIntoFolder(folderId, fileId) {
   var body = {'id': folderId};

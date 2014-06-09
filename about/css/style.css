@@ -216,18 +216,11 @@ body {
 }
 
 #slide-1 {
-	background-image: url('../../images/patterns/wood.jpg');
 	color: #ffffff;
 	background-repeat: repeat;
     width: 100%;
     color:#34495E;
-}
-#overlay{
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	opacity: 0.7;
-	background-color: white;
+    background-color: rgba(255,255,255,0.7); /*<----------------------------------------------*/
 }
 
 #slide-1 h1 {
@@ -300,9 +293,13 @@ body {
 }
 
 #slide-2 {
-	background-color: #1abc9c;
+	background-color: rgba(52,152,219,0.8); /*<----------------------------------------------------*/
 	color: #e4e6e5;
 	padding-top: 90px;
+}
+
+#slide-2 a{
+	color:#ECF0F1;
 }
 
 	.title-row {
@@ -379,7 +376,7 @@ body {
 }
 
 #slide-3 {
-	background-color: #000;
+	background-color: rgba(46,204,113,0.8); /*<-------------------------------------------------------------*/
 	margin: 0 auto;
 	overflow: hidden;
 	padding: 0;
@@ -436,7 +433,7 @@ body {
 }
 
 #slide-4 {
-	background-color: #34495e;
+	background-color: rgba(149,165,166,0.8); /*<--------------------------------------------------*/
 	color: #e4e6e5;
 	padding-top: 90px;
 }
@@ -448,13 +445,13 @@ body {
 
 
 #slide-5 {
-	background-color: #f39c12;
+	background-color: rgba(52,73,94,0.8); /*<----------------------------------------------------------------*/
 	color: #e4e6e5;
 	padding-top: 90px;
 }
 
 #slide-6 {
-	background-color: #2f2f2f;
+	background-color: rgba(230,125,34,0.95); /*<-----------------------------------------------*/
 	color: #e4e6e5;
 	padding-bottom: 350px;
 	padding-top: 90px;
@@ -467,8 +464,8 @@ body {
 }
 	
 	#slide-6 .line-row .hr {
-		background-color: #4e4e4e;
-		color: #4e4e4e;
+		background-color: #e4e6e5;
+		color: #e4e6e5;
 	}
 
 	#slide-6 a {
@@ -513,7 +510,7 @@ body {
 	}
 
 #slide-7 {
-	background-color: #e4e6e5;
+	background-color: rgba(231,76,60,0.8); /*<------------------------------------------*/
 	color: #4e4e4e;
 	font-size: 35px;
 	line-height: 50px;
@@ -521,7 +518,7 @@ body {
 }
 
 #lightbox-out {
-	background-color: rgba( 0, 0, 0, 0.7 );
+	background-color: rgba( 0, 0, 0, 0.8 );
 	height: 100%;
 	position: fixed;
 	width: 100%;
@@ -621,7 +618,7 @@ body {
 	color:#ECF0F1;
 }
 #slide-7{
-	background-color:#9B59B6;
+	background-color: rgba(231,76,60,0.8); /*<------------------------------------------*/
 	color:#ECF0F1;
 }
 .comp_table{
@@ -649,7 +646,7 @@ body {
 	margin-top:0;
 }
 #features{
-	background-color:#C0392B;
+	background-color: rgba(46,204,113,0.95); /*<-----------------------------------------------*/
 	color:#ECF0F1;
 }
 .modes{
@@ -671,4 +668,10 @@ body {
 }
 #comment_name,#comment_mail,#comment_comment{
 	border:none;
+}
+body{
+	background-image: url('../../images/patterns/wood.jpg');
+}
+#gallery{
+	background-color:#2980B9;
 }

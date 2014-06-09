@@ -150,6 +150,8 @@ var themes = [
 	"Neo"
 ];
 
+var themes_name = ["3024-day", "3024-night", "ambiance-mobile", "ambiance", "base16-light", "base16-dark", "blackboard", "cobalt", "eclipse", "elegant", "erlang-dark", "lesser-dark", "mbo", "mdn-like", "midnight", "monokai", "neat", "night", "paraiso-dark", "paraiso-light", "pastel-on-dark", "rubyblue", "solarized", "the-matrix", "tomorrow-night-eighties", "twilight", "vibrant-ink", "xq-light", "xq-dark", "neo"];
+
 var is_mobile = false;
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  	is_mobile = true;

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Code Your Cloud</title>
+
+	<script src="../about/flat/js/jquery-1.8.3.min.js"></script>
+    <!-- Loading Bootstrap -->
+    <link href="../about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="../about/flat/css/flat-ui.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="../about/flat/js/html5shiv.js"></script>
+      <script src="../about/flat/js/respond.min.js"></script>
+    <![endif]-->
+    
+    <script type="text/javascript" src="../api.js"></script>
+	<script>
+		console.log("please don't mess around with this console unless you REALLY know what you're doing. Your actions could effect your files or our servers. If you have any questions, CONTACT US. Thank you.");
+		var doc_url = document.URL;
+		var current = "";
+		if(document.URL.indexOf("#") !== -1){
+			current = window.location.href.split("#")[1];
+		}
+		function reloadNow() {
+			console.log("reload");
+			location.reload();
+		}
+		
+		/***********
+			SQL
+			************/
+			var theme_sql = "monokai";
+			var auto_save = true;
+			var auto_save_int = 30000;
+			
+			var sql_loaded = false;
+			var user_loaded = false;
+			
+			var sql_font = 12;
+			var autoC = false;
+			var line_number = true;
+			var line_wrap = true;
+			//***************
+	</script>
+	<script type="text/javascript" src="../client.js"></script>
+	<script>
+		//TogetherJS config
+			var ok = false;
+			var isTOpen = false;
+			var userName = "user";
+			var userUrl = "https://codeyourcloud.com/icon_128.png";
+			var userId = null;
+			
+			
+			var TogetherJSConfig_includeHashInUrl = true;
+			var TogetherJSConfig_findRoom = current;
+			var TogetherJSConfig_suppressInvite = true;
+			var TogetherJSConfig_suppressJoinConfirmation = true;
+			var TogetherJSConfig_cloneClicks = ".clone-click";
+			var TogetherJSConfig_autoStart = false;
+			if(window.location.href.indexOf("#") !== -1 && window.location.href.indexOf("state") === -1){
+				//TogetherJSConfig_autoStart = true;
+			}
+			var TogetherJSConfig_disableWebRTC = true;
+			var TogetherJSConfig_getUserName = function () {return userName;};
+			var TogetherJSConfig_getUserAvatar = function () {return userUrl;};
+			TogetherJSConfig_on_ready = function () {
+				isTOpen = true;
+			};
+			TogetherJSConfig_on_close = function () {
+				isTOpen = false;
+			};
+	</script>
+	
+	<script src = "../lib/codemirror/lib/codemirror.js"></script>
+	<link rel='stylesheet' type='text/css' href='../lib/codemirror/lib/codemirror.css'>
+		
+	<link rel='stylesheet' type='text/css' href='style.css'>
+	
+	<script src = '../lib/codemirror/mode/css/css.js'></script>
+	<script src = "../lib/codemirror/mode/mode.js"></script>
+	
+		<link rel='stylesheet' type='text/css' href='../lib/codemirror/theme/theme.css'>
+	<!--addons-->		
+
+	<link rel="stylesheet" href="../lib/codemirror/addon/dialog/dialog.css" >
+	<link rel="stylesheet" href="../lib/codemirror/addon/hint/show-hint.css" >
+	<link rel="stylesheet" href="../lib/codemirror/addon/tern/tern.css" >
+	
+	<script src="../lib/codemirror/addon/comment/comment.js" ></script>
+	
+	<script src="../lib/codemirror/addon/dialog/dialog.js" ></script>
+	<script src="../lib/codemirror/addon/hint/show-hint.js" ></script>
+	<script src="../lib/codemirror/addon/tern/tern.js" ></script>
+	
+	
+	<script src="../lib/codemirror/addon/search/search.all.js" ></script>
+	
+	<script src="../lib/codemirror/addon/edit/edit.min.js"></script>
+	
+	<script src="../lib/auto/acorn.js"></script>
+	<script src="../lib/auto/acorn_loose.js"></script>
+	<script src="../lib/auto/walk.js"></script>
+	<script src="../lib/auto/polyfill.js"></script>
+	<script src="../lib/auto/signal.js"></script>
+	<script src="../lib/auto/tern.js"></script>
+	<script src="../lib/auto/def.js"></script>
+	<script src="../lib/auto/comment.js"></script>
+	<script src="../lib/auto/infer.js"></script>
+	<script src="../lib/auto/doc_comment.js"></script>
+	
+	<!--OPEN-->
+	<script src = '../scripts/picker.codemirror.js'></script>
+	<!--KEYBOARD-->
+	<script src = '../lib/keyboard/jwerty.js'></script>
+	<!--BOOTSTRAP LIBRARIES-->
+	<link rel='stylesheet' type='text/css' href='../lib/Font/css/font-awesome.min.css' >
+	<!--
+	addons
+	
+	-->
+	
+	<link rel="stylesheet" href="../lib/color/css/bootstrap-colorpicker.min.css">
+	
+	<script src="../lib/messenger/build/js/messenger.min.js"></script>
+	<script src="../lib/messenger/build/js/messenger-theme-flat.js"></script>
+	<link rel="stylesheet" href="../lib/messenger/build/css/messenger.css" />
+	<link rel="stylesheet" href="../lib/messenger/build/css/messenger-theme-flat.css" />
+	
+	<script src="../lib/jsPDF/jspdf.min.js" ></script>
+	
+	<link rel="stylesheet" href="../lib/switchery/dist/switchery.min.css" />
+	<script src="../lib/switchery/dist/switchery.min.js"></script>
+	
+	<link rel="stylesheet" href="../lib/FlipClock/compiled/flipclock.css" />
+	
+	<link href="../lib/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
+	
+	
+	
+  </head>
+  <body onload="handleClientLoad()">
+      <nav id="nav" class="navbar navbar-inverse navbar-embossed" role="navigation">
+      	<div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+          <ul class="nav navbar-nav" id="main_ul">           
+            <li class="dropdown" id="main_li">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Your Cloud <b class="caret"></b></a>
+              <span class="dropdown-arrow"></span>
+              <ul class="dropdown-menu">
+                <li onclick="loadOPicker()"><a>Open</a></li>
+                <li onclick="save()"><a>Save</a></li>
+                <li onclick="folderPickerNew()"><a>New</a></li>
+                <li onclick="uploadPicker()"><a>Upload</a></li>
+                <li onclick="tools()"><a>Tools</a></li>
+                <li onclick="showRename()"><a>Rename</a></li>
+                <li id="color" onclick="showColor()"><a>Color</a></li>
+                <li class="html-button" onclick="showPub()"><a>Publish</a></li>
+              </ul>
+            </li>
+            <li id="will_close">
+				<div class="btn-group">
+					<button id="col_button" class="btn btn-success btn-embossed" onclick="TogetherJS(this);return false"><i class="fa fa-comment"></i></button>
+					<button id ="note" class="btn btn-default btn-embossed" onclick="save()">All Changes Saved To Drive</button>
+				</div>	
+			</li>
+            
+           </ul>
+           <ul class="nav navbar-nav navbar-right">
+				<li>
+					<div class="btn-group toolBAR">
+						<button class="btn btn-primary btn-embossed" id="openB" onclick="loadOPicker()"><i class="fa fa-folder-open-o"></i></button>
+						<button class="btn btn-primary btn-embossed" onclick="save()" id="headerButton_save_right"><i class="fa fa-floppy-o"></i></button>
+						<button class="btn btn-primary btn-embossed" id="undoB" onclick="navUndo()"><i class="fa fa-reply"></i></button>
+						<button class="btn btn-primary btn-embossed" id="redoB" onclick="navRedo()"><i class="fa fa-share"></i></button>
+					</div>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" onclick="FIND()"><i class="fa fa-search"></i></a>
+					<ul class="dropdown-menu">
+						<li onclick="FIND()"><a>Find</a></li>
+						<li onclick="REPLACE()"><a>Replace</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" onclick=""><i class="fa fa-cogs"></i></a>
+					<ul class="dropdown-menu">
+						<li onclick="showMainModal()"><a>Preferences</a></li>
+						<li onclick="showHelpModal()"><a><i class="fa fa-info-circle"></i> Help</a></li>
+						<li onclick=""><a href="https://codeyourcloud.com/about#contact"><i class="fa fa-envelope-o"></i> Contact Us</a></li>
+						<li onclick="signout()"><a><i class="fa fa-sign-out"></i> Sign out from Google</a></li>
+						<li onclick="switch_site()"><a>Switch to normal (not mobile)</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown"></a>
+					<ul class="dropdown-menu">
+					</ul>
+				</li>
+			</ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+      
+      <div id = "screen">
+			<div>
+				<br/>
+				<h1 class="main_load"><a href="https://codeyourcloud.com/about">L<i class="fa fa-power-off"></i>ADING: GRIT, SPIT, AND JAVASCRIPT</a></h1>
+			</div>
+			<div id="in-screen">
+				<!--img id="pre" src="" alt=""/>
+				<br/>
+				<div class="progress progress-striped active">																					
+					<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="prog">
+					<span class="sr-only" id="desc">0% Complete</span>																			
+				</div>
+				</div>
+				<span id="loading"></span>
+				<br/>
+				<button class="btn btn-danger btn-embossed" onclick="reloadNow()"><i class="fa fa-refresh"></i> Retry</button-->
+				<img src="../images/preload/p1.svg" width="10%">
+			</div>
+		</div>
+		
+		
+		
+      <div id="container">
+      	<div id="content">
+      	</div>
+      </div>
+      
+      
+      
+      <!--
+		NEW PREF
+		-->
+		<div class="modal fade" id="mainModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-cog"></i> PREFERENCES</h4>
+					</div>
+					<div class="modal-body">
+						<div class="btn-group-vertical full_width_button">
+							<a class="btn btn-danger btn-embossed full_width_button btn-lg" onclick="showModeModal()"><i class="fa fa-code"></i> Modes</a>
+							<a class="btn btn-primary btn-emobssed full_width_button btn-lg" onclick="showThemeModal()"><i class="fa fa-magic"></i> Themes</a>
+							<a class="btn btn-info btn-embossed full_width_button btn-lg" onclick="showOptionsModal()"><i class="fa fa-pencil-square-o"></i> Options</a>
+							<a class="btn btn-success btn-embossed full_width_button btn-lg" onclick="showExpModal()"><i class="fa fa-flask"></i> Experimental</a>
+							<a class="btn btn-warning btn-embossed full_width_button btn-lg" onclick="showInfoModal()"><i class="fa fa-info-circle"></i> Info</a>
+							<a class="btn btn-info btn-embossed full_width_button btn-lg" onclick="showHelpModal()"><i class="fa fa-question"></i> Help</a>
+							<a class="btn btn-default btn-embossed full_width_button btn-lg" href="https://codeyourcloud.com/about#contact"><i class="fa fa-bug"></i> Report A Bug</a>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-danger btn-embossed" onclick="$('#mainModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		EXP
+		-->
+		<div class="modal fade" id="expModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-flask"></i> EXPERIMENTAL</h4>
+					</div>
+					<div class="modal-body">
+						<div class="alert alert-danger">
+						<i class="fa fa-exclamation-triangle"></i> Warning! These are experimental for a reason! Be careful!
+						</div>
+						<button class="btn btn-danger btn-embossed full_width_button" onclick="minify()">Minify Code</button>										
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-danger btn-embossed" onclick="$('#expModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		HELP
+		-->
+		<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-question"></i> HELP</h4>
+					</div>
+					<div class="modal-body">
+						 <table class="table table-striped">
+						 	<h6>Keyboard shortcuts</h6>
+        					<tr>
+        						<th>Function</th>
+        						<th>Mac</th>
+        						<th>Windows/Linux</th>
+        					</tr>
+        					<tr>	
+				        		<td>Autocomplete</td>
+        						<td>Ctrl + space</td>
+    					 		<td>Ctrl + space</td>
+        					</tr>
+        					<tr>
+        						<td>Save</td>
+        						<td>&#8984; + s</td>
+        						<td>Ctrl + s</td>
+        					</tr>
+    				    	<tr>
+        						<td>Open</td>
+   				     			<td>&#8984; + o</td>
+    				    		<td>Ctrl + o</td>
+   				     		</tr>
+   				     		<tr>
+  				      			<td>Find</td>
+    				    		<td>&#8984; + f</td>
+ 				       			<td>Ctrl + f</td>
+				        		</tr>
+				        	<tr>
+				        		<td>Replace</td>
+ 				       			<td>&#8984; + option + f</td>
+				        		<td>Shift + ctrl + f</td>
+				        	</tr>
+				        	<tr>
+ 				       			<td>Find next</td>
+  				      			<td>&#8984; + g</td>
+  				      			<td>Ctrl + g</td>
+ 				       		</tr>
+ 				       		<tr>
+ 				       			<td>Replace all</td>
+ 				       			<td>Shift + &#8984; + option + f</td>
+ 				       			<td>Shift + ctrl + r</td>
+				        	</tr>
+  				      </table>
+  				      <h6>Collaboration</h6>
+				      <p>When accessing a document stored on Google Drive, press <a class="btn btn-success"><i class="fa fa-comment"></i></a></p>
+						<div class="alert alert-danger">This is a work in progress</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-danger btn-embossed" onclick="$('#helpModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		OPTIONS
+		-->
+		<div class="modal fade" id="optionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-pencil-square-o"></i> OPTIONS</h4>
+					</div>
+					<div class="modal-body">
+							<h6>Navbar Color</h6>
+							<a id="nav_color" onclick="showNavColor()" class="btn btn-primary  btn-embossed">Change</a>
+							<hr/>
+							<h6>Font Size</h6>
+							<span class="ui-spinner ui-widget ui-widget-content ui-corner-all">
+								<input type="text" id="spinner-font" placeholder="" value="12" class="spinner ui-spinner-input form-control" aria-valuemin="-99" aria-valuemax="99" aria-valuenow="2" autocomplete="off" role="spinbutton">
+								<a onclick="fontUp()" class="ui-spinner-button ui-spinner-up ui-corner-tr btn btn-primary" tabindex="-1">+</a>
+								<a onclick="fontDown()" class="ui-spinner-button ui-spinner-down ui-corner-br btn btn-primary" tabindex="-1">-</a>
+							</span>
+							<hr/>
+							<h6>Line Numbers</h6>
+							<input type="checkbox" class="js-switch" checked id="line_num_switch" onchange="line_numbers()" />
+							<hr/>
+							<h6>Line Wrap</h6>
+							<input type="checkbox" class="js-switch" checked id="line_wrap_switch" onchange="line_wrap()"/>
+							<hr/>
+							<h6>Autosave</h6>
+							<input type="checkbox" class="js-switch" checked id="auto_save_switch" onchange="auto_save_switch()"/>
+							<br/>
+							<div class="no_submit auto_form input-group">
+						        <input type="text" class="form-control" id="save_int" value="30" onchange="auto_save_update()"/>
+								<span class="input-group-addon" style="
+								    float: left;
+								    padding-left: 20px;
+								    text-align: center;
+								    height: 100%;
+								    padding: 12px;
+								    padding-right: 30px;
+								">sec</span>
+							</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-danger btn-embossed" onclick="$('#optionsModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		INFO
+		-->
+		<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-info-circle"></i> INFO</h4>
+					</div>
+					<div class="modal-body">
+						<h6 id="user_p">Not Available</h6>
+						<img height="100%" src="../icon_128.png" id="pic_img"/>
+						<hr/>
+						<h6 id="user_id_p">Not Available</h6>
+						<hr/>
+						<p><span id="capacity_used">0</span> of <span id="capacity_total">0</span> Used</h6>
+						<div class="clock"></div><h6 id="capacity_per">%</h6>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-danger btn-embossed" onclick="$('#infoModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		MODES
+		-->
+		<div class="modal fade" id="modeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-code"></i> MODES</h4>
+					</div>
+					<div class="modal-body">
+						<ul class="mode_ul" class="list-group">
+						</ul>
+					</div>
+					<div class="modal-footer">
+					    <button class="btn btn-danger btn-embossed" onclick="$('#modeModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		THEMES
+		-->
+		<div class="modal fade" id="themeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-magic"></i> THEMES</h4>
+					</div>
+					<div class="modal-body">
+						<ul class="theme_ul" class="list-group">
+							<li class="list-group-item" onclick = "setTheme('3024-day')">3024-day</li>
+	    					<li class="list-group-item" onclick = "setTheme('3024-night')">3024-night</li>
+							<li class="list-group-item" onclick = "setTheme('ambiance')">ambiance</li>
+							<li class="list-group-item" onclick = "setTheme('cobalt')">cobalt</li>
+	  						<li class="list-group-item" onclick = "setTheme('mbo')">mbo</li>
+	    					<li class="list-group-item" onclick = "setTheme('lesser-dark')">lesser-dark</li>
+	    					<li class="list-group-item" onclick = "setTheme('paraiso-light')">paraiso-light</li>
+							<li class="list-group-item" onclick = "setTheme('rubyblue')">rubyblue</li>
+							<li class="list-group-item" onclick = "setTheme('the-matrix')">matrix</li>
+								
+							<li class="list-group-item" onclick = "setTheme('ambiance-mobile')">ambiance-mobile</li>
+							<li class="list-group-item" onclick = "setTheme('base16-dark')">base16-dark</li>
+							<li class="list-group-item" onclick = "setTheme('base16-light')">base16-light</li>
+							<li class="list-group-item" onclick = "setTheme('blackboard')">blackboard</li>
+							<li class="list-group-item" onclick = "setTheme('eclipse')">eclipse</li>
+							<li class="list-group-item" onclick = "setTheme('elegant')">elegant</li>
+							<li class="list-group-item" onclick = "setTheme('erlang-dark')">erlang-dark</li>
+							<li class="list-group-item" onclick = "setTheme('lesser-dark')">lesser-dark</li>
+							<li class="list-group-item" onclick = "setTheme('mdn-like')">mdn-like</li>
+							<li class="list-group-item" onclick = "setTheme('midnight')">midnight</li>
+							<li class="list-group-item" onclick = "setTheme('monokai')">monokai</li>
+							<li class="list-group-item" onclick = "setTheme('neat')">neat</li>
+							<li class="list-group-item" onclick = "setTheme('night')">night</li>
+							<li class="list-group-item" onclick = "setTheme('pastel')">pastel</li>
+							<li class="list-group-item" onclick = "setTheme('solarized')">solarized</li>
+						</ul>
+					</div>
+					<div class="modal-footer">
+					    <button class="btn btn-danger btn-embossed" onclick="$('#themeModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		PREVIEW
+		-->
+		<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">PREVIEW</h4>
+					</div>
+					<div class="modal-body">
+						<iframe id="preview"></iframe>
+					</div>
+					<div class="modal-footer">
+					    <button class="btn btn-danger btn-embossed" onclick="$('#previewModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		RENAME
+		-->
+		<div class="modal fade" id="renameModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Rename</h4>
+					</div>
+					<div class="modal-body">
+						<form id="rename_form" class="navbar-form navbar-left no_submit" role="search">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Welcome" id = "renameInput" val="">
+							</div>
+						</form>
+						<div class="btn-group " id="ok_cancel_group">
+							<button onclick="okRename()" class="btn btn-success btn-embossed" id="ok_rename"><i class="fa fa-check"></i></button>
+							<button onclick="cancelRename()" class="btn btn-danger btn-embossed" id="cancel_rename"><i class="fa fa-ban"></i></button>
+						</div>
+					</div>
+					<div class="modal-footer">
+					    <button class="btn btn-danger btn-embossed" onclick="$('#renameModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		RANDOM
+		-->
+		<div class="modal fade" id="randomModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Your Random Text</h4>
+					</div>
+					<div class="modal-body">
+					    <form class="no_submit">
+						        <input type="text" class="form-control" id="num_lorem" value="6"/>
+						</form>
+						<div class="col-xs-3">
+                            <div class="btn-group">
+								<button id="lorem_choose" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+									Sentences <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li onclick="lorem_s()"><a>Sentences</a></li>
+									<li onclick="lorem_w()"><a>World</a></li>
+									<li onclick="lorem_p()"><a>Paragraphs</a></li>
+								</ul>
+							</div>
+                        </div>
+                        <button onclick="generate()" class="btn btn-primary">Generate</button>
+                        <br/>
+                        <br/>
+						<div id="lorem" data-lorem="6s" class="well"></div>
+						<!--dropdown-->
+					</div>
+					<div class="modal-footer">
+					    <button class="btn btn-danger btn-embossed" onclick="$('#randomModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		TOOLS
+		-->
+		<div class="modal fade" id="toolModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">TOOLS</h4>
+					</div>
+					<div class="modal-body">
+						<div class="btn-group-vertical full_width_button">
+							<a class="btn btn-danger btn-embossed full_width_button btn-lg" onclick="$('#randomModal').modal('show')">Lorem Generator</a>
+							<a class="btn btn-primary btn-emobssed full_width_button btn-lg" onclick="showPreviewModal();">Preview</a>
+							<a class="btn btn-info btn-embossed full_width_button btn-lg" onclick="moveLeft()">Move Left</a>
+							<a class="btn btn-success btn-embossed full_width_button btn-lg" onclick="moveRight()">Move Right</a>
+							<a class="btn btn-warning btn-embossed full_width_button btn-lg" onclick="line_comment()">Line Comment</a>
+							<a class="btn btn-danger btn-embossed full_width_button btn-lg" onclick="block_comment()">Block Comment</a>
+							<a class="btn btn-primary btn-embossed full_width_button btn-lg" onclick="uncomment()">Uncomment</a>
+						</div>						
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-danger btn-embossed" onclick="$('#toolModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		PUBLISH
+		-->
+		<div class="modal fade" id="publishModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">PUBLISH</h4>
+					</div>
+					<div class="modal-body">
+						<div class="btn-group-vertical full_width_button">
+							<a class="btn btn-danger btn-embossed full_width_button btn-lg" onclick="publish()">Publish HTML</a>
+							<a class="btn btn-primary btn-emobssed full_width_button btn-lg" id="publish">Go to site</a>
+						</div>						
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-danger btn-embossed" onclick="$('#publishModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+		TYPE
+		-->
+		<div class="modal fade" id="typeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Mobile Mismatch</h4>
+					</div>
+					<div class="modal-body">
+						<h6>It looks like you're not using a mobile device. Would you like to switch to the regular version of Code Your Cloud, which is optimized for laptops and desktops?</h6>
+						<div class="btn-group">
+							<button class="btn btn-success btn-embossed" onclick="switch_site()">Yes!</button>
+							<button class="btn btn-danger btn-embossed" onclick="$('#typeModal').modal('hide')">No</button>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-danger btn-embossed" onclick="$('#typeModal').modal('hide')">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<textarea id="sync" style="display:none"></textarea>
+      
+          
+    
+    <script src="../about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../about/flat/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../about/flat/js/bootstrap.min.js"></script>
+    <script src="../about/flat/js/bootstrap-select.js"></script>
+    <script src="../about/flat/js/bootstrap-switch.js"></script>
+    <script src="../about/flat/js/flatui-checkbox.js"></script>
+    <script src="../about/flat/js/flatui-radio.js"></script>
+    <script src="../about/flat/js/jquery.tagsinput.js"></script>
+    <script src="../about/flat/js/jquery.placeholder.js"></script>
+    <script src="../about/flat/js/application.js"></script>
+    
+     <script src="../lib/color/js/bootstrap-colorpicker.min.js"></script>
+		
+	<script src="../lib/loremjs/lorem.js"></script>
+	<script src="../lib/FlipClock/compiled/flipclock.min.js"></script>
+	
+	<script src="../lib/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
+	<script src="../lib/bootstrap-modal/js/bootstrap-modal.js"></script>
+	
+	<script src="../scripts/drive.codemirror.js"></script>
+	<script src="../scripts/visual.codemirror.js"></script>
+	<script src="../scripts/main.codemirror.js"></script>
+	<script src="../scripts/frontend.codemirror.js"></script>
+
+	
+	<script>
+		document.getElementById("renameInput").style.lineHeight = "normal";
+		jwerty.key('ctrl+o/cmd+o', function() {
+			loadOPicker();
+			return false;
+		});
+		jwerty.key('ctrl+s/cmd+s', function() {
+			save();
+			return false;
+		});
+		jwerty.key('ctrl+d/cmd+d', function() {
+			downloadFile();
+			return false;
+		});
+		
+		var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+
+		elems.forEach(function(html) {
+				var switchery = new Switchery(html);
+		});
+		$("#line_num_switch>small").css("left", "20px");
+		$("#line_wrap_switch>small").css("left", "20px");
+		$("#auto_save_switch>small").css("left", "20px");
+		//editor.session.selection.clearSelection(); 
+		
+		var p_val = 1+Math.floor(Math.random()*10) //1 + 0-9 = 1-10
+		$("#pre").attr("src", "../images/preload/p" + p_val + ".gif");
+		
+		
+		
+		
+	</script>
+	<a id="indicator" class="btn btn-info">26|9</a>
+	<link href="../lib/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
+	<script src="https://togetherjs.com/togetherjs-min.js"></script>
+    <script>
+		if(window.location.href.indexOf("#") !== -1 && window.location.href.indexOf("state") === -1){
+			TogetherJS(this);
+		}
+		
+	</script>
+
+  </body>
+</html>

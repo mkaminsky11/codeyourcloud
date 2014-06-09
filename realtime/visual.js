@@ -72,7 +72,9 @@ function setMode(mode){
 	editor.setOption("mode", mode);
 }
 function show_rename(){
-	$("#renameModal").modal('show');
+	if(!is_welcome){
+		$("#renameModal").modal('show');
+	}
 }
 function no_rename(){
 	$("#rename_input").val(title.getText());
@@ -183,6 +185,8 @@ THEMES
 ===========*/
 function setTheme(theme){
 	editor.setOption("theme",theme);
+	theme_sql = theme;
+	set_sql();
 }
 function showTheme(){
 	$("#themeModal").modal('show');
@@ -590,7 +594,7 @@ function startPython(){
 NEW FILE
 ==========*/
 function new_file(){
-	window.location.href= "https://codeyourcloud.com/realtime?%22folderId%22:%22" +  myRootFolderId + "%22,%22action%22:%22create";
+	window.location.href= "https://codeyourcloud.com?%22folderId%22:%22" +  myRootFolderId + "%22,%22action%22:%22create";
 }
 /*========
 PREVIEW
@@ -610,11 +614,13 @@ function updatePreview() {
 SCREEN
 ==========*/
 function lift_screen(){
-	$("#screen").animate({
-		marginTop: "-100%",
-		marginBottom: "100%"
-	},750,function(){
-		$("#screen").remove();
-	});
+	if(window.location.href.indexOf("?lift=no") === -1){
+		$("#screen").animate({
+			marginTop: "-100%",
+			marginBottom: "100%"
+		},750,function(){
+			$("#screen").remove();
+		});
+	}
 }
 

@@ -46,7 +46,7 @@ function loadClient() {
 		}
 		else if(query.indexOf("open") !== -1){
 			var query_id = query.split("%22")[3];
-			window.location.href = "https://codeyourcloud.com/realtime#" + query_id;
+			window.location.href = "https://codeyourcloud.com/#" + query_id;
 		}
 		else{
 			welcome();

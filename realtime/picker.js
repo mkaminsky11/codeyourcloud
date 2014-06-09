@@ -31,7 +31,7 @@ function pickerOCallback(data) {
 	if (data.action === google.picker.Action.PICKED) {
 		for(i = 0; i < data.docs.length; i++){
 			var fileId = data.docs[i].id;
-			var the_url = 'https://codeyourcloud.com/realtime#' + fileId;
+			var the_url = 'https://codeyourcloud.com#' + fileId;
 			location.hash = fileId;
 			location.reload();
 		}
