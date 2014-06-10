@@ -594,7 +594,7 @@ CUBE
 	background-color:#F39C12;
 	transform: rotateX(90deg) translateY(100px);
 	-webkit-transform: rotateX(90deg) translateY(100px);
-	-moz-transform-origin: rotateX(90deg) translateY(100px);
+	-moz-transform: rotateX(90deg) translateY(100px);
 	transform-origin: bottom center;
 	-webkit-transform-origin: bottom center;
 	-moz-transform-origin: bottom center;
@@ -677,7 +677,7 @@ CUBE
 	background-color:#C0392B;
 	transform: rotateX(90deg) translateY(100px);
 	-webkit-transform: rotateX(90deg) translateY(100px);
-	-moz-transform-origin: rotateX(90deg) translateY(100px);
+	-moz-transform: rotateX(90deg) translateY(100px);
 	transform-origin: bottom center;
 	-webkit-transform-origin: bottom center;
 	-moz-transform-origin: bottom center;

@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Making a Swift mode for CodeMirror</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../about/flat/js/jquery-1.8.3.min.js"></script>
+
+    <!-- Loading Bootstrap -->
+    <link href="../about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="../about/flat/css/flat-ui.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="../about/flat/js/html5shiv.js"></script>
+      <script src="../about/flat/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="lesson.css"/>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <link rel='stylesheet' type='text/css' href='../lib/Font/css/font-awesome.min.css'>
+  </head>
+  
+  <body>
+    <!-- /.container -->
+    
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="https://codeyourcloud.com">Code Your Cloud</a>
+	    </div>
+	
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	      	<li><a href="https://codeyourcloud.com/about">About</a></li>
+	        <li><a href="https://codeyourcloud.com/lessons"><i class="fa fa-graduation-cap"></i> Lessons</a></li>
+	        <div class="navbar-form navbar-left" role="search">
+        		<div class="form-group">
+          			<input type="text" class="form-control" placeholder="Search" id="search_input">
+        		</div>
+        		<button class="btn btn-default" onclick="search()"><i class="fa fa-search"></i></button>
+      		</div>
+      		</ul>
+      	<ul class="nav navbar-nav navbar-right">
+      		<li><a href="https://codeyourcloud.com/help"><i class="fa fa-life-ring"></i> Help</a></li>
+      		<li><a href="https://codeyourcloud.com/about#contact"><i class="fa fa-comment-o"></i> Contact us</a></li>
+      		<li id="github"><a href="https://github.com/mkaminsky11/codeyourcloud"><i class="fa fa-github-square"></i> Github</a></li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+	
+	
+    <div id="main">
+    	<h1>Making a Swift mode for CodeMirror</h1>
+    	<p>Since being released to registered developers by Apple, the Swift programming languages has been gaining considerable steam. That's understandable, considering its flexibility and usefulness. Now, developers don't have to know Objective-C (which is annoying to learn for those who don't know C-based langauges) in order to create iOS and OSX apps.</p>
+    	
+    	<br/>
+    	<p>Naturally, we wanted Code Your Cloud version 2 to support Swift, but no modes were available for CodeMirror, which powers the editor. So, we decided to make one. We started off with a basic template.</p>
+   
+<pre class="prettyprint">
+(function(mod) {
+  if (typeof exports == "object" && typeof module == "object") // CommonJS
+    mod(require("../../lib/codemirror"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+"use strict";
+
+
+CodeMirror.defineMode("swift", function() {
+
+  	return {
+  	
+    startState: function() {
+      return {
+
+      };
+    },
+	
+	token: function(stream, state) {
+		
+		var ch, funcName, word;
+		
+		if (stream.eatSpace()) {
+			return null;
+		}
+		ch = stream.next();
+	}
+	
+	};
+});
+
+CodeMirror.defineMIME("text/swift", "swift");
+
+});
+</pre>
+		<p>This is the most basic configuration, and is adapted from the <code>APL</code> mode for CodeMirror. For each character, <code>token</code> is called, and is given the <code>stream</code> of characters (an object), and the current <code>state</code>. The state can be used to continually store data, and is not reset after every iteration of <code>token</code>.</p>
+		
+		<br/>
+		
+		<p><code>stream.eatSpace()</code> returns a value if the next character is a space. Otherwise, it doesn't return anything. If the character is a space, the stream "advances" past that space. The way that a character is given a style is by <code>token</code> returning <code>comment</code>, <code>string</code>, or the like. Returning <code>null</code> causes the character to have no styling. Therefore, we have configured the mode to not give any style to spaces.</p>
+		
+		<br/>
+		
+		<p>We wanted the <code>state</code> to have several properties. The starting values of these properties are defined in <code>startState</code>. <code>prev</code> is the previous "word" (more on that later). <code>string</code> is <code>true</code> when the stream is in a string. <code>inner</code> is <code>true</code> when there is an inner variable (more on that later). <code>num_left</code> and <code>num_right</code> count the number of opening and closing parenthases in <code>inner</code>. <code>escape</code> is <code>true</code> if an escape character has been typed. <code>comment</code> is <code>true</code> during a comment.</p>
+		
+<pre class="prettyprint">
+(function(mod) {
+  if (typeof exports == "object" && typeof module == "object") // CommonJS
+    mod(require("../../lib/codemirror"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+"use strict";
+
+
+CodeMirror.defineMode("swift", function() {
+
+  	return {
+  	
+    startState: function() {
+      return {
+		prev: false,
+        func: false,
+        op: false,
+        string: false,
+        escape: false,
+        inner: false,
+        comment: false,
+        num_left: 0,
+        num_right: 0,
+      };
+    },
+	
+	token: function(stream, state) {
+		
+		var ch, funcName, word;
+		
+		if (stream.eatSpace()) {
+			return null;
+		}
+		ch = stream.next();
+	}
+	
+	};
+});
+
+CodeMirror.defineMIME("text/swift", "swift");
+
+});
+</pre>
+		<p>We started off with comments. These can only be <code>true</code> when <code>string</code> is not true, and is triggered by <code>//</code> (line comment) or <code>/* .... */</code> (block comment).</p>
+		
+<pre class="prettyprint">
+(function(mod) {
+  if (typeof exports == "object" && typeof module == "object") // CommonJS
+    mod(require("../../lib/codemirror"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+"use strict";
+
+
+CodeMirror.defineMode("swift", function() {
+
+  	return {
+  	
+    startState: function() {
+      return {
+		prev: false,
+        func: false,
+        op: false,
+        string: false,
+        escape: false,
+        inner: false,
+        comment: false,
+        num_left: 0,
+        num_right: 0,
+      };
+    },
+	
+	token: function(stream, state) {
+		
+		var ch, funcName, word;
+		
+		if (stream.eatSpace()) {
+			return null;
+		}
+		ch = stream.next();
+		if(state.string){
+		
+		}
+		else if(state.comment){
+			//block comment triggered
+			if(ch === "*" && stream.peek() === "/"){
+				state.prev = "*";
+				return "comment";
+				//if it is "*", possibility of closing comment
+			}
+			if(ch === "/" && state.prev === "*"){
+				state.prev = false;
+				state.comment = false;
+				return "comment";
+				//stop the comment
+			}
+			return "comment";
+		}
+		else{
+			if(ch === "/"){
+				if(stream.peek() === "/"){
+					//line comment
+					stream.skipToEnd();
+					return "comment";
+				}
+				if(stream.peek() === "*"){
+					//block comment
+					state.comment = true;
+					return "comment";
+				}
+			}
+		}
+	}
+	
+	};
+});
+
+CodeMirror.defineMIME("text/swift", "swift");
+
+});
+</pre>
+		<p><code>stream.peek()</code> can be used to look ahead one character without advancing the stream. Now that comments are done, we can focus on strings. They can be opened and closed with <code>"</code> and <code>'</code>. In addition, in swift:</p>
+		
+<pre class="prettyprint">
+var i = 0;
+println("something \(i)");
+//will print: something 0
+</pre>
+
+		<p>Although this doesn't show it, in Swift, <code>\(i)</code> should not be highlighted as a string. Therefore, upon <code>\(</code>, <code>state.string</code> should be set <code>false</code> and <code>state.inner</code> should be set to <code>true</code>. These should then be reversed when there are a number of <code>)</code> equal to the number of <code>(</code>. This is done using <code>num_left</code> and <code>num_right</code>.</p>
+		
+<pre class="prettyprint">
+(function(mod) {
+  if (typeof exports == "object" && typeof module == "object") // CommonJS
+    mod(require("../../lib/codemirror"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+"use strict";
+
+
+CodeMirror.defineMode("swift", function() {
+
+  	return {
+  	
+    startState: function() {
+      return {
+		prev: false,
+        func: false,
+        op: false,
+        string: false,
+        escape: false,
+        inner: false,
+        comment: false,
+        num_left: 0,
+        num_right: 0,
+      };
+    },
+	
+	token: function(stream, state) {
+		
+		var ch, funcName, word;
+		
+		if (stream.eatSpace()) {
+			return null;
+		}
+		ch = stream.next();
+		if(state.string){
+			if((ch === '"' || ch === "'") && !state.escape){
+				//close the string
+				state.string = false;
+				return "string";
+			}
+			if(ch === "\\" && stream.peek() === "("){
+				//stop the string, start inner
+				state.inner = true;
+				state.string = false;
+				return "keyword";
+			}
+			return "string";
+		}
+		else if(state.comment){
+			//block comment triggered
+			if(ch === "*" && stream.peek() === "/"){
+				state.prev = "*";
+				return "comment";
+				//if it is "*", possibility of closing comment
+			}
+			if(ch === "/" && state.prev === "*"){
+				state.prev = false;
+				state.comment = false;
+				return "comment";
+				//stop the comment
+			}
+			return "comment";
+		}
+		else{
+			if(ch === "/"){
+				if(stream.peek() === "/"){
+					//line comment
+					stream.skipToEnd();
+					return "comment";
+				}
+				if(stream.peek() === "*"){
+					//block comment
+					state.comment = true;
+					return "comment";
+				}
+			}
+			
+			if(ch === "/"){
+				if(stream.peek() === "/"){
+					//line comment
+					stream.skipToEnd();
+					return "comment";
+				}
+				if(stream.peek() === "*"){
+					//block comment
+					state.comment = true;
+					return "comment";
+				}
+			}
+			
+			if(ch === "(" && state.inner){
+				state.num_left++;
+				return null;
+			}
+			
+			if(ch === ")" && state.inner){
+				state.num_right++;
+				if(state.num_left === state.num_right){
+					state.inner = false;
+					state.string = true;
+				}
+				return null;
+			}
+			
+		}
+	}
+	
+	};
+});
+
+CodeMirror.defineMIME("text/swift", "swift");
+
+});
+</pre>
+		<p>Next, we need to add escape characters. This means <code>\"</code> will be printed as <code>"</code>.</p>
+<pre class="prettyprint">
+(function(mod) {
+  if (typeof exports == "object" && typeof module == "object") // CommonJS
+    mod(require("../../lib/codemirror"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+"use strict";
+
+
+CodeMirror.defineMode("swift", function() {
+
+  	return {
+  	
+    startState: function() {
+      return {
+		prev: false,
+        func: false,
+        op: false,
+        string: false,
+        escape: false,
+        inner: false,
+        comment: false,
+        num_left: 0,
+        num_right: 0,
+      };
+    },
+	
+	token: function(stream, state) {
+		
+		var ch, funcName, word;
+		
+		if (stream.eatSpace()) {
+			return null;
+		}
+		ch = stream.next();
+		if(state.string){
+			if(state.escape){
+				state.escape = false;
+				return "string";
+			}
+			else{
+				if((ch === '"' || ch === "'") && !state.escape){
+					state.string = false;
+					return "string";
+				}
+				if(ch === "\\" && stream.peek() === "("){
+					//stop the string, start inner
+					state.inner = true;
+					state.string = false;
+					return "keyword";
+				}
+				if(ch === "\\" && stream.peek() !== "("){
+					state.escape = true;
+					state.string = true;
+					return "string";
+				}
+				else{
+					return "string";
+				}
+			}
+		}
+		
+		else if(state.comment){
+			if(ch === "*" && stream.peek() === "/"){
+				state.prev = "*";
+				return "comment";
+			}
+			if(ch === "/" && state.prev === "*"){
+				state.prev = false;
+				state.comment = false;
+				return "comment";
+			}
+			return "comment";
+			
+		}
+		
+		else{
+			if(ch === "/"){
+				if(stream.peek() === "/"){
+					//line comment
+					stream.skipToEnd();
+					return "comment";
+				}
+				if(stream.peek() === "*"){
+					//block comment
+					state.comment = true;
+					return "comment";
+				}
+			}
+			if(ch === "(" && state.inner){
+				state.num_left++;
+				return null;
+			}
+			if(ch === ")" && state.inner){
+				state.num_right++;
+				if(state.num_left === state.num_right){
+					state.inner = false;
+					state.string = true;
+				}
+				return null;
+			}
+			
+
+			if(ch === "'" || ch === '"'){
+				state.string = true;
+				return "string";
+			}
+			if(ch === "(" && state.inner){
+				state.num_left++;
+			}
+			if(ch === ")" && state.inner){
+				state.num_right++;
+				if(state.num_left === state.num_right){
+					state.inner = false;
+					state.string = true;
+				}
+				return null;
+			}
+		}
+	}
+	
+	};
+});
+
+CodeMirror.defineMIME("text/swift", "swift");
+
+});
+</pre>
+		<p>The next part was possible the most difficult. We had to match the current position with a "word". This was done using:</p>
+<pre class="prettyprint">
+var separators = [' ', '\\\+', '\\\-', '\\\(', '\\\)', '\\\*', '/', ':', '\\\?','\\\<','\\\>', ' '];
+var tokens = new RegExp(separators.join('|'), 'g');
+	
+function getWord(string, pos){
+	
+	var index = -1;
+	var count = 1;
+	var words = string.split(tokens);
+	
+	for(var i = 0; i < words.length; i++){
+		for(var j = 1; j <= words[i].length; j++){
+			if(count === pos){
+				index = i;
+			}
+			count++;
+		}
+		count++;
+	}
+	
+	var ret = ["",""];
+	
+	if(pos === 0){
+		ret[1] = words[0];
+		ret[0] = null;
+	}
+	else{
+		ret[1] = words[index];
+		ret[0] = words[index-1];
+	}
+	return ret;
+}
+
+var ret = getWord(stream.string, stream.pos);
+var the_word = ret[1];
+var prev_word = ret[0];
+</pre>
+
+		<p>If this "word" matches a keyword, it should be highlighted appropriately.</p>
+<pre class="prettyprint">
+(function(mod) {
+  if (typeof exports == "object" && typeof module == "object") // CommonJS
+    mod(require("../../lib/codemirror"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+"use strict";
+
+var separators = [' ', '\\\+', '\\\-', '\\\(', '\\\)', '\\\*', '/', ':', '\\\?','\\\<','\\\>', ' '];
+var tokens = new RegExp(separators.join('|'), 'g');
+	
+function getWord(string, pos){
+	
+	var index = -1;
+	var count = 1;
+	var words = string.split(tokens);
+	
+	for(var i = 0; i < words.length; i++){
+		for(var j = 1; j <= words[i].length; j++){
+			if(count === pos){
+				index = i;
+			}
+			count++;
+		}
+		count++;
+	}
+	
+	var ret = ["",""];
+	
+	if(pos === 0){
+		ret[1] = words[0];
+		ret[0] = null;
+	}
+	else{
+		ret[1] = words[index];
+		ret[0] = words[index-1];
+	}
+	return ret;
+}
+
+CodeMirror.defineMode("swift", function() {
+	
+	
+	var keywords = ["class", "deinit", "enum", "extension", "func", "import", "init", "let", "protocol", "static", "struct", "subscript", "typealias", "var","as", "dynamicType", "is", "new", "super", "self", "Self", "Type", "__COLUMN__", "__FILE__", "__FUNCTION__", "__LINE__", "break", "case", "continue", "default", "do", "else", "fallthrough", "if", "in", "for", "return", "switch", "where", "while", "associativity", "didSet", "get", "infix", "inout", "left", "mutating", "none", "nonmutating", "operator", "override", "postfix", "precedence", "prefix", "right", "set", "unowned", "unowned(safe)", "unowned(unsafe)", "weak" , "willSet"];	
+
+	var commonConstants = ["Infinity", "NaN", "undefined", "null", "true", "false", "on", "off", "yes", "no", "nil"];
+	
+	var types = ["String", "bool",]
+	
+	var numbers = ["0","1","2","3","4","5","6","7","8","9"];
+	
+	var operators = ["+", "-", "/", "*", "%", "=", "|", "&", "<", ">"];
+	var puncuation = [";",",",".","(",")"]
+	
+  	return {
+  	
+    startState: function() {
+      return {
+        prev: false,
+        func: false,
+        op: false,
+        string: false,
+        escape: false,
+        inner: false,
+        comment: false,
+        num_left: 0,
+        num_right: 0,
+        word: "",
+        back: 0,
+        back_type: false,
+      };
+    },
+	
+	token: function(stream, state) {
+		
+		var ch, funcName, word;
+		
+		if (stream.eatSpace()) {
+			return null;
+		}
+		ch = stream.next();
+
+		if(state.string){
+			if(state.escape){
+				state.escape = false;
+				return "string";
+			}
+			else{
+				if((ch === '"' || ch === "'") && !state.escape){
+					state.string = false;
+					return "string";
+				}
+				if(ch === "\\" && stream.peek() === "("){
+					//stop the string, start inner
+					state.inner = true;
+					state.string = false;
+					return "keyword";
+				}
+				if(ch === "\\" && stream.peek() !== "("){
+					state.escape = true;
+					state.string = true;
+					return "string";
+				}
+				else{
+					return "string";
+				}
+			}
+		}
+		
+		else if(state.comment){
+			if(ch === "*" && stream.peek() === "/"){
+				state.prev = "*";
+				return "comment";
+			}
+			if(ch === "/" && state.prev === "*"){
+				state.prev = false;
+				state.comment = false;
+				return "comment";
+			}
+			return "comment";
+			
+		}
+		
+		else{
+			if(ch === "/"){
+				if(stream.peek() === "/"){
+					//line comment
+					stream.skipToEnd();
+					return "comment";
+				}
+				if(stream.peek() === "*"){
+					//block comment
+					state.comment = true;
+					return "comment";
+				}
+			}
+			if(ch === "(" && state.inner){
+				state.num_left++;
+				return null;
+			}
+			if(ch === ")" && state.inner){
+				state.num_right++;
+				if(state.num_left === state.num_right){
+					state.inner = false;
+					state.string = true;
+				}
+				return null;
+			}
+			
+			var ret = getWord(stream.string, stream.pos);
+			var the_word = ret[1];
+			var prev_word = ret[0];
+			
+			
+			//console.log(stream.string + " " + stream.pos + " " + the_word);
+			if(operators.indexOf(ch + "") !== -1){
+				return "operator"; //========================================it's an operator
+			}
+			if(puncuation.indexOf(ch + "") !== -1){
+				return "punctuation"; //======================================punctuation, such as . , ; [ ( etc
+			}
+			
+			if(typeof the_word !== 'undefined'){
+				if(the_word.charAt(0) === "#"){
+					return null; //================================if it's a hex
+				}
+				
+				if(commonConstants.indexOf(the_word) !== -1){
+					return "atom"; //==========================================a constant
+				}
+				if(numbers.indexOf(the_word) !== -1){
+					return "number"; //===========================================single-digit number
+				}
+				if((numbers.indexOf(the_word.charAt(0) + "") !== -1 || operators.indexOf(the_word.charAt(0) + "") ) && numbers.indexOf(ch) !== -1){
+					return "number"; //================================================langer numbers
+				}
+				if(keywords.indexOf(the_word) !== -1 || keywords.indexOf(the_word.split(tokens)[0]) !== -1){
+					return "keyword"; //======================================================keywords
+				}
+				if(the_word.charAt(0) === "@"){
+					return "def"; //=================================================================@lazy and such should be highlighted
+				}
+				if(prev_word === "var" || prev_word === "let"){
+					return "def"; //================================================================variables defined
+				}
+			}
+
+			if(ch === "'" || ch === '"'){
+				state.string = true;
+				return "string";
+			}
+			if(ch === "(" && state.inner){
+				state.num_left++;
+			}
+			if(ch === ")" && state.inner){
+				state.num_right++;
+				if(state.num_left === state.num_right){
+					state.inner = false;
+					state.string = true;
+				}
+				return null;
+			}
+		}
+	}
+	
+	};
+});
+
+CodeMirror.defineMIME("text/swift", "swift");
+
+});
+</pre>
+		<p>The only part left is variables names, numbers, functions, and regexp. The rest of the highlighting was borrowed form the APL mode.</p>
+		<br/>
+		<h5><b>Final Javascript</b></h5>
+<pre class="prettyprint">
+(function(mod) {
+  if (typeof exports == "object" && typeof module == "object") // CommonJS
+    mod(require("../../lib/codemirror"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+"use strict";
+
+var separators = [' ', '\\\+', '\\\-', '\\\(', '\\\)', '\\\*', '/', ':', '\\\?','\\\<','\\\>', ' '];
+var tokens = new RegExp(separators.join('|'), 'g');
+	
+function getWord(string, pos){
+	
+	var index = -1;
+	var count = 1;
+	var words = string.split(tokens);
+	
+	for(var i = 0; i < words.length; i++){
+		for(var j = 1; j <= words[i].length; j++){
+			if(count === pos){
+				index = i;
+			}
+			count++;
+		}
+		count++;
+	}
+	
+	var ret = ["",""];
+	
+	if(pos === 0){
+		ret[1] = words[0];
+		ret[0] = null;
+	}
+	else{
+		ret[1] = words[index];
+		ret[0] = words[index-1];
+	}
+	return ret;
+}
+
+CodeMirror.defineMode("swift", function() {
+	
+	
+	var keywords = ["class", "deinit", "enum", "extension", "func", "import", "init", "let", "protocol", "static", "struct", "subscript", "typealias", "var","as", "dynamicType", "is", "new", "super", "self", "Self", "Type", "__COLUMN__", "__FILE__", "__FUNCTION__", "__LINE__", "break", "case", "continue", "default", "do", "else", "fallthrough", "if", "in", "for", "return", "switch", "where", "while", "associativity", "didSet", "get", "infix", "inout", "left", "mutating", "none", "nonmutating", "operator", "override", "postfix", "precedence", "prefix", "right", "set", "unowned", "unowned(safe)", "unowned(unsafe)", "weak" , "willSet"];	
+
+	var commonConstants = ["Infinity", "NaN", "undefined", "null", "true", "false", "on", "off", "yes", "no", "nil"];
+	
+	var types = ["String", "bool",]
+	
+	var numbers = ["0","1","2","3","4","5","6","7","8","9"];
+	
+	var operators = ["+", "-", "/", "*", "%", "=", "|", "&", "<", ">"];
+	var puncuation = [";",",",".","(",")"]
+	
+	var delimiters = /^(?:[()\[\]{},:`=;]|\.\.?\.?)/;
+	var identifiers = /^[_A-Za-z$][_A-Za-z$0-9]*/;
+	var properties = /^(@|this\.)[_A-Za-z$][_A-Za-z$0-9]*/;
+	var regexPrefixes = /^(\/{3}|\/)/;
+	
+  	return {
+  	
+    startState: function() {
+      return {
+        prev: false,
+        func: false,
+        op: false,
+        string: false,
+        escape: false,
+        inner: false,
+        comment: false,
+        num_left: 0,
+        num_right: 0,
+        word: "",
+        back: 0,
+        back_type: false,
+      };
+    },
+	
+	token: function(stream, state) {
+		
+		var ch, funcName, word;
+		
+		if (stream.eatSpace()) {
+			return null;
+		}
+		ch = stream.next();
+
+		if(state.string){
+			if(state.escape){
+				state.escape = false;
+				return "string";
+			}
+			else{
+				if((ch === '"' || ch === "'") && !state.escape){
+					state.string = false;
+					return "string";
+				}
+				if(ch === "\\" && stream.peek() === "("){
+					//stop the string, start inner
+					state.inner = true;
+					state.string = false;
+					return "keyword";
+				}
+				if(ch === "\\" && stream.peek() !== "("){
+					state.escape = true;
+					state.string = true;
+					return "string";
+				}
+				else{
+					return "string";
+				}
+			}
+		}
+		
+		else if(state.comment){
+			if(ch === "*" && stream.peek() === "/"){
+				state.prev = "*";
+				return "comment";
+			}
+			if(ch === "/" && state.prev === "*"){
+				state.prev = false;
+				state.comment = false;
+				return "comment";
+			}
+			return "comment";
+			
+		}
+		
+		else{
+			if(ch === "/"){
+				if(stream.peek() === "/"){
+					//line comment
+					stream.skipToEnd();
+					return "comment";
+				}
+				if(stream.peek() === "*"){
+					//block comment
+					state.comment = true;
+					return "comment";
+				}
+			}
+			if(ch === "(" && state.inner){
+				state.num_left++;
+				return null;
+			}
+			if(ch === ")" && state.inner){
+				state.num_right++;
+				if(state.num_left === state.num_right){
+					state.inner = false;
+					state.string = true;
+				}
+				return null;
+			}
+			
+			var ret = getWord(stream.string, stream.pos);
+			var the_word = ret[1];
+			var prev_word = ret[0];
+			
+			
+			//console.log(stream.string + " " + stream.pos + " " + the_word);
+			if(operators.indexOf(ch + "") !== -1){
+				return "operator";
+			}
+			if(puncuation.indexOf(ch + "") !== -1){
+				return "punctuation";
+			}
+			
+			if(typeof the_word !== 'undefined'){
+				if(the_word.charAt(0) === "#"){
+					return null;
+				}
+				
+				if(commonConstants.indexOf(the_word) !== -1){
+					return "atom";
+				}
+				if(numbers.indexOf(the_word) !== -1){
+					return "number";
+				}
+				if((numbers.indexOf(the_word.charAt(0) + "") !== -1 || operators.indexOf(the_word.charAt(0) + "") ) && numbers.indexOf(ch) !== -1){
+					return "number";
+				}
+				if(keywords.indexOf(the_word) !== -1 || keywords.indexOf(the_word.split(tokens)[0]) !== -1){
+					return "keyword";
+				}
+				if(the_word.charAt(0) === "@"){
+					return "def";
+				}
+				if(prev_word === "var" || prev_word === "let"){
+					return "def";
+				}
+			}
+
+			if(ch === "'" || ch === '"'){
+				state.string = true;
+				return "string";
+			}
+			if(ch === "(" && state.inner){
+				state.num_left++;
+			}
+			if(ch === ")" && state.inner){
+				state.num_right++;
+				if(state.num_left === state.num_right){
+					state.inner = false;
+					state.string = true;
+				}
+				return null;
+			}
+			
+
+			// Handle number literals
+		    if (stream.match(/^-?[0-9\.]/, false)) {
+		      var floatLiteral = false;
+		      // Floats
+		      if (stream.match(/^-?\d*\.\d+(e[\+\-]?\d+)?/i)) {
+		        floatLiteral = true;
+		      }
+		      if (stream.match(/^-?\d+\.\d*/)) {
+		        floatLiteral = true;
+		      }
+		      if (stream.match(/^-?\.\d+/)) {
+		        floatLiteral = true;
+		      }
+		
+		      if (floatLiteral) {
+		        // prevent from getting extra . on 1..
+		        if (stream.peek() == "."){
+		          stream.backUp(1);
+		        }
+		        return "number";
+		      }
+		      // Integers
+		      var intLiteral = false;
+		      // Hex
+		      if (stream.match(/^-?0x[0-9a-f]+/i)) {
+		        intLiteral = true;
+		      }
+		      // Decimal
+		      if (stream.match(/^-?[1-9]\d*(e[\+\-]?\d+)?/)) {
+		        intLiteral = true;
+		      }
+		      // Zero by itself with no other piece of number.
+		      if (stream.match(/^-?0(?![\dx])/i)) {
+		        intLiteral = true;
+		      }
+		      if (intLiteral) {
+		        return "number";
+		      }
+		    }
+			
+			if (stream.match(regexPrefixes)) {
+				if (stream.current() != "/" || stream.match(/^.*\//, false)) { // prevent highlight of division
+        			return "string";
+				} else {
+        			stream.backUp(1);
+				}
+	  		}
+			
+			if (stream.match(delimiters)) {
+		    	return "punctuation";
+		    }
+		    if (stream.match(identifiers)) {
+		    	return "variable";
+		    }
+		
+		    if (stream.match(properties)) {
+		    	return "property";
+		    }
+			
+			
+		    
+		}
+	}
+	
+	};
+});
+
+CodeMirror.defineMIME("text/swift", "swift");
+
+});	
+</pre>
+		<br/>
+		<h5><b>Result</b></h5>
+		<div class="well">
+			<img src="../images/screenshots/swift.gif">
+		</div>
+		
+		<p><a href="https://github.com/marijnh">marijnh</a> has yet to add the Swift mode to <a href="https://github.com/marijnh/CodeMirror">CodeMirror</a>'s official mode list. The Swift mode can also be found <a href="https://github.com/mkaminsky11/swift-codemirror">here</a>.</p>
+    </div>
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="../about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../about/flat/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../about/flat/js/bootstrap.min.js"></script>
+    <script src="../about/flat/js/bootstrap-select.js"></script>
+    <script src="../about/flat/js/bootstrap-switch.js"></script>
+    <script src="../about/flat/js/flatui-checkbox.js"></script>
+    <script src="../about/flat/js/flatui-radio.js"></script>
+    <script src="../about/flat/js/jquery.tagsinput.js"></script>
+    <script src="../about/flat/js/jquery.placeholder.js"></script>
+    
+    <script src="https://codeyourcloud.com/lib/big-text/big-text.js"></script>
+    
+    <script src="lesson.js"></script>
+    <link rel="stylesheet" href="lesson.css"/>
+    
+    <script>
+    	function search(){
+    		var query = $("#search_input").val().split("/").join("").split(" ").join("_");
+	    	window.location.href = "https://codeyourcloud.com/lessons?search=" + query;
+    	}
+    	$("h1").bigtext();
+    </script>
+  </body>
+</html>

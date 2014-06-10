@@ -2,6 +2,8 @@ function rotateCube(id, goal){
 	$("#" + id).animate({ nonexist: goal }, {
 	    step: function(now,fx) {
 	        $(this).css('-webkit-transform',"rotateX(" + now + "deg)");
+	        $(this).css('transform',"rotateX(" + now + "deg)");
+	        $(this).css('-moz-transform',"rotateX(" + now + "deg)");
 	    },
 	    duration:'slow'
 	},'linear');

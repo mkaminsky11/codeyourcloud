@@ -1,0 +1,29 @@
+#main{
+	margin-top:70px;
+	width:80%;
+	margin-left:10%;
+	
+}
+.media{
+	background-color:white;
+}
+.media a{
+	color: #34495E;
+}
+.media a{
+	color: #34495E
+}
+.media{
+	border: solid thin #2C3E50;
+	padding: 50px;
+	margin-bottom: 10px;
+}
+#github{
+   	background-color:#34495E;
+}
+#github:hover{
+	background-color:#2C3E50;
+}
+#github a{
+	color: white;
+}

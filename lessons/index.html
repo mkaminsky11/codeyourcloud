@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Code Your Cloud lessons</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../about/flat/js/jquery-1.8.3.min.js"></script>
+
+    <!-- Loading Bootstrap -->
+    <link href="../about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="../about/flat/css/flat-ui.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="../about/flat/js/html5shiv.js"></script>
+      <script src="../about/flat/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="lesson.css"/>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <link rel='stylesheet' type='text/css' href='../lib/Font/css/font-awesome.min.css'>
+  </head>
+  
+  <body>
+    <!-- /.container -->
+    
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="https://codeyourcloud.com">Code Your Cloud</a>
+	    </div>
+	
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	      	<li><a href="https://codeyourcloud.com/about">About</a></li>
+	        <li><a href="https://codeyourcloud.com/lessons"><i class="fa fa-graduation-cap"></i> Lessons</a></li>
+	        <div class="navbar-form navbar-left" role="search">
+        		<div class="form-group">
+          			<input type="text" class="form-control" placeholder="Search" id="search_input">
+        		</div>
+        		<button class="btn btn-default" onclick="search()"><i class="fa fa-search"></i></button>
+      		</div>
+	      </ul>
+      	<ul class="nav navbar-nav navbar-right">
+      		<li><a href="https://codeyourcloud.com/help"><i class="fa fa-life-ring"></i> Help</a></li>
+      		<li><a href="https://codeyourcloud.com/about#contact"><i class="fa fa-comment-o"></i> Contact us</a></li>
+      		<li id="github"><a href="https://github.com/mkaminsky11/codeyourcloud"><i class="fa fa-github-square"></i> Github</a></li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+	
+	
+    <div id="main">
+    	
+    	<div class="media" data-title="Making a Swift mode for CodeMirror">
+		  <a class="pull-left" href="swift.html">
+			  <div class="media-body">
+			    <h4 class="media-heading">Making a Swift mode for CodeMirror</h4>
+			    <h6 class="media-desc">
+			   		Since Swift is sure to become popular among developers who want to make iOS and OSX apps without learning Objective-C, we decided to make a Swift mode for CodeMirror.
+			    </h6>
+			    <small class="date">June 10, 2014 12:15</small>
+			  </div>
+		  </a>
+		</div>
+    	
+    	<div class="media" data-title="Working with the Google Drive share dialog">
+		  <a class="pull-left" href="share.html">
+			  <div class="media-body">
+			    <h4 class="media-heading">Working with the Google Drive share dialog</h4>
+			    <h6 class="media-desc">
+			    In this tutorial, we show how to show the share dialog for a file stored on Google Drive. This allows for collaborative editing on files, such as that used in Code Your Cloud.
+			    </h6>
+			    <small class="date">June 10, 2014 11:26</small>
+			  </div>
+		  </a>
+		</div>
+		
+    	<div class="media" data-title="Using the Google Drive realtime API">
+		  <a class="pull-left" href="realtime.html">
+			  <div class="media-body">
+			    <h4 class="media-heading">Using the Google Drive realtime API</h4>
+			    <h6 class="media-desc">
+			    The Google Realtime API is great, and forms the backbone of Code Your Cloud. Google's documentation can be confusing sometimes, so we created a step-by-step guide to building a basic realtime-powered application.
+			    </h6>
+			    <small class="date">June 9, 2014 7:54</small>
+			  </div>
+		  </a>
+		</div>
+		
+		
+    	<div class="media" data-title="3D Cube animations with CSS">
+		  <a class="pull-left" href="cubes.html">
+			  <div class="media-body">
+			    <h4 class="media-heading">3D Cube animations with CSS</h4>
+			    <h6 class="media-desc">
+			    For Code Your Cloud version 2, we decided to update the loading animation from an animated svg. The new animation consists of 3 rotating cubes which display different combinations of words. This article walks you though the making and animating of these cubes.
+			    </h6>
+			    <small class="date">June 9, 2014 5:10</small>
+			  </div>
+		  </a>
+		</div>
+		
+    </div>
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="../about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../about/flat/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../about/flat/js/bootstrap.min.js"></script>
+    <script src="../about/flat/js/bootstrap-select.js"></script>
+    <script src="../about/flat/js/bootstrap-switch.js"></script>
+    <script src="../about/flat/js/flatui-checkbox.js"></script>
+    <script src="../about/flat/js/flatui-radio.js"></script>
+    <script src="../about/flat/js/jquery.tagsinput.js"></script>
+    <script src="../about/flat/js/jquery.placeholder.js"></script>
+    
+    <script src="https://codeyourcloud.com/lib/big-text/big-text.js"></script>
+    
+    <script src="lesson.js"></script>
+    <link rel="stylesheet" href="lesson.css"/>
+    
+    <script>
+    	if(window.location.href.indexOf("?search=") !== -1){
+	    	read_query(window.location.href.split("?search=")[1]);
+    	}
+    	
+    	function read_query(q){
+	    	var query = q.split("_").join(" ").toLowerCase();
+	    	$(".media").each(function(index){
+	    		var title = $(this).attr("data-title").toLowerCase();
+	    		var desc= $(this).find(".media-desc").html().toLowerCase()
+	    		if(title.indexOf(query) !== -1 || query.indexOf(title) !== -1 || desc.indexOf(query) !== -1 || query.indexOf(desc) !== -1){
+		    		//found
+		    		$(this).removeClass("hide");
+	    		}
+	    		else{
+		    		$(this).addClass("hide");
+	    		}
+	    	});
+    	}
+    	function search(){
+	    	read_query($("#search_input").val());
+	    	$("#search_input").val("");
+    	}
+    </script>
+    <style>
+    	body{
+    		background-attachment: fixed;
+    		background-image: url('../images/patterns/h.jpg');
+    	}
+    	.date{
+	    	color:#BDC3C7;
+    	}
+    	.next{
+	    	color:white;
+	    	width:100%;
+	    	background-color:#2C3E50;
+	    	margin-top:10px;
+	    	padding:20px;
+    	}
+    </style>
+  </body>
+</html>
