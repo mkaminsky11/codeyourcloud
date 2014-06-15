@@ -105,34 +105,7 @@ var onChange = function(event){
 };
 
 var onCur = function(event){
-	/*LEAVE THIS ALONE FOR NOW
-	
-	//cursor changed
-	if(!event.isLocal){
-		//not you
-		var array = list.asArray();
-		//get curosrs
-		for(var i = 0; i < array.length; i++){
-			//go through cursors
-			if(array[i][3] !== your_session_id){
-			//if not you
-				if($("#cur_" + array[i][3]).length){
-					$("#cur_" + array[i][3]).remove();
-				}
-				
-				insertCursor(array[i][1],array[i][2],array[i][0],array[i][3]);
-				//insert a new one
-			}
-		}
-		
-		try{
-			check_cur();
-		}
-		catch(e){
-		}
-	}
-	
-	*/
+
 };
 
 var titleChange = function(event){
@@ -157,29 +130,12 @@ var userLeft = function(doc){
 		console.log("left");
 		var the_id = doc.collaborator.sessionId;
 		
-		/* LEAVE THIS ALONE
-		
-		
-		if($("#cur_" + the_id).length){
-			$("#cur_" + the_id).remove();
-		}
-		
-		try{
-			//check_cur()
-			//this should do
-		}
-		catch(e){
-			console.log("error cur");
-		}
-		
-		*/
-		
 		removeUser(the_id);
 	}
 };
 
 var userJoin = function(doc){
-	try{ //<--------------------------------------------------------------this sometimes causes an error
+	try{
 		console.log("join");
 		
 		var col = doc.collaborator;
@@ -261,11 +217,7 @@ function loaded_realtime(doc){
 					insertUser(col[i].userName, col[i].color, col[i].photoUrl, col[i].sessionId);
 				}
 			}
-			
-			
-			//var your_values = [your_color,0,0,your_session_id]; <-----------leave this alone
-			//list.push(your_values);
-			
+
 			var chats_so_far = chats.asArray();
 			//[message,name,userid,photo]
 			for(var a = 0; a < chats_so_far.length; a++){
@@ -293,26 +245,6 @@ function loaded_realtime(doc){
 			
 			editor.on("cursorActivity", function(cm){
 				
-				/*
-				
-				
-				var c = editor.getCursor(); <------------leave this alone
-				//[color, row, column, id];
-				var array = list.asArray();
-				var index = -1;
-				for(var i = 0; i < array.length; i++){
-					if(array[i][3] === your_session_id){
-						index = i;
-					}
-				}
-				if(index !== -1){
-					var values = [your_color, c.line, c.ch, your_session_id];
-					list.set(index,values);
-				}
-				
-				
-				*/
-				
 				
 				were_changes = true;
 			});
@@ -330,9 +262,19 @@ function loaded_title(doc){
 	if(typeof doc !== 'undefined'){
 		if(!init_needed || (init_needed && title_loaded)){
 			title = doc.getModel().getRoot().get("title");
-			title.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, titleChange);
+			
+			try{
+				title.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, titleChange);
+			}
+			catch(e){
+				/*
+				sometimes this throwns an error because the values weren't initialized properly.
+				To fix this, re-init
+				*/
+                init_realtime(doc_real.getModel());
+			}
+			
 			title.addEventListener(gapi.drive.realtime.EventType.TEXT_DELETED, titleChange);
-			//title_binding = gapi.drive.realtime.databinding.bindString(title,document.getElementById("rename_input"));
 			$("#rename_input").val(title.getText());
 			$("#title").html(title.getText());
 			$("title").html(title.getText());
@@ -347,12 +289,17 @@ function get_info(){
     var request = gapi.client.drive.about.get();
     request.execute(function(resp) {
         myRootFolderId = resp.rootFolderId;
+        
         try{
         	myEmail = resp.user.emailAddress;
+        	/*
+        	if there is an error here, the user cannot be found. Therefore, he is not logged in
+        	*/
         }
         catch(e){
         	window.location = "https://codeyourcloud.com/about";
         }
+        
         userName = resp.name;
         try{
             userUrl = resp.user.picture.url;
@@ -557,7 +504,7 @@ function makeChat(){
 
 $("#chat_text").keyup(function(e){
     var code = (e.keyCode ? e.keyCode : e.which);
-	if(code == 13) { //Enter keycode
+	if(code == 13) { 
 		makeChat();
 	}
 });
