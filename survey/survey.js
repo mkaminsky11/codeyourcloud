@@ -52,9 +52,6 @@ function submit(){
 	connection.send(JSON.stringify(ret));
 }
 function q_1(){
-	if($("#problem_mobile").is(":checked")){
-		q1 = "lack of mobile support";
-	}
 	if($("#problem_usability").is(":checked")){
 		q1 = "usability problems";
 	}
@@ -64,6 +61,7 @@ function q_1(){
 	if($("#problem_other").val() !== ""){
 		q1 = $("#problem_other").val();
 	}
+	q1 = "problem is: " + q1;
 }
 function q_2(){
 	if($("#about_checkbox").is(":checked")){
@@ -75,17 +73,27 @@ function q_2(){
 	if($("#editor_checkbox").is(":checked")){
 		q2 = q2 + " editor";
 	}
+	
+	q2 = "wouldn't mind ads: " + q2;
 }
 function q_3(){
 	if($("#image_nebula").is(":checked")){
 		q3 = "nebula";
 	}
 	if($("#image_island").is(":checked")){
-		q3 = "island";
+		q3 = "shattered island";
+	}
+	if($("#image_chalk").is(":checked")){
+		q3 = "chalk";
+	}
+	if($("#image_wood").is(":checked")){
+		q3 = "wood";
 	}
 	if($("#image_none").is(":checked")){
 		q3 = "none";
 	}
+	
+	q3 = "prefered image: " + q3;
 }
 function q_4(){
 	if($("#mobile_yes").is(":checked")){
@@ -93,6 +101,13 @@ function q_4(){
 	}
 	if($("#mobile_no").is(":checked")){
 		q4 = "no";
+	}
+	
+	if(q4 === "no"){
+		q4 = "no, I haven't used mobile";
+	}
+	else{
+		q4 = "yes, I have used mobile";
 	}
 }
 function q_5(){
@@ -105,11 +120,15 @@ function q_5(){
 	if($("#github_none").is(":checked")){
 		q5 = "none";
 	}
+	
+	q5 = "github: " + q5;
 }
 function q_6(){
 	if($("#best").val() !== ""){
 		q6 = $("#best").val();
 	}
+	
+	q6 = "the best thing is: " + q6;
 }
 function q_7(){
 	if($("#look_good").is(":checked")){
@@ -121,6 +140,8 @@ function q_7(){
 	if($("#lood_bad").is(":checked")){
 		q7 = "bad";
 	}
+	
+	q7 = "it looks: " + q7;
 }
 function q_8(){
 	if($("#survey_good").is(":checked")){
@@ -129,6 +150,8 @@ function q_8(){
 	if($("#survey_bad").is(":checked")){
 		q8 = "bad";
 	}
+	
+	q8 = "surveys are: " + q8;
 }
 function q_9(){
 	if($("#rec_yes").is(":checked")){
@@ -137,6 +160,8 @@ function q_9(){
 	if($("#rec_no").is(":checked")){
 		q9 = "no";
 	}
+	
+	q9 = "recommend: " + q9;
 }
 function q_10(){
 	if($("#more").val() !== ""){

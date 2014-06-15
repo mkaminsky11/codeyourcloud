@@ -1,4 +1,58 @@
-/*CHECK IF LOGGED IN
+var ok = true;
+function get_info(){
+	try{
+    	var request = gapi.client.drive.about.get();
+    }
+    catch(e){
+    	ok = false;
+    }
+    request.execute(function(resp) {
+        myRootFolderId = resp.rootFolderId;
+        try{
+        	var myEmail = resp.user.emailAddress;
+        }
+        catch(e){
+        	redirect();
+        }
+    });
+}
+
+/*******
+EMAIL
+*******/
+function send_mail(mail){
+	connection.send(JSON.stringify({type:"mail",mail:mail}));
+}
+$("#email_input").on('input',function(){
+	check_email();	
+	$(".thanks").addClass("hide");
+});
+var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+function check_email(){
+	var m = $("#email_input").val();
+	if(re.test(m)){
+		$("#email_input").css("border","none");
+		$("#email_button").removeClass("disabled");
+	}
+	else{
+		$("#email_input").css("border","solid thin #e74c3c");
+		$("#email_button").addClass("disabled");
+	}
+}
+function go_email(){
+	var m = $("#email_input").val();
+	if(re.test(m)){
+		send_mail(m);
+		$("#email_input").val("");
+		thanks();
+	}
+}
+
+function thanks(){
+	$(".thanks").removeClass("hide");
+}
+/*******
+CHECK IF LOGGED IN
 *********/
 var is_logged_in = false;
 function check_login(){
@@ -9,6 +63,7 @@ function handleLogin(authResult) {
 		//ok
 		$("#login_button").html('<span class="fa fa-file-code-o"></span> Start Editing');
 		is_logged_in = true;
+		get_info();
 	} 
 	else {
 		//
@@ -16,11 +71,11 @@ function handleLogin(authResult) {
 	}
 }
 function go(){
-	if(is_logged_in){
+	if(ok){
 		window.location.href = "https://codeyourcloud.com";
 	}
 	else{
-		handleClientLoad();
+		redirect();
 	}
 }
 /*********
@@ -30,6 +85,15 @@ var connection = new WebSocket('wss://codeyourcloud.com:8080');
 connection.onopen = function () {
 	console.log("open");
 };
+connection.onmessage = function (message) {
+	try {
+		var json = JSON.parse(message.data);
+		if(json.type === "ok"){
+			console.log(json.message);
+		}
+	}
+	catch(e){}
+}
 function comment(){
 	$("#comment_name").css("border","none");
 	$("#comment_mail").css("border","none");
@@ -141,3 +205,4 @@ function redirect(){
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-47415821-1', 'codeyourcloud.com');
 ga('send', 'pageview');
+

@@ -347,7 +347,12 @@ function get_info(){
     var request = gapi.client.drive.about.get();
     request.execute(function(resp) {
         myRootFolderId = resp.rootFolderId;
-        myEmail = resp.user.emailAddress;
+        try{
+        	myEmail = resp.user.emailAddress;
+        }
+        catch(e){
+        	window.location = "https://codeyourcloud.com/about";
+        }
         userName = resp.name;
         try{
             userUrl = resp.user.picture.url;

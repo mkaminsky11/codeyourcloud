@@ -52,7 +52,7 @@ body {
 
 .navbar {
 	background-color: #e4e6e5;
-	background-color: rgba( 228, 230, 229, .85 );
+	background-color: rgba( 228, 230, 229, 0.85 );
 	border-bottom: 0 none;
 	font-size: 12px;
 	transition: .25s all linear;
@@ -219,8 +219,9 @@ body {
 	color: #ffffff;
 	background-repeat: repeat;
     width: 100%;
-    color:#34495E;
-    background-color: rgba(255,255,255,0.7); /*<----------------------------------------------*/
+    /*color:#34495E;*/
+    color: white;
+    background-color: rgba(255,255,255,0); /*<----------------------------------------------*/
 }
 
 #slide-1 h1 {
@@ -293,7 +294,7 @@ body {
 }
 
 #slide-2 {
-	background-color: rgba(52,152,219,0.8); /*<----------------------------------------------------*/
+	background-color: #95A5A6;
 	color: #e4e6e5;
 	padding-top: 90px;
 }
@@ -376,7 +377,7 @@ body {
 }
 
 #slide-3 {
-	background-color: rgba(46,204,113,0.8); /*<-------------------------------------------------------------*/
+	background-color: rgba(46,204,113,1); /*<-------------------------------------------------------------*/
 	margin: 0 auto;
 	overflow: hidden;
 	padding: 0;
@@ -433,7 +434,7 @@ body {
 }
 
 #slide-4 {
-	background-color: rgba(149,165,166,0.8); /*<--------------------------------------------------*/
+	background-color: #7F8C8D;
 	color: #e4e6e5;
 	padding-top: 90px;
 }
@@ -445,13 +446,13 @@ body {
 
 
 #slide-5 {
-	background-color: rgba(52,73,94,0.8); /*<----------------------------------------------------------------*/
+	background-color: #2980B9;
 	color: #e4e6e5;
 	padding-top: 90px;
 }
 
 #slide-6 {
-	background-color: rgba(230,125,34,0.95); /*<-----------------------------------------------*/
+	background-color: #3498DB;
 	color: #e4e6e5;
 	padding-bottom: 350px;
 	padding-top: 90px;
@@ -510,7 +511,7 @@ body {
 	}
 
 #slide-7 {
-	background-color: rgba(231,76,60,0.8); /*<------------------------------------------*/
+	background-color: #95A5A6;
 	color: #4e4e4e;
 	font-size: 35px;
 	line-height: 50px;
@@ -518,7 +519,7 @@ body {
 }
 
 #lightbox-out {
-	background-color: rgba( 0, 0, 0, 0.8 );
+	background-color: rgba( 0, 0, 0, 1 );
 	height: 100%;
 	position: fixed;
 	width: 100%;
@@ -618,7 +619,11 @@ body {
 	color:#ECF0F1;
 }
 #slide-7{
-	background-color: rgba(231,76,60,0.8); /*<------------------------------------------*/
+	background-color: #95A5A6;
+	color:#ECF0F1;
+}
+#slide-8{
+	background-color: #2c3e50;
 	color:#ECF0F1;
 }
 .comp_table{
@@ -646,7 +651,7 @@ body {
 	margin-top:0;
 }
 #features{
-	background-color: rgba(46,204,113,0.95); /*<-----------------------------------------------*/
+	background-color: #34495E;
 	color:#ECF0F1;
 }
 .modes{
@@ -670,8 +675,14 @@ body {
 	border:none;
 }
 body{
-	background-image: url('../../images/patterns/wood.jpg');
+	background-image: url('../../images/patterns/h.jpg');
+	background-attachment: fixed;
 }
 #gallery{
 	background-color:#2980B9;
+}
+.thanks{
+	padding: 10px;
+	background-color: #34495e;
+	color: white;
 }

@@ -19,11 +19,14 @@
 	margin-bottom: 10px;
 }
 #github{
-   	background-color:#34495E;
+   	background-color:#2C3E50;
 }
 #github:hover{
-	background-color:#2C3E50;
+	background-color:#222d39;
 }
 #github a{
 	color: white;
+}
+.prettyprint{
+	line-height: 1.4;
 }
