@@ -10,7 +10,7 @@
 }
 #users{
 	width: 53px;
-	height:100%;
+	height:calc(100% - 200px);
 	float:right;
 	position:absolute;
 	margin-left: calc(100% - 53px);
@@ -29,7 +29,7 @@
 }
 #container{
     position: absolute;
-    height: calc(100% - 106px);
+    height: calc(100% - 53px);
     width: 100%;
     margin-top: -30px;
 }
@@ -52,7 +52,7 @@
 	position: absolute;
 	margin-left: 80%;
 	width: 20%;
-	height: calc(100% - 106px);
+	height: calc(100% - 53px);
 	margin-top: -30px;
 	z-index:-2;
 }
@@ -61,7 +61,6 @@
 	width:100%;
 	overflow-y: auto;
 	background-color:#ECF0F1;
-	background-image:url("https://codeyourcloud.com/images/patterns/congruent_outline.png");
 }
 #chat_sep{
 	width:100%;
@@ -95,6 +94,7 @@ CHAT BUBBLES
 	border-radius: 7px;
 	margin-right: 1%;
 	float:right;
+	border: solid thin #7F8C8D;
 }
 .your-bubble{
 	background-color:#3498DB;
@@ -102,6 +102,7 @@ CHAT BUBBLES
 	border-radius: 7px;
 	margin-left: 1%;
 	float: left;
+	border: solid thin #2980B9;
 }
 .your-image{
     float: right;
@@ -122,22 +123,6 @@ CHAT BUBBLES
 	margin-top: 3%;
 	display: inline-block;
 }
-/*=============
-BOTTOM NAVBAR
-=============*/
-#col_button{
-	width:63px;
-	color:white;
-	background-color:#2ECC71;
-	margin-right:10px;
-}
-#col_button:hover{
-	color:white;
-	background-color:#27AE60;
-}
-#col_button>a:hover{
-	color:white;
-}
 /*==============
 MODALS
 ===============*/
@@ -145,7 +130,7 @@ MODALS
 	width:90%;
 }
 #rename-dialog{
-	width:30%;
+	width:90%;
 }
 .model-content{
 	border-radius: 0;
@@ -256,8 +241,7 @@ MODES
 	
 }
 #search-li{
-	border-radius:0;
-	background-color:#95A5A6;
+	background-color:#BDC3C7;
 }
 #mode-ul{
 	margin-top:-21px;
@@ -266,6 +250,8 @@ MODES
 }
 #mode-ul>li{
 	border-radius: 0;
+	background-color: #ECF0F1;
+	border: 1px solid #95A5A6;
 }
 /*==========
 THEMES
@@ -276,12 +262,14 @@ THEMES
 }
 #theme-ul>li{
 	border-radius: 0;
+	background-color: #ECF0F1;
+	border: 1px solid #95A5A6;
 }
 /*===========
 OPTIONS
 ===========*/
 #option-dialog{
-	width:20%;
+	width:260px;
 }
 .switchery{
 	float:right;
@@ -312,14 +300,17 @@ BOTTOM
 	width:100%;
 	height:100%;
 	position:fixed;
+	z-index: 0;
 }
 #bottom{
 	position: fixed;
 	width: 100%;
-	height: calc(50% - 47px);
+	height: calc(50% - 26px);
 	z-index: -6;
-	margin-bottom: 53px;
-	bottom: 47px;
+	bottom: 0;
+	margin: 0;
+	background-color: #ECF0F1;
+	border-right: solid thin #95A5A6;
 }
 body{
 	overflow-y:hidden;
@@ -362,8 +353,8 @@ body{
 LOREM
 =============*/
 #lorem{
-	height: 30%;
-	position:fixed;
+	height: 60%;
+	position:absolute;
 	overflow-y: auto;
 }
 /*===========
@@ -371,6 +362,9 @@ CONSOLE
 ============*/
 #con{
 	width:100%;
+}
+#con .CodeMirror{
+	width: 100%;
 }
 #note_pad{
 	width:100%;
@@ -721,4 +715,147 @@ CUBE
 .screen-logo{
 	color:white;
 	margin-top:250px;
+}
+
+#mode_ul .list-group-item{
+	border: 1px solid #95A5A6;
+	background-color: #ECF0F1;
+}
+
+/*========
+BADGE
+==========*/
+#unread{
+    position: relative;
+    background-color: #E74C3C;
+}
+
+.sp-buttons-disabled{
+	left: -72px;
+}
+
+/*==========
+TOOLBAR
+=========*/
+#tool-bar{
+	position: absolute;
+	float: right;
+	width: 53px;
+	height: 200px;
+	margin-left: calc(100% - 53px);
+	top: calc(100% - 200px);
+	background-color: #34495e;
+	text-align: center;
+	padding-top: 10px;
+	border-top: solid thin #1d2732;
+}
+
+.no-hover{
+	color: white;
+}
+.no-hover:hover{
+	color: white;
+}
+
+.toolbar-a{
+	color: #ecf0f1;
+	display:block;
+	margin-top: 5px;
+}
+.toolbar-a:hover{
+	color:#2ecc71;
+}
+
+#col_button{
+	width: 53px;
+	display: inline-block;
+	background-color: #34495e;
+	position: relative;
+	overflow:hidden;
+}
+
+#col_button i{
+	float: left;
+    margin-left: 18px;
+    margin-top: 4px;
+}
+
+/*=======
+MENUS
+=========*/
+.menu-i-offset{
+	margin-right: 10px;
+}
+
+.menu-a-offset{
+	margin-left: 25px;
+}
+
+#close_tab{
+	background-color: #E74C3C;
+    color: white;
+    border: solid thin #E74C3C;
+}
+#close_tab:hover{
+	background-color: #C0392B;
+	border: solid thin #C0392B;
+}
+/*======
+TEMP
+========*/
+#temp-dialog{
+	width: 90%;
+}
+#temp-holder{
+	height: 400px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background-color:#ECF0F1;
+	border: solid thin #BDC3C7;
+	border-top:none;
+}
+.tile-image{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+#temp-holder img{
+	height: 100px;
+	border-radius: 10px;
+}
+
+#temp-holder .media{
+	margin: 10px;
+	border: solid thin #BDC3C7;
+	padding: 20px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+#temp-holder .btn-primary{
+	display: block;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.tags{
+	float: left;
+	border: solid thin #bdc3c7;
+	border-radius: 5px;
+	margin-top: 10px;
+	padding: 5px;
+	width: calc(100% - 92px);
+}
+
+#temp-input{
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.close{
+	color:#E74C3C;
+	opacity: 1;
+}
+.close:hover{
+	color:#C0392B;
+	opacity: 1;
 }

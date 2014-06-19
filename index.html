@@ -22,8 +22,6 @@
 		<meta charset="utf-8">
     	<title>Code Your Cloud</title>
 		
-		<script src="about/flat/js/jquery-1.8.3.min.js"></script>
-		
 	    <link href="about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
 	    <link href="about/flat/css/flat-ui.css" rel="stylesheet">
 	    <link rel="shortcut icon" href="favicon.ico">
@@ -42,13 +40,14 @@
 		<link rel="stylesheet" href="lib/messenger/build/css/messenger.css" />
 		<link rel="stylesheet" href="lib/messenger/build/css/messenger-theme-flat.css"/>
 		
-		<link rel="stylesheet" href="lib/FlipClock/compiled/flipclock.css"/>
-		<script src="lib/FlipClock/compiled/flipclock.min.js"></script>
+		<!--Other-->
 		<link rel="stylesheet" href="lib/switchery/dist/switchery.min.css" />
 		<script src="lib/switchery/dist/switchery.min.js"></script>
 		<script src="lib/loremjs/lorem.js"></script>
 		<link rel="stylesheet" href="lib/slider/files/slider.css">
 		<script src="lib/slider/files/slider.js"></script>
+		
+		<link rel="stylesheet" href="lib/offline/themes/offline-theme-dark.css">
 		
 		
 		<link rel="stylesheet" href="realtime/style.css">
@@ -81,12 +80,12 @@
 					<a href="" class="dropdown-toggle" data-toggle="dropdown">File</a>
 					<span class="dropdown-arrow"></span>
 					<ul class="dropdown-menu">
-						<li onclick="open_picker()"><a>Open</a></li>
-						<li onclick="new_file()"><a>New</a></li>
-						<li id="save_li" onclick="save()"><a>Save</a></li>
-						<li onclick="upload_picker()"><a>Upload</a></li>
-						<li id="share_li" onclick="show_share()"><a>Share</a></li>
-						<li onclick="download_file()"><a>Download</a></li>
+						<li onclick="open_picker()"><a class="menu-a-offset">Open</a></li>
+						<li onclick="new_file()"><a class="menu-a-offset">New</a></li>
+						<li id="save_li" onclick="save()"><a class="menu-a-offset">Save</a></li>
+						<li id="share_li" onclick="show_share()"><a><i class="fa fa-users menu-i-offset"></i> Share</a></li>
+						<li onclick="download_file()"><a><i class="fa fa-cloud-download menu-i-offset"></i> Download</a></li>
+						<li onclick="upload_picker()"><a><i class="fa fa-cloud-upload menu-i-offset"></i>Upload</a></li>
 					</ul>
 				</li>
 				
@@ -94,12 +93,11 @@
 					<a href="" class="dropdown-toggle" data-toggle="dropdown">Edit</a>
 					<span class="dropdown-arrow"></span>
 					<ul class="dropdown-menu">
-						<li onclick="editor_undo()"><a>Undo</a></li>
-						<li onclick="editor_redo()"><a>Redo</a></li>
-						<li onclick="move_left()"><a>Move left</a></li>
-						<li onclick="move_right()"><a>Move right</a></li>
-						<li><a>Block comment</a></li>
-						<li onclick="getHint()"><a>Autocomplete</a></li>
+						<li onclick="editor_undo()"><a><i class="fa fa-undo menu-i-offset"></i> Undo</a></li>
+						<li onclick="editor_redo()"><a><i class="fa fa-repeat menu-i-offset"></i> Redo</a></li>
+						<li onclick="move_left()"><a><i class="fa fa-outdent menu-i-offset"></i> Move left</a></li>
+						<li onclick="move_right()"><a><i class="fa fa-indent menu-i-offset"></i>Move right</a></li>
+						<li onclick="getHint()" id="auto_button"><a class="menu-a-offset">Autocomplete</a></li>
 					</ul>
 				</li>
 				
@@ -116,11 +114,11 @@
 					<a href="" class="dropdown-toggle" data-toggle="dropdown">Tools</a>
 					<span class="dropdown-arrow"></span>
 					<ul class="dropdown-menu">
-						<li onclick="show_terminal()"><a>Terminal</a></li>
-						<li><a>Autocomplete</a></li>
-						<li onclick="show_lorem()"><a>Lorem</a></li>
-						<li onclick="showPreview()"><a>Preview</a></li>
-						<li onclick="show_notepad()"><a>Notepad</a></li>
+						<li onclick="show_terminal()"><a class="menu-a-offset">Terminal</a></li>
+						<li onclick="show_lorem()"><a class="menu-a-offset">Lorem</a></li>
+						<li onclick="showPreview()"><a><i class="fa fa-eye menu-i-offset"></i> Preview</a></li>
+						<li onclick="show_notepad()"><a><i class="fa fa-file-text-o menu-i-offset"></i> Notepad</a></li>
+						<li onclick="show_temp()"><a class="menu-a-offset">Templates</a></li>
 					</ul>
 				</li>
 				
@@ -128,9 +126,9 @@
 					<a href="" class="dropdown-toggle" data-toggle="dropdown">Run</a>
 					<span class="dropdown-arrow"></span>
 					<ul class="dropdown-menu">
-						<li onclick="show_console()"><a>Show console</a></li>
-						<li onclick="run()"><a>Run</a></li>
-						<li onclick="clear_console()"><a>Clear console</a></li>
+						<li onclick="show_console()"><a class="menu-a-offset">Show console</a></li>
+						<li onclick="run()"><a><i class="fa fa-play menu-i-offset"></i> Run</a></li>
+						<li onclick="clear_console()"><a class="menu-a-offset">Clear console</a></li>
 					</ul>
 				</li>
 				
@@ -221,10 +219,19 @@
 			
 		</div>
 	  	<div id="main">
-		<div id="container">
+		<div id="container" class="mains">
 			<textarea id ="bind"></textarea>
 			<div id="overlay"></div>
-			<div id="users"></div>
+			<div id="users">
+			</div>
+			<div id="tool-bar">
+				<input type='text' id="custom" />
+				<a id="col_button" onclick="switch_col()" class="toolbar-a">
+					<i class="fa fa-comments-o"></i>
+					<span class="badge" id="unread" style="display:none">0</span>
+				</a>
+				<a onclick="bottom_toggle()" class="toolbar-a"><i class="fa fa-terminal"></i></a>
+			</div>
 		</div>
 		<div id="chat">
 			<div id="chat_inner">
@@ -234,13 +241,14 @@
 			<textarea id="chat_text" placeholder="Press enter to send"></textarea>
 		</div>
 		</div>
-		<div id="bottom">
+		<div id="bottom" class="mains">
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs">
 			  <li class="active"><a href="#random" data-toggle="tab">Lorem</a></li>
 			  <li><a href="#terminal" data-toggle="tab">Terminal</a></li>
 			  <li class="run-elem" onclick="the_console.refresh();"><a href="#console" data-toggle="tab">Console</a></li>
 			  <li><a href="#notepad" data-toggle="tab">Notepad</a></li>
+			  <li onclick="close_bottom()"><a href="" data-toggle="tab" id="close_tab"><i class="fa fa-times"></i></a></li>
 			</ul>
 
 			<!-- Tab panes -->
@@ -276,27 +284,6 @@
 			</div>
 		</div>
 		
-		
-		
-		
-		
-		
-		<nav class="navbar navbar-inverse navbar-embossed navbar-fixed-bottom" role="navigation">
-			<div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNavBar2">
-                <span class="sr-only">Toggle navigation</span>
-              </button>
-            </div>
-			<div class="collapse navbar-collapse" id="theNavBar2">
-				<ul class="nav navbar-nav">
-					<li onclick="bottom_toggle()" id="bottom_button"><a><i class="fa fa-terminal"></i></a></li>
-					<li id="color-li"><input type='text' id="custom" /></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li style="" id="col_button" onclick="switch_col()"><a><i class="fa fa-comments-o"></i></a></li>
-			  	</ul>
-			</div>
-		</nav>
 
 		<!=================
 		==
@@ -316,11 +303,8 @@
 							<li class="list-group-item text-center" onclick="showMode()"><i class="fa fa-file-code-o"></i> Language</li>
 							<li class="list-group-item text-center" onclick="showTheme()"><i class="fa fa-tint"></i> Theme</li>
 							<li class="list-group-item text-center" onclick="showOptions()"><i class="fa fa-sliders"></i> Options</li>
-							<li class="list-group-item text-center"><i class="fa fa-question"></i> Help</li>
+							<li class="list-group-item text-center"><a style="color:#34495e" href="https://codeyourcloud.com/help" target="_blank"><i class="fa fa-question"></i> Help</a></li>
 						</ul>
-					</div>
-					<div class="modal-footer">
-						<button class="btn btn-danger btn-embossed" onclick="$('#mainModal').modal('hide')">Close</button>
 					</div>
 				</div>
 			</div>
@@ -340,24 +324,15 @@
 			</div>
 		</div>
 		
-		<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" 
-   data-keyboard="false">
-			<div class="modal-dialog" id="error-dialog">
-				<div class="modal-content">
-					<div class="modal-body">
-						<h3 class="text-center">Reloading...</h3>
-						<hr/>
-						<h6 class="text-center">There was an error. Try reloading or opening this file in a new tab.</h6>
-						<div id="clock"></div>
-						<button onclick="error_reload()" class="btn btn-danger btn-embossed" id="reload_button">Reload Now</button>
-					</div>
-				</div>
-			</div>
-		</div>
 		
 		<div class="modal fade" id="modeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" id="mode-dialog">
 				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">LANGUAGE</h4>
+					</div>
+					
 					<div class="modal-body">
 						<ul id="search-ul" class="list-group">
 						
@@ -368,7 +343,6 @@
 						</ul>
 						<ul id="mode-ul" class="list-group">
 						</ul>
-						<button class="btn btn-danger btn-embossed" onclick="$('#modeModal').modal('hide')" style="width:100%">Close</button>
 					</div>
 				</div>
 			</div>
@@ -377,10 +351,15 @@
 		<div class="modal fade" id="themeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" id="mode-dialog">
 				<div class="modal-content">
+				
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">THEME</h4>
+					</div>
+					
 					<div class="modal-body">
 						<ul id="theme-ul" class="list-group">
 						</ul>
-						<button class="btn btn-danger btn-embossed" onclick="$('#themeModal').modal('hide')" style="width:100%">Close</button>
 					</div>
 				</div>
 			</div>
@@ -389,6 +368,12 @@
 		<div class="modal fade" id="optionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" id="option-dialog">
 				<div class="modal-content">
+				
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">OPTIONS</h4>
+					</div>
+					
 					<div class="modal-body">
 						<div class="form-group">
     						<label for="spinner">Line Numbers</label>
@@ -410,7 +395,6 @@
 							<input id="wrap_switch" type="checkbox" class="js-switch" onchange="line_wrap_switch()"/>
 						</div>
 						
-						<button class="btn btn-danger btn-embossed" onclick="$('#optionModal').modal('hide')" style="width:100%">Close</button>
 					</div>
 				</div>
 			</div>
@@ -419,9 +403,152 @@
 		<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" id="preview-dialog">
 				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">PREVIEW</h4>
+					</div>
+					
 					<div class="modal-body">
 						<iframe id="preview"></iframe>
-						<button class="btn btn-danger btn-embossed" onclick="$('#previewModal').modal('hide')" style="width:100%">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="tempModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" id="temp-dialog">
+				<div class="modal-content">
+					
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">TEMPLATES</h4>
+					</div>
+					
+					<div class="modal-body">
+					    <input type="text" class="form-control" id="temp-input" placeholder="Search here...">
+						<div id="temp-holder">
+
+								<!--HTML-->
+
+								<div class="media" temp-title="Basic" temp-desc="The base html template" temp-tag="html">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/basic.png">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">Basic</h4>
+								    The base html template
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-basic.html')" class="btn btn-primary">Use this</button>
+								    
+								     <div class="tags">
+								    	<span class="label label-default">html</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+								<div class="media" temp-title="Flat UI" temp-desc="Flat boostrap theme" temp-tag="html;bootstrap">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/flat.png">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">Flat UI</h4>
+								    Flat boostrap theme
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-flat.html')" class="btn btn-primary">Use this</button>
+								    
+								    <div class="tags">
+								    	<span class="label label-default">html</span>
+								    	<span class="label label-default">bootstrap</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+								<div class="media" temp-title="Bootstrap" temp-desc="A frontend framework created by Twitter" temp-tag="html;bootstrap">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/bootstrap.png">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">Bootstrap</h4>
+								    A frontend framework created by Twitter
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-bootstrap.html')" class="btn btn-primary">Use this</button>
+								    
+								    <div class="tags">
+								    	<span class="label label-default">html</span>
+								    	<span class="label label-default">bootstrap</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+								<div class="media" temp-title="JQuery" temp-desc="Manipulate DOm elements with ease" temp-tag="html">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/jquery.jpg">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">JQuery</h4>
+								    Manipulate DOM elements with ease
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-basic.jquery')" class="btn btn-primary">Use this</button>
+								    
+								    <div class="tags">
+								    	<span class="label label-default">html</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+								<div class="media" temp-title="CodeMirror" temp-desc="Javascript-based code editor" temp-tag="html;code">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/codemirror.png">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">CodeMirror</h4>
+								    Javascript-based code editor
+								    
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-codemirror.html')" class="btn btn-primary">Use this</button>
+								    
+								    <div class="tags">
+								    	<span class="label label-default">html</span>
+								    	<span class="label label-default">code</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+								<div class="media" temp-title="Ace" temp-desc="In-browser code editor" temp-tag="html;code">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/ace.png">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">Ace</h4>
+								    In-browser code editor
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-ace.html')" class="btn btn-primary">Use this</button>
+								    
+								    <div class="tags">
+								    	<span class="label label-default">html</span>
+								    	<span class="label label-default">code</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+								<div class="media" temp-title="TogetherJS" temp-desc="Add collaboration to your project" temp-tag="html;collaborate">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/together.png">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">TogetherJS</h4>
+								    Add collaboration to your project
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-together.html')" class="btn btn-primary">Use this</button>
+								    
+								    <div class="tags">
+								    	<span class="label label-default">html</span>
+								    	<span class="label label-default">collaborate</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+						</div>
 					</div>
 				</div>
 			</div>
@@ -489,6 +616,8 @@
       
       
       	<script src="lib/big-text/big-text.js"></script>
+      	<script src="lib/offline/offline.min.js"></script>
+      	<script src="https://cdn.jsdelivr.net/jquery.velocity/0.1.0/jquery.velocity.min.js"></script>
       	
 		<script src="realtime/global.js"></script>
 		<script src="realtime/realtime.js"></script>
@@ -508,6 +637,8 @@
 				return false;
 			});
 			jwerty.key('ctrl+space/cmd+space',function(){
+				get_hint();
+				return false;
 			});
 		</script>
 		<link rel="stylesheet" href="realtime/style.css">

@@ -30,13 +30,15 @@ $("#email_input").on('input',function(){
 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 function check_email(){
 	var m = $("#email_input").val();
-	if(re.test(m)){
+	if(re.test(m) || m === ""){
 		$("#email_input").css("border","none");
 		$("#email_button").removeClass("disabled");
+		$("#invalid").addClass("hide");
 	}
 	else{
 		$("#email_input").css("border","solid thin #e74c3c");
 		$("#email_button").addClass("disabled");
+		$("#invalid").removeClass("hide");
 	}
 }
 function go_email(){
@@ -49,7 +51,7 @@ function go_email(){
 }
 
 function thanks(){
-	$(".thanks").removeClass("hide");
+	$("#email_input").css("border","solid thin #2ECC71");
 }
 /*******
 CHECK IF LOGGED IN

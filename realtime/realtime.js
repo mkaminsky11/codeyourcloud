@@ -167,6 +167,12 @@ var newChat = function(event){
 		}
 		if(!chat_open && !event.isLocal){
 			sendMessage("new message", "info");
+			var old_unread = Number($("#unread").html());
+			var new_unread = old_unread + 1;
+			$("#unread").html(new_unread);
+			if($("#unread").css("display") === "none"){
+				$("#unread").slideDown();
+			}
 		}
 	}
 	catch(e){
@@ -451,9 +457,13 @@ function removeUser(id){
 CHAT
 ============*/
 function showChat(){
+	$("#unread").html("0");
+	if($("#unread").css("display") !== "none"){
+		$("#unread").slideUp();
+	}
 	if(!chat_open){
 		chat_open = true;
-		$("#container").animate({
+		$(".mains").animate({
 			width: "80%"	
 		}, 1000, function(){
 			//open
@@ -464,7 +474,7 @@ function showChat(){
 function closeChat(){
 	if(chat_open){
 		chat_open = false;
-		$("#container").animate({
+		$(".mains").animate({
 			width: "100%"	
 		}, 1000, function(){
 			//open
