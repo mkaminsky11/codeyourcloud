@@ -1,11 +1,11 @@
 #Code Your Cloud#
 ######created by Michael Kaminsky######
-####Now available on the <a href="https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail">Chrome Store</a> (over 1000 users so far)####
+####Now available on the <a href="https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail">Chrome Store</a> (over 1600 users so far)####
 ####<a href="https://codeyourcloud.com">The Project</a>####
 <p>Check out the result of the project so far here. It is now completely functional. Enjoy!</p>
 ![Screenshot](http://mkaminsky11.github.io/images/projects.png)
 ####<a href="https://codeyourcloud.com/about">About</a>####
-<p>A comprehensive about page with a help section, comment box, and code snippets. The about page is similar to this document, but more thorough. For a full explanation of the features of Code Your Cloud, check this out. It can also be accessed by clicking on the icon in the top-left corner of the main editor.</p>
+<p>The about page is similar to this document, but more thorough. For a full explanation of the features of Code Your Cloud, check this out.</p>
 ====
 <h3>Goal</h3>
 <p>To allow people around the globe to collaborate on coding projects via Google Drive. It's that simple. So far, I have yet to see a website or program that accomplishes these tasks for all major programming languages. This is an attempt to change that, and it seems to be working well so far.</p>
