@@ -1,21 +1,4 @@
 var ok = true;
-function get_info(){
-	try{
-    	var request = gapi.client.drive.about.get();
-    }
-    catch(e){
-    	ok = false;
-    }
-    request.execute(function(resp) {
-        myRootFolderId = resp.rootFolderId;
-        try{
-        	var myEmail = resp.user.emailAddress;
-        }
-        catch(e){
-        	redirect();
-        }
-    });
-}
 
 /*******
 EMAIL
@@ -61,15 +44,16 @@ function check_login(){
 	gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate': true},handleLogin);
 }
 function handleLogin(authResult) {
-	if (authResult) {
+	if (!authResult.error) {
+		
 		//ok
 		$("#login_button").html('<span class="fa fa-file-code-o"></span> Start Editing');
 		is_logged_in = true;
-		get_info();
 	} 
 	else {
 		//
 		$("#login_button").html('<span class="icon icon-google-plus"></span> | Login with Google');
+		ok = false;
 	}
 }
 function go(){

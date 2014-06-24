@@ -2,7 +2,7 @@
 editor = CodeMirror.fromTextArea(document.getElementById("bind"),{
     lineNumbers: true,
     mode: "text",
-    theme: "pastel-on-dark",
+    theme: "neo",
     lineWrapping: true, 
     indentUnit: 4, 
     indentWithTabs: true
@@ -13,6 +13,7 @@ editor.on("beforeSelectionChange", function(cm, selection){
 editor.setOption("autoCloseBrackets",true);
 editor.setOption("matchBrackets",true);
 $(".CodeMirror").css("line-height","1");
+
 /*===========
 AUTHORIZATION
 =============*/
@@ -167,12 +168,6 @@ var newChat = function(event){
 		}
 		if(!chat_open && !event.isLocal){
 			sendMessage("new message", "info");
-			var old_unread = Number($("#unread").html());
-			var new_unread = old_unread + 1;
-			$("#unread").html(new_unread);
-			if($("#unread").css("display") === "none"){
-				$("#unread").slideDown();
-			}
 		}
 	}
 	catch(e){
@@ -241,9 +236,7 @@ function loaded_realtime(doc){
 			//binding = gapi.drive.realtime.databinding.bindString(text,document.getElementById("bind"));
 			editor.on("change", function(cm, change) {
 				if(is_welcome !== true){
-					$("#save_button").removeClass("btn-success");
-					$("#save_button").removeClass("btn-default");
-					$("#save_button").addClass("btn-danger");
+					$("#save_button").css("color","#E74C3C");
 				}
 				wer_changes = true;
 				text.setText(editor.getValue());
@@ -264,6 +257,7 @@ function loaded_realtime(doc){
 		}
 	}
 }
+$("#save_button").css("color","#E74C3C");
 function loaded_title(doc){
 	if(typeof doc !== 'undefined'){
 		if(!init_needed || (init_needed && title_loaded)){
@@ -298,6 +292,7 @@ function get_info(){
         
         try{
         	myEmail = resp.user.emailAddress;
+        	$("#side-email").html(myEmail);
         	/*
         	if there is an error here, the user cannot be found. Therefore, he is not logged in
         	*/
@@ -313,7 +308,7 @@ function get_info(){
         catch(e){}
         try{
             userId = resp.user.permissionId;
-            $("#pub_link").attr("href", "https://codeyourcloud.com/pub/"+userId+"/index.html");
+            $("#side-pub-link").attr("href", "https://codeyourcloud.com/pub/"+userId+"/index.html");
             user_loaded = true;
             if(sql_loaded){
 	            get_sql();
@@ -332,9 +327,18 @@ function get_info(){
     });
 }
 function welcome(){
+	
+	$("#rename-toggle").addClass("hide");
+	
 	$(".run-elem").addClass("hide");
 	$(".html-elem").addClass("hide");
+	
+	$(".side-file").addClass("hide");
+	
+	
 	console.log("welcome");
+	
+	
 	$("#col_button").remove();
 	is_welcome = true;
 	
@@ -350,64 +354,15 @@ function welcome(){
 		}
 	}
 	txtFile.send(null);
-	$("#save_button").addClass("disabled");
-	$("#save_li").remove();
-	$("#share_li").remove();
+	
+	
+	$("#save_button").addClass("hide");
 	lift_screen();
 }
 /*============
 CURSOR
 ===========*/
-$(".CodeMirror-scroll").scroll(function(e){
-	var up = $(".CodeMirror-scroll").scrollTop();
-	$(".marker").each(function(index){
-		var c = Number($(this).attr("data-top").replace("px",""));
-		var new_up = c - up + "px";
-		$(this).css("top", new_up);
-	});
-	
-	var left = $(".CodeMirror-scroll").scrollLeft();
-	$(".marker").each(function(index){
-		var c = Number($(this).attr("data-left").replace("px",""));
-		var new_left = c - left + "px";
-		$(this).css("left", new_left);
-	});
-});
 
-function check_cur(){
-	/*NOT NEEDED FOR NOW
-	
-	
-	var col = doc_real.getCollaborators();
-	//get colls
-	//get cursors
-	var array = list.asArray();
-	
-	//go through cursors
-	for(var i = 0; i < array.length; i++){
-		var found = false; //found something
-		//search through cols
-		for(var j = 0; j < col.length; j++){
-			//got one!
-			if(col[j].sessionId === array[i][3]){
-				found = true;
-			}
-		}
-		//if didn't find one
-		if(found === false){
-			//if it exists
-			if($("#cur_" + array[i][3]).length){
-				//remove it!
-				$("#cur_" + array[i][3]).remove();
-			}
-			//remove it!
-			list.remove(i);
-		}
-	}
-	
-	
-	*/
-}
 function init_realtime(model){
 	init_needed = true;
 	console.log("init3");
@@ -457,28 +412,34 @@ function removeUser(id){
 CHAT
 ============*/
 function showChat(){
-	$("#unread").html("0");
-	if($("#unread").css("display") !== "none"){
-		$("#unread").slideUp();
+	if(is_mobile){
+		show_side_chat();
 	}
-	if(!chat_open){
-		chat_open = true;
-		$(".mains").animate({
-			width: "80%"	
-		}, 1000, function(){
-			//open
-		});
+	else{
+		if(!chat_open){
+			chat_open = true;
+			$(".mains").animate({
+				width: "80%"	
+			}, 1000, function(){
+				//open
+			});
+		}
 	}
 }
 
 function closeChat(){
-	if(chat_open){
-		chat_open = false;
-		$(".mains").animate({
-			width: "100%"	
-		}, 1000, function(){
-			//open
-		});
+	if(is_mobile){
+		hide_side_modal();
+	}
+	else{
+		if(chat_open){
+			chat_open = false;
+			$(".mains").animate({
+				width: "100%"	
+			}, 1000, function(){
+				//open
+			});
+		}
 	}
 }
 
@@ -534,9 +495,7 @@ function save(){
 	        var blob = new Blob([byteArray], {type: 'text/plain'}); //this is the only way I could get this to work
 	        var request = gapi.client.drive.files.get({'fileId': current});//gets the metadata, which is left alone
 	        
-	        $("#save_button").removeClass("btn-danger");
-	        $("#save_button").removeClass("btn-success");
-	        $("#save_button").addClass("btn-default");
+	        $("#save_button").css("color","white");
 	        
 	        request.execute(function(resp) {
 	            updateFile(current,resp,blob,changesSaved);
@@ -547,7 +506,9 @@ function save(){
 function changesSaved(){
 	were_changes = false;
 	console.log("changes saved");
-	$("#save_button").removeClass("btn-danger");
-	$("#save_button").removeClass("btn-default");
-	$("#save_button").addClass("btn-success");
+	$("#save_button").css("color","white");
+}
+
+function clear_chat_history(){
+	chats.clear();
 }

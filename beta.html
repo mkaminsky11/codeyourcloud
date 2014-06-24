@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+
+	    <meta charset="utf-8">
+	    
+	    <script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-47415821-1', 'codeyourcloud.com');
+			ga('send', 'pageview');
+		</script>
+		
+		<meta name="description" content="An in-browser code editor for Google Drive. Collaborate with your group members with ease. Take advantage of syntax highlighting, color pickers, and more">
+		<meta name="google-site-verification" content="2jBshOtCyauLPt-Tdw0HRkOOizbDnw6IJTM_4dNNLQQ" />
+		
+		<script src="about/flat/js/jquery-1.8.3.min.js"></script>
+		
+		
+		<meta charset="utf-8">
+    	<title>Code Your Cloud</title>
+		
+	    <link href="about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
+	    <link href="about/flat/css/flat-ui.css" rel="stylesheet">
+	    <link rel="shortcut icon" href="favicon.ico">
+
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	    <!--[if lt IE 9]>
+		   <script src="about/flat/js/html5shiv.js"></script>
+	      <script src="about/flat/js/respond.min.js"></script>
+	    <![endif]-->
+	    
+	    <link rel='stylesheet' type='text/css' href='lib/Font/css/font-awesome.min.css'>
+	    
+	    <!--Messenger-->
+	    <script src="lib/messenger/build/js/messenger.min.js"></script>
+		<script src="lib/messenger/build/js/messenger-theme-flat.js"></script>
+		<link rel="stylesheet" href="lib/messenger/build/css/messenger.css" />
+		<link rel="stylesheet" href="lib/messenger/build/css/messenger-theme-flat.css"/>
+		
+		<!--Other-->
+		<script src="lib/loremjs/lorem.js"></script>
+		<link rel="stylesheet" href="lib/slider/files/slider.css">
+		<script src="lib/slider/files/slider.js"></script>
+		
+		<link rel="stylesheet" href="lib/offline/themes/offline-theme-dark.css">
+		
+		
+		<link rel="stylesheet" href="scripts/style.css">
+		<link rel="stylesheet" href="scripts/custom.css">
+		
+	</head>
+	<body>
+	
+	
+	
+	
+		<div id="side" class="hide">
+			<div id="side_header">
+				<h6><i onclick="close_side()" class="fa fa-times close-a float-right"></i></h6>
+			</div>
+			<div id="side_inner">
+				<div class="side-head">
+					<h6><a id="title">Code Your Cloud</a>
+						<button class="btn btn-info" id="rename-toggle" onclick="toggle_side_rename()"><i class="fa fa-pencil"></i></button>
+					</h6>
+				</div>
+				
+				<div id="rename-div" style="padding:0">
+					<div class="input-group">
+						<input type="text" class="form-control" id="rename_input">
+						<span class="input-group-btn btn btn-success" id="rename_ok" onclick="ok_rename()"><i class="fa fa-check"></i></span>
+						<span class="input-group-btn btn btn-danger" id="rename_no" onclick="no_rename()"><i class="fa fa-ban"></i></span>
+	  				</div>
+				</div>
+				
+				<div class="side-head">
+					<h6 id="side-email"><a>email@gmail.com</a></h6>
+				</div>
+				
+				<div onclick="show_side_open()" class="side-item">
+					<h6>
+						<small><i class="fa fa-folder" style="color:#2ECC71"></i></small> OPEN
+					</h6>
+				</div>
+				
+				<div class="side-file side-item" onclick="save()">
+					<h6>
+						<small><i class="fa fa-save" style="color:#E74C3C"></i></small> SAVE
+					</h6>
+				</div>
+				
+				<div onclick="new_file()" class="side-item">
+					<h6>
+						<small><i class="fa fa-file" style="color:#F39C12"></i></small> NEW
+					</h6>
+				</div>
+				<!--end main-->
+				
+				<hr/>
+				
+				<div onclick="download_file()" class="side-item side-file">
+					<h6>
+						<small><i class="fa fa-cloud-download"></i></small> DOWNLOAD
+					</h6>
+				</div>
+				
+				<div onclick="show_side_upload()" class="side-item">
+					<h6>
+						<small><i class="fa fa-cloud-upload"></i></small> UPLOAD
+					</h6>
+				</div>
+				
+				<div class="side-file side-item" onclick="show_side_share()">
+					<h6>
+						<small><i class="fa fa-users"></i></small> SHARE
+					</h6>
+				</div>
+				
+				<div class="side-file side-item" onclick="switch_col()">
+					<h6>
+						<small><i class="fa fa-comment"></i></small> CHAT
+					</h6>
+				</div>
+				
+				<!--end "file"-->
+				
+				<hr/>
+				
+				<div class="side-item" onclick="move_left()">
+					<h6>
+						<small><i class="fa fa-outdent"></i></small> MOVE LEFT
+					</h6>
+				</div>
+				
+				<div class="side-item" onclick="move_right()">
+					<h6>
+						<small><i class="fa fa-indent"></i></small> MOVE RIGHT
+					</h6>
+				</div>
+				
+				<div class="side-item" onlick="replace()">
+					<h6>
+						<small><i class="fa fa-search"></i></small> REPLACE
+					</h6>
+				</div>
+
+				
+				<!--end "edit"-->
+				
+				<hr/>
+				
+				<div class="side-item" onclick="show_side_terminal()">
+					<h6>
+						<small><i class="fa fa-terminal"></i></small> TERMINAL
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<div class="side-item" onclick="show_side_random()">
+					<h6>
+						<small><i class="fa fa-font"></i></small> LOREM
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<div class="side-item" onclick="show_side_preview()">
+					<h6>
+						<small><i class="fa fa-eye"></i></small> PREVIEW
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<div class="side-item" onclick="show_side_notepad()">
+					<h6>
+						<small><i class="fa fa-file-text"></i></small> NOTEPAD
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<!--div class="side-item">
+					<h6>
+						<small><i class="fa fa-cube"></i></small> TEMPLATES
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div-->
+				
+				<!--end "tools"-->
+				
+				<hr class="side-run hide">
+				
+				<div class="side-item side-run hide" onclick="run()">
+					<h6>
+						<small><i class="fa fa-play"></i></small> RUN
+					</h6>
+				</div>
+				
+				<div class="side-item side-run hide" onclick="show_side_console()">
+					<h6>
+						<small><i class="fa fa-code"></i></small> SHOW CONSOLE
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<div class="side-item side-run hide" onclick="clear_console()">
+					<h6>
+						<small><i class="fa fa-times-circle-o"></i></small> CLEAR CONSOLE
+					</h6>
+				</div>
+				
+				<!--end "run"-->
+				<hr class="side-pub hide">
+				
+				<div class="side-pub side-item hide" onclick="publish_html()">
+					<h6>
+						<small><i class="fa fa-globe"></i></small> PUBLISH
+					</h6>
+				</div>
+				
+				<div class="side-pub side-item hide">
+					<a id="side-pub-link" href="" target="_blank">
+						<h6>
+							<small><i class="fa fa-arrow-up"></i></small> GO TO SITE
+						</h6>
+					</a>
+				</div>
+				
+				<!--end "publish"-->
+				
+				<hr/>
+				
+				<!---->
+				
+				<div class="side-item" onclick="show_side_modes()">
+					<h6>
+						<small><i class="fa fa-file-code-o"></i></small> LANGUAGES
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+
+				<div class="side-item" onclick="show_side_themes()">
+					<h6>
+						<small><i class="fa fa-tint"></i></small> THEMES
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<div class="side-item" onclick="show_side_options()">
+					<h6>
+						<small><i class="fa fa-cogs"></i></small> OPTIONS
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<hr/>
+				
+				<div class="side-item">
+					<a href="https://accounts.google.com/logout">
+						<h6>
+							<small><i class="fa fa-sign-out"></i></small> LOG OUT
+						</h6>
+					</a>
+				</div>
+				
+				<div class="side-item">
+					<a href="https://codeyourcloud.com/help" target="_blank">
+						<h6>
+							<small><i class="fa fa-question"></i></small> HELP
+						</h6>
+					</a>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div id="detect" class="hide"></div>
+		
+		<div class="side-modal hide">
+			<div class="side-modal-head">
+  				<h6 class="side-modal-title">MODAL TITLE</h6>
+				<h6 class="close side-modal-close" onclick="hide_side_modal()"><i class="fa fa-times"></i></h6>
+				
+				<div class="side-modal-content">
+				
+					<div class="side-modal-options hide">
+						<div class="side-modal-row">
+							<h6 class="side-modal-row-label">Line Numbers</h6>
+							<a class="side-switch" id="side-nums" data-icon="list-ol" data-state="on" data-onclick="line_number_switch()" on-color="" off-color=""></a>
+						</div>
+						
+						<div class="side-modal-row">
+							<h6 class="side-modal-row-label">Line Wrap</h6>
+							<a class="side-switch" id="side-wrap" data-icon="align-center" data-state="off" data-onclick="line_wrap_switch()" on-color="" off-color=""></a>
+						</div>
+						
+						<div class="side-modal-row">
+							<h6 class="side-modal-row-label">Font Size</h6>
+							
+							<div class="input-group modal-font-group">
+						      <input type="text" class="form-control" id="spinner-font" placeholder="" value="12">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button" onclick="fontUp()">+</button>
+						      </span>
+						<span class="input-group-btn">
+						        <button class="btn btn-default" type="button" onclick="fontDown()">-</button>
+						      </span>
+						    </div>
+						    
+						</div>
+						
+						<div class="side-modal-row side-file">
+							<h6 class="side-modal-row-label">Clear Chat History</h6>
+							
+							<a style="float:right;margin-right:10px" class="btn btn-danger" onclick="clear_chat_history()"><i class="fa fa-trash-o"></i></a>
+							<br><br>
+							<small class="side-note">Note: this will take effect once you refresh this page</small>
+						</div>
+					</div>
+					
+					<div class="side-modal-themes hide">
+						<input class="form-control modal-input" id="theme_input" placeholder="Search for themes...">
+						<ul id="theme-ul" class="list-group">
+						</ul>
+					</div>
+					
+					<div class="side-modal-modes hide">
+						<input class="form-control modal-input" id="mode_input" placeholder="Search for languages...">
+						<ul id="mode-ul" class="list-group">
+						</ul>
+					</div>
+					
+					<div class="side-modal-chat hide">
+						
+					</div>
+					
+					<div class="side-modal-console hide">
+						<div id="con"></div>
+					</div>
+					
+					<div class="side-modal-notepad hide">
+						<div id="note_pad"></div>
+					</div>
+					
+					<div class="side-modal-terminal hide">
+						<iframe id="terminal-iframe" src="https://codeyourcloud.com/lib/repl"></iframe>
+					</div>
+					
+					
+					<div class="side-modal-random hide">
+						
+						
+						<div class="input-group">
+	      					<div class="input-group-btn">
+		      					<button  onclick="generate()" type="button" class="btn btn-default">Generate</button>
+		        				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+		        				<ul class="dropdown-menu">
+		          					<li onclick="lorem_w()"><a>Words</a></li>
+		          					<li onclick="lorem_s()"><a>Sentences</a></li>
+		          					<li onclick="lorem_p()"><a>Paragraphs</a></li>
+		        				</ul>
+	      					</div>
+	      					<input type="text" class="form-control" id="lorem_input" value="6">
+	  					</div>
+    				
+	  					<div id="lorem" data-lorem="6s" class="well"></div>
+						
+						
+					</div>
+
+				</div>
+				
+				<div class="side-modal-preview hide">
+					<iframe id="preview"></iframe>
+				</div>
+  			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		<nav id="nav" class="navbar navbar-inverse nav-1" role="navigation">
+      		<div class="navbar-header">
+        	  	
+    		</div>
+        	<div class="" id="navbar-collapse-01">
+        	  <ul class="nav navbar-nav">  
+        	  
+        	  	<li onclick="toggle_side()"><a style="color:white"><i class="fa fa-bars"></i></a></li>
+				
+
+        	  	<li><a id="open_button" onclick="open_picker()" style="color:white"><i class="fa fa-folder-open-o"></i></a></li>
+        	  	<li><a id="save_button" onclick="save()"><i class="fa fa-floppy-o"></i></a></li>
+        	  	<li><a id="undo_button" onclick="editor_undo()" style="color:white"><i class="fa fa-undo"></i></a></li>
+        	  	<li><a id="redo_button" onclick="editor_redo()" style="color:white"><i class="fa fa-repeat"></i></a></li>
+        	  	<li onclick="find()"><a style="color:white"><i class="fa fa-search"></i></a></li>
+        	  </ul>
+        	</div>
+      	</nav>
+	
+	
+	
+	
+	
+	  	<!--side goes here-->
+	  	<div id = "screen">
+			
+			<img src="images/svg/load.svg">
+			<h3 style="
+    color: white;
+    text-align: center;
+">Loading Creative Juices</h3>
+
+
+		</div>
+	  	<div id="main">
+		<div id="container" class="mains">
+			<textarea id ="bind"></textarea>
+			<div id="overlay"></div>
+			<div id="users">
+			</div>
+			<div id="tool-bar">
+				<input type='text' id="custom" />
+				<a id="col_button" onclick="switch_col()" class="toolbar-a"  style="color:white">
+					<i class="fa fa-comments-o"></i>
+				</a>
+			</div>
+		</div>
+		<div id="chat">
+			<div id="chat_inner">
+				
+			</div>
+			<div id="chat_sep"></div>
+			<textarea id="chat_text" placeholder="Press enter to send"></textarea>
+		</div>
+		</div>
+		
+
+		<!=================
+		==
+		== MODALS
+		==
+		==
+		===================-->
+		
+		<!--div class="modal fade" id="tempModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" id="temp-dialog">
+				<div class="modal-content">
+					
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">TEMPLATES</h4>
+					</div>
+					
+					<div class="modal-body">
+					    <input type="text" class="form-control" id="temp-input" placeholder="Search here...">
+						<div id="temp-holder">
+
+
+								<div class="media" temp-title="Basic" temp-desc="The base html template" temp-tag="html">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/basic.png">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">Basic</h4>
+								    The base html template
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-basic.html')" class="btn btn-primary">Use this</button>
+								    
+								     <div class="tags">
+								    	<span class="label label-default">html</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+								<div class="media" temp-title="Flat UI" temp-desc="Flat boostrap theme" temp-tag="html;bootstrap">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/flat.png">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">Flat UI</h4>
+								    Flat boostrap theme
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-flat.html')" class="btn btn-primary">Use this</button>
+								    
+								    <div class="tags">
+								    	<span class="label label-default">html</span>
+								    	<span class="label label-default">bootstrap</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+								<div class="media" temp-title="Bootstrap" temp-desc="A frontend framework created by Twitter" temp-tag="html;bootstrap">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/bootstrap.png">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">Bootstrap</h4>
+								    A frontend framework created by Twitter
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-bootstrap.html')" class="btn btn-primary">Use this</button>
+								    
+								    <div class="tags">
+								    	<span class="label label-default">html</span>
+								    	<span class="label label-default">bootstrap</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+								<div class="media" temp-title="JQuery" temp-desc="Manipulate DOm elements with ease" temp-tag="html">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/jquery.jpg">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">JQuery</h4>
+								    Manipulate DOM elements with ease
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-basic.jquery')" class="btn btn-primary">Use this</button>
+								    
+								    <div class="tags">
+								    	<span class="label label-default">html</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+								<div class="media" temp-title="CodeMirror" temp-desc="Javascript-based code editor" temp-tag="html;code">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/codemirror.png">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">CodeMirror</h4>
+								    Javascript-based code editor
+								    
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-codemirror.html')" class="btn btn-primary">Use this</button>
+								    
+								    <div class="tags">
+								    	<span class="label label-default">html</span>
+								    	<span class="label label-default">code</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+								<div class="media" temp-title="Ace" temp-desc="In-browser code editor" temp-tag="html;code">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/ace.png">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">Ace</h4>
+								    In-browser code editor
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-ace.html')" class="btn btn-primary">Use this</button>
+								    
+								    <div class="tags">
+								    	<span class="label label-default">html</span>
+								    	<span class="label label-default">code</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+								<div class="media" temp-title="TogetherJS" temp-desc="Add collaboration to your project" temp-tag="html;collaborate">
+								  <a class="pull-left">
+								    <img class="media-object" src="templates/together.png">
+								  </a>
+								  <div class="media-body">
+								    <h4 class="media-heading">TogetherJS</h4>
+								    Add collaboration to your project
+								    <button onclick="set_t('https://codeyourcloud.com/templates/html-together.html')" class="btn btn-primary">Use this</button>
+								    
+								    <div class="tags">
+								    	<span class="label label-default">html</span>
+								    	<span class="label label-default">collaborate</span>
+								    </div>
+								    
+								  </div>
+								</div>
+								
+						</div>
+					</div>
+				</div>
+			</div>
+		</div-->
+		
+		
+
+		
+		<script src="lib/codemirror/lib/codemirror.js"></script>
+		<link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
+		
+		<script src = 'lib/codemirror/mode/css/css.js'></script>
+		<script src = "lib/codemirror/mode/mode.js"></script>
+		<script src = "lib/codemirror/mode/swift.js"></script>
+		
+		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/theme.css'>
+		
+		<link rel="stylesheet" href="lib/codemirror/addon/dialog/dialog.css" >
+		<link rel="stylesheet" href="lib/codemirror/addon/hint/show-hint.css" >
+		<link rel="stylesheet" href="lib/codemirror/addon/tern/tern.css" >
+		<script src="lib/codemirror/addon/comment/comment.js" ></script>
+		
+		<script src="lib/codemirror/addon/dialog/dialog.js" ></script>
+		<script src="lib/codemirror/addon/hint/show-hint.js" ></script>
+		<script src="lib/codemirror/addon/tern/tern.js" ></script>
+		<script src="lib/codemirror/addon/hint/hint.js"></script>
+		<script src="lib/codemirror/addon/hint/show-hint.js"></script>
+		<script src="lib/codemirror/addon/hint/html-hint.js"></script>
+		<script src="lib/codemirror/addon/hint/python-hint.js"></script>
+		<script src="lib/codemirror/addon/hint/sql-hint.js"></script>
+		<script src="lib/codemirror/addon/hint/xml-hint.js"></script>
+		
+		<script src="lib/codemirror/addon/search/search.all.js" ></script>	
+		<script src="lib/codemirror/addon/edit/edit.min.js"></script>
+		
+		<script src="lib/codemirror/addon/lint/lint.js"></script>
+		<script src="lib/codemirror/addon/lint/coffeescript-lint.js"></script>
+		<script src="lib/codemirror/addon/lint/css-lint.js"></script>
+		<script src="lib/codemirror/addon/lint/javascript-lint.js"></script>
+		<script src="lib/codemirror/addon/lint/json-lint.js"></script>
+		<link rel='stylesheet' type='text/css' href='lib/codemirror/addon/lint/lint.css'>
+		
+		
+		<script src="lib/auto/acorn.js"></script>
+		<script src="lib/auto/acorn_loose.js"></script>
+		<script src="lib/auto/walk.js"></script>
+		<script src="lib/auto/polyfill.js"></script>
+		<script src="lib/auto/signal.js"></script>
+		<script src="lib/auto/tern.js"></script>
+		<script src="lib/auto/def.js"></script>
+		<script src="lib/auto/comment.js"></script>
+		<script src="lib/auto/infer.js"></script>
+		<script src="lib/auto/doc_comment.js"></script>
+		
+		<script src="about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
+    	<script src="about/flat/js/jquery.ui.touch-punch.min.js"></script>
+    	<script src="about/flat/js/bootstrap.min.js"></script>
+    	<script src="about/flat/js/bootstrap-select.js"></script>
+    	<script src="about/flat/js/bootstrap-switch.js"></script>
+    	<script src="about/flat/js/flatui-checkbox.js"></script>
+    	<script src="about/flat/js/flatui-radio.js"></script>
+    	<script src="about/flat/js/jquery.tagsinput.js"></script>
+    	<script src="about/flat/js/jquery.placeholder.js"></script>
+    	<script src="about/flat/js/application.js"></script>
+      
+      
+      	<script src="lib/big-text/big-text.js"></script>
+      	<script src="lib/offline/offline.min.js"></script>
+      	<script src="https://cdn.jsdelivr.net/jquery.velocity/0.1.0/jquery.velocity.min.js"></script>
+      	
+		<script src="scripts/global.js"></script>
+		<script src="scripts/realtime.js"></script>
+		<script src="scripts/frontend.js"></script>
+		<script src="scripts/drive.js"></script>
+		<script src="scripts/visual.js"></script>
+		<script src="scripts/picker.js"></script>
+		<script src="scripts/features.js"></script>
+		
+		<script src="scripts/custom.js"></script>
+		
+		<script src = 'lib/keyboard/jwerty.js'></script>
+		<script>
+			jwerty.key('ctrl+o/cmd+o', function() {
+				return false;
+			});
+			jwerty.key('ctrl+s/cmd+s', function() {
+				save();
+				return false;
+			});
+			jwerty.key('ctrl+space/cmd+space',function(){
+				getHint();
+				return false;
+			});
+		</script>
+		<link rel="stylesheet" href="scripts/style.css">
+		<link rel="stylesheet" href="scripts/custom.css">
+		
+		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=loadDrive"></script>
+
+	</body>
+</html>

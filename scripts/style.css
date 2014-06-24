@@ -64,8 +64,8 @@
 }
 #chat_sep{
 	width:100%;
-	height:5%;
-	background-color:#34495E;
+	height:1%;
+	background-color:#2980B9;
 }
 #chat_text{
 	width:100%;
@@ -198,72 +198,29 @@ PREFERENCES
 .text-center{
 	text-align: center;
 }
-/*=====================
-TITLE
-======================*/
-#title{
-    border-radius: 7px;
-    padding: 10px;
-    margin-left: 5px;
-    margin-top: 5px;
-    background-color: #2C3E50;
-}
-#title:hover{
-	color:#BDC3C7;
-}
-/*===================
-RENAME
-====================*/
-#rename_input{
-	border-radius:0;
-}
-#rename_ok{
-	border-radius: 0;
-}
-#rename_no{
-	border-radius: 0;
-}
-/*============
-CLOCK
-============*/
-#clock{
-	width:300px;
-	margin-left: calc(50% - 150px);
-}
-#reload_button{
-	width:60%;
-	margin-left:20%;
-}
 /*============
 MODES
 ==============*/
-#search-ul{
-	
-}
-#search-li{
-	background-color:#BDC3C7;
-}
 #mode-ul{
-	margin-top:-21px;
-	height: 500px;
-	overflow-y: auto;
+	height: calc(100% - 53px);
+	overflow-y: scroll;
+	width: 100%;
+	position: absolute;
 }
 #mode-ul>li{
 	border-radius: 0;
-	background-color: #ECF0F1;
-	border: 1px solid #95A5A6;
 }
 /*==========
 THEMES
 ==========*/
 #theme-ul{
-	height: 500px;
-	overflow-y: auto;
+	height: calc(100% - 53px);
+	overflow-y: scroll;
+	width: 100%;
+	position: absolute;
 }
 #theme-ul>li{
 	border-radius: 0;
-	background-color: #ECF0F1;
-	border: 1px solid #95A5A6;
 }
 /*===========
 OPTIONS
@@ -276,9 +233,6 @@ OPTIONS
 }
 .form-group{
 	padding-bottom:5px;
-}
-#spinner{
-	float: right;
 }
 #save_addon{
 	float: left;
@@ -747,7 +701,6 @@ TOOLBAR
 	background-color: #34495e;
 	text-align: center;
 	padding-top: 10px;
-	border-top: solid thin #1d2732;
 }
 
 .no-hover{
@@ -769,7 +722,6 @@ TOOLBAR
 #col_button{
 	width: 53px;
 	display: inline-block;
-	background-color: #34495e;
 	position: relative;
 	overflow:hidden;
 }
