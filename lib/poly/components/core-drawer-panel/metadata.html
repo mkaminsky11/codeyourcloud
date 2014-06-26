@@ -1,0 +1,42 @@
+<x-meta id="core-panel" label="Polymer Core Panel" isContainer group="Polymer Core">
+
+  <template>
+
+    <core-panel style="width: 200px; height: 300px;"></core-panel>
+
+  </template>
+
+</x-meta>
+
+<polymer-element name="core-panel">
+
+  <script>
+  
+    Polymer('core-panel', {
+      ready: function() {
+        this.style.display = 'block';
+      }
+    });
+    
+  </script>
+  
+</polymer-element>
+
+<x-meta id="core-drawer-panel" label="Polymer Core Drawer Panel" isContainer group="Polymer Core">
+
+  <template>
+
+    <core-drawer-panel style="position: absolute; top: 0; right: 0; bottom: 0; left: 0;">
+      <core-panel drawer style="background-color: #fafafa; box-shadow: rgba(0, 0, 0, 0.098) 0px 2px 4px, rgba(0, 0, 0, 0.098) 0px 0px 3px;"></core-panel>
+      <core-panel main style="height: 100%; box-sizing: border-box; background-color: #ddd"></core-panel>
+    </core-drawer-panel>
+
+  </template>
+
+  <template id="imports">
+
+    <link rel="import" href="core-drawer-panel.html">
+
+  </template>
+
+</x-meta>

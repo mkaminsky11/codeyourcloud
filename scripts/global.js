@@ -118,6 +118,7 @@ var modes = [
 ];
 
 var themes = [
+	"Code Your Cloud",
 	"3024 Day",
 	"3024 Night",
 	"Ambiance Mobile",
@@ -150,7 +151,7 @@ var themes = [
 	"Neo"
 ];
 
-var themes_name = ["3024-day", "3024-night", "ambiance-mobile", "ambiance", "base16-light", "base16-dark", "blackboard", "cobalt", "eclipse", "elegant", "erlang-dark", "lesser-dark", "mbo", "mdn-like", "midnight", "monokai", "neat", "night", "paraiso-dark", "paraiso-light", "pastel-on-dark", "rubyblue", "solarized", "the-matrix", "tomorrow-night-eighties", "twilight", "vibrant-ink", "xq-light", "xq-dark", "neo"];
+var themes_name = ["code-your-cloud","3024-day", "3024-night", "ambiance-mobile", "ambiance", "base16-light", "base16-dark", "blackboard", "cobalt", "eclipse", "elegant", "erlang-dark", "lesser-dark", "mbo", "mdn-like", "midnight", "monokai", "neat", "night", "paraiso-dark", "paraiso-light", "pastel-on-dark", "rubyblue", "solarized", "the-matrix", "tomorrow-night-eighties", "twilight", "vibrant-ink", "xq-light", "xq-dark", "neo"];
 
 var is_mobile = false;
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -160,6 +161,17 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 if(is_mobile){
 	$(".side-modal-chat").html($("#chat").html());
 	$("#chat").remove();
+	$("nav a").each(function(index){
+		if(index !== 0){
+			$(this).css("padding-left","10px");
+		}
+	});
+	$(".navbar-right").removeClass("navbar-right");
+	$(".n-l").css("float","left");
+	$(".n-r").css("float","right");
+	$(".n-r").css("margin-right","10px");
+	$("#branding").remove();
+	
 }
 var side_open = false;
 
@@ -266,3 +278,5 @@ var rec = false;
 var bottom_open = false;
 
 var the_console;
+
+var login_sql = 0;

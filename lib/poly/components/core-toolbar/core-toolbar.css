@@ -1,0 +1,113 @@
+/*
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+:host {
+  /* technical */
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  /* size */
+  height: 64px;
+  /* typography */
+  font-size: 1.3em;
+  /* transition */
+  transition: height 0.18s ease-in;
+}
+
+:host(.medium-tall) {
+  height: 128px;
+}
+
+:host(.tall) {
+  height: 192px;
+}
+
+.toolbar-tools {
+  height: 64px;
+  padding: 0 9px;
+}
+
+/* narrow layout */
+:host(.narrow) {
+  height: 56px;
+}
+
+:host(.narrow.medium-tall) {
+  height: 112px;
+}
+
+:host(.narrow.tall) {
+  height: 168px;
+}
+
+:host(.narrow) .toolbar-tools {
+  height: 56px;
+  padding: 0 1px;
+}
+
+/* middle bar */
+#middleBar {
+  position: absolute;
+  top: calc(100% / 3);
+  right: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* bottom bar */
+#bottomBar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* shows bottom bar only when in normal height (!tall && !medium-tall) */
+:host(.no-overlap) > #topBar, 
+:host(.no-overlap) > #middleBar {
+  transition: -webkit-transform 0.18s ease-in;
+  transition: transform 0.18s ease-in;
+}
+
+:host(.no-overlap:not(.medium-tall):not(.tall)) > #topBar {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+:host(.no-overlap:not(.medium-tall):not(.tall)) > #middleBar {
+  -webkit-transform: translateY(-200%);
+  transform: translateY(-200%);
+}
+
+polyfill-next-selector { content: ':host > #middleBar > *, :host > #bottomBar > *'; }
+::content[select=".middle"] > *, ::content[select=".bottom"] > * {
+  pointer-events: visible;
+}
+
+polyfill-next-selector { content: ':host > .toolbar-tools > *'; }
+::content > * {
+  margin: 0px 8px;
+}
+
+polyfill-next-selector { content: ':host .core-fit, :host [core-fit]'; }
+::content > .core-fit, ::content > [core-fit] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+}
+
+polyfill-next-selector { content: ':host .indent'; }
+::content > .indent {
+  margin-left: 60px;
+}

@@ -74,19 +74,19 @@ body{
     padding: 7px;
 }
 #side_inner>.side-item:hover{
-	background-color: #83AEC9;
+	/*background-color: #83AEC9;*/
 }
 #side_inner>.side-item:hover>h6{
-	color: white;
+	color: #ECF0F1;
 }
 #side_inner>.side-item:hover>a>h6{
-	color: white;
+	color: #ECF0F1;
 }
 #side_inner>.side-item:hover>h6>small{
-	color: white;
+	color: #ECF0F1;
 }
 #side_inner>.side-item:hover>a>h6>small{
-	color: white;
+	color: #ECF0F1;
 }
 #side_inner>div>h6{
 	color: #7F8C8D;
@@ -174,7 +174,7 @@ body{
 	top: 1%;
 	width: 68%;
 	position: absolute;
-	z-index: 89;
+	z-index: 99;
 	background-color: #ECF0F1;
 	right: 1%;
 }
@@ -219,7 +219,7 @@ MODAL
 	overflow-y: auto;
 }
 .side-modal-options .switch-side-wrap{
-	margin-left: calc(100% - 130px)
+	margin-left: calc(100% - 100px)
 }
 .side-modal-row{
 	width:100%;
@@ -264,7 +264,7 @@ SWITCHES
 
 
 .side-modal-options .switch-side-wrap{
-	margin-left: calc(100% - 130px)
+	margin-left: calc(100% - 100px)
 }
 
 /*=====
@@ -374,4 +374,29 @@ body{
 	padding: 10px;
 	border-radius: 26px;
 	font-size: 12px;
+}
+.nudge{
+	margin-top: 7px;
+}
+
+.side_header, .side-item{
+	z-index: 98;
+}
+.mover{
+	width: 100%;
+	height:53px;
+	background-color:#83AEC9;
+	top: 169px;
+	z-index: -10;
+	position: absolute;
+	display: none; 
+}
+
+@font-face{
+	font-family: 'Lobster';
+	src: url('../about/flat/fonts/Lobster.woff') format('woff'), url('../about/flat/fonts/Lobster.ttf') format('truetype');
+	font-weight: 400;
+}
+#branding{
+	font-family: 'Lobster';
 }

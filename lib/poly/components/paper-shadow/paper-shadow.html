@@ -1,0 +1,184 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+The `paper-shadow` element is a helper to add shadows to elements.
+Quantum paper shadows are composed of two shadows on top of each other. We
+mimic this effect by using two elements on top of each other, each with a
+different drop shadow. You can either apply the shadow by assigning a target
+to this element, or by applying the classes directly.
+
+Example:
+
+    <div id="myCard" class="card"></div>
+    <paper-shadow id="myShadow" z="1"></div>
+
+    // Assign a target
+    myShadow.target = document.getElementById('myCard');
+
+    // Use the class directly
+    <div class="card paper-shadow-top paper-shadow-top-z-1">
+      <div class="card-inner paper-shadow-bottom paper-shadow-bottom-z-1"></div>
+    </div>
+
+If you assign a target to a `paper-shadow` element, it creates a node and inserts
+it as the first child of the target, or the first child of the target's shadow root
+if there is one. This node renders the bottom shadow. This implies:
+
+  1. If the primary node that drops the shadow has styling that affects its shape,
+     the same styling must be applied to elements with class `paper-shadow-bottom`.
+     `border-radius` is a very common property and is inherited automatically.
+
+  2. The target must be `overflow: visible` because the bottom shadow is rendered
+     beyond the bounds of its parent. Use a different child element for clipping
+     if needed.
+
+@group Quantum Paper Elements
+@class paper-shadow
+-->
+
+<link href="../polymer/polymer.html" rel="import">
+
+<polymer-element name="paper-shadow">
+
+  <template>
+
+    <link no-shim href="paper-shadow.css" rel="stylesheet">
+
+  </template>
+
+  <script>
+    Polymer('paper-shadow', {
+
+      publish: {
+        /**
+         * If set, the shadow is applied to this node.
+         *
+         * @attribute target
+         * @type Element
+         * @default null
+         */
+        target: {value: null, reflect: true},
+
+        /**
+         * The z-depth of this shadow, from 0-5.
+         *
+         * @attribute z
+         * @type number
+         * @default 1
+         */
+        z: {value: 1, reflect: true},
+
+        /**
+         * If true, the shadow animates between z-depth changes.
+         *
+         * @attribute animated
+         * @type boolean
+         * @default false
+         */
+        animated: {value: false, reflect: true},
+
+        /**
+         * Workaround: getComputedStyle is wrong sometimes so `paper-shadow`
+         * may overwrite the `position` CSS property. Set this property to
+         * true to prevent this.
+         *
+         * @attribute hasPosition
+         * @type boolean
+         * @default false
+         */
+        hasPosition: {value: false}
+      },
+
+      // NOTE: include template so that styles are loaded, but remove
+      // so that we can decide dynamically what part to include
+      registerCallback: function(polymerElement) {
+        var template = polymerElement.querySelector('template');
+        this._style = template.content.querySelector('style');
+        this._style.removeAttribute('no-shim');
+      },
+
+      fetchTemplate: function() {
+        return null;
+      },
+
+      attached: function() {
+        this.installScopeStyle(this._style);
+      },
+
+      targetChanged: function(old) {
+        if (old) {
+          this.removeShadow(old);
+        }
+        if (this.target) {
+          this.addShadow(this.target);
+        }
+      },
+
+      zChanged: function(old) {
+        if (this.target && this.target._paperShadowInner) {
+          this.target.classList.remove('paper-shadow-top-z-' + old);
+          this.target.classList.add('paper-shadow-top-z-' + this.z);
+          this.target._paperShadowInner.classList.remove('paper-shadow-bottom-z-' + old);
+          this.target._paperShadowInner.classList.add('paper-shadow-bottom-z-' + this.z);
+        }
+      },
+
+      animatedChanged: function() {
+        if (this.target) {
+          if (this.animated) {
+            this.target.classList.add('paper-shadow-animated');
+          } else {
+            this.target.classList.remove('paper-shadow-animated');
+          }
+        }
+      },
+
+      addShadow: function(node) {
+        if (node._paperShadowInner) {
+          return;
+        }
+
+        var computed = getComputedStyle(node);
+        if (!this.hasPosition && computed.position === 'static') {
+          node.style.position = 'relative';
+        }
+
+        node.classList.add('paper-shadow-top');
+        node.classList.add('paper-shadow-top-z-' + this.z);
+
+        var inner = node._paperShadowInner || document.createElement('div');
+        inner.classList.add('paper-shadow-bottom');
+        inner.classList.add('paper-shadow-bottom-z-' + this.z);
+        if (node.shadowRoot) {
+          node.shadowRoot.insertBefore(inner, node.shadowRoot.firstChild);
+        } else {
+          node.insertBefore(inner, node.firstChild);
+        }
+        node._paperShadowInner = inner;
+      },
+
+      removeShadow: function(node) {
+        if (!node._paperShadowInner) {
+          return;
+        }
+
+        node._paperShadowInner.remove();
+        node._paperShadowInner = null;
+
+        node.classList.remove('paper-shadow-top');
+        for (var z = 1; z <= 5; z++) {
+          node.classList.remove('paper-shadow-top-z-' + z);
+        }
+        node.style.position = null;
+      }
+
+    });
+  </script>
+</polymer-element>

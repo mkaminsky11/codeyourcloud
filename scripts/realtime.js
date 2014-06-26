@@ -2,7 +2,7 @@
 editor = CodeMirror.fromTextArea(document.getElementById("bind"),{
     lineNumbers: true,
     mode: "text",
-    theme: "neo",
+    theme: "code-your-cloud",
     lineWrapping: true, 
     indentUnit: 4, 
     indentWithTabs: true
@@ -25,10 +25,10 @@ function handleAuth(authResult){
 	if (!authResult.error) {
 		logged_in = true;
 		loadClient();
-		console.log("logged in");
+		console.log("%cThe user is logged in","color:#34495E; font-size: 12px; font-weight: bold");
 	} 
 	else {
-		console.log("not logged in");
+		console.log("%cThe user is not logged in", "color:#34495E; font-size: 12px; font-weight: bold");
 		window.location = "https://codeyourcloud.com/about";
 	}
 }
@@ -82,7 +82,6 @@ function load_real(){
 	}
 }
 function init(){
-	console.log("init");
 	gapi.drive.realtime.load(current, loaded_realtime, init_realtime, errorFn);
 }
 /*===========
@@ -128,7 +127,6 @@ var userLeft = function(doc){
 	
 	
 	if(!doc.collaborator.isMe){
-		console.log("left");
 		var the_id = doc.collaborator.sessionId;
 		
 		removeUser(the_id);
@@ -137,7 +135,6 @@ var userLeft = function(doc){
 
 var userJoin = function(doc){
 	try{
-		console.log("join");
 		
 		var col = doc.collaborator;
 		if(!col.isMe){
@@ -148,7 +145,6 @@ var userJoin = function(doc){
 				$(this).css("height","53px");
 			}
 		});
-		console.log("join end");
 	}
 	catch(e){
 	}
@@ -171,7 +167,6 @@ var newChat = function(event){
 		}
 	}
 	catch(e){
-		console.log("error chat");
 	}
 };
 /*===========
@@ -187,7 +182,6 @@ function loaded_realtime(doc){
 	if(typeof doc !== 'undefined'){
 		if(!init_needed || (init_needed && init_loaded)){
 			editor.setValue(doc_real.getModel().getRoot().get("text").getText());
-			console.log("load");
 			
 			text = doc.getModel().getRoot().get("text");
 			text.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, onChange);
@@ -336,7 +330,6 @@ function welcome(){
 	$(".side-file").addClass("hide");
 	
 	
-	console.log("welcome");
 	
 	
 	$("#col_button").remove();
@@ -365,7 +358,6 @@ CURSOR
 
 function init_realtime(model){
 	init_needed = true;
-	console.log("init3");
 	getContentOfFile(current, model);
 }
 function errorFn(error){
@@ -373,7 +365,6 @@ function errorFn(error){
 	if(error.Fe.toLowerCase() === "not found"){
 		document.location.href = "https://codeyourcloud.com/error/fileNotFound";
 	}
-	console.log("error");
 	was_error = true;
 	main_error();
 }
@@ -505,7 +496,7 @@ function save(){
 }
 function changesSaved(){
 	were_changes = false;
-	console.log("changes saved");
+	console.log("%cChanges saved","color:#2ECC71; font-size: 12px;");
 	$("#save_button").css("color","white");
 }
 

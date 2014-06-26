@@ -69,13 +69,11 @@ COMMENTS
 *********/
 var connection = new WebSocket('wss://codeyourcloud.com:8080');
 connection.onopen = function () {
-	console.log("open");
 };
 connection.onmessage = function (message) {
 	try {
 		var json = JSON.parse(message.data);
 		if(json.type === "ok"){
-			console.log(json.message);
 		}
 	}
 	catch(e){}

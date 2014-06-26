@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+
 	    <meta charset="utf-8">
 	    
 	    <script>
@@ -41,8 +42,6 @@
 		<link rel="stylesheet" href="lib/messenger/build/css/messenger-theme-flat.css"/>
 		
 		<!--Other-->
-		<link rel="stylesheet" href="lib/switchery/dist/switchery.min.css" />
-		<script src="lib/switchery/dist/switchery.min.js"></script>
 		<script src="lib/loremjs/lorem.js"></script>
 		<link rel="stylesheet" href="lib/slider/files/slider.css">
 		<script src="lib/slider/files/slider.js"></script>
@@ -50,115 +49,369 @@
 		<link rel="stylesheet" href="lib/offline/themes/offline-theme-dark.css">
 		
 		
-		<link rel="stylesheet" href="realtime/style.css">
+		<link rel="stylesheet" href="scripts/style.css">
+		<link rel="stylesheet" href="scripts/custom.css">
+		
+		<!--sentry-->
+		
 	</head>
 	<body>
 	
-		<nav id="nav" class="navbar navbar-inverse navbar-embossed nav-1" role="navigation">
+	
+	
+	
+		<div id="side" class="hide">
+			<div class="mover"></div>
+			<div id="side_header">
+				<h6><i onclick="close_side()" class="fa fa-times close-a float-right"></i></h6>
+			</div>
+			<div id="side_inner">
+				<div class="side-head">
+						<h6><a id="title">Code Your Cloud</a>
+							<button class="btn btn-info" id="rename-toggle" onclick="toggle_side_rename()"><i class="fa fa-pencil"></i></button>
+						</h6>
+				</div>
+				
+				<div id="rename-div" style="padding:0">
+					<div class="input-group">
+						<input type="text" class="form-control" id="rename_input">
+						<span class="input-group-btn btn btn-success" id="rename_ok" onclick="ok_rename()"><i class="fa fa-check"></i></span>
+						<span class="input-group-btn btn btn-danger" id="rename_no" onclick="no_rename()"><i class="fa fa-ban"></i></span>
+	  				</div>
+				</div>
+				
+				<div class="side-head">
+					<h6 id="side-email"><a>email@gmail.com</a></h6>
+				</div>
+				
+				<div class="side-item">
+					<a href="https://codeyourcloud.com/about" target="_blank">
+						<h6>
+							<small><i class="fa fa-cube"></i></small> ABOUT
+						</h6>
+					</a>
+				</div>
+				
+				<hr/>
+				
+				<div onclick="show_side_open()" class="side-item">
+					<h6>
+						<small><i class="fa fa-folder" style="color:#2ECC71"></i></small> OPEN
+					</h6>
+				</div>
+				
+				<div class="side-file side-item" onclick="save()">
+					<h6>
+						<small><i class="fa fa-save" style="color:#E74C3C"></i></small> SAVE
+					</h6>
+				</div>
+				
+				<div onclick="new_file()" class="side-item">
+					<h6>
+						<small><i class="fa fa-file" style="color:#F39C12"></i></small> NEW
+					</h6>
+				</div>
+				<!--end main-->
+				
+				<hr/>
+				
+				<div onclick="download_file()" class="side-item side-file">
+					<h6>
+						<small><i class="fa fa-cloud-download"></i></small> DOWNLOAD
+					</h6>
+				</div>
+				
+				<div onclick="show_side_upload()" class="side-item">
+					<h6>
+						<small><i class="fa fa-cloud-upload"></i></small> UPLOAD
+					</h6>
+				</div>
+				
+				<div class="side-file side-item" onclick="show_side_share()">
+					<h6>
+						<small><i class="fa fa-users"></i></small> SHARE
+					</h6>
+				</div>
+				
+				<div class="side-file side-item" onclick="switch_col()">
+					<h6>
+						<small><i class="fa fa-comment"></i></small> CHAT
+					</h6>
+				</div>
+				
+				<!--end "file"-->
+				
+				<hr/>
+				
+				<div class="side-item" onclick="move_left()">
+					<h6>
+						<small><i class="fa fa-outdent"></i></small> MOVE LEFT
+					</h6>
+				</div>
+				
+				<div class="side-item" onclick="move_right()">
+					<h6>
+						<small><i class="fa fa-indent"></i></small> MOVE RIGHT
+					</h6>
+				</div>
+				
+				<div class="side-item" onlick="replace()">
+					<h6>
+						<small><i class="fa fa-search"></i></small> REPLACE
+					</h6>
+				</div>
+
+				
+				<!--end "edit"-->
+				
+				<hr/>
+				
+				<div class="side-item" onclick="show_side_terminal()">
+					<h6>
+						<small><i class="fa fa-terminal"></i></small> TERMINAL
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<div class="side-item" onclick="show_side_random()">
+					<h6>
+						<small><i class="fa fa-font"></i></small> LOREM
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<div class="side-item" onclick="show_side_preview()">
+					<h6>
+						<small><i class="fa fa-eye"></i></small> PREVIEW
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<div class="side-item" onclick="show_side_notepad()">
+					<h6>
+						<small><i class="fa fa-file-text"></i></small> NOTEPAD
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<!--div class="side-item">
+					<h6>
+						<small><i class="fa fa-cube"></i></small> TEMPLATES
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div-->
+				
+				<!--end "tools"-->
+				
+				<hr class="side-run hide">
+				
+				<div class="side-item side-run hide" onclick="run()">
+					<h6>
+						<small><i class="fa fa-play"></i></small> RUN
+					</h6>
+				</div>
+				
+				<div class="side-item side-run hide" onclick="show_side_console()">
+					<h6>
+						<small><i class="fa fa-code"></i></small> SHOW CONSOLE
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<div class="side-item side-run hide" onclick="clear_console()">
+					<h6>
+						<small><i class="fa fa-times-circle-o"></i></small> CLEAR CONSOLE
+					</h6>
+				</div>
+				
+				<!--end "run"-->
+				<hr class="side-pub hide">
+				
+				<div class="side-pub side-item hide" onclick="publish_html()">
+					<h6>
+						<small><i class="fa fa-globe"></i></small> PUBLISH
+					</h6>
+				</div>
+				
+				<div class="side-pub side-item hide">
+					<a id="side-pub-link" href="" target="_blank">
+						<h6>
+							<small><i class="fa fa-arrow-up"></i></small> GO TO SITE
+						</h6>
+					</a>
+				</div>
+				
+				<!--end "publish"-->
+				
+				<hr/>
+				
+				<!---->
+				
+				<div class="side-item" onclick="show_side_modes()">
+					<h6>
+						<small style="color:#E67E22"><i class="fa fa-file-code-o"></i></small> LANGUAGES
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+
+				<div class="side-item" onclick="show_side_themes()">
+					<h6>
+						<small style="color:#F1C40F"><i class="fa fa-tint"></i></small> THEMES
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<div class="side-item" onclick="show_side_options()">
+					<h6>
+						<small style="color:#1ABC9C"><i class="fa fa-cogs"></i></small> OPTIONS
+						<span class><i class="fa fa-angle-right"></i></span>
+					</h6>
+				</div>
+				
+				<hr/>
+				
+				<div class="side-item">
+					<a href="https://accounts.google.com/logout">
+						<h6>
+							<small><i class="fa fa-sign-out"></i></small> LOG OUT
+						</h6>
+					</a>
+				</div>
+				
+				<div class="side-item">
+					<a href="https://codeyourcloud.com/help" target="_blank">
+						<h6>
+							<small><i class="fa fa-question"></i></small> HELP
+						</h6>
+					</a>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div id="detect" class="hide"></div>
+		
+		<div class="side-modal hide">
+			<div class="side-modal-head">
+  				<h6 class="side-modal-title">MODAL TITLE</h6>
+				<h6 class="close side-modal-close" onclick="hide_side_modal()"><i class="fa fa-times"></i></h6>
+				
+				<div class="side-modal-content">
+				
+					<div class="side-modal-options hide">
+						<div class="side-modal-row">
+							<h6 class="side-modal-row-label">Line Numbers</h6>
+							<a class="side-switch" id="side-nums" data-icon="list-ol" data-state="on" data-onclick="line_number_switch()" on-color="" off-color=""></a>
+						</div>
+						
+						<div class="side-modal-row">
+							<h6 class="side-modal-row-label">Line Wrap</h6>
+							<a class="side-switch" id="side-wrap" data-icon="align-center" data-state="off" data-onclick="line_wrap_switch()" on-color="" off-color=""></a>
+						</div>
+						
+						<div class="side-modal-row">
+							<h6 class="side-modal-row-label">Font Size</h6>
+							
+							<div class="input-group modal-font-group">
+						      <input type="text" class="form-control" id="spinner-font" placeholder="" value="12">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button" onclick="fontUp()">+</button>
+						      </span>
+						<span class="input-group-btn">
+						        <button class="btn btn-default" type="button" onclick="fontDown()">-</button>
+						      </span>
+						    </div>
+						    
+						</div>
+						
+						<div class="side-modal-row side-file">
+							<h6 class="side-modal-row-label">Clear Chat History</h6>
+							
+							<a style="float:right;margin-right:10px" class="btn btn-danger" onclick="clear_chat_history()"><i class="fa fa-trash-o"></i></a>
+							<br><br>
+							<small class="side-note">Note: this will take effect once you refresh this page</small>
+						</div>
+					</div>
+					
+					<div class="side-modal-themes hide">
+						<input class="form-control modal-input" id="theme_input" placeholder="Search for themes...">
+						<ul id="theme-ul" class="list-group">
+						</ul>
+					</div>
+					
+					<div class="side-modal-modes hide">
+						<input class="form-control modal-input" id="mode_input" placeholder="Search for languages...">
+						<ul id="mode-ul" class="list-group">
+						</ul>
+					</div>
+					
+					<div class="side-modal-chat hide">
+						
+					</div>
+					
+					<div class="side-modal-console hide">
+						<div id="con"></div>
+					</div>
+					
+					<div class="side-modal-notepad hide">
+						<div id="note_pad"></div>
+					</div>
+					
+					<div class="side-modal-terminal hide">
+						<iframe id="terminal-iframe" src="https://codeyourcloud.com/lib/repl"></iframe>
+					</div>
+					
+					
+					<div class="side-modal-random hide">
+						
+						
+						<div class="input-group">
+	      					<div class="input-group-btn">
+		      					<button  onclick="generate()" type="button" class="btn btn-default">Generate</button>
+		        				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+		        				<ul class="dropdown-menu">
+		          					<li onclick="lorem_w()"><a>Words</a></li>
+		          					<li onclick="lorem_s()"><a>Sentences</a></li>
+		          					<li onclick="lorem_p()"><a>Paragraphs</a></li>
+		        				</ul>
+	      					</div>
+	      					<input type="text" class="form-control" id="lorem_input" value="6">
+	  					</div>
+    				
+	  					<div id="lorem" data-lorem="6s" class="well"></div>
+						
+						
+					</div>
+
+				</div>
+				
+				<div class="side-modal-preview hide">
+					<iframe id="preview"></iframe>
+				</div>
+  			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		<nav id="nav" class="navbar navbar-inverse nav-1" role="navigation">
       		<div class="navbar-header">
-        	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-        	    <span class="sr-only">Toggle navigation</span>
-        	  </button>
         	  	
     		</div>
-        	<div class="collapse navbar-collapse" id="navbar-collapse-01">
-        	  <ul class="nav navbar-nav">      
-        	  	<li class="flip-container" ontouchstart="this.classList.toggle('hover');">
-					 <a href="https://codeyourcloud.com/about" target="_blank" class="flipper">
-						<div class="front">
-							<!-- front content -->
-						</div>
-						<div class="back">
-							<!-- back content -->
-						</div>
-					
-					</a>
-				</li>   
-				<li><a id="title" onclick="show_rename()">Code Your Cloud</a></li>  
-				
-				<li class="dropdown">
-					<a href="" class="dropdown-toggle" data-toggle="dropdown">File</a>
-					<span class="dropdown-arrow"></span>
-					<ul class="dropdown-menu">
-						<li onclick="open_picker()"><a class="menu-a-offset">Open</a></li>
-						<li onclick="new_file()"><a class="menu-a-offset">New</a></li>
-						<li id="save_li" onclick="save()"><a class="menu-a-offset">Save</a></li>
-						<li id="share_li" onclick="show_share()"><a><i class="fa fa-users menu-i-offset"></i> Share</a></li>
-						<li onclick="download_file()"><a><i class="fa fa-cloud-download menu-i-offset"></i> Download</a></li>
-						<li onclick="upload_picker()"><a><i class="fa fa-cloud-upload menu-i-offset"></i>Upload</a></li>
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="" class="dropdown-toggle" data-toggle="dropdown">Edit</a>
-					<span class="dropdown-arrow"></span>
-					<ul class="dropdown-menu">
-						<li onclick="editor_undo()"><a><i class="fa fa-undo menu-i-offset"></i> Undo</a></li>
-						<li onclick="editor_redo()"><a><i class="fa fa-repeat menu-i-offset"></i> Redo</a></li>
-						<li onclick="move_left()"><a><i class="fa fa-outdent menu-i-offset"></i> Move left</a></li>
-						<li onclick="move_right()"><a><i class="fa fa-indent menu-i-offset"></i>Move right</a></li>
-						<li onclick="getHint()" id="auto_button"><a class="menu-a-offset">Autocomplete</a></li>
-					</ul>
-				</li>
-				
-				<li class="dropdown html-elem" id="dropdown-publish">
-					<a href="" class="dropdown-toggle" data-toggle="dropdown">Publish</a>
-					<span class="dropdown-arrow"></span>
-					<ul class="dropdown-menu">
-						<li onclick="publish_html()"><a>Publish to site</a></li>
-						<li><a id="pub_link" href="" target="_blank">Go to site</a></li>
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="" class="dropdown-toggle" data-toggle="dropdown">Tools</a>
-					<span class="dropdown-arrow"></span>
-					<ul class="dropdown-menu">
-						<li onclick="show_terminal()"><a class="menu-a-offset">Terminal</a></li>
-						<li onclick="show_lorem()"><a class="menu-a-offset">Lorem</a></li>
-						<li onclick="showPreview()"><a><i class="fa fa-eye menu-i-offset"></i> Preview</a></li>
-						<li onclick="show_notepad()"><a><i class="fa fa-file-text-o menu-i-offset"></i> Notepad</a></li>
-						<li onclick="show_temp()"><a class="menu-a-offset">Templates</a></li>
-					</ul>
-				</li>
-				
-				<li class="dropdown run-elem" id="dropdown-run">
-					<a href="" class="dropdown-toggle" data-toggle="dropdown">Run</a>
-					<span class="dropdown-arrow"></span>
-					<ul class="dropdown-menu">
-						<li onclick="show_console()"><a class="menu-a-offset">Show console</a></li>
-						<li onclick="run()"><a><i class="fa fa-play menu-i-offset"></i> Run</a></li>
-						<li onclick="clear_console()"><a class="menu-a-offset">Clear console</a></li>
-					</ul>
-				</li>
+        	<div class="" id="navbar-collapse-01">
+        	  <ul class="nav navbar-nav n-l">  
+        	  	<li  class="code-li" onclick="toggle_side()"><a style="color:#BDC3C7"><i class="fa fa-bars"></i></a></li>
+        	  	<li id="branding"><a style="color:white;font-size: 22px;">Code Your Cloud</a></li>
 				
         	  </ul>
-        	  <ul class="nav navbar-nav navbar-right">
-        	  	<li>
-        	  		<div class="btn-group" style="margin-top:5px;margin-right:5px">
-        	  			<a class="btn btn-primary" id="open_button" onclick="open_picker()"><i class="fa fa-folder-open-o"></i></a>
-        	  			<a class="btn btn-success" id="save_button" onclick="save()"><i class="fa fa-floppy-o"></i></a>
-        	  			<a class="btn btn-primary" id="undo_button" onclick="editor_undo()"><i class="fa fa-undo"></i></a>
-        	  			<a class="btn btn-primary" id="redo_button" onclick="editor_redo()"><i class="fa fa-repeat"></i></a>
-        	  		</div>
-        	  	</li>
-        	  	<li class="dropdown" onclick="find()">
-					<a href="" class="dropdown-toggle" data-toggle="dropdown" id="dropdown-toggle-code"><i class="fa fa-search"></i></a>
-					<span class="dropdown-arrow"></span>
-					<ul class="dropdown-menu">
-						<li onclick="find()" id="find_button"><a>Find</a></li>
-						<li onclick="replace()" id="replace_button"><a>Replace</a></li>
-					</ul>
-				</li>
-        	  	<li class="dropdown">
-				  	<a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i></a>
-				  	<span class="dropdown-arrow"></span>
-				  	<ul class="dropdown-menu">
-	                	<li onclick="$('#mainModal').modal('show')" id="pref_button"><a><i class="fa fa-cog"></i> Preferences</a></li>
-						<li><a href="https://accounts.google.com/logout"><i class="fa fa-sign-out"></i> Logout from Google</a></li>
-						<li><a href="https://codeyourcloud.com/help"><i class="fa fa-question"></i> Help</a></li>
-					</ul>
-				</li>
+        	  <ul class="nav navbar-nav navbar-right n-r">
+        	  	<li class="code-li"><a id="open_button" onclick="open_picker()" style="color:white"><i class="fa fa-folder-open-o"></i></a></li>
+        	  	<li class="code-li"><a id="save_button" onclick="save()"><i class="fa fa-floppy-o"></i></a></li>
+        	  	<li class="code-li"><a id="undo_button" onclick="editor_undo()" style="color:white"><i class="fa fa-undo"></i></a></li>
+        	  	<li class="code-li"><a id="redo_button" onclick="editor_redo()" style="color:white"><i class="fa fa-repeat"></i></a></li>
+        	  	<li class="code-li" onclick="find()"><a style="color:white"><i class="fa fa-search"></i></a></li>
         	  </ul>
         	</div>
       	</nav>
@@ -169,54 +422,14 @@
 	
 	  	<!--side goes here-->
 	  	<div id = "screen">
-			<!--div>
-				<br/>
-				<h1 class="main_load"><a href="https://codeyourcloud.com/about">L<i class="fa fa-power-off"></i>ADING: GRIT, SPIT, AND JAVASCRIPT</a></h1>
-			</div>
-			<div id="in-screen">
-				<img src="images/preload/p14.gif">
-			</div-->
-			<div id="in-screen">
-				<h1 class="screen-loading">L<i class="fa fa-cube"></i>ADING<br/>CREATIVE JUICES...</h1>
-				<br/>
-				<div id="action-wrap">
-					<div id="action-cube">
-						<div id="action-front"><h6 class="cube-font"><b>CODE</b></h6></div>
-						<div id="action-back"><h6 class="cube-font cube-back"><b>DESIGN</b></h6></div>
-						<div id="action-top"><h6 class="cube-font cube-top"><b>TEST</b></h6></div>
-						<div id="action-bottom"><h6 class="cube-font cube-bottom"><b>PUBLISH</b></h6></div>
-						<div id="action-left"></div>
-						<div id="action-right"></div>
-					</div>
-				</div>
-				
-				<div id="lang-wrap">
-					<div id="lang-cube">
-						<div id="lang-front"><h6 class="cube-font cube-javascript"><b>JAVA<br/>SCRIPT</b></h6></div>
-						<div id="lang-back"><h6 class="cube-font cube-back cube-css"><b>CSS</b></h6></div>
-						<div id="lang-top"><h6 class="cube-font cube-top"><b>HTML</b></h6></div>
-						<div id="lang-bottom"><h6 class="cube-font cube-bottom"><b>SWIFT</b></h6></div>
-						<div id="lang-left"></div>
-						<div id="lang-right"></div>
-					</div>
-				</div>
-				
-				
-				<div id="adv-wrap">
-					<div id="adv-cube">
-						<div id="adv-front"><h6 class="cube-font"><b>EASILY</b></h6></div>
-						<div id="adv-back"><h6 class="cube-font cube-back"><b>TOGETHER</b></h6></div>
-						<div id="adv-top"><h6 class="cube-font cube-top"><b>QUICKLY</b></h6></div>
-						<div id="adv-bottom"><h6 class="cube-font cube-bottom"><b>EASILY</b></h6></div>
-						<div id="adv-left"></div>
-						<div id="adv-right"></div>
-					</div>
-				</div>
-				
-				<br/>
-				<h3 class="screen-logo">Code Your Cloud</h3>
-			</div>
 			
+			<img src="images/svg/load.svg">
+			<h3 style="
+    color: white;
+    text-align: center;
+">Loading Creative Juices</h3>
+
+
 		</div>
 	  	<div id="main">
 		<div id="container" class="mains">
@@ -226,11 +439,9 @@
 			</div>
 			<div id="tool-bar">
 				<input type='text' id="custom" />
-				<a id="col_button" onclick="switch_col()" class="toolbar-a">
+				<a id="col_button" onclick="switch_col()" class="code-li"  style="color:white">
 					<i class="fa fa-comments-o"></i>
-					<span class="badge" id="unread" style="display:none">0</span>
 				</a>
-				<a onclick="bottom_toggle()" class="toolbar-a"><i class="fa fa-terminal"></i></a>
 			</div>
 		</div>
 		<div id="chat">
@@ -241,48 +452,6 @@
 			<textarea id="chat_text" placeholder="Press enter to send"></textarea>
 		</div>
 		</div>
-		<div id="bottom" class="mains">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs">
-			  <li class="active"><a href="#random" data-toggle="tab">Lorem</a></li>
-			  <li><a href="#terminal" data-toggle="tab">Terminal</a></li>
-			  <li class="run-elem" onclick="the_console.refresh();"><a href="#console" data-toggle="tab">Console</a></li>
-			  <li><a href="#notepad" data-toggle="tab">Notepad</a></li>
-			  <li onclick="close_bottom()"><a href="" data-toggle="tab" id="close_tab"><i class="fa fa-times"></i></a></li>
-			</ul>
-
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<div class="tab-pane active" id="random">
-					<br/>
-			  		<div class="input-group">
-      					<div class="input-group-btn">
-      					<button  onclick="generate()" type="button" class="btn btn-default">Generate</button>
-        				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-        				<ul class="dropdown-menu">
-          					<li onclick="lorem_w()"><a>Words</a></li>
-          					<li onclick="lorem_s()"><a>Sentences</a></li>
-          					<li onclick="lorem_p()"><a>Paragraphs</a></li>
-        				</ul>
-      					</div>
-      					<input type="text" class="form-control" id="lorem_input" val="6">
-    				</div>
-    				
-					<div id="lorem" data-lorem="6s" class="well"></div>
-				</div>
-			  
-			  	<div class="tab-pane" id="terminal">
-			  		<iframe id="terminal-iframe" src="https://codeyourcloud.com/lib/repl"></iframe>
-			  	</div>
-			  
-			  	<div class="tab-pane" id="console">
-			  		<div id="con"></div>
-			  	</div>
-			  	<div class="tab-pane" id="notepad">
-			  		<div id="note_pad"></div>
-			  	</div>
-			</div>
-		</div>
 		
 
 		<!=================
@@ -291,271 +460,11 @@
 		==
 		==
 		===================-->
-		<div class="modal fade" id="mainModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-cog"></i> PREFERENCES</h4>
-					</div>
-					<div class="modal-body">
-						<ul class="list-group" id="mode_ul">
-							<li class="list-group-item text-center" onclick="showMode()"><i class="fa fa-file-code-o"></i> Language</li>
-							<li class="list-group-item text-center" onclick="showTheme()"><i class="fa fa-tint"></i> Theme</li>
-							<li class="list-group-item text-center" onclick="showOptions()"><i class="fa fa-sliders"></i> Options</li>
-							<li class="list-group-item text-center"><a style="color:#34495e" href="https://codeyourcloud.com/help" target="_blank"><i class="fa fa-question"></i> Help</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
 		
-		<div class="modal fade" id="renameModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" id="rename-dialog">
-				<div class="modal-content">
-					<div class="modal-body">
-						<div class="input-group">
-							<input type="text" class="form-control" id="rename_input">
-							<span class="input-group-btn btn btn-success" id="rename_ok" onclick="ok_rename()"><i class="fa fa-check"></i></span>
-							<span class="input-group-btn btn btn-danger" id="rename_no" onclick="no_rename()"><i class="fa fa-ban"></i></span>
-	  					</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		
-		<div class="modal fade" id="modeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" id="mode-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">LANGUAGE</h4>
-					</div>
-					
-					<div class="modal-body">
-						<ul id="search-ul" class="list-group">
-						
-							<li id="search-li" class="list-group-item">
-								<input type="text" class="form-control" id="search_input" placeholder="Search for languages...">
-							</li>
-							
-						</ul>
-						<ul id="mode-ul" class="list-group">
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="modal fade" id="themeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" id="mode-dialog">
-				<div class="modal-content">
-				
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">THEME</h4>
-					</div>
-					
-					<div class="modal-body">
-						<ul id="theme-ul" class="list-group">
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="modal fade" id="optionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" id="option-dialog">
-				<div class="modal-content">
-				
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">OPTIONS</h4>
-					</div>
-					
-					<div class="modal-body">
-						<div class="form-group">
-    						<label for="spinner">Line Numbers</label>
-    						
-							<span class="ui-spinner ui-widget ui-widget-content ui-corner-all" id="spinner">
-								<input type="text" id="spinner-font" placeholder="" value="12" class="spinner ui-spinner-input form-control" aria-valuemin="-99" aria-valuemax="99" aria-valuenow="2" autocomplete="off" role="spinbutton">
-								<a onclick="fontUp()" class="ui-spinner-button ui-spinner-up ui-corner-tr btn btn-primary" tabindex="-1">+</a>
-								<a onclick="fontDown()" class="ui-spinner-button ui-spinner-down ui-corner-br btn btn-primary" tabindex="-1">-</a>
-							</span>
-						</div>
-						
-						<div class="form-group">
-    						<label for="number_switch">Line Numbers</label>
-							<input id="number_switch" type="checkbox" class="js-switch" onchange="line_number_switch()" checked />
-						</div>
-						
-						<div class="form-group">
-    						<label for="wrap_switch">Line Wrap</label>
-							<input id="wrap_switch" type="checkbox" class="js-switch" onchange="line_wrap_switch()"/>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" id="preview-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">PREVIEW</h4>
-					</div>
-					
-					<div class="modal-body">
-						<iframe id="preview"></iframe>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="modal fade" id="tempModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" id="temp-dialog">
-				<div class="modal-content">
-					
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">TEMPLATES</h4>
-					</div>
-					
-					<div class="modal-body">
-					    <input type="text" class="form-control" id="temp-input" placeholder="Search here...">
-						<div id="temp-holder">
-
-								<!--HTML-->
-
-								<div class="media" temp-title="Basic" temp-desc="The base html template" temp-tag="html">
-								  <a class="pull-left">
-								    <img class="media-object" src="templates/basic.png">
-								  </a>
-								  <div class="media-body">
-								    <h4 class="media-heading">Basic</h4>
-								    The base html template
-								    <button onclick="set_t('https://codeyourcloud.com/templates/html-basic.html')" class="btn btn-primary">Use this</button>
-								    
-								     <div class="tags">
-								    	<span class="label label-default">html</span>
-								    </div>
-								    
-								  </div>
-								</div>
-								
-								<div class="media" temp-title="Flat UI" temp-desc="Flat boostrap theme" temp-tag="html;bootstrap">
-								  <a class="pull-left">
-								    <img class="media-object" src="templates/flat.png">
-								  </a>
-								  <div class="media-body">
-								    <h4 class="media-heading">Flat UI</h4>
-								    Flat boostrap theme
-								    <button onclick="set_t('https://codeyourcloud.com/templates/html-flat.html')" class="btn btn-primary">Use this</button>
-								    
-								    <div class="tags">
-								    	<span class="label label-default">html</span>
-								    	<span class="label label-default">bootstrap</span>
-								    </div>
-								    
-								  </div>
-								</div>
-								
-								<div class="media" temp-title="Bootstrap" temp-desc="A frontend framework created by Twitter" temp-tag="html;bootstrap">
-								  <a class="pull-left">
-								    <img class="media-object" src="templates/bootstrap.png">
-								  </a>
-								  <div class="media-body">
-								    <h4 class="media-heading">Bootstrap</h4>
-								    A frontend framework created by Twitter
-								    <button onclick="set_t('https://codeyourcloud.com/templates/html-bootstrap.html')" class="btn btn-primary">Use this</button>
-								    
-								    <div class="tags">
-								    	<span class="label label-default">html</span>
-								    	<span class="label label-default">bootstrap</span>
-								    </div>
-								    
-								  </div>
-								</div>
-								
-								<div class="media" temp-title="JQuery" temp-desc="Manipulate DOm elements with ease" temp-tag="html">
-								  <a class="pull-left">
-								    <img class="media-object" src="templates/jquery.jpg">
-								  </a>
-								  <div class="media-body">
-								    <h4 class="media-heading">JQuery</h4>
-								    Manipulate DOM elements with ease
-								    <button onclick="set_t('https://codeyourcloud.com/templates/html-basic.jquery')" class="btn btn-primary">Use this</button>
-								    
-								    <div class="tags">
-								    	<span class="label label-default">html</span>
-								    </div>
-								    
-								  </div>
-								</div>
-								
-								<div class="media" temp-title="CodeMirror" temp-desc="Javascript-based code editor" temp-tag="html;code">
-								  <a class="pull-left">
-								    <img class="media-object" src="templates/codemirror.png">
-								  </a>
-								  <div class="media-body">
-								    <h4 class="media-heading">CodeMirror</h4>
-								    Javascript-based code editor
-								    
-								    <button onclick="set_t('https://codeyourcloud.com/templates/html-codemirror.html')" class="btn btn-primary">Use this</button>
-								    
-								    <div class="tags">
-								    	<span class="label label-default">html</span>
-								    	<span class="label label-default">code</span>
-								    </div>
-								    
-								  </div>
-								</div>
-								
-								<div class="media" temp-title="Ace" temp-desc="In-browser code editor" temp-tag="html;code">
-								  <a class="pull-left">
-								    <img class="media-object" src="templates/ace.png">
-								  </a>
-								  <div class="media-body">
-								    <h4 class="media-heading">Ace</h4>
-								    In-browser code editor
-								    <button onclick="set_t('https://codeyourcloud.com/templates/html-ace.html')" class="btn btn-primary">Use this</button>
-								    
-								    <div class="tags">
-								    	<span class="label label-default">html</span>
-								    	<span class="label label-default">code</span>
-								    </div>
-								    
-								  </div>
-								</div>
-								
-								<div class="media" temp-title="TogetherJS" temp-desc="Add collaboration to your project" temp-tag="html;collaborate">
-								  <a class="pull-left">
-								    <img class="media-object" src="templates/together.png">
-								  </a>
-								  <div class="media-body">
-								    <h4 class="media-heading">TogetherJS</h4>
-								    Add collaboration to your project
-								    <button onclick="set_t('https://codeyourcloud.com/templates/html-together.html')" class="btn btn-primary">Use this</button>
-								    
-								    <div class="tags">
-								    	<span class="label label-default">html</span>
-								    	<span class="label label-default">collaborate</span>
-								    </div>
-								    
-								  </div>
-								</div>
-								
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 		
 		
 
+		<script src="lib/poly/components/platform/platform.js"></script>
 		
 		<script src="lib/codemirror/lib/codemirror.js"></script>
 		<link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
@@ -565,6 +474,7 @@
 		<script src = "lib/codemirror/mode/swift.js"></script>
 		
 		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/theme.css'>
+		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/code-your-cloud.css'>
 		
 		<link rel="stylesheet" href="lib/codemirror/addon/dialog/dialog.css" >
 		<link rel="stylesheet" href="lib/codemirror/addon/hint/show-hint.css" >
@@ -619,15 +529,15 @@
       	<script src="lib/offline/offline.min.js"></script>
       	<script src="https://cdn.jsdelivr.net/jquery.velocity/0.1.0/jquery.velocity.min.js"></script>
       	
-      	<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=loadDrive"></script>
-      	
-		<script src="realtime/global.js"></script>
-		<script src="realtime/realtime.js"></script>
-		<script src="realtime/frontend.js"></script>
-		<script src="realtime/drive.js"></script>
-		<script src="realtime/visual.js"></script>
-		<script src="realtime/picker.js"></script>
-		<script src="realtime/features.js"></script>
+		<script src="scripts/global.js"></script>
+		<script src="scripts/realtime.js"></script>
+		<script src="scripts/frontend.js"></script>
+		<script src="scripts/drive.js"></script>
+		<script src="scripts/visual.js"></script>
+		<script src="scripts/picker.js"></script>
+		<script src="scripts/features.js"></script>
+		
+		<script src="scripts/custom.js"></script>
 		
 		<script src = 'lib/keyboard/jwerty.js'></script>
 		<script>
@@ -643,7 +553,8 @@
 				return false;
 			});
 		</script>
-		<link rel="stylesheet" href="realtime/style.css">
+		<link rel="stylesheet" href="scripts/style.css">
+		<link rel="stylesheet" href="scripts/custom.css">
 		
 		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=loadDrive"></script>
 

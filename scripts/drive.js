@@ -71,7 +71,7 @@ function updateFile(fileId, fileMetadata, fileData, callback) { //is the callbac
   reader.onload = function(e) {
     var contentType = fileData.type || 'application/octet-stream';
     var base64Data = btoa(reader.result);
-    //console.log(base64Data);
+
     var multipartRequestBody =
         delimiter +
         'Content-Type: application/json\r\n\r\n' +

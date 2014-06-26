@@ -1,24 +1,31 @@
-function rotateCube(goal){
-	$("#notch").animate({ nonexist: goal }, {
-	    step: function(now,fx) {
-	        $(this).css('-webkit-transform',"rotateZ(" + now + "deg)");
-	        $(this).css('transform',"rotateZ(" + now + "deg)");
-	        $(this).css('-moz-transform',"rotateZ(" + now + "deg)");
-	    },
-	    duration:500
-	},'linear');
-}
-random_r();
-function random_r(){
-	var min = -3;
-	var max = 3;
-	var action_random = 360;
+$(".code-li").each(function(index){
+	$(this).hover(function(){
+		$(this).animate({
+			backgroundColor: "#2980B9"
+		})
+	}, function(){
+		$(this).animate({
+			backgroundColor: "#3498DB"
+		})
+	});
+});
+
+$(".side-item").each(function(index){
+	$(this).hover(function(){
+		$(this).animate({
+			backgroundColor: "#83AEC9"
+		},{
+			duraction: 200,
+			queue: false
+		});
 		
-	rotateCube(action_random);
-	
-	setTimeout(function(){
-		if($("#screen").length){
-			random_r();
-		}
-	}, 1000);
-}
+	}, function(){
+		$(this).animate({
+			backgroundColor: "transparent"
+		},{
+			duraction: 200,
+			queue: false
+		});
+		
+	});
+});

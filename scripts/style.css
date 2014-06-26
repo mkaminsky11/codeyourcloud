@@ -69,11 +69,14 @@
 }
 #chat_text{
 	width:100%;
-	height:20%;
+	height:24%;
 	resize: none;
 	font-size:14px;
 	border-radius:0;
 	border:none;
+}
+#chat_text:focus{
+	outline: 0;
 }
 /*===========
 CHAT BUBBLES
@@ -723,7 +726,8 @@ TOOLBAR
 	width: 53px;
 	display: inline-block;
 	position: relative;
-	overflow:hidden;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 #col_button i{

@@ -1,6 +1,6 @@
 var connection = new WebSocket('wss://codeyourcloud.com:8080');
 connection.onopen = function () {
-	console.log("open");
+	console.log("%cThe webocket has opened", "color:#27AE60; font-size: 12px");
     websocketInit();
 };
 function websocketInit(){
@@ -13,13 +13,20 @@ connection.onmessage = function (message) {
 	try {
 		var json = JSON.parse(message.data);
 		if(json.type === "get"){
+
 			rec = true;
+			
+			login_sql = json.last_login;
+			
+			proccess_time();
+			
+			
 			theme_sql = json.theme.split("_").join("-");
 			if(themes_name.indexOf(theme_sql) !== -1){
 				setTheme(theme_sql);
 			}
 			else{
-				theme_sql = "neo";
+				theme_sql = "code-your-cloud";
 				set_sql();
 			}
 			//FONT_SIZE *done
@@ -51,10 +58,10 @@ connection.onmessage = function (message) {
 			set_sql();	
 		}
 		if(json.type === "pub"){
-			console.log("published");
+			console.log("%cHtml published","color:#27AE60; font-size: 12px");
 		}
 	} catch (e) {
-		console.log(e);
+		console.log("%cThere was an error!", "color:#E74C3C; font-size: 12px");
 	}
 };
 
@@ -99,6 +106,21 @@ function get_sql(){
 }
 function publish_html(){
 	connection.send(JSON.stringify({type:"publish", id:userId, lines:editor.getValue().split("\n")}));
+}
+
+function proccess_time(){
+	var t = login_sql;
+	
+	if(t >= 5260){
+		//days when this was started
+		var r = Math.floor(0 + Math.random() * 100)
+		//5% of the time
+		if(r >= 0 && r <= 5){
+			//go!
+			var a = "How about a <a href='https://codeyourcloud.com/survey' target='_blank'>survey</a>?";
+			sendMessage(a,"info");
+		}
+	}
 }
 /*********
 LEAVE THESE ALONE FOR NOW
