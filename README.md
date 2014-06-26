@@ -157,21 +157,14 @@
 	<li><a href="http://codemirror.net/">CodeMirror</a></li>
 	<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
 	<li><a href="http://fortawesome.github.io/Font-Awesome/">FontAwesome</a></li>
-	<li><a href="http://kudakurage.com/ligature_symbols/">LigatureSymbols</a></li>
-	<li><a href="http://codemirror.net/">CodeMirror</a></li>
-	<li><a href="http://www.eyecon.ro/bootstrap-colorpicker/">Color Picker</a></li>
 	<li><a href="http://designmodo.github.io/Flat-UI/">FlatUI</a></li>
-	<li><a href="http://gridster.net/">Gridster</a></li>
 	<li><a href="http://github.com/aaditmshah/codemirror-repl">CodeMirror REPL</a></li>
 	<li><a href="https://jquery.com/">JQuery</a></li>
-	<li><a href="http://anthonyterrien.com/knob/">JQuery knob</a></li>	
 	<li><a href="http://nodejs.org/">Node.js</a></li>	
 	<li><a href="http://www.websocket.org/">Websocket</a></li>	
 	<li><a href="https://github.com/nodejitsu/forever">Forever</a></li>
 	<li><a href="https://github.com/HubSpot/messenger">Messenger</a></li>
 	<li><a href="https://github.com/f/loremjs">LoremJS</a></li>
-	<li><a href="http://abpetkov.github.io/switchery/">Switchery</a></li>
-	<li><a href="http://flipclockjs.com">FlipClockJS</a></li>
 </ul>
 ======
 ###Todo###
