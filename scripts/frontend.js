@@ -105,7 +105,11 @@ function get_sql(){
 	connection.send(JSON.stringify({type:"get", id:userId}));
 }
 function publish_html(){
-	connection.send(JSON.stringify({type:"publish", id:userId, lines:editor.getValue().split("\n")}));
+	var p = editor.getValue();
+	if(editor.getOption("mode") === "text/x-markdown" || editor.getOption("mode") === "gfm"){
+		p = converter.makeHtml(p);
+	}
+	connection.send(JSON.stringify({type:"publish", id:userId, lines:p.split("\n")}));
 }
 
 function proccess_time(){

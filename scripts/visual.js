@@ -47,11 +47,18 @@ function setMode(mode){
 		editor.setOption("lint",CodeMirror.lint.javascript);
 		startTern();
 	}
+	else if(mode === "text/x-coffeescript"){
+		$(".side-run").removeClass("hide");
+	}
 	
 	else if(mode === "text/html"){
 		//$("#side-auto").removeClass("hide");
 		$(".side-pub").removeClass("hide");
 		startHtml();
+	}
+	
+	else if(mode === "text/x-markdown" || mode === "gfm"){
+		$(".side-pub").removeClass("hide");
 	}
 	
 	else if(mode === "text/css"){
@@ -320,6 +327,9 @@ the_console.refresh();
 
 function run(){
 	var code_before_replace = editor.getValue();
+	if(editor.getOption("mode") === "text/x-coffeescript"){
+		code_before_replace = CoffeeScript.compile(code_before_replace, { bare: true });
+	}
 	var find = 'console.log';
 	var re = new RegExp(find, 'g');
 	code_before_replace = code_before_replace.replace(re, 'printToConsole');
@@ -547,7 +557,11 @@ function updatePreview() {
        	var previewFrame = document.getElementById('preview');
 		var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
 		preview.open();
-		preview.write(editor.getValue());
+		var c = editor.getValue();
+		if(editor.getOption("mode") === "text/x-markdown" || editor.getOption("mode") === "gfm"){
+			c = converter.makeHtml(c);
+		}
+		preview.write(c);
 		preview.close();
 }
 /*=========

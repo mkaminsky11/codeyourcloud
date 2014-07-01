@@ -1,18 +1,68 @@
-<!DOCTYPE html>
-	<head>
-		<!--load resources here-->
-		<script src="https://codeyourcloud.com/about/flat/js/jquery-1.8.3.min.js"></script>
-		
-		<link href="about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
-	</head>
-	
-	<body>
-		<!--put content here-->
-		<p>start here!</p>
-		
-		<script src="about/flat/js/bootstrap.min.js"></script>
-    	<script src="about/flat/js/bootstrap-select.js"></script>
-    	<script src="about/flat/js/bootstrap-switch.js"></script>
-	</body>
-</html>
+<h2>LECTURE 2</h2>
 
+<p>Git is used to sync code. You can also track mistakes, and to see who make them.</p>
+
+<ol>
+    <li>Edit local copy</li>
+    <li>Test locally</li>
+    <li>Once done, push to <code>master</code>
+    <li>Can revert to older versions</li>
+</ol>
+
+<h3>USING GIT</h3>
+
+<p><code>pull</code> request to merge a change into a repo.</p>
+
+<p><code>
+user 1: hey, I need to make a change
+admin: ok, what is it?
+user 1: this is inaccurate. I fixed it
+admin: ok
+</code></p>
+
+<p><code>merge</code> is happens when there are conflicts.</p>
+
+<p><code>
+junior -&gt; G
+junior -&gt; I
+junior -&gt; T
+senior -&gt; H
+ |        U
+ v        B
+live
+</code></p>
+
+<p>or</p>
+
+<p><code>
+junior -&gt; G
+junior -&gt; I -&gt; live
+senior -&gt; T
+          H
+          U
+          B
+</code></p>
+
+<p>Can use FTP, SFTP, SSH, etc.</p>
+
+<p>To enable syntax highlighting: </p>
+
+<p><code>git config --global color.ui auto</code></p>
+
+<h6>VIM</h6>
+
+<p>Mac: <code>/Users/Kaminsky/.vimrc</code>
+Server: <code>/root/.vimrc</code></p>
+
+<p><code>
+set mouse=a
+colors slate
+</code></p>
+
+<h5>OK, BACK TO <code>GIT</code></h5>
+
+<p><code>
+git add -A
+git commit -m "changes"
+git push
+</code></p>

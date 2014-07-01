@@ -28,6 +28,8 @@ var total_chat = 0;
 var code;
 var logged_in = false;
 
+var converter = new Markdown.Converter();
+
 var modes = [
 	["Javascript","text/javascript","js"],
 	["APL","text/apl","apl"],
