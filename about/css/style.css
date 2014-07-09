@@ -627,9 +627,8 @@ body {
 	color:#ECF0F1;
 }
 .comp_table{
-	margin-left:5%;
-	margin-right:5%;
-	width:90%;
+	margin-left:10%;
+	width:80%;
 	font-size:24px;
 }
 .comp_table>tbody>tr>td{

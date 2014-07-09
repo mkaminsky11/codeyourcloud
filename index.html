@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<script src="poly/components/platform/platform.js"></script>
+		<!--
+		<paper-checkbox></paper-checkbox>
+		
+		tabs.addEventListener('core-select', function() {
+		    list.show = tabs.selected;
+		  });
+		
+		-->
+		
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 	    <meta charset="utf-8">
@@ -54,6 +64,30 @@
 		
 		<!--sentry-->
 		
+		<link rel="stylesheet" href="lib/repl/styles/index.css">
+        <link rel="stylesheet" href="lib/repl/styles/codemirror-repl.css">
+        <link rel="stylesheet" href="lib/repl/styles/themes/eclipse.css">
+        
+    
+        <link rel="import" href="poly/components/paper-checkbox/paper-checkbox.html">
+        <link rel="import" href="poly/components/core-header-panel/core-header-panel.html">
+        <link rel="import" href="poly/components/paper-icon-button/paper-icon-button.html">
+        <link rel="import" href="poly/components/paper-input/paper-input.html">
+        <link rel="import" href="poly/components/paper-slider/paper-slider.html">
+        <link rel="import" href="poly/components/core-toolbar/core-toolbar.html">
+        <link rel="import" href="poly/components/core-icons/core-icons.html">
+        <link rel="import" href="poly/components/paper-button/paper-button.html">
+        <link rel="import" href="poly/components/paper-dialog/paper-dialog.html">
+        <link rel="import" href="poly/components/paper-dialog/paper-dialog-transition.html">
+        <link rel="import" href="poly/components/paper-fab/paper-fab.html">
+        <link rel="import" href="poly/components/paper-input/white-input.html">
+      
+        
+        <link rel="stylesheet" href="lib/ripple/ripple.css">
+        
+        <link rel="stylesheet" href="scripts/custom.css">
+        
+
 	</head>
 	<body>
 	
@@ -73,18 +107,14 @@
 				</div>
 				
 				<div id="rename-div" style="padding:0">
-					<div class="input-group">
-						<input type="text" class="form-control" id="rename_input">
-						<span class="input-group-btn btn btn-success" id="rename_ok" onclick="ok_rename()"><i class="fa fa-check"></i></span>
-						<span class="input-group-btn btn btn-danger" id="rename_no" onclick="no_rename()"><i class="fa fa-ban"></i></span>
-	  				</div>
+						<input id="rename_input" value="" placeholder="Title" style="width:100%" onchange="ok_rename()" class="form-control">
 				</div>
 				
 				<div class="side-head">
 					<h6 id="side-email"><a>email@gmail.com</a></h6>
 				</div>
 				
-				<div class="side-item">
+				<div class="side-item ripple-button">
 					<a href="https://codeyourcloud.com/about" target="_blank">
 						<h6>
 							<small><i class="fa fa-cube"></i></small> ABOUT
@@ -94,19 +124,25 @@
 				
 				<hr/>
 				
-				<div onclick="show_side_open()" class="side-item">
+				<div onclick="show_side_open()" class="side-item ripple-button">
 					<h6>
 						<small><i class="fa fa-folder" style="color:#2ECC71"></i></small> OPEN
 					</h6>
 				</div>
 				
-				<div class="side-file side-item" onclick="save()">
+				<div class="side-file side-item ripple-button" onclick="save()">
 					<h6>
-						<small><i class="fa fa-save" style="color:#E74C3C"></i></small> SAVE
+						<small><i class="fa fa-save" style="color:#3498DB"></i></small> SAVE
 					</h6>
 				</div>
 				
-				<div onclick="new_file()" class="side-item">
+				<div class="side-item ripple-button" onclick="saveAs()">
+					<h6>
+						<small><i class="fa fa-save" style="color:#E74C3C"></i></small> SAVE AS
+					</h6>
+				</div>
+				
+				<div onclick="new_file()" class="side-item ripple-button">
 					<h6>
 						<small><i class="fa fa-file" style="color:#F39C12"></i></small> NEW
 					</h6>
@@ -115,25 +151,25 @@
 				
 				<hr/>
 				
-				<div onclick="download_file()" class="side-item side-file">
+				<div onclick="download_file()" class="side-item side-file ripple-button">
 					<h6>
 						<small><i class="fa fa-cloud-download"></i></small> DOWNLOAD
 					</h6>
 				</div>
 				
-				<div onclick="show_side_upload()" class="side-item">
+				<div onclick="show_side_upload()" class="side-item ripple-button">
 					<h6>
 						<small><i class="fa fa-cloud-upload"></i></small> UPLOAD
 					</h6>
 				</div>
 				
-				<div class="side-file side-item" onclick="show_side_share()">
+				<div class="side-file side-item ripple-button" onclick="show_side_share()">
 					<h6>
 						<small><i class="fa fa-users"></i></small> SHARE
 					</h6>
 				</div>
 				
-				<div class="side-file side-item" onclick="switch_col()">
+				<div class="side-file side-item ripple-button" onclick="switch_col()">
 					<h6>
 						<small><i class="fa fa-comment"></i></small> CHAT
 					</h6>
@@ -143,19 +179,19 @@
 				
 				<hr/>
 				
-				<div class="side-item" onclick="move_left()">
+				<div class="side-item ripple-button" onclick="move_left()">
 					<h6>
 						<small><i class="fa fa-outdent"></i></small> MOVE LEFT
 					</h6>
 				</div>
 				
-				<div class="side-item" onclick="move_right()">
+				<div class="side-item ripple-button" onclick="move_right()">
 					<h6>
 						<small><i class="fa fa-indent"></i></small> MOVE RIGHT
 					</h6>
 				</div>
 				
-				<div class="side-item" onlick="replace()">
+				<div class="side-item ripple-button" onlick="replace()">
 					<h6>
 						<small><i class="fa fa-search"></i></small> REPLACE
 					</h6>
@@ -166,33 +202,27 @@
 				
 				<hr/>
 				
-				<div class="side-item" onclick="show_side_terminal()">
+				<div class="side-item ripple-button" onclick="show_side_terminal()">
 					<h6>
 						<small><i class="fa fa-terminal"></i></small> TERMINAL
 						<span class><i class="fa fa-angle-right"></i></span>
 					</h6>
 				</div>
 				
-				<div class="side-item" onclick="show_side_random()">
+				<div class="side-item ripple-button" onclick="show_side_random()">
 					<h6>
 						<small><i class="fa fa-font"></i></small> LOREM
 						<span class><i class="fa fa-angle-right"></i></span>
 					</h6>
 				</div>
 				
-				<div class="side-item" onclick="show_side_preview()">
+				<div class="side-item ripple-button" onclick="show_side_preview()">
 					<h6>
 						<small><i class="fa fa-eye"></i></small> PREVIEW
 						<span class><i class="fa fa-angle-right"></i></span>
 					</h6>
 				</div>
 				
-				<div class="side-item" onclick="show_side_notepad()">
-					<h6>
-						<small><i class="fa fa-file-text"></i></small> NOTEPAD
-						<span class><i class="fa fa-angle-right"></i></span>
-					</h6>
-				</div>
 				
 				<!--div class="side-item">
 					<h6>
@@ -205,35 +235,22 @@
 				
 				<hr class="side-run hide">
 				
-				<div class="side-item side-run hide" onclick="run()">
+				<div class="side-item side-run ripple-button hide" onclick="run()">
 					<h6>
 						<small><i class="fa fa-play"></i></small> RUN
-					</h6>
-				</div>
-				
-				<div class="side-item side-run hide" onclick="show_side_console()">
-					<h6>
-						<small><i class="fa fa-code"></i></small> SHOW CONSOLE
-						<span class><i class="fa fa-angle-right"></i></span>
-					</h6>
-				</div>
-				
-				<div class="side-item side-run hide" onclick="clear_console()">
-					<h6>
-						<small><i class="fa fa-times-circle-o"></i></small> CLEAR CONSOLE
 					</h6>
 				</div>
 				
 				<!--end "run"-->
 				<hr class="side-pub hide">
 				
-				<div class="side-pub side-item hide" onclick="publish_html()">
+				<div class="side-pub side-item ripple-button hide" onclick="publish_html()">
 					<h6>
 						<small><i class="fa fa-globe"></i></small> PUBLISH
 					</h6>
 				</div>
 				
-				<div class="side-pub side-item hide">
+				<div class="side-pub side-item ripple-button hide">
 					<a id="side-pub-link" href="" target="_blank">
 						<h6>
 							<small><i class="fa fa-arrow-up"></i></small> GO TO SITE
@@ -247,30 +264,30 @@
 				
 				<!---->
 				
-				<div class="side-item" onclick="show_side_modes()">
+				<div class="side-item ripple-button" onclick="show_side_modes()">
 					<h6>
-						<small style="color:#E67E22"><i class="fa fa-file-code-o"></i></small> LANGUAGES
+						<small><i class="fa fa-file-code-o"></i></small> LANGUAGES
 						<span class><i class="fa fa-angle-right"></i></span>
 					</h6>
 				</div>
 
-				<div class="side-item" onclick="show_side_themes()">
+				<div class="side-item ripple-button" onclick="show_side_themes()">
 					<h6>
-						<small style="color:#F1C40F"><i class="fa fa-tint"></i></small> THEMES
+						<small><i class="fa fa-tint"></i></small> THEMES
 						<span class><i class="fa fa-angle-right"></i></span>
 					</h6>
 				</div>
 				
-				<div class="side-item" onclick="show_side_options()">
+				<div class="side-item ripple-button" onclick="show_side_options()">
 					<h6>
-						<small style="color:#1ABC9C"><i class="fa fa-cogs"></i></small> OPTIONS
+						<small><i class="fa fa-cogs"></i></small> OPTIONS
 						<span class><i class="fa fa-angle-right"></i></span>
 					</h6>
 				</div>
 				
 				<hr/>
 				
-				<div class="side-item">
+				<div class="side-item ripple-button">
 					<a href="https://accounts.google.com/logout">
 						<h6>
 							<small><i class="fa fa-sign-out"></i></small> LOG OUT
@@ -278,7 +295,7 @@
 					</a>
 				</div>
 				
-				<div class="side-item">
+				<div class="side-item ripple-button">
 					<a href="https://codeyourcloud.com/help" target="_blank">
 						<h6>
 							<small><i class="fa fa-question"></i></small> HELP
@@ -286,112 +303,135 @@
 					</a>
 				</div>
 				
+				
 			</div>
 		</div>
 		
 		<div id="detect" class="hide"></div>
 		
-		<div class="side-modal hide">
-			<div class="side-modal-head">
-  				<h6 class="side-modal-title">MODAL TITLE</h6>
-				<h6 class="close side-modal-close" onclick="hide_side_modal()"><i class="fa fa-times"></i></h6>
-				
-				<div class="side-modal-content">
-				
-					<div class="side-modal-options hide">
-						<div class="side-modal-row">
-							<h6 class="side-modal-row-label">Line Numbers</h6>
-							<a class="side-switch" id="side-nums" data-icon="list-ol" data-state="on" data-onclick="line_number_switch()" on-color="" off-color=""></a>
-						</div>
-						
-						<div class="side-modal-row">
-							<h6 class="side-modal-row-label">Line Wrap</h6>
-							<a class="side-switch" id="side-wrap" data-icon="align-center" data-state="off" data-onclick="line_wrap_switch()" on-color="" off-color=""></a>
-						</div>
-						
-						<div class="side-modal-row">
-							<h6 class="side-modal-row-label">Font Size</h6>
-							
-							<div class="input-group modal-font-group">
-						      <input type="text" class="form-control" id="spinner-font" placeholder="" value="12">
-						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="button" onclick="fontUp()">+</button>
-						      </span>
-						<span class="input-group-btn">
-						        <button class="btn btn-default" type="button" onclick="fontDown()">-</button>
-						      </span>
-						    </div>
-						    
-						</div>
-						
-						<div class="side-modal-row side-file">
-							<h6 class="side-modal-row-label">Clear Chat History</h6>
-							
-							<a style="float:right;margin-right:10px" class="btn btn-danger" onclick="clear_chat_history()"><i class="fa fa-trash-o"></i></a>
-							<br><br>
-							<small class="side-note">Note: this will take effect once you refresh this page</small>
-						</div>
-					</div>
-					
-					<div class="side-modal-themes hide">
-						<input class="form-control modal-input" id="theme_input" placeholder="Search for themes...">
-						<ul id="theme-ul" class="list-group">
-						</ul>
-					</div>
-					
-					<div class="side-modal-modes hide">
-						<input class="form-control modal-input" id="mode_input" placeholder="Search for languages...">
-						<ul id="mode-ul" class="list-group">
-						</ul>
-					</div>
-					
-					<div class="side-modal-chat hide">
-						
-					</div>
-					
-					<div class="side-modal-console hide">
-						<div id="con"></div>
-					</div>
-					
-					<div class="side-modal-notepad hide">
-						<div id="note_pad"></div>
-					</div>
-					
-					<div class="side-modal-terminal hide">
-						<iframe id="terminal-iframe" src="https://codeyourcloud.com/lib/repl"></iframe>
-					</div>
-					
-					
-					<div class="side-modal-random hide">
-						
-						
-						<div class="input-group">
-	      					<div class="input-group-btn">
-		      					<button  onclick="generate()" type="button" class="btn btn-default">Generate</button>
-		        				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-		        				<ul class="dropdown-menu">
-		          					<li onclick="lorem_w()"><a>Words</a></li>
-		          					<li onclick="lorem_s()"><a>Sentences</a></li>
-		          					<li onclick="lorem_p()"><a>Paragraphs</a></li>
-		        				</ul>
-	      					</div>
-	      					<input type="text" class="form-control" id="lorem_input" value="6">
-	  					</div>
-    				
-	  					<div id="lorem" data-lorem="6s" class="well"></div>
-						
-						
-					</div>
+		
 
+		
+		<div class="poly-dialog" id="options-dialog" style="z-index:200;display:none">
+			<div class="header">
+				<small>Options</small>
+			</div>
+			
+			<paper-fab icon="close" onclick="showDialog('options')"></paper-fab>
+			
+			<div class="content">
+				<div class="side-modal-row">
+					<h6 class="side-modal-row-label">Line Numbers</h6>
+					<paper-checkbox id="side-nums" onclick="line_number_switch()" checked></paper-checkbox>
 				</div>
 				
-				<div class="side-modal-preview hide">
-					<iframe id="preview"></iframe>
+				<div class="side-modal-row">
+					<h6 class="side-modal-row-label">Line Wrap</h6>
+					<paper-checkbox id="side-wrap" onclick="line_wrap_switch()"></paper-checkbox>
 				</div>
-  			</div>
+				
+				<div class="side-modal-row">
+					<h6 class="side-modal-row-label">Font Size</h6>
+					<br/><br/>
+				</div>
+					<paper-slider pin snaps id="spinner-font" value="12" max="30" step="1" style="width=100%"></paper-slider>
+				</div>
+			</div>
+		</div>
+		
+		<div class="poly-dialog" id="mode-dialog" style="z-index:200;display:none">
+			<div class="header">
+				<input type="text" class="form-control" id="mode_input" style="width:80%" placeholder="Search">
+			</div>
+			
+			<paper-fab icon="close" onclick="showDialog('mode')"></paper-fab>
+			
+			<div class="content">
+				<ul id="mode-ul" class="list-group">
+				</ul>
+			</div>
+		</div>
+		
+		<div class="poly-dialog" id="theme-dialog" style="z-index:200;display:none">
+			<div class="header">
+				<input type="text" class="form-control" id="theme_input"  style="width:80%" placeholder="Search">
+			</div>
+			
+			<paper-fab icon="close" onclick="showDialog('theme')"></paper-fab>
+			
+			<div class="content">
+				<ul id="theme-ul" class="list-group">
+				</ul>
+			</div>
+		</div>
+		
+
+		
+		<div class="poly-dialog"id="chat-dialog" style="z-index:200;display:none">
+			<div class="header">
+				<small>Chat</small>
+			</div>
+			<paper-fab icon="close" onclick="showDialog('chat')"></paper-fab>
+			<div class="side-modal-chat content"></div>
+		</div>
+		
+
+		
+		<div class="poly-dialog" id="terminal-dialog" style="z-index:200;display:none">
+			<div class="header">
+				<small>Terminal</small>
+			</div>
+			
+			<paper-fab icon="close" onclick="showDialog('terminal')"></paper-fab>
+			
+			<div class="content">
+				<textare id="terminal-iframe"></textarea>
+			</div>
 		</div>
 		
 		
+		<div class="poly-dialog" id="lorem-dialog" style="z-index:200;display:none">
+			<div class="header">
+				<input type="text" class="form-control" id="lorem_input" onchange="generate()" style="width:80%" placeholder="Number">
+			</div>
+			
+			<paper-fab icon="close" onclick="showDialog('lorem')"></paper-fab>
+			
+			<div class="content">
+				<div id="lorem" data-lorem="6s" width="100%"></div>
+			</div>
+		</div>
+		
+		
+		
+
+		<div class="poly-dialog" id="preview-dialog" style="z-index:200;display:none">
+			<div class="header">
+				<small>Preview</small>
+			</div>
+			
+			<paper-fab icon="close" onclick="showDialog('preview')"></paper-fab>
+			
+			<div class="content preview-content">
+				<iframe id="preview"></iframe>
+			</div>
+		</div>
+		
+		<div class="poly-dialog" id="saveas-dialog" style="z-index:200;display:none">
+			<div class="header">
+				<small>Save As</small>
+			</div>
+			
+			<paper-fab icon="close" onclick="showDialog('saveas');saveas_cancel();"></paper-fab>
+			
+			<div class="content">
+					<br/>
+					<input style="width: 80%;margin-left:10%;border: solid thin #ECF0F1;" placeholder="A name for your new file" value="Untitled.txt" id="saveas-input" class="form-control">
+					<center><small style="color:#BDC3C7">Upon pressing "OK", you will be redirected to the new file.</small></center>
+						
+					<paper-button label="OK" style="color:white;background-color:#2ECC71;width:40%;margin-left:30%" onclick="saveas_ok()"></paper-button>	
+			</div>
+		</div>
 		
 		
 		
@@ -402,46 +442,65 @@
     		</div>
         	<div class="" id="navbar-collapse-01">
         	  <ul class="nav navbar-nav n-l">  
-        	  	<li  class="code-li" onclick="toggle_side()"><a style="color:#BDC3C7"><i class="fa fa-bars"></i></a></li>
+        	  	<li  class="code-li ripple-button" onclick="toggle_side()"><a style="color:#BDC3C7"><i class="fa fa-bars"></i></a></li>
         	  	<li id="branding"><a style="color:white;font-size: 22px;">Code Your Cloud</a></li>
 				
         	  </ul>
         	  <ul class="nav navbar-nav navbar-right n-r">
-        	  	<li class="code-li"><a id="open_button" onclick="open_picker()" style="color:white"><i class="fa fa-folder-open-o"></i></a></li>
-        	  	<li class="code-li"><a id="save_button" onclick="save()"><i class="fa fa-floppy-o"></i></a></li>
-        	  	<li class="code-li"><a id="undo_button" onclick="editor_undo()" style="color:white"><i class="fa fa-undo"></i></a></li>
-        	  	<li class="code-li"><a id="redo_button" onclick="editor_redo()" style="color:white"><i class="fa fa-repeat"></i></a></li>
-        	  	<li class="code-li" onclick="find()"><a style="color:white"><i class="fa fa-search"></i></a></li>
+        	  	<li class="code-li ripple-button"><a id="open_button" onclick="open_picker()" style="color:white"><i class="fa fa-folder-open-o"></i></a></li>
+        	  	<li class="code-li ripple-button"><a id="save_button" onclick="save()"><i class="fa fa-floppy-o"></i></a></li>
+        	  	<li class="code-li ripple-button"><a id="undo_button" onclick="editor_undo()" style="color:white"><i class="fa fa-undo"></i></a></li>
+        	  	<li class="code-li ripple-button"><a id="redo_button" onclick="editor_redo()" style="color:white"><i class="fa fa-repeat"></i></a></li>
+        	  	<li class="code-li ripple-button" onclick="find()"><a style="color:white"><i class="fa fa-search"></i></a></li>
         	  </ul>
         	</div>
       	</nav>
 	
 	
+	  		<div id="screen">
+				<h1>Preparing Tools...</h1>
+				<img src="images/svg/7.svg" pagespeed_url_hash="3186773428" style="
+					left: 5%
+				">
+				 <img src="images/svg/8.svg" pagespeed_url_hash="3186773428" style="
+				    -webkit-transform: rotate(90deg);
+				    -moz-transform: rotate(90deg);
+				    transform: rotate(90deg);
+				    left: 20%;
+				    height: 80%;
+					width: 30%;
+				">
+				 <img src="images/svg/12.svg" pagespeed_url_hash="3186773428" style="
+				    -webkit-transform: rotate(90deg);
+				    -moz-transform: rotate(90deg);
+				    transform: rotate(90deg);
+				    left: 40%;
+				
+				    width: 30%;
+				">
+				 <img src="images/svg/20.svg" pagespeed_url_hash="3186773428" style="
+				    left: 70%;
+				">
 	
+	
+			</div>
 	
 	
 	  	<!--side goes here-->
-	  	<div id = "screen">
-			
-			<img src="images/svg/load.svg">
-			<h3 style="
-    color: white;
-    text-align: center;
-">Loading Creative Juices</h3>
-
-
-		</div>
-	  	<div id="main">
-		<div id="container" class="mains">
+	  	
+		
+		
+	  	
+	  	
+	  	
+	<div style="width:100%;height:100%;position:fixed;z-index: 0;">
+		<div class="mains" style="position: absolute;height: calc(100% - 53px);width: 100%;margin-top: -30px;">
 			<textarea id ="bind"></textarea>
 			<div id="overlay"></div>
 			<div id="users">
 			</div>
 			<div id="tool-bar">
 				<input type='text' id="custom" />
-				<a id="col_button" onclick="switch_col()" class="code-li"  style="color:white">
-					<i class="fa fa-comments-o"></i>
-				</a>
 			</div>
 		</div>
 		<div id="chat">
@@ -521,13 +580,16 @@
     	<script src="about/flat/js/flatui-radio.js"></script>
     	<script src="about/flat/js/jquery.tagsinput.js"></script>
     	<script src="about/flat/js/jquery.placeholder.js"></script>
-    	<script src="about/flat/js/application.js"></script>
+    	<!--script src="about/flat/js/application.js"></script-->
       
       
       	<script src="lib/big-text/big-text.js"></script>
       	<script src="lib/offline/offline.min.js"></script>
       	<script src="lib/coffee/coffee.js"></script>
       	<script src="lib/markdown/markdown.js"></script>
+      	
+        <script src="lib/repl/scripts/codemirror-repl.js"></script>
+        <script src="lib/repl/scripts/modes/javascript.js"></script>
       	
 		<script src="scripts/global.js"></script>
 		<script src="scripts/realtime.js"></script>
@@ -545,7 +607,12 @@
 				return false;
 			});
 			jwerty.key('ctrl+s/cmd+s', function() {
-				save();
+				if(!is_welcome){
+					save();
+				}
+				else{
+					saveAs();
+				}
 				return false;
 			});
 			jwerty.key('ctrl+space/cmd+space',function(){
@@ -556,7 +623,11 @@
 		<link rel="stylesheet" href="scripts/style.css">
 		<link rel="stylesheet" href="scripts/custom.css">
 		
+		<script src="lib/ripple/ripple.js"></script>
+		
 		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=loadDrive"></script>
+		
+		<link rel="stylesheet" href="scripts/custom.css">
 
 	</body>
 </html>

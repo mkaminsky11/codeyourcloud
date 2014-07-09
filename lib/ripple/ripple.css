@@ -1,0 +1,39 @@
+.ripple-button { /*general styling for all buttons*/
+  position: relative;
+  overflow: hidden;
+  text-shadow: none;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+ 
+.ripple-button.hovered { /*makes it 'elevate'*/
+  -webkit-transform: scale(1.05) !important;
+  -ms-transform: scale(1.05) !important;
+  transform: scale(1.05) !important;
+}
+
+.ripple-button:hover { /*makes it 'elevate'*/
+  -webkit-transform: scale(1.05) !important;
+  -ms-transform: scale(1.05) !important;
+  transform: scale(1.05) !important;
+}
+.side-item.ripple-button:hover{
+	width: 105%;
+}
+
+
+.ripple { /*stylings for the circular overlay*/
+  position: absolute;
+  border-radius: 100%;
+  width: 0;
+  height: 0;
+  background: rgba(0,0,0, .05);
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+ 
+.notransition { /*used to reset the ripple without an animatiion*/
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+

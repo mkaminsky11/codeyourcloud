@@ -1,0 +1,19 @@
+@font-face{
+	font-family: 'Lobster';
+	src: url('Lobster.woff') format('woff'), url('Lobster.ttf') format('truetype');
+	font-weight: 400;
+}
+
+@font-face{
+	font-family: 'Anders';
+	src: url('Anders.woff') format('woff'), url('Anders.ttf') format('truetype');
+	font-weight: 400;
+}
+
+.Lobster{
+	font-family: 'Lobster';
+}
+
+.Anders{
+	font-family: 'Anders';
+}

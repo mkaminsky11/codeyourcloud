@@ -1,15 +1,14 @@
-.CodeMirror {
+.side-modal-terminal .CodeMirror {
   height: 100%;
   line-height: 1em;
   font-family: monospace;
 
   /* Necessary so the scrollbar can be absolutely positioned within the wrapper on Lion. */
-  position: relative;
   /* This prevents unwanted scrollbars from showing up on the body and wrapper in IE. */
   overflow: hidden;
 }
 
-.CodeMirror-scroll {
+.side-modal-terminal .CodeMirror-scroll {
   font-size: 1em;
   overflow: auto;
   height: 100%;
@@ -20,19 +19,19 @@
 }
 
 /* Vertical scrollbar */
-.CodeMirror-scrollbar {
+.side-modal-terminal .CodeMirror-scrollbar {
   position: absolute;
   right: 0; top: 0;
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 5;
 }
-.CodeMirror-scrollbar-inner {
+.side-modal-terminal .CodeMirror-scrollbar-inner {
   /* This needs to have a nonzero width in order for the scrollbar to appear
      in Firefox and IE9. */
   width: 1px;
 }
-.CodeMirror-scrollbar.cm-sb-overlap {
+.side-modal-terminal .CodeMirror-scrollbar.cm-sb-overlap {
   /* Ensure that the scrollbar appears in Lion, and that it overlaps the content
      rather than sitting to the right of it. */
   position: absolute;
@@ -41,14 +40,14 @@
   right: 0;
   min-width: 12px;
 }
-.CodeMirror-scrollbar.cm-sb-nonoverlap {
+.side-modal-terminal .CodeMirror-scrollbar.cm-sb-nonoverlap {
   min-width: 12px;
 }
-.CodeMirror-scrollbar.cm-sb-ie7 {
+.side-modal-terminal .CodeMirror-scrollbar.cm-sb-ie7 {
   min-width: 18px;
 }
 
-.CodeMirror-gutter {
+.side-modal-terminal .CodeMirror-gutter {
   position: absolute; left: 0; top: 0;
   z-index: 10;
   background-color: #f7f7f7;
@@ -56,20 +55,20 @@
   min-width: 2em;
   height: 100%;
 }
-.CodeMirror-gutter-text {
+.side-modal-terminal .CodeMirror-gutter-text {
   color: #aaa;
   text-align: right;
   padding: .4em .2em .4em .4em;
   white-space: pre !important;
   cursor: default;
 }
-.CodeMirror-lines {
+.side-modal-terminal .CodeMirror-lines {
   padding: .4em;
   white-space: pre;
   cursor: text;
 }
 
-.CodeMirror pre {
+.side-modal-terminal .CodeMirror pre {
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   -o-border-radius: 0;
@@ -85,20 +84,20 @@
   overflow: visible;
 }
 
-.CodeMirror-wrap pre {
+.side-modal-terminal .CodeMirror-wrap pre {
   word-wrap: break-word;
   white-space: pre-wrap;
   word-break: normal;
 }
-.CodeMirror-wrap .CodeMirror-scroll {
+.side-modal-terminal .CodeMirror-wrap .CodeMirror-scroll {
   overflow-x: hidden;
 }
 
-.CodeMirror textarea {
+.side-modal-terminal .CodeMirror textarea {
   outline: none !important;
 }
 
-.CodeMirror pre.CodeMirror-cursor {
+.side-modal-terminal .CodeMirror pre.CodeMirror-cursor {
   z-index: 10;
   position: absolute;
   visibility: hidden;
@@ -106,7 +105,7 @@
   border-right: none;
   width: 0;
 }
-.cm-keymap-fat-cursor pre.CodeMirror-cursor {
+.side-modal-terminal .cm-keymap-fat-cursor pre.CodeMirror-cursor {
   width: auto;
   border: 0;
   background: transparent;
@@ -114,65 +113,67 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#6600c800, endColorstr=#4c00c800);
 }
 /* Kludge to turn off filter in ie9+, which also accepts rgba */
-.cm-keymap-fat-cursor pre.CodeMirror-cursor:not(#nonsense_id) {
+.side-modal-terminal .cm-keymap-fat-cursor pre.CodeMirror-cursor:not(#nonsense_id) {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
-.CodeMirror pre.CodeMirror-cursor.CodeMirror-overwrite {}
-.CodeMirror-focused pre.CodeMirror-cursor {
+.side-modal-terminal .CodeMirror pre.CodeMirror-cursor.CodeMirror-overwrite {}
+.side-modal-terminal .CodeMirror-focused pre.CodeMirror-cursor {
   visibility: visible;
 }
 
-div.CodeMirror-selected { background: #d9d9d9; }
-.CodeMirror-focused div.CodeMirror-selected { background: #d7d4f0; }
+.side-modal-terminal div.CodeMirror-selected { background: #d9d9d9; }
+.side-modal-terminal .CodeMirror-focused div.CodeMirror-selected { background: #d7d4f0; }
 
-.CodeMirror-searching {
+.side-modal-terminal .CodeMirror-searching {
   background: #ffa;
   background: rgba(255, 255, 0, .4);
 }
 
 /* Default theme */
 
-.cm-s-default span.cm-keyword {color: #708;}
-.cm-s-default span.cm-atom {color: #219;}
-.cm-s-default span.cm-number {color: #164;}
-.cm-s-default span.cm-def {color: #00f;}
-.cm-s-default span.cm-variable {color: black;}
-.cm-s-default span.cm-variable-2 {color: #05a;}
-.cm-s-default span.cm-variable-3 {color: #085;}
-.cm-s-default span.cm-property {color: black;}
-.cm-s-default span.cm-operator {color: black;}
-.cm-s-default span.cm-comment {color: #a50;}
-.cm-s-default span.cm-string {color: #a11;}
-.cm-s-default span.cm-string-2 {color: #f50;}
-.cm-s-default span.cm-meta {color: #555;}
-.cm-s-default span.cm-error {color: #f00;}
-.cm-s-default span.cm-qualifier {color: #555;}
-.cm-s-default span.cm-builtin {color: #30a;}
-.cm-s-default span.cm-bracket {color: #997;}
-.cm-s-default span.cm-tag {color: #170;}
-.cm-s-default span.cm-attribute {color: #00c;}
-.cm-s-default span.cm-header {color: blue;}
-.cm-s-default span.cm-quote {color: #090;}
-.cm-s-default span.cm-hr {color: #999;}
-.cm-s-default span.cm-link {color: #00c;}
-span.cm-negative {color: #d44;}
-span.cm-positive {color: #292;}
+.side-modal-terminal .cm-s-default span.cm-keyword {color: #708;}
+.side-modal-terminal .cm-s-default span.cm-atom {color: #219;}
+.side-modal-terminal .cm-s-default span.cm-number {color: #164;}
+.side-modal-terminal .cm-s-default span.cm-def {color: #00f;}
+.side-modal-terminal .cm-s-default span.cm-variable {color: black;}
+.side-modal-terminal .cm-s-default span.cm-variable-2 {color: #05a;}
+.side-modal-terminal .cm-s-default span.cm-variable-3 {color: #085;}
+.side-modal-terminal .cm-s-default span.cm-property {color: black;}
+.side-modal-terminal .cm-s-default span.cm-operator {color: black;}
+.side-modal-terminal .cm-s-default span.cm-comment {color: #a50;}
+.side-modal-terminal .cm-s-default span.cm-string {color: #a11;}
+.side-modal-terminal .cm-s-default span.cm-string-2 {color: #f50;}
+.side-modal-terminal .cm-s-default span.cm-meta {color: #555;}
+.side-modal-terminal .cm-s-default span.cm-error {color: #f00;}
+.side-modal-terminal .cm-s-default span.cm-qualifier {color: #555;}
+.side-modal-terminal .cm-s-default span.cm-builtin {color: #30a;}
+.side-modal-terminal .cm-s-default span.cm-bracket {color: #997;}
+.side-modal-terminal .cm-s-default span.cm-tag {color: #170;}
+.side-modal-terminal .cm-s-default span.cm-attribute {color: #00c;}
+.side-modal-terminal .cm-s-default span.cm-header {color: blue;}
+.side-modal-terminal .cm-s-default span.cm-quote {color: #090;}
+.side-modal-terminal .cm-s-default span.cm-hr {color: #999;}
+.side-modal-terminal .cm-s-default span.cm-link {color: #00c;}
+.side-modal-terminal span.cm-negative {color: #d44;}
+.side-modal-terminal span.cm-positive {color: #292;}
 
-span.cm-header, span.cm-strong {font-weight: bold;}
-span.cm-em {font-style: italic;}
-span.cm-emstrong {font-style: italic; font-weight: bold;}
-span.cm-link {text-decoration: underline;}
+.side-modal-terminal span.cm-header, span.cm-strong {font-weight: bold;}
+.side-modal-terminal span.cm-em {font-style: italic;}
+.side-modal-terminal span.cm-emstrong {font-style: italic; font-weight: bold;}
+.side-modal-terminal span.cm-link {text-decoration: underline;}
 
-span.cm-invalidchar {color: #f00;}
+.side-modal-terminal span.cm-invalidchar {color: #f00;}
 
-div.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}
-div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
+.side-modal-terminal div.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}
+.side-modal-terminal div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 
 @media print {
 
   /* Hide the cursor when printing */
-  .CodeMirror pre.CodeMirror-cursor {
+  .side-modal-terminal .CodeMirror pre.CodeMirror-cursor {
     visibility: hidden;
   }
 
 }
+
+

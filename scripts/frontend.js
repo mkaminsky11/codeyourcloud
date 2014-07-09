@@ -37,22 +37,23 @@ connection.onmessage = function (message) {
 			line_wrap = to_bool(json.wrap);
 			editor.setOption("lineWrapping",line_wrap);
 			
-			var s_t = "on";
-			if(line_wrap === false){
-				s_t = "off";
+			
+			try{
+				if(line_wrap === true && !$('#side-wrap').prop('checked')){
+					document.getElementById("side-wrap").toggle();
+				}
+				
+				line_number = to_bool(json.nums);
+				editor.setOption("lineNumbers",line_number);
+				
+				
+				if(line_number === false && $('#side-nums').prop('checked')){
+					document.getElementById("side-nums").toggle();
+				}
 			}
-			set_switch_state("#side-wrap_switch",s_t);
-			
-			line_number = to_bool(json.nums);
-			editor.setOption("lineNumbers",line_number);
-			
-			s_t = "on";
-			
-			if(line_number === false){
-				s_t = "off";
+			catch(e){
 			}
 			
-			set_switch_state("#side-nums_switch",s_t);
 		}
 		if(json.type === "new"){
 			set_sql();	
@@ -61,7 +62,7 @@ connection.onmessage = function (message) {
 			console.log("%cHtml published","color:#27AE60; font-size: 12px");
 		}
 	} catch (e) {
-		console.log("%cThere was an error!", "color:#E74C3C; font-size: 12px");
+		console.log(e);
 	}
 };
 

@@ -282,3 +282,6 @@ var bottom_open = false;
 var the_console;
 
 var login_sql = 0;
+
+var repl;
+var mirror;

@@ -238,25 +238,14 @@ function line_wrap_switch() {
 }
 
 function fontUp(){
-	var old = Number($(".CodeMirror").css("fontSize").replace("px", ""));
-	if(old < 100){
-		old = old + 2;
-	}
-	$(".CodeMirror").css("fontSize", old+"px");
-	$("#spinner-font").val(old);
-	sql_font = old;
-	set_sql();
+set_sql();
 }
-function fontDown(){
-	var old = Number($(".CodeMirror").css("fontSize").replace("px", ""));
-	if(old > 4){
-		old = old - 2;
-	}
-	$(".CodeMirror").css("fontSize", old+"px");
-	$("#spinner-font").val(old);
-	sql_font = old;
-	set_sql();
-}
+
+document.getElementById("spinner-font").addEventListener('change',function(){
+	var f = document.getElementById("spinner-font").value;
+	sql_font = Number(f);
+	$(".CodeMirror").css("fontSize", f+"px");
+});
 
 /*=============
 MOVE LEFT/RIGHT
@@ -315,15 +304,6 @@ function lorem_p(){
 /*==============
 CONSOLE
 ==============*/
-the_console = CodeMirror(document.getElementById("con"),{
-    lineNumbers: true,
-    mode: "text",
-    theme: "cobalt",
-    lineWrapping: true, 
-    readOnly: true
-});
-the_console.setValue("/*welcome to the code your cloud console!*/");
-the_console.refresh();
 
 function run(){
 	var code_before_replace = editor.getValue();
@@ -332,29 +312,14 @@ function run(){
 	}
 	var find = 'console.log';
 	var re = new RegExp(find, 'g');
-	code_before_replace = code_before_replace.replace(re, 'printToConsole');
-	eval(code_before_replace);
+	code_before_replace = code_before_replace.replace(re, 'repl.print');
+	repl.eval(code_before_replace);
+	
+	show_side_terminal();
 }
 
-function printToConsole(to_print){
-	var old_text = the_console.getValue();
-	var new_text = old_text + "\n" + to_print;
-	the_console.setValue(new_text);
-}
 
-function clear_console(){
-	the_console.setValue("");
-}
-/*===========
-NOTEPAD
-===========*/
-var the_notepad = CodeMirror(document.getElementById("note_pad"),{
-    mode: "text",
-    theme: "neo",
-    lineWrapping: true, 
-});
-the_notepad.refresh();
-the_notepad.setValue("start typing...");
+
 /*=========
 COLOR
 ==========*/

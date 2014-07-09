@@ -20,3 +20,47 @@ surveys are: good
 recommend: yes
 Would like to see the mobile apps come out soon, other than that I love this!
 ****************
+problem is: usability problems
+wouldn't mind ads: n/a
+prefered image: shattered island
+no, I haven't used mobile
+github: none
+the best thing is: n/a
+it looks: meh
+surveys are: good
+recommend: yes
+n/a
+****************
+problem is: Sometimes the app doesn't open.
+wouldn't mind ads: about page landing page editor
+prefered image: shattered island
+no, I haven't used mobile
+github: yes
+the best thing is: Share with other people.
+it looks: good
+surveys are: good
+recommend: yes
+I think you could check the terminal too, not only use the interpreter (with python, for example) as to run the code. Add a way to "save as..." a file (because, when I create a document I can't save it, or I doesn't find a button to it). Fix some bugs, many times when I open a file, it just doesn't open, it remains on the loading page for hours. You have to create an app for iOS, I doesn't know if it have one for Android, but surely must have for all devices. Besides, not only an app for Chrome as for Firefox too, Opera and other browsers. Code Your Cloud is a great app, I've tryed to use Codeanywhere, Koding, and those other websites, but I'm still in Code Your Cloud (because It's better, but still have to evolve).
+****************
+problem is: I can't open some archives, it keeps "charging", but nothing happens
+wouldn't mind ads: n/a
+prefered image: nebula
+yes, I have used mobile
+github: none
+the best thing is: sharing option
+it looks: good
+surveys are: good
+recommend: yes
+n/a
+****************
+problem is: usability problems
+wouldn't mind ads: about page
+prefered image: nebula
+no, I haven't used mobile
+github: no
+the best thing is: n/a
+it looks: meh
+surveys are: good
+recommend: yes
+n/a
+****************

@@ -1,8 +1,80 @@
-/*================
-store google drive functions
-================*/
+var folder_to_insert = "";
+
+function getParents(fileId, callback) {
+  var request = gapi.client.drive.parents.list({
+    'fileId': fileId
+  });
+  request.execute(function(resp) {
+  	try{
+    	callback(resp.items[0].id);
+    }
+    catch(e){
+    	parent_error();
+    }
+    console.log(resp);
+  });
+}
+
+function getFile(fileId, callback, goal, id){
+	var request = gapi.client.drive.files.get({
+	    'fileId': fileId
+	  });
+	  request.execute(function(resp) {
+	    callback(resp, goal, id);
+	  });
+}
+
+
+function retrieveAllFiles(callback) {
+  var retrievePageOfFiles = function(request, result) {
+    request.execute(function(resp) {
+      result = result.concat(resp.items);
+      var nextPageToken = resp.nextPageToken;
+      if (nextPageToken) {
+        request = gapi.client.drive.files.list({
+          'pageToken': nextPageToken
+        });
+        retrievePageOfFiles(request, result);
+      } else {
+        callback(result);
+      }
+    });
+  }
+  var initialRequest = gapi.client.drive.files.list();
+  retrievePageOfFiles(initialRequest, []);
+}
+
+
+function retrieveAllFilesInFolder(folderId, callback) {
+  var retrievePageOfChildren = function(request, result) {
+    request.execute(function(resp) {
+      result = result.concat(resp.items);
+      var nextPageToken = resp.nextPageToken;
+      if (nextPageToken) {
+        request = gapi.client.drive.children.list({
+          'folderId' : folderId,
+          'pageToken': nextPageToken
+        });
+        retrievePageOfChildren(request, result);
+      } else {
+        callback(result, folderId);
+      }
+    });
+  }
+  var initialRequest = gapi.client.drive.children.list({
+      'folderId' : folderId
+    });
+  retrievePageOfChildren(initialRequest, []);
+}
+
+
+
+
+
+
+
 function getContentOfFile(theID, model){ //gets the content of the file
-    current = theID;
+	console.log("init");
     gapi.client.request({'path': '/drive/v2/files/'+theID,'method': 'GET',callback: function ( theResponseJS, theResponseTXT ) {
         var myToken = gapi.auth.getToken();
 		var myXHR   = new XMLHttpRequest();
@@ -12,14 +84,13 @@ function getContentOfFile(theID, model){ //gets the content of the file
             if (myXHR.readyState == 4) {
                 if ( myXHR.status == 200 ) {
                 	code = myXHR.response;
-                    editor.setValue(code); //sets the value of the codemirror
+                    setValue(code); //sets the value of the codemirror
                     model.getRoot().set("cursors", model.createList());
                     model.getRoot().set("text", model.createString(code));
                     model.getRoot().set("chat", model.createList());
                     init_loaded = true;
                     loaded_realtime(doc_real);
                     getTitle(theID, model);
-                    getP(theID);
 			   	}
             }
         }
@@ -32,17 +103,11 @@ function getP(fileId) {
 		'fileId': fileId
 	});
 	request.execute(function(resp) {
-		var ret = false;
-		for(var i = 0; i < resp.items.length; i++){
-			if(resp.items[i].id === userId || resp.items[i].id === "anyone" || resp.items[i].id === "anyoneWithLink" || resp.items[i].emailAddress === myEmail){
-				ret = true;
-			}
-		}
-		if(ret === false){
-			window.location = "https://codeyourcloud.com/error/permission";
-		}
+		sendP(resp.items);
 	});
 }
+
+
 function getTitle(fileId, model){
 	var request = gapi.client.drive.files.get({
     'fileId': fileId
@@ -55,7 +120,7 @@ function getTitle(fileId, model){
 			return false;
 		}
   		model.getRoot().set("title", model.createString(resp.title));
-    	check_mode(resp.title); //what kind of file is it?
+    	sendTitle(resp.title); //what kind of file is it?
     	title_loaded = true;
     	loaded_title(doc_real);
   	});
@@ -113,31 +178,28 @@ function renameFile(fileId, newTitle) {
 NEW FILE
 ============*/
 function insertNewFile(folderId) {
-	var content = " ";
+	folder_to_insert = folderId;
+	
+	var content = "";
 	var contentArray = new Array(content.length);
     for (var i = 0; i < contentArray.length; i++) {
     	contentArray[i] = content.charCodeAt(i);
     }
     var byteArray = new Uint8Array(contentArray);
     var blob = new Blob([byteArray], {type: 'text/plain'}); //this is the only way I could get this to work
-	insertFile(blob, folderId, fileInserted);
+	insertFile(blob, fileInserted);
 }
+
 function fileInserted(d) {
 	//get folderid
-	var query = window.location.href.split("?")[1];
-	var FI = query.split("%22")[3];
+	var FI = folder_to_insert;
     renameFile(d.id, d.id+".txt");
 	if(FI !== myRootFolderId){	
 		insertFileIntoFolder(FI, d.id);
-		removeFileFromFolder(d.parents[0].id,d.id);
+		removeFileFromFolder(myRootFolderId,d.id);
 	}
-	
-	//window.location = "https://codeyourcloud.com#"+d.id;
-	//var fileId = data.docs[i].id;
-	//var the_url = 'https://codeyourcloud.com#' + fileId;
-	
-	location.hash = d.id;
-	location.reload();
+	sendNew(d.id);
+	folder_to_insert = "";
 }
 function insertFileIntoFolder(folderId, fileId) {
   var body = {'id': folderId};
@@ -154,10 +216,7 @@ function removeFileFromFolder(folderId, fileId) {
   });
   request.execute(function(resp) { });
 }
-
-
-
-function insertFile(fileData, folderId, callback) {
+function insertFile(fileData, callback) {
   const boundary = '-------314159265358979323846';
   const delimiter = "\r\n--" + boundary + "\r\n";
   const close_delim = "\r\n--" + boundary + "--";
@@ -167,7 +226,7 @@ function insertFile(fileData, folderId, callback) {
   reader.onload = function(e) {
     var contentType = fileData.type || 'application/octet-stream';
     var metadata = {
-      'title': folderId + ".txt",
+      'title': "Untitled.txt",
       'mimeType': contentType
     };
 
@@ -199,11 +258,123 @@ function insertFile(fileData, folderId, callback) {
   }
 }
 
+function save(){
+	var content = text.getText();
+	if(typeof content !== "undefined"){ //if nothing is "null"
+        var contentArray = new Array(content.length);
+        for (var i = 0; i < contentArray.length; i++) {
+            contentArray[i] = content.charCodeAt(i);
+        }
+        var byteArray = new Uint8Array(contentArray);
+        var blob = new Blob([byteArray], {type: 'text/plain'}); //this is the only way I could get this to work
+        var request = gapi.client.drive.files.get({'fileId': current});//gets the metadata, which is left alone
+
+        
+        request.execute(function(resp) {
+            updateFile(current,resp,blob,changesSaved);
+        });
+    }
+}
+
+function changesSaved(){
+	were_changes = false;
+	sendData({
+		type: "saved"
+	});
+}
+
+function insertPermission(fileId, value, type, role) {
+  var body = {
+    'value': value,
+    'type': type,
+    'role': role
+  };
+  var request = gapi.client.drive.permissions.insert({
+    'fileId': fileId,
+    'resource': body
+  });
+  request.execute(function(resp) { 
+  	sendData({
+	  	type: "new_p",
+	  	p: resp
+  	});
+  });
+}
+
+function removePermission(fileId, permissionId) {
+  var request = gapi.client.drive.permissions.delete({
+    'fileId': fileId,
+    'permissionId': permissionId
+  });
+  request.execute(function(resp) { });
+}
 
 
+function sharedWithMe(){
+	searchAll("sharedWithMe and not '"+myEmail+"' in owners",sharedWithMeCallback);
+}
 
+
+function searchAll(s, callback) {
+  var retrievePageOfFiles = function(request, result) {
+    request.execute(function(resp) {
+      result = result.concat(resp.items);
+      var nextPageToken = resp.nextPageToken;
+      if (nextPageToken) {
+        request = gapi.client.drive.files.list({
+          'pageToken': nextPageToken,
+          'q': s
+        });
+        retrievePageOfFiles(request, result);
+      } else {
+        callback(result);
+      }
+    });
+  }
+  var initialRequest = gapi.client.drive.files.list();
+  retrievePageOfFiles(initialRequest, []);
+}
+
+function sharedWithMeCallback(data){
+	var ret = [];
+	var e = myEmail;
+	
+	for(var i = 0; i < data.length; i++){
+		try{
+			var r = false;
+			for(var a = 0; a < data[i].owners.length; a++){
+				if(data[i].owners[a].emailAddress !== e){
+					r = true;
+				}
+			}
+			
+			
+			if(r){
+				var f = false;
+				if(data[i].mimeType === "application/vnd.google-apps.folder"){
+					f = true;
+				}
+				var to_push = {
+					name: data[i].title,
+					id: data[i].id,
+					folder:	f
+				};
+				ret.push(to_push);
+			}
+		}
+		catch(e){
+		}
+	}
+	
+	sendData({
+		type: "shared",
+		data: ret
+	});
+}
 
 function insert_saveas(content, title, folderId){
+	saveas_t = title;
+	saveas_d = folderId;
 	var contentArray = new Array(content.length);
     for (var i = 0; i < contentArray.length; i++) {
     	contentArray[i] = content.charCodeAt(i);
@@ -215,14 +386,15 @@ function insert_saveas(content, title, folderId){
 
 function saveas_inserted(d) {
 	//get folderid
-	var folder_id = save_as_destination;
-    renameFile(d.id, $("#saveas-input").val());
+	var folder_id = saveas_d;
+    renameFile(d.id, saveas_t);
 	if(folder_id !== myRootFolderId){	
 		insertFileIntoFolder(folder_id, d.id);
 		removeFileFromFolder(d.parents[0].id,d.id);
 	}
 	
-	//window.location = "https://codeyourcloud.com#"+d.id;
-	location.hash = d.id;
-	location.reload();
+	sendData({
+		type: "new",
+		id: d.id
+	});
 }

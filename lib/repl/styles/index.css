@@ -1,12 +1,10 @@
-html, body {
-    height: 100%;
+.side-modal-terminal .CodeMirror{
+	height: 100%;
+	width: 100%;
+	position: absolute;
 }
 
-body {
-    margin: 0;
-}
-
-.message {
+.side-modal-terminal .message {
     color: #000000 !important;
     font-weight: normal !important;
 }

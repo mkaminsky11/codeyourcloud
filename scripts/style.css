@@ -27,12 +27,7 @@
     padding-bottom: -30px;
     display: inline-block;
 }
-#container{
-    position: absolute;
-    height: calc(100% - 53px);
-    width: 100%;
-    margin-top: -30px;
-}
+
 .navbar{
 	border-radius:0px;
 	z-index:9;
@@ -90,6 +85,7 @@ CHAT BUBBLES
 	font-size: 14px;
 	line-height: 120%;
 	z-index: -1;
+	word-wrap:break-word;
 }
 .other-bubble{
 	background-color: #95A5A6;
@@ -126,72 +122,9 @@ CHAT BUBBLES
 	margin-top: 3%;
 	display: inline-block;
 }
-/*==============
-MODALS
-===============*/
-.modal-dialog{
-	width:90%;
-}
-#rename-dialog{
-	width:90%;
-}
-.model-content{
-	border-radius: 0;
-	width:100%;
-}
-.modal-header{
-	text-align: center;
-}
 /*===============
 FLIPPER
 ===============*/
-.flip-container {
-	-webkit-perspective: 1000;
-	perspective: 1000;
-}
-.flip-container:hover .flipper, .flip-container.hover .flipper {
-	-webkit-transform: rotateY(180deg);
-	-moz-transform: rotateY(180deg);
-	transform: rotateY(180deg);
-}
-.flip-container, .front, .back {
-	width: 53px;
-	height: 53px;
-}
-.flipper {
-	-webkit-transition: 0.6s;
-	transition: 0.6s;
-	-moz-transition: 0.6s;
-	
-	-webkit-transform-style: preserve-3d;
-	transform-style: preserve-3d;
-	-moz-transform-style: preserve-3d;
-
-	position: relative;
-}
-.front, .back {
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-	-moz-backface-visibility: hidden;
-
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-.front {
-	background-color:red;
-	z-index: 2;
-	background-image: url('../icon_128.png');
-	background-size: 100% 100%;
-}
-.back {
-	background-color:blue;
-	-webkit-transform: rotateY(180deg);
-	-moz-transform: rotateY(180deg);
-	transform: rotateY(180deg);
-	background-image: url('../images/drive_128.png');
-	background-size: 100% 100%;
-}
 #navbar-collapse-01{
 	padding-left:0;
 }
@@ -205,10 +138,11 @@ PREFERENCES
 MODES
 ==============*/
 #mode-ul{
-	height: calc(100% - 53px);
+	height: calc(100%);
 	overflow-y: scroll;
 	width: 100%;
 	position: absolute;
+	top: 0;
 }
 #mode-ul>li{
 	border-radius: 0;
@@ -217,10 +151,11 @@ MODES
 THEMES
 ==========*/
 #theme-ul{
-	height: calc(100% - 53px);
+	height: calc(100%);
 	overflow-y: scroll;
 	width: 100%;
 	position: absolute;
+	top: 0px
 }
 #theme-ul>li{
 	border-radius: 0;
@@ -253,12 +188,6 @@ OPTIONS
 /*============
 BOTTOM
 ============*/
-#main{
-	width:100%;
-	height:100%;
-	position:fixed;
-	z-index: 0;
-}
 #bottom{
 	position: fixed;
 	width: 100%;
@@ -276,7 +205,6 @@ body{
 	width:100%;
 	height:100%;
 	border:none;
-	position:absolute;
 }
 .nav-tabs > li > a{
 	margin-left: -2px;
@@ -306,44 +234,7 @@ body{
 #bottom_button>a:hover{
 	color:white;
 }
-/*============
-LOREM
-=============*/
-#lorem{
-	height: 60%;
-	position:absolute;
-	overflow-y: auto;
-}
-/*===========
-CONSOLE
-============*/
-#con{
-	width:100%;
-}
-#con .CodeMirror{
-	width: 100%;
-}
-#note_pad{
-	width:100%;
-}
-/*==========
-COLOR
-==========*/
-#color-dialog{
-	width: 40%;
-}
-#color-li{
-	margin-top:10px;
-}
-/*========
-PREVIEW
-=========*/
-#preview-dialog{
-	width:90%;
-}
-#preview{
-	width:100%;
-}
+
 /*========
 SCREEN
 =========*/
@@ -679,17 +570,6 @@ CUBE
 	background-color: #ECF0F1;
 }
 
-/*========
-BADGE
-==========*/
-#unread{
-    position: relative;
-    background-color: #E74C3C;
-}
-
-.sp-buttons-disabled{
-	left: -72px;
-}
 
 /*==========
 TOOLBAR

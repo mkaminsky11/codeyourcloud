@@ -123,9 +123,7 @@ window.onbeforeunload = function (e) {
 };
 
 
-var userLeft = function(doc){
-	
-	
+var userLeft = function(doc){	
 	if(!doc.collaborator.isMe){
 		var the_id = doc.collaborator.sessionId;
 		
@@ -134,19 +132,10 @@ var userLeft = function(doc){
 };
 
 var userJoin = function(doc){
-	try{
-		
-		var col = doc.collaborator;
-		if(!col.isMe){
-			insertUser(col.userName,col.color,col.photoUrl,col.sessionId);
-		}
-		$(".user-photo").each(function(index){
-			if($(this).css("height") === "1px"){
-				$(this).css("height","53px");
-			}
-		});
-	}
-	catch(e){
+	console.log("join");
+	var col = doc.collaborator;
+	if(!col.isMe){
+		insertUser(col.userName,col.color,col.photoUrl,col.sessionId);
 	}
 };
 
@@ -222,7 +211,7 @@ function loaded_realtime(doc){
 				}
 				else{
 					//written by someone else
-					insertChat(chats_so_far[a][0], chats_so_far[a][1], false, chat_so_far[a][3]);
+					insertChat(chats_so_far[a][0], chats_so_far[a][1], false, chats_so_far[a][3]);
 				}
 			}
 			
@@ -502,4 +491,9 @@ function changesSaved(){
 
 function clear_chat_history(){
 	chats.clear();
+}
+
+function saveAs(){
+	close_side();
+	showSaveAsPicker();
 }
