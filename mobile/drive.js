@@ -381,17 +381,17 @@ function insert_saveas(content, title, folderId){
     }
     var byteArray = new Uint8Array(contentArray);
     var blob = new Blob([byteArray], {type: 'text/plain'});
-	insertFile(blob, folderId, saveas_inserted);
+    console.log("ok");
+	insertFile(blob, saveas_inserted);
 }
 
 function saveas_inserted(d) {
 	//get folderid
 	var folder_id = saveas_d;
     renameFile(d.id, saveas_t);
-	if(folder_id !== myRootFolderId){	
-		insertFileIntoFolder(folder_id, d.id);
-		removeFileFromFolder(d.parents[0].id,d.id);
-	}
+    removeFileFromFolder(d.parents[0].id,d.id);
+	insertFileIntoFolder(folder_id, d.id);
+		
 	
 	sendData({
 		type: "new",

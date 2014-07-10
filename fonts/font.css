@@ -10,10 +10,38 @@
 	font-weight: 400;
 }
 
+@font-face{
+	font-family: 'Roboto';
+	src: url('Roboto-Regular.woff') format('woff'), url('Roboto-Regular.ttf') format('truetype');
+	font-weight: 400;
+}
+
+@font-face{
+	font-family: 'Roboto-Black';
+	src: url('Roboto-Black.woff') format('woff'), url('Roboto-Black.ttf') format('truetype');
+	font-weight: 400;
+}
+
+@font-face{
+	font-family: 'Roboto-Thin';
+	src: url('Roboto-Thin.woff') format('woff'), url('Roboto-Thin.ttf') format('truetype');
+	font-weight: 400;
+}
+
+@font-face{
+	font-family: 'Roboto-Light';
+	src: url('Roboto-Light.woff') format('woff'), url('Roboto-Light.ttf') format('truetype');
+	font-weight: 400;
+}
+
 .Lobster{
 	font-family: 'Lobster';
 }
 
 .Anders{
 	font-family: 'Anders';
+}
+
+.Roboto{
+	font-family: 'Roboto';
 }

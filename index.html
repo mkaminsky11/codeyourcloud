@@ -44,12 +44,6 @@
 	    <![endif]-->
 	    
 	    <link rel='stylesheet' type='text/css' href='lib/Font/css/font-awesome.min.css'>
-	    
-	    <!--Messenger-->
-	    <script src="lib/messenger/build/js/messenger.min.js"></script>
-		<script src="lib/messenger/build/js/messenger-theme-flat.js"></script>
-		<link rel="stylesheet" href="lib/messenger/build/css/messenger.css" />
-		<link rel="stylesheet" href="lib/messenger/build/css/messenger-theme-flat.css"/>
 		
 		<!--Other-->
 		<script src="lib/loremjs/lorem.js"></script>
@@ -75,18 +69,22 @@
         <link rel="import" href="poly/components/paper-input/paper-input.html">
         <link rel="import" href="poly/components/paper-slider/paper-slider.html">
         <link rel="import" href="poly/components/core-toolbar/core-toolbar.html">
+        <link rel="import" href="poly/components/core-menu/core-menu.html">
         <link rel="import" href="poly/components/core-icons/core-icons.html">
         <link rel="import" href="poly/components/paper-button/paper-button.html">
         <link rel="import" href="poly/components/paper-dialog/paper-dialog.html">
         <link rel="import" href="poly/components/paper-dialog/paper-dialog-transition.html">
         <link rel="import" href="poly/components/paper-fab/paper-fab.html">
-        <link rel="import" href="poly/components/paper-input/white-input.html">
+        <link rel="import" href="poly/components/paper-ripple/paper-ripple.html">
+        <link rel="import" href="poly/components/paper-item/paper-item.html">
+        <link rel="import" href="poly/components/paper-shadow/paper-shadow.html">
+        <link rel="import" href="poly/components/paper-toast/paper-toast.html">
       
         
         <link rel="stylesheet" href="lib/ripple/ripple.css">
         
         <link rel="stylesheet" href="scripts/custom.css">
-        
+        <link rel="stylesheet" href="fonts/font.css">
 
 	</head>
 	<body>
@@ -97,7 +95,7 @@
 		<div id="side" class="hide">
 			<div class="mover"></div>
 			<div id="side_header">
-				<h6><i onclick="close_side()" class="fa fa-times close-a float-right"></i></h6>
+				<paper-icon-button icon="close" onclick="close_side()" class="header-close"></paper-icon-button>
 			</div>
 			<div id="side_inner">
 				<div class="side-head" style="height:auto">
@@ -114,147 +112,159 @@
 					<h6 id="side-email"><a>email@gmail.com</a></h6>
 				</div>
 				
-				<div class="side-item ripple-button">
+
+					
+				
+				<div class="side-item ">
 					<a href="https://codeyourcloud.com/about" target="_blank">
 						<h6>
-							<small><i class="fa fa-cube"></i></small> ABOUT
+							<small><i class="fa fa-cube"></i></small> About
 						</h6>
+						<paper-ripple></paper-ripple>
+						
 					</a>
 				</div>
 				
-				<hr/>
 				
-				<div onclick="show_side_open()" class="side-item ripple-button">
+				<div onclick="show_side_open()" class="side-item ">
 					<h6>
-						<small><i class="fa fa-folder" style="color:#2ECC71"></i></small> OPEN
+						<small><core-icon style="color:#2ECC71" icon="folder-mydrive"></core-icon></small> Open
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-file side-item ripple-button" onclick="save()">
+				<div class="side-file side-item " onclick="save()">
 					<h6>
-						<small><i class="fa fa-save" style="color:#3498DB"></i></small> SAVE
+						<small><core-icon style="color:#3498DB" icon="save"></core-icon></small> Save
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-item ripple-button" onclick="saveAs()">
+				<div class="side-item " onclick="saveAs()">
 					<h6>
-						<small><i class="fa fa-save" style="color:#E74C3C"></i></small> SAVE AS
+						<small><i class="fa fa-save" style="color:#E74C3C"></i></small> Save As
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div onclick="new_file()" class="side-item ripple-button">
+				<div onclick="new_file()" class="side-item ">
 					<h6>
-						<small><i class="fa fa-file" style="color:#F39C12"></i></small> NEW
+						<small><i class="fa fa-file" style="color:#F39C12"></i></small> New
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				<!--end main-->
 				
-				<hr/>
 				
-				<div onclick="download_file()" class="side-item side-file ripple-button">
+				<div onclick="download_file()" class="side-item side-file ">
 					<h6>
-						<small><i class="fa fa-cloud-download"></i></small> DOWNLOAD
+						<small><i class="fa fa-cloud-download"></i></small> Download
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div onclick="show_side_upload()" class="side-item ripple-button">
+				<div onclick="show_side_upload()" class="side-item ">
 					<h6>
-						<small><i class="fa fa-cloud-upload"></i></small> UPLOAD
+						<small><i class="fa fa-cloud-upload"></i></small> Upload
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-file side-item ripple-button" onclick="show_side_share()">
+				<div class="side-file side-item " onclick="show_side_share()">
 					<h6>
-						<small><i class="fa fa-users"></i></small> SHARE
+						<small><i class="fa fa-users"></i></small> Share
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-file side-item ripple-button" onclick="switch_col()">
+				<div class="side-file side-item " onclick="switch_col()">
 					<h6>
-						<small><i class="fa fa-comment"></i></small> CHAT
+						<small><i class="fa fa-comment"></i></small> Chat
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
 				<!--end "file"-->
 				
 				<hr/>
 				
-				<div class="side-item ripple-button" onclick="move_left()">
+				<div class="side-item " onclick="move_left()">
 					<h6>
-						<small><i class="fa fa-outdent"></i></small> MOVE LEFT
+						<small><i class="fa fa-outdent"></i></small> Move Left
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-item ripple-button" onclick="move_right()">
+				<div class="side-item " onclick="move_right()">
 					<h6>
-						<small><i class="fa fa-indent"></i></small> MOVE RIGHT
+						<small><i class="fa fa-indent"></i></small> Move Right
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-item ripple-button" onlick="replace()">
+				<div class="side-item " onlick="replace()">
 					<h6>
-						<small><i class="fa fa-search"></i></small> REPLACE
+						<small><i class="fa fa-search"></i></small> Replace
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 
 				
 				<!--end "edit"-->
 				
-				<hr/>
 				
-				<div class="side-item ripple-button" onclick="show_side_terminal()">
+				<div class="side-item " onclick="show_side_terminal()">
 					<h6>
-						<small><i class="fa fa-terminal"></i></small> TERMINAL
+						<small><i class="fa fa-terminal"></i></small> Terminal
 						<span class><i class="fa fa-angle-right"></i></span>
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-item ripple-button" onclick="show_side_random()">
+				<div class="side-item " onclick="show_side_random()">
 					<h6>
-						<small><i class="fa fa-font"></i></small> LOREM
+						<small><i class="fa fa-font"></i></small> Lorem
 						<span class><i class="fa fa-angle-right"></i></span>
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-item ripple-button" onclick="show_side_preview()">
+				<div class="side-item " onclick="show_side_preview()">
 					<h6>
-						<small><i class="fa fa-eye"></i></small> PREVIEW
+						<small><i class="fa fa-eye"></i></small> Preview
 						<span class><i class="fa fa-angle-right"></i></span>
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				
-				<!--div class="side-item">
-					<h6>
-						<small><i class="fa fa-cube"></i></small> TEMPLATES
-						<span class><i class="fa fa-angle-right"></i></span>
-					</h6>
+
 				</div-->
 				
 				<!--end "tools"-->
+
 				
-				<hr class="side-run hide">
-				
-				<div class="side-item side-run ripple-button hide" onclick="run()">
+				<div class="side-item side-run  hide" onclick="run()">
 					<h6>
-						<small><i class="fa fa-play"></i></small> RUN
+						<small><i class="fa fa-play"></i></small> Run
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
 				<!--end "run"-->
-				<hr class="side-pub hide">
 				
-				<div class="side-pub side-item ripple-button hide" onclick="publish_html()">
+				<div class="side-pub side-item  hide" onclick="publish_html()">
 					<h6>
-						<small><i class="fa fa-globe"></i></small> PUBLISH
+						<small><i class="fa fa-globe"></i></small> Publish
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-pub side-item ripple-button hide">
+				<div class="side-pub side-item  hide">
 					<a id="side-pub-link" href="" target="_blank">
 						<h6>
-							<small><i class="fa fa-arrow-up"></i></small> GO TO SITE
+							<small><i class="fa fa-arrow-up"></i></small> Go To Site
 						</h6>
+						<paper-ripple></paper-ripple>
 					</a>
 				</div>
 				
@@ -264,42 +274,47 @@
 				
 				<!---->
 				
-				<div class="side-item ripple-button" onclick="show_side_modes()">
+				<div class="side-item " onclick="show_side_modes()">
 					<h6>
-						<small><i class="fa fa-file-code-o"></i></small> LANGUAGES
+						<small><i class="fa fa-file-code-o"></i></small> Languages
 						<span class><i class="fa fa-angle-right"></i></span>
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 
-				<div class="side-item ripple-button" onclick="show_side_themes()">
+				<div class="side-item " onclick="show_side_themes()">
 					<h6>
-						<small><i class="fa fa-tint"></i></small> THEMES
+						<small><i class="fa fa-tint"></i></small> Themes
 						<span class><i class="fa fa-angle-right"></i></span>
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-item ripple-button" onclick="show_side_options()">
+				<div class="side-item " onclick="show_side_options()">
 					<h6>
-						<small><i class="fa fa-cogs"></i></small> OPTIONS
+						<small><i class="fa fa-cogs"></i></small> Options
 						<span class><i class="fa fa-angle-right"></i></span>
 					</h6>
+					<paper-ripple></paper-ripple>
 				</div>
 				
 				<hr/>
 				
-				<div class="side-item ripple-button">
+				<div class="side-item ">
 					<a href="https://accounts.google.com/logout">
 						<h6>
-							<small><i class="fa fa-sign-out"></i></small> LOG OUT
+							<small><i class="fa fa-sign-out"></i></small> Log Out
 						</h6>
+						<paper-ripple></paper-ripple>
 					</a>
 				</div>
 				
-				<div class="side-item ripple-button">
+				<div class="side-item ">
 					<a href="https://codeyourcloud.com/help" target="_blank">
 						<h6>
-							<small><i class="fa fa-question"></i></small> HELP
+							<small><i class="fa fa-question"></i></small> Help
 						</h6>
+						<paper-ripple></paper-ripple>
 					</a>
 				</div>
 				
@@ -307,7 +322,7 @@
 			</div>
 		</div>
 		
-		<div id="detect" class="hide"></div>
+		<div id="detect" style="display:none"></div>
 		
 		
 
@@ -321,17 +336,17 @@
 			
 			<div class="content">
 				<div class="side-modal-row">
-					<h6 class="side-modal-row-label">Line Numbers</h6>
+					<h6 class="side-modal-row-label"><core-icon icon="list"></core-icon> Line Numbers</h6>
 					<paper-checkbox id="side-nums" onclick="line_number_switch()" checked></paper-checkbox>
 				</div>
 				
 				<div class="side-modal-row">
-					<h6 class="side-modal-row-label">Line Wrap</h6>
+					<h6 class="side-modal-row-label"><core-icon icon="swap-horiz"></core-icon>Line Wrap</h6>
 					<paper-checkbox id="side-wrap" onclick="line_wrap_switch()"></paper-checkbox>
 				</div>
 				
 				<div class="side-modal-row">
-					<h6 class="side-modal-row-label">Font Size</h6>
+					<h6 class="side-modal-row-label"><core-icon icon="text-format"></core-icon>Font Size</h6>
 					<br/><br/>
 				</div>
 					<paper-slider pin snaps id="spinner-font" value="12" max="30" step="1" style="width=100%"></paper-slider>
@@ -341,12 +356,17 @@
 		
 		<div class="poly-dialog" id="mode-dialog" style="z-index:200;display:none">
 			<div class="header">
-				<input type="text" class="form-control" id="mode_input" style="width:80%" placeholder="Search">
+				<input type="text" class="form-control poly-input" id="mode_input" style="width:80%">
 			</div>
 			
 			<paper-fab icon="close" onclick="showDialog('mode')"></paper-fab>
 			
 			<div class="content">
+				<div class="search-nothing hide" id="mode-nothing">
+				  <h6>Nothing Found Here</h6>
+				  <h6><core-icon icon="explore"></core-icon></h6>
+				  <h6>Look Elsewhere</h6>
+				</div>
 				<ul id="mode-ul" class="list-group">
 				</ul>
 			</div>
@@ -354,12 +374,17 @@
 		
 		<div class="poly-dialog" id="theme-dialog" style="z-index:200;display:none">
 			<div class="header">
-				<input type="text" class="form-control" id="theme_input"  style="width:80%" placeholder="Search">
+				<input type="text" class="form-control poly-input" id="theme_input"  style="width:80%">
 			</div>
 			
 			<paper-fab icon="close" onclick="showDialog('theme')"></paper-fab>
 			
 			<div class="content">
+				<div class="search-nothing hide" id="theme-nothing">
+				  <h6>Nothing Found Here</h6>
+				  <h6><core-icon icon="explore"></core-icon></h6>
+				  <h6>Look Elsewhere</h6>
+				</div>
 				<ul id="theme-ul" class="list-group">
 				</ul>
 			</div>
@@ -392,7 +417,7 @@
 		
 		<div class="poly-dialog" id="lorem-dialog" style="z-index:200;display:none">
 			<div class="header">
-				<input type="text" class="form-control" id="lorem_input" onchange="generate()" style="width:80%" placeholder="Number">
+				<input type="text" class="form-control poly-input" id="lorem_input" onchange="generate()" style="width:80%">
 			</div>
 			
 			<paper-fab icon="close" onclick="showDialog('lorem')"></paper-fab>
@@ -427,6 +452,7 @@
 			<div class="content">
 					<br/>
 					<input style="width: 80%;margin-left:10%;border: solid thin #ECF0F1;" placeholder="A name for your new file" value="Untitled.txt" id="saveas-input" class="form-control">
+					<br/>
 					<center><small style="color:#BDC3C7">Upon pressing "OK", you will be redirected to the new file.</small></center>
 						
 					<paper-button label="OK" style="color:white;background-color:#2ECC71;width:40%;margin-left:30%" onclick="saveas_ok()"></paper-button>	
@@ -440,25 +466,28 @@
       		<div class="navbar-header">
         	  	
     		</div>
-        	<div class="" id="navbar-collapse-01">
-        	  <ul class="nav navbar-nav n-l">  
-        	  	<li  class="code-li ripple-button" onclick="toggle_side()"><a style="color:#BDC3C7"><i class="fa fa-bars"></i></a></li>
+        	<div class="" id="navbar-collapse-01" style="width: 99%;">
+        	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">  
+        	  	<paper-icon-button onclick="toggle_side()" icon="menu"></paper-icon-button>
         	  	<li id="branding"><a style="color:white;font-size: 22px;">Code Your Cloud</a></li>
 				
         	  </ul>
-        	  <ul class="nav navbar-nav navbar-right n-r">
-        	  	<li class="code-li ripple-button"><a id="open_button" onclick="open_picker()" style="color:white"><i class="fa fa-folder-open-o"></i></a></li>
-        	  	<li class="code-li ripple-button"><a id="save_button" onclick="save()"><i class="fa fa-floppy-o"></i></a></li>
-        	  	<li class="code-li ripple-button"><a id="undo_button" onclick="editor_undo()" style="color:white"><i class="fa fa-undo"></i></a></li>
-        	  	<li class="code-li ripple-button"><a id="redo_button" onclick="editor_redo()" style="color:white"><i class="fa fa-repeat"></i></a></li>
-        	  	<li class="code-li ripple-button" onclick="find()"><a style="color:white"><i class="fa fa-search"></i></a></li>
+        	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
+        	  
+        	  	<paper-icon-button id="open_button" icon="folder-mydrive" onclick="open_picker()"></paper-icon-button>
+        	  	<paper-icon-button id="save_button" icon="save" onclick="save()"></paper-icon-button>
+        	  	<paper-icon-button id="undo_button" icon="rotate-left" onclick="editor_undo()"></paper-icon-button>
+        	  	<paper-icon-button id="redo_button" icon="rotate-right" onclick="editor_redo()"></paper-icon-button>
+        	  	<paper-icon-button icon="search" onclick="find()"></paper-icon-button>
+
+        	  
         	  </ul>
         	</div>
       	</nav>
 	
 	
 	  		<div id="screen">
-				<h1>Preparing Tools...</h1>
+				<h1 id="prepare">Preparing Tools...</h1>
 				<img src="images/svg/7.svg" pagespeed_url_hash="3186773428" style="
 					left: 5%
 				">
@@ -511,6 +540,15 @@
 			<textarea id="chat_text" placeholder="Press enter to send"></textarea>
 		</div>
 		</div>
+		
+		<paper-toast id="toast-select" text="Nothing selected!">
+		</paper-toast>
+		
+		<paper-toast id="toast-message" text="New message">
+		</paper-toast>
+		
+		<paper-toast id="toast-download" text="File Downloaded">
+		</paper-toast>
 		
 
 		<!=================

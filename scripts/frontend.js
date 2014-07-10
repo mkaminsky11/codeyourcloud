@@ -114,21 +114,10 @@ function publish_html(){
 }
 
 function proccess_time(){
-	var t = login_sql;
-	
-	if(t >= 5260){
-		//days when this was started
-		var r = Math.floor(0 + Math.random() * 100)
-		//5% of the time
-		if(r >= 0 && r <= 5){
-			//go!
-			var a = "How about a <a href='https://codeyourcloud.com/survey' target='_blank'>survey</a>?";
-			sendMessage(a,"info");
-		}
-	}
 }
 /*********
 LEAVE THESE ALONE FOR NOW
 **********/
 connection.onerror = function (error) {
+	//console.log(error);
 };

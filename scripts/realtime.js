@@ -152,7 +152,7 @@ var newChat = function(event){
 			insertChat(array[last_index][0], array[last_index][1], false, array[last_index][3]);
 		}
 		if(!chat_open && !event.isLocal){
-			sendMessage("new message", "info");
+			document.querySelector("#toast-message").show();
 		}
 	}
 	catch(e){

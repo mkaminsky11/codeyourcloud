@@ -1,3 +1,9 @@
+body{
+	font-family: 'Roboto' !important;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
 #side{
 	background-color: white;
 	height: 100%;
@@ -6,31 +12,26 @@
 	position: absolute;
 }
 
-body{
-	overflow-x: hidden;
-	overflow-y: hidden;
-}
-
 #detect{
 	height: 100%;
     width: 100%;
-    background-color: red;
     z-index: 88;
     position: absolute;
-    opacity: 0;
+    background-color: black;
+	opacity: 0.4;
 }
 
 .nav-1, #tool-bar{
-	background-color:#2FBAF1;
+	background-color:#03a9f4;
 }
 
 #users{
-	background-color:#34ADDD;
+	background-color:#039be5;
 }
 
 #side_header{
 	height: 53px;
-	background-color:#34ADDD;
+	background-color:#039be5;
 	width:100%;
 	position: absolute;
 }
@@ -77,12 +78,10 @@ body{
 #side_inner>div>h6{
 	color: #34495E;
 	font-size: 18px;
-	font-weight: bold;
 }
 #side_inner>div>a>h6{
 	color: #34495E;
 	font-size: 18px;
-	font-weight: bold;
 }
 #side_inner>.side-item>h6>small{
     margin-right: 20px;
@@ -104,10 +103,11 @@ body{
 }
 
 #side_inner hr{
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border: 0;
-	border-top: 2px solid #eee;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	border-top: none;
+	height: 1px;
+	background-color:#b2b0b0;
 }
 
 .side-head{
@@ -168,74 +168,7 @@ body{
 #rename-div .btn{
 	border-radius:0;
 }
-/*======
-MODAL
-=======*/
-.side-modal-head{
-	width: 100%;
-    height: 53px;
-    background-color: #2980B9;
-    top: 0;
-}
-.side-modal-title{
-	padding: 0;
-    margin: 0;
-    text-align: center;
-    padding-top: 13px;
-    color: white;
-    font-weight: bold;
-}
-.side-modal-close{
-    position: absolute;
-    top: 0;
-    float: right;
-    right: 10px;
-    text-shadow: none;
-}
-.side-modal-content{
-	height: calc(100% - 53px);
-	overflow: hidden;
-	width:100%;
-	position: absolute;
-	margin-top: 15px;
-}
-.side-modal-options{
-	height: 100%;
-	width: 100%;
-	overflow-y: auto;
-}
-.side-modal-row{
-	width:100%;
-	height: 60px;
-}
-.side-modal-row-label{
-	margin-left: 10px;
-	float: left;
-}
 
-
-/*=====
-FONT
-======*/
-.modal-font-group{
-	width: 20%;
-    margin-right: 10px;
-    float: right;
-}
-.modal-font-group .btn-default{
-	border-radius: 0;
-}
-
-
-/*======
-THEMES, MODES
-========*/
-.modal-input{
-	border-radius: 0;
-	border: none;
-	height: 53px;
-	width: 100%;
-}
 
 .new-nav-a{
 	color: #ECF0F1;
@@ -292,7 +225,7 @@ body{
 	overflow: scroll;
 }
 #screen{
-	background-color: #34495E;
+	background-color: #009688;
 }
 #screen img{
 	margin: 0;
@@ -388,6 +321,7 @@ SAVEAS
 
 .side-item{
 	background-color: transparent;
+	color: #009688;
 }
 
 #side-wrap, #side-nums{
@@ -491,7 +425,7 @@ paper-fab{
 .poly-dialog .header{
 	height: 53px;
 	width: 100%;
-	background-color:#1eb4f0;
+	background-color:#03a9f4;
 	color: white;
 	padding: 2px;
 }
@@ -499,7 +433,8 @@ paper-fab{
 .poly-dialog .header small{
 	font-size:25px;
 	font-weight:bold;
-	margin-left:10px;
+	margin-left:30px;
+	font-family: 'Roboto' !important;
 }
 
 .poly-dialog .content{
@@ -508,22 +443,25 @@ paper-fab{
 	position: absolute;
 	width: 100%;
 	overflow-y: scroll;
+	background-color:#F7F7F7;
+	font-family: 'Roboto' !important;
 }
 
-#mode_input, #theme_input{
+#mode_input, #theme_input, #lorem_input{
 	width: 80%;
-	margin-top: 0px;
-	height: calc(100% - 2px);
-	border: solid thin #ECF0F1;
-	background-color: white;
+	height: calc(100% - 10px);
+	margin-top: 5px;
+	margin-left: 5px;
 }
 
 #preview{
 	border: none;
 	outline: none;
-	width: 100%;
-	height: 100%;
+	width: calc(100% - 40px);
+	height: calc(100% - 40px);
+	margin: 20px;
 	position: absolute;
+	background-color:white;
 }
 
 #preview-dialog .content{
@@ -532,8 +470,10 @@ paper-fab{
 }
 #lorem{
 	padding: 20px;
-	height: 100%;
-	width: 100%;
+	width: calc(100% - 40px);
+	height: calc(100% - 40px);
+	margin: 20px;
+	background-color:white;
 }
 #rename_input{
 	border: none;
@@ -542,4 +482,89 @@ paper-fab{
 #screen h1{	
 	color: white;
     text-align: center;
+}
+
+.navbar paper-icon-button{
+	color: white;
+	top: 5px;
+	margin-right: 5px;
+}
+.navbar{
+	display: flex;
+	display: -webkit-box;
+}
+core-menu{
+	width: 100%;
+	margin:0;
+	padding: 0;
+}
+.side-item paper-ripple{
+	width: 100%;
+	height: 53px;
+	/* margin-bottom: 100%; */
+	margin-top: -53px;
+}
+.header-close{
+	float: right;
+    color: white;
+    background-color: #E74C3C;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+paper-toast{
+	z-index:400 !important;
+}
+#terminal-dialog .CodeMirror{
+	width: calc(100% - 40px);
+	height: calc(100% - 40px);
+	margin: 20px;
+}
+#options-dialog .content{
+	padding: 20px;
+}
+#options-dialog h6{
+	width: calc(100% - 100px);
+	float: left;
+	font-size: 20px;
+}
+#options-dialog paper-checkbox{
+	float:right;
+}
+.side-modal-row{
+	display: flex;
+	margin-bottom: 5px;
+}
+.side-modal-row core-icon{
+	margin-right: 5px;	
+}
+.poly-input{
+	color: white;
+	background-color: #29b6f6;
+	border: none;
+	font-family: 'Roboto-Thin' !important;
+}
+#mode-ul paper-ripple, #theme-ul paper-ripple{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	top: -1px;
+	color: red;
+}
+/*
+<div class="search-nothing hide" id="mode-nothing">
+  <h6>Nothing Found Here</h6>
+  <h6><core-icon icon="explore"></core-icon></h6>
+  <h6>Look Elsewhere</h6>
+</div>
+*/
+.search-nothing{
+	height: 90%;
+    width: 100%;
+    padding-top: 40px;
+    text-align: center;
+    color: gray;
+    text-transform: uppercase;
+    font-family: 'Roboto-Black';
 }

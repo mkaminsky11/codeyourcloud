@@ -1,42 +1,6 @@
 var ok = true;
 
 /*******
-EMAIL
-*******/
-function send_mail(mail){
-	connection.send(JSON.stringify({type:"mail",mail:mail}));
-}
-$("#email_input").on('input',function(){
-	check_email();	
-	$(".thanks").addClass("hide");
-});
-var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-function check_email(){
-	var m = $("#email_input").val();
-	if(re.test(m) || m === ""){
-		$("#email_input").css("border","none");
-		$("#email_button").removeClass("disabled");
-		$("#invalid").addClass("hide");
-	}
-	else{
-		$("#email_input").css("border","solid thin #e74c3c");
-		$("#email_button").addClass("disabled");
-		$("#invalid").removeClass("hide");
-	}
-}
-function go_email(){
-	var m = $("#email_input").val();
-	if(re.test(m)){
-		send_mail(m);
-		$("#email_input").val("");
-		thanks();
-	}
-}
-
-function thanks(){
-	$("#email_input").css("border","solid thin #2ECC71");
-}
-/*******
 CHECK IF LOGGED IN
 *********/
 var is_logged_in = false;

@@ -15,7 +15,7 @@ function compare(a,b) {
 }
 
 function justRoot(){
-	justFolder(myRootFolderId, "");
+	justFolder(myRootFolderId);
 }
 
 function justFolder(folder_id){
@@ -24,6 +24,11 @@ function justFolder(folder_id){
 	retrieveAllFilesInFolder(folder_id, justAllItems);
 }
 function justAllItems(result, id){
+	if(typeof result[0] === 'undefined'){
+		console.log("nothing");
+		sendFolder([], id);
+		return;
+	}
 	var goal = result.length;
 	for(var j = 0; j < result.length; j++){
 		try{

@@ -32,9 +32,9 @@ function close_side(){
 		queue: false,
 		complete: function(){
 			$("#side").addClass("hide");
-			$("#detect").addClass("hide");
 		}
 	});
+	$("#detect").fadeOut();
 	
 	if(modal_open){
 		//make it larger
@@ -49,9 +49,11 @@ function open_side(){
 	
 	$("#side").animate({
 		marginLeft: "0%"
-	}, 1000, function(){
-		$("#detect").removeClass("hide");
+	}, {
+		duration: 1000,
+		queue: false
 	});
+	$("#detect").fadeIn();
 }
 
 $("#detect").click(function(){

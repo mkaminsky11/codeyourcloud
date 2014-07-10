@@ -109,7 +109,7 @@ function download_file() {
   request.execute(function(resp) {
     window.location.assign(resp.webContentLink);
   });
-  sendMessage("file downloaded", "success");
+  document.querySelector("#toast-download").show();
 } 
 
 /*===========

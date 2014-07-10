@@ -163,6 +163,7 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 if(is_mobile){
 	$(".side-modal-chat").html($("#chat").html());
 	$("#chat").remove();
+	$("#prepare").remove();
 	$("nav a").each(function(index){
 		if(index !== 0){
 			$(this).css("padding-left","10px");
@@ -223,10 +224,6 @@ function handleTouchMove(evt) {
     yDown = null;                                             
 };
 
-Messenger.options = {
-    extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
-    theme: 'flat'
-};
 
 var current = "";
 if(window.location.href.indexOf("#") !== -1){

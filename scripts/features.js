@@ -152,15 +152,13 @@ function poly_loaded(){
 
 window.addEventListener('polymer-ready', function(e){
 	poly_loaded();
-		if(line_wrap === true && !$('#side-wrap').prop('checked')){
+	line_wrap = editor.getOption("lineWrapping");
+	line_number = editor.getOption("lineNumbers");
+	if(line_wrap !== $('#side-wrap').prop('checked')){
 		document.getElementById("side-wrap").toggle();
 	}
 	
-	line_number = to_bool(json.nums);
-	editor.setOption("lineNumbers",line_number);
-	
-	
-	if(line_number === false && $('#side-nums').prop('checked')){
+	if(line_number !== ('#side-nums').prop('checked')){
 		document.getElementById("side-nums").toggle();
 	}
 
