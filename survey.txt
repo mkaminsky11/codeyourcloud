@@ -64,3 +64,14 @@ surveys are: good
 recommend: yes
 n/a
 ****************
+problem is: usability problems
+wouldn't mind ads: about page landing page
+prefered image: chalk
+no, I haven't used mobile
+github: no
+the best thing is: Compatibility of many languages
+it looks: good
+surveys are: good
+recommend: yes
+Add Stylus language please!
+****************

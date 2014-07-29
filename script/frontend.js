@@ -36,7 +36,9 @@ connection.onmessage = function (message) {
 			sql_font = json.font_size;
 			
 			line_wrap = to_bool(json.wrap);
-			editor.setOption("lineWrapping",line_wrap);
+			for(var i = 0; i < editors.length; i++){
+				editors[i].editor.setOption("lineWrapping",line_wrap);
+			}
 			
 			
 			try{
@@ -45,7 +47,10 @@ connection.onmessage = function (message) {
 				}
 				
 				line_number = to_bool(json.nums);
-				editor.setOption("lineNumbers",line_number);
+				
+				for(var i = 0; i < editors.length; i++){
+					editors[i].editor.setOption("lineNumbers",line_number);
+				}
 				
 				
 				if(line_number === false && $('#side-nums').prop('checked')){
@@ -107,8 +112,8 @@ function get_sql(){
 	connection.send(JSON.stringify({type:"get", id:userId}));
 }
 function publish_html(){
-	var p = editor.getValue();
-	if(editor.getOption("mode") === "text/x-markdown" || editor.getOption("mode") === "gfm"){
+	var p = editor().getValue();
+	if(editor().getOption("mode") === "text/x-markdown" || editor().getOption("mode") === "gfm"){
 		p = converter.makeHtml(p);
 	}
 	connection.send(JSON.stringify({type:"publish", id:userId, lines:p.split("\n")}));

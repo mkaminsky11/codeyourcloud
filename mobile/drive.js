@@ -338,7 +338,6 @@ function searchAll(s, callback) {
 function sharedWithMeCallback(data){
 	var ret = [];
 	var e = myEmail;
-	
 	for(var i = 0; i < data.length; i++){
 		try{
 			var r = false;
@@ -357,7 +356,9 @@ function sharedWithMeCallback(data){
 				var to_push = {
 					name: data[i].title,
 					id: data[i].id,
-					folder:	f
+					folder:	f,
+					date: data[i].modifiedDate,
+					mime: data[i].mimeType
 				};
 				ret.push(to_push);
 			}

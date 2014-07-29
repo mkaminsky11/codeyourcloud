@@ -136,8 +136,10 @@ function fileInserted(d) {
 	//var fileId = data.docs[i].id;
 	//var the_url = 'https://codeyourcloud.com#' + fileId;
 	
-	location.hash = d.id;
-	location.reload();
+	window.location = 'https://codeyourcloud.com#' + d.id;
+	if(is_mobile){
+		location.reload();
+	}
 }
 function insertFileIntoFolder(folderId, fileId) {
   var body = {'id': folderId};

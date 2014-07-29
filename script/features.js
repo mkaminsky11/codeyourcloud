@@ -129,8 +129,8 @@ function poly_loaded(){
 
 window.addEventListener('polymer-ready', function(e){
 	poly_loaded();
-	line_wrap = editor.getOption("lineWrapping");
-	line_number = editor.getOption("lineNumbers");
+	line_wrap = editor().getOption("lineWrapping");
+	line_number = editor().getOption("lineNumbers");
 	if(line_wrap !== $('#side-wrap').prop('checked')){
 		document.getElementById("side-wrap").toggle();
 	}
@@ -139,6 +139,5 @@ window.addEventListener('polymer-ready', function(e){
 		document.getElementById("side-nums").toggle();
 	}
 
-
-
+	editor().refresh();
 });

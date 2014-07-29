@@ -50,10 +50,11 @@
 		<link rel="stylesheet" href="lib/slider/files/slider.css">
 		<script src="lib/slider/files/slider.js"></script>
 		
+		<link rel="stylesheet" href="lib/offline/themes/offline-theme-dark.css">
 		
 		
-		<link rel="stylesheet" href="script/style.css">
-		<link rel="stylesheet" href="script/custom.css">
+		<link rel="stylesheet" href="scripts/style.css">
+		<link rel="stylesheet" href="scripts/custom.css">
 		
 		<!--sentry-->
 		
@@ -82,7 +83,7 @@
         
         <link rel="stylesheet" href="lib/ripple/ripple.css">
         
-        <link rel="stylesheet" href="script/custom.css">
+        <link rel="stylesheet" href="scripts/custom.css">
         <link rel="stylesheet" href="fonts/font.css">
 
 	</head>
@@ -99,7 +100,7 @@
 			<div id="side_inner">
 				<div class="side-head" style="height:auto">
 						<h6><a id="title">Code Your Cloud</a>
-							<button class="btn btn-info" id="rename-toggle" onclick="toggle_side_rename()" style="display:none"><i class="fa fa-pencil"></i></button>
+							<button class="btn btn-info" id="rename-toggle" onclick="toggle_side_rename()"><i class="fa fa-pencil"></i></button>
 						</h6>
 				</div>
 				
@@ -176,7 +177,7 @@
 					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-file side-item " onclick="chat()">
+				<div class="side-file side-item " onclick="switch_col()">
 					<h6>
 						<small><i class="fa fa-comment"></i></small> Chat
 					</h6>
@@ -396,9 +397,7 @@
 				<small>Chat</small>
 			</div>
 			<paper-fab icon="close" onclick="showDialog('chat')"></paper-fab>
-			<div class="side-modal-chat content">
-				
-			</div>
+			<div class="side-modal-chat content"></div>
 		</div>
 		
 
@@ -454,6 +453,7 @@
 					<br/>
 					<input style="width: 80%;margin-left:10%;border: solid thin #ECF0F1;" placeholder="A name for your new file" value="Untitled.txt" id="saveas-input" class="form-control">
 					<br/>
+					<center><small style="color:#BDC3C7">Upon pressing "OK", you will be redirected to the new file.</small></center>
 						
 					<paper-button label="OK" style="color:white;background-color:#2ECC71;width:40%;margin-left:30%" onclick="saveas_ok()"></paper-button>	
 			</div>
@@ -474,7 +474,6 @@
         	  </ul>
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
         	  
-        	  	<paper-icon-button id="chat_button" icon="send" onclick="chat()" style="display:none"></paper-icon-button>
         	  	<paper-icon-button id="open_button" icon="folder-mydrive" onclick="open_picker()"></paper-icon-button>
         	  	<paper-icon-button id="save_button" icon="save" onclick="save()"></paper-icon-button>
         	  	<paper-icon-button id="undo_button" icon="rotate-left" onclick="editor_undo()"></paper-icon-button>
@@ -502,48 +501,25 @@
 	  	<!--side goes here-->
 	  	
 		
-	<div class="poly-chat" style="display:none">
-		<div class="poly-chat-content poly-chat-content-active" data-fileid="welcome">
-			
-		</div>
-		<div class="poly-chat-footer">
-			<paper-icon-button icon="send" style="color:white" onclick="sendChat()"></paper-icon-button>
-			
-			<textarea class="chat-input" placeholder="Type something"></textarea>
-		</div>
-	</div>
+		
 	  	
 	  	
 	  	
 	<div style="width:100%;height:100%;position:fixed;z-index: 0;">
-		<div class="tab-wrapper">
-			<div class="tab-container">
-			
-				<span class="tab-tab tab-active" data-fileid="welcome" onclick="opentab('welcome')" style="margin-right:-2px">
-					<h4>Welcome</h4>
-					<h6>
-						<i class="fa fa-ban" onclick="removetab('welcome')"></i>
-					</h6>
-				</span>
-				
-			</div>
-		</div>
-		
-		<div class="mains" style="position: absolute;height: calc(100% - 93px);width: 100%;margin-top: 10px;background-color:white">
-			
-			<div id ="welcome" class="codemirror-container codemirror-active" id="welcome" data-fileid="welcome"></div>
-			<span id="insert-point" style="display:none"></span>
-			
+		<div class="mains" style="position: absolute;height: calc(100% - 53px);width: 100%;margin-top: -30px;">
+			<textarea id ="bind"></textarea>
 			<div id="overlay"></div>
-			
 			<div id="users">
-				<div class="users-container users-container-active" data-fileid="welcome"></div>
 			</div>
-			
-			
 			<div id="tool-bar">
 				<input type='text' id="custom" />
 			</div>
+		</div>
+		<div id="chat">
+			<div id="chat_inner">
+				
+			</div>
+			<textarea id="chat_text" placeholder="Press enter to send"></textarea>
 		</div>
 		</div>
 		
@@ -628,22 +604,22 @@
       
       
       	<script src="lib/big-text/big-text.js"></script>
+      	<script src="lib/offline/offline.min.js"></script>
       	<script src="lib/coffee/coffee.js"></script>
       	<script src="lib/markdown/markdown.js"></script>
       	
         <script src="lib/repl/scripts/codemirror-repl.js"></script>
         <script src="lib/repl/scripts/modes/javascript.js"></script>
       	
-		<script src="script/global.js"></script>
-		<script src="script/realtime.js"></script>
-		<script src="script/frontend.js"></script>
-		<script src="script/drive.js"></script>
-		<script src="script/visual.js"></script>
-		<script src="script/picker.js"></script>
-		<script src="script/features.js"></script>
+		<script src="scripts/global.js"></script>
+		<script src="scripts/realtime.js"></script>
+		<script src="scripts/frontend.js"></script>
+		<script src="scripts/drive.js"></script>
+		<script src="scripts/visual.js"></script>
+		<script src="scripts/picker.js"></script>
+		<script src="scripts/features.js"></script>
 		
-		<script src="script/custom.js"></script>
-		<script src="script/tabs.js"></script>
+		<script src="scripts/custom.js"></script>
 		
 		<script src = 'lib/keyboard/jwerty.js'></script>
 		<script>
@@ -664,14 +640,14 @@
 				return false;
 			});
 		</script>
-		<link rel="stylesheet" href="script/style.css">
-		<link rel="stylesheet" href="script/custom.css">
+		<link rel="stylesheet" href="scripts/style.css">
+		<link rel="stylesheet" href="scripts/custom.css">
 		
 		<script src="lib/ripple/ripple.js"></script>
 		
 		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=loadDrive"></script>
 		
-		<link rel="stylesheet" href="script/custom.css">
+		<link rel="stylesheet" href="scripts/custom.css">
 
 	</body>
 </html>

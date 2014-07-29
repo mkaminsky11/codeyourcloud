@@ -51,6 +51,8 @@ function justAllItems(result, id){
 function justItem(result, goal, id){
 	count++;
 	var is_folder = false;
+	
+	//console.log(result);
 	if(result.mimeType === "application/vnd.google-apps.folder"){
 		is_folder = true;
 	}
@@ -58,7 +60,9 @@ function justItem(result, goal, id){
 	var to_push ={
 		name: result.title,
 		id: result.id,
-		folder: is_folder
+		folder: is_folder,
+		date: result.modifiedDate,
+		mime: result.mimeType
 	};
 	
 	if(result.explicitlyTrashed){

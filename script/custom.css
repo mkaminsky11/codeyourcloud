@@ -29,6 +29,7 @@ body{
 	background-color:#00acc1;
 }
 
+
 #side_header{
 	height: 53px;
 	background-color:#00bcd4;
@@ -226,6 +227,7 @@ body{
 }
 #screen{
 	background-color: #424242;
+	display: none;
 }
 #screen img{
 	width: 93%;
@@ -589,4 +591,159 @@ paper-toast{
     color: gray;
     text-transform: uppercase;
     font-family: 'Roboto-Black';
+}
+.tab-wrapper{
+	height: 40px;
+	background-color: #CFD8DC;
+	position: absolute;
+	border-bottom: thin solid #BDBDBD;
+	top: -30px;
+	overflow: scroll;
+	display: inline-block;
+	width: 100%;
+}
+.tab-container{
+	height: 100%;
+	position: absolute;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	width: auto;
+}
+.tab-tab{
+	height: 35px;
+	position: relative;
+	width: 137px;
+	padding: 10px;
+	background-color: #EEE;
+	margin-top: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	margin-right: 2px;
+	color: #546E7A;
+	display: inline-flex;
+}
+.tab-tab h4{
+  margin: 0px;
+  font-size: 16px;
+  width: 100px;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  float: left;
+  word-wrap: break-word;
+  overflow: hidden;
+  height: 19px;
+}
+.tab-tab h6{
+	margin: 0;
+	font-size: 19px;
+	color: #BEB8B8;
+	display: none;
+}
+.tab-tab:hover h6{
+	display: block;
+}
+
+.tab-active{
+	background-color: #fafafa;
+	color: #37474f;
+}
+
+.tab-active h6{
+	color: #f36c60;
+}
+
+.CodeMirror{
+	line-height: 1 !important;
+}
+
+.users-container{
+	height: 100%;
+	width: 100%;
+	-webkit-overflow-scrolling: touch;
+}
+
+.poly-chat{
+	width: 300px;
+	height: 60%;
+	z-index: 2;
+	background-color: white;
+	position: absolute;
+	right: 0;
+	top: 53px;
+}
+
+.poly-chat-content{
+	width: 100%;
+	height: calc(100% - 40px);
+	position: absolute;
+	top: 0px;
+	overflow-y: scroll;
+	background-color: #EEE;
+	overflow-x: hidden;
+	right: 1px;
+}
+
+.poly-chat-footer{
+	height: 40px;
+	width: 100%;
+	background-color: #424242;
+	position: absolute;
+	bottom: 0;
+}
+
+.chat-input{
+	width: calc(100% - 50px);
+	height: 30px;
+	margin-bottom: 5px;
+	font-size: 14px;
+	font-family: 'Roboto-Thin';
+	resize: none;
+	border: none;
+	border-radius: 2px;
+	outline: none;
+	-webkit-appearance: none;
+	margin-top: -120px;
+	border: solid thin #424242;
+}
+
+.chat-item{
+  left: 10px;
+  margin-top: 7px;
+  background-color: #FFF;
+  width: calc(100% - 20px);
+  position: relative;
+  margin-bottom: 7px;
+}
+.header-item{
+  height: 30px;
+  background-color: #F5F5F5;
+}
+.header-item img{
+	margin-bottom: 2px;
+}
+.header-item h4{
+	position: absolute;
+	left: 39px;
+	margin-top: -29px;
+	color: #424242;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-size: 17px;
+	width: calc(100% - 40px);
+}
+.message-item{
+  width: 100%;
+	height: calc(100% - 10px);
+	padding: 5px;
+}
+.message-item pre{
+  width: 100%;
+  border: none;
+  margin: 0px;
+  word-break: break-all;
+  word-wrap: break-word;
+  width: calc(100% - 40px);
+  white-space: pre-wrap;
+  font-family: "Roboto-Thin"; 
 }
