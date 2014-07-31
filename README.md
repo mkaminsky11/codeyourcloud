@@ -15,16 +15,14 @@
   <li>Syntax highlighting</li>
   <li>Collaboration</li>
   <li>Built-in color picker</li>
-  <li>HTML preview</li>
+  <li>HTML and markdown preview</li>
   <li>Autocomplete</li>
   <li>Javascript console</li>
-  <li>A notepad to jot down ideas</li>
-  <li>Built-in todo list</li>
   <li>Browser</li>
   <li>Keyboard shortcuts</li>
   <li>Preferences</li>
   <li>Google Drive integration</li>
-  <li>Run (javascript only, for now)</li>
+  <li>Run (javascript and coffeescript only, for now)</li>
 </ul>
 =====
 ###Supported Languages (86)###
@@ -167,15 +165,6 @@
 	<li><a href="https://github.com/f/loremjs">LoremJS</a></li>
 </ul>
 ======
-###Todo###
-<ol>
-	<li>improved mobile support</li>
-	<li>integrate AngularJS</li>
-	<li>Comment/uncomment function<b>[done!]</b></li>
-	<li>Objective-C mode</li>
-	<li>Swift mode <b>done!</b></li>
-</ol>
-=====
 ###License###
 The MIT License (MIT)
 
