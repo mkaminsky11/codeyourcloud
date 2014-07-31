@@ -500,6 +500,7 @@ paper-fab{
 	height: calc(100% - 40px);
 	margin: 20px;
 	background-color:white;
+	overflow: scroll;
 }
 #rename_input{
 	border: none;
