@@ -1,3 +1,5 @@
+@import url('https://cdn.jsdelivr.net/devicons/1.4.0/css/devicons.min.css');
+
 @font-face{
 	font-family: 'Lobster';
 	src: url('Lobster.woff') format('woff'), url('Lobster.ttf') format('truetype');
@@ -13,6 +15,12 @@
 @font-face{
 	font-family: 'Roboto';
 	src: url('Roboto-Regular.woff') format('woff'), url('Roboto-Regular.ttf') format('truetype');
+	font-weight: 400;
+}
+
+@font-face{
+	font-family: 'Roboto-Italic';
+	src: url('Roboto-Italic.woff') format('woff'), url('Roboto-Italic.ttf') format('truetype');
 	font-weight: 400;
 }
 
@@ -34,6 +42,18 @@
 	font-weight: 400;
 }
 
+@font-face{
+	font-family: 'Roboto-Bold';
+	src: url('Roboto-Bold.woff') format('woff'), url('Roboto-Bold.ttf') format('truetype');
+	font-weight: 400;
+}
+
+@font-face{
+	font-family: 'Roboto-Medium';
+	src: url('Roboto-Medium.woff') format('woff'), url('Roboto-Medium.ttf') format('truetype');
+	font-weight: 400;
+}
+
 .Lobster{
 	font-family: 'Lobster';
 }
@@ -44,4 +64,28 @@
 
 .Roboto{
 	font-family: 'Roboto';
+}
+
+.Roboto-Light{
+	font-family: 'Roboto-Light';
+}
+
+.Roboto-Black{
+	font-family: 'Roboto-Black';
+}
+
+.Roboto-Thin{
+	font-family: 'Roboto-Thin';
+}
+
+.Roboto-Italic{
+	font-family: 'Roboto-Italic';
+}
+
+.Roboto-Bold{
+	font-family: 'Roboto-Bold';
+}
+
+.Roboto-Medium{
+	font-family: 'Roboto-Medium';
 }

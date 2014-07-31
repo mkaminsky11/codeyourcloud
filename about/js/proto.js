@@ -154,3 +154,16 @@ function redirect(){
 ga('create', 'UA-47415821-1', 'codeyourcloud.com');
 ga('send', 'pageview');
 
+
+
+function showMore(){
+	if($(".modes").css("display") === "none"){
+		//not shown, show it
+		$(".showmore").html("Show Less");
+		$(".modes").slideDown();
+	}
+	else{
+		$(".showmore").html("Show More");
+		$(".modes").slideUp();
+	}
+}

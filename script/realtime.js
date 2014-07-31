@@ -26,7 +26,7 @@ add_editor(e, "welcome", true);
 current_file = "welcome";
 
 editor().on("beforeSelectionChange", function(cm, selection){
-	set_color(editor().getSelection());	
+	//set_color(editor().getSelection());	
 });
 editor().setOption("autoCloseBrackets",true);
 editor().setOption("matchBrackets",true);
@@ -69,7 +69,6 @@ function load_drive(){
 	},3000000);
 	get_info();
 	
-	//https://codeyourcloud.com/?state=%7B%22ids%22:%5B%220ByWSHHBN-zyoTl9rQWZyOU5HV2s%22%5D,%22exportIds%22:%5B%220ByWSHHBN-zyoTl9rQWZyOU5HV2s%22%5D,%22action%22:%22open%22,%22userId%22:%22113256493817901278064%22%7D
 	
 	var url = window.location.href;
 	
@@ -101,7 +100,7 @@ function get_info(){
         
         try{
         	myEmail = resp.user.emailAddress;
-        	$("#side-email").html(myEmail);
+        	//$("#side-email").html(myEmail);
         }
         catch(e){
         	window.location = "https://codeyourcloud.com/about";
@@ -110,6 +109,15 @@ function get_info(){
         userName = resp.name;
         try{
             userUrl = resp.user.picture.url;
+            
+            var tempUrl = userUrl;
+            
+            if(tempUrl.indexOf("https://") === -1){
+	            //no https
+	            tempUrl = "https:" + tempUrl;
+            }
+            
+            $("#profile_pic").attr("src",tempUrl);
         }
         catch(e){}
         try{

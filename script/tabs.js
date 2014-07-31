@@ -165,6 +165,7 @@ function opentab(id){
 	}
 	
 	adjust();
+	
 }
 
 function removetab(id){

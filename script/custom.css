@@ -30,6 +30,10 @@ body{
 }
 
 
+#users, #tool-bar{
+	z-index: 3;
+}
+
 #side_header{
 	height: 53px;
 	background-color:#00bcd4;
@@ -108,7 +112,7 @@ body{
 	margin-bottom: 4px;
 	border-top: none;
 	height: 1px;
-	background-color:#b2b0b0;
+	background-color:#eee;
 }
 
 .side-head{
@@ -746,4 +750,32 @@ paper-toast{
   width: calc(100% - 40px);
   white-space: pre-wrap;
   font-family: "Roboto-Thin"; 
+}
+
+#overlay{
+	background-color: #ECF0F1;
+	z-index: 1;
+}
+
+#overlay h4{
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 14px;
+	color: #DADEDF;
+}
+
+.codemirror-container{
+	z-index: 2;
+}
+
+.side-item:hover{
+	background-color:#ECF0F1;
+}
+
+#profile_pic{
+	 float:right;
+	 margin-right:5px;
+	 border-radius:50%;
+	 border:solid thin white;
+	 margin-top: 7px;
 }

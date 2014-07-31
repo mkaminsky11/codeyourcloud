@@ -2,14 +2,6 @@
 <html lang="en">
 	<head>
 		<script src="poly/components/platform/platform.js"></script>
-		<!--
-		<paper-checkbox></paper-checkbox>
-		
-		tabs.addEventListener('core-select', function() {
-		    list.show = tabs.selected;
-		  });
-		
-		-->
 		
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
@@ -47,6 +39,8 @@
 		
 		<!--Other-->
 		<script src="lib/loremjs/lorem.js"></script>
+		
+		<!--COLOR SLIDER-->
 		<link rel="stylesheet" href="lib/slider/files/slider.css">
 		<script src="lib/slider/files/slider.js"></script>
 		
@@ -55,8 +49,8 @@
 		<link rel="stylesheet" href="script/style.css">
 		<link rel="stylesheet" href="script/custom.css">
 		
-		<!--sentry-->
 		
+		<!--TERMINAL/REPL-->
 		<link rel="stylesheet" href="lib/repl/styles/index.css">
         <link rel="stylesheet" href="lib/repl/styles/codemirror-repl.css">
         <link rel="stylesheet" href="lib/repl/styles/themes/eclipse.css">
@@ -107,9 +101,9 @@
 						<input id="rename_input" value="" placeholder="Title" style="width:100%" onchange="ok_rename()" class="form-control">
 				</div>
 				
-				<div class="side-head">
+				<!--div class="side-head">
 					<h6 id="side-email"><a>email@gmail.com</a></h6>
-				</div>
+				</div-->
 				
 
 					
@@ -201,9 +195,9 @@
 					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-item " onlick="replace()">
+				<div class="side-item " onlick="find()">
 					<h6>
-						<small><i class="fa fa-search"></i></small> Replace
+						<small><i class="fa fa-search"></i></small> Search
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
@@ -303,15 +297,6 @@
 					<a href="https://accounts.google.com/logout">
 						<h6>
 							<small><i class="fa fa-sign-out"></i></small> Log Out
-						</h6>
-						<paper-ripple></paper-ripple>
-					</a>
-				</div>
-				
-				<div class="side-item ">
-					<a href="https://codeyourcloud.com/help" target="_blank">
-						<h6>
-							<small><i class="fa fa-question"></i></small> Help
 						</h6>
 						<paper-ripple></paper-ripple>
 					</a>
@@ -479,8 +464,8 @@
         	  	<paper-icon-button id="save_button" icon="save" onclick="save()"></paper-icon-button>
         	  	<paper-icon-button id="undo_button" icon="rotate-left" onclick="editor_undo()"></paper-icon-button>
         	  	<paper-icon-button id="redo_button" icon="rotate-right" onclick="editor_redo()"></paper-icon-button>
-        	  	<paper-icon-button icon="search" onclick="find()"></paper-icon-button>
-
+        	  	
+			  	<img id="profile_pic" src="" height="40px" width="40px">
         	  
         	  </ul>
         	</div>
@@ -534,7 +519,11 @@
 			<div id ="welcome" class="codemirror-container codemirror-active" id="welcome" data-fileid="welcome"></div>
 			<span id="insert-point" style="display:none"></span>
 			
-			<div id="overlay"></div>
+			<div id="overlay">
+				<h4>NO FILE</h4>
+				<h4><i class="fa fa-question"></i></h4>
+				<h4>SELECTED</h4>
+			</div>
 			
 			<div id="users">
 				<div class="users-container users-container-active" data-fileid="welcome"></div>
@@ -648,6 +637,7 @@
 		<script src = 'lib/keyboard/jwerty.js'></script>
 		<script>
 			jwerty.key('ctrl+o/cmd+o', function() {
+				open_picker();
 				return false;
 			});
 			jwerty.key('ctrl+s/cmd+s', function() {
@@ -661,6 +651,10 @@
 			});
 			jwerty.key('ctrl+space/cmd+space',function(){
 				getHint();
+				return false;
+			});
+			jwerty.key('ctrl+f/cmd+f',function(){
+				find();
 				return false;
 			});
 		</script>
