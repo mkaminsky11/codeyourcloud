@@ -223,15 +223,25 @@ var themes = [
 var themes_name = ["code-your-cloud","3024-day", "3024-night", "ambiance-mobile", "ambiance", "base16-light", "base16-dark", "blackboard", "cobalt", "eclipse", "elegant", "erlang-dark", "lesser-dark", "mbo", "mdn-like", "midnight", "monokai", "neat", "night", "paraiso-dark", "paraiso-light", "pastel-on-dark", "rubyblue", "solarized", "the-matrix", "tomorrow-night-eighties", "twilight", "vibrant-ink", "xq-light", "xq-dark", "neo"];
 
 var is_mobile = false;
+var real_mobile = false;
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  	is_mobile = true;
+ 	real_mobile = true;
 }
 
 if(window.location.href.indexOf("?mobile=true") !== -1){
 	is_mobile = true;
+	
 }
 
 if(is_mobile){
+	to_mobile();
+}
+
+function to_mobile(){
+	is_mobile = true;
+	
+	$("#side").css("width","80%");
 	var temp = $(".poly-chat").html();
 
 	$(".poly-chat").remove();
@@ -242,7 +252,7 @@ if(is_mobile){
 	$(".poly-chat").css("top","0");
 	
 	
-	$("#prepare").remove();
+	$("#prepare").css("display","none");
 	$("nav a").each(function(index){
 		if(index !== 0){
 			$(this).css("padding-left","10px");
@@ -252,10 +262,52 @@ if(is_mobile){
 	$(".n-l").css("float","left");
 	$(".n-r").css("float","right");
 	$(".n-r").css("margin-right","10px");
-	$("#branding").remove();
-	$("#chat_button").remove();
-	
+	$("#branding").css("display","none");
 }
+
+function from_mobile(){
+	is_mobile = false;
+	
+	$("#side").css("width","25%");
+	var temp = $(".poly-chat").html();
+
+	$(".poly-chat").remove();
+	$("#chat-insert").after("<div class='poly-chat'>"+ temp +"</div>");
+	
+	$(".poly-chat").css("width","300px");
+	$(".poly-chat").css("height","60%");
+	$(".poly-chat").css("top","53px");
+	
+	$(".poly-chat").slideUp();
+	
+	
+	$("#prepare").css("display","inline-block");
+	$("nav a").each(function(index){
+		if(index !== 0){
+			$(this).css("padding-left","10px");
+		}
+	});
+	$(".n-r").addClass("navbar-right");
+	$(".n-l").css("float","left");
+	$(".n-r").css("float","right");
+	$(".n-r").css("margin-right","10px");
+	$("#branding").css("display","inline-block");
+}
+
+$( window ).resize(function() {
+  if($( window ).width() < 700){
+	  if(!is_mobile){
+		  to_mobile();
+	  }
+  }
+  else{
+	  if(is_mobile){
+		  from_mobile();
+	  }
+  }
+});
+
+
 
 var side_open = false;
 

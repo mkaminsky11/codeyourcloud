@@ -56,7 +56,11 @@
         <link rel="stylesheet" href="lib/repl/styles/themes/eclipse.css">
         
     
+		<link rel="import" href="poly/components/core-style/core-style.html">
         <link rel="import" href="poly/components/paper-checkbox/paper-checkbox.html">
+        <link rel="import" href="poly/components/core-animated-pages/core-animated-pages.html">
+        <link rel="import" href="poly/components/core-animated-pages/transitions/slide-from-right.html">
+        <link rel="import" href="poly/components/core-animated-pages/core-animated-pages.html">
         <link rel="import" href="poly/components/core-header-panel/core-header-panel.html">
         <link rel="import" href="poly/components/paper-icon-button/paper-icon-button.html">
         <link rel="import" href="poly/components/paper-input/paper-input.html">
@@ -83,66 +87,42 @@
 	<body>
 	
 	
-	
+	<!--SIDEBAR-->
 	
 		<div id="side" class="hide">
-			<div class="mover"></div>
-			<div id="side_header">
-				<paper-icon-button icon="close" onclick="close_side()" class="header-close"></paper-icon-button>
-			</div>
 			<div id="side_inner">
 				<div class="side-head" style="height:auto">
 						<h6><a id="title">Code Your Cloud</a>
 							<button class="btn btn-info" id="rename-toggle" onclick="toggle_side_rename()" style="display:none"><i class="fa fa-pencil"></i></button>
 						</h6>
 				</div>
-				
 				<div id="rename-div" style="padding:0">
 						<input id="rename_input" value="" placeholder="Title" style="width:100%" onchange="ok_rename()" class="form-control">
 				</div>
-				
-				<!--div class="side-head">
-					<h6 id="side-email"><a>email@gmail.com</a></h6>
-				</div-->
-				
-
-					
-				
-				<div class="side-item ">
-					<a href="https://codeyourcloud.com/about" target="_blank">
-						<h6>
-							<small><i class="fa fa-cube"></i></small> About
-						</h6>
-						<paper-ripple></paper-ripple>
-						
-					</a>
-				</div>
-				
-				
 				<div onclick="show_side_open()" class="side-item ">
 					<h6>
-						<small><core-icon style="color:#2ECC71" icon="folder-mydrive"></core-icon></small> Open
+						<small><core-icon icon="drive"></core-icon></small> Open
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
 				
 				<div class="side-file side-item " onclick="save()">
 					<h6>
-						<small><core-icon style="color:#3498DB" icon="save"></core-icon></small> Save
+						<small><core-icon icon="save"></core-icon></small> Save
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
 				
 				<div class="side-item " onclick="saveAs()">
 					<h6>
-						<small><i class="fa fa-save" style="color:#E74C3C"></i></small> Save As
+						<small><core-icon icon="folder"></core-icon></small> Save As
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
 				
 				<div onclick="new_file()" class="side-item ">
 					<h6>
-						<small><i class="fa fa-file" style="color:#F39C12"></i></small> New
+						<small><core-icon icon="drive-document"></core-icon></small> New
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
@@ -151,7 +131,7 @@
 				
 				<div onclick="download_file()" class="side-item side-file ">
 					<h6>
-						<small><i class="fa fa-cloud-download"></i></small> Download
+						<small><core-icon icon="cloud-download"></core-icon></small> Download
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
@@ -172,7 +152,7 @@
 				
 				<div class="side-file side-item " onclick="chat()">
 					<h6>
-						<small><i class="fa fa-comment"></i></small> Chat
+						<small><core-icon icon="folder-shared"></core-icon></small> Chat
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
@@ -181,23 +161,9 @@
 				
 				<hr/>
 				
-				<div class="side-item " onclick="move_left()">
-					<h6>
-						<small><i class="fa fa-outdent"></i></small> Move Left
-					</h6>
-					<paper-ripple></paper-ripple>
-				</div>
-				
-				<div class="side-item " onclick="move_right()">
-					<h6>
-						<small><i class="fa fa-indent"></i></small> Move Right
-					</h6>
-					<paper-ripple></paper-ripple>
-				</div>
-				
 				<div class="side-item " onlick="find()">
 					<h6>
-						<small><i class="fa fa-search"></i></small> Search
+						<small><core-icon icon="search"></core-icon></small> Search
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
@@ -208,24 +174,21 @@
 				
 				<div class="side-item " onclick="show_side_terminal()">
 					<h6>
-						<small><i class="fa fa-terminal"></i></small> Terminal
-						<span class><i class="fa fa-angle-right"></i></span>
+						<small><core-icon icon="drive-site"></core-icon></small> Terminal
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
 				
 				<div class="side-item " onclick="show_side_random()">
 					<h6>
-						<small><i class="fa fa-font"></i></small> Lorem
-						<span class><i class="fa fa-angle-right"></i></span>
+						<small><core-icon icon="help"></core-icon></small> Lorem
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
 				
 				<div class="side-item " onclick="show_side_preview()">
 					<h6>
-						<small><i class="fa fa-eye"></i></small> Preview
-						<span class><i class="fa fa-angle-right"></i></span>
+						<small><core-icon icon="visibility"></core-icon></small> Preview
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
@@ -238,7 +201,7 @@
 				
 				<div class="side-item side-run  hide" onclick="run()">
 					<h6>
-						<small><i class="fa fa-play"></i></small> Run
+						<small><core-icon icon="forward"></core-icon></small> Run
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
@@ -247,7 +210,7 @@
 				
 				<div class="side-pub side-item  hide" onclick="publish_html()">
 					<h6>
-						<small><i class="fa fa-globe"></i></small> Publish
+						<small><core-icon icon="upload-file"></core-icon></small> Publish
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
@@ -255,7 +218,7 @@
 				<div class="side-pub side-item  hide">
 					<a id="side-pub-link" href="" target="_blank">
 						<h6>
-							<small><i class="fa fa-arrow-up"></i></small> Go To Site
+							<small><core-icon icon="link"></core-icon></small> Go To Site
 						</h6>
 						<paper-ripple></paper-ripple>
 					</a>
@@ -269,47 +232,56 @@
 				
 				<div class="side-item " onclick="show_side_modes()">
 					<h6>
-						<small><i class="fa fa-file-code-o"></i></small> Languages
-						<span class><i class="fa fa-angle-right"></i></span>
+						<small><core-icon icon="translate"></core-icon></small> Languages
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
 
 				<div class="side-item " onclick="show_side_themes()">
 					<h6>
-						<small><i class="fa fa-tint"></i></small> Themes
-						<span class><i class="fa fa-angle-right"></i></span>
+						<small><core-icon icon="invert-colors"></core-icon></small> Themes
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
 				
 				<div class="side-item " onclick="show_side_options()">
 					<h6>
-						<small><i class="fa fa-cogs"></i></small> Options
-						<span class><i class="fa fa-angle-right"></i></span>
+						<small><core-icon icon="settings"></core-icon></small> Options
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
 				
 				<hr/>
 				
+				<div class="side-item" onclick="showTut()">
+					<h6>
+						<small><core-icon icon="book"></core-icon></small> Tutorial
+					</h6>
+				</div>
+				
 				<div class="side-item ">
 					<a href="https://accounts.google.com/logout">
 						<h6>
-							<small><i class="fa fa-sign-out"></i></small> Log Out
+							<small><core-icon icon="exit-to-app"></core-icon></small> Log Out
 						</h6>
 						<paper-ripple></paper-ripple>
 					</a>
 				</div>
 				
 				
+				
 			</div>
 		</div>
+		
+		
+		<!--END SIDEBAR-->
+		
 		
 		<div id="detect" style="display:none"></div>
 		
 		
 
+		<!--MODALS-->
 		
 		<div class="poly-dialog" id="options-dialog" style="z-index:200;display:none">
 			<div class="header">
@@ -444,7 +416,9 @@
 			</div>
 		</div>
 		
+		<!--END MODALS-->
 		
+		<!--NAV-->
 		
 		
 		<nav id="nav" class="navbar navbar-inverse nav-1" role="navigation">
@@ -460,7 +434,7 @@
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
         	  
         	  	<paper-icon-button id="chat_button" icon="send" onclick="chat()" style="display:none"></paper-icon-button>
-        	  	<paper-icon-button id="open_button" icon="folder-mydrive" onclick="open_picker()"></paper-icon-button>
+        	  	<paper-icon-button id="open_button" icon="drive" onclick="open_picker()"></paper-icon-button>
         	  	<paper-icon-button id="save_button" icon="save" onclick="save()"></paper-icon-button>
         	  	<paper-icon-button id="undo_button" icon="rotate-left" onclick="editor_undo()"></paper-icon-button>
         	  	<paper-icon-button id="redo_button" icon="rotate-right" onclick="editor_redo()"></paper-icon-button>
@@ -472,6 +446,8 @@
       	</nav>
 	
 	
+	  	<!--END NAV-->
+	  	
 	  		<div id="screen">
 				<h1 id="prepare">LOADING</h1>
 				 <img src="images/svg/15.svg" style="
@@ -484,9 +460,9 @@
 			</div>
 	
 	
-	  	<!--side goes here-->
+	<!--CHAT-->
 	  	
-		
+	<span id="chat-insert" style="display:none"></span>
 	<div class="poly-chat" style="display:none">
 		<div class="poly-chat-content poly-chat-content-active" data-fileid="welcome">
 			
@@ -498,6 +474,10 @@
 		</div>
 	</div>
 	  	
+	  	
+	<!--END CHAT-->
+	
+	<!--MAIN-->
 	  	
 	  	
 	<div style="width:100%;height:100%;position:fixed;z-index: 0;">
@@ -546,12 +526,66 @@
 		</paper-toast>
 		
 
-		<!=================
-		==
-		== MODALS
-		==
-		==
-		===================-->
+		<!--END MAIN-->
+		
+		<!--TUTORIAL-->
+		<div id="tutorial" style="display:none">
+			<paper-icon-button id="tutorial_close" icon="close" onclick="hideTut()"></paper-icon-button>
+			<paper-icon-button id="tutorial_back" icon="arrow-back" onclick="go_back()"></paper-icon-button>
+			<paper-icon-button id="tutorial_forward" icon="arrow-forward" onclick="advance()"></paper-icon-button>
+			
+			<core-animated-pages transitions="slide-from-right">
+				
+				<section>
+					<div layout vertical center center-justified>
+						<h3 class="Roboto-Thin">Welcome to <b>Code Your Cloud</b>!</h3>
+						<h5>What's your experience with coding?</h5>
+						<a href="http://www.codeconquest.com/what-is-coding/" target="_blank" class="ghost-button">What's coding?</a>
+						<a onclick="advance()" class="ghost-button">I'm getting there</a>
+						<a onclick="expert()" class="ghost-button">Your HTML is weak!</a>
+					</div>
+				</section>
+				<section>
+					<div layout vertical center center-justified>
+						<h3 class="Roboto-Thin">Button Overview</h3>
+						<h8><core-icon icon="menu"></core-icon>Will open the sidebar, where you can find more functions</h8>
+						<h8><core-icon icon="rotate-left"></core-icon>Undo the most recent change. You'll be using this a lot</h8>
+						<h8><core-icon icon="rotate-right"></core-icon>Redo the most recent undo</h8>
+						<h8><core-icon icon="drive"></core-icon>Open a file from Google Drive for editing</h8>
+						<h8><core-icon icon="save"></core-icon>Save the current file</h8>
+						<h8><core-icon icon="send"></core-icon>Open the chat window for the current file</h8>
+					</div>
+				</section>
+				<section>
+					<div layout vertical center center-justified>
+						<h3 class="Roboto-Thin">A Super-Quick Demo...</h3>
+						<img src="images/screenshots/demo.gif" width="80%" style="margin-left:10%;border:solid thin white">
+					</div>
+				</section>
+				<section>
+					<div layout vertical center center-justified>
+						<h3 class="Roboto-Thin">Collaborating</h3>
+						<h8>1. Share the file using the <code>Share</code> option in the sidebar, or directly from Google Drive</h8>
+						<h8>2. Have your collaborators access the file. You'll see their profile pictures in the right-side bar. You'll also see any changes they make in real time.</h8>
+						<h8>3. Chat using the <code>Chat</code> option in the sidebar.</h8>
+					</div>
+				</section>
+				
+				<section>
+					<div layout vertical center center-justified>
+						<h3 class="Roboto-Thin">That's The Basics</h3>
+						<h5>If you have any questions, contact us</h5>
+						
+						<a href="https://github.com/mkaminsky11/codeyourcloud" target="_blank" class="ghost-button"><i class="fa fa-github"></i> Github</a>
+						<a href="https://plus.google.com/u/0/b/109834723365906365793/109834723365906365793/posts" target="_blank"class="ghost-button ghost-button-red"><i class="fa fa-google-plus"></i> Google+</a>
+						<a href="https://codeyourcloud.com/about/#contact" target="_blank" class="ghost-button ghost-button-blue"><i class="fa fa-envelope-o"></i> our website</a>
+					</div>
+				</section>
+				
+			</core-animated-pages>
+		</div>
+		
+		<!--END TUTORIAL-->
 		
 		
 		
@@ -630,6 +664,7 @@
 		<script src="script/visual.js"></script>
 		<script src="script/picker.js"></script>
 		<script src="script/features.js"></script>
+		<script src="script/tutorial/tutorial.js"></script>
 		
 		<script src="script/custom.js"></script>
 		<script src="script/tabs.js"></script>
@@ -660,6 +695,7 @@
 		</script>
 		<link rel="stylesheet" href="script/style.css">
 		<link rel="stylesheet" href="script/custom.css">
+		<link rel="stylesheet" href="script/tutorial/tutorial.css">
 		
 		<script src="lib/ripple/ripple.js"></script>
 		

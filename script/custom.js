@@ -2,16 +2,6 @@
 var side_percent = "30%";
 var modal_open = false;
 
-if(window.location.href.indexOf("?mobile=true") !== -1){
-	is_mobile = true;
-}
-
-if(is_mobile){
-	side_percent = "80%";
-	$("#side").css("width","80%");
-	
-}
-
 function toggle_side(){
 	if(side_open){
 		side_open = false;

@@ -63,6 +63,8 @@ connection.onmessage = function (message) {
 		}
 		if(json.type === "new"){
 			set_sql();	
+			showTut();
+			
 		}
 		if(json.type === "pub"){
 			console.log("%cHtml published","color:#27AE60; font-size: 12px");
