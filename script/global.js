@@ -23,7 +23,8 @@ function add_editor(e, id, welcome){
     	editor: e,
     	id: id,
     	welcome: welcome,
-    	title: ""
+    	title: "",
+    	ignore: false
 	};
   
 	editors.push(to_push);
@@ -43,6 +44,22 @@ function getIndex(id){
 	for(var i = 0; i < editors.length; i++){
 		if(editors[i].id === id){
 			return i;
+		}
+	}
+}
+
+function getIgnore(id){
+	for(var i = 0; i < editors.length; i++){
+		if(editors[i].id === id){
+			return editors[i].ignore;
+		}
+	}
+}
+
+function setIgnore(id, ignore){
+	for(var i = 0; i < editors.length; i++){
+		if(editors[i].id === id){
+			editors[i].ignore = ignore;
 		}
 	}
 }

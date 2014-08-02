@@ -17,13 +17,16 @@ function receiveMessage(event){
 		  	
 	  	}
 	  	else if(json.type === "insert_text"){
+	  		setIgnore(id, true);
+	  		
 		  	getEditor(id).replaceRange(json.text, getEditor(id).posFromIndex(json.point));
 		}
 	  	else if(json.type === "delete_text"){
+	  		setIgnore(id, true);
+	  		
 	  		getEditor(id).replaceRange("",getEditor(id).posFromIndex(json.back),getEditor(id).posFromIndex(json.front));
 	  	}
 	  	else if(json.type === "insert_user"){
-	  	
 	  		var temp_photo = json.photo;
 	  		if(temp_photo.indexOf("https://") === -1){
 		  		temp_photo = "https:" + temp_photo;
@@ -104,10 +107,17 @@ function addTab(title, id, welcome){
     editor().setOption("matchBrackets",true);
     editor().on("change", function(cm, change) {
     	
-    	sendData({
-	    	type: "text",
-	    	text: cm.getValue()
-    	},cm.id);
+    	if(!getIgnore(cm.id)){
+    	
+	    	sendData({
+		    	type: "text",
+		    	text: cm.getValue()
+	    	},cm.id);
+    	
+    	}
+    	else{
+	    	setIgnore(cm.id, false);
+    	}
     });
     editor().setOption("lineNumbers",line_wrap);
     editor().setOption("lineWrapping",line_number);

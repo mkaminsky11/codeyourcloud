@@ -117,9 +117,18 @@ function get_info(){
 	            tempUrl = "https:" + tempUrl;
             }
             
+            if(typeof tempUrl === 'undefined'){
+	            userUrl = "https://codeyourcloud.com/images/other/none.jpg";
+	            tempUrl = "https://codeyourcloud.com/images/other/none.jpg";
+            }
+            
             $("#profile_pic").attr("src",tempUrl);
+            
         }
-        catch(e){}
+        catch(e){
+	        userUrl = "https://codeyourcloud.com/images/other/none.jpg";
+	        $("#profile_pic").attr("src",userUrl);
+        }
         try{
             userId = resp.user.permissionId;
             $("#side-pub-link").attr("href", "https://codeyourcloud.com/pub/"+userId+"/index.html");
