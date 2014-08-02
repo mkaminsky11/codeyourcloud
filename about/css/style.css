@@ -453,10 +453,14 @@ body {
 }
 
 #slide-6 {
-	background-color: white;
-	color: black;
-	padding-bottom: 30px;
-	padding-top: 60px;
+	/*background-color: #95A5A6;*/
+	background-image: url('https://codeyourcloud.com/images/patterns/5.jpg');
+    background-size: 100% auto;
+    background-attachment: fixed;
+	color: #4e4e4e;
+	font-size: 35px;
+	line-height: 50px;
+	text-align: center;
 }
 
 @media (max-width: 767px) {
@@ -511,16 +515,6 @@ body {
 		font-size: 20px;
 	}
 
-#slide-7 {
-	/*background-color: #95A5A6;*/
-	background-image: url('https://codeyourcloud.com/images/patterns/5.jpg');
-    background-size: 100% auto;
-    background-attachment: fixed;
-	color: #4e4e4e;
-	font-size: 35px;
-	line-height: 50px;
-	text-align: center;
-}
 
 #lightbox-out {
 	background-color: rgba( 0, 0, 0, 1 );
@@ -620,10 +614,6 @@ body {
 /**/
 #comp{
 	background-color:#E74C3C;
-	color:#ECF0F1;
-}
-#slide-7{
-	background-color: #95A5A6;
 	color:#ECF0F1;
 }
 #slide-8{
