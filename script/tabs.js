@@ -69,7 +69,7 @@ function addTab(title, id, welcome){
   }
   else{
     var base = "<span class='tab-tab' data-fileid='"+id+"' onclick='opentab(\""+id+"\")'><h4>" + title + "</h4>";
-    base = base + "<h6 onclick='removetab(\""+id+"\")'><i class='fa fa-ban'></i></h6>";
+    base = base + "<h6 onclick='removetab(\""+id+"\")'>&times;</h6>";
 
     base = base + "</span>";
 

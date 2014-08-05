@@ -26,32 +26,21 @@
    \ \_______\ \_______\ \_______\ \_______\ \_______\
     \|_______|\|_______|\|_______|\|_______|\|_______|
                                                       
+                                                      
+Wecome!
 
-New to Code Your Cloud? Here are some tips to get started.
-
-=====OPENING A FILE=======
-
-1. Do you have a file you want to open? If so,
-	a) click "open" under the "file" menu, and choose a file
+========
+OPENING A FILE
+========
+a) click the Google Drive icon near the top-right corner
 	
-	Otherwise,
-	b) click "new" under the "file" menu to create new file to edit
-	
-======RENAMING A FILE======
+		-or-
+		
+b) open the sidebar and select "open"
 
-1. Click the name of the file at the top-left corner (for example: "test.js")
-2. A popup with a text input and 2 buttons will open
-3. Enter a new name for the file in the text input
-	a) To confirm, click the green check button
-	b) To cancel, click the red close button
-4. To close the popup, click or tap anywhere outside of it
-
-======CHANGING SYNTAX HIGHLIGHTING======
-1. Click the cog dropdown at the top-right corner, and select "preferences"
-2. A popup will open
-3. Choose "language"
-4. Another popup will open
-	a) Chose the syntax highlighting that you want
-	b) Use the text input to search
-5. Press "close" to close the popups
-	
+========
+RENAMING A FILE
+========
+1) open the file
+2) open the sidebar, and click on the blue pencil icon
+3) change the text field to the desired title

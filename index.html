@@ -78,7 +78,6 @@
         <link rel="import" href="poly/components/paper-toast/paper-toast.html">
       
         
-        <link rel="stylesheet" href="lib/ripple/ripple.css">
         
         <link rel="stylesheet" href="script/custom.css">
         <link rel="stylesheet" href="fonts/font.css">
@@ -210,7 +209,7 @@
 				
 				<div class="side-pub side-item  hide" onclick="publish_html()">
 					<h6>
-						<small><core-icon icon="upload-file"></core-icon></small> Publish
+						<small><core-icon icon="file-upload"></core-icon></small> Publish
 					</h6>
 					<paper-ripple></paper-ripple>
 				</div>
@@ -427,8 +426,8 @@
     		</div>
         	<div class="" id="navbar-collapse-01" style="width: 99%;">
         	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">  
-        	  	<paper-icon-button onclick="toggle_side()" icon="menu"></paper-icon-button>
-        	  	<li id="branding"><a style="color:white;font-size: 22px;">Code Your Cloud</a></li>
+        	  	<paper-icon-button onclick="toggle_side()" icon="menu" style="color:black"></paper-icon-button>
+        	  	<li id="branding"><a style="color:#f5f5f5;font-size: 22px;">Code Your Cloud</a></li>
 				
         	  </ul>
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
@@ -486,8 +485,8 @@
 			
 				<span class="tab-tab tab-active" data-fileid="welcome" onclick="opentab('welcome')" style="margin-right:-2px">
 					<h4>Welcome</h4>
-					<h6>
-						<i class="fa fa-ban" onclick="removetab('welcome')"></i>
+					<h6 onclick="removetab('welcome')">
+						&times;
 					</h6>
 				</span>
 				
@@ -516,6 +515,8 @@
 		</div>
 		</div>
 		
+		
+		<!--Toast (small popup) -->
 		<paper-toast id="toast-select" text="Nothing selected!">
 		</paper-toast>
 		
@@ -523,6 +524,11 @@
 		</paper-toast>
 		
 		<paper-toast id="toast-download" text="File Downloaded">
+		</paper-toast>
+		
+		<paper-toast id="toast-github" text="Star us on Github">
+			<i class='fa fa-github' style="margin-right:5px"></i>
+			<a style="color: #eeff41;" target="_blank" href="https://github.com/mkaminsky11/codeyourcloud">GO!</a>
 		</paper-toast>
 		
 
@@ -665,6 +671,7 @@
 		<script src="script/picker.js"></script>
 		<script src="script/features.js"></script>
 		<script src="script/tutorial/tutorial.js"></script>
+		<script src="script/broadcast.js"></script>
 		
 		<script src="script/custom.js"></script>
 		<script src="script/tabs.js"></script>
@@ -697,7 +704,6 @@
 		<link rel="stylesheet" href="script/custom.css">
 		<link rel="stylesheet" href="script/tutorial/tutorial.css">
 		
-		<script src="lib/ripple/ripple.js"></script>
 		
 		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=loadDrive"></script>
 		

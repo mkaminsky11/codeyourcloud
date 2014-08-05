@@ -38,7 +38,7 @@ $("#touch-4").hover(function(){
 //===============
 function show_touch_1(){
 	$(".macbook").animate({
-		marginLeft: "400px",
+		marginLeft: "300px",
 		marginTop: "0px",
 	}, {
 		duration: 500,
@@ -49,9 +49,10 @@ function show_touch_1(){
 	});
 	
 	$("#touch-info-1").animate({
-		left: "50px"
+		left: "100px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -62,6 +63,7 @@ function show_touch_1(){
 		right: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -72,6 +74,7 @@ function show_touch_1(){
 		bottom: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -82,6 +85,18 @@ function show_touch_1(){
 		top: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
+		queue: false,
+		complete: function(){
+			
+		}
+	});
+	
+	$(".int").animate({
+		paddingBottom: "50px"
+	},{
+		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -95,6 +110,7 @@ function hide_touch_1(){
 		marginTop: "0px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -105,6 +121,7 @@ function hide_touch_1(){
 		left: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -114,10 +131,11 @@ function hide_touch_1(){
 //2
 function show_touch_2(){
 	$(".macbook").animate({
-		marginLeft: "-400px",
+		marginLeft: "-300px",
 		marginTop: "0px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -125,9 +143,10 @@ function show_touch_2(){
 	});
 	
 	$("#touch-info-2").animate({
-		right: "50px"
+		right: "100px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -138,6 +157,7 @@ function show_touch_2(){
 		left: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -148,6 +168,7 @@ function show_touch_2(){
 		bottom: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -158,6 +179,18 @@ function show_touch_2(){
 		top: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
+		queue: false,
+		complete: function(){
+			
+		}
+	});
+	
+	$(".int").animate({
+		paddingBottom: "50px"
+	},{
+		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -171,6 +204,7 @@ function hide_touch_2(){
 		marginTop: "0px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 				
@@ -182,6 +216,7 @@ function hide_touch_2(){
 	}, {
 		duration: 500,
 		queue: false,
+		easing: "easeInOutQuart",
 		complete: function(){
 			
 		}
@@ -194,6 +229,18 @@ function show_touch_3(){
 		marginTop: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
+		queue: false,
+		complete: function(){
+			
+		}
+	});
+	
+	$(".int").animate({
+		paddingBottom: "175px"
+	},{
+		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -204,6 +251,7 @@ function show_touch_3(){
 		bottom: "50px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -214,6 +262,7 @@ function show_touch_3(){
 		left: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -224,6 +273,7 @@ function show_touch_3(){
 		right: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -234,11 +284,13 @@ function show_touch_3(){
 		top: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
 		}
 	});
+	
 }
 
 function hide_touch_3(){
@@ -247,6 +299,7 @@ function hide_touch_3(){
 		marginTop: "0px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 				
@@ -257,6 +310,18 @@ function hide_touch_3(){
 		bottom: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
+		queue: false,
+		complete: function(){
+			
+		}
+	});
+	
+	$(".int").animate({
+		paddingBottom: "50px"
+	},{
+		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -267,9 +332,10 @@ function hide_touch_3(){
 function show_touch_4(){
 	$(".macbook").animate({
 		marginLeft: "0px",
-		marginTop: "400px"
+		marginTop: "150px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -280,6 +346,7 @@ function show_touch_4(){
 		top: "50px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -290,6 +357,7 @@ function show_touch_4(){
 		left: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -300,6 +368,7 @@ function show_touch_4(){
 		right: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -310,6 +379,18 @@ function show_touch_4(){
 		bottom: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
+		queue: false,
+		complete: function(){
+			
+		}
+	});
+	
+	$(".int").animate({
+		paddingBottom: "50px"
+	},{
+		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			
@@ -323,6 +404,7 @@ function hide_touch_4(){
 		marginTop: "0px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 				
@@ -333,6 +415,7 @@ function hide_touch_4(){
 		top: "-400px"
 	}, {
 		duration: 500,
+		easing: "easeInOutQuart",
 		queue: false,
 		complete: function(){
 			

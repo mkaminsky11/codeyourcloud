@@ -4,6 +4,8 @@ function receiveMessage(event){
   if(event.data !== "!_{h:''}"){
   	var json = JSON.parse(event.data);
   	
+  	console.log(json);
+  	
   	if(json.type === "folder"){
 	  	justFolder(json.id);
   	}
