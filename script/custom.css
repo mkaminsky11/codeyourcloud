@@ -784,3 +784,18 @@ paper-toast{
 	 border:solid thin white;
 	 margin-top: 7px;
 }
+
+/*MOBILE*/
+@media only screen and (max-device-width: 480px) {
+     .tab-tab{
+	     display: inline-block !important;
+     }
+     .tab-container{
+	     display:-webkit-flex;
+		 -webkit-overflow-scrolling: touch;
+     }
+     .tab-wrapper{
+	     display:-webkit-box;
+		 overflow:scroll;
+     }
+}

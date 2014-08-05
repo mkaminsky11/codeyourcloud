@@ -15,7 +15,8 @@
 	width: 100%;
 	height: 100%;
 	z-index: 1000;
-	overflow: hidden;	
+	overflow-x: hidden;	
+	overflow-y: scroll;
 }
 
 #tutorial section > div{
@@ -90,8 +91,10 @@
 
 #tutorial h3{
 	padding-bottom: 10px;
-	border-bottom: solid thin white;
 	text-align: center;
+}
+#tutorial h5{
+	font-size: 16px;
 }
 #tutorial h5,#tutorial h8{
 	text-align: center;
