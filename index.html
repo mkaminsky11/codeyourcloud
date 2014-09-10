@@ -20,6 +20,7 @@
 		<meta name="google-site-verification" content="2jBshOtCyauLPt-Tdw0HRkOOizbDnw6IJTM_4dNNLQQ" />
 		
 		<script src="about/flat/js/jquery-1.8.3.min.js"></script>
+		<script src="lib/velocity/velocity.min.js"></script>
 		
 		
 		<meta charset="utf-8">
@@ -27,7 +28,8 @@
 		
 	    <link href="about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
 	    <link href="about/flat/css/flat-ui.css" rel="stylesheet">
-	    <link rel="shortcut icon" href="favicon.ico">
+	   
+		<link rel="shortcut icon" type="image/png" href="favicon.png"/>
 
 	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 	    <!--[if lt IE 9]>
@@ -92,135 +94,133 @@
 			<div id="side_inner">
 				<div class="side-head" style="height:auto">
 						<h6><a id="title">Code Your Cloud</a>
-							<button class="btn btn-info" id="rename-toggle" onclick="toggle_side_rename()" style="display:none"><i class="fa fa-pencil"></i></button>
+							<button class="btn btn-info" id="rename-toggle" onclick="showDialog('rename');" style="display:none"><i class="fa fa-pencil"></i></button>
 						</h6>
 				</div>
-				<div id="rename-div" style="padding:0">
-						<input id="rename_input" value="" placeholder="Title" style="width:100%" onchange="ok_rename()" class="form-control">
-				</div>
-				<div onclick="show_side_open()" class="side-item ">
+				
+				<hr/>
+
+				<div class="side-item ">
+					<paper-icon-button icon="drive" onclick="show_side_open()" style="background-color:#E74C3C"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="drive"></core-icon></small> Open
+						Open
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-file side-item " onclick="save()">
+				<div class="side-file side-item ">
+					<paper-icon-button icon="save" onclick="save()" style="background-color:#2ECC71"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="save"></core-icon></small> Save
+						Save
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-item " onclick="saveAs()">
+				<div class="side-item">
+					<paper-icon-button icon="folder" onclick="saveAs()" style="background-color:#3498DB"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="folder"></core-icon></small> Save As
+						Save As
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div onclick="new_file()" class="side-item ">
+				<div class="side-item ">
+					<paper-icon-button icon="drive-document" onclick="new_file()" style="background-color:#E67E22"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="drive-document"></core-icon></small> New
+						New
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				<!--end main-->
 				
 				
-				<div onclick="download_file()" class="side-item side-file ">
+				<div class="side-item side-file ">
+					<paper-icon-button icon="cloud-download" onclick="download_file()" style="background-color:#9B59B6"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="cloud-download"></core-icon></small> Download
+						Download
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div onclick="show_side_upload()" class="side-item ">
+				<div class="side-item ">
+					<paper-icon-button icon="cloud-upload" onclick="show_side_upload()" style="background-color:#C0392B"></paper-icon-button>
 					<h6>
-						<small><i class="fa fa-cloud-upload"></i></small> Upload
+						Upload
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-file side-item " onclick="show_side_share()">
+				<div class="side-file side-item ">
+					<paper-icon-button icon="folder-shared" onclick="show_side_share()" style="background-color:#27AE60"></paper-icon-button>
 					<h6>
-						<small><i class="fa fa-users"></i></small> Share
+						Share
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-file side-item " onclick="chat()">
+				<div class="side-file side-item ">
+					<paper-icon-button icon="account-circle" onclick="chat()" style="background-color:#95A5A6"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="folder-shared"></core-icon></small> Chat
+						Chat
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				
 				<!--end "file"-->
 				
 				<hr/>
 				
-				<div class="side-item " onlick="find()">
+				<div class="side-item ">
+					<paper-icon-button icon="search" onclick="find()" style="background-color:#1ABC9C"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="search"></core-icon></small> Search
+						Search
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 
 				
 				<!--end "edit"-->
 				
 				
-				<div class="side-item " onclick="show_side_terminal()">
+				<div class="side-item ">
+					<paper-icon-button icon="drive-site" onclick="show_side_terminal()" style="background-color:#8E44AD"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="drive-site"></core-icon></small> Terminal
+						Terminal
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				
 				<div class="side-item " onclick="show_side_random()">
+					<paper-icon-button icon="help" onclick="show_side_random()" style="background-color:#F1C40F"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="help"></core-icon></small> Lorem
+						Lorem
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				
-				<div class="side-item " onclick="show_side_preview()">
+				<div class="side-item ">
+					<paper-icon-button icon="visibility" onclick="show_side_preview()" style="background-color:#3498DB"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="visibility"></core-icon></small> Preview
+						Preview
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				
-
-				</div-->
 				
 				<!--end "tools"-->
 
 				
-				<div class="side-item side-run  hide" onclick="run()">
+				<div class="side-item side-run  hide">
+					<paper-icon-button icon="forward" onclick="run()" style="background-color:#E74C3C"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="forward"></core-icon></small> Run
+						Run
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				
 				<!--end "run"-->
 				
-				<div class="side-pub side-item  hide" onclick="publish_html()">
+				<div class="side-pub side-item  hide">
+					<paper-icon-button icon="file-upload" onclick="publish_html()" style="background-color:#9B59B6"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="file-upload"></core-icon></small> Publish
+						Publish
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 				
 				<div class="side-pub side-item  hide">
 					<a id="side-pub-link" href="" target="_blank">
-						<h6>
-							<small><core-icon icon="link"></core-icon></small> Go To Site
-						</h6>
-						<paper-ripple></paper-ripple>
+						<paper-icon-button icon="link" style="background-color:#2ECC71"></paper-icon-button>
 					</a>
+					<h6>
+						Go To Site
+					</h6>
 				</div>
 				
 				<!--end "publish"-->
@@ -229,45 +229,38 @@
 				
 				<!---->
 				
-				<div class="side-item " onclick="show_side_modes()">
+				<div class="side-item ">
+					<paper-icon-button onclick="show_side_modes()" icon="translate" style="background-color:#E74C3C"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="translate"></core-icon></small> Languages
+						Languages
 					</h6>
-					<paper-ripple></paper-ripple>
 				</div>
 
-				<div class="side-item " onclick="show_side_themes()">
+				<div class="side-item ">
+					<paper-icon-button onclick="show_side_themes()" icon="invert-colors" style="background-color:#3498DB"></paper-icon-button>
 					<h6>
-						<small><core-icon icon="invert-colors"></core-icon></small> Themes
-					</h6>
-					<paper-ripple></paper-ripple>
-				</div>
-				
-				<div class="side-item " onclick="show_side_options()">
-					<h6>
-						<small><core-icon icon="settings"></core-icon></small> Options
-					</h6>
-					<paper-ripple></paper-ripple>
-				</div>
-				
-				<hr/>
-				
-				<div class="side-item" onclick="showTut()">
-					<h6>
-						<small><core-icon icon="book"></core-icon></small> Tutorial
+						Themes
 					</h6>
 				</div>
 				
 				<div class="side-item ">
-					<a href="https://accounts.google.com/logout">
-						<h6>
-							<small><core-icon icon="exit-to-app"></core-icon></small> Log Out
-						</h6>
-						<paper-ripple></paper-ripple>
-					</a>
+					<paper-icon-button onclick="show_side_options()" icon="settings" style="background-color:#E67E22"></paper-icon-button>
+					<h6>
+						Options
+					</h6>
 				</div>
 				
+				<hr/>
+			
 				
+				<div class="side-item ">
+					<a href="https://accounts.google.com/logout">
+						<paper-icon-button icon="exit-to-app" style="background-color:#95A5A6"></paper-icon-button>
+					</a>
+					<h6>
+						Log Out
+					</h6>
+				</div>
 				
 			</div>
 		</div>
@@ -276,47 +269,44 @@
 		<!--END SIDEBAR-->
 		
 		
-		<div id="detect" style="display:none"></div>
+		<div id="detect" class="detect" style="display:none"></div>
 		
 		
 
 		<!--MODALS-->
 		
+		<div id="detect-dialog" class="detect" style="display:none"></div>
+		
+		<paper-button class="colored-close-button" id="close-button-options" label="close" onclick="showDialog('options')" style="display:none"></paper-button>
+		
 		<div class="poly-dialog" id="options-dialog" style="z-index:200;display:none">
-			<div class="header">
-				<small>Options</small>
-			</div>
-			
-			<paper-fab icon="close" onclick="showDialog('options')"></paper-fab>
 			
 			<div class="content">
 				<div class="side-modal-row">
 					<h6 class="side-modal-row-label"><core-icon icon="list"></core-icon> Line Numbers</h6>
-					<paper-checkbox id="side-nums" onclick="line_number_switch()" checked></paper-checkbox>
+					<paper-checkbox class="poly-blue" id="side-nums" onclick="line_number_switch()" checked></paper-checkbox>
 				</div>
 				
 				<div class="side-modal-row">
 					<h6 class="side-modal-row-label"><core-icon icon="swap-horiz"></core-icon>Line Wrap</h6>
-					<paper-checkbox id="side-wrap" onclick="line_wrap_switch()"></paper-checkbox>
+					<paper-checkbox class="poly-blue" id="side-wrap" onclick="line_wrap_switch()"></paper-checkbox>
 				</div>
 				
 				<div class="side-modal-row">
 					<h6 class="side-modal-row-label"><core-icon icon="text-format"></core-icon>Font Size</h6>
 					<br/><br/>
 				</div>
-					<paper-slider pin snaps id="spinner-font" value="12" max="30" step="1" style="width=100%"></paper-slider>
+					<paper-slider class="poly-blue" pin snaps id="spinner-font" value="12" max="30" step="1" style="width=100%"></paper-slider>
 				</div>
 			</div>
 		</div>
 		
+		<paper-button class="colored-close-button" id="close-button-mode" label="close" onclick="showDialog('mode')" style="display:none"></paper-button>
+		
 		<div class="poly-dialog" id="mode-dialog" style="z-index:200;display:none">
-			<div class="header">
-				<input type="text" class="form-control poly-input" id="mode_input" style="width:80%" placeholder="Search modes...">
-			</div>
+
 			
-			<paper-fab icon="close" onclick="showDialog('mode')"></paper-fab>
-			
-			<div class="content">
+			<div class="content-with-input">
 				<div class="search-nothing hide" id="mode-nothing">
 				  <h6>Nothing Found Here</h6>
 				  <h6><core-icon icon="explore"></core-icon></h6>
@@ -325,16 +315,20 @@
 				<ul id="mode-ul" class="list-group">
 				</ul>
 			</div>
+			
+			<div class="content-input">
+				<paper-shadow z="1"></paper-shadow>
+				
+				<input type="text" class="form-control poly-input" id="mode_input" style="" placeholder="Search modes...">
+			</div>
 		</div>
 		
+		<paper-button class="colored-close-button" id="close-button-theme" label="close" onclick="showDialog('theme')" style="display:none"></paper-button>
+		
 		<div class="poly-dialog" id="theme-dialog" style="z-index:200;display:none">
-			<div class="header">
-				<input type="text" class="form-control poly-input" id="theme_input"  style="width:80%" placeholder="Search themes...">
-			</div>
+
 			
-			<paper-fab icon="close" onclick="showDialog('theme')"></paper-fab>
-			
-			<div class="content">
+			<div class="content-with-input">
 				<div class="search-nothing hide" id="theme-nothing">
 				  <h6>Nothing Found Here</h6>
 				  <h6><core-icon icon="explore"></core-icon></h6>
@@ -343,15 +337,17 @@
 				<ul id="theme-ul" class="list-group">
 				</ul>
 			</div>
+			
+			<div class="content-input">
+				<paper-shadow z="1"></paper-shadow>
+				
+				<input type="text" class="form-control poly-input" id="theme_input"  style="" placeholder="Search themes...">
+			</div>
 		</div>
 		
-
+		<paper-button class="colored-close-button" id="close-button-chat" label="close" onclick="showDialog('chat')" style="display:none"></paper-button>
 		
 		<div class="poly-dialog"id="chat-dialog" style="z-index:200;display:none">
-			<div class="header">
-				<small>Chat</small>
-			</div>
-			<paper-fab icon="close" onclick="showDialog('chat')"></paper-fab>
 			<div class="side-modal-chat content">
 				
 			</div>
@@ -359,60 +355,59 @@
 		
 
 		
+		<paper-button class="colored-close-button" id="close-button-terminal" label="close" onclick="showDialog('terminal')" style="display:none"></paper-button>
+		
 		<div class="poly-dialog" id="terminal-dialog" style="z-index:200;display:none">
-			<div class="header">
-				<small>Terminal</small>
-			</div>
-			
-			<paper-fab icon="close" onclick="showDialog('terminal')"></paper-fab>
 			
 			<div class="content">
 				<textare id="terminal-iframe"></textarea>
 			</div>
 		</div>
 		
+		<paper-button class="colored-close-button" id="close-button-lorem" label="close" onclick="showDialog('lorem')" style="display:none"></paper-button>
 		
 		<div class="poly-dialog" id="lorem-dialog" style="z-index:200;display:none">
-			<div class="header">
-				<input type="text" class="form-control poly-input" id="lorem_input" onchange="generate()" style="width:80%" placeholder="Number of sentences...">
+			
+			<div class="content-with-input">
+				<div id="lorem" data-lorem="6s" width="100%"></div>
 			</div>
 			
-			<paper-fab icon="close" onclick="showDialog('lorem')"></paper-fab>
-			
-			<div class="content">
-				<div id="lorem" data-lorem="6s" width="100%"></div>
+			<div class="content-input">
+				<paper-shadow z="1"></paper-shadow>
+				
+				<input type="text" class="form-control poly-input" id="lorem_input" onchange="generate()" style="" placeholder="Number of sentences...">
 			</div>
 		</div>
 		
 		
-		
+		<paper-button class="colored-close-button" id="close-button-preview" label="close" onclick="showDialog('preview')" style="display:none"></paper-button>
 
 		<div class="poly-dialog" id="preview-dialog" style="z-index:200;display:none">
-			<div class="header">
-				<small>Preview</small>
-			</div>
-			
-			<paper-fab icon="close" onclick="showDialog('preview')"></paper-fab>
 			
 			<div class="content preview-content">
 				<iframe id="preview"></iframe>
 			</div>
 		</div>
 		
-		<div class="poly-dialog" id="saveas-dialog" style="z-index:200;display:none">
-			<div class="header">
-				<small>Save As</small>
-			</div>
-			
-			<paper-fab icon="close" onclick="showDialog('saveas');saveas_cancel();"></paper-fab>
-			
-			<div class="content">
-					<br/>
-					<input style="width: 80%;margin-left:10%;border: solid thin #ECF0F1;" placeholder="A name for your new file" value="Untitled.txt" id="saveas-input" class="form-control">
-					<br/>
+		
+		
+		<paper-button class="colored-close-button" id="close-button-saveas" label="close" onclick="showDialog('saveas');saveas_cancel();" style="display:none"></paper-button>
+		
+		
+		
+		<div class="poly-dialog-small" id="saveas-dialog" style="z-index:200;display:none;padding:5px;">
+					<input placeholder="A name for your new file" value="Untitled.txt" id="saveas-input" class="form-control poly-input" style="float:left;width:calc(100% - 60px)">
 						
-					<paper-button label="OK" style="color:white;background-color:#2ECC71;width:40%;margin-left:30%" onclick="saveas_ok()"></paper-button>	
-			</div>
+					<paper-icon-button icon="check" style="color:white;background-color:#2ECC71;float:right" onclick="saveas_ok()"></paper-icon-button>	
+		</div>
+		
+		<paper-button class="colored-close-button" id="close-button-rename" label="close" onclick="showDialog('rename');" style="display:none"></paper-button>
+		
+		<div class="poly-dialog-small" id="rename-dialog" style="z-index:200;display:none;padding:5px;">
+					<input placeholder="Title" value="" id="rename_input" class="form-control poly-input" style="float:left;width:calc(100% - 60px)">
+					
+						
+					<paper-icon-button icon="check" style="color:white;background-color:#2ECC71;float:right" onclick="showDialog('rename');ok_rename();"></paper-icon-button>	
 		</div>
 		
 		<!--END MODALS-->
@@ -426,7 +421,7 @@
     		</div>
         	<div class="" id="navbar-collapse-01" style="width: 99%;">
         	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">  
-        	  	<paper-icon-button onclick="toggle_side()" icon="menu" style="color:black"></paper-icon-button>
+        	  	<paper-icon-button onclick="toggle_side()" icon="menu" style="color:#0097a7"></paper-icon-button>
         	  	<li id="branding"><a style="color:#f5f5f5;font-size: 22px;">Code Your Cloud</a></li>
 				
         	  </ul>
@@ -447,7 +442,7 @@
 	
 	  	<!--END NAV-->
 	  	
-	  		<div id="screen">
+	  		<div id="screen" style="display:none">
 				<h1 id="prepare">LOADING</h1>
 				 <img src="images/svg/15.svg" style="
 				    width: 80%;
@@ -534,64 +529,6 @@
 
 		<!--END MAIN-->
 		
-		<!--TUTORIAL-->
-		<div id="tutorial" style="display:none">
-			<paper-icon-button id="tutorial_close" icon="close" onclick="hideTut()"></paper-icon-button>
-			<paper-icon-button id="tutorial_back" icon="arrow-back" onclick="go_back()"></paper-icon-button>
-			<paper-icon-button id="tutorial_forward" icon="arrow-forward" onclick="advance()"></paper-icon-button>
-			
-			<core-animated-pages transitions="slide-from-right">
-				
-				<section>
-					<div layout vertical center center-justified>
-						<h3 class="Roboto-Thin">Welcome to <b>Code Your Cloud</b>!</h3>
-						<h5>What's your experience with coding?</h5>
-						<a href="http://www.codeconquest.com/what-is-coding/" target="_blank" class="ghost-button">What's coding?</a>
-						<a onclick="advance()" class="ghost-button">I'm getting there</a>
-						<a onclick="expert()" class="ghost-button">Your HTML is weak!</a>
-					</div>
-				</section>
-				<section>
-					<div layout vertical center center-justified>
-						<h3 class="Roboto-Thin">Button Overview</h3>
-						<h8><core-icon icon="menu"></core-icon>Will open the sidebar, where you can find more functions</h8>
-						<h8><core-icon icon="rotate-left"></core-icon>Undo the most recent change. You'll be using this a lot</h8>
-						<h8><core-icon icon="rotate-right"></core-icon>Redo the most recent undo</h8>
-						<h8><core-icon icon="drive"></core-icon>Open a file from Google Drive for editing</h8>
-						<h8><core-icon icon="save"></core-icon>Save the current file</h8>
-						<h8><core-icon icon="send"></core-icon>Open the chat window for the current file</h8>
-					</div>
-				</section>
-				<section>
-					<div layout vertical center center-justified>
-						<h3 class="Roboto-Thin">A Super-Quick Demo...</h3>
-						<img src="images/screenshots/demo.gif" width="80%" style="margin-left:10%;border:solid thin white">
-					</div>
-				</section>
-				<section>
-					<div layout vertical center center-justified>
-						<h3 class="Roboto-Thin">Collaborating</h3>
-						<h8>1. Share the file using the <code>Share</code> option in the sidebar, or directly from Google Drive</h8>
-						<h8>2. Have your collaborators access the file. You'll see their profile pictures in the right-side bar. You'll also see any changes they make in real time.</h8>
-						<h8>3. Chat using the <code>Chat</code> option in the sidebar.</h8>
-					</div>
-				</section>
-				
-				<section>
-					<div layout vertical center center-justified>
-						<h3 class="Roboto-Thin">That's The Basics</h3>
-						<h5>If you have any questions, contact us</h5>
-						
-						<a href="https://github.com/mkaminsky11/codeyourcloud" target="_blank" class="ghost-button"><i class="fa fa-github"></i> Github</a>
-						<a href="https://plus.google.com/u/0/b/109834723365906365793/109834723365906365793/posts" target="_blank"class="ghost-button ghost-button-red"><i class="fa fa-google-plus"></i> Google+</a>
-						<a href="https://codeyourcloud.com/about/#contact" target="_blank" class="ghost-button ghost-button-blue"><i class="fa fa-envelope-o"></i> our website</a>
-					</div>
-				</section>
-				
-			</core-animated-pages>
-		</div>
-		
-		<!--END TUTORIAL-->
 		
 		
 		
@@ -670,11 +607,11 @@
 		<script src="script/visual.js"></script>
 		<script src="script/picker.js"></script>
 		<script src="script/features.js"></script>
-		<script src="script/tutorial/tutorial.js"></script>
 		<script src="script/broadcast.js"></script>
 		
 		<script src="script/custom.js"></script>
 		<script src="script/tabs.js"></script>
+		
 		
 		<script src = 'lib/keyboard/jwerty.js'></script>
 		<script>
@@ -700,14 +637,9 @@
 				return false;
 			});
 		</script>
-		<link rel="stylesheet" href="script/style.css">
-		<link rel="stylesheet" href="script/custom.css">
-		<link rel="stylesheet" href="script/tutorial/tutorial.css">
-		
 		
 		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=loadDrive"></script>
 		
-		<link rel="stylesheet" href="script/custom.css">
 
 	</body>
 </html>

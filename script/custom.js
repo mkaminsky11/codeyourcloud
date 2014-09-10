@@ -15,7 +15,7 @@ function toggle_side(){
 
 function close_side(){
 	side_open = false;
-	$("#side").animate({
+	$("#side").velocity({
 		marginLeft: "-100%"
 	}, {
 		duration: 1000,
@@ -24,7 +24,7 @@ function close_side(){
 			$("#side").addClass("hide");
 		}
 	});
-	$("#detect").fadeOut();
+	$("#detect").velocity("fadeOut", { duration: 1500 })
 	
 	if(modal_open){
 		//make it larger
@@ -37,13 +37,13 @@ function open_side(){
 	$("#side").css("margin-left","-100%");
 	$("#side").removeClass("hide");
 	
-	$("#side").animate({
+	$("#side").velocity({
 		marginLeft: "0%"
 	}, {
 		duration: 1000,
 		queue: false
 	});
-	$("#detect").fadeIn();
+	$("#detect").velocity("fadeIn", { duration: 1500 })
 }
 
 $("#detect").click(function(){
@@ -79,35 +79,47 @@ function show_side_upload(){
 
 function showDialog(modal){
 
+	$("#detect-dialog").fadeIn();
+
 	var t =  "#" + modal + "-dialog";
+	var b = "#close-button-" + modal;
 	if($(t).css("display") === "none"){
 		//show it
-		$(t).css("left","-100%");
-		$(t).css("display","block");
-		$(t).animate({
-			left: "0%"
-		},"easeInOutCubic",function(){
-			if(modal === "preview"){
-				$(".preview-content").css("-webkit-overflow-scrolling","auto");
-				setTimeout(function(){
-					$(".preview-content").css("-webkit-overflow-scrolling","touch");
-				}, 100);
+		$(t).slideDown({
+			complete: function(){
+			
+				$(b).velocity("fadeIn", { duration: 1500 })
+			
+				if(modal === "preview"){
+					$(".preview-content").css("-webkit-overflow-scrolling","auto");
+					setTimeout(function(){
+						$(".preview-content").css("-webkit-overflow-scrolling","touch");
+					}, 100);
+				}
 			}
+		},{
+			
 		});
 	}
 	else{
-		$(t).animate({
-			left: "-100%"
-		}, "easeInOutCubic",function(){
-			$(t).css("left","0%");
-			$(t).css("display","none");
+		//hide
+		
+		$(t).slideUp({
+			complete: function(){
 			
-			if(modal === "preview"){
-				$(".preview-content").css("-webkit-overflow-scrolling","auto");
-				setTimeout(function(){
-					$(".preview-content").css("-webkit-overflow-scrolling","touch");
-				}, 100);
+				$(b).fadeOut();
+				
+				$("#detect-dialog").fadeOut();
+			
+				if(modal === "preview"){
+					$(".preview-content").css("-webkit-overflow-scrolling","auto");
+					setTimeout(function(){
+						$(".preview-content").css("-webkit-overflow-scrolling","touch");
+					}, 100);
+				}
 			}
+		},{
+			
 		});
 	}
 	

@@ -75,15 +75,6 @@ function setMode(id,mode){
 	
 	adjust();
 }
-function show_rename(){
-	if(!is_welcome){
-		$("#renameModal").modal('show');
-	}
-}
-function no_rename(){
-	$("#rename_input").val(title.getText());
-	$("#renameModal").modal('hide');
-}
 function ok_rename(){
 	setFileTitle(current_file, $("#rename_input").val());
 	
@@ -191,9 +182,6 @@ $('#theme_input').keyup(function(e){
 	theme_search_change();
 });
 
-function showMode(){
-	$("#modeModal").modal('show');
-}
 /*===========
 UNDO/REDO
 ===========*/

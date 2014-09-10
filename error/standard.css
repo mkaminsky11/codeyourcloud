@@ -25,5 +25,5 @@ body {
    height:60px;   /* Height of the footer */
 }
 #logo_pic{
-	border: solid thick white;
+	border: none;
 }

@@ -34,14 +34,6 @@ $(".CodeMirror").css("line-height","1");
 
 
 
-
-
-
-
-
-
-
-
 /*===========
 AUTHORIZATION
 =============*/
@@ -50,12 +42,15 @@ function loadDrive(){
 }
 //handles result
 function handleAuth(authResult){
+	console.log(authResult);
 	if (!authResult.error) {
 		logged_in = true;
 		loadClient();
 	} 
 	else {
-		window.location = "https://codeyourcloud.com/about";
+		if(window.location.href.indexOf("?no=true") === -1 && authResult.error_subtype === "access_denied"){
+			window.location = "https://codeyourcloud.com/about";
+		}
 	}
 }
 

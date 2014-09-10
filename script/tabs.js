@@ -3,7 +3,6 @@ function receiveMessage(event){
   if(event.data !== "!_{h:''}"){
   	var json = JSON.parse(event.data);
   	if(typeof json.s === 'undefined'){
-	  	console.log(json);
 	  	
 	  	var id = json.currentfile;
 	  	
@@ -194,9 +193,7 @@ function removetab(id){
   
   editors.splice(index,1);
   
-  if(editors.length !== 0){
-	  opentab(editors[0].id);
-  }
+  $("#chat_button").css("display","none");
 }
 
 function adjust(){

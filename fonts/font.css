@@ -1,6 +1,11 @@
 @import url('https://cdn.jsdelivr.net/devicons/1.4.0/css/devicons.min.css');
 
 @font-face{
+	font-family: 'Devicons';
+	src: url('../lib/devicons/devicons.woff') format('woff'), url('../lib/devicons/devicons.ttf') format('truetype');
+}
+
+@font-face{
 	font-family: 'Lobster';
 	src: url('Lobster.woff') format('woff'), url('Lobster.ttf') format('truetype');
 	font-weight: 400;

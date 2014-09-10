@@ -128,6 +128,10 @@ function poly_loaded(){
 }
 
 window.addEventListener('polymer-ready', function(e){
+	
+	
+	checkGithub();
+	
 	poly_loaded();
 	line_wrap = editor().getOption("lineWrapping");
 	line_number = editor().getOption("lineNumbers");
@@ -135,7 +139,7 @@ window.addEventListener('polymer-ready', function(e){
 		document.getElementById("side-wrap").toggle();
 	}
 	
-	if(line_number !== ('#side-nums').prop('checked')){
+	if(line_number !== $('#side-nums').prop('checked')){
 		document.getElementById("side-nums").toggle();
 	}
 
