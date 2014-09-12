@@ -28,7 +28,7 @@ function close_side(){
 	
 	if(modal_open){
 		//make it larger
-		hide_side_modal();		
+		//hide_side_modal();		
 	}
 }
 
@@ -97,8 +97,6 @@ function showDialog(modal){
 					}, 100);
 				}
 			}
-		},{
-			
 		});
 	}
 	else{
@@ -145,7 +143,7 @@ function show_side_chat(){
 
 
 function show_side_random(){
-	showDialog("lorem");
+	showDialog("random");
 }
 
 function show_side_terminal(){

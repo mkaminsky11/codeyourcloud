@@ -92,7 +92,7 @@ function get_info(){
     var request = gapi.client.drive.about.get();
     request.execute(function(resp) {
         myRootFolderId = resp.rootFolderId;
-        
+        console.log(resp); 
         try{
         	myEmail = resp.user.emailAddress;
         	//$("#side-email").html(myEmail);

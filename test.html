@@ -180,7 +180,7 @@
 					</h6>
 				</div>
 				
-				<div class="side-item ">
+				<div class="side-item " onclick="show_side_random()">
 					<paper-icon-button icon="help" onclick="show_side_random()" style="background-color:#F1C40F"></paper-icon-button>
 					<h6>
 						Lorem
@@ -340,7 +340,8 @@
 			
 			<div class="content-input">
 				<paper-shadow z="1"></paper-shadow>
-				
+				<!--paper-input label="Search themes..."></paper-input-->
+				<!--width: calc(100% - 20px); padding: 0; margin-left: 10px-->
 				<input type="text" class="form-control poly-input" id="theme_input"  style="" placeholder="Search themes...">
 			</div>
 		</div>
@@ -364,9 +365,9 @@
 			</div>
 		</div>
 		
-		<paper-button class="colored-close-button" id="close-button-random" label="close" onclick="showDialog('random')" style="display:none"></paper-button>
+		<paper-button class="colored-close-button" id="close-button-lorem" label="close" onclick="showDialog('lorem')" style="display:none"></paper-button>
 		
-		<div class="poly-dialog" id="random-dialog" style="z-index:200;display:none">
+		<div class="poly-dialog" id="lorem-dialog" style="z-index:200;display:none">
 			
 			<div class="content-with-input">
 				<div id="lorem" data-lorem="6s" width="100%"></div>
