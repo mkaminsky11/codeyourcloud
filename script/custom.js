@@ -53,14 +53,6 @@ $("#detect").click(function(){
 	}	
 });
 
-/*=========
-RENAME
-==========*/
-function toggle_side_rename(){
-	$("#rename-div").slideToggle();
-}
-
-
 /*========
 FUNCTIONS
 =========*/
@@ -79,16 +71,22 @@ function show_side_upload(){
 
 function showDialog(modal){
 
-	$("#detect-dialog").fadeIn();
+	$("#detect-dialog").velocity("fadeIn",{ duration: 1500 });
 
 	var t =  "#" + modal + "-dialog";
 	var b = "#close-button-" + modal;
 	if($(t).css("display") === "none"){
 		//show it
-		$(t).slideDown({
+		$(b).velocity("fadeIn",{
+			duration: 1000,
+			queue: false
+		});
+
+		$(t).velocity("slideDown",{
+			duration: 1000,
 			complete: function(){
 			
-				$(b).velocity("fadeIn", { duration: 1500 })
+				//$(b).velocity("fadeIn", { duration: 1000 })
 			
 				if(modal === "preview"){
 					$(".preview-content").css("-webkit-overflow-scrolling","auto");
@@ -105,9 +103,15 @@ function showDialog(modal){
 		$(t).slideUp({
 			complete: function(){
 			
-				$(b).fadeOut();
+				$(b).velocity("fadeOut",{
+					duration: 1000,
+					queue: false
+				});
 				
-				$("#detect-dialog").fadeOut();
+				$("#detect-dialog").velocity("fadeOut",{
+                                        duration: 1000,
+                                        queue: false
+                                });
 			
 				if(modal === "preview"){
 					$(".preview-content").css("-webkit-overflow-scrolling","auto");

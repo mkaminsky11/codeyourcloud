@@ -122,7 +122,7 @@ for(var i = 0; i < modes.length; i++){
 
 
 function mode_search_change(){
-	var search_term = $("#mode_input").val();
+	var search_term = document.getElementById("mode_input").value;
 	
 	var found = false;
 	$("#mode-nothing").removeClass("hide");
@@ -149,7 +149,7 @@ function mode_search_change(){
 }
 
 function theme_search_change(){
-	var search_term = $("#theme_input").val();
+	var search_term = document.getElementById("theme_input").value;
 	
 	var found = false;
 	$("#theme-nothing").removeClass("hide");
@@ -175,12 +175,21 @@ function theme_search_change(){
 	});
 }
 
-$('#mode_input').keyup(function(e){
+
+document.getElementById("mode_input").addEventListener('change',function(){
 	mode_search_change();
 });
-$('#theme_input').keyup(function(e){
+
+
+document.getElementById("theme_input").addEventListener('change',function(){
+	console.log("theme");
 	theme_search_change();
 });
+
+document.getElementById("lorem_input").addEventListener('change',function(){
+	generate();
+});
+
 
 /*===========
 UNDO/REDO
@@ -300,7 +309,7 @@ function generate(){
     $("#lorem").html("");
     var lorem = new Lorem;
     lorem.type = Lorem.TEXT;
-    lorem.query = $("#lorem_input").val() + lorem_type;
+    lorem.query = document.getElementById("lorem_input").value + lorem_type;
     lorem.createLorem(document.getElementById('lorem'));
 }
 function lorem_s(){

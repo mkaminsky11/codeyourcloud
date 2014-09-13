@@ -675,3 +675,7 @@ paper-checkbox.poly-blue::shadow #checkbox.checked {
 paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #sliderBar::shadow #activeProgress {
 	background-color: #3498DB;
 }
+
+.blue-paper-input #focusedUnderline{
+	background-color: #3498DB !important;
+}
