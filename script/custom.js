@@ -1,12 +1,13 @@
 function show_top_rename(){
+	//shows the rename input at the top of the screen
 	close_side();
-
+	//previous invisible
 	$("#new_title_input").css("display","block");
 	
 	$("#new_title_ok").css("display","block");
 	
 	$("#new_title_no").css("display","block");
-
+	//expands the nav bar to fit the input
 	$("#nav").velocity({
 		paddingTop: "60px"
 	},{
@@ -38,7 +39,7 @@ function show_top_rename(){
 }
 
 function hide_top_rename(){
-	
+	//hides the rename input
 
 	$("#nav").velocity({
 		paddingTop: "0px"
@@ -106,11 +107,6 @@ function close_side(){
 		}
 	});
 	$("#detect").velocity("fadeOut", { duration: 1500 })
-	
-	if(modal_open){
-		//make it larger
-		//hide_side_modal();		
-	}
 }
 
 function open_side(){
@@ -129,6 +125,7 @@ function open_side(){
 }
 
 $("#detect").click(function(){
+	//partially clear screen
 	if(side_open){
 		side_open = false;
 		close_side();
@@ -136,17 +133,20 @@ $("#detect").click(function(){
 });
 
 /*========
-FUNCTIONS
+DIALOGS
 =========*/
 function show_side_open(){
+	//the open dialog
 	close_side();
 	open_picker()
 }
 function show_side_share(){
+	//share dialog
 	close_side();
 	show_share()
 }
 function show_side_upload(){
+	//upload dialogs
 	close_side();
 	upload_picker();
 }

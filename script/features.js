@@ -1,4 +1,8 @@
 function poly_loaded(){
+    
+	//once polymer is loaded....
+
+	//funky stuff to get the REPL to work. Kind of
     var geval = eval;
 
     repl = new CodeMirrorREPL("terminal-iframe", {
@@ -128,11 +132,13 @@ function poly_loaded(){
 }
 
 window.addEventListener('polymer-ready', function(e){
+	//the actual event
 	
-	
-	checkGithub();
+	checkGithub(); //declared in broadcast.js
 	
 	poly_loaded();
+
+	//sets options
 	line_wrap = editor().getOption("lineWrapping");
 	line_number = editor().getOption("lineNumbers");
 	if(line_wrap !== $('#side-wrap').prop('checked')){

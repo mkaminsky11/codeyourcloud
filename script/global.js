@@ -19,6 +19,8 @@ function editor(){
 
 function add_editor(e, id, welcome){
 	
+	//creates a new object to store stuff in
+
 	var to_push = {
     	editor: e,
     	id: id,
@@ -33,6 +35,8 @@ function add_editor(e, id, welcome){
 }
 
 function getEditor(id){
+	//gets an editor by its file id
+
 	for(var i = 0; i < editors.length; i++){
 		if(editors[i].id === id){
 			return editors[i].editor;
@@ -41,6 +45,7 @@ function getEditor(id){
 }
 
 function getIndex(id){
+	//gets the index of an editor with a given file id
 	for(var i = 0; i < editors.length; i++){
 		if(editors[i].id === id){
 			return i;
@@ -49,6 +54,21 @@ function getIndex(id){
 }
 
 function getIgnore(id){
+	//this prevents issues when collaborating
+/*
+BEFORE:
+
+A makes a change
+The change is detected by B, and made
+a change event is fired by B's change, and the change is made AGAIN by A
+repeat
+
+AFTER:
+
+A makes a change
+The changes is detected by B, made, and "ignore" is turned on
+a change event is fired by B's change, the "ignore" is seen, and the change is not pushed
+*/
 	for(var i = 0; i < editors.length; i++){
 		if(editors[i].id === id){
 			return editors[i].ignore;
@@ -77,7 +97,6 @@ function setFileTitle(id, title){
 	if(current_file === id){
 		$("#title").html(editors[index].title);
 		$("#rename-toggle").css("display","inline-block");
-		//$("#rename_input").val(editors[index].title);
 		
 		document.getElementById("new_title_input").value = editors[index].title;
 	}
@@ -116,6 +135,7 @@ var logged_in = false;
 
 var converter = new Markdown.Converter();
 
+//[name, codemirror code, file extensions seperated by | ]
 var modes = [
 	["Javascript","text/javascript","js"],
 	["APL","text/apl","apl"],
@@ -250,7 +270,7 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 
 if(window.location.href.indexOf("?mobile=true") !== -1){
 	is_mobile = true;
-	
+	//spoofing to test mobile
 }
 
 if(is_mobile){
@@ -258,12 +278,15 @@ if(is_mobile){
 }
 
 function to_mobile(){
+	//some UI changes
 	is_mobile = true;
-	
+	//makes the sidebar larger
 	$("#side").css("width","80%");
 	var temp = $(".poly-chat").html();
 
 	$(".poly-chat").remove();
+
+	//move the chat function to a modal so it's easier to use
 	$(".side-modal-chat").html("<div class='poly-chat'>"+ temp +"</div>");
 	
 	$(".poly-chat").css("width","100%");
@@ -285,6 +308,7 @@ function to_mobile(){
 }
 
 function from_mobile(){
+	//from mobile to desktop
 	is_mobile = false;
 	
 	$("#side").css("width","25%");
@@ -327,7 +351,7 @@ $( window ).resize(function() {
 });
 
 
-
+//swipe functions for mobile
 var side_open = false;
 
 document.addEventListener('touchstart', handleTouchStart, false);        

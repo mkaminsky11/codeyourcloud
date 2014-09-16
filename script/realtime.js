@@ -1,4 +1,4 @@
-//the codemirror editor
+//the default codemirror editor
 var e = CodeMirror(document.getElementById("welcome"),{
     lineNumbers: true,
     mode: "text",
@@ -7,6 +7,8 @@ var e = CodeMirror(document.getElementById("welcome"),{
     indentUnit: 4, 
     indentWithTabs: true
 });
+
+//the introduction text
 
 var txtFile = new XMLHttpRequest();
 txtFile.open("GET", "https://codeyourcloud.com/intro.txt", true);
@@ -32,7 +34,7 @@ editor().setOption("autoCloseBrackets",true);
 editor().setOption("matchBrackets",true);
 $(".CodeMirror").css("line-height","1");
 
-
+//some basic things above
 
 /*===========
 AUTHORIZATION
@@ -61,7 +63,7 @@ function loadClient() {
 function load_drive(){
 	setInterval(function(){
 		refreshToken();
-	},3000000);
+	},3000000); //every hour or something
 	get_info();
 	
 	
@@ -70,13 +72,14 @@ function load_drive(){
 	var query = window.location.href.split("?")[1];
 	
 	if(url.indexOf("%22action%22:%22open") !== -1){
-		//need to open
+		//need to open a file
 		var query_id = query.split("%22")[3];
 		
 		addTab("loading...",query_id,false);
 		
 	}
 	else if(url.indexOf("%22action%22:%22create%22") !== -1){
+		//need to create new file
 		var query_folder_id = query.split("%22")[3];
 		
 		insertNewFile(query_folder_id);
@@ -95,7 +98,6 @@ function get_info(){
         console.log(resp); 
         try{
         	myEmail = resp.user.emailAddress;
-        	//$("#side-email").html(myEmail);
         }
         catch(e){
         	window.location = "https://codeyourcloud.com/about";
@@ -113,6 +115,7 @@ function get_info(){
             }
             
             if(typeof tempUrl === 'undefined'){
+			//get the user profile, unless there is none
 	            userUrl = "https://codeyourcloud.com/images/other/none.jpg";
 	            tempUrl = "https://codeyourcloud.com/images/other/none.jpg";
             }
@@ -140,13 +143,15 @@ function get_info(){
         
         user_loaded = true;
         if(sql_loaded){
-        	get_sql();
+        	get_sql(); //get preferences via SQL
         }
     });
 }
 /*============
 USERS
 =============*/
+
+//insert a new collaborating user
 function insertUser(name, color, photo, id, fileid){
 	var new_user = "<img class=\"user-photo\" id=\"img_" + id + "\" src=\""+ photo +"\" height=\"53px\" width=\"53px\" style=\"border:solid 4px "+ color +";display:none\">";
 	

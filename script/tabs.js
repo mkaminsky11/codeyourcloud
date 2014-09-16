@@ -3,6 +3,7 @@ function receiveMessage(event){
   if(event.data !== "!_{h:''}"){
   	var json = JSON.parse(event.data);
   	if(typeof json.s === 'undefined'){
+		//this makes sure that only the intended messages are getting in. There are some "background" ones
 	  	
 	  	var id = json.currentfile;
 	  	
@@ -22,7 +23,7 @@ function receiveMessage(event){
 		}
 	  	else if(json.type === "delete_text"){
 	  		setIgnore(id, true);
-	  		
+	  		//deleted the text, but set an ignore
 	  		getEditor(id).replaceRange("",getEditor(id).posFromIndex(json.back),getEditor(id).posFromIndex(json.front));
 	  	}
 	  	else if(json.type === "insert_user"){

@@ -4,6 +4,7 @@ OPENING
 var developerKey = 'AIzaSyBTSFIgQkLly9v6Xuqc2Nqm-vX0jpyEbZk';
 function purge(){
     $(".dcs-wc-dcs-c-dcs-vc").remove();
+	//it sometimes happens that semitransparent layers build up from the different dialog. This just removes them.
 }
 function open_picker() {
     purge();

@@ -2,6 +2,7 @@
 store google drive functions
 ================*/
 
+//gets the permissions
 function getP(fileId) {
 	var request = gapi.client.drive.permissions.list({
 		'fileId': fileId
@@ -14,6 +15,7 @@ function getP(fileId) {
 			}
 		}
 		if(ret === false){
+			//if you don't have them....
 			window.location = "https://codeyourcloud.com/error/permission";
 		}
 	});
@@ -22,13 +24,15 @@ function getP(fileId) {
 /*=============
 NEW FILE
 ============*/
-var insert_folder_dest = "";
+
+
+var insert_folder_dest = ""; //the destination to insert a new file into
 
 function insertNewFile(folderId) {
-	var content = " ";
-	insert_folder_dest = folderId;
+	var content = " "; //default text
+	insert_folder_dest = folderId; //store it globally :( not best practice
 	
-	var contentArray = new Array(content.length);
+	var contentArray = new Array(content.length); //convert it!
     for (var i = 0; i < contentArray.length; i++) {
     	contentArray[i] = content.charCodeAt(i);
     }
@@ -37,13 +41,14 @@ function insertNewFile(folderId) {
 	insertFile(blob, folderId, fileInserted);
 }
 function fileInserted(d) {
-	//get folderid
+	//this function is triggered once the file is inserted
+	//if it's not the defalt, move it to the correct place
 	if(insert_folder_dest !== myRootFolderId){	
 		insertFileIntoFolder(insert_folder_dest, d.id);
 		removeFileFromFolder(d.parents[0].id,d.id);
 	}
 	
-	
+	//great, now add the tab
 	addTab("loading...",d.id,false);
 }
 function insertFileIntoFolder(folderId, fileId) {
@@ -107,6 +112,7 @@ function insertFile(fileData, folderId, callback) {
 }
 
 function renameFile(fileId, newTitle) {
+  //renames the file. DUH
   var body = {'title': newTitle};
   var request = gapi.client.drive.files.patch({
     'fileId': fileId,
@@ -119,6 +125,7 @@ function renameFile(fileId, newTitle) {
 
 
 function insert_saveas(content, title, folderId){
+	//the "save as" function. It just inserts a new file in a new place
 	var contentArray = new Array(content.length);
     for (var i = 0; i < contentArray.length; i++) {
     	contentArray[i] = content.charCodeAt(i);
@@ -129,7 +136,7 @@ function insert_saveas(content, title, folderId){
 }
 
 function saveas_inserted(d) {
-	//get folderid
+	//called once file inserted
 	var folder_id = save_as_destination;
     renameFile(d.id, $("#saveas-input").val());
 	if(folder_id !== myRootFolderId){	

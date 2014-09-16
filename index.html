@@ -94,11 +94,9 @@
 			<div id="side_inner">
 				<div class="side-head" style="height:auto">
 						<h6><a id="title">Code Your Cloud</a>
-							<button class="btn btn-info" id="rename-toggle" onclick="showDialog('rename');" style="display:none"><i class="fa fa-pencil"></i></button>
+							<button class="btn btn-info" id="rename-toggle" onclick="show_top_rename()" style="display:none"><i class="fa fa-pencil"></i></button>
 						</h6>
 				</div>
-				
-				<hr/>
 
 				<div class="side-item ">
 					<paper-icon-button icon="drive" onclick="show_side_open()" style="background-color:#E74C3C"></paper-icon-button>
@@ -277,7 +275,7 @@
 		
 		<div id="detect-dialog" class="detect" style="display:none"></div>
 		
-		<paper-button class="colored-close-button" id="close-button-options" label="close" onclick="showDialog('options')" style="display:none"></paper-button>
+		<paper-button class="colored-close-button" id="close-button-options" label="close" onclick="hideDialog('options')" style="display:none"></paper-button>
 		
 		<div class="poly-dialog" id="options-dialog" style="z-index:200;display:none">
 			
@@ -301,7 +299,7 @@
 			</div>
 		</div>
 		
-		<paper-button class="colored-close-button" id="close-button-mode" label="close" onclick="showDialog('mode')" style="display:none"></paper-button>
+		<paper-button class="colored-close-button" id="close-button-mode" label="close" onclick="hideDialog('mode')" style="display:none"></paper-button>
 		
 		<div class="poly-dialog" id="mode-dialog" style="z-index:200;display:none">
 
@@ -323,7 +321,7 @@
 			</div>
 		</div>
 		
-		<paper-button class="colored-close-button" id="close-button-theme" label="close" onclick="showDialog('theme')" style="display:none"></paper-button>
+		<paper-button class="colored-close-button" id="close-button-theme" label="close" onclick="hideDialog('theme')" style="display:none"></paper-button>
 		
 		<div class="poly-dialog" id="theme-dialog" style="z-index:200;display:none">
 
@@ -344,7 +342,7 @@
 			</div>
 		</div>
 		
-		<paper-button class="colored-close-button" id="close-button-chat" label="close" onclick="showDialog('chat')" style="display:none"></paper-button>
+		<paper-button class="colored-close-button" id="close-button-chat" label="close" onclick="hideDialog('chat')" style="display:none"></paper-button>
 		
 		<div class="poly-dialog"id="chat-dialog" style="z-index:200;display:none">
 			<div class="side-modal-chat content">
@@ -354,7 +352,7 @@
 		
 
 		
-		<paper-button class="colored-close-button" id="close-button-terminal" label="close" onclick="showDialog('terminal')" style="display:none"></paper-button>
+		<paper-button class="colored-close-button" id="close-button-terminal" label="close" onclick="hideDialog('terminal')" style="display:none"></paper-button>
 		
 		<div class="poly-dialog" id="terminal-dialog" style="z-index:200;display:none">
 			
@@ -363,7 +361,7 @@
 			</div>
 		</div>
 		
-		<paper-button class="colored-close-button" id="close-button-random" label="close" onclick="showDialog('random')" style="display:none"></paper-button>
+		<paper-button class="colored-close-button" id="close-button-random" label="close" onclick="hideDialog('random')" style="display:none"></paper-button>
 		
 		<div class="poly-dialog" id="random-dialog" style="z-index:200;display:none">
 			
@@ -380,7 +378,7 @@
 		</div>
 		
 		
-		<paper-button class="colored-close-button" id="close-button-preview" label="close" onclick="showDialog('preview')" style="display:none"></paper-button>
+		<paper-button class="colored-close-button" id="close-button-preview" label="close" onclick="hideDialog('preview')" style="display:none"></paper-button>
 
 		<div class="poly-dialog" id="preview-dialog" style="z-index:200;display:none">
 			
@@ -391,7 +389,7 @@
 		
 		
 		
-		<paper-button class="colored-close-button" id="close-button-saveas" label="close" onclick="showDialog('saveas');saveas_cancel();" style="display:none"></paper-button>
+		<paper-button class="colored-close-button" id="close-button-saveas" label="close" onclick="hideDialog('saveas');saveas_cancel();" style="display:none"></paper-button>
 		
 		
 		
@@ -401,19 +399,23 @@
 					<paper-icon-button icon="check" style="color:white;background-color:#2ECC71;float:right" onclick="saveas_ok()"></paper-icon-button>	
 		</div>
 		
-		<paper-button class="colored-close-button" id="close-button-rename" label="close" onclick="showDialog('rename');" style="display:none"></paper-button>
+		<!--paper-button class="colored-close-button" id="close-button-rename" label="close" onclick="hideDialog('rename');" style="display:none"></paper-button-->
 		
-		<div class="poly-dialog-small" id="rename-dialog" style="z-index:200;display:none;padding:5px;">
+		<!--div class="poly-dialog-small" id="rename-dialog" style="z-index:200;display:none;padding:5px;">
 					<input placeholder="Title" value="" id="rename_input" class="form-control poly-input" style="float:left;width:calc(100% - 60px)">
 					
 						
 					<paper-icon-button icon="check" style="color:white;background-color:#2ECC71;float:right" onclick="showDialog('rename');ok_rename();"></paper-icon-button>	
-		</div>
+		</div-->
 		
 		<!--END MODALS-->
 		
 		<!--NAV-->
 		
+		<paper-input class="blue-paper-input" label="New Title..." id="new_title_input" style=""></paper-input>
+		
+		<paper-icon-button icon="check" style="display:none" id="new_title_ok" onclick="ok_rename();hide_top_rename();"></paper-icon-button>
+		<paper-icon-button icon="close" style="display:none" id="new_title_no" onclick="hide_top_rename()"></paper-icon-button>
 		
 		<nav id="nav" class="navbar navbar-inverse nav-1" role="navigation">
       		<div class="navbar-header">
