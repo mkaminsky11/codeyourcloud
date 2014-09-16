@@ -69,16 +69,16 @@ body{
 }
 
 #side{
-	background-color: #34495E;
+	background-color: #036671;
 }
 
 #side_inner hr{
-	background-color: #2C3E50;
+	background-color: rgba(255, 255, 255, 0.06);
 }
 
 
 .side-head{
-	background-color:transparent;
+	background-color:#006064;
 	padding: 7px;
 	text-align: center;
 	color: #eeeeee;
@@ -427,7 +427,7 @@ paper-toast{
 	padding: 20px;
 }
 #options-dialog h6{
-	width: calc(100% - 5px);
+	width: calc(100% - 52px);
 	float: left;
 	font-size: 20px;
 }
@@ -678,4 +678,34 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 
 .blue-paper-input #focusedUnderline{
 	background-color: #3498DB !important;
+}
+
+#new_title_input{
+	padding: 0;
+	display:none;
+	position:absolute;
+	top:-60px;
+	z-index:10;
+	margin-left:20px;
+	width:calc(100% - 113px);
+}
+
+#new_title_ok{
+	position: absolute;
+	z-index: 200;
+	top: -60px;
+	right: 50px;
+	background-color: #72d572;
+	border-radius: 50%;
+	color: #eee;
+}
+
+#new_title_no{
+	position: absolute;
+	z-index: 200;
+	top: -60px;
+	right: 7px;
+	border-radius: 50%;
+	color: #eee;
+	background-color: #f36c60;
 }

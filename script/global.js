@@ -77,7 +77,9 @@ function setFileTitle(id, title){
 	if(current_file === id){
 		$("#title").html(editors[index].title);
 		$("#rename-toggle").css("display","inline-block");
-		$("#rename_input").val(editors[index].title);
+		//$("#rename_input").val(editors[index].title);
+		
+		document.getElementById("new_title_input").value = editors[index].title;
 	}
 }
 

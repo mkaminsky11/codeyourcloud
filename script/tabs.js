@@ -127,6 +127,8 @@ function addTab(title, id, welcome){
 }
 
 function opentab(id){
+	hide_top_rename();	
+
 	$(".tab-active").removeClass("tab-active");
 	$(".tab-tab[data-fileid='"+id+"']").addClass("tab-active");
 	

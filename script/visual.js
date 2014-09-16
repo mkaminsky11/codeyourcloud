@@ -1,16 +1,5 @@
 if(is_mobile){
-	$("#col_button").bind("tap",function() {  
-		switch_col();
-	});
-	$("#find_button").bind("tap",function() {  
-		find();
-	});
-	$("#replace_button").bind("tap",function() {  
-		replace();
-	});
-	$("#pref_button").bind("tap",function(){
-		$('#mainModal').modal('show');
-	});
+	//mobile-specific
 }
 function find(){
 	CodeMirror.commands["findNext"](editor());
@@ -76,7 +65,8 @@ function setMode(id,mode){
 	adjust();
 }
 function ok_rename(){
-	setFileTitle(current_file, $("#rename_input").val());
+	//setFileTitle(current_file, $("#rename_input").val());
+	setFileTitle(current_file, document.getElementById("new_title_input").value);
 	
 	sendData({
 		type: "title",
