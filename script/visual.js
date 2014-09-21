@@ -1,6 +1,12 @@
+/*
+$($0).find("tr").not(":nth-child(3n)").css("opacity,0).delay(500).velocity("transition.slideLeftBigIn", {stagger: 55, drag: true, duration: 325});
+*/
+
+
 if(is_mobile){
 	//mobile-specific
 }
+//find and replace functions
 function find(){
 	CodeMirror.commands["findNext"](editor());
 }
@@ -11,7 +17,7 @@ function replace(){
 
 
 function setMode(id,mode){
-	
+	//get the current editor index
 	var index = getIndex(id);
 	
 	
@@ -65,12 +71,11 @@ function setMode(id,mode){
 	adjust();
 }
 function ok_rename(){
-	//setFileTitle(current_file, $("#rename_input").val());
 	setFileTitle(current_file, document.getElementById("new_title_input").value);
 	
 	sendData({
 		type: "title",
-		title: $("#rename_input").val()
+		title: document.getElementById("new_title_input").value
 	}, current_file);
 }
 /*============
@@ -286,11 +291,6 @@ function move_right(){
         document.querySelector("#toast-select").show();
     }
 }
-/*==============
-BOTTOM
-==============*/
-
-
 /*============
 LOREM
 ==============*/

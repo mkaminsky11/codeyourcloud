@@ -263,9 +263,15 @@ var themes_name = ["code-your-cloud","3024-day", "3024-night", "ambiance-mobile"
 
 var is_mobile = false;
 var real_mobile = false;
+
+
+var side_open_width = "25%";
+
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  	is_mobile = true;
  	real_mobile = true;
+ 	
+ 	side_open_width = "80%";
 }
 
 if(window.location.href.indexOf("?mobile=true") !== -1){
@@ -278,6 +284,8 @@ if(is_mobile){
 }
 
 function to_mobile(){
+	side_open_width = "80%";
+	
 	//some UI changes
 	is_mobile = true;
 	//makes the sidebar larger
@@ -308,6 +316,8 @@ function to_mobile(){
 }
 
 function from_mobile(){
+		side_open_width = "25%";
+
 	//from mobile to desktop
 	is_mobile = false;
 	

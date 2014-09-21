@@ -150,4 +150,6 @@ window.addEventListener('polymer-ready', function(e){
 	}
 
 	editor().refresh();
+	
+	CoreStyle.g.paperInput.focusedColor = "#95A5A6";
 });

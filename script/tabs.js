@@ -12,7 +12,8 @@ function receiveMessage(event){
 	  	}
 	  	else if(json.type === "title"){
 		  	setFileTitle(id, json.title);
-	  	}
+	  		hide_loading_spinner();
+		}
 	  	else if(json.type === "saved"){
 		  	
 	  	}
@@ -56,6 +57,10 @@ function sendData(data, fileid){
 
 function addTab(title, id, welcome){
   
+  if(title === "loading..."){
+	show_loading_spinner();
+  }
+
   var found = false;
   for(var i = 0; i < editors.length; i++){
     if(editors[i].id === id){
@@ -181,7 +186,16 @@ function opentab(id){
 }
 
 function removetab(id){
-	$(".tab-tab[data-fileid='"+id+"']").remove();
+	hide_loading_spinner();	
+
+	//$(".tab-tab[data-fileid='"+id+"']").remove();
+	$(".tab-tab[data-fileid='"+id+"']").velocity("transition.slideUpOut",{
+		duration: 400,
+		drag: true,
+		complete: function(){
+			$(".tab-tab[data-fileid='"+id+"']").remove();
+		}
+	});
 	$(".codemirror-container[data-fileid='"+id+"']").remove();
 	$(".users-container[data-fileid='"+id+"']").remove();
   

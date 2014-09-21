@@ -21,7 +21,6 @@
 		
 		<script src="about/flat/js/jquery-1.8.3.min.js"></script>
 		<script src="lib/velocity/velocity.min.js"></script>
-		<script src="lib/velocity/velocity.ui.min.js"></script>
 		
 		
 		<meta charset="utf-8">
@@ -61,6 +60,9 @@
     
 		<link rel="import" href="poly/components/core-style/core-style.html">
         <link rel="import" href="poly/components/paper-checkbox/paper-checkbox.html">
+        <link rel="import" href="poly/components/core-animated-pages/core-animated-pages.html">
+        <link rel="import" href="poly/components/core-animated-pages/transitions/slide-from-right.html">
+        <link rel="import" href="poly/components/core-animated-pages/core-animated-pages.html">
         <link rel="import" href="poly/components/core-header-panel/core-header-panel.html">
         <link rel="import" href="poly/components/paper-icon-button/paper-icon-button.html">
         <link rel="import" href="poly/components/paper-input/paper-input.html">
@@ -69,12 +71,14 @@
         <link rel="import" href="poly/components/core-menu/core-menu.html">
         <link rel="import" href="poly/components/core-icons/core-icons.html">
         <link rel="import" href="poly/components/paper-button/paper-button.html">
+        <link rel="import" href="poly/components/paper-dialog/paper-dialog.html">
+        <link rel="import" href="poly/components/paper-dialog/paper-dialog-transition.html">
         <link rel="import" href="poly/components/paper-fab/paper-fab.html">
         <link rel="import" href="poly/components/paper-ripple/paper-ripple.html">
         <link rel="import" href="poly/components/paper-item/paper-item.html">
         <link rel="import" href="poly/components/paper-shadow/paper-shadow.html">
         <link rel="import" href="poly/components/paper-toast/paper-toast.html">
-	<link rel="import" href="poly/components/paper-spinner/paper-spinner.html">      
+      
         
         
         <link rel="stylesheet" href="script/custom.css">
@@ -82,7 +86,7 @@
 
 	</head>
 	<body>
-		<paper-spinner id="paper-loading-spinner" style="display:none"></paper-spinner>	
+	
 	
 	<!--SIDEBAR-->
 	
@@ -94,28 +98,28 @@
 						</h6>
 				</div>
 
-				<div class="side-item hover-1" onclick="show_side_open()">
+				<div class="side-item " onclick="show_side_open()">
 					<core-icon icon="drive"></core-icon>
 					<h6>
 						Open
 					</h6>
 				</div>
 				
-				<div class="side-file side-item hover-2" onclick="save()">
+				<div class="side-file side-item " onclick="save()">
 					<core-icon icon="save"></core-icon>
 					<h6>
 						Save
 					</h6>
 				</div>
 				
-				<div class="side-item hover-3" onclick="saveAs()">
+				<div class="side-item" onclick="saveAs()">
 					<core-icon icon="folder"></core-icon>
 					<h6>
 						Save As
 					</h6>
 				</div>
 				
-				<div class="side-item hover-4" onclick="new_file()">
+				<div class="side-item " onclick="new_file()">
 					<core-icon icon="drive-document"></core-icon>
 					<h6>
 						New
@@ -124,28 +128,28 @@
 				<!--end main-->
 				
 				
-				<div class="side-item side-file hover-5" onclick="download_file()">
+				<div class="side-item side-file " onclick="download_file()">
 					<core-icon icon="cloud-download"></core-icon>
 					<h6>
 						Download
 					</h6>
 				</div>
 				
-				<div class="side-item hover-6" onclick="show_side_upload()">
+				<div class="side-item " onclick="show_side_upload()">
 					<core-icon icon="cloud-upload"></core-icon>
 					<h6>
 						Upload
 					</h6>
 				</div>
 				
-				<div class="side-file side-item hover-7" onclick="show_side_share()">
+				<div class="side-file side-item " onclick="show_side_share()">
 					<core-icon icon="folder-shared"></core-icon>
 					<h6>
 						Share
 					</h6>
 				</div>
 				
-				<div class="side-file side-item hover-8" onclick="chat()">
+				<div class="side-file side-item " onclick="chat()">
 					<core-icon icon="account-circle"></core-icon>
 					<h6>
 						Chat
@@ -156,7 +160,7 @@
 				
 				<hr/>
 				
-				<div class="side-item hover-9" onclick="find()">
+				<div class="side-item " onclick="find()">
 					<core-icon icon="search"></core-icon>
 					<h6>
 						Search
@@ -167,21 +171,21 @@
 				<!--end "edit"-->
 				
 				
-				<div class="side-item hover-10" onclick="show_side_terminal()">
+				<div class="side-item " onclick="show_side_terminal()">
 					<core-icon icon="drive-site"></core-icon>
 					<h6>
 						Terminal
 					</h6>
 				</div>
 				
-				<div class="side-item hover-11" onclick="show_side_random()">
+				<div class="side-item " onclick="show_side_random()">
 					<core-icon icon="help"></core-icon>
 					<h6>
 						Lorem
 					</h6>
 				</div>
 				
-				<div class="side-item hover-12" onclick="show_side_preview()">
+				<div class="side-item " onclick="show_side_preview()">
 					<core-icon icon="visibility"></core-icon>
 					<h6>
 						Preview
@@ -192,7 +196,7 @@
 				<!--end "tools"-->
 
 				
-				<div class="side-item side-run  hide hover-13" onclick="run()">
+				<div class="side-item side-run  hide" onclick="run()">
 					<core-icon icon="forward"></core-icon>
 					<h6>
 						Run
@@ -201,14 +205,14 @@
 				
 				<!--end "run"-->
 				
-				<div class="side-pub side-item  hide hover-14" onclick="publish_html()">
-					<core-icon icon="file-upload"></core-icon>
+				<div class="side-pub side-item  hide" onclick="publish_html()">
+					<paper-icon-button icon="file-upload"></paper-icon-button>
 					<h6>
 						Publish
 					</h6>
 				</div>
 				
-				<div class="side-pub side-item  hide hover-15">
+				<div class="side-pub side-item  hide">
 					<a id="side-pub-link" href="" target="_blank">
 						<core-icon icon="link"></core-icon>
 						
@@ -224,21 +228,21 @@
 				
 				<!---->
 				
-				<div class="side-item hover-16" onclick="show_side_modes()">
+				<div class="side-item " onclick="show_side_modes()">
 					<core-icon icon="translate"></core-icon>
 					<h6>
 						Languages
 					</h6>
 				</div>
 
-				<div class="side-item hover-17" onclick="show_side_themes()">
+				<div class="side-item " onclick="show_side_themes()">
 					<core-icon icon="invert-colors"></core-icon>
 					<h6>
 						Themes
 					</h6>
 				</div>
 				
-				<div class="side-item hover-18" onclick="show_side_options()">
+				<div class="side-item " onclick="show_side_options()">
 					<core-icon icon="settings"></core-icon>
 					<h6>
 						Options
@@ -248,7 +252,7 @@
 				<hr/>
 			
 				
-				<div class="side-item hover-19">
+				<div class="side-item ">
 					<a href="https://accounts.google.com/logout">
 						<core-icon icon="exit-to-app"></core-icon>
 						
@@ -397,12 +401,20 @@
 					<paper-icon-button icon="check" style="color:white;background-color:#2ECC71;float:right" onclick="saveas_ok()"></paper-icon-button>	
 		</div>
 		
+		<!--paper-button class="colored-close-button" id="close-button-rename" label="close" onclick="hideDialog('rename');" style="display:none"></paper-button-->
+		
+		<!--div class="poly-dialog-small" id="rename-dialog" style="z-index:200;display:none;padding:5px;">
+					<input placeholder="Title" value="" id="rename_input" class="form-control poly-input" style="float:left;width:calc(100% - 60px)">
+					
+						
+					<paper-icon-button icon="check" style="color:white;background-color:#2ECC71;float:right" onclick="showDialog('rename');ok_rename();"></paper-icon-button>	
+		</div-->
 		
 		<!--END MODALS-->
 		
 		<!--NAV-->
 		
-		<paper-input class="blue-paper-input" label="New Title..." id="new_title_input" style="color:white"></paper-input>
+		<paper-input class="blue-paper-input" label="New Title..." id="new_title_input" style=""></paper-input>
 		
 		<paper-icon-button icon="check" style="display:none" id="new_title_ok" onclick="ok_rename();hide_top_rename();"></paper-icon-button>
 		<paper-icon-button icon="close" style="display:none" id="new_title_no" onclick="hide_top_rename()"></paper-icon-button>
@@ -413,7 +425,7 @@
     		</div>
         	<div class="" id="navbar-collapse-01" style="width: 99%;">
         	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">  
-        	  	<paper-icon-button onclick="toggle_side()" icon="menu" id="toggle_side_menu_button"></paper-icon-button>
+        	  	<paper-icon-button onclick="toggle_side()" icon="menu" style="color:#0097a7"></paper-icon-button>
         	  	<li id="branding"><a style="color:#f5f5f5;font-size: 22px;">Code Your Cloud</a></li>
 				
         	  </ul>
