@@ -260,7 +260,7 @@ nav{
 }
 
 #branding{
-	font-family: 'Lobster';
+	font-family: 'Hip-Lighter';
 }
 
 .side-modal-terminal .CodeMirror{
@@ -804,4 +804,8 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 
 #toggle_side_menu_button:hover{
 	color: #00838f;
+}
+
+#title{
+	font-family: 'Baron'
 }

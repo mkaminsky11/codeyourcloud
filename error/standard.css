@@ -4,8 +4,8 @@ body {
    padding:0;
    height:100%;
    text-align: center;
-   background-color: #2C3E50;
-   color: white;
+   background-color: white;
+   color: #607d8b;
 }
 #container {
    min-height:100%;
@@ -26,4 +26,27 @@ body {
 }
 #logo_pic{
 	border: none;
+	margin-top: -10px;
+}
+
+hr{
+	width: 80%;
+	margin-left: 10%;
+	height: 2px;
+	background-color: #eee;
+}
+
+h3{
+	color: #78909c;
+}
+
+.email{
+	color: #b0bec5;
+}
+
+.meteor{
+	height: 50%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
 }

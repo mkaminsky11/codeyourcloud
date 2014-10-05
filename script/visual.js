@@ -1,8 +1,3 @@
-/*
-$($0).find("tr").not(":nth-child(3n)").css("opacity,0).delay(500).velocity("transition.slideLeftBigIn", {stagger: 55, drag: true, duration: 325});
-*/
-
-
 if(is_mobile){
 	//mobile-specific
 }

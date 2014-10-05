@@ -149,14 +149,15 @@
 
 #fork{
 	position: fixed;
-    z-index: 1033;
-    font-size: 16px;
-    padding: 5px;
-    color: white;
-    background-color: rgb(59, 53, 53);
-    border-top-left-radius: 5px;
-    bottom: 0;
-    right: 0;
+	z-index: 1033;
+	font-size: 16px;
+	padding: 12px;
+	color: white;
+	background-color: rgb(59, 53, 53);
+	border-top-left-radius: 5px;
+	bottom: 0;
+	right: 0;
+	font-family: 'Odin';
 }
 
 #fork i{
