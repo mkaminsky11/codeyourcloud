@@ -9,88 +9,26 @@ function hide_loading_spinner(){
 }
 
 function show_top_rename(){
-	//shows the rename input at the top of the screen
-	close_side();
-	//previous invisible
-	$("#new_title_input").css("display","block");
-	
-	$("#new_title_ok").css("display","block");
-	
-	$("#new_title_no").css("display","block");
-	//expands the nav bar to fit the input
-	$("#nav").velocity({
-		paddingTop: "60px"
-	},{
-		duration: 1000,
-		queue: false
-	});
-	
-	$("#new_title_input").velocity({
-		top: "10px",
-		rotateX: "0deg"
-	},{
-		duration: 1000,
-		queue: false
-	});
-	
-	$("#new_title_ok").velocity({
-		top: "20px"
-	},{
-		duration: 1000,
-		queue: false
-	});
-	
-	$("#new_title_no").velocity({
-		top: "20px"
-	},{
-		duration: 1000,
-		queue: false
-	});
+	$("#title").addClass("input").removeClass("no-input");
+	$('#title').attr('readonly', false);
 }
 
 function hide_top_rename(){
-	//hides the rename input
-
-	$("#nav").velocity({
-		paddingTop: "0px"
-	},{
-		duration: 1000,
-		queue: false
-	});
-	
-	$("#new_title_ok").velocity({
-		top: "-60px"
-	},{
-		duration: 1000,
-		queue: false,
-		complete: function(){
-			$("#new_title_ok").css("display","none");
-		}
-	});
-	
-	$("#new_title_no").velocity({
-		top: "-60px"
-	},{
-		duration: 1000,
-		queue: false,
-		complete: function(){
-			$("#new_title_no").css("display","none");
-		}
-	});
-	
-	$("#new_title_input").velocity({
-		top: "-60px",
-		rotateX: "90deg"
-	},{
-		duration: 1000,
-		queue: false,
-		complete: function(){
-			$("#new_title_input").css("display","none");
-		}
-	});
+	$("#title").addClass("no-input").removeClass("input");
+	$('#title').attr('readonly', true);
 }
 
-var side_percent = "30%";
+function toggle_rename_show(){
+	if($('#title').attr('readonly')){
+		//if disabled
+		show_top_rename();
+	}
+	else{
+		hide_top_rename();
+		ok_rename();
+	}
+}
+
 var modal_open = false;
 
 function toggle_side(){
@@ -106,66 +44,52 @@ function toggle_side(){
 
 function close_side(){
 	side_open = false;
-	/*$("#side").velocity({
-		marginLeft: "-" + side_open_width,
-		rotateY: "90deg"
-	}, {
-		duration: 700,
-		queue: false,
-		complete: function(){
-			$("#side").addClass("hide");
-		}
-	});*/
 	
-	$("#side").velocity("transition.flipXOut", {
-		drag: true, 
-		duration: 325, 
+	
+	$("#side").velocity({
+		marginLeft: -300
+	},{
+		duration: 500,
 		queue: false,
 		complete: function(){
-			$("#side").css("display","none");
+			$("#side").css("display","none").css("margin-left","0px");
 		}
 	});
 	
-	$("#detect").velocity("fadeOut", { duration: 1500 })
+	$(".move").velocity({
+		marginLeft: 0
+	},{
+		duration: 500,
+		queue: false
+	});
+	
+	$("#toggle_side_menu_button").attr("shape","menu");
 }
 
 function open_side(){
-	if(is_mobile){
-		side_open_width = "80%";
-	}
-	else{
-		side_open_width = "25%";
-	}
 
 	side_open = true;
-	//$("#side").css("margin-left","-300px");
-	$("#side").removeClass("hide");
+
 	
-	/*$(".side-item").css("opacity",0).delay(500).velocity("transition.slideLeftBigIn", {stagger: 55, drag: true, duration: 325});
+	$("#side").css("display","block").css("margin-left","-300px");
+	
 	
 	$("#side").velocity({
-		marginLeft: "0%",
-		rotateY: "0deg"
-	}, {
-		duration: 300,
+		marginLeft: 0
+	},{
+		duration: 500,
 		queue: false
-	});*/
+	});
 	
-	$("#side").css("opacity",0).css("display","block").css("margin-left",0);
+	$(".move").velocity({
+		marginLeft: 300
+	},{
+		duration: 500,
+		queue: false
+	});
 	
-	$("#side").velocity("transition.flipXIn", {drag: true, duration: 325, queue: false});
-	$(".side-item").not(":hidden").css("opacity",0).delay(500).velocity("transition.slideLeftBigIn", {stagger: 55, drag: true, duration: 325, queue: false});
-	
-	$("#detect").velocity("fadeIn", { duration: 400 });
+	$("#toggle_side_menu_button").attr("shape","cancel");
 }
-
-$("#detect").click(function(){
-	//partially clear screen
-	if(side_open){
-		side_open = false;
-		close_side();
-	}	
-});
 
 /*========
 DIALOGS
@@ -186,103 +110,106 @@ function show_side_upload(){
 	upload_picker();
 }
 
-function hideDialog(modal){
-	$("#detect-dialog").velocity("fadeOut",{ duration: 400 });
-	
-	var t =  "#" + modal + "-dialog";
-	var b = "#close-button-" + modal;
-	
-	//hide
-	//$(t).css("opacity",0).delay(500).velocity("transition.slideLeftBigIn",{
-	$(t).velocity("transition.slideRightBigOut",{
-		complete: function(){
+function nav_list(){
+	if($("#nav_list").hasClass("active")){
+		//already there
+	}
+	else{
+		$("#navigate").find(".active").removeClass("active");
+		$("#nav_list").addClass("active");
 		
-			$(b).velocity("fadeOut",{
-				duration: 400,
-				queue: false
-			});
-			
-			$("#detect-dialog").velocity("fadeOut",{
-				duration: 400,
-				queue: false
-			});
+		$(".side-store").css("display","block");
+		$(".preview").css("display","none");
+		$(".terminal").css("display","none");
+		$(".lorem").css("display","none");
+		$(".options").css("display","none");
+		$(".chats").css("display","none");
+	}
+}
+
+function nav_preview(){
+	if($("#nav_preview").hasClass("active")){
+		//already there
+	}
+	else{
+		$("#navigate").find(".active").removeClass("active");
+		$("#nav_preview").addClass("active");
 		
-			if(modal === "preview"){
-				$(".preview-content").css("-webkit-overflow-scrolling","auto");
-				setTimeout(function(){
-					$(".preview-content").css("-webkit-overflow-scrolling","touch");
-				}, 100);
-			}
-			
-			$(t).css("display","none");
-		},
-		duration: 300,
-		drag: true
-	});
+		$(".side-store").css("display","none");
+		$(".preview").css("display","block");
+		$(".terminal").css("display","none");
+		$(".lorem").css("display","none");
+		$(".options").css("display","none");
+		$(".chats").css("display","none");
+	}
 }
 
-function showDialog(modal){
-
-	$("#detect-dialog").velocity("fadeIn",{ duration: 400 });
-
-	var t =  "#" + modal + "-dialog";
-	var b = "#close-button-" + modal;
-	
-	//show it
-	$(b).velocity("fadeIn",{
-		duration: 400,
-		queue: false
-	});
-
-	$(t).css("opacity",0).css("display","block").delay(500).velocity("transition.slideLeftBigIn",{
-			duration: 300,
-			drag: true,
-			complete: function(){
-			
-				//$(b).velocity("fadeIn", { duration: 1000 })
-			
-				if(modal === "preview"){
-					$(".preview-content").css("-webkit-overflow-scrolling","auto");
-					setTimeout(function(){
-						$(".preview-content").css("-webkit-overflow-scrolling","touch");
-					}, 100);
-				}
-			}
-	});
-	
-	close_side();
+function nav_lorem(){
+	if($("#nav_lorem").hasClass("active")){
+		//already there
+	}
+	else{
+		$("#navigate").find(".active").removeClass("active");
+		$("#nav_lorem").addClass("active");
+		
+		$(".side-store").css("display","none");
+		$(".preview").css("display","none");
+		$(".terminal").css("display","none");
+		$(".lorem").css("display","block");
+		$(".options").css("display","none");
+		$(".chats").css("display","none");
+	}
 }
 
-function show_side_options(){
-	showDialog("options")
+function nav_terminal(){
+	if($("#nav_terminal").hasClass("active")){
+		//already there
+	}
+	else{
+		$("#navigate").find(".active").removeClass("active");
+		$("#nav_terminal").addClass("active");
+		
+		$(".side-store").css("display","none");
+		$(".preview").css("display","none");
+		$(".terminal").css("display","block");
+		$(".lorem").css("display","none");
+		$(".options").css("display","none");
+		$(".chats").css("display","none");
+		
+		repl.refresh();
+	}
 }
 
-function show_side_themes(){
-	showDialog("theme");
+function nav_options(){
+	if($("#nav_options").hasClass("active")){
+		//already there
+	}
+	else{
+		$("#navigate").find(".active").removeClass("active");
+		$("#nav_options").addClass("active");
+		
+		$(".side-store").css("display","none");
+		$(".preview").css("display","none");
+		$(".terminal").css("display","none");
+		$(".lorem").css("display","none");
+		$(".options").css("display","block");
+		$(".chats").css("display","none");
+	}
 }
 
-function show_side_modes(){
-	showDialog("mode");
-}
-
-function show_side_chat(){
-	showDialog("chat");
-}
-
-
-
-function show_side_random(){
-	showDialog("random");
-}
-
-function show_side_terminal(){
-	showDialog("terminal");
-	setTimeout(function(){
-		mirror.refresh();
-	},500);
-}
-
-function show_side_preview(){
-	updatePreview();
-	showDialog("preview");
+function nav_chats(){
+	if($("#nav_chats").hasClass("active")){
+		//already there
+	}
+	else{
+		$("#navigate").find(".active").removeClass("active");
+		$("#nav_chats").addClass("active");
+		
+		$(".side-store").css("display","none");
+		$(".preview").css("display","none");
+		$(".terminal").css("display","none");
+		$(".lorem").css("display","none");
+		$(".options").css("display","none");
+		$(".chats").css("display","block");
+	}
 }

@@ -162,50 +162,15 @@ function saveAsCallback(data) {
 			//console.log(data.docs[i]);
 			//folder id = data.docs[0].id;
 			save_as_destination = data.docs[0].id;
-			show_save_as();
+			saveas_ok();
 		}
     }
     purge();
     return false;
 }
-
-function show_save_as(){
-	//the side is already closed
-	close_side();
-	show_save_modal();
-}
-
-function hide_save_modal(){
-	$(".saveas-wrapper").animate({
-		marginLeft: "-100%"
-	}, {
-		duration: 1000,
-		queue: false,
-		complete: function(){
-			$(".saveas-wrapper").addClass("hide");
-		}
-	});
-}
-
-function show_save_modal(){
-	showDialog("saveas");
-}
-
-$(".saveas-detect").click(function(){
-	hide_save_modal();
-	saveas_cancel();
-});
-
-function saveas_cancel(){
-	hide_save_modal();
-	$("#saveas-input").val("Untitled.txt");
-	save_as_destination = "";
-}
-
 function saveas_ok(){
 	var content = editor().getValue();
-	var title = $("#saveas-input").val();
+	var title = "Untitled.txt";
 	var folder = save_as_destination;
 	insert_saveas(content, title, folder);
-	showDialog('saveas');
 }

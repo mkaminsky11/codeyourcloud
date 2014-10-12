@@ -95,10 +95,7 @@ function setFileTitle(id, title){
 	var index = getIndex(id);
 	
 	if(current_file === id){
-		$("#title").html(editors[index].title);
-		$("#rename-toggle").css("display","inline-block");
-		
-		document.getElementById("new_title_input").value = editors[index].title;
+		$("#title").val(editors[index].title);
 	}
 }
 
@@ -222,7 +219,8 @@ var modes = [
 	["Verilog","text/x-verilog","v|vh|sv|svh"],
 	["XML","text/html","xml|rdf|rss|wsdl|xslt|atom|mathml|mml|xul|xbl"],
 	["XQuery","application/xquery","xq"],
-	["Swift","swift","swift"]
+	["Swift","swift","swift"],
+	["Text","text","txt"]
 ];
 
 var themes = [
@@ -270,8 +268,6 @@ var side_open_width = "25%";
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  	is_mobile = true;
  	real_mobile = true;
- 	
- 	side_open_width = "80%";
 }
 
 if(window.location.href.indexOf("?mobile=true") !== -1){
@@ -284,67 +280,17 @@ if(is_mobile){
 }
 
 function to_mobile(){
-	side_open_width = "80%";
 	
 	//some UI changes
 	is_mobile = true;
 	//makes the sidebar larger
-	$("#side").css("width","80%");
-	var temp = $(".poly-chat").html();
-
-	$(".poly-chat").remove();
-
-	//move the chat function to a modal so it's easier to use
-	$(".side-modal-chat").html("<div class='poly-chat'>"+ temp +"</div>");
-	
-	$(".poly-chat").css("width","100%");
-	$(".poly-chat").css("height","100%");
-	$(".poly-chat").css("top","0");
-	
-	
-	$("#prepare").css("display","none");
-	$("nav a").each(function(index){
-		if(index !== 0){
-			$(this).css("padding-left","10px");
-		}
-	});
-	$(".navbar-right").removeClass("navbar-right");
-	$(".n-l").css("float","left");
-	$(".n-r").css("float","right");
-	$(".n-r").css("margin-right","10px");
-	$("#branding").css("display","none");
 }
 
 function from_mobile(){
-		side_open_width = "25%";
+	side_open_width = "25%";
 
 	//from mobile to desktop
 	is_mobile = false;
-	
-	$("#side").css("width","25%");
-	var temp = $(".poly-chat").html();
-
-	$(".poly-chat").remove();
-	$("#chat-insert").after("<div class='poly-chat'>"+ temp +"</div>");
-	
-	$(".poly-chat").css("width","300px");
-	$(".poly-chat").css("height","60%");
-	$(".poly-chat").css("top","53px");
-	
-	$(".poly-chat").slideUp();
-	
-	
-	$("#prepare").css("display","inline-block");
-	$("nav a").each(function(index){
-		if(index !== 0){
-			$(this).css("padding-left","10px");
-		}
-	});
-	$(".n-r").addClass("navbar-right");
-	$(".n-l").css("float","left");
-	$(".n-r").css("float","right");
-	$(".n-r").css("margin-right","10px");
-	$("#branding").css("display","inline-block");
 }
 
 $( window ).resize(function() {
@@ -435,7 +381,7 @@ SQL/Get info
 var line_wrap = false;
 var line_number = true;
 
-var theme_sql = "code-your-cloud";
+var theme_sql = "monokai";
 var auto_save = true;
 var auto_save_int = 30000;
 			
@@ -468,3 +414,6 @@ var login_sql = 0;
 
 var repl;
 var mirror;
+
+var mode_select;
+var theme_select;

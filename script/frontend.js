@@ -22,14 +22,14 @@ connection.onmessage = function (message) {
 			proccess_time();
 			
 			
-			theme_sql = json.theme.split("_").join("-");
+			/*theme_sql = json.theme.split("_").join("-");
 			if(themes_name.indexOf(theme_sql) !== -1){
 				setTheme(theme_sql);
 			}
 			else{
-				theme_sql = "code-your-cloud";
+				theme_sql = "monokai";
 				set_sql();
-			}
+			}*/
 			//FONT_SIZE *done
 			$(".CodeMirror").css("fontSize", json.font_size+"px");
 			$("#spinner-font").val(json.font_size);
@@ -68,6 +68,7 @@ connection.onmessage = function (message) {
 		}
 		if(json.type === "pub"){
 			console.log("%cHtml published","color:#27AE60; font-size: 12px");
+			 swal("Success", "HTML published!", "success")
 		}
 	} catch (e) {
 		console.log(e);

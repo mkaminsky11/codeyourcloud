@@ -1,5 +1,17 @@
 /*Hipstelvetica_Bold*/
 @font-face{
+	font-family: 'Code-Bold';
+	src: url('more/code_bold.otf') format('opentype');
+	font-weight: 400;
+}
+
+@font-face{
+	font-family: 'Code-Light';
+	src: url('more/code_light.otf') format('opentype');
+	font-weight: 400;
+}
+
+@font-face{
 	font-family: 'Odin-Bold';
 	src: url('more/Odin-Bold.otf') format('opentype');
 	font-weight: 400;
@@ -200,4 +212,7 @@
 
 .Hip-Light{
 	font-family: 'Hip-Light';
+}
+.Baron{
+	font-family: 'Baron';
 }

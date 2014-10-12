@@ -27,8 +27,8 @@
 		<meta charset="utf-8">
     	<title>Code Your Cloud</title>
 		
-	    <link href="about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
-	    <link href="about/flat/css/flat-ui.css" rel="stylesheet">
+	    <!--link href="about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
+	    <link href="about/flat/css/flat-ui.css" rel="stylesheet"-->
 	   
 		<link rel="shortcut icon" type="image/png" href="favicon.png"/>
 
@@ -74,11 +74,15 @@
         <link rel="import" href="poly/components/paper-item/paper-item.html">
         <link rel="import" href="poly/components/paper-shadow/paper-shadow.html">
         <link rel="import" href="poly/components/paper-toast/paper-toast.html">
+        <link rel="import" href="poly/components/core-tooltip/core-tooltip.html">
+        <link rel="import" href="poly/components/icon-transition/icon-transition.html">
 	<link rel="import" href="poly/components/paper-spinner/paper-spinner.html">      
         
         
         <link rel="stylesheet" href="script/custom.css">
         <link rel="stylesheet" href="fonts/font.css">
+        
+        <link rel="stylesheet" href="lib/select/css/select-theme-dark.css" />
 
 	</head>
 	<body>
@@ -86,70 +90,137 @@
 	
 	<!--SIDEBAR-->
 	
-		<div id="side" class="hide">
+		<div id="side" style="display:none">
 			<div id="side_inner">
 				<div class="side-head" style="height:auto">
-						<h6><a id="title">Code Your Cloud</a>
-							<button class="btn btn-info" id="rename-toggle" onclick="show_top_rename()" style="display:none"><i class="fa fa-pencil"></i></button>
+						<h6><input id="title" value="code your cloud" placeholder="Title" class="no-input" readonly="" onchange="ok_rename()"/>
+							<button class="btn btn-info" id="rename-toggle" onclick="toggle_rename_show()" style="display:none"><i class="fa fa-pencil"></i></button>
 						</h6>
 				</div>
+				
+				<div class="side-head" id="navigate">
+					<!--
+					list(main)
+					console
+					preview
+					lorem options
+					-->
+					<div class="active" id="nav_list" onclick="nav_list()">
+						<i class="fa fa-list"></i>
+					</div>
+					<div id="nav_preview" onclick="nav_preview()">
+						<i class="fa fa-eye"></i>
+					</div>
+					<div id="nav_terminal" onclick="nav_terminal()">
+						<i class="fa fa-terminal"></i>
+					</div>
+					<div id="nav_lorem" onclick="nav_lorem()">
+						<i class="fa fa-font"></i>
+					</div>
+					<div id="nav_options" onclick="nav_options()">
+						<i class="fa fa-cogs"></i>
+					</div>
+					<div id="nav_chats" onclick="nav_chats()">
+						<i class="fa fa-comment-o"></i>
+					</div>
+					
+				</div>
+				
+				<br/>
+				
+				<iframe id="preview" style="display:none" class="preview"></iframe>
+				<div class="preview" style="display: none;position: absolute;bottom: 0;width: calc(100% - 20px);padding: 10px;text-align: center;color: #eee;" onclick="updatePreview()"><i class="fa fa-refresh"></i></div>
+				
+				<div class="terminal" style="display:none">
+					<div id="repl"></div>
+				</div>
+				
+				<div id="opt" class="options" style="display:none">
+					<select id="mode-select" onchange="modeChange()">
+					
+					</select>
+					<br/>
+					<br/>
+					<select id="theme-select" onchange="themeChange()">
+					
+					</select>
+					<br/><br/>
+					
+					<div class="option-div">
+						<h4>Line Numbers</h4>
+					</div>
+					
+					<paper-checkbox class="poly-blue" id="side-nums" onclick="line_number_switch()" checked></paper-checkbox>
+					<br/>
+					<br/>
+					
+					<div class="option-div">
+						<h4>Line Wrap</h4>
+					</div>
+					
+					<paper-checkbox class="poly-blue" id="side-wrap" onclick="line_wrap_switch()"></paper-checkbox>
+					<br/>
+					<br/>
+					
+					<div class="option-div">
+						<h4>Font Size</h4>
+					</div>
+					
+					<paper-slider class="poly-blue" pin snaps id="spinner-font" value="12" max="30" step="1" style="width=100%"></paper-slider>
+					
+				</div>
+				
+				<div id="lorem" style="display:none" class="lorem" data-lorem="6s"></div>
+				<div id="lorem-div" style="display:none" class="lorem">
+					<input id="lorem_input" value="6" onchange="generate()"/>
+				</div>
+				
+				<div class="chats" id="chats-store" style="display:none">
+					<div class="chats-content chats-active" data-fileid="welcome">
+						
+					</div>
+				</div>
+				<div class="chats" id="chats-bottom" style="display:none">
+					<textarea id="chats-text" placeholder="Type something" class="chat-input" onchange="sendChat()"></textarea>
+				</div>
+
+				<div class="side-store">
 
 				<div class="side-item hover-1" onclick="show_side_open()">
 					<core-icon icon="drive"></core-icon>
-					<h6>
-						Open
-					</h6>
+					<h6>Open</h6>
 				</div>
 				
 				<div class="side-file side-item hover-2" onclick="save()">
 					<core-icon icon="save"></core-icon>
-					<h6>
-						Save
-					</h6>
+					<h6>Save</h6>
 				</div>
 				
 				<div class="side-item hover-3" onclick="saveAs()">
 					<core-icon icon="folder"></core-icon>
-					<h6>
-						Save As
-					</h6>
+					<h6>Save As</h6>
 				</div>
 				
 				<div class="side-item hover-4" onclick="new_file()">
 					<core-icon icon="drive-document"></core-icon>
-					<h6>
-						New
-					</h6>
+					<h6>New</h6>
 				</div>
 				<!--end main-->
 				
 				
 				<div class="side-item side-file hover-5" onclick="download_file()">
 					<core-icon icon="cloud-download"></core-icon>
-					<h6>
-						Download
-					</h6>
+					<h6>Download</h6>
 				</div>
 				
 				<div class="side-item hover-6" onclick="show_side_upload()">
 					<core-icon icon="cloud-upload"></core-icon>
-					<h6>
-						Upload
-					</h6>
+					<h6>Upload</h6>
 				</div>
 				
 				<div class="side-file side-item hover-7" onclick="show_side_share()">
 					<core-icon icon="folder-shared"></core-icon>
-					<h6>
-						Share
-					</h6>
-				</div>
-				
-				<div class="side-file side-item hover-8" onclick="chat()">
-					<core-icon icon="account-circle"></core-icon>
-					<h6>
-						Chat
-					</h6>
+					<h6>Share</h6>
 				</div>
 				
 				<!--end "file"-->
@@ -158,35 +229,15 @@
 				
 				<div class="side-item hover-9" onclick="find()">
 					<core-icon icon="search"></core-icon>
-					<h6>
-						Search
-					</h6>
+					<h6>Search</h6>
 				</div>
 
 				
-				<!--end "edit"-->
 				
-				
-				<div class="side-item hover-10" onclick="show_side_terminal()">
-					<core-icon icon="drive-site"></core-icon>
-					<h6>
-						Terminal
-					</h6>
-				</div>
-				
-				<div class="side-item hover-11" onclick="show_side_random()">
-					<core-icon icon="help"></core-icon>
-					<h6>
-						Lorem
-					</h6>
-				</div>
-				
-				<div class="side-item hover-12" onclick="show_side_preview()">
+				<!--div class="side-item hover-12" onclick="show_side_preview()">
 					<core-icon icon="visibility"></core-icon>
-					<h6>
-						Preview
-					</h6>
-				</div>
+					<h6>Preview</h6>
+				</div-->
 				
 				
 				<!--end "tools"-->
@@ -194,27 +245,21 @@
 				
 				<div class="side-item side-run  hide hover-13" onclick="run()">
 					<core-icon icon="forward"></core-icon>
-					<h6>
-						Run
-					</h6>
+					<h6>Run</h6>
 				</div>
 				
 				<!--end "run"-->
 				
 				<div class="side-pub side-item  hide hover-14" onclick="publish_html()">
 					<core-icon icon="file-upload"></core-icon>
-					<h6>
-						Publish
-					</h6>
+					<h6>Publish</h6>
 				</div>
 				
 				<div class="side-pub side-item  hide hover-15">
 					<a id="side-pub-link" href="" target="_blank">
 						<core-icon icon="link"></core-icon>
 						
-						<h6>
-							Go To Site
-						</h6>
+						<h6>Go To Site</h6>
 					</a>
 				</div>
 				
@@ -223,39 +268,16 @@
 				<hr/>
 				
 				<!---->
-				
-				<div class="side-item hover-16" onclick="show_side_modes()">
-					<core-icon icon="translate"></core-icon>
-					<h6>
-						Languages
-					</h6>
-				</div>
-
-				<div class="side-item hover-17" onclick="show_side_themes()">
-					<core-icon icon="invert-colors"></core-icon>
-					<h6>
-						Themes
-					</h6>
-				</div>
-				
-				<div class="side-item hover-18" onclick="show_side_options()">
-					<core-icon icon="settings"></core-icon>
-					<h6>
-						Options
-					</h6>
-				</div>
-				
-				<hr/>
 			
 				
 				<div class="side-item hover-19">
 					<a href="https://accounts.google.com/logout">
 						<core-icon icon="exit-to-app"></core-icon>
 						
-						<h6>
-							Log Out
-						</h6>
+						<h6>Log Out</h6>
 					</a>
+				</div>
+				
 				</div>
 				
 			</div>
@@ -265,167 +287,29 @@
 		<!--END SIDEBAR-->
 		
 		
-		<div id="detect" class="detect" style="display:none"></div>
-		
 		
 
 		<!--MODALS-->
 		
-		<div id="detect-dialog" class="detect" style="display:none"></div>
-		
-		<paper-button class="colored-close-button" id="close-button-options" label="close" onclick="hideDialog('options')" style="display:none"></paper-button>
-		
-		<div class="poly-dialog" id="options-dialog" style="z-index:200;display:none">
-			
-			<div class="content">
-				<div class="side-modal-row">
-					<h6 class="side-modal-row-label"><core-icon icon="list"></core-icon> Line Numbers</h6>
-					<paper-checkbox class="poly-blue" id="side-nums" onclick="line_number_switch()" checked></paper-checkbox>
-				</div>
-				
-				<div class="side-modal-row">
-					<h6 class="side-modal-row-label"><core-icon icon="swap-horiz"></core-icon>Line Wrap</h6>
-					<paper-checkbox class="poly-blue" id="side-wrap" onclick="line_wrap_switch()"></paper-checkbox>
-				</div>
-				
-				<div class="side-modal-row">
-					<h6 class="side-modal-row-label"><core-icon icon="text-format"></core-icon>Font Size</h6>
-					<br/><br/>
-				</div>
-					<paper-slider class="poly-blue" pin snaps id="spinner-font" value="12" max="30" step="1" style="width=100%"></paper-slider>
-				</div>
-			</div>
-		</div>
-		
-		<paper-button class="colored-close-button" id="close-button-mode" label="close" onclick="hideDialog('mode')" style="display:none"></paper-button>
-		
-		<div class="poly-dialog" id="mode-dialog" style="z-index:200;display:none">
-
-			
-			<div class="content-with-input">
-				<div class="search-nothing hide" id="mode-nothing">
-				  <h6>Nothing Found Here</h6>
-				  <h6><core-icon icon="explore"></core-icon></h6>
-				  <h6>Look Elsewhere</h6>
-				</div>
-				<ul id="mode-ul" class="list-group">
-				</ul>
-			</div>
-			
-			<div class="content-input">
-				<paper-shadow z="1"></paper-shadow>
-				
-				<paper-input class="blue-paper-input" label="Search modes..." id="mode_input" style="width: calc(100% - 20px); padding: 0; margin-left: 10px"></paper-input>
-			</div>
-		</div>
-		
-		<paper-button class="colored-close-button" id="close-button-theme" label="close" onclick="hideDialog('theme')" style="display:none"></paper-button>
-		
-		<div class="poly-dialog" id="theme-dialog" style="z-index:200;display:none">
-
-			
-			<div class="content-with-input">
-				<div class="search-nothing hide" id="theme-nothing">
-				  <h6>Nothing Found Here</h6>
-				  <h6><core-icon icon="explore"></core-icon></h6>
-				  <h6>Look Elsewhere</h6>
-				</div>
-				<ul id="theme-ul" class="list-group">
-				</ul>
-			</div>
-			
-			<div class="content-input">
-				<paper-shadow z="1"></paper-shadow>
-				<paper-input class="blue-paper-input" label="Search themes..." id="theme_input" style="width: calc(100% - 20px); padding: 0; margin-left: 10px"></paper-input>
-			</div>
-		</div>
-		
-		<paper-button class="colored-close-button" id="close-button-chat" label="close" onclick="hideDialog('chat')" style="display:none"></paper-button>
-		
-		<div class="poly-dialog"id="chat-dialog" style="z-index:200;display:none">
-			<div class="side-modal-chat content">
-				
-			</div>
-		</div>
-		
-
-		
-		<paper-button class="colored-close-button" id="close-button-terminal" label="close" onclick="hideDialog('terminal')" style="display:none"></paper-button>
-		
-		<div class="poly-dialog" id="terminal-dialog" style="z-index:200;display:none">
-			
-			<div class="content">
-				<textare id="terminal-iframe"></textarea>
-			</div>
-		</div>
-		
-		<paper-button class="colored-close-button" id="close-button-random" label="close" onclick="hideDialog('random')" style="display:none"></paper-button>
-		
-		<div class="poly-dialog" id="random-dialog" style="z-index:200;display:none">
-			
-			<div class="content-with-input">
-				<div id="lorem" data-lorem="6s" width="100%"></div>
-			</div>
-			
-			<div class="content-input">
-				<paper-shadow z="1"></paper-shadow>
-				
-				
-				<paper-input class="blue-paper-input" label="Number of sentences..." id="lorem_input" style="width: calc(100% - 20px); padding: 0; margin-left: 10px"></paper-input>
-			</div>
-		</div>
-		
-		
-		<paper-button class="colored-close-button" id="close-button-preview" label="close" onclick="hideDialog('preview')" style="display:none"></paper-button>
-
-		<div class="poly-dialog" id="preview-dialog" style="z-index:200;display:none">
-			
-			<div class="content preview-content">
-				<iframe id="preview"></iframe>
-			</div>
-		</div>
-		
-		
-		
-		<paper-button class="colored-close-button" id="close-button-saveas" label="close" onclick="hideDialog('saveas');saveas_cancel();" style="display:none"></paper-button>
-		
-		
-		
-		<div class="poly-dialog-small" id="saveas-dialog" style="z-index:200;display:none;padding:5px;">
-					<input placeholder="A name for your new file" value="Untitled.txt" id="saveas-input" class="form-control poly-input" style="float:left;width:calc(100% - 60px)">
-						
-					<paper-icon-button icon="check" style="color:white;background-color:#2ECC71;float:right" onclick="saveas_ok()"></paper-icon-button>	
-		</div>
-		
-		
-		<!--END MODALS-->
-		
-		<!--NAV-->
-		
-		<paper-input class="blue-paper-input" label="New Title..." id="new_title_input" style="color:white"></paper-input>
-		
-		<paper-icon-button icon="check" style="display:none" id="new_title_ok" onclick="ok_rename();hide_top_rename();"></paper-icon-button>
-		<paper-icon-button icon="close" style="display:none" id="new_title_no" onclick="hide_top_rename()"></paper-icon-button>
-		
-		<nav id="nav" class="navbar navbar-inverse nav-1" role="navigation">
+		<nav id="nav" class="navbar navbar-inverse nav-1 move" role="navigation">
       		<div class="navbar-header">
         	  	
     		</div>
         	<div class="" id="navbar-collapse-01" style="width: 99%;">
         	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">  
-        	  	<paper-icon-button onclick="toggle_side()" icon="menu" id="toggle_side_menu_button"></paper-icon-button>
-        	  	<li id="branding"><a style="color:#4E7D99;font-size: 22px;">Code Your Cloud</a></li>
+        	  	<!--paper-icon-button onclick="toggle_side()" icon="menu" id="toggle_side_menu_button"></paper-icon-button-->
+        	  	<icon-transition id="toggle_side_menu_button" shape="menu" onclick="toggle_side()"></icon-transition>
+        	  	<!--li id="branding" style="margin-top:7px"><a style="font-size: 28px;" href="https://codeyourcloud.com/about" target="_blank">code your cloud</a></li-->
 				
         	  </ul>
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
         	  
-        	  	<paper-icon-button id="chat_button" icon="send" onclick="chat()" style="display:none"></paper-icon-button>
         	  	<paper-icon-button id="open_button" icon="drive" onclick="open_picker()"></paper-icon-button>
         	  	<paper-icon-button id="save_button" icon="save" onclick="save()"></paper-icon-button>
         	  	<paper-icon-button id="undo_button" icon="rotate-left" onclick="editor_undo()"></paper-icon-button>
         	  	<paper-icon-button id="redo_button" icon="rotate-right" onclick="editor_redo()"></paper-icon-button>
         	  	
-			  	<img id="profile_pic" src="" height="40px" width="40px">
+			  	<img id="profile_pic" src="" height="35px" width="35px">
         	  
         	  </ul>
         	</div>
@@ -433,22 +317,11 @@
 	
 	
 	  	<!--END NAV-->
-	  	
-	  		<div id="screen" style="display:none">
-				<h1 id="prepare">LOADING</h1>
-				 <img src="images/svg/15.svg" style="
-				    width: 80%;
-				    left: 10%;
-				">
-				<h1 id="prepare">EDITOR</h1>
-	
-	
-			</div>
 	
 	
 	<!--CHAT-->
 	  	
-	<span id="chat-insert" style="display:none"></span>
+	<!--span id="chat-insert" style="display:none"></span>
 	<div class="poly-chat" style="display:none">
 		<div class="poly-chat-content poly-chat-content-active" data-fileid="welcome">
 			
@@ -458,16 +331,25 @@
 			
 			<textarea class="chat-input" placeholder="Type something"></textarea>
 		</div>
-	</div>
+	</div-->
 	  	
 	  	
 	<!--END CHAT-->
 	
 	<!--MAIN-->
 	  	
+	<div style="display:none" id="new-popup" class="popup">
+		<span onclick="$('#new-popup').toggle();new_file()">New File</span>
+		<span onclick="$('#new-popup').toggle();show_side_open();">Open File</span>
+		<span style="border-bottom: none;" onclick="$('#new-popup').toggle();show_side_upload()">Upload File</span>
+	</div>
 	  	
-	<div style="width:100%;height:100%;position:fixed;z-index: 0;">
+	<div style="width:100%;height:100%;position:fixed;z-index: 0;" class="move">
 		<div class="tab-wrapper">
+			<div id="plus-plus" onclick="$('#new-popup').toggle();">
+				+
+			</div>
+		
 			<div class="tab-container">
 			
 				<span class="tab-tab tab-active" data-fileid="welcome" onclick="opentab('welcome')" style="margin-right:-2px">
@@ -480,7 +362,7 @@
 			</div>
 		</div>
 		
-		<div class="mains" style="position: absolute;height: calc(100% - 93px);width: 100%;margin-top: 10px;background-color:white">
+		<div class="mains" style="position: absolute;height: calc(100% - 83px);width: 100%;margin-top: 10px;background-color:white">
 			
 			<div id ="welcome" class="codemirror-container codemirror-active" id="welcome" data-fileid="welcome"></div>
 			<span id="insert-point" style="display:none"></span>
@@ -523,11 +405,14 @@
 		
 		
 		
-		
+		<script src="lib/sweetalert/lib/sweet-alert.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="lib/sweetalert/lib/sweet-alert.css">
 
 		
 		<script src="lib/codemirror/lib/codemirror.js"></script>
 		<link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
+		
+		<script src="lib/codemirror-repl/scripts/codemirror-repl.js"></script>
 		
 		<script src = 'lib/codemirror/mode/css/css.js'></script>
 		<script src = "lib/codemirror/mode/mode.js"></script>
@@ -535,6 +420,7 @@
 		
 		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/theme.css'>
 		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/code-your-cloud.css'>
+		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/cobalt-cold.css'>
 		
 		<link rel="stylesheet" href="lib/codemirror/addon/dialog/dialog.css" >
 		<link rel="stylesheet" href="lib/codemirror/addon/hint/show-hint.css" >
@@ -573,7 +459,7 @@
 		<script src="lib/auto/infer.js"></script>
 		<script src="lib/auto/doc_comment.js"></script>
 		
-		<script src="about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<!--script src="about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
     	<script src="about/flat/js/jquery.ui.touch-punch.min.js"></script>
     	<script src="about/flat/js/bootstrap.min.js"></script>
     	<script src="about/flat/js/bootstrap-select.js"></script>
@@ -581,7 +467,7 @@
     	<script src="about/flat/js/flatui-checkbox.js"></script>
     	<script src="about/flat/js/flatui-radio.js"></script>
     	<script src="about/flat/js/jquery.tagsinput.js"></script>
-    	<script src="about/flat/js/jquery.placeholder.js"></script>
+    	<script src="about/flat/js/jquery.placeholder.js"></script-->
     	<!--script src="about/flat/js/application.js"></script-->
       
       
@@ -591,6 +477,9 @@
       	
         <script src="lib/repl/scripts/codemirror-repl.js"></script>
         <script src="lib/repl/scripts/modes/javascript.js"></script>
+
+
+		<script src="lib/tether/tether.js"></script>
       	
 		<script src="script/global.js"></script>
 		<script src="script/realtime.js"></script>

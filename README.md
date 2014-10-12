@@ -3,7 +3,7 @@
 ####Now available on the <a href="https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail">Chrome Store</a> (over 1600 users so far)####
 ####<a href="https://codeyourcloud.com">The Project</a>####
 <p>Check out the result of the project so far here. It is now completely functional. Enjoy!</p>
-![Screenshot](http://codeyourcloud.com/images/projects.png)
+![Screenshot](http://codeyourcloud.com/images/web.png)
 ####<a href="https://codeyourcloud.com/about">About</a>####
 <p>The about page is similar to this document, but more thorough. For a full explanation of the features of Code Your Cloud, check this out.</p>
 ====

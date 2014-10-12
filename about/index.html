@@ -1,479 +1,204 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head lang="en">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<head>
+		<script src="../poly/components/platform/platform.js"></script>	
 	
-	<title>Code Your Cloud</title> 
-	<meta name="description" content="Code Your Cloud: in browser code editor for google drive" />	    
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	
+		<title>Code Your Cloud</title> 
+		<meta name="description" content="Code Your Cloud: in browser code editor for google drive" />	 
+	
+		<link rel="shortcut icon" type="image/png" href="../favicon.png"/>
+	
+		<link rel="stylesheet" href="../fonts/font.css">
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/grid.css">
+	
+		<link rel="import" href="../poly/components/core-style/core-style.html">
+		<link rel="import" href="../poly/components/paper-checkbox/paper-checkbox.html">
+		<link rel="import" href="../poly/components/core-header-panel/core-header-panel.html">
+		<link rel="import" href="../poly/components/paper-icon-button/paper-icon-button.html">
+		<link rel="import" href="../poly/components/paper-input/paper-input.html">
+		<link rel="import" href="../poly/components/paper-slider/paper-slider.html">
+		<link rel="import" href="../poly/components/core-toolbar/core-toolbar.html">
+		<link rel="import" href="../poly/components/core-menu/core-menu.html">
+		<link rel="import" href="../poly/components/core-icons/core-icons.html">
+		<link rel="import" href="../poly/components/paper-button/paper-button.html">
+		<link rel="import" href="../poly/components/paper-fab/paper-fab.html">
+		<link rel="import" href="../poly/components/paper-ripple/paper-ripple.html">
+		<link rel="import" href="../poly/components/paper-item/paper-item.html">
+		<link rel="import" href="../poly/components/paper-shadow/paper-shadow.html">
+		<link rel="import" href="../poly/components/paper-toast/paper-toast.html">
+		<link rel="import" href="../poly/components/paper-spinner/paper-spinner.html"> 
+		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="../lib/velocity/velocity.min.js"></script>
+        <script src="../lib/velocity/velocity.ui.min.js"></script>
+        
+        <link href='//cdn.jsdelivr.net/devicons/1.4.0/css/devicons.min.css' rel='stylesheet'>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="fancybox/jquery.fancybox-v=2.1.5.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/font-awesome.min.css" rel="stylesheet">
-	
-	<link rel='stylesheet' type='text/css' href='../lib/Font/css/font-awesome.min.css'>
-	
-	<link rel="stylesheet" type="text/css" href="css/style.css">	
-	
-	<link href="../fonts/font.css" rel="stylesheet">
+	</head>
+	<body>
+		
+		<div id="main">
+			<div id="nav">
+				<svg id="svg">
+					<?xml version="1.0" encoding="utf-8"?><svg width="100%" height="100%" version="1.1" viewBox="-2882.99951171875 -3131.37329101563 16518.0004882813 17910.74609375" style="background-color:transparent" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><defs /><g id="layer1"><path d="M9984.00024414063 2175.99975585938 C5792.87585240191 2175.99975585938 2505.32778098353 5338.51687698052 2312.90739324892 9471.99975585938 L4622.01008604923 9471.99975585938 C4820.31247281945 6763.06220552649 7098.70497518369 4607.99975585938 9856.00024414063 4607.99975585938 C12613.2955130976 4607.99975585938 14891.6880154618 6763.06220552649 15089.990402232 9471.99975585938 L17655.0930950323 9471.99975585938 C17462.6727072977 5338.51687698052 14175.1246358793 2175.99975585938 9984.00024414063 2175.99975585938 Z " opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-dasharray="none" fill="#FFFFFF" fill-opacity="1" transform="rotate(90 9984.00073242188 5823.99975585938)" /><path d="M-7544.37276759534 1536 C-7350.99696457022 6389.71421854917 -3503.25359392094 10112 1408 10112 C6319.25359392094 10112 10166.9969645702 6389.71421854916 10360.3727675953 1536 L6521.7861153372 1536 C6387.11439667478 4304.73435609751 4080.58671432655 6528 1280 6528 C-1520.58671432655 6528 -3827.11439667478 4304.73435609751 -3961.7861153372 1536 Z " opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-dasharray="none" fill="#FFFFFF" fill-opacity="1" transform="rotate(90 1408.00048828125 5824)" /><ellipse cx="5952.00024414063" cy="5696" rx="4480" ry="4480" opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-dasharray="none" fill="#FFFFFF" fill-opacity="1" transform="rotate(90 5952.00024414063 5696)" /></g></svg>
 
-	<link href='font/font2/font.css' rel='stylesheet' type='text/css'>
-	
-	<link rel="prefetch" href="images/zoom.png">
-	<script src="js/jquery-1.10.2.min.js"></script>
-	<script src="../lib/velocity/velocity.min.js"></script>
-	<script src="../lib/velocity/velocity.ui.min.js"></script>
-	
-	<link href='../fonts/font.css' rel='stylesheet' type='text/css'>
-	
-	<link rel="stylesheet" type="text/css" href="../lib/device/device-mockups/device-mockups.css" />
-	<link rel="stylesheet" href="css/interact.css">
-	
-	<link rel="shortcut icon" type="image/png" href="../favicon.png"/>
-		
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/devicons/1.5.0/css/devicons.min.css">
-</head>
-
-<body onload="check_login()">
-
-	<a id="fork" href="https://github.com/mkaminsky11/codeyourcloud" target="_blank">Fork us on Github <i class="fa fa-github"></i></a>
-	
-	<div class="navbar navbar-fixed-top" data-activeslide="1">
-		<div class="container">
-		
-			<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			
-			
-			<div class="nav-collapse collapse navbar-responsive-collapse">
-				<ul class="nav row">
-					<li data-slide="1" class="col-12 col-sm-2"><a id="menu-link-1" href="#slide-1" title="Home"><span class="icon icon-home"></span> <span class="text">HOME</span></a></li>
-					<li data-slide="2" class="col-12 col-sm-2"><a id="menu-link-2" href="#slide-2" title="About"><span class="icon icon-user"></span> <span class="text">ABOUT US</span></a></li>
-					<li data-slide="3" class="col-12 col-sm-2"><a id="menu-link-3" href="#features" title="Features"><span class="icon icon-briefcase"></span> <span class="text">FEATURES</span></a></li>
-					<li data-slide="4" class="col-12 col-sm-2"><a id="menu-link-4" href="#slide-4" title="Help"><span class="icon icon-gears"></span> <span class="text">HELP</span></a></li>
-					<li data-slide="5" class="col-12 col-sm-2"><a id="menu-link-6" href="#slide-5" title="Contact us"><span class="icon icon-envelope"></span> <span class="text">CONTACT</span></a></li>
-					<div class="col-12 col-sm-2 login-btn btn btn-danger" id="login_button" onclick="go()"><span class="icon icon-google-plus-sign"></span> <span class="text">LOGIN</span></div>
-				</ul>
-				<div class="row">
-					<div class="col-sm-2 active-menu"></div>
-				</div>
+				</svg>
+				<a id="brand">Code Your Cloud</a>
 				
-			
-			</div><!-- /.nav-collapse -->
-		</div><!-- /.container -->
-	</div><!-- /.navbar -->
-	
-	
-	<!-- === Arrows === -->
-	<div id="arrows">
-		<div id="arrow-up" class="disabled"></div>
-		<div id="arrow-down"></div>
-		<div id="arrow-left" class="disabled visible-lg"></div>
-		<div id="arrow-right" class="disabled visible-lg"></div>
-	</div><!-- /.arrows -->
-	
-	
-	<!-- === MAIN Background === -->
-	<div class="slide story" id="slide-1" data-slide="1">
-		<div class="new-overlay"></div>
-		<div class="container" id="main">
-			<div id="home-row-1" class="row clearfix">
-				<div class="col-12">
-					<h1 class="font-semibold" style="font-family:'Baron';font-size:88px">CODE YOUR CLOUD</h1>
-					<h4 class="font-thin">An <span class="font-semibold">open-source</span> code editor for Google Drive</h4>
-					<h4 class="font-thin">Developed by <a href="http://mkaminsky11.github.io/" class="white-a regular-link">Michael Kaminsky</a></h4>
-					<br/>
-					<a class="btn btn-danger btn-lg ghost-button" onclick="go()">Get Started</a>
-					<div class="row line-row">
-						<!--div class="hr" style="color:#34495E;background-color:#34495E">&nbsp;</div-->
-					</div><!-- /row -->
-					<br>
-					<br>
-				</div><!-- /col-12 -->
-			</div><!-- /row -->
-			<div id="home-row-2" class="row clearfix">
-				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3"><img src="../../images/icon/browser.png"></div><span>IN BROWSER</span></div>
-				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3"><img src="../../images/icon/speed.png"></div><span>POWERFUL</span></div>
-				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3"><img src="../../images/icon/laptop.png"></div><span>PORTABLE</span></div>
-			</div><!-- /row -->
-		</div><!-- /container -->
-	</div><!-- /slide1 -->
-	
-	
-	
-	
-	<!-- === Slide 2 === -->
-	<div class="slide story" id="slide-2" data-slide="2">
-		<div class="container" id="about">
-		
-		
-		
-			<div class="row title-row">
-				<div class="col-12 font-thin Hip-Light almost-black">Code Your Cloud Is On A Misson</div>
-			</div><!-- /row -->
-			<div class="row content-row">
-			
-			
-				<h4 class="font-thin Roboto dark-gray">Code Your Cloud is an in-browser collaborative code editor for Google Drive, which combines the capabilities of Google's cloud services with the functionality of CodeMirror syntax highlighting and editing.</h4>
-				<br/>
-				
-				
-			</div><!-- /row -->
-			
-		</div>
-		<div class="container comment-container int" style="overflow-x:hidden;overflow-y:hidden;min-height: 300px">
-		
-				<div class="touch-info" id="touch-info-1">
-					<h4 class="touch-info-close" onclick="hide_touch_1()">&times;</h4>
-					
-					<h4 class="touch-info-header">Sidebar</h4>
-					<h6 class="touch-info-desc">Opens up the sidebar, which contains more functions, including a Lorem Ipusm generator, settings, and a terminal. If you don't know where something is, look here.</h6>
-				</div>
-				
-				<div class="touch-info" id="touch-info-2">
-					<h4 class="touch-info-close" onclick="hide_touch_2()">&times;</h4>
-					
-					<h4 class="touch-info-header">Color Picker</h4>
-					<h6 class="touch-info-desc">This color picker allows you to pick a hex color, which is automatically inserted into your code. To use, just click on it, and choose a color using its hex value or the sliders.</h6>
-				</div>
-				
-				<div class="touch-info-flat" id="touch-info-3">
-					<h4 class="touch-info-close" onclick="hide_touch_3()">&times;</h4>
-					
-					<h4 class="touch-info-header">Editor</h4>
-					<h6 class="touch-info-desc">Edit your files while seeing all of the changes other users make in real time. The editor supports full syntax highlighting for almost 100 languages, as well as error detection, autocompletion, and customizable themes.</h6>
-					
-				</div>
-				
-				<div class="touch-info-flat" id="touch-info-4">
-					<h4 class="touch-info-close" onclick="hide_touch_4()">&times;</h4>
-					
-					<h4 class="touch-info-header">Toolbar</h4>
-					<h6 class="touch-info-desc">This toolbar contains common actions, so that you don't have to keep opening and closing the sidebar. Open new files, save them, chat with collaborators, and undo and redo your changes with these 5 buttons.</h6>
-				</div>
-		
-				<div class="device-mockup macbook portrait black">
-				    <div class="device">
-				        <div class="screen">
-				            <!-- PUT CONTENTS HERE -->
-				            <div id="interact">
-				            	
-				            	<svg onclick="show_touch_1()" height="30px" width="30px" id="touch-1" width="100%" height="100%" version="1.1" viewBox="381 -3 262 262" style="background-color:transparent" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><defs /><g id="layer1"><path d="M512 16 C573.6 16 624 66.4 624 128 C624 189.6 573.6 240 512 240 C450.4 240 400 189.6 400 128 C400 66.4 450.4 16 512 16 Z M512 0 C441.6 0 384 57.6 384 128 C384 198.4 441.6 256 512 256 C582.4 256 640 198.4 640 128 C640 57.6 582.4 0 512 0 Z " fill-rule="evenodd" opacity="1" fill="#FF6169" fill-opacity="1" /><ellipse cx="512" cy="128" rx="64" ry="64" opacity="1" fill="#FF6169" fill-opacity="1" /></g></svg>
-				            	
-				            	
-				            	<svg onclick="show_touch_2()" height="30px" width="30px" id="touch-2" width="100%" height="100%" version="1.1" viewBox="381 -3 262 262" style="background-color:transparent" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><defs /><g id="layer1"><path d="M512 16 C573.6 16 624 66.4 624 128 C624 189.6 573.6 240 512 240 C450.4 240 400 189.6 400 128 C400 66.4 450.4 16 512 16 Z M512 0 C441.6 0 384 57.6 384 128 C384 198.4 441.6 256 512 256 C582.4 256 640 198.4 640 128 C640 57.6 582.4 0 512 0 Z " fill-rule="evenodd" opacity="1" fill="#FF6169" fill-opacity="1" /><ellipse cx="512" cy="128" rx="64" ry="64" opacity="1" fill="#FF6169" fill-opacity="1" /></g></svg>
-				            	
-				            	<svg onclick="show_touch_3()" height="30px" width="30px" id="touch-3" width="100%" height="100%" version="1.1" viewBox="381 -3 262 262" style="background-color:transparent" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><defs /><g id="layer1"><path d="M512 16 C573.6 16 624 66.4 624 128 C624 189.6 573.6 240 512 240 C450.4 240 400 189.6 400 128 C400 66.4 450.4 16 512 16 Z M512 0 C441.6 0 384 57.6 384 128 C384 198.4 441.6 256 512 256 C582.4 256 640 198.4 640 128 C640 57.6 582.4 0 512 0 Z " fill-rule="evenodd" opacity="1" fill="#FF6169" fill-opacity="1" /><ellipse cx="512" cy="128" rx="64" ry="64" opacity="1" fill="#FF6169" fill-opacity="1" /></g></svg>
-				            	
-				            	<svg onclick="show_touch_4()" height="30px" width="30px" id="touch-4" width="100%" height="100%" version="1.1" viewBox="381 -3 262 262" style="background-color:transparent" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><defs /><g id="layer1"><path d="M512 16 C573.6 16 624 66.4 624 128 C624 189.6 573.6 240 512 240 C450.4 240 400 189.6 400 128 C400 66.4 450.4 16 512 16 Z M512 0 C441.6 0 384 57.6 384 128 C384 198.4 441.6 256 512 256 C582.4 256 640 198.4 640 128 C640 57.6 582.4 0 512 0 Z " fill-rule="evenodd" opacity="1" fill="#FF6169" fill-opacity="1" /><ellipse cx="512" cy="128" rx="64" ry="64" opacity="1" fill="#FF6169" fill-opacity="1" /></g></svg>
-				            	
-				            </div>
-				            
-				            
-				        </div>
-				        <div class="button">
-				        
-				        
-				            <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-				            
-				            
-				        </div>
-				    </div>
-				</div>
-		</div>
-	
-		<div class="container">
-			<div class="row title-row">
-				<div class="col-12 font-thin Hip-Light almost-black">Such Features,Much Wow</div>
-			</div><!-- /row -->
-
-			<div class="row content-row feature-row">
-				
-				<div class="col-xs-6 col-sm-3">
-					<img src="images/chat.svg" height="64px">
-					<h2 class="Roboto almost-black">Be Social</h2>
-					<h4 class="Roboto-Light dark-gray">Collaborate, chat, share, and edit with your friends and colleagues in real time.</h4>
-				</div>
-				
-				<div class="col-xs-6 col-sm-3">
-					<img src="images/cloud.svg" height="64px">
-					<h2 class="Roboto almost-black">Google Drive</h2>
-					<h4 class="Roboto-Light dark-gray">Your files are secure and accessible. It's just like Google Docs, just for your code.</h4>
-				</div>
-				
-				<div class="col-xs-6 col-sm-3">
-					<img src="images/run.svg" height="64px">
-					<h2 class="Roboto almost-black">Preview Your Work</h2>
-					<h4 class="Roboto-Light dark-gray">See how your code with look (HTML, PHP, and Markdown) and run (Javascript and Coffeescript) as you go.</h4>
-				</div>
-				
-				<div class="col-xs-6 col-sm-3">
-					<img src="images/coding.svg" height="64px">
-					<h2 class="Roboto almost-black">Your Files Are Everywhere</h2>
-					<h4 class="Roboto-Light dark-gray">With Google Drive and Code Your Cloud, you can edit your code on any computer or mobile device.</h4>
-				</div>
-				
-				
-				
-			</div><!-- /row -->
-			
-			<br/><br/>
-		</div>
-		
-		
-		<div class="container comment-container" style="margin-bottom:0px">
-				<div class="row title-row">
-					<div class="col-12 font-thin Hip-Light almost-black">See It In Action</div>
-				</div><!-- /row -->
-				<h7 class="Roboto">Click on a tile to see an animated GIF</h7>
-		</div>
-		
-	</div>
-	
-	<div class="slide story" id="slide-3">
-	
-		<div class="row" id="gallery">
-		
-			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../images/screenshots/colab.gif"><img class="thumb" src="../images/screenshots/colab_small.png" alt=""></a></div>
-			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../images/screenshots/color.gif"><img class="thumb" src="../images/screenshots/color_small.png" alt=""></a></div>
-			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../images/screenshots/mobile.gif"><img class="thumb" src="../images/screenshots/mobile_small.png" alt=""></a></div>
-			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../images/screenshots/html_test.gif"><img class="thumb" src="../images/screenshots/html_small.png" alt=""></a></div>
-			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../images/screenshots/random.gif"><img class="thumb" src="../images/screenshots/random_small.png" alt=""></a></div>
-			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../images/screenshots/syntax.gif"><img class="thumb" src="../images/screenshots/syntax_small.png" alt=""></a></div>
-			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../images/screenshots/theme.gif"><img class="thumb" src="../images/screenshots/theme_small.png" alt=""></a></div>
-			<div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="../images/screenshots/swift.gif"><img class="thumb" src="../images/screenshots/swift_small.png" alt=""></a></div>
-			
-		</div><!-- /row -->
-		
-	</div><!-- /slide3 -->
-	
-	
-	<!-- === Slide 4 - Process === -->
-	<div class="slide story" id="slide-4" data-slide="4">
-		<div class="container" id="help">
-		
-			<div class="row title-row">
-				<div class="col-12 font-thin Hip-Light almost-black">Supported Platforms</div>
-			</div><!-- /row -->
-
-			
-			<h2 class="font-semibold Roboto sub-header almost-black">Browsers</h2>	
-			<h3 class="font-thin Roboto-Light dark-gray">Code Your Cloud works on most modern browsers except for Internet Explorer. Safari for iOS8 also does not work. For more details, see <a href="https://plus.google.com/109834723365906365793/posts/ctF2GAQqb9B" class="black-a regular-link">this post</a>.</h3>
-			
-
-			<br/>
-			<h2 class="font-semibold">Languages</h2>	
-			
-			<span class="devicons devicons-javascript dev-icon"></span>
-			<span class="devicons devicons-java dev-icon"></span>
-			<span class="devicons devicons-clojure dev-icon"></span>
-			<span class="devicons devicons-coffeescript dev-icon"></span>
-			<span class="devicons devicons-css3_full dev-icon"></span>
-			<span class="devicons devicons-less dev-icon"></span>
-			<span class="devicons devicons-python dev-icon"></span>
-			<span class="devicons devicons-django dev-icon"></span>
-			<span class="devicons devicons-go dev-icon"></span>
-			<span class="devicons devicons-groovy dev-icon"></span>
-			<span class="devicons devicons-haskell dev-icon"></span>
-			<span class="devicons devicons-html5 dev-icon"></span>
-			<span class="devicons devicons-markdown dev-icon"></span>
-			<span class="devicons devicons-perl dev-icon"></span>
-			<span class="devicons devicons-php dev-icon"></span>
-			<span class="devicons devicons-ruby dev-icon"></span>
-			<span class="devicons devicons-sass dev-icon"></span>
-			<span class="devicons devicons-scala dev-icon"></span>
-			<span class="devicons devicons-mysql dev-icon"></span>
-			<span class="devicons devicons-swift dev-icon"></span>
-			<br/><br/>
-			<button class="btn btn-danger showmore" onclick="showMore()">Show More</button>
-			<br/><br/>
-			<div class="list-group modes" style="display:none">
-			
-				<li class="list-group-item text-center mode-li" onclick="">APL</li>
-				<li class="list-group-item text-center mode-li" onclick="">Asterisk</li>
-				<li class="list-group-item text-center mode-li" onclick="">C</li>
-				<li class="list-group-item text-center mode-li" onclick="">C++</li>
-				<li class="list-group-item text-center mode-li" onclick="">C#</li>
-				<li class="list-group-item text-center mode-li" onclick="">Cobol</li>
-				<li class="list-group-item text-center mode-li" onclick="">Common Lisp</li>
-				<li class="list-group-item text-center mode-li" onclick="">SCSS</li>
-				<li class="list-group-item text-center mode-li" onclick="">Cypher</li>
-				<li class="list-group-item text-center mode-li" onclick="">Cython</li>
-				<li class="list-group-item text-center mode-li" onclick="">D</li>
-				<li class="list-group-item text-center mode-li" onclick="">Diff</li>
-				<li class="list-group-item text-center mode-li" onclick="">DTD</li>
-				<li class="list-group-item text-center mode-li" onclick="">Dylan</li>
-				<li class="list-group-item text-center mode-li" onclick="">ECL</li>
-				<li class="list-group-item text-center mode-li" onclick="">Eiffel</li>
-				<li class="list-group-item text-center mode-li" onclick="">Erlang</li>
-				<li class="list-group-item text-center mode-li" onclick="">Fortan</li>
-				<li class="list-group-item text-center mode-li" onclick="">OCaml</li>
-				<li class="list-group-item text-center mode-li" onclick="">F#</li>
-				<li class="list-group-item text-center mode-li" onclick="">Gas</li>
-				<li class="list-group-item text-center mode-li" onclick="">Gherkin</li>
-				<li class="list-group-item text-center mode-li" onclick="">HAML</li>
-				<li class="list-group-item text-center mode-li" onclick="">Haxe</li>
-				<li class="list-group-item text-center mode-li" onclick="">JSP</li>
-				<li class="list-group-item text-center mode-li" onclick="">EJS</li>
-				<li class="list-group-item text-center mode-li" onclick="">ASP.NET</li>
-				<li class="list-group-item text-center mode-li" onclick="">HTTP</li>
-				<li class="list-group-item text-center mode-li" onclick="">Jade</li>
-				<li class="list-group-item text-center mode-li" onclick="">JSON</li>
-				<li class="list-group-item text-center mode-li" onclick="">TypeScript</li>
-				<li class="list-group-item text-center mode-li" onclick="">Julia</li>
-				<li class="list-group-item text-center mode-li" onclick="">LiveScript</li>
-				<li class="list-group-item text-center mode-li" onclick="">Lua</li>
-				<li class="list-group-item text-center mode-li" onclick="">mIRC</li>
-				<li class="list-group-item text-center mode-li" onclick="">nginx</li>
-				<li class="list-group-item text-center mode-li" onclick="">NTriples</li>
-				<li class="list-group-item text-center mode-li" onclick="">Octave</li>
-				<li class="list-group-item text-center mode-li" onclick="">Pascal</li>
-				<li class="list-group-item text-center mode-li" onclick="">Pig Latin</li>
-				<li class="list-group-item text-center mode-li" onclick="">Properties</li>
-				<li class="list-group-item text-center mode-li" onclick="">Puppet</li>
-				<li class="list-group-item text-center mode-li" onclick="">Q</li>
-				<li class="list-group-item text-center mode-li" onclick="">R</li>
-				<li class="list-group-item text-center mode-li" onclick="">Rust</li>
-				
-				<li class="list-group-item text-center mode-li" onclick="">Scala</li>
-				<li class="list-group-item text-center mode-li" onclick="">Shell</li>
-				<li class="list-group-item text-center mode-li" onclick="">Scheme</li>
-				<li class="list-group-item text-center mode-li" onclick="">Sieve</li>
-				<li class="list-group-item text-center mode-li" onclick="">Smalltalk</li>
-				<li class="list-group-item text-center mode-li" onclick="">Smarty</li>
-				<li class="list-group-item text-center mode-li" onclick="">Solr</li>
-				
-				<li class="list-group-item text-center mode-li" onclick="">sText</li>
-				<li class="list-group-item text-center mode-li" onclick="">TCL</li>
-				<li class="list-group-item text-center mode-li" onclick="">LaTex</li>
-				<li class="list-group-item text-center mode-li" onclick="">Tiki</li>
-				<li class="list-group-item text-center mode-li" onclick="">Toml</li>
-				<li class="list-group-item text-center mode-li" onclick="">Turtle</li>
-				<li class="list-group-item text-center mode-li" onclick="">VB.NET</li>
-				<li class="list-group-item text-center mode-li" onclick="">VBScript</li>
-				<li class="list-group-item text-center mode-li" onclick="">Velocity</li>
-				<li class="list-group-item text-center mode-li" onclick="">Verilog</li>
-				<li class="list-group-item text-center mode-li" onclick="">XML</li>
-				<li class="list-group-item text-center mode-li" onclick="">XQuery</li>
-				
-			</div>
-		</div><!-- /container -->
-	</div><!-- /Slide 6 -->
-	
-	
-	<div class="slide story" id="slide-5" data-slide="5">
-		<div class="container" id="contact">
-			
-			<div class="row title-row">
-				<div class="col-12 font-thin Hip-Light almost-black">We're All Ears</div>
-			</div><!-- /row -->
-			
-			<div class="row content-row">
-				<h3 class="font-thin Roboto-Light dark-gray">Have a question? A suggestion? A problem? A case of rocket-riding dinosaurs? Contact us!</h3>
+				<a id="github" href="https://github.com/mkaminsky11/codeyourcloud"><i class="devicons devicons-github_badge"></i> FORK US</a>
+				<a id="login" onclick="go()">LOGIN</a>
 			</div>
 			
-			<div id="contact-row-4" class="row">	
+			<!--h1>CODE YOUR CLOUD</h1-->
+			<h4 id="quote">Your code, set free</h4>
 			
-				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-				<div class="col-12 col-sm-2 with-hover-text">
-					<p><a class="contact_a almost-black" target="_blank" href="https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts"><i class="icon icon-google-plus"></i></a></p>
-					<span class="hover-text font-light ">+Code Your Cloud</span></a>
-				</div><!-- /col12 -->
-				
-				<div class="col-12 col-sm-2 with-hover-text">
-					<p><a class="contact_a almost-black" target="_blank" href="mailto:hostmaster@codeyourcloud.com"><i class="icon icon-envelope"></i></a></p>
-					<span class="hover-text font-light ">hostmaster@codeyourcloud.com</span></a>
-				</div><!-- /col12 -->
-				
-				<div class="col-12 col-sm-2 with-hover-text">
-					<p><a class="contact_a almost-black" target="_blank" href="https://dribbble.com/mkaminsky11"><i class="fa fa-dribbble"></i></a></p>
-					<span class="hover-text font-light ">Michael Kaminsky</span></a>
-				</div><!-- /col12 -->
-				
-				<div class="col-12 col-sm-2 with-hover-text">
-					<p><a class="contact_a almost-black" target="_blank" href="https://codeyourcloud.com/survey"><i class="icon icon-comment"></i></a></p>
-					<span class="hover-text font-light ">Take a survey</span></a>
-				</div><!-- /col12 -->
-				
-				<div class="col-12 col-sm-2 with-hover-text">
-					<p><a class="contact_a almost-black" target="_blank" href="https://github.com/mkaminsky11/codeyourcloud"><i class="icon icon-github"></i></a></p>
-					<span class="hover-text font-light ">Github</span></a>
-				</div><!-- /col12 -->
-				
-				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-			</div><!-- /row -->
-			<div class="row">
-				<input class="form-control login-field" id="comment_name" value="" placeholder="Name"/>
-      	 	 	<br/>
-     		    <input class="form-control login-field" id="comment_mail" value="" placeholder="Email"/>
-     		    <br/>
-     		    <textarea class="form-control login-field" id="comment_comment" value="" placeholder="Comment" rows="10"></textarea>
-     		    <br/>
-     		    <div class="btn-group">
-     		    	<button class="btn btn-success" onclick="comment()">Submit</button>
-     		    	<button class="btn btn-danger" onclick="resetForm()">Cancel</button>
-     		    </div>
-			</div>
-		</div><!-- /container -->
-	</div><!-- /Slide 6 -->
-
-	
-	<div class="slide" id="slide-6">
-	
-		<div class="new-overlay"></div>
-		
-		<div class="container" id="credits">
-			<div class="row title-row">
-				<div class="col-12 font-thin Hip-Light almost-white">Thank You</div>
-			</div><!-- /row -->
+			<img id="screen" src="images/browser.png">
 			
-			
-			<div class="row content-row">
-				<h3 class="font-thin Roboto-Light almost-white">Code Your Cloud would not have been possible without the generosity of many developers.This about page was built using the <a class="regular-link white-a" target="_blank" href="http://www.blacktie.co/demo/munter/">Munter</a> theme from <a class="regular-link white-a" target="_blank" href="http://www.blacktie.co/">Blacktie</a>. They make some kick-ass Boostrap-based templates, so you should check it out.</h3>
-			</div>
-			<br/>
+			<h6 id="switch">
+				<a id="web" class="btn" onclick="web()">WEB</a>
+				<a id="mobile" class="btn" onclick="mobile()">MOBILE</a>
+			</h6>
 		</div>
-	</div>
-	
-	
-	
-</body>
-
-	<!-- SCRIPTS -->
-	<script type="text/javascript" src="//apis.google.com/js/client.js?onload=loadDrive"></script>
-	
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/html5shiv.js"></script>
-	<script src="js/jquery-migrate-1.2.1.min.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="fancybox/jquery.fancybox.pack-v=2.1.5.js"></script>
-	<script src="js/script.js"></script>
-	
-	<!-- fancybox init -->
-	<script>
-	$(document).ready(function(e) {
-		var lis = $('.nav > li');
-		menu_focus( lis[0], 1 );
 		
-		$(".fancybox").fancybox({
-			padding: 10,
-			helpers: {
-				overlay: {
-					locked: false
-				}
-			}
-		});
-	
-	});
-	</script>
-	
-	<script src="js/proto.js"></script>
-	
-	<script type="text/javascript" src="//apis.google.com/js/client.js?onload=check_login"></script>
-	<script src="js/interact.js"></script>
+		<div class="dark-part">
+			<div class="section group">
+			
+				<div class="col span_1_of_2 border-right-white">
+					<h6 class="small white code-light uppercase">Code Your Cloud is an in-browser code editor for Google Drive. Packed with awesome editing and collaborative abilities, it's the ideal editor for quick fixes and demonstrations.</h6>
+				</div>
+				
+				<div class="col span_1_of_2">
+					<h6 class="small white code-light uppercase">Plus, it's free and open source, so you can check out the inner workings.</h6>
+				</div>
 
+			</div>
+		</div>
+		
+		<div class="white-part">
+			<div class="section group">
+				<div class="col span_1_of_4 text-center">
+					
+					<img class="icon" src="images/eye-black.png">
+					
+					<h6 class="med black">Preview Your Work</h6>
+					<h6 class="small gray">See how your code will look (HTML, PHP, and Markdown) and run (Javascript and Coffeescript) as you go.</h6>
+					
+				</div>
+				
+				<div class="col span_1_of_4 text-center">
+				
+					<img class="icon" src="images/code-black.png">
+					
+					<h6 class="med black">Your Files Are Everywhere</h6>
+					<h6 class="small gray">With Google Drive and Code Your Cloud, you can edit your code on any computer or mobile device.</h6>
+					
+				</div>
+				
+				<div class="col span_1_of_4 text-center">
+				
+					<img class="icon" src="images/cloud-black.png">
+					
+					<h6 class="med black">Google Drive</h6>
+					<h6 class="small gray">Your files are secure and accessible. It's just like Google Docs, just for your code.</h6>	
+					
+				</div>
+				
+				<div class="col span_1_of_4 text-center">
+				
+					<img class="icon" src="images/thumb-black.png">
+					
+					<h6 class="med black">Be Social</h6>
+					<h6 class="small gray">Collaborate, chat, share, and edit with your friends and colleagues in real time.</h6>
+					
+				</div>
+			</div>
+			
+			<span class="sep"></span>
+			
+			<h6 id="logos">
+			
+				<span class="devicons devicons-javascript dev-icon"></span>
+				<span class="devicons devicons-java dev-icon"></span>
+				<span class="devicons devicons-clojure dev-icon"></span>
+				<span class="devicons devicons-coffeescript dev-icon"></span>
+				<span class="devicons devicons-css3_full dev-icon"></span>
+				<span class="devicons devicons-less dev-icon"></span>
+				<span class="devicons devicons-python dev-icon"></span>
+				<span class="devicons devicons-django dev-icon"></span>
+				<span class="devicons devicons-go dev-icon"></span>
+				<span class="devicons devicons-groovy dev-icon"></span>
+				<span class="devicons devicons-haskell dev-icon"></span>
+				<span class="devicons devicons-html5 dev-icon"></span>
+				<span class="devicons devicons-markdown dev-icon"></span>
+				<span class="devicons devicons-perl dev-icon"></span>
+				<span class="devicons devicons-php dev-icon"></span>
+				<span class="devicons devicons-ruby dev-icon"></span>
+				<span class="devicons devicons-sass dev-icon"></span>
+				<span class="devicons devicons-scala dev-icon"></span>
+				<span class="devicons devicons-mysql dev-icon"></span>
+				<span class="devicons devicons-swift dev-icon"></span>
+				<span class="devicons devicons-dart dev-icon"></span>
+			</h6>
+			
+			<h6 class="btn-h6"><a class="btn" href="https://github.com/mkaminsky11/codeyourcloud" target="_blank">See More</a></h6>
+			
+			
+		</div>
+		
+		<div class="dark-part">
+			<h4 id="quote">Contact us</h4>
+			
+			<input class="form-control input" id="comment_name" value="" placeholder="Name"/>
+      	 	<br/>
+	  	 	<input class="form-control input" id="comment_mail" value="" placeholder="Email"/>
+	  	 	<br/>
+     		<textarea class="form-control input" id="comment_comment" value="" placeholder="Comment" rows="10"></textarea>
+     		<br/>
+     		
+     		<h6 id="send">
+     			<a id="ok" class="btn" onclick="comment()"><i class="fa fa-paper-plane-o"></i></a>
+     			<a id="no" class="btn" onclick="resetForm()"><i class="fa fa-times"></i></a>
+     		</h6>
+     		
+     		<br/>
+		</div>
+		
+		<div class="white-part">
+			<div class="section group">
+				<div class="col span_1_of_4 text-center hover-col" id="github_col">
+					<i class="large-icon fa fa-github"></i>
+					
+					<a href="https://github.com/mkaminsky11/codeyourcloud" class="real-link">Github</a>
+				</div>
+				
+				<div class="col span_1_of_4 text-center hover-col" id="google_col">
+					<i class="large-icon fa fa-google-plus"></i>
+					
+					<a href="https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts" class="real-link">+Code Your Cloud</a>
+				</div>
+				
+				<div class="col span_1_of_4 text-center hover-col" id="main_col">
+					<i class="large-icon fa fa-envelope-o"></i>
+					
+					<a>hostmaster@codeyourcloud.com</a>
+				</div>
+				
+				<div class="col span_1_of_4 text-center hover-col" id="survey_col">
+					<i class="large-icon fa fa-comments-o"></i>
+					
+					<a href="https://codeyourcloud.com/survey/" class="real-link">Take a survey</a>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="//apis.google.com/js/client.js?onload=loadDrive"></script>
+		
+		<script src="lib/fit.js"></script>
+		<script src="js/index.js"></script>
+	</body>
 </html>

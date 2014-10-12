@@ -83,8 +83,8 @@ function addTab(title, id, welcome){
     var codemirror = "<div class='codemirror-container' id='"+id+"' data-fileid='"+id+"' style='display:none'><iframe src='https://codeyourcloud.com/script/logic/logic.html?id="+id+"' style='display:none' id='iframe-"+id+"'></iframe></div>";
     $("#insert-point").after(codemirror);
     
-    var chat = "<div class='poly-chat-content' data-fileid='"+id+"' style='display:none'></div>";
-    $(".poly-chat").html(chat+$(".poly-chat").html());
+    var chat = "<div class='chats-content' data-fileid='"+id+"' style='display:none'></div>";
+    $("#chats-store").html(chat+$("#chats-store").html());
 
 	var user = "<div class='users-container' data-fileid='"+id+"' style='display:none'></div>";
 	$("#users").html($("#users").html() + user);
@@ -133,7 +133,6 @@ function addTab(title, id, welcome){
 }
 
 function opentab(id){
-	hide_top_rename();	
 
 	$(".tab-active").removeClass("tab-active");
 	$(".tab-tab[data-fileid='"+id+"']").addClass("tab-active");
@@ -151,11 +150,11 @@ function opentab(id){
 	$(".users-container[data-fileid='"+id+"']").addClass("users-container-active");
 	
 	//
-	$(".poly-chat-content-active").css("display","none");
-	$(".poly-chat-content-active").removeClass("poly-chat-content-active");
+	$(".chats-active").css("display","none");
+	$(".chats-active").removeClass("chats-active");
 	
-	$(".poly-chat-content[data-fileid='"+id+"']").css("display","block");
-	$(".poly-chat-content[data-fileid='"+id+"']").addClass("poly-chat-content-active");
+	$(".chats-content[data-fileid='"+id+"']").css("display","block");
+	$(".chats-content[data-fileid='"+id+"']").addClass("chats-active");
   
 	$(".CodeMirror").css("font-size","12px");
   
@@ -168,17 +167,19 @@ function opentab(id){
 	
 	if(editors[index].welcome){
 		//default
-		$("#title").html("Code Your Cloud");
+		$("#title").val("Code Your Cloud");
 		$("#rename-toggle").css("display","none");
 		$("#rename_input").val("");
-		$("#chat_button").css("display","none");
+		
+		if($(".chats").css("display") !== "none"){
+			nav_list();
+		}
 	}
 	else{
 		//a file
-		$("#title").html(editors[index].title);
+		$("#title").val(editors[index].title);
 		$("#rename-toggle").css("display","inline-block");
 		$("#rename_input").val(editors[index].title);
-		$("#chat_button").css("display","inline-block");
 	}
 	
 	adjust();
@@ -210,7 +211,7 @@ function removetab(id){
   
   editors.splice(index,1);
   
-  $("#chat_button").css("display","none");
+  $("#nav_chats").css("display","none");
 }
 
 function adjust(){
@@ -218,15 +219,22 @@ function adjust(){
 	
 	if(id === "welcome"){
 		$(".side-file").css("display","none");
-		if(!is_mobile){
-			$(".poly-chat").slideUp();
-		}
+		$("#nav_chats").css("display","none");
 	}
-	else{
-		$(".side-file").css("display","inline-block");
+	else{	
+			$(".side-file").css("display","inline-block");
+			$("#nav_chats").css("display","inline-block");
 	}
 	
 	var mode = editor().getOption("mode");
+	
+	try{	
+		if(mode !== mode_select.value){
+			mode_select.change(mode);
+		}
+	}
+	catch(e){
+	}
 	
 	$(".side-run").addClass("hide"); //<------|
 	$(".side-pub").addClass("hide"); //<-----------------------------------------------IMPORTANT
@@ -250,36 +258,21 @@ function adjust(){
 adjust();
 
 function chat(){
-	if(is_mobile){
-		showDialog("chat");
-	}
-	else{
-		$(".poly-chat").slideToggle();
-	}
 	
-	$(".chat-input").focus(function(){
-		$(".chat-input").animate({
-	    	height: "150px"
-		},300);
-	});
-	$(".chat-input").blur(function(){
-		$(".chat-input").animate({
-			height: "30px"
-		},300);
-	});
 }
 
 
 function insert_chat(message, you, photo, name, fileid){
-
-  var push = "<div class=\"chat-item\">";
-  push = push + "<div class=\"header-item\">";
-  push = push + "<img height=\"30px\" width=\"30px\" src=\""+ photo +"\">";
-  push = push + "<h4>" + name + "</h4></div><div class=\"message-item\"><pre>";
-  push = push + message + "</pre></div></div>";
-  $(".poly-chat-content[data-fileid='"+fileid+"']").html($(".poly-chat-content[data-fileid='"+fileid+"']").html() + push);
-  
-  $(".poly-chat-content[data-fileid='"+fileid+"']").animate({ scrollTop: $(".poly-chat-content[data-fileid='"+fileid+"']")[0].scrollHeight}, 500);
+	if(message.trim() !== ""){
+	  var tooltip = "<core-tooltip label='"+name+"' position='right'>";
+	  var push = "<div class=\"chat-item\">";
+	  push = push + tooltip + "<img height=\"30px\" width=\"30px\" src=\""+ photo +"\"></core-tooltip>";
+	  push = push + "<pre>";
+	  push = push + message + "</pre></div>";
+	  $(".chats-content[data-fileid='"+fileid+"']").html($(".chats-content[data-fileid='"+fileid+"']").html() + push);
+	  
+	  $(".chats-content[data-fileid='"+fileid+"']").animate({ scrollTop: $(".chats-content[data-fileid='"+fileid+"']")[0].scrollHeight}, 500);
+	}
 }
 
 function sendChat(){

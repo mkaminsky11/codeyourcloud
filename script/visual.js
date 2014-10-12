@@ -12,7 +12,17 @@ function replace(){
 
 
 function setMode(id,mode){
+
 	//get the current editor index
+	
+	try{	
+		if(mode !== mode_select.value){
+			mode_select.change(mode);
+		}
+	}
+	catch(e){
+	}
+	
 	var index = getIndex(id);
 	
 	
@@ -66,11 +76,11 @@ function setMode(id,mode){
 	adjust();
 }
 function ok_rename(){
-	setFileTitle(current_file, document.getElementById("new_title_input").value);
+	setFileTitle(current_file, $("#title").val());
 	
 	sendData({
 		type: "title",
-		title: document.getElementById("new_title_input").value
+		title: $("#title").val()
 	}, current_file);
 }
 /*============
@@ -101,84 +111,17 @@ function check_mode(id, fileName){
 	setMode(id,mode_to_use);
 }
 
-
+function modeChange(){
+	setMode(current_file,mode_select.value);
+}
 
 for(var i = 0; i < modes.length; i++){
 	var name = modes[i][0];
 	var the_mode = modes[i][1];
-	var elem = "<li class=\"list-group-item text-center mode-li\" onclick=\"setMode(current_file,'"+ the_mode +"')\">"+ name +"<paper-ripple></paper-ripple></li>";
-	$("#mode-ul").html($("#mode-ul").html() + elem);
-}
-
-
-function mode_search_change(){
-	var search_term = document.getElementById("mode_input").value;
 	
-	var found = false;
-	$("#mode-nothing").removeClass("hide");
-	$(".mode-li").each(function(index){
-		if(search_term === ""){
-			found = true;
-			$(this).css("display","block");
-		}
-		else{
-			var li_term = $(this).html();
-			if(li_term.toLowerCase().indexOf(search_term.toLowerCase()) !== -1){
-				found = true;
-				$(this).css("display","block");
-			}
-			else{
-				$(this).css("display","none");
-			}
-		}
-	});
-	
-	if(found){
-		$("#mode-nothing").addClass("hide");
-	}
+	var sel = "<option value='"+the_mode+"'>"+name+"</option>";
+	$("#mode-select").html($("#mode-select").html() + sel);
 }
-
-function theme_search_change(){
-	var search_term = document.getElementById("theme_input").value;
-	
-	var found = false;
-	$("#theme-nothing").removeClass("hide");
-	$(".theme-li").each(function(index){
-		if(search_term === ""){
-			found = true;
-			$(this).css("display","block");
-		}
-		else{
-			var li_term = $(this).html();
-			if(li_term.toLowerCase().indexOf(search_term.toLowerCase()) !== -1){
-				found = true;
-				$(this).css("display","block");
-			}
-			else{
-				$(this).css("display","none");
-			}
-		}
-		
-		if(found){
-			$("#theme-nothing").addClass("hide");
-		}
-	});
-}
-
-
-document.getElementById("mode_input").addEventListener('change',function(){
-	mode_search_change();
-});
-
-
-document.getElementById("theme_input").addEventListener('change',function(){
-	console.log("theme");
-	theme_search_change();
-});
-
-document.getElementById("lorem_input").addEventListener('change',function(){
-	generate();
-});
 
 
 /*===========
@@ -196,6 +139,10 @@ function editor_redo() {
 /*==========
 THEMES
 ===========*/
+function themeChange(){
+	setTheme(theme_select.value);
+}
+
 function setTheme(theme){
 	for(var i = 0; i < editors.length; i++){
 		editors[i].editor.setOption("theme",theme);
@@ -210,9 +157,41 @@ function showTheme(){
 for(var j = 0; j < themes.length; j++){
 	var the_name = themes[j];
 	var the_theme = the_name.split(" ").join("-").toLowerCase();
-	var elem = "<li class=\"list-group-item text-center theme-li\" onclick=\"setTheme('"+ the_theme +"')\">"+ the_name +"<paper-ripple></paper-ripple></li>";
-	$("#theme-ul").html($("#theme-ul").html() + elem);
+	
+	var sel = "<option value='"+the_theme+"'>"+the_name+"</option>";
+	$("#theme-select").html($("#theme-select").html() + sel);
 }
+
+(function() {
+  var init, setupMode, setupTheme;
+
+  init = function() {
+    setupMode();
+    setupTheme();
+    
+    mode_select.change("text");
+    theme_select.change("monokai");
+  };
+
+  setupMode = function() {
+    mode_select =  new Select({
+      el: $('#mode-select')[0],
+      className: 'select-theme-dark',
+      alignToHighlighted: 'never'
+    });
+  };
+
+  setupTheme = function() {
+  	theme_select = new Select({
+      el: $('#theme-select')[0],
+      className: 'select-theme-dark',
+      alignToHighlighted: 'never'
+    });
+  };
+
+  $(init);
+
+}).call(this);
 /*===============
 SWITCHES
 ===============*/
@@ -319,8 +298,6 @@ function run(){
 	var re = new RegExp(find, 'g');
 	code_before_replace = code_before_replace.replace(re, 'repl.print');
 	repl.eval(code_before_replace);
-	
-	show_side_terminal();
 }
 
 

@@ -1,20 +1,45 @@
 function poly_loaded(){
     
-	//once polymer is loaded....
+}
 
-	//funky stuff to get the REPL to work. Kind of
+window.addEventListener('polymer-ready', function(e){
+	//the actual event
+	
+	checkGithub(); //declared in broadcast.js
+	
+	poly_loaded();
+
+	//sets options
+	line_wrap = editor().getOption("lineWrapping");
+	line_number = editor().getOption("lineNumbers");
+	if(line_wrap !== $('#side-wrap').prop('checked')){
+		document.getElementById("side-wrap").toggle();
+	}
+	
+	if(line_number !== $('#side-nums').prop('checked')){
+		document.getElementById("side-nums").toggle();
+	}
+
+	editor().refresh();
+	
+	CoreStyle.g.paperInput.focusedColor = "#95A5A6";
+});
+
+window.addEventListener("DOMContentLoaded", function () {
     var geval = eval;
 
-    repl = new CodeMirrorREPL("terminal-iframe", {
+    repl = new CodeMirrorREPL("repl", {
         mode: "javascript",
         theme: "eclipse"
     });
 
-    repl.print("/*please use print() not console.log()*/");
+    repl.print("/* JavaScript REPL*/");
 
     window.print = function (message) {
         repl.print(message, "message");
     };
+
+	repl.refresh = function(){mirror.refresh()}
 
     repl.isBalanced = function (code) {
         var length = code.length;
@@ -85,6 +110,7 @@ function poly_loaded(){
     };
 
     repl.eval = function (code) {
+    	code = code.split("console.log").join("repl.print");
         try {
             if (isExpression(code)) {
                 geval("__expression__ = " + code);
@@ -129,27 +155,9 @@ function poly_loaded(){
             repl.print(value, "error");
         }
     }
-}
+    
+    repl.print("/*Code Your Cloud*/");
+    repl.setTheme("cobalt-cold");
+    
+}, false);
 
-window.addEventListener('polymer-ready', function(e){
-	//the actual event
-	
-	checkGithub(); //declared in broadcast.js
-	
-	poly_loaded();
-
-	//sets options
-	line_wrap = editor().getOption("lineWrapping");
-	line_number = editor().getOption("lineNumbers");
-	if(line_wrap !== $('#side-wrap').prop('checked')){
-		document.getElementById("side-wrap").toggle();
-	}
-	
-	if(line_number !== $('#side-nums').prop('checked')){
-		document.getElementById("side-nums").toggle();
-	}
-
-	editor().refresh();
-	
-	CoreStyle.g.paperInput.focusedColor = "#95A5A6";
-});

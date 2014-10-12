@@ -2,7 +2,7 @@
 var e = CodeMirror(document.getElementById("welcome"),{
     lineNumbers: true,
     mode: "text",
-    theme: "code-your-cloud",
+    theme: "monokai",
     lineWrapping: true, 
     indentUnit: 4, 
     indentWithTabs: true
@@ -50,7 +50,7 @@ function handleAuth(authResult){
 		loadClient();
 	} 
 	else {
-		if(window.location.href.indexOf("?no=true") === -1 && authResult.error_subtype === "access_denied"){
+		if(window.location.href.indexOf("?no=true") === -1 && (authResult.error_subtype === "access_denied" || authResult.error === "immediate_failed")){
 			window.location = "https://codeyourcloud.com/about";
 		}
 	}
@@ -153,15 +153,10 @@ USERS
 
 //insert a new collaborating user
 function insertUser(name, color, photo, id, fileid){
-	var new_user = "<img class=\"user-photo\" id=\"img_" + id + "\" src=\""+ photo +"\" height=\"53px\" width=\"53px\" style=\"border:solid 4px "+ color +";display:none\">";
+	var new_user = "<core-tooltip label='"+name+"' position='left'><img class=\"user-photo\" id=\"img_" + id + "\" src=\""+ photo +"\" height=\"53px\" width=\"53px\" style=\"border:solid 4px "+ color +"\"></core-tooltip>";
 	
 	
 	$(".users-container[data-fileid='"+fileid+"']").html( $(".users-container[data-fileid='"+fileid+"']").html() + new_user);
-	
-	
-	$("#img_" + id).slideDown("slow",function(){
-		$("#img_" + id).css("height","53px");
-	});
 }
 function removeUser(id, fileid){
 	try{

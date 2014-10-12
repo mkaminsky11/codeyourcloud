@@ -29,7 +29,7 @@ NEW FILE
 var insert_folder_dest = ""; //the destination to insert a new file into
 
 function insertNewFile(folderId) {
-	var content = " "; //default text
+	var content = ""; //default text
 	insert_folder_dest = folderId; //store it globally :( not best practice
 	
 	var contentArray = new Array(content.length); //convert it!
