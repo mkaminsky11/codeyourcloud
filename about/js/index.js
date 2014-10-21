@@ -36,6 +36,14 @@ function mobile(){
 	});
 }
 
+document.getElementById("switcher").addEventListener('change',function(){
+	if(document.getElementById("switcher").checked){
+		mobile();
+	}
+	else{
+		web();
+	}
+});
 
 
 var ok = true;

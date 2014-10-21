@@ -1,8 +1,0 @@
-outer with tabs
-
-var editors = [
-	add editors here
-];
-
-var editors_index = 0
-var current = "" //the file id

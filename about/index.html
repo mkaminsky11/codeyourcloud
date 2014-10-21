@@ -19,6 +19,7 @@
 		<link rel="import" href="../poly/components/paper-checkbox/paper-checkbox.html">
 		<link rel="import" href="../poly/components/core-header-panel/core-header-panel.html">
 		<link rel="import" href="../poly/components/paper-icon-button/paper-icon-button.html">
+		<link rel="import" href="../poly/components/paper-toggle-button/paper-toggle-button.html">
 		<link rel="import" href="../poly/components/paper-input/paper-input.html">
 		<link rel="import" href="../poly/components/paper-slider/paper-slider.html">
 		<link rel="import" href="../poly/components/core-toolbar/core-toolbar.html">
@@ -59,10 +60,11 @@
 			
 			<img id="screen" src="images/browser.png">
 			
-			<h6 id="switch">
-				<a id="web" class="btn" onclick="web()">WEB</a>
-				<a id="mobile" class="btn" onclick="mobile()">MOBILE</a>
-			</h6>
+			<div id="switch">
+				<span id="web">Web</span>
+				<paper-toggle-button id="switcher"></paper-toggle-button>
+				<span id="mobile">Mobile</span>
+			</div>
 		</div>
 		
 		<div class="dark-part">

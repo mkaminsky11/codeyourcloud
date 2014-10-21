@@ -75,10 +75,15 @@ body{
 	padding-top: 10px;
 	width: calc(100% - 60px);
 	padding-bottom: 0px;
-	background-color: #212121;
-	/*background-image: url('../images/water.jpeg');
-    background-size: cover;
-    background-attachment: fixed;*/
+	/*background-color: #212121;*/
+	background: #424242; /* Old browsers */
+	background: -moz-linear-gradient(top,  #424242 0%, #212121 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#424242), color-stop(100%,#212121)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #424242 0%,#212121 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #424242 0%,#212121 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #424242 0%,#212121 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #424242 0%,#212121 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#424242', endColorstr='#212121',GradientType=0 ); /* IE6-9 */
 }
 
 #quote{
@@ -249,9 +254,19 @@ body{
 #switch{
 	margin: 0;
 	position: absolute;
-	width: calc(100% - 60px);
+	width: 180px;
 	text-align: center;
+	padding: 10px;
 	margin-top: -28px;
+	left: calc(50% - 100px);
+	background-color: #212121;
+	border-radius: 6px;
+}
+#switch span{
+	font-family: 'Roboto';
+	margin-left: 5px;
+	margin-right: 5px;
+	color: #eee;
 }
 
 .large-icon{
@@ -282,4 +297,29 @@ body{
 	position: absolute;
 	width: calc(100% - 60px);
 	text-align: center;
+}
+
+
+paper-toggle-button::shadow paper-radio-button::shadow #ink[checked] {
+  color: #E74C3C;
+}
+
+paper-toggle-button::shadow paper-radio-button::shadow #onRadio {
+  background-color: #E74C3C;
+}
+
+paper-toggle-button::shadow #toggleBar[checked] {
+  background-color: #E74C3C;
+}
+
+paper-toggle-button::shadow paper-radio-button::shadow #ink {
+  color: #3498DB;
+}
+
+paper-toggle-button::shadow paper-radio-button::shadow #offRadio {
+  border-color: #3498DB;
+}
+
+paper-toggle-button::shadow #toggleBar {
+  background-color: #3498DB;
 }

@@ -162,36 +162,18 @@ for(var j = 0; j < themes.length; j++){
 	$("#theme-select").html($("#theme-select").html() + sel);
 }
 
-(function() {
-  var init, setupMode, setupTheme;
-
-  init = function() {
-    setupMode();
-    setupTheme();
-    
-    mode_select.change("text");
-    theme_select.change("monokai");
-  };
-
-  setupMode = function() {
-    mode_select =  new Select({
-      el: $('#mode-select')[0],
-      className: 'select-theme-dark',
-      alignToHighlighted: 'never'
-    });
-  };
-
-  setupTheme = function() {
-  	theme_select = new Select({
-      el: $('#theme-select')[0],
-      className: 'select-theme-dark',
-      alignToHighlighted: 'never'
-    });
-  };
-
-  $(init);
-
-}).call(this);
+mode_select =  new Select({
+    el: $('#mode-select')[0],
+    className: 'select-theme-dark',
+    alignToHighlighted: 'never'
+  });
+  theme_select = new Select({
+    el: $('#theme-select')[0],
+    className: 'select-theme-dark',
+    alignToHighlighted: 'never'
+  });
+  //mode_select.change("text");
+  //theme_select.change("monokai");
 /*===============
 SWITCHES
 ===============*/

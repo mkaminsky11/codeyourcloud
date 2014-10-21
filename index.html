@@ -26,17 +26,9 @@
 		
 		<meta charset="utf-8">
     	<title>Code Your Cloud</title>
-		
-	    <!--link href="about/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
-	    <link href="about/flat/css/flat-ui.css" rel="stylesheet"-->
+
 	   
 		<link rel="shortcut icon" type="image/png" href="favicon.png"/>
-
-	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-	    <!--[if lt IE 9]>
-		   <script src="about/flat/js/html5shiv.js"></script>
-	      <script src="about/flat/js/respond.min.js"></script>
-	    <![endif]-->
 	    
 	    <link rel='stylesheet' type='text/css' href='lib/Font/css/font-awesome.min.css'>
 		
@@ -83,6 +75,8 @@
         <link rel="stylesheet" href="fonts/font.css">
         
         <link rel="stylesheet" href="lib/select/css/select-theme-dark.css" />
+        
+        <!--script src='//cdn.goroost.com/roostjs/749cd85a820d4818bf558cc0c1bef812'></script-->		
 
 	</head>
 	<body>
@@ -99,12 +93,6 @@
 				</div>
 				
 				<div class="side-head" id="navigate">
-					<!--
-					list(main)
-					console
-					preview
-					lorem options
-					-->
 					<div class="active" id="nav_list" onclick="nav_list()">
 						<i class="fa fa-list"></i>
 					</div>
@@ -129,7 +117,13 @@
 				<br/>
 				
 				<iframe id="preview" style="display:none" class="preview"></iframe>
-				<div class="preview" style="display: none;position: absolute;bottom: 0;width: calc(100% - 20px);padding: 10px;text-align: center;color: #eee;" onclick="updatePreview()"><i class="fa fa-refresh"></i></div>
+				<core-tooltip class="preview" style="display: none;position: absolute;bottom: 0;width: 100%;text-align: center" label="refresh" position="top">
+				
+					<div style="width: calc(100% - 20px);padding: 10px;text-align: center;color: #eee;" onclick="updatePreview()"><i class="fa fa-refresh"></i>
+						
+					</div>
+				
+				</core-tooltip>
 				
 				<div class="terminal" style="display:none">
 					<div id="repl"></div>
@@ -299,7 +293,6 @@
         	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">  
         	  	<!--paper-icon-button onclick="toggle_side()" icon="menu" id="toggle_side_menu_button"></paper-icon-button-->
         	  	<icon-transition id="toggle_side_menu_button" shape="menu" onclick="toggle_side()"></icon-transition>
-        	  	<!--li id="branding" style="margin-top:7px"><a style="font-size: 28px;" href="https://codeyourcloud.com/about" target="_blank">code your cloud</a></li-->
 				
         	  </ul>
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
@@ -317,24 +310,7 @@
 	
 	
 	  	<!--END NAV-->
-	
-	
-	<!--CHAT-->
-	  	
-	<!--span id="chat-insert" style="display:none"></span>
-	<div class="poly-chat" style="display:none">
-		<div class="poly-chat-content poly-chat-content-active" data-fileid="welcome">
-			
-		</div>
-		<div class="poly-chat-footer">
-			<paper-icon-button icon="send" style="color:white" onclick="sendChat()"></paper-icon-button>
-			
-			<textarea class="chat-input" placeholder="Type something"></textarea>
-		</div>
-	</div-->
-	  	
-	  	
-	<!--END CHAT-->
+
 	
 	<!--MAIN-->
 	  	
@@ -458,17 +434,6 @@
 		<script src="lib/auto/comment.js"></script>
 		<script src="lib/auto/infer.js"></script>
 		<script src="lib/auto/doc_comment.js"></script>
-		
-		<!--script src="about/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
-    	<script src="about/flat/js/jquery.ui.touch-punch.min.js"></script>
-    	<script src="about/flat/js/bootstrap.min.js"></script>
-    	<script src="about/flat/js/bootstrap-select.js"></script>
-    	<script src="about/flat/js/bootstrap-switch.js"></script>
-    	<script src="about/flat/js/flatui-checkbox.js"></script>
-    	<script src="about/flat/js/flatui-radio.js"></script>
-    	<script src="about/flat/js/jquery.tagsinput.js"></script>
-    	<script src="about/flat/js/jquery.placeholder.js"></script-->
-    	<!--script src="about/flat/js/application.js"></script-->
       
       
       	<script src="lib/big-text/big-text.js"></script>
