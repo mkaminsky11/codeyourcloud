@@ -153,7 +153,7 @@ USERS
 
 //insert a new collaborating user
 function insertUser(name, color, photo, id, fileid){
-	var new_user = "<core-tooltip label='"+name+"' position='left'><img class=\"user-photo\" id=\"img_" + id + "\" src=\""+ photo +"\" height=\"53px\" width=\"53px\" style=\"border:solid 4px "+ color +"\"></core-tooltip>";
+	var new_user = "<core-tooltip class='fancy' label='"+name+"' position='left'><img class=\"user-photo\" id=\"img_" + id + "\" src=\""+ photo +"\" height=\"53px\" width=\"53px\" style=\"border:solid 4px "+ color +"\"></core-tooltip>";
 	
 	
 	$(".users-container[data-fileid='"+fileid+"']").html( $(".users-container[data-fileid='"+fileid+"']").html() + new_user);

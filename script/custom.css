@@ -361,13 +361,13 @@ paper-toast{
 	margin: 0;
 	font-size: 19px;
 	color: #BEB8B8;
-	display: none;
+	opacity: 0;
 }
 .tab-tab:hover{
 	display: inline-block !important;
 }
 .tab-tab:hover h6{
-	display: inline-block;
+	opacity: 1;
 }
 
 .tab-active{

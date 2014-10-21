@@ -77,6 +77,23 @@
         <link rel="stylesheet" href="lib/select/css/select-theme-dark.css" />
         
         <!--script src='//cdn.goroost.com/roostjs/749cd85a820d4818bf558cc0c1bef812'></script-->		
+        
+        <style shim-shadowdom>
+		    core-tooltip.fancy::shadow .core-tooltip {
+		      opacity: 0;
+		      -webkit-transition: all 300ms cubic-bezier(0,1.92,.99,1.07);
+		      transition: all 300ms cubic-bezier(0,1.92,.99,1.07);
+		      -webkit-transform: translate3d(0, -10px, 0);
+		      transform: translate3d(0, -10px, 0);
+		    }
+		
+		    core-tooltip.fancy:hover::shadow .core-tooltip,
+		    core-tooltip.fancy:focus::shadow .core-tooltip {
+		      opacity: 1;
+		      -webkit-transform: translate3d(0, 0, 0);
+		      transform: translate3d(0, 0, 0);
+		    }
+		</style>
 
 	</head>
 	<body>
@@ -117,7 +134,7 @@
 				<br/>
 				
 				<iframe id="preview" style="display:none" class="preview"></iframe>
-				<core-tooltip class="preview" style="display: none;position: absolute;bottom: 0;width: 100%;text-align: center" label="refresh" position="top">
+				<core-tooltip class="preview fancy" style="display: none;position: absolute;bottom: 0;width: 100%;text-align: center" label="refresh" position="top">
 				
 					<div style="width: calc(100% - 20px);padding: 10px;text-align: center;color: #eee;" onclick="updatePreview()"><i class="fa fa-refresh"></i>
 						
@@ -175,7 +192,7 @@
 					</div>
 				</div>
 				<div class="chats" id="chats-bottom" style="display:none">
-					<textarea id="chats-text" placeholder="Type something" class="chat-input" onchange="sendChat()"></textarea>
+					<textarea id="chats-text" placeholder="Type something" class="chat-input"></textarea>
 				</div>
 
 				<div class="side-store">

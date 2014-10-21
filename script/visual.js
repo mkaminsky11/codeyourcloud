@@ -493,24 +493,12 @@ function updatePreview() {
 		preview.write(c);
 		preview.close();
 }
-/*=========
-SCREEN
-==========*/
-function lift_screen(){
-	if(window.location.href.indexOf("?lift=no") === -1){
-		if(!is_mobile){
-			$("#screen").animate({
-				marginTop: "-100%",
-				marginBottom: "100%"
-			},750,function(){
-				$("#screen").remove();
-			});
-		}
-		else{
-			$("#screen").fadeOut("slow",function(){
-				$("#screen").remove();
-			});
-		}
-	}
-}
 
+/*=====
+CHAT
+=======*/
+$("#chats-text").keyup(function(event){
+    if(event.keyCode == 13){
+        sendChat();
+    }
+});

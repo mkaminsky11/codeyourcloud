@@ -8,7 +8,7 @@ function web(){
 	}, { 
 		duration: 500,
 		complete: function(){
-			$("#screen").attr("src","images/browser.png");
+			$("#screen").attr("src","images/web_record.gif");
 			$("#screen").css("width","80%");
 			$("#screen").css("left","10%");
 			

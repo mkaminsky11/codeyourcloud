@@ -160,7 +160,18 @@ function opentab(id){
   
 	current_file = id;
   
-	editor().refresh();
+	try{
+		editor().refresh();
+	}
+	catch(e){
+		$("#title").val("Code Your Cloud");
+		$("#rename-toggle").css("display","none");
+		$("#rename_input").val("");
+		
+		if($(".chats").css("display") !== "none"){
+			nav_list();
+		}	
+	}
 	
 	//adjust things here
 	var index = getIndex(id);
