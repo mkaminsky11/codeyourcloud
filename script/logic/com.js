@@ -69,14 +69,15 @@ function setText(value){
 	text.setText(value);
 }
 
-function insertChat(the_message, the_name, is_you, the_photo){
+function insertChat(the_message, the_name, is_you, the_photo, is_new){
 	sendData({
 		type: "insert_chat",
 		message: the_message,
 		name: the_name,
 		you: is_you,
 		photo: the_photo,
-		currentfile: current_file
+		currentfile: current_file,
+		is_new: is_new
 	});
 }
 

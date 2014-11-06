@@ -1,0 +1,10 @@
+---
+layout: content
+side-nav: api-side-navigation
+page-class: api-documentation
+title: Chartist - API Documentation
+description: Detailed documentation of the Chartist.js code and API
+---
+{{#each (doxTransform apidox)}}
+  {{>dox-section}}
+{{/each}}

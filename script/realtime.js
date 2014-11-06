@@ -145,6 +145,9 @@ function get_info(){
         if(sql_loaded){
         	get_sql(); //get preferences via SQL
         }
+        
+        $(".root-tree").attr("data-tree-ul", myRootFolderId);
+        get_tree(myRootFolderId);
     });
 }
 /*============

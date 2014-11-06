@@ -99,8 +99,13 @@
 	<body>
 		<paper-spinner id="paper-loading-spinner" style="display:none"></paper-spinner>	
 	
+		<div id="tree-open" class="tree" style="display:none">
+			<ul class="root-tree"></ul>
+			<span><i class="fa fa-times"></i></span>
+		</div>
+
 	<!--SIDEBAR-->
-	
+			
 		<div id="side" style="display:none">
 			<div id="side_inner">
 				<div class="side-head" style="height:auto">
@@ -110,6 +115,9 @@
 				</div>
 				
 				<div class="side-head" id="navigate">
+					<div id="nav_tree" onclick="nav_tree()">
+						<i class="fa fa-folder-open"></i>
+					</div>
 					<div class="active" id="nav_list" onclick="nav_list()">
 						<i class="fa fa-list"></i>
 					</div>
@@ -141,6 +149,12 @@
 					</div>
 				
 				</core-tooltip>
+				
+				<div class="tree tree-tree" style="display:none">
+					<ul class="root-tree">
+						
+					</ul>
+				</div>
 				
 				<div class="terminal" style="display:none">
 					<div id="repl"></div>
@@ -410,6 +424,8 @@
 		<script src = 'lib/codemirror/mode/css/css.js'></script>
 		<script src = "lib/codemirror/mode/mode.js"></script>
 		<script src = "lib/codemirror/mode/swift.js"></script>
+		<script src= "lib/codemirror/mode/markdown/markdown.js"></script>
+		<script src= "lib/codemirror/mode/gfm/gfm.js"></script>
 		
 		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/theme.css'>
 		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/code-your-cloud.css'>
@@ -471,6 +487,7 @@
 		<script src="script/picker.js"></script>
 		<script src="script/features.js"></script>
 		<script src="script/broadcast.js"></script>
+		<script src="script/tree.js"></script>
 		
 		<script src="script/custom.js"></script>
 		<script src="script/tabs.js"></script>

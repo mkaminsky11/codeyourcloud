@@ -13,6 +13,16 @@ connection.onmessage = function (message) {
 	try {
 		var json = JSON.parse(message.data);
 		console.log(json);
+
+		if(json.type === "translate"){
+			var code_before = json.code;
+			var find = "console.log";
+			var re = new RegExp(find, 'g');
+
+			var code_after = code_before.replace(re, 'repl.print');
+			repl.eval(code_after);
+		}
+
 		if(json.type === "get"){
 
 			rec = true;

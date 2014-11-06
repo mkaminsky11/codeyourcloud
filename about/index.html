@@ -33,12 +33,15 @@
 		<link rel="import" href="../poly/components/paper-toast/paper-toast.html">
 		<link rel="import" href="../poly/components/paper-spinner/paper-spinner.html"> 
 		
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="../lib/velocity/velocity.min.js"></script>
         <script src="../lib/velocity/velocity.ui.min.js"></script>
         
-        <link href='//cdn.jsdelivr.net/devicons/1.4.0/css/devicons.min.css' rel='stylesheet'>
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/devicons/1.4.0/css/devicons.min.css" rel='stylesheet'>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+		<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 
 	</head>
 	<body>
@@ -68,8 +71,8 @@
 		</div>
 		
 		<div class="dark-part">
-			<div class="section group">
 			
+			<div class="section group">
 				<div class="col span_1_of_2 border-right-white">
 					<h6 class="small white code-light uppercase">Code Your Cloud is an in-browser code editor for Google Drive. Packed with awesome editing and collaborative abilities, it's the ideal editor for quick fixes and demonstrations.</h6>
 				</div>
@@ -79,6 +82,8 @@
 				</div>
 
 			</div>
+			
+			
 		</div>
 		
 		<div class="white-part">
@@ -170,6 +175,13 @@
      		<br/>
 		</div>
 		
+		
+		<div class="white-part">
+			<h4 id="chart">A growing number of daily users</h4>
+			
+			<div class="ct-chart ct-perfect-fourth"></div>
+		</div>
+		
 		<div class="white-part">
 			<div class="section group">
 				<div class="col span_1_of_4 text-center hover-col" id="github_col">
@@ -200,7 +212,9 @@
 		
 		<script type="text/javascript" src="//apis.google.com/js/client.js?onload=loadDrive"></script>
 		
-		<script src="lib/fit.js"></script>
+		<script src="../lib/chartist/libdist/chartist.min.js">
+		</script>
+		<script src="../lib/fit/fit.js"></script>
 		<script src="js/index.js"></script>
 	</body>
 </html>

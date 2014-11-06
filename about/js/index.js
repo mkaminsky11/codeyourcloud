@@ -173,3 +173,53 @@ function redirect(){
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-47415821-1', 'codeyourcloud.com');
 ga('send', 'pageview');
+
+
+
+//chart
+
+//9/22 to 10/22
+//30
+new Chartist.Line('.ct-chart', {
+  labels: 	['9/22','','','','','','','','','','','','','','','','','','','','10/22'],
+  series: [
+	{
+		name: "Daily users",
+		data: [218,262,270,306,363,393,423,428,407,321,382,430,413,448,448,463,492,488,530,459,614,672,632]
+  	}	
+  ]
+},{
+  lineSmooth: false,
+  low: 0,
+  showArea: true
+});
+
+var easeOutQuad = function (x, t, b, c, d) {
+  return -c * (t /= d) * (t - 2) + b;
+};
+
+var $chart = $('.ct-chart');
+
+var $toolTip = $chart.append('<div class="tooltip"></div>').find('.tooltip').hide();
+
+
+$chart.on('mouseenter', '.ct-point', function() {
+  var $point = $(this);
+  var value = $point.attr('ct:value');
+  var seriesName = $point.parent().attr('ct:series-name');
+  $point.animate({'stroke-width': '50px'}, 300, easeOutQuad);
+  $toolTip.html(seriesName + '<br>' + value).show();
+});
+
+$chart.on('mouseleave', '.ct-point', function() {
+  var $point = $(this);
+  $point.animate({'stroke-width': '10px'}, 300, easeOutQuad);
+  $toolTip.hide();
+});
+
+$chart.on('mousemove', function(event) {
+  $toolTip.css({
+    left: event.offsetX - $toolTip.width() / 2 - 10,
+    top: event.offsetY - $toolTip.height() - 40
+  });
+});

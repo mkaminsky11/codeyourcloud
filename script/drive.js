@@ -1,3 +1,36 @@
+function getFile(fileId, callback){
+	var request = gapi.client.drive.files.get({
+	    'fileId': fileId
+	  });
+	  request.execute(function(resp) {
+	    callback(resp);
+	  });
+}
+
+function retrieveAllFilesInFolder(folderId, callback) {
+  var retrievePageOfChildren = function(request, result) {
+    request.execute(function(resp) {
+      result = result.concat(resp.items);
+      var nextPageToken = resp.nextPageToken;
+      if (nextPageToken) {
+        request = gapi.client.drive.children.list({
+          'folderId' : folderId,
+          'pageToken': nextPageToken
+        });
+        retrievePageOfChildren(request, result);
+      } else {
+        callback(result, folderId);
+      }
+    });
+  }
+  var initialRequest = gapi.client.drive.children.list({
+      'folderId' : folderId
+    });
+  retrievePageOfChildren(initialRequest, []);
+}
+
+
+
 /*================
 store google drive functions
 ================*/

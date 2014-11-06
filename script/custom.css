@@ -291,7 +291,7 @@ div#container{
 }
 
 .navbar paper-icon-button, .navbar icon-transition{
-	color: #afafaf;
+	color: #323232;
 	top: 5px;
 	margin-right: 5px;
 }
@@ -646,7 +646,7 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 
 #navigate div{
 	color: #9e9e9e;
-	width: 16.6666667%;
+	width: /*16.6666667%*/ 12.91%;
 	display: inline-block;
 	float: left;
 	height: 23px;
@@ -783,4 +783,63 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 	margin-top: -22px;
 	overflow: scroll;
 	-webkit-overflow-scrolling: touch;
+}
+.hide{
+	display: none !important;
+}
+
+core-tooltip{
+	outline: none !important;
+	-webkit-appearance: none !important;
+}
+
+.tree-tree{
+	overflow: scroll;
+	height: calc(100% - 105px);
+}
+.tree ul{
+	list-style-type: none;
+	-webkit-padding-start: 10px !important;
+}
+.tree li{
+	color: #F0EFEF;
+	font-family: 'Roboto-Thin';
+	font-weight: 600;
+	font-size: 15px;
+	margin-top: 7px;
+	margin-bottom: 7px;
+	overflow-wrap: break-word;
+}
+.tree i{
+	margin-right: 10px;
+	color: #9E9E9E;
+}
+
+#tree-open{
+	overflow: scroll;
+	position: fixed;
+	width: 180px;
+	/* padding: 10px; */
+	right: 10px;
+	top: 43px;
+	height: 200px;
+	background-color: #323232;
+	z-index: 1;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-top: 20px;
+}
+#tree-open>span{
+	color: #E74C3C;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	font-size: 16px;
+}
+#tree-open>span>i{
+	color: #E74C3C !important;
+}
+.tree .fa-spin{
+	color: #2ECC71;
 }

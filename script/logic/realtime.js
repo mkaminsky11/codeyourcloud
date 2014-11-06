@@ -20,11 +20,11 @@ var newChat = function(event){
 	var last_index = array.length - 1;
 	if(event.isLocal){
 		//done by you
-		insertChat(array[last_index][0], array[last_index][1], true, your_photo);
+		insertChat(array[last_index][0], array[last_index][1], true, your_photo, true);
 	}	
 	else{
 		//done by someone else
-		insertChat(array[last_index][0], array[last_index][1], false, array[last_index][3]);
+		insertChat(array[last_index][0], array[last_index][1], false, array[last_index][3], true);
 	}
 };
 
@@ -98,11 +98,11 @@ function loaded_realtime(doc){
 		for(var a = 0; a < chats_so_far.length; a++){
 			if(chats_so_far[a][2] === your_user_id){
 				//written by you
-				insertChat(chats_so_far[a][0], chats_so_far[a][1], true, chats_so_far[a][3]);
+				insertChat(chats_so_far[a][0], chats_so_far[a][1], true, chats_so_far[a][3], false);
 			}
 			else{
 				//written by someone else
-				insertChat(chats_so_far[a][0], chats_so_far[a][1], false, chats_so_far[a][3]);
+				insertChat(chats_so_far[a][0], chats_so_far[a][1], false, chats_so_far[a][3], false);
 			}
 		}
 		

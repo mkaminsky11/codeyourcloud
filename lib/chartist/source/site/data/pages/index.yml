@@ -1,0 +1,65 @@
+gallery-examples:
+  - id: example-gallery-one
+    classes: ct-golden-section
+  - id: example-gallery-two
+    classes: ct-golden-section
+  - id: example-gallery-three
+    classes: ct-golden-section
+  - id: example-gallery-four
+    classes: ct-golden-section
+
+sections:
+  - title: Chart CSS animation example
+    level: 3
+    items:
+      - type: example-chart
+        data:
+          id: example-line-months-interpolation
+          classes: ct-golden-section dark
+      - type: hint
+        data:
+          title: Cross-browser support
+          classes: hint-cross-browser
+          text: Note that CSS3 animations on SVG CSS attributes are not supported on all browsers and the appearance may vary.
+    side-notes:
+      - type: text
+        data:
+          text: Specifying the style of your chart in CSS is not only cleaner but also enables you to use awesome CSS animations and transitions to be applied to your SVG elements!
+
+  - title: New bar chart type!
+    level: 3
+    items:
+      - type: example-chart
+        data:
+          id: example-simple-bar
+          classes: ct-golden-section
+    side-notes:
+      - type: text
+        data:
+          text: We are constantly working on enhancements of our existing charts and adding new chart types. While we only have two chart types currently available you can customize them to your own needs while getting a huge vaiarity of configurations and designs.
+
+  - title: Responsive charts configuration
+    level: 3
+    items:
+      - type: example-chart
+        data:
+          id: example-line-simple-responsive
+          classes: ct-golden-section
+          show-code-button: Show code
+      - type: sub-section
+        data:
+          title: Configuration overrides based on media queries
+          level: 4
+          items:
+            - type: text
+              data:
+                text: Configuring different chart behavior for various media is made simple with an override mechanism. The priority of the override mechanism is based on order of specification of the matching media queries.
+            - type: hint
+              data:
+                title: Cross-browser support
+                classes: hint-cross-browser
+                text: For IE9 you need to use a matchMedia polyfill. You should take a look at <a href="https://github.com/paulirish/matchMedia.js/">Paul Irish's matchMedia polyfill</a>.
+    side-notes:
+      - type: text
+        data:
+          text: With the clear separation of concerns within Chartist.js you're able to style your charts with CSS in @media queries. However, sometimes it requires to also control the behaviour of your charts depending on the media. For this purpose Chartist.js provides you with a simple configuration override mechanism based on media queries.

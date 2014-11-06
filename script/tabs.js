@@ -223,6 +223,12 @@ function removetab(id){
   editors.splice(index,1);
   
   $("#nav_chats").css("display","none");
+  
+  if(editors.length !== 0){
+	  setTimeout(function(){
+		  opentab(editors[0].id);
+	  }, 500)
+  }
 }
 
 function adjust(){
@@ -250,7 +256,7 @@ function adjust(){
 	$(".side-run").addClass("hide"); //<------|
 	$(".side-pub").addClass("hide"); //<-----------------------------------------------IMPORTANT
 	
-	if(mode === "text/javascript"){
+	if(mode === "text/javascript" || mode === "text/x-python"){
 		$(".side-run").removeClass("hide"); //<------------
 	}
 	else if(mode === "text/x-coffeescript"){
@@ -261,7 +267,7 @@ function adjust(){
 		$(".side-pub").removeClass("hide"); //<--------------
 	}
 	
-	else if(mode === "text/x-markdown" || mode === "gfm"){
+	else if(mode === "text/x-markdown" || mode === "gfm" || mode === "markdown"){
 		$(".side-pub").removeClass("hide"); //<------------
 	}
 }
@@ -275,7 +281,7 @@ function chat(){
 
 function insert_chat(message, you, photo, name, fileid){
 	if(message.trim() !== ""){
-	  var tooltip = "<core-tooltip label='"+name+"' position='right'>";
+	  var tooltip = "<core-tooltip class='fancy' label='"+name+"' position='right'>";
 	  var push = "<div class=\"chat-item\">";
 	  push = push + tooltip + "<img height=\"30px\" width=\"30px\" src=\""+ photo +"\"></core-tooltip>";
 	  push = push + "<pre>";

@@ -172,8 +172,8 @@ mode_select =  new Select({
     className: 'select-theme-dark',
     alignToHighlighted: 'never'
   });
-  //mode_select.change("text");
-  //theme_select.change("monokai");
+mode_select.change("text");
+theme_select.change("monokai");
 /*===============
 SWITCHES
 ===============*/
@@ -272,14 +272,19 @@ CONSOLE
 ==============*/
 
 function run(){
-	var code_before_replace = editor().getValue();
-	if(editor().getOption("mode") === "text/x-coffeescript"){
-		code_before_replace = CoffeeScript.compile(code_before_replace, { bare: true });
+	if(editor().getOption("mode") === "text/x-python"){
+		connection.send(JSON.stringify({type:"translate", lang:"text/x-python", code: editor().getValue()}));
 	}
-	var find = 'console.log';
-	var re = new RegExp(find, 'g');
-	code_before_replace = code_before_replace.replace(re, 'repl.print');
-	repl.eval(code_before_replace);
+	else{
+		var code_before_replace = editor().getValue();
+		if(editor().getOption("mode") === "text/x-coffeescript"){
+			code_before_replace = CoffeeScript.compile(code_before_replace, { bare: true });
+		}
+		var find = 'console.log';
+		var re = new RegExp(find, 'g');
+		code_before_replace = code_before_replace.replace(re, 'repl.print');
+		repl.eval(code_before_replace);
+	}
 }
 
 
