@@ -70,12 +70,12 @@ body{
 #bottom_button{
 	width:63px;
 	color:white;
-	background-color:#3498DB;
+	background-color:#E74C3C;
 	margin-right:10px;
 }
 #bottom_button:hover{
 	color:white;
-	background-color:#2980B9;
+	background-color:#C0392B;
 }
 #bottom_button>a:hover{
 	color:white;

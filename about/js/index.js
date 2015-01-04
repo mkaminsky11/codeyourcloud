@@ -178,9 +178,7 @@ ga('send', 'pageview');
 
 //chart
 
-//9/22 to 10/22
-//30
-new Chartist.Line('.ct-chart', {
+/*new Chartist.Line('.ct-chart', {
   labels: 	['9/22','','','','','','','','','','','','','','','','','','','','10/22'],
   series: [
 	{
@@ -222,4 +220,4 @@ $chart.on('mousemove', function(event) {
     left: event.offsetX - $toolTip.width() / 2 - 10,
     top: event.offsetY - $toolTip.height() - 40
   });
-});
+});*/

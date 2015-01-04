@@ -103,7 +103,7 @@ body{
 .hover-1:hover core-icon{
 	color:#e74c3c;
 }.hover-2:hover core-icon{
-	color:#3498db;
+	color:#E74C3C;
 }.hover-3:hover core-icon{
 	color:#2ecc71;
 }.hover-4:hover core-icon{
@@ -111,7 +111,7 @@ body{
 }.hover-5:hover core-icon{
 	color:#e67e22;
 }.hover-6:hover core-icon{
-	color:#2980b9;
+	color:#C0392B;
 }.hover-7:hover core-icon{
 	color:#c0392b;
 }.hover-8:hover core-icon{
@@ -129,7 +129,7 @@ body{
 }.hover-14:hover core-icon{
 	color:#d35400;
 }.hover-15:hover core-icon{
-	color:#3498db;
+	color:#E74C3C;
 }.hover-16:hover core-icon{
 	color:#1abc9c;
 }.hover-17:hover core-icon{
@@ -470,19 +470,19 @@ paper-toast{
 
 /*.poly-blue*/
 paper-checkbox.poly-blue::shadow #ink[checked] {
-	color: #3498DB;
+	color: #E74C3C;
 }
     
 paper-checkbox.poly-blue::shadow #checkbox.checked {
-	border-color: #3498DB;
+	border-color: #E74C3C;
 }
 
 paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #sliderBar::shadow #activeProgress {
-	background-color: #3498DB;
+	background-color: #E74C3C;
 }
 
 /*.blue-paper-input #focusedUnderline{
-	background-color: #3498DB !important;
+	background-color: #E74C3C !important;
 }*/
 
 #new_title_input{
@@ -538,10 +538,10 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 	padding: 7px;
 	font-size: 18px;
 	font-family: 'Roboto-Thin';
-	background-color: #03a9f4;
+	background-color: #E74C3C;
 	border-radius: 4px;
 	color: #eee;
-	border: solid 1px #03a9f4;
+	border: solid 1px #E74C3C;
 	-webkit-transition-property: color;
 	-webkit-transition-duration: 0.5s;
 	transition-property: color;
@@ -554,7 +554,7 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 	text-decoration: none;
 }
 .btn:hover{
-	color: #03a9f4;
+	color: #E74C3C;
 	background-color: transparent;
 }
 
@@ -603,7 +603,7 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 	-webkit-transition-duration: 0.5s;
 	transition-property: border;
 	transition-duration: 0.5s;
-	border: solid 2px #03a9f4;
+	border: solid 2px #E74C3C;
 }
 
 #plus-plus{
