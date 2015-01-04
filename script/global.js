@@ -1,3 +1,4 @@
+
 /*==============================
 A file to store global variables
 ==============================*/
@@ -97,6 +98,19 @@ function setFileTitle(id, title){
 	if(current_file === id){
 		$("#title").val(editors[index].title);
 	}
+
+	var t_t = title.toLowerCase();
+
+	if(t_t.indexOf("png") !== -1 || t_t.indexOf(".jpg") !== -1 || t_t.indexOf(".jpeg") !== -1 || t_t.indexOf(".tiff") !== -1 || t_t.indexOf(".gif") !== -1){
+		editors[index].image = true;
+		if(current_file === id){
+			read_image(id);
+		}
+	}
+	
+	var j = $("[data-tree-li='"+id+"'] span").html().split(">");
+	j[2] = title;
+	$("[data-tree-li='"+id+"'] span").html(j.join(">"))
 }
 
 

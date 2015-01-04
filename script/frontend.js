@@ -1,6 +1,6 @@
 var connection = new WebSocket('wss://codeyourcloud.com:8080');
 connection.onopen = function () {
-	console.log("%cThe webocket has opened", "color:#27AE60; font-size: 12px");
+	console.log("%cThe websocket has opened", "color:#27AE60; font-size: 12px");
     websocketInit();
 };
 function websocketInit(){
@@ -32,15 +32,6 @@ connection.onmessage = function (message) {
 			proccess_time();
 			
 			
-			/*theme_sql = json.theme.split("_").join("-");
-			if(themes_name.indexOf(theme_sql) !== -1){
-				setTheme(theme_sql);
-			}
-			else{
-				theme_sql = "monokai";
-				set_sql();
-			}*/
-			//FONT_SIZE *done
 			$(".CodeMirror").css("fontSize", json.font_size+"px");
 			$("#spinner-font").val(json.font_size);
 			sql_font = json.font_size;

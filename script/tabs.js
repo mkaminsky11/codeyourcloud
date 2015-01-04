@@ -193,6 +193,12 @@ function opentab(id){
 		$("#rename_input").val(editors[index].title);
 	}
 	
+	if(editors[index].image){
+		read_image(id);	
+	}
+	else{
+		$("#image_div").css("display","none");
+	}
 	adjust();
 	
 }

@@ -19,6 +19,7 @@ function tree_folder(id, callback){
 			var id_id = data[i].id;
 			
 			getFile(id_id, function(resp){
+				//console.log(resp);
 				var to_push = {
 					title: resp.title,
 					id: resp.id,

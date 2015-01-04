@@ -94,6 +94,10 @@
 		      transform: translate3d(0, 0, 0);
 		    }
 		</style>
+		
+		<link rel="stylesheet" href="lib/intro/introjs.min.css">
+		
+		<script src="lib/intro/intro.js"></script>
 
 	</head>
 	<body>
@@ -323,16 +327,18 @@
         	<div class="" id="navbar-collapse-01" style="width: 99%;">
         	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">  
         	  	<!--paper-icon-button onclick="toggle_side()" icon="menu" id="toggle_side_menu_button"></paper-icon-button-->
-        	  	<icon-transition id="toggle_side_menu_button" shape="menu" onclick="toggle_side()"></icon-transition>
+        	  	<icon-transition id="toggle_side_menu_button" shape="menu" onclick="toggle_side()" data-step="1" data-intro='Welcome to Code Your Cloud! Clicking here will show the sidebar' data-position="right"></icon-transition>
 				
         	  </ul>
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
         	  
-        	  	<paper-icon-button id="open_button" icon="drive" onclick="open_picker()"></paper-icon-button>
-        	  	<paper-icon-button id="save_button" icon="save" onclick="save()"></paper-icon-button>
+        	  	<paper-icon-button id="help_button" icon="help" onclick="introJs().start();"></paper-icon-button>
+        	  	<paper-icon-button id="open_button" icon="drive" onclick="open_picker()"data-step="2" data-intro='This will open up the file chooser'></paper-icon-button>
+        	  	<paper-icon-button id="save_button" icon="save" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'></paper-icon-button>
         	  	<paper-icon-button id="undo_button" icon="rotate-left" onclick="editor_undo()"></paper-icon-button>
         	  	<paper-icon-button id="redo_button" icon="rotate-right" onclick="editor_redo()"></paper-icon-button>
         	  	
+			  	
 			  	<img id="profile_pic" src="" height="35px" width="35px">
         	  
         	  </ul>
@@ -352,8 +358,8 @@
 	</div>
 	  	
 	<div style="width:100%;height:100%;position:fixed;z-index: 0;" class="move">
-		<div class="tab-wrapper">
-			<div id="plus-plus" onclick="$('#new-popup').toggle();">
+		<div class="tab-wrapper" data-step="4" data-intro='This allows you to switch between files using tabs' data-position="bottom">
+			<div id="plus-plus" onclick="$('#new-popup').toggle();" data-step="5" data-intro='And to create new files' data-position="left">
 				+
 			</div>
 		
@@ -370,7 +376,7 @@
 		</div>
 		
 		<div class="mains" style="position: absolute;height: calc(100% - 83px);width: 100%;margin-top: 10px;background-color:white">
-			
+			<div id="image_div" style="display:none;position: absolute;width: 100%;height: 100%;top: 0;left: 0;background-color: #323232;z-index: 3;"></div>	
 			<div id ="welcome" class="codemirror-container codemirror-active" id="welcome" data-fileid="welcome"></div>
 			<span id="insert-point" style="display:none"></span>
 			
@@ -380,13 +386,13 @@
 				<h4>SELECTED</h4>
 			</div>
 			
-			<div id="users">
+			<div id="users" data-step="6" data-intro='Anyone who is also working on this file will be shown here' data-position="left">
 				<div class="users-container users-container-active" data-fileid="welcome"></div>
 			</div>
 			
 			
 			<div id="tool-bar">
-				<input type='text' id="custom" />
+				<input type='text' id="custom" data-step="7" data-intro='You even get a color picker!' data-position="left"/>
 			</div>
 		</div>
 		</div>

@@ -843,3 +843,13 @@ core-tooltip{
 .tree .fa-spin{
 	color: #2ECC71;
 }
+
+#image_div{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#image_div>img{
+	max-width: 80%;
+	max-height: 80%;
+}
