@@ -1,3 +1,21 @@
+
+
+$(".hover-col").each(function(index){
+	var this_this = this;
+	//jQuery(".resize").fitText(0.8);
+	//$(this_this).textfill({ maxFontPixels: 36 });
+	$(this_this).hover(function(){
+		//on hover
+		$(this).find(".color").slideDown();
+		$(this).find("i").velocity({color:"white"});
+		$(this).find("a").velocity({color:"white"});
+	},function(){
+		$(this).find(".color").slideUp();
+		$(this).find("i").velocity({color:"#212121"});
+		$(this).find("a").velocity({color:"#212121"});
+	});
+});
+
 //$("h1").fitText();
 $("#logos").fitText();
 
@@ -36,14 +54,14 @@ function mobile(){
 	});
 }
 
-document.getElementById("switcher").addEventListener('change',function(){
+/*document.getElementById("switcher").addEventListener('change',function(){
 	if(document.getElementById("switcher").checked){
 		mobile();
 	}
 	else{
 		web();
 	}
-});
+});*/
 
 
 var ok = true;
@@ -178,46 +196,20 @@ ga('send', 'pageview');
 
 //chart
 
-/*new Chartist.Line('.ct-chart', {
-  labels: 	['9/22','','','','','','','','','','','','','','','','','','','','10/22'],
-  series: [
-	{
-		name: "Daily users",
-		data: [218,262,270,306,363,393,423,428,407,321,382,430,413,448,448,463,492,488,530,459,614,672,632]
-  	}	
-  ]
-},{
-  lineSmooth: false,
-  low: 0,
-  showArea: true
-});
 
-var easeOutQuad = function (x, t, b, c, d) {
-  return -c * (t /= d) * (t - 2) + b;
-};
+var colors = ["#E74C3C", "#2ECC71", "#3498DB", "#9B59B6", "#E67E22", "#1ABC9C", "#34495E"];
+var color_index = 0;
+window.setInterval(function(){
+	color_index++;
+	if(color_index >= colors.length){
+		color_index = color_index - colors.length;
+	}
 
-var $chart = $('.ct-chart');
-
-var $toolTip = $chart.append('<div class="tooltip"></div>').find('.tooltip').hide();
+	$("#main").velocity({
+		backgroundColor: colors[color_index]
+	},{
+		duration: 700
+	});
+}, 3000);
 
 
-$chart.on('mouseenter', '.ct-point', function() {
-  var $point = $(this);
-  var value = $point.attr('ct:value');
-  var seriesName = $point.parent().attr('ct:series-name');
-  $point.animate({'stroke-width': '50px'}, 300, easeOutQuad);
-  $toolTip.html(seriesName + '<br>' + value).show();
-});
-
-$chart.on('mouseleave', '.ct-point', function() {
-  var $point = $(this);
-  $point.animate({'stroke-width': '10px'}, 300, easeOutQuad);
-  $toolTip.hide();
-});
-
-$chart.on('mousemove', function(event) {
-  $toolTip.css({
-    left: event.offsetX - $toolTip.width() / 2 - 10,
-    top: event.offsetY - $toolTip.height() - 40
-  });
-});*/

@@ -10,6 +10,7 @@
 	display: block;
 	float:left;
 	margin: 1% 0 1% 1.6%;
+	position: relative;
 }
 .col:first-child { margin-left: 0; }
 

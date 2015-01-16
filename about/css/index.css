@@ -13,58 +13,18 @@
 #login{
 	position: absolute;
 	right: 10px;
-	height: 22px;
-	padding: 7px;
-	font-size: 18px;
-	border-radius: 4px;
-	border: none;
-	font-family: 'Roboto-Thin';
+	font-family: 'Roboto';
+	color: white;
 	background-color: #3498DB;
-	color: #eee;
-	top: 8px;
-	-webkit-transition-property: color;
-	-webkit-transition-duration: 0.5s;
-	transition-property: color;
-	transition-duration: 0.5s;
-	-webkit-transition-property: background-color;
-	-webkit-transition-duration: 0.5s;
-	transition-property: background-color;
-	transition-duration: 0.5s;
-}
-
-#login:hover{
-	background-color: #2980B9;
-	color: #ECF0F1;
 }
 
 #github{
-	text-decoration: none;
-	position: absolute;
 	right: 89px;
-	height: 22px;
-	padding: 7px;
-	font-size: 18px;
-	border-radius: 4px;
-	border: solid 1px #eee;
-	font-family: 'Roboto-Thin';
-	color: #eee;
-	background-color: transparent;
-	top: 8px;
-
-
-	-webkit-transition-property: color; /* Safari */
-    -webkit-transition-duration: 0.5s;
-	transition-property: color;
-	transition-duration: 0.5s;
-	-webkit-transition-property: background-color; /* Safari */
-    -webkit-transition-duration: 0.5s;
-    transition-property: background-color;
-    transition-duration: 0.5s;
-}
-
-#github:hover{
-	background-color: #eee;
-	color: #424242;
+	
+	position: absolute;
+	font-family: 'Roboto';
+	color: black;
+	background-color: white;
 }
 body{
 	margin: 0;
@@ -157,7 +117,7 @@ body{
 .dark-part{
 	width: calc(100% - 60px);
 	padding: 30px;
-	background-color: #424242;
+	background-color: #596B6C;
 }
 .white-part{
 	width: calc(100% - 60px);
@@ -192,7 +152,7 @@ body{
 	color: #eee;
 }
 .border-right-white{
-	border-right: solid thin #eee;
+	border-right: solid thin #938A8A;
 }
 .border-left-white{
 	border-left: solid thin #eee;
@@ -221,29 +181,17 @@ body{
 	text-align: center;
 	margin:0;
 }
-.btn{
-	padding: 7px;
-	font-size: 18px;
-	font-family: 'Roboto-Thin';
-	background-color: #34495E;
-	border-radius: 4px;
-	color: #eee;
-	border: solid 1px white;
-	-webkit-transition-property: color;
-	-webkit-transition-duration: 0.5s;
-	transition-property: color;
-	transition-duration: 0.5s;
-	-webkit-transition-property: background-color;
-	-webkit-transition-duration: 0.5s;
-	transition-property: background-color;
-	transition-duration: 0.5s;
-	text-transform: uppercase;
-	text-decoration: none;
+.btn-btn{
+	background-color: white;
+	color: black;
+	font-family: 'Roboto';
+	font-size: 17px;
 }
-.btn:hover{
-	color: #ECF0F1;
-	background-color: #2C3E50;
+
+paper-button{
+	font-size: 17px !important;
 }
+
 .input{
 	width: calc(100% - 30px);
 	margin-bottom: 10px;
@@ -292,6 +240,8 @@ body{
 	margin-top: 20px;
 	font-family: 'Baron';
 	color: #212121;
+
+	
 	
 	-webkit-transition-property: color;
 	-webkit-transition-duration: 0.5s;
@@ -347,4 +297,28 @@ paper-toggle-button::shadow #toggleBar {
 	background-color: #F1C40F;
 	z-index: 2;
 	color: #34495E;
+}
+
+.hover-col{
+	padding-bottom: 30px;
+}
+
+.color{
+	position: absolute;
+	bottom: -14px;
+	height: calc(100% + 30px);
+	width: 100%;
+	left: 0px;
+	z-index: 0;
+}
+
+.hover-col i, .hover-col a{
+	z-index: 1;
+	position: relative;
+	text-decoration: none;
+}
+
+.color{
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
