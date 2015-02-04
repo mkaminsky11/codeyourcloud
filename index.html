@@ -44,12 +44,6 @@
 		<link rel="stylesheet" href="script/style.css">
 		<link rel="stylesheet" href="script/custom.css">
 		
-		
-		<!--TERMINAL/REPL-->
-		<link rel="stylesheet" href="lib/repl/styles/index.css">
-        <link rel="stylesheet" href="lib/repl/styles/codemirror-repl.css">
-        <link rel="stylesheet" href="lib/repl/styles/themes/eclipse.css">
-        
     
 		<link rel="import" href="poly/components/core-style/core-style.html">
         <link rel="import" href="poly/components/paper-checkbox/paper-checkbox.html">
@@ -161,7 +155,7 @@
 				</div>
 				
 				<div class="terminal" style="display:none">
-					<div id="repl"></div>
+					<iframe src="lib/codemirror-repl/index.html"></iframe>
 				</div>
 				
 				<div id="opt" class="options" style="display:none">
@@ -256,18 +250,6 @@
 				
 				<hr/>
 				
-				<div class="side-item hover-9" onclick="find()">
-					<core-icon icon="search"></core-icon>
-					<h6>Search</h6>
-				</div>
-
-				
-				
-				<!--div class="side-item hover-12" onclick="show_side_preview()">
-					<core-icon icon="visibility"></core-icon>
-					<h6>Preview</h6>
-				</div-->
-				
 				
 				<!--end "tools"-->
 
@@ -327,7 +309,7 @@
         	<div class="" id="navbar-collapse-01" style="width: 99%;">
         	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">  
         	  	<!--paper-icon-button onclick="toggle_side()" icon="menu" id="toggle_side_menu_button"></paper-icon-button-->
-        	  	<icon-transition id="toggle_side_menu_button" shape="menu" onclick="toggle_side()" data-step="1" data-intro='Welcome to Code Your Cloud! Clicking here will show the sidebar' data-position="right"></icon-transition>
+        	  	<icon-transition color="#bdc3c7" id="toggle_side_menu_button" shape="menu" onclick="toggle_side()" data-step="1" data-intro='Welcome to Code Your Cloud! Clicking here will show the sidebar' data-position="right"></icon-transition>
 				
         	  </ul>
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
@@ -354,15 +336,30 @@
 	<div style="display:none" id="new-popup" class="popup">
 		<span onclick="$('#new-popup').toggle();new_file()">New File</span>
 		<span onclick="$('#new-popup').toggle();show_side_open();">Open File</span>
-		<span style="border-bottom: none;" onclick="$('#new-popup').toggle();show_side_upload()">Upload File</span>
+		<span onclick="$('#new-popup').toggle();show_side_upload()">Upload File</span>
 	</div>
+	
+	<div style="display:none" id="search-popup" class="popup">
+		<span onclick="$('#search-popup').toggle();find()">Find</span>
+		<span onclick="$('#search-popup').toggle();replace()">Replace</span>
+	</div>
+	
 	  	
 	<div style="width:100%;height:100%;position:fixed;z-index: 0;" class="move">
+		
 		<div class="tab-wrapper" data-step="4" data-intro='This allows you to switch between files using tabs' data-position="bottom">
-			<div id="plus-plus" onclick="$('#new-popup').toggle();" data-step="5" data-intro='And to create new files' data-position="left">
-				+
+			<div id="plus-plus" class="tab-right" onclick="$('#new-popup').toggle();" data-step="5" data-intro='And to create new files' data-position="left">
+				<i class="fa fa-plus"></i>
+			</div>
+			
+			<div class="tab-right">
+				<i class="fa fa-list-alt"></i>
 			</div>
 		
+			<div class="tab-right" onclick="$('#search-popup').toggle()">
+				<i class="fa fa-search"></i>
+			</div>
+			
 			<div class="tab-container">
 			
 				<span class="tab-tab tab-active" data-fileid="welcome" onclick="opentab('welcome')" style="margin-right:-2px">
@@ -425,13 +422,97 @@
 		<script src="lib/codemirror/lib/codemirror.js"></script>
 		<link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
 		
-		<script src="lib/codemirror-repl/scripts/codemirror-repl.js"></script>
+		<script src="lib/codemirror/mode/apl/apl.js"></script>
+		<script src="lib/codemirror/mode/asterisk/asterisk.js"></script>
+		<script src="lib/codemirror/mode/clike/clike.js"></script>
+		<script src="lib/codemirror/mode/clojure/clojure.js"></script>
+		<script src="lib/codemirror/mode/cobol/cobol.js"></script>
+		<script src="lib/codemirror/mode/coffeescript/coffeescript.js"></script>
+		<script src="lib/codemirror/mode/commonlisp/commonlisp.js"></script>
+		<script src="lib/codemirror/mode/css/css.js"></script>
+		<script src="lib/codemirror/mode/cypher/cypher.js"></script>
+		<script src="lib/codemirror/mode/d/d.js"></script>
+		<script src="lib/codemirror/mode/dart/dart.js"></script>
+		<script src="lib/codemirror/mode/diff/diff.js"></script>
+		<script src="lib/codemirror/mode/django/django.js"></script>
+		<script src="lib/codemirror/mode/dtd/dtd.js"></script>
+		<script src="lib/codemirror/mode/dylan/dylan.js"></script>
+		<script src="lib/codemirror/mode/ebnf/ebnf.js"></script>
+		<script src="lib/codemirror/mode/ecl/ecl.js"></script>
+		<script src="lib/codemirror/mode/eiffel/eiffel.js"></script>
+		<script src="lib/codemirror/mode/erlang/erlang.js"></script>
+		<script src="lib/codemirror/mode/fortran/fortran.js"></script>
+		<script src="lib/codemirror/mode/gas/gas.js"></script>
+		<script src="lib/codemirror/mode/gfm/gfm.js"></script>
+		<script src="lib/codemirror/mode/gherkin/gherkin.js"></script>
+		<script src="lib/codemirror/mode/go/go.js"></script>
+		<script src="lib/codemirror/mode/groovy/groovy.js"></script>
+		<script src="lib/codemirror/mode/haml/haml.js"></script>
+		<script src="lib/codemirror/mode/haskell/haskell.js"></script>
+		<script src="lib/codemirror/mode/haxe/haxe.js"></script>
+		<script src="lib/codemirror/mode/htmlembedded/htmlembedded.js"></script>
+		<script src="lib/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+		<script src="lib/codemirror/mode/http/http.js"></script>
+		<script src="lib/codemirror/mode/idl/idl.js"></script>
+		<script src="lib/codemirror/mode/jade/jade.js"></script>
+		<script src="lib/codemirror/mode/javascript/javascript.js"></script>
+		<script src="lib/codemirror/mode/jinja2/jinja2.js"></script>
+		<script src="lib/codemirror/mode/julia/julia.js"></script>
+		<script src="lib/codemirror/mode/kotlin/kotlin.js"></script>
+		<script src="lib/codemirror/mode/livescript/livescript.js"></script>
+		<script src="lib/codemirror/mode/lua/lua.js"></script>
+		<script src="lib/codemirror/mode/markdown/markdown.js"></script>
+		<script src="lib/codemirror/mode/mirc/mirc.js"></script>
+		<script src="lib/codemirror/mode/mllike/mllike.js"></script>
+		<script src="lib/codemirror/mode/modelica/modelica.js"></script>
+		<script src="lib/codemirror/mode/nginx/nginx.js"></script>
+		<script src="lib/codemirror/mode/ntriples/ntriples.js"></script>
+		<script src="lib/codemirror/mode/octave/octave.js"></script>
+		<script src="lib/codemirror/mode/pascal/pascal.js"></script>
+		<script src="lib/codemirror/mode/pegjs/pegjs.js"></script>
+		<script src="lib/codemirror/mode/perl/perl.js"></script>
+		<script src="lib/codemirror/mode/php/php.js"></script>
+		<script src="lib/codemirror/mode/pig/pig.js"></script>
+		<script src="lib/codemirror/mode/properties/properties.js"></script>
+		<script src="lib/codemirror/mode/puppet/puppet.js"></script>
+		<script src="lib/codemirror/mode/python/python.js"></script>
+		<script src="lib/codemirror/mode/q/q.js"></script>
+		<script src="lib/codemirror/mode/r/r.js"></script>
+		<script src="lib/codemirror/mode/rpm/rpm.js"></script>
+		<script src="lib/codemirror/mode/rst/rst.js"></script>
+		<script src="lib/codemirror/mode/ruby/ruby.js"></script>
+		<script src="lib/codemirror/mode/rust/rust.js"></script>
+		<script src="lib/codemirror/mode/sass/sass.js"></script>
+		<script src="lib/codemirror/mode/scheme/scheme.js"></script>
+		<script src="lib/codemirror/mode/shell/shell.js"></script>
+		<script src="lib/codemirror/mode/sieve/sieve.js"></script>
+		<script src="lib/codemirror/mode/slim/slim.js"></script>
+		<script src="lib/codemirror/mode/smalltalk/smalltalk.js"></script>
+		<script src="lib/codemirror/mode/smarty/smarty.js"></script>
+		<script src="lib/codemirror/mode/smartymixed/smartymixed.js"></script>
+		<script src="lib/codemirror/mode/solr/solr.js"></script>
+		<script src="lib/codemirror/mode/soy/soy.js"></script>
+		<script src="lib/codemirror/mode/sparql/sparql.js"></script>
+		<script src="lib/codemirror/mode/spreadsheet/spreadsheet.js"></script>
+		<script src="lib/codemirror/mode/sql/sql.js"></script>
+		<script src="lib/codemirror/mode/stex/stex.js"></script>
+		<script src="lib/codemirror/mode/tcl/tcl.js"></script>
+		<script src="lib/codemirror/mode/textile/textile.js"></script>
+		<script src="lib/codemirror/mode/tiddlywiki/tiddlywiki.js"></script>
+		<script src="lib/codemirror/mode/tiki/tiki.js"></script>
+		<script src="lib/codemirror/mode/toml/toml.js"></script>
+		<script src="lib/codemirror/mode/tornado/tornado.js"></script>
+		<script src="lib/codemirror/mode/turtle/turtle.js"></script>
+		<script src="lib/codemirror/mode/vb/vb.js"></script>
+		<script src="lib/codemirror/mode/vbscript/vbscript.js"></script>
+		<script src="lib/codemirror/mode/velocity/velocity.js"></script>
+		<script src="lib/codemirror/mode/verilog/verilog.js"></script>
+		<script src="lib/codemirror/mode/xml/xml.js"></script>
+		<script src="lib/codemirror/mode/xquery/xquery.js"></script>
+		<script src="lib/codemirror/mode/yaml/yaml.js"></script>
+		<script src="lib/codemirror/mode/z80/z80.js"></script>
+		<script src="lib/codemirror/mode/swift.js"></script>
 		
-		<script src = 'lib/codemirror/mode/css/css.js'></script>
-		<script src = "lib/codemirror/mode/mode.js"></script>
-		<script src = "lib/codemirror/mode/swift.js"></script>
-		<script src= "lib/codemirror/mode/markdown/markdown.js"></script>
-		<script src= "lib/codemirror/mode/gfm/gfm.js"></script>
 		
 		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/theme.css'>
 		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/code-your-cloud.css'>
@@ -478,9 +559,6 @@
       	<script src="lib/big-text/big-text.js"></script>
       	<script src="lib/coffee/coffee.js"></script>
       	<script src="lib/markdown/markdown.js"></script>
-      	
-        <script src="lib/repl/scripts/codemirror-repl.js"></script>
-        <script src="lib/repl/scripts/modes/javascript.js"></script>
 
 
 		<script src="lib/tether/tether.js"></script>

@@ -1,3 +1,5 @@
+
+
 window.addEventListener("message", receiveMessage, false);
 function receiveMessage(event){
   if(event.data !== "!_{h:''}"){
@@ -9,10 +11,10 @@ function receiveMessage(event){
 	  	
 	  	if(json.type === "text"){
 		  	getEditor(id).setValue(json.value);
+		  	hide_loading_spinner();
 	  	}
 	  	else if(json.type === "title"){
 		  	setFileTitle(id, json.title);
-	  		hide_loading_spinner();
 		}
 	  	else if(json.type === "saved"){
 		  	
@@ -130,6 +132,7 @@ function addTab(title, id, welcome){
 
     opentab(id);
   }
+  
 }
 
 function opentab(id){

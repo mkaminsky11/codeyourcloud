@@ -12,9 +12,7 @@ function replace(){
 
 
 function setMode(id,mode){
-
 	//get the current editor index
-	
 	try{	
 		if(mode !== mode_select.value){
 			mode_select.change(mode);
@@ -30,43 +28,30 @@ function setMode(id,mode){
 	editors[index].editor.setOption("gutters",["CodeMirror-linenumbers"]);
 	editors[index].editor.setOption("lint",false);
 	//if javascript
-	
-	
-	
 	if(mode === "text/javascript"){
-	
 		editors[index].editor.setOption("gutters",["CodeMirror-lint-markers"]);
 		editors[index].editor.setOption("lint",CodeMirror.lint.javascript);
 		startTern(index);
 	}
 	else if(mode === "text/x-coffeescript"){
-
 	}
-	
 	else if(mode === "text/html"){
-
 		startHtml(index);
 	}
-	
 	else if(mode === "text/x-markdown" || mode === "gfm"){
-
 	}
-	
 	else if(mode === "text/css"){
 		editors[index].editor.setOption("gutters",["CodeMirror-lint-markers"]); //<-----------
 		editors[index].editor.setOption("lint",CodeMirror.lint.css); //<-----------
 		startCss(index);
 	}
-	
 	else if(mode === "application/json"){
 		editors[index].editor.setOption("gutters",["CodeMirror-lint-markers"]);
 		editors[index].editor.setOption("lint",CodeMirror.lint.json);
 	}
-	
 	else if(mode === "text/x-python"){
 		startPython(index);
 	}
-	
 	else if(mode === "text/x-sql"){
 		startSql(index);
 	}
@@ -92,20 +77,22 @@ function check_mode(id, fileName){
 		ext = fileName.replace(".","");
 	}
 	else if(fileName.indexOf(".") !== -1){
-		ext = fileName.split(".")[1];
+		var ext_array = fileName.split(".");
+		ext = ext_array[ext_array.length - 1];
 	}
 	
 	var mode_to_use = "";
 	
 	for(var i = 0; i < modes.length; i++){
-		if(modes[i][2] !== ""){
-			var possible = modes[i][2].split("|");
-			for(var j = 0; j < possible.length; j++){
-				if(possible[j] === ext){
-					mode_to_use = modes[i][1];
-				}
+		var possible_mime = modes[i].mime;
+		var exts = modes[i].ext;
+		
+		try{
+			if(exts.indexOf(ext) !== -1){
+				mode_to_use = possible_mime;
 			}
 		}
+		catch(e){}
 	}
 	
 	setMode(id,mode_to_use);
@@ -116,8 +103,8 @@ function modeChange(){
 }
 
 for(var i = 0; i < modes.length; i++){
-	var name = modes[i][0];
-	var the_mode = modes[i][1];
+	var name = modes[i].name;
+	var the_mode = modes[i].mime;
 	
 	var sel = "<option value='"+the_mode+"'>"+name+"</option>";
 	$("#mode-select").html($("#mode-select").html() + sel);

@@ -1,3 +1,8 @@
+window.setTimeout(function(){
+	//console.log("hide");
+	//hide_loading_spinner();
+}, 2000);
+
 function show_loading_spinner(){
 	document.getElementById("paper-loading-spinner").active = true;
 	$("#paper-loading-spinner").css("display","block");
@@ -179,8 +184,6 @@ function nav_terminal(){
 		$(".options").css("display","none");
 		$(".chats").css("display","none");
 		$(".tree-tree").css("display","none");
-		
-		repl.refresh();
 	}
 }
 

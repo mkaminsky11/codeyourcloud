@@ -3,12 +3,9 @@
 A file to store global variables
 ==============================*/
 
-
-
-
-
 var editors = []; //the codemirror editor
 var current_file = "";
+
 
 function editor(){
 	for(var i = 0; i < editors.length; i++){
@@ -19,9 +16,7 @@ function editor(){
 }
 
 function add_editor(e, id, welcome){
-	
 	//creates a new object to store stuff in
-
 	var to_push = {
     	editor: e,
     	id: id,
@@ -37,7 +32,6 @@ function add_editor(e, id, welcome){
 
 function getEditor(id){
 	//gets an editor by its file id
-
 	for(var i = 0; i < editors.length; i++){
 		if(editors[i].id === id){
 			return editors[i].editor;
@@ -55,21 +49,6 @@ function getIndex(id){
 }
 
 function getIgnore(id){
-	//this prevents issues when collaborating
-/*
-BEFORE:
-
-A makes a change
-The change is detected by B, and made
-a change event is fired by B's change, and the change is made AGAIN by A
-repeat
-
-AFTER:
-
-A makes a change
-The changes is detected by B, made, and "ignore" is turned on
-a change event is fired by B's change, the "ignore" is seen, and the change is not pushed
-*/
 	for(var i = 0; i < editors.length; i++){
 		if(editors[i].id === id){
 			return editors[i].ignore;
@@ -88,19 +67,14 @@ function setIgnore(id, ignore){
 function setFileTitle(id, title){
 	//first, set the h4 of the .tab-tab
 	editors[getIndex(id)].title = title;
-	
 	$(".tab-tab[data-fileid='"+id+"']").find("h4").html(title);
-	
 	check_mode(id, title);
-	
 	var index = getIndex(id);
 	
 	if(current_file === id){
 		$("#title").val(editors[index].title);
 	}
-
 	var t_t = title.toLowerCase();
-
 	if(t_t.indexOf("png") !== -1 || t_t.indexOf(".jpg") !== -1 || t_t.indexOf(".jpeg") !== -1 || t_t.indexOf(".tiff") !== -1 || t_t.indexOf(".gif") !== -1){
 		editors[index].image = true;
 		if(current_file === id){
@@ -112,11 +86,6 @@ function setFileTitle(id, title){
 	j[2] = title;
 	$("[data-tree-li='"+id+"'] span").html(j.join(">"))
 }
-
-
-
-
-
 
 
 var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
@@ -148,93 +117,123 @@ var converter = new Markdown.Converter();
 
 //[name, codemirror code, file extensions seperated by | ]
 var modes = [
-	["Javascript","text/javascript","js"],
-	["APL","text/apl","apl"],
-	["Asterisk","text/x-asterisk",""],
-	["C","text/x-csrc","c"],
-	["C++","text/x-c++src","cpp|cc|cxx|h|hh|hpp"],
-	["C#","text/x-csharp","cs"],
-	["Java","text/x-java","java|ino|pde"],
-	["Clojure","text/x-clojure","clj"],
-	["Cobol","cobol","CBL|COB|cob|cbl"],
-	["CoffeeScript","text/x-coffeescript","coffee|cf|cson|Cakefile"],
-	["Common Lisp","text/x-common-lisp","cl|lisp|l|lsp"],
-	["CSS","text/css","css"],
-	["SCSS","text/x-scss","scss"],
-	["LESS","text/x-less","less"],
-	["Cypher","application/x-cypher-query","cql|cypher"],
-	["Python","text/x-python","py"],
-	["Cython","text/x-cython","pyx|pyd"],
-	["D","text/x-d","d|di"],
-	["Django","text/x-django",""],
-	["Diff","text/x-diff","diff"],
-	["DTD","application/xml-dtd","dtd"],
-	["Dylan","text/x-dylan","dylan"],
-	["ECL","text/x-ecl","ecl"],
-	["Eiffel","text/x-eiffel","eiffel"],
-	["Erlang","text/x-erlang","erl|hrl"],
-	["Fortan","text/x-Fortran","f90|f95|f03|f|for"],
-	["OCaml","text/x-ocaml","ml|mli"],
-	["F#","text/x-fsharp","fs|fsi"],
-	["Gas","text/x-gas","gas"],
-	["Gherkin","text/x-feature","feature"],
-	["Go","text/x-go","go"],
-	["Groovy","text/x-groovy","groovy"],
-	["HAML","text/x-haml","haml"],
-	["Haskell","text/x-haskell","hs"],
-	["Haxe","text/x-haxe","hx"],
-	["JSP","application/x-jsp","jsp"],
-	["EJS","application/x-ejs","ejs"],
-	["ASP.NET","application/x-aspx","asp"],
-	["HTML","text/html","html|svg"],
-	["HTTP","message/http",""],
-	["Jade","text/x-jade","jade"],
-	["JSON","application/json","json"],
-	["TypeScript","ts|typescript|str","application/typescript"],
-	["Julia","text/x-julia","jl"],
-	["LiveScript","text/x-livescript","ls"],
-	["Lua","text/x-lua","lua"],
-	["Markdown","markdown","md|markdown"],
-	["Github Markdown","gfm","gfm"],
-	["mIRC","text/mirc","mrc"],
-	["nginx","text/nginx","conf"],
-	["NTriples","text/n-triples","nt"],
-	["Octave","text/x-octave","matlab"],
-	["Pascal","text/x-pascal","pas|p"],
-	["Perl","text/x-perl","pl|pm"],
-	["PHP","text/x-php","php"],
-	["PHP/HTML","application/x-httpd-php","phtml"],
-	["Pig Latin","text/x-pig","pig"],
-	["Properties","text/x-properties","properties"],
-	["Puppet","text/x-puppet","pp"],
-	["Q","text/x-q","q"],
-	["R","text/x-rsrc","r"],
-	["Ruby","text/x-ruby","rb|ru|gemspec|rake|Guardfile|Rakefile|Gemfile"],
-	["Rust","text/x-rustsrc","rs"],
-	["Sass","text/x-sass","sass"],
-	["Scala","text/x-scala","scala"],
-	["Shell","text/x-sh","sh|bash|bashrc"],
-	["Scheme","text/x-scheme","scm|rkt"],
-	["Sieve","application/sieve","sieve"],
-	["Smalltalk","text/x-stsrc",""],
-	["Smarty","text/x-smarty","smarty|tpl"],
-	["Solr","text/x-solr","solr"],
-	["SQL","text/x-sql","sql|pls|plb"],
-	["mySQL","text/x-mysql","mysql"],
-	["sText","text/x-stex",""],
-	["TCL","text/x-tcl","tcl"],
-	["LaTex","text/x-stex","tex"],
-	["Tiki","tiki","tiki"],
-	["Toml","text/x-toml","toml"],
-	["Turtle","text/turtle",""],
-	["VB.NET","text/x-vb",""],
-	["VBScript","text/vbscript","vbs"],
-	["Velocity","text/velocity","vm"],
-	["Verilog","text/x-verilog","v|vh|sv|svh"],
-	["XML","text/html","xml|rdf|rss|wsdl|xslt|atom|mathml|mml|xul|xbl"],
-	["XQuery","application/xquery","xq"],
-	["Swift","swift","swift"],
-	["Text","text","txt"]
+    {name: "APL", mime: "text/apl", mode: "apl", ext: ["dyalog", "apl"]},
+	{name: "Swift", mime: "swift", mode:"swift", ext: ["swift"]},
+	{name: "Text", mime: "text", mode: "text", ext:["txt"]},
+    {name: "Asterisk", mime: "text/x-asterisk", mode: "asterisk"},
+    {name: "C", mime: "text/x-csrc", mode: "clike", ext: ["c", "h", "pro"]},
+    {name: "C++", mime: "text/x-c++src", mode: "clike", ext: ["cpp", "c++", "cc", "cxx", "hpp", "h++", "hh", "hxx"]},
+    {name: "Cobol", mime: "text/x-cobol", mode: "cobol", ext: ["cob", "cpy"]},
+    {name: "C#", mime: "text/x-csharp", mode: "clike", ext: ["cs"]},
+    {name: "Clojure", mime: "text/x-clojure", mode: "clojure", ext: ["clj"]},
+    {name: "CoffeeScript", mime: "text/x-coffeescript", mode: "coffeescript", ext: ["coffee"]},
+    {name: "Common Lisp", mime: "text/x-common-lisp", mode: "commonlisp", ext: ["cl", "lisp", "el"]},
+    {name: "Cypher", mime: "application/x-cypher-query", mode: "cypher", ext: ["cyp", "cypher"]},
+    {name: "Cython", mime: "text/x-cython", mode: "python", ext: ["pyx", "pxd", "pxi"]},
+    {name: "CSS", mime: "text/css", mode: "css", ext: ["css"]},
+    {name: "CQL", mime: "text/x-cassandra", mode: "sql", ext: ["cql"]},
+    {name: "D", mime: "text/x-d", mode: "d", ext: ["d"]},
+    {name: "Dart", mime: "text/x-dart", mode: "dart", ext: ["dart"]},
+    {name: "diff", mime: "text/x-diff", mode: "diff", ext: ["diff", "patch"]},
+    {name: "Django", mime: "text/x-django", mode: "django", ext: ["django"]},
+    {name: "DTD", mime: "application/xml-dtd", mode: "dtd", ext: ["dtd"]},
+    {name: "Dylan", mime: "text/x-dylan", mode: "dylan", ext: ["dylan", "dyl", "intr"]},
+    {name: "EBNF", mime: "text/x-ebnf", mode: "ebnf"},
+    {name: "ECL", mime: "text/x-ecl", mode: "ecl", ext: ["ecl"]},
+    {name: "Eiffel", mime: "text/x-eiffel", mode: "eiffel", ext: ["e"]},
+    {name: "Embedded Javascript", mime: "application/x-ejs", mode: "htmlembedded", ext: ["ejs"]},
+    {name: "Embedded Ruby", mime: "application/x-erb", mode: "htmlembedded", ext: ["erb"]},
+    {name: "Erlang", mime: "text/x-erlang", mode: "erlang", ext: ["erl"]},
+    {name: "Fortran", mime: "text/x-fortran", mode: "fortran", ext: ["f", "for", "f77", "f90"]},
+    {name: "F#", mime: "text/x-fsharp", mode: "mllike", ext: ["fs"], alias: ["fsharp"]},
+    {name: "Gas", mime: "text/x-gas", mode: "gas", ext: ["s"]},
+    {name: "Gherkin", mime: "text/x-feature", mode: "gherkin", ext: ["feature"]},
+    {name: "GitHub Flavored Markdown", mime: "text/x-gfm", mode: "gfm", file: /^(readme|contributing|history).md$/i},
+    {name: "Go", mime: "text/x-go", mode: "go", ext: ["go"]},
+    {name: "Groovy", mime: "text/x-groovy", mode: "groovy", ext: ["groovy"]},
+    {name: "HAML", mime: "text/x-haml", mode: "haml", ext: ["haml"]},
+    {name: "Haskell", mime: "text/x-haskell", mode: "haskell", ext: ["hs"]},
+    {name: "Haxe", mime: "text/x-haxe", mode: "haxe", ext: ["hx"]},
+    {name: "HXML", mime: "text/x-hxml", mode: "haxe", ext: ["hxml"]},
+    {name: "ASP.NET", mime: "application/x-aspx", mode: "htmlembedded", ext: ["aspx"], alias: ["asp", "aspx"]},
+    {name: "HTML", mime: "text/html", mode: "htmlmixed", ext: ["html", "htm"], alias: ["xhtml"]},
+    {name: "HTTP", mime: "message/http", mode: "http"},
+    {name: "IDL", mime: "text/x-idl", mode: "idl", ext: ["pro"]},
+    {name: "Jade", mime: "text/x-jade", mode: "jade", ext: ["jade"]},
+    {name: "Java", mime: "text/x-java", mode: "clike", ext: ["java"]},
+    {name: "Java Server Pages", mime: "application/x-jsp", mode: "htmlembedded", ext: ["jsp"], alias: ["jsp"]},
+    {name: "JavaScript", mime: "text/javascript", mode: "javascript", ext: ["js"]},
+    {name: "JSON", mime: "application/json", mode: "javascript", ext: ["json", "map"]},
+    {name: "JSON-LD", mime: "application/ld+json", mode: "javascript", ext: ["jsonld"]},
+    {name: "Jinja2", mime: "null", mode: "jinja2", ext: ["jinja2"]},
+    {name: "Julia", mime: "text/x-julia", mode: "julia", ext: ["jl"]},
+    {name: "Kotlin", mime: "text/x-kotlin", mode: "kotlin", ext: ["kt"]},
+    {name: "LESS", mime: "text/x-less", mode: "css", ext: ["less"]},
+    {name: "LiveScript", mime: "text/x-livescript", mode: "livescript", ext: ["ls"]},
+    {name: "Lua", mime: "text/x-lua", mode: "lua", ext: ["lua"]},
+    {name: "Markdown", mime: "text/x-markdown", mode: "markdown", ext: ["markdown", "md", "mkd"]},
+    {name: "mIRC", mime: "text/mirc", mode: "mirc"},
+    {name: "MariaDB SQL", mime: "text/x-mariadb", mode: "sql"},
+    {name: "Modelica", mime: "text/x-modelica", mode: "modelica", ext: ["mo"]},
+    {name: "MS SQL", mime: "text/x-mssql", mode: "sql"},
+    {name: "MySQL", mime: "text/x-mysql", mode: "sql"},
+    {name: "Nginx", mime: "text/x-nginx-conf", mode: "nginx", file: /nginx.*\.conf$/i},
+    {name: "NTriples", mime: "text/n-triples", mode: "ntriples", ext: ["nt"]},
+    {name: "Objective C", mime: "text/x-objectivec", mode: "clike", ext: ["m", "mm"]},
+    {name: "OCaml", mime: "text/x-ocaml", mode: "mllike", ext: ["ml", "mli", "mll", "mly"]},
+    {name: "Octave", mime: "text/x-octave", mode: "octave", ext: ["m"]},
+    {name: "Pascal", mime: "text/x-pascal", mode: "pascal", ext: ["p", "pas"]},
+    {name: "PEG.js", mime: "null", mode: "pegjs", ext: ["jsonld"]},
+    {name: "Perl", mime: "text/x-perl", mode: "perl", ext: ["pl", "pm"]},
+    {name: "PHP", mime: "application/x-httpd-php", mode: "php", ext: ["php", "php3", "php4", "php5", "phtml"]},
+    {name: "Pig", mime: "text/x-pig", mode: "pig", ext: ["pig"]},
+    {name: "Plain Text", mime: "text/plain", mode: "null", ext: ["txt", "text", "conf", "def", "list", "log"]},
+    {name: "PLSQL", mime: "text/x-plsql", mode: "sql", ext: ["pls"]},
+    {name: "Properties files", mime: "text/x-properties", mode: "properties", ext: ["properties", "ini", "in"], alias: ["ini", "properties"]},
+    {name: "Python", mime: "text/x-python", mode: "python", ext: ["py", "pyw"]},
+    {name: "Puppet", mime: "text/x-puppet", mode: "puppet", ext: ["pp"]},
+    {name: "Q", mime: "text/x-q", mode: "q", ext: ["q"]},
+    {name: "R", mime: "text/x-rsrc", mode: "r", ext: ["r"], alias: ["rscript"]},
+    {name: "reStructuredText", mime: "text/x-rst", mode: "rst", ext: ["rst"], alias: ["rst"]},
+    {name: "RPM Changes", mime: "text/x-rpm-changes", mode: "rpm"},
+    {name: "RPM Spec", mime: "text/x-rpm-spec", mode: "rpm", ext: ["spec"]},
+    {name: "Ruby", mime: "text/x-ruby", mode: "ruby", ext: ["rb"], alias: ["jruby", "macruby", "rake", "rb", "rbx"]},
+    {name: "Rust", mime: "text/x-rustsrc", mode: "rust", ext: ["rs"]},
+    {name: "Sass", mime: "text/x-sass", mode: "sass", ext: ["sass"]},
+    {name: "Scala", mime: "text/x-scala", mode: "clike", ext: ["scala"]},
+    {name: "Scheme", mime: "text/x-scheme", mode: "scheme", ext: ["scm", "ss"]},
+    {name: "SCSS", mime: "text/x-scss", mode: "css", ext: ["scss"]},
+    {name: "Shell", mime: "text/x-sh", mode: "shell", ext: ["sh", "ksh", "bash"], alias: ["bash", "sh", "zsh"]},
+    {name: "Sieve", mime: "application/sieve", mode: "sieve", ext: ["siv", "sieve"]},
+    {name: "Slim", mimes: ["text/x-slim", "application/x-slim"], mode: "slim", ext: ["slim"]},
+    {name: "Smalltalk", mime: "text/x-stsrc", mode: "smalltalk", ext: ["st"]},
+    {name: "Smarty", mime: "text/x-smarty", mode: "smarty", ext: ["tpl"]},
+    {name: "SmartyMixed", mime: "text/x-smarty", mode: "smartymixed"},
+    {name: "Solr", mime: "text/x-solr", mode: "solr"},
+    {name: "Soy", mime: "text/x-soy", mode: "soy", ext: ["soy"], alias: ["closure template"]},
+    {name: "SPARQL", mime: "application/sparql-query", mode: "sparql", ext: ["rq", "sparql"], alias: ["sparul"]},
+    {name: "Spreadsheet", mime: "text/x-spreadsheet", mode: "spreadsheet", alias: ["excel", "formula"]},
+    {name: "SQL", mime: "text/x-sql", mode: "sql", ext: ["sql"]},
+    {name: "MariaDB", mime: "text/x-mariadb", mode: "sql"},
+    {name: "sTeX", mime: "text/x-stex", mode: "stex"},
+    {name: "LaTeX", mime: "text/x-latex", mode: "stex", ext: ["text", "ltx"], alias: ["tex"]},
+    {name: "SystemVerilog", mime: "text/x-systemverilog", mode: "verilog", ext: ["v"]},
+    {name: "Tcl", mime: "text/x-tcl", mode: "tcl", ext: ["tcl"]},
+    {name: "Textile", mime: "text/x-textile", mode: "textile", ext: ["textile"]},
+    {name: "TiddlyWiki ", mime: "text/x-tiddlywiki", mode: "tiddlywiki"},
+    {name: "Tiki wiki", mime: "text/tiki", mode: "tiki"},
+    {name: "TOML", mime: "text/x-toml", mode: "toml", ext: ["toml"]},
+    {name: "Tornado", mime: "text/x-tornado", mode: "tornado"},
+    {name: "Turtle", mime: "text/turtle", mode: "turtle", ext: ["ttl"]},
+    {name: "TypeScript", mime: "application/typescript", mode: "javascript", ext: ["ts"]},
+    {name: "VB.NET", mime: "text/x-vb", mode: "vb", ext: ["vb"]},
+    {name: "VBScript", mime: "text/vbscript", mode: "vbscript", ext: ["vbs"]},
+    {name: "Velocity", mime: "text/velocity", mode: "velocity", ext: ["vtl"]},
+    {name: "Verilog", mime: "text/x-verilog", mode: "verilog", ext: ["v"]},
+    {name: "XML", mimes: ["application/xml", "text/xml"], mode: "xml", ext: ["xml", "xsl", "xsd"]},
+    {name: "XQuery", mime: "application/xquery", mode: "xquery", ext: ["xy", "xquery"]},
+    {name: "YAML", mime: "text/x-yaml", mode: "yaml", ext: ["yaml"]},
+    {name: "Z80", mime: "text/x-z80", mode: "z80", ext: ["z80"]}
 ];
 
 var themes = [
@@ -426,7 +425,6 @@ var the_console;
 
 var login_sql = 0;
 
-var repl;
 var mirror;
 
 var mode_select;

@@ -23,7 +23,7 @@ body{
 }
 
 .nav-1{
-	background-color:#F0EFEF;
+	background-color:white;
 }
 
 #users, #tool-bar{
@@ -315,7 +315,7 @@ paper-toast{
 }
 .tab-wrapper{
 	height: 40px;
-	background-color: #131313;
+	background-color: #080808;
 	position: absolute;
 	top: -30px;
 	overflow: hidden;
@@ -328,21 +328,35 @@ paper-toast{
 	overflow-x: hidden;
 	overflow-y: auto;
 	width: 100%;
+	
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: flex;
+	
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 .tab-tab{
-	height: 20px;
-	position: relative;
+	background-color: transparent;
+	height: 0px;
+	position : relative;
 	width: 116px;
-	padding: 10px;
-	background-color: #131313;
-	margin-top: 0px;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
-	margin-right: 2px;
-	color: #9e9e9e;
-	display: inline-block;
-	/*top: 0;*/
+	border-bottom: 35px solid white;
+	border-left: 25px solid transparent !important;
+	border-right: 25px solid transparent !important;
+	padding 0 8px 0px 0;
+	border-color: #272822;
+	padding-top: 5px;
+	
+	margin-left: -20px;
 }
+.tab-tab:first-child{
+	margin-left: 0px;
+}
+
 .tab-tab h4{
   margin: 0px;
   font-size: 16px;
@@ -355,13 +369,18 @@ paper-toast{
   overflow: hidden;
   height: 19px;
   font-family: 'Roboto-Thin';
-  color: #9e9e9e;
+  color: #eee;
+
+  padding-top: 8px;
+  padding-left: 5px;
 }
 .tab-tab h6{
 	margin: 0;
 	font-size: 19px;
 	color: #BEB8B8;
 	opacity: 0;
+
+	padding-top: 8px;
 }
 .tab-tab:hover{
 	display: inline-block !important;
@@ -371,13 +390,17 @@ paper-toast{
 }
 
 .tab-active{
-	background-color: #2B2B2B;
-	color: #37474f;
+	border-color: white;
+	color: black;
 	/*top: 2px;*/
 }
 
 .tab-active h6{
 	color: #f36c60;
+}
+
+.tab-active h4{
+	color: #7f8c8d;
 }
 
 .CodeMirror{
@@ -517,11 +540,13 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 }
 
 #toggle_side_menu_button{
-	color: #afafaf;
+	color: #bdc3c7;
+	border-radius: 3px;
+	border: solid 2px #bdc3c7
 }
 
 #toggle_side_menu_button:hover{
-	color: #616161;
+	color: #bdc3c7;
 }
 
 #nav{
@@ -606,15 +631,19 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 	border: solid 2px #E74C3C;
 }
 
-#plus-plus{
-	position: absolute;
-	right: 0px;
-	color: #757575;
-	padding: 11px;
-	background-color: #3A3939;
-	text-align: center;
-	font-family: 'Roboto-Thin';
-	z-index: 11;
+
+.tab-right{
+	  position: relative;
+	  color: #F4E5E5;
+	  padding: 10px;
+	  background-color: #3A3939;
+	  text-align: center;
+	  font-family: 'Roboto-Thin';
+	  z-index: 11;
+	  font-size: 17px;
+	  padding-right: 12px;
+	  padding-left: 12px;
+	  float: right;
 }
 
 .popup{
@@ -622,7 +651,12 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 	z-index: 99;
 	background-color: #f5f1f1;
 	border-radius: 2px;
+	
+	-moz-box-shadow: 0 0 9px #4A4A4A;
+	-webkit-box-shadow: 0 0 9px #4A4A4A;
+  	box-shadow: 0 0 9px #4A4A4A;
 }
+
 
 .popup span{
 	display: block;
@@ -639,9 +673,18 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 	background-color: #eee;
 }
 
+.popup span:last-child{
+	border-bottom: none;
+}
+
 #new-popup{
-	right: 11px;
-	top: 74px;
+	right: 10px;
+	top: 80px;
+}
+
+#search-popup{
+	right: 60px;
+	top: 80px;
 }
 
 #navigate div{
@@ -661,21 +704,18 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 	text-decoration: none;
 }
 
-.termial{
+.terminal{
 	display: block;
-	position: absolute;
-	height: 100%;
 	width: 100%;
-	/* top: 0; */
-	left: 0;
-	margin-top: -17px;
+	background-color: white;
+	
+	margin-top: -18px;
+	border: none;
+	height: calc(100% - 95px);
 }
-.terminal .CodeMirror{
-	width: 100%;
-	height: calc(100% - 87px);
-	position: absolute;
-	top: 86px;
-	left: 0;
+
+.terminal > * {
+	height: 100%;
 }
 
 #lorem{
@@ -726,7 +766,7 @@ paper-slider.poly-blue::shadow #sliderKnobInner,paper-slider.poly-blue::shadow #
 	-webkit-transition-duration: 0.5s;
 	transition-property: border;
 	transition-duration: 0.5s;
-	border: solid 2px #03a9f4;
+	border: solid 2px #E74C3C;
 }
 #opt{
 	display: block;
@@ -792,6 +832,13 @@ core-tooltip{
 	outline: none !important;
 	-webkit-appearance: none !important;
 }
+
+
+/*
+FILE BROWSING TREE
+=================	
+*/
+
 
 .tree-tree{
 	overflow: scroll;
