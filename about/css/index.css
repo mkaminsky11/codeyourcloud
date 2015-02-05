@@ -67,7 +67,7 @@ body{
 	font-size: 22px;
 }
 #screen{
-	position: relative;
+	position: absolute;
 	width: 80%;
 	bottom: 0;
 	left: 10%;

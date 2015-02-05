@@ -1,20 +1,23 @@
-
-
-$(".hover-col").each(function(index){
-	var this_this = this;
-	//jQuery(".resize").fitText(0.8);
-	//$(this_this).textfill({ maxFontPixels: 36 });
-	$(this_this).hover(function(){
-		//on hover
-		$(this).find(".color").slideDown();
-		$(this).find("i").velocity({color:"white"});
-		$(this).find("a").velocity({color:"white"});
-	},function(){
-		$(this).find(".color").slideUp();
-		$(this).find("i").velocity({color:"#212121"});
-		$(this).find("a").velocity({color:"#212121"});
-	});
+$(window).resize(function() {
+	var width = $("#screen").width();
+	$("#svg2").css("width", width + "px");
+	var mid = Math.floor(width / 2);
+	$("#svg2").css("margin-left", "calc(50% - "+mid+"px)");
+	
+	//height bar = 58
+	//height all = 641
+	
+	var up = Math.floor($("#svg2").height() * (58/641) - 5);
+	$("#svg2").css("margin-bottom", up + "px");
 });
+
+var width = $("#screen").width();
+$("#svg2").css("width", width + "px");
+var mid = Math.floor(width / 2);
+$("#svg2").css("margin-left", "calc(50% - "+mid+"px)");
+
+var up = Math.floor($("#svg2").height() * (58/641) - 5);
+$("#svg2").css("margin-bottom", up + "px");
 
 //$("h1").fitText();
 $("#logos").fitText();
