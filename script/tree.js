@@ -113,11 +113,15 @@ function toggle_tree_folder(id){
 }
 
 function toggle_tree_file(id){
-	//addTab("loading...",fileId,false);
-	
 	//if already open...
+	var found = false;
+	for(var i = 0; i < editors.length; i++){
+		if(editors[i].id === id){
+			found = true;
+		}
+	}
 	
-	if($("[data-fileid='"+id+"']").length){
+	if(found === true){
 		//already there, open it
 		opentab(id);
 	}

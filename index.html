@@ -42,7 +42,6 @@
 		
 		
 		<link rel="stylesheet" href="script/style.css">
-		<link rel="stylesheet" href="script/custom.css">
 		
     
 		<link rel="import" href="poly/components/core-style/core-style.html">
@@ -62,11 +61,7 @@
         <link rel="import" href="poly/components/paper-toast/paper-toast.html">
         <link rel="import" href="poly/components/core-tooltip/core-tooltip.html">
         <link rel="import" href="poly/components/icon-transition/icon-transition.html">
-	<link rel="import" href="poly/components/paper-spinner/paper-spinner.html">      
-        
-        
-        <link rel="stylesheet" href="script/custom.css">
-        <link rel="stylesheet" href="fonts/font.css">
+		<link rel="import" href="poly/components/paper-spinner/paper-spinner.html">      
         
         <link rel="stylesheet" href="lib/select/css/select-theme-dark.css" />
         
@@ -320,9 +315,10 @@
         	  	<paper-icon-button id="undo_button" icon="rotate-left" onclick="editor_undo()"></paper-icon-button>
         	  	<paper-icon-button id="redo_button" icon="rotate-right" onclick="editor_redo()"></paper-icon-button>
         	  	
-			  	
-			  	<img id="profile_pic" src="" height="35px" width="35px">
-        	  
+			  	<div id="profile_div">
+			  		<img id="profile_pic" src="" height="30px" width="30px">
+			  		<i class="fa fa-caret-down"></i>
+			  	</div>
         	  </ul>
         	</div>
       	</nav>
@@ -569,11 +565,8 @@
 		<script src="script/drive.js"></script>
 		<script src="script/visual.js"></script>
 		<script src="script/picker.js"></script>
-		<script src="script/features.js"></script>
 		<script src="script/broadcast.js"></script>
 		<script src="script/tree.js"></script>
-		
-		<script src="script/custom.js"></script>
 		<script src="script/tabs.js"></script>
 		
 		

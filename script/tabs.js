@@ -136,7 +136,6 @@ function addTab(title, id, welcome){
 }
 
 function opentab(id){
-
 	$(".tab-active").removeClass("tab-active");
 	$(".tab-tab[data-fileid='"+id+"']").addClass("tab-active");
 	
@@ -227,17 +226,16 @@ function removetab(id){
 		}
 	}
 
-  current_file = "";
-  
-  editors.splice(index,1);
-  
-  $("#nav_chats").css("display","none");
-  
-  if(editors.length !== 0){
-	  setTimeout(function(){
-		  opentab(editors[0].id);
-	  }, 500)
-  }
+	current_file = "";
+	editors.splice(index,1);
+	  
+	$("#nav_chats").css("display","none");
+	  
+	/*if(editors.length !== 0){
+		setTimeout(function(){
+			opentab(editors[0].id);
+		}, 500);
+	}*/
 }
 
 function adjust(){
