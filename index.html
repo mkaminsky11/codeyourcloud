@@ -1,7 +1,6 @@
  <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<script src="poly/components/platform/platform.js"></script>
 		
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
@@ -32,65 +31,27 @@
 	    
 	    <link rel='stylesheet' type='text/css' href='lib/Font/css/font-awesome.min.css'>
 		
-		<!--Other-->
 		<script src="lib/loremjs/lorem.js"></script>
-		
-		<!--COLOR SLIDER-->
 		<link rel="stylesheet" href="lib/slider/files/slider.css">
 		<script src="lib/slider/files/slider.js"></script>
 		
+		<link rel="stylesheet" href="lib/messenger/css/messenger.css">
+		<link rel="stylesheet" href="lib/messenger/css/messenger-theme-air.css"
 		
+		<link rel="stylesheet" href="fonts/font.css">
+		<link rel="stylesheet" href="fonts/material/css/material-design-iconic-font.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/material.css">
 		
-		<link rel="stylesheet" href="script/style.css">
-		
-    
-		<link rel="import" href="poly/components/core-style/core-style.html">
-        <link rel="import" href="poly/components/paper-checkbox/paper-checkbox.html">
-        <link rel="import" href="poly/components/core-header-panel/core-header-panel.html">
-        <link rel="import" href="poly/components/paper-icon-button/paper-icon-button.html">
-        <link rel="import" href="poly/components/paper-input/paper-input.html">
-        <link rel="import" href="poly/components/paper-slider/paper-slider.html">
-        <link rel="import" href="poly/components/core-toolbar/core-toolbar.html">
-        <link rel="import" href="poly/components/core-menu/core-menu.html">
-        <link rel="import" href="poly/components/core-icons/core-icons.html">
-        <link rel="import" href="poly/components/paper-button/paper-button.html">
-        <link rel="import" href="poly/components/paper-fab/paper-fab.html">
-        <link rel="import" href="poly/components/paper-ripple/paper-ripple.html">
-        <link rel="import" href="poly/components/paper-item/paper-item.html">
-        <link rel="import" href="poly/components/paper-shadow/paper-shadow.html">
-        <link rel="import" href="poly/components/paper-toast/paper-toast.html">
-        <link rel="import" href="poly/components/core-tooltip/core-tooltip.html">
-        <link rel="import" href="poly/components/icon-transition/icon-transition.html">
-		<link rel="import" href="poly/components/paper-spinner/paper-spinner.html">      
         
-        <link rel="stylesheet" href="lib/select/css/select-theme-dark.css" />
-        
-        <!--script src='//cdn.goroost.com/roostjs/749cd85a820d4818bf558cc0c1bef812'></script-->		
-        
-        <style shim-shadowdom>
-		    core-tooltip.fancy::shadow .core-tooltip {
-		      opacity: 0;
-		      -webkit-transition: all 300ms cubic-bezier(0,1.92,.99,1.07);
-		      transition: all 300ms cubic-bezier(0,1.92,.99,1.07);
-		      -webkit-transform: translate3d(0, -10px, 0);
-		      transform: translate3d(0, -10px, 0);
-		    }
-		
-		    core-tooltip.fancy:hover::shadow .core-tooltip,
-		    core-tooltip.fancy:focus::shadow .core-tooltip {
-		      opacity: 1;
-		      -webkit-transform: translate3d(0, 0, 0);
-		      transform: translate3d(0, 0, 0);
-		    }
-		</style>
-		
+        <link rel="stylesheet" href="lib/select/css/select-theme-default.css" />
 		<link rel="stylesheet" href="lib/intro/introjs.min.css">
 		
 		<script src="lib/intro/intro.js"></script>
 
 	</head>
 	<body>
-		<paper-spinner id="paper-loading-spinner" style="display:none"></paper-spinner>	
+		<img id="paper-loading-spinner" style="display:none" src="images/svg/spinner.svg" height="40px" width="40px"/>
 	
 		<div id="tree-open" class="tree" style="display:none">
 			<ul class="root-tree"></ul>
@@ -100,22 +61,20 @@
 	<!--SIDEBAR-->
 			
 		<div id="side" style="display:none">
-			<div id="side_inner">
+			<div id="side-inner">
 				<div class="side-head" style="height:auto">
-						<h6><input id="title" value="code your cloud" placeholder="Title" class="no-input" readonly="" onchange="ok_rename()"/>
-							<button class="btn btn-info" id="rename-toggle" onclick="toggle_rename_show()" style="display:none"><i class="fa fa-pencil"></i></button>
-						</h6>
+						<div class="InputAddOn" id="rename-div">
+							<input id="title" value="code your cloud" placeholder="Title" class="InputAddOn-field" readonly="" onchange="ok_rename()"/>
+							<button class="InputAddOn-item" id="rename-toggle" onclick="toggle_rename_show()" style="display:none"><i class="md-mode-edit"></i></button>
+						</div>
 				</div>
 				
 				<div class="side-head" id="navigate">
-					<div id="nav_tree" onclick="nav_tree()">
-						<i class="fa fa-folder-open"></i>
-					</div>
-					<div class="active" id="nav_list" onclick="nav_list()">
-						<i class="fa fa-list"></i>
+					<div class="active" id="nav_tree" onclick="nav_tree()">
+						<i class="md-folder-open"></i>
 					</div>
 					<div id="nav_preview" onclick="nav_preview()">
-						<i class="fa fa-eye"></i>
+						<i class="md-remove-red-eye"></i>
 					</div>
 					<div id="nav_terminal" onclick="nav_terminal()">
 						<i class="fa fa-terminal"></i>
@@ -124,26 +83,31 @@
 						<i class="fa fa-font"></i>
 					</div>
 					<div id="nav_options" onclick="nav_options()">
-						<i class="fa fa-cogs"></i>
+						<i class="md-settings"></i>
 					</div>
 					<div id="nav_chats" onclick="nav_chats()">
-						<i class="fa fa-comment-o"></i>
+						<i class="md-chat"></i>
 					</div>
 					
 				</div>
 				
-				<br/>
 				
-				<iframe id="preview" style="display:none" class="preview"></iframe>
-				<core-tooltip class="preview fancy" style="display: none;position: absolute;bottom: 0;width: 100%;text-align: center" label="refresh" position="top">
-				
-					<div style="width: calc(100% - 20px);padding: 10px;text-align: center;color: #eee;" onclick="updatePreview()"><i class="fa fa-refresh"></i>
-						
+				<iframe style="display:none" class="preview preview-frame" id="preview"></iframe>
+				<div class="preview" style="display:none;position: absolute;bottom: 0;width: 100%;">
+					<div style="width: 100%;height:100%;display: -webkit-flex;display: flex;-webkit-flex-direction: row;flex-direction: row;">
+						<div style="padding:10px;width:calc(50% - 20px);text-align: center;color: white;padding-top: 13px;font-size: 21px;padding-bottom: 7px;">
+							<i class="md-refresh" onclick="updatePreview()"></i>
+						</div>
+						<div style="padding:10px;width:calc(50% - 20px);text-align: center;color: white;padding-top: 13px;font-size: 21px;padding-bottom: 7px;">
+							<i class="md-fullscreen" onclick="$('#preview-overlay').velocity('transition.slideDownIn')"></i>
+						</div>
 					</div>
+				</div>
 				
-				</core-tooltip>
-				
-				<div class="tree tree-tree" style="display:none">
+				<div class="tree tree-tree">
+					<div class="progress">
+						<div class="indeterminate"></div>
+					</div>
 					<ul class="root-tree">
 						
 					</ul>
@@ -164,27 +128,29 @@
 					</select>
 					<br/><br/>
 					
-					<div class="option-div">
-						<h4>Line Numbers</h4>
-					</div>
+					<input type="checkbox" id="side-nums" class="paper-checkbox" checked>  
+				    <label for="side-nums" id="side-nums-label" class="paper-label" onclick="line_number_switch()">
+				      <span></span><span class="check"></span><span class="box"></span>
+				      Line Numbers
+				    </label>  
 					
-					<paper-checkbox class="poly-blue" id="side-nums" onclick="line_number_switch()" checked></paper-checkbox>
+					<br/>
+					<br/>
+
+					<input type="checkbox" id="side-wrap" class="paper-checkbox" checked>  
+				    <label for="side-wrap" id="side-wrap-label" class="paper-label" onclick="line_wrap_switch()">
+				      <span></span><span class="check"></span><span class="box"></span>
+				      Line Wrap
+				    </label> 
+					
 					<br/>
 					<br/>
 					
 					<div class="option-div">
-						<h4>Line Wrap</h4>
+						<h4 style="font-family:'Roboto';font-weight:400;margin-left: 10px;color:white">Font Size</h4>
 					</div>
-					
-					<paper-checkbox class="poly-blue" id="side-wrap" onclick="line_wrap_switch()"></paper-checkbox>
-					<br/>
-					<br/>
-					
-					<div class="option-div">
-						<h4>Font Size</h4>
-					</div>
-					
-					<paper-slider class="poly-blue" pin snaps id="spinner-font" value="12" max="30" step="1" style="width=100%"></paper-slider>
+					<br/><br/>
+					<input class="dial" data-width="150" data-cursor=true data-fgColor="#E74C3C" data-thickness=.3 value="12" data-min="1" data-max="30">
 					
 				</div>
 				
@@ -193,131 +159,40 @@
 					<input id="lorem_input" value="6" onchange="generate()"/>
 				</div>
 				
-				<div class="chats" id="chats-store" style="display:none">
+				<div class="chats chats-store" style="display:none">
 					<div class="chats-content chats-active" data-fileid="welcome">
 						
 					</div>
 				</div>
-				<div class="chats" id="chats-bottom" style="display:none">
-					<textarea id="chats-text" placeholder="Type something" class="chat-input"></textarea>
-				</div>
-
-				<div class="side-store">
-
-				<div class="side-item hover-1" onclick="show_side_open()">
-					<core-icon icon="drive"></core-icon>
-					<h6>Open</h6>
-				</div>
-				
-				<div class="side-file side-item hover-2" onclick="save()">
-					<core-icon icon="save"></core-icon>
-					<h6>Save</h6>
-				</div>
-				
-				<div class="side-item hover-3" onclick="saveAs()">
-					<core-icon icon="folder"></core-icon>
-					<h6>Save As</h6>
-				</div>
-				
-				<div class="side-item hover-4" onclick="new_file()">
-					<core-icon icon="drive-document"></core-icon>
-					<h6>New</h6>
-				</div>
-				<!--end main-->
-				
-				
-				<div class="side-item side-file hover-5" onclick="download_file()">
-					<core-icon icon="cloud-download"></core-icon>
-					<h6>Download</h6>
-				</div>
-				
-				<div class="side-item hover-6" onclick="show_side_upload()">
-					<core-icon icon="cloud-upload"></core-icon>
-					<h6>Upload</h6>
-				</div>
-				
-				<div class="side-file side-item hover-7" onclick="show_side_share()">
-					<core-icon icon="folder-shared"></core-icon>
-					<h6>Share</h6>
-				</div>
-				
-				<!--end "file"-->
-				
-				<hr/>
-				
-				
-				<!--end "tools"-->
-
-				
-				<div class="side-item side-run  hide hover-13" onclick="run()">
-					<core-icon icon="forward"></core-icon>
-					<h6>Run</h6>
-				</div>
-				
-				<!--end "run"-->
-				
-				<div class="side-pub side-item  hide hover-14" onclick="publish_html()">
-					<core-icon icon="file-upload"></core-icon>
-					<h6>Publish</h6>
-				</div>
-				
-				<div class="side-pub side-item  hide hover-15">
-					<a id="side-pub-link" href="" target="_blank">
-						<core-icon icon="link"></core-icon>
-						
-						<h6>Go To Site</h6>
-					</a>
-				</div>
-				
-				<!--end "publish"-->
-				
-				<hr/>
-				
-				<!---->
-			
-				
-				<div class="side-item hover-19">
-					<a href="https://accounts.google.com/logout">
-						<core-icon icon="exit-to-app"></core-icon>
-						
-						<h6>Log Out</h6>
-					</a>
-				</div>
-				
+				<div class="chats chats-bottom" style="display:none">
+					<textarea placeholder="Type something" class="chat-input chats-text"></textarea>
 				</div>
 				
 			</div>
 		</div>
-		
-		
-		<!--END SIDEBAR-->
-		
-		
-		
 
-		<!--MODALS-->
 		
 		<nav id="nav" class="navbar navbar-inverse nav-1 move" role="navigation">
       		<div class="navbar-header">
         	  	
     		</div>
         	<div class="" id="navbar-collapse-01" style="width: 99%;">
-        	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">  
-        	  	<!--paper-icon-button onclick="toggle_side()" icon="menu" id="toggle_side_menu_button"></paper-icon-button-->
-        	  	<icon-transition color="#bdc3c7" id="toggle_side_menu_button" shape="menu" onclick="toggle_side()" data-step="1" data-intro='Welcome to Code Your Cloud! Clicking here will show the sidebar' data-position="right"></icon-transition>
+        	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">          	  	
+        	  	<button id="toggle_side_menu_button" type="button" role="button" aria-label="Toggle Navigation" class="lines-button x2">
+		          <span class="lines"></span>
+		        </button>
 				
         	  </ul>
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
-        	  
-        	  	<paper-icon-button id="help_button" icon="help" onclick="introJs().start();"></paper-icon-button>
-        	  	<paper-icon-button id="open_button" icon="drive" onclick="open_picker()"data-step="2" data-intro='This will open up the file chooser'></paper-icon-button>
-        	  	<paper-icon-button id="save_button" icon="save" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'></paper-icon-button>
-        	  	<paper-icon-button id="undo_button" icon="rotate-left" onclick="editor_undo()"></paper-icon-button>
-        	  	<paper-icon-button id="redo_button" icon="rotate-right" onclick="editor_redo()"></paper-icon-button>
+	        	  
+	        	<span id="help_button" class="side-file" onclick="show_side_share()"><i class="md-person-add"></i></span>
+	        	<span id="open_button" onclick="open_picker()" data-step="2" data-intro='This will open up the file chooser'><i class="md-folder-open"></i></span>
+        	  	<span id="save_button" class="side-file" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'><i class="md-save"></i></span>
+        	  	<span id="undo_button" onclick="editor_undo()"><i class="md-undo"></i></span>
+        	  	<span id="redo_button" onclick="editor_redo()"><i class="md-redo"></i></span>
         	  	
 			  	<div id="profile_div">
 			  		<img id="profile_pic" src="" height="30px" width="30px">
-			  		<i class="fa fa-caret-down"></i>
 			  	</div>
         	  </ul>
         	</div>
@@ -340,28 +215,49 @@
 		<span onclick="$('#search-popup').toggle();replace()">Replace</span>
 	</div>
 	
+	<div style="display:none" id="more-popup" class="popup">
+		<span onclick="saveAs()"><i class="md-save"></i>Save As</span>
+		<span onclick="download_file()"><i class="md-file-download"></i>Download</span>
+		<span class="side-pub" onclick="publish_html()"><i class="md-file-upload"></i>Publish</span>
+		<span class="side-pub">
+			<a id="side-pub-link" href="" target="_blank" style="text-decoration: none;">
+				<i class="md-link"></i>Go to Site
+			</a>
+		</span>
+		<span class="side-run" onclick="run()"><i class="md-play-arrow"></i>Run</span>
+		<span>
+			<a href="https://accounts.google.com/logout" style="text-decoration: none;">
+				<i class="md-exit-to-app"></i>Log Out
+			</a>
+		</span>
+	</div>
+	
 	  	
 	<div style="width:100%;height:100%;position:fixed;z-index: 0;" class="move">
 		
 		<div class="tab-wrapper" data-step="4" data-intro='This allows you to switch between files using tabs' data-position="bottom">
-			<div id="plus-plus" class="tab-right" onclick="$('#new-popup').toggle();" data-step="5" data-intro='And to create new files' data-position="left">
-				<i class="fa fa-plus"></i>
+			<div class="tab-right" style="border-left:solid 1px rgb(110, 110, 110)" onclick="$('#more-popup').toggle()">
+				<i class="md-more-vert"></i>
 			</div>
 			
-			<div class="tab-right">
-				<i class="fa fa-list-alt"></i>
+			<div id="plus-plus" class="tab-right" onclick="$('#new-popup').toggle();" data-step="5" data-intro='And to create new files' data-position="left">
+				<i class="md-add"></i>
+			</div>
+			
+			<div class="tab-right" onclick="$('#tabs-overlay').velocity('transition.slideDownIn')">
+				<i class="md-filter-list"></i>
 			</div>
 		
-			<div class="tab-right" onclick="$('#search-popup').toggle()">
-				<i class="fa fa-search"></i>
+			<div class="tab-right" onclick="$('#search-popup').toggle()" style="border-left:solid 1px rgb(110, 110, 110)">
+				<i class="md-search"></i>
 			</div>
 			
 			<div class="tab-container">
 			
 				<span class="tab-tab tab-active" data-fileid="welcome" onclick="opentab('welcome')" style="margin-right:-2px">
 					<h4>Welcome</h4>
-					<h6 onclick="removetab('welcome')">
-						&times;
+					<h6>
+						<i class="md-close" style="float: right" onclick="removetab('welcome')"></i>
 					</h6>
 				</span>
 				
@@ -384,30 +280,73 @@
 			</div>
 			
 			
-			<div id="tool-bar" data-step="7" data-intro='You even get a color picker!' data-position="left">
+			<div id="toolbar" data-step="7" data-intro='You even get a color picker!' data-position="left">
+				<span onclick="$('#keyboard-overlay').velocity('transition.slideDownIn')"><i class="md-keyboard"></i></span>
 				<input type='text' id="custom"/>
 			</div>
 		</div>
 		</div>
 		
-		
-		<!--Toast (small popup) -->
-		<paper-toast id="toast-select" text="Nothing selected!">
-		</paper-toast>
-		
-		<paper-toast id="toast-message" text="New message">
-		</paper-toast>
-		
-		<paper-toast id="toast-download" text="File Downloaded">
-		</paper-toast>
-		
-		<paper-toast id="toast-github" text="Star us on Github">
-			<i class='fa fa-github' style="margin-right:5px"></i>
-			<a style="color: #eeff41;" target="_blank" href="https://github.com/mkaminsky11/codeyourcloud">GO!</a>
-		</paper-toast>
-		
 
 		<!--END MAIN-->
+		
+		<div class="overlay-tint" id="preview-overlay" style="display:none">
+			<div>
+				<div>
+					<iframe class="preview-frame"></iframe>
+					
+					<div style="width:calc(100% - 20px);position: absolute; bottom: 10px; right: 10px; display: -webkit-flex;display: flex;-webkit-flex-direction: row;flex-direction: row;-webkit-flex-wrap: wrap;flex-wrap: wrap;justify-content: flex-end;">
+						
+						<a class="waves-effect waves-dark paper-btn-flat" style="margin-right: 5px;align-self: flex-end;" onclick="updatePreview()"><i class="md-refresh" style="margin-right: 5px;align-self: flex-end;"></i> REFRESH</a>
+					
+						<a onclick="$('#preview-overlay').velocity('transition.slideUpOut')" class="waves-effect waves-light paper-btn paper-btn-blue" style="background-color:#3498DB;align-self: flex-end;">CLOSE</a>
+					
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="overlay-tint" id="tabs-overlay" style="display:none">
+			<div>
+				<div>
+					<h2>Tab Manager</h2>
+					
+					<div id="tab-manager">
+						<div data-refersto="welcome">
+							<h5>Wecome <i class="md-delete" onclick="removetab('welcome')"></i><i class="md-remove-red-eye" onclick="opentab('welcome')"></i></h5>
+						</div>
+					</div>
+					
+					<a onclick="$('#tabs-overlay').velocity('transition.slideUpOut')" class="waves-effect waves-light paper-btn paper-btn-blue" style="position: absolute;bottom: 0px;right:10px;background-color:#3498DB">CLOSE</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="overlay-tint" id="keyboard-overlay" style="display:none">
+			<div>
+				<div>
+					<h2>Keyboard Shortcuts</h2>
+					
+					<div id="keyboard-manager">
+						<div>
+							<h5>Ctrl + space, &#8984; + space <span>Autocomplete</span></h5>
+						</div>
+						<div>
+							<h5>Ctrl + S, &#8984; + S <span>Save</span></h5>
+						</div>
+						<div>
+							<h5>Ctrl + O, &#8984; + O <span>Open</span></h5>
+						</div>
+						<div>
+							<h5>Ctrl + F, &#8984; + F <span>Find</span></h5>
+						</div>
+					</div>
+					
+					<a onclick="$('#keyboard-overlay').velocity('transition.slideUpOut')" class="waves-effect waves-light paper-btn paper-btn-blue" style="position: absolute;bottom: 0px;right:10px;background-color:#3498DB">CLOSE</a>
+				</div>
+			</div>
+		</div>
 		
 		
 		
@@ -537,8 +476,10 @@
 		<script src="lib/codemirror/addon/lint/css-lint.js"></script>
 		<script src="lib/codemirror/addon/lint/javascript-lint.js"></script>
 		<script src="lib/codemirror/addon/lint/json-lint.js"></script>
-		<link rel='stylesheet' type='text/css' href='lib/codemirror/addon/lint/lint.css'>
+		<link rel='stylesheet' type='text/css' href='lib/codemirror/addon/lint/lint.css'/>
 		
+		<script src="lib/messenger/js/messenger.js"></script>
+		<script src="lib/knob/js/jquery.knob.js"></script>
 		
 		<script src="lib/auto/acorn.js"></script>
 		<script src="lib/auto/acorn_loose.js"></script>
@@ -555,19 +496,18 @@
       	<script src="lib/big-text/big-text.js"></script>
       	<script src="lib/coffee/coffee.js"></script>
       	<script src="lib/markdown/markdown.js"></script>
-
-
 		<script src="lib/tether/tether.js"></script>
       	
-		<script src="script/global.js"></script>
-		<script src="script/realtime.js"></script>
-		<script src="script/frontend.js"></script>
-		<script src="script/drive.js"></script>
-		<script src="script/visual.js"></script>
-		<script src="script/picker.js"></script>
-		<script src="script/broadcast.js"></script>
-		<script src="script/tree.js"></script>
-		<script src="script/tabs.js"></script>
+		<script src="js/global.js"></script>
+		<script src="js/realtime.js"></script>
+		<script src="js/frontend.js"></script>
+		<script src="js/drive.js"></script>
+		<script src="js/visual.js"></script>
+		<script src="js/material.js"></script>
+		<script src="js/picker.js"></script>
+		<script src="js/broadcast.js"></script>
+		<script src="js/tree.js"></script>
+		<script src="js/tabs.js"></script>
 		
 		
 		<script src = 'lib/keyboard/jwerty.js'></script>
