@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="../poly/components/platform/platform.js"></script>	
 	
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -12,29 +11,12 @@
 		<link rel="shortcut icon" type="image/png" href="../favicon.png"/>
 	
 		<link rel="stylesheet" href="../fonts/font.css">
+		<link rel="stylesheet" href="../fonts/material/css/material-design-iconic-font.css">
 		<link rel="stylesheet" href="css/index.css">
 		<link rel="stylesheet" href="css/grid.css">
+		<link rel="stylesheet" href="../css/material.css">
 	
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-
-		<link rel="import" href="../poly/components/core-style/core-style.html">
-		<link rel="import" href="../poly/components/paper-checkbox/paper-checkbox.html">
-		<link rel="import" href="../poly/components/core-header-panel/core-header-panel.html">
-		<link rel="import" href="../poly/components/paper-icon-button/paper-icon-button.html">
-		<link rel="import" href="../poly/components/paper-toggle-button/paper-toggle-button.html">
-		<link rel="import" href="../poly/components/paper-input/paper-input.html">
-		<link rel="import" href="../poly/components/paper-slider/paper-slider.html">
-		<link rel="import" href="../poly/components/core-toolbar/core-toolbar.html">
-		<link rel="import" href="../poly/components/core-menu/core-menu.html">
-		<link rel="import" href="../poly/components/core-icons/core-icons.html">
-		<link rel="import" href="../poly/components/paper-button/paper-button.html">
-		<link rel="import" href="../poly/components/paper-fab/paper-fab.html">
-		<link rel="import" href="../poly/components/paper-ripple/paper-ripple.html">
-		<link rel="import" href="../poly/components/paper-item/paper-item.html">
-		<link rel="import" href="../poly/components/paper-shadow/paper-shadow.html">
-		<link rel="import" href="../poly/components/paper-toast/paper-toast.html">
-		<link rel="import" href="../poly/components/paper-button/paper-button.html">
-		<link rel="import" href="../poly/components/paper-spinner/paper-spinner.html"> 
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="../lib/velocity/velocity.min.js"></script>
@@ -60,8 +42,17 @@
 				</svg>
 				<a id="brand">Code Your Cloud</a>
 				
-				<a href="https://github.com/mkaminsky11/codeyourcloud"><paper-button id="github" raised label="FORK THIS ON GITHUB"><paper-shadow></paper-shadow></paper-button></a>
-				<paper-button id="login" onclick="go()" label="LOGIN" raised><paper-shadow></paper-shadow></paper-button>
+				
+				<div style="width:calc(100%);position: absolute; top: 10px; right: 10px; display: -webkit-flex;display: flex;-webkit-flex-direction: row;flex-direction: row;-webkit-flex-wrap: wrap;flex-wrap: wrap;justify-content: flex-end;">
+						
+						<a href="https://github.com/mkaminsky11/codeyourcloud" class="waves-effect waves-light paper-btn" style="margin-right: 5px;align-self: flex-end;background-color:white;color:black;text-decoration: none;"><i class="fa fa-github" style="margin-right:10px"></i> FORK THIS ON GITHUB</a>
+					
+						<a onclick="go()" class="waves-effect waves-light paper-btn paper-btn-blue" style="background-color:#3498DB;align-self: flex-end;"><i class="fa fa-google" style="margin-right:10px;"></i> LOGIN</a>
+					
+				</div>		
+				
+				
+				</a>
 			</div>
 			
 			<!--h1>CODE YOUR CLOUD</h1-->
@@ -87,22 +78,16 @@
 			
 			<img id="screen" src="images/web_record.gif">
 			
-			<!-- div id="switch">
-				<span id="web">Web</span>
-				<paper-toggle-button id="switcher"></paper-toggle-button>
-				<span id="mobile">Mobile</span>
-			</div-->
 		</div>
 		
 		<div class="dark-part">
-			<paper-shadow></paper-shadow>
 			<div class="section group">
 				<div class="col span_1_of_2 border-right-white">
-					<h6 class="small white code-light uppercase">Code Your Cloud is an in-browser code editor for Google Drive. Packed with awesome editing and collaborative abilities, it's the ideal editor for quick fixes and demonstrations.</h6>
+					<h6 class="small code-light uppercase">Code Your Cloud is an in-browser code editor for Google Drive. Packed with awesome editing and collaborative abilities, it's the ideal editor for quick fixes and demonstrations.</h6>
 				</div>
 				
 				<div class="col span_1_of_2">
-					<h6 class="small white code-light uppercase">Plus, it's free and open source, so you can check out the inner workings.</h6>
+					<h6 class="small code-light uppercase">Plus, it's free and open source, so you can check out the inner workings.</h6>
 				</div>
 
 			</div>
@@ -176,14 +161,17 @@
 				<span class="devicons devicons-dart dev-icon"></span>
 			</h6>
 			
-			<h6 class="btn-h6"><a class="btn" href="https://github.com/mkaminsky11/codeyourcloud" target="_blank"><paper-button class="btn-btn" label="SEE MORE" raised><paper-shadow></paper-shadow></paper-button></a></h6>
+			<h6 class="btn-h6">
+				
+				<a href="https://github.com/mkaminsky11/codeyourcloud" class="waves-effect waves-light paper-btn" style="background-color:white;color:black;text-decoration: none;font-size:16px;">SEE MORE</a>
+				
+			</h6>
 			
 			
 		</div>
 		
 		<div class="dark-part">
-			<paper-shadow></paper-shadow>
-			<h4 id="quote">Contact us</h4>
+			<h4 id="quote" style="color:#4F4F4F">Contact us</h4>
 			
 			<input class="form-control input" id="comment_name" value="" placeholder="Name"/>
       	 	<br/>
@@ -193,8 +181,11 @@
      		<br/>
      		
      		<h6 id="send">
-     			<a id="ok" class="btn" onclick="comment()"><paper-button class="btn-btn" raised label="SEND" style="color:white;background-color:#2ECC71"><paper-shadow></paper-shadow></paper-button></a>
-     			<a id="no" class="btn" onclick="resetForm()"><paper-button class="btn-btn" raised label="CANCEL" style="color:white;background-color:#C0392B"><paper-shadow></paper-shadow></paper-button></a>
+	     		
+	     		<a onclick="comment()" class="waves-effect waves-light paper-btn paper-btn-blue" style="background-color:#2ECC71;font-size:16px"><i class="md-send" style="margin-right:10px"></i> SEND</a>
+	     		
+	     		<a onclick="resetForm()" class="waves-effect waves-light paper-btn paper-btn-blue" style="background-color:#E74C3C;font-size:16px"><i class="md-close" style="margin-right:10px"></i> CANCEL</a>
+
      		</h6>
      		
      		<br/>
@@ -241,5 +232,6 @@
 		</script>
 		<script src="../lib/fit/fit.js"></script>
 		<script src="js/index.js"></script>
+		<script src="../js/material.js"></script>
 	</body>
 </html>

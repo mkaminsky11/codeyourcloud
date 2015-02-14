@@ -118,7 +118,6 @@ function addTab(title, id, welcome){
     editor().on("change", function(cm, change) {
     	
     	if(!getIgnore(cm.id)){
-    	
 	    	sendData({
 		    	type: "text",
 		    	text: cm.getValue()
@@ -128,6 +127,11 @@ function addTab(title, id, welcome){
     	else{
 	    	setIgnore(cm.id, false);
     	}
+    	
+    	window.setTimeout(function(){
+	    	mini();
+    	}, 300);
+    	//mini();
     });
     editor().setOption("lineNumbers",line_wrap);
     editor().setOption("lineWrapping",line_number);
@@ -205,6 +209,7 @@ function opentab(id){
 		$("#image_div").css("display","none");
 	}
 	adjust();
+	mini();
 	
 }
 

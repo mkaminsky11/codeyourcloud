@@ -2,12 +2,11 @@
 var e = CodeMirror(document.getElementById("welcome"),{
     lineNumbers: true,
     mode: "text",
-    theme: "tomorrow-night-eighties",
+    theme: "seti",
     lineWrapping: true, 
     indentUnit: 4, 
     indentWithTabs: true
 });
-
 //the introduction text
 
 var txtFile = new XMLHttpRequest();
@@ -18,6 +17,7 @@ txtFile.onreadystatechange = function()
 		if (txtFile.status === 200) {  // file is found
 			var allText = txtFile.responseText; 
 			e.setValue(allText);
+			mini();
 		}
 	}
 }
@@ -29,6 +29,9 @@ current_file = "welcome";
 
 editor().on("beforeSelectionChange", function(cm, selection){
 	//set_color(editor().getSelection());	
+});
+editor().on("change", function(cm, change) {
+    mini();
 });
 editor().setOption("autoCloseBrackets",true);
 editor().setOption("matchBrackets",true);

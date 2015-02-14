@@ -44,7 +44,6 @@ function tree_folder(id, callback){
 $(".root-tree").attr("data-tree-ul", myRootFolderId);
 
 function get_tree(id){
-	$(".tree .progress").slideDown();
 	
 	tree_folder(id, function(data){
 		var ret = "";
@@ -89,7 +88,6 @@ function get_tree(id){
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-spin");
         $("[data-tree-li='"+id+"']>span>i").addClass("fa-folder-open");
         
-        $(".tree .progress").slideUp();
 
 	});
 }

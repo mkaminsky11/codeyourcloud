@@ -154,7 +154,7 @@ mode_select =  new Select({
     alignToHighlighted: 'never'
   });
 mode_select.change("text");
-theme_select.change("tomorrow-night-eighties");
+theme_select.change("seti");
 
 /*===============
 SWITCHES
@@ -225,8 +225,10 @@ function run(){
 	}
 	var find = 'console.log';
 	var re = new RegExp(find, 'g');
-	code_before_replace = code_before_replace.replace(re, 'repl.print');
-	repl.eval(code_before_replace);
+	code_before_replace = code_before_replace.replace(re, 'print');
+	
+	
+	document.getElementById('repl-iframe').contentWindow.eval(code_before_replace);
 }
 
 
@@ -246,15 +248,17 @@ $("#custom").spectrum({
     move: function(tinycolor) { 
 		var color = tinycolor.toHexString();
 		//insert this
+		var before = editor().getDoc().getCursor();
 		if(editor().getDoc().somethingSelected()){
 			editor().getDoc().replaceSelection(color);
 		}
 		else{
-	  		var before = editor().getDoc().getCursor();
 			editor().getDoc().replaceRange(""+color, before);
-			var after = editor().getDoc().getCursor();
-			editor().getDoc().setSelection(before, after);
-  		}
+		}
+		var after = editor().getDoc().getCursor();
+		//else{
+		editor().getDoc().setSelection(before, after);
+  		//}
     },
     beforeShow: function(tinycolor) { 
     	//if something selected, set color
@@ -518,6 +522,13 @@ function close_side(){
 		queue: false
 	});
 	
+	$("#mini").velocity({
+		right: 0
+	},{
+		duration: 500,
+		queue: false
+	});
+	
 	//$("#toggle_side_menu_button").attr("shape","menu");
 }
 
@@ -538,6 +549,13 @@ function open_side(){
 	
 	$(".move").velocity({
 		marginLeft: 300
+	},{
+		duration: 500,
+		queue: false
+	});
+	
+	$("#mini").velocity({
+		right: "-300px"
 	},{
 		duration: 500,
 		queue: false
@@ -728,3 +746,34 @@ $(document).ready(function() {
 
 	editor().refresh();
 });
+
+function setFocusThickboxIframe() {
+    var iframe = $("#repl-iframe")[0];
+    iframe.contentWindow.focus();
+}
+
+$(".dial").knob({
+	change: function(value){
+		var f = value;
+		sql_font = Number(f);
+		$(".CodeMirror").css("fontSize", f+"px");	
+	}
+});
+
+var anchor = document.querySelectorAll('#toggle_side_menu_button');
+    
+[].forEach.call(anchor, function(anchor){
+	var open = false;
+	anchor.onclick = function(event){
+		event.preventDefault();
+		toggle_side()
+		if(!open){
+			this.classList.add('close');
+			open = true;
+		}
+		else{
+			this.classList.remove('close');
+			open = false;
+		}
+	}
+}); 

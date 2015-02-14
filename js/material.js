@@ -1,29 +1,3 @@
-$(".dial").knob({
-	change: function(value){
-		var f = value;
-		sql_font = Number(f);
-		$(".CodeMirror").css("fontSize", f+"px");	
-	}
-});
-
-var anchor = document.querySelectorAll('#toggle_side_menu_button');
-    
-[].forEach.call(anchor, function(anchor){
-	var open = false;
-	anchor.onclick = function(event){
-		event.preventDefault();
-		toggle_side()
-		if(!open){
-			this.classList.add('close');
-			open = true;
-		}
-		else{
-			this.classList.remove('close');
-			open = false;
-		}
-	}
-}); 
-
 (function(window) {
     'use strict';
 

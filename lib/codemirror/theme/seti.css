@@ -1,0 +1,34 @@
+/*
+
+    Name:       Tomorrow Night - Eighties
+    Author:     Chris Kempson
+
+    CodeMirror template by Jan T. Sott (https://github.com/idleberg/base16-codemirror)
+    Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
+
+*/
+
+.cm-s-seti.CodeMirror {background: #151718; color: rgb(212,215,214);}
+.cm-s-seti div.CodeMirror-selected {background: rgba(85,181,219,0.6); !important;}
+.cm-s-seti .CodeMirror-gutters {background: rgb(14,17,18); border-right: 0px;}
+.cm-s-seti .CodeMirror-linenumber {color: rgb(64,75,83);}
+.cm-s-seti .CodeMirror-cursor {border-left: 1px solid #6A6A6A !important;}
+
+.cm-s-seti span.cm-comment {color: rgb(65,83,91);}
+.cm-s-seti span.cm-atom {color: #a16a94;}
+.cm-s-seti span.cm-number {color: rgb(205,63,69);}
+
+.cm-s-seti span.cm-property, .cm-s-seti span.cm-attribute {color: rgb(160,116,196);}
+.cm-s-seti span.cm-keyword {color: rgb(159,202,86);}
+.cm-s-seti span.cm-string {color: rgb(85,181,219);}
+
+.cm-s-seti span.cm-variable {color: rgb(159,202,86);}
+.cm-s-seti span.cm-variable-2 {color: rgb(160,116,196);}
+.cm-s-seti span.cm-def {color: #f99157;}
+.cm-s-seti span.cm-bracket {color: #CCCCCC;}
+.cm-s-seti span.cm-tag {color: #f2777a;}
+.cm-s-seti span.cm-link {color: #a16a94;}
+.cm-s-seti span.cm-error {background: #f2777a; color: #6A6A6A;}
+
+.cm-s-seti .CodeMirror-activeline-background {background: #101213 !important;}
+.cm-s-seti .CodeMirror-matchingbracket { text-decoration: underline; color: white !important;}

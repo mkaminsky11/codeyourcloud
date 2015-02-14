@@ -105,16 +105,13 @@
 				</div>
 				
 				<div class="tree tree-tree">
-					<div class="progress">
-						<div class="indeterminate"></div>
-					</div>
 					<ul class="root-tree">
 						
 					</ul>
 				</div>
 				
 				<div class="terminal" style="display:none">
-					<iframe src="lib/codemirror-repl/index.html"></iframe>
+					<iframe src="lib/codemirror-repl/index.html" id="repl-iframe" onclick="setFocusThickboxIframe()"></iframe>
 				</div>
 				
 				<div id="opt" class="options" style="display:none">
@@ -236,8 +233,12 @@
 	<div style="width:100%;height:100%;position:fixed;z-index: 0;" class="move">
 		
 		<div class="tab-wrapper" data-step="4" data-intro='This allows you to switch between files using tabs' data-position="bottom">
-			<div class="tab-right" style="border-left:solid 1px rgb(110, 110, 110)" onclick="$('#more-popup').toggle()">
+			<div class="tab-right" style="" onclick="$('#more-popup').toggle()">
 				<i class="md-more-vert"></i>
+			</div>
+			
+			<div class="tab-right" onclick="$('#mini').toggle()">
+				<i class="md-border-right"></i>
 			</div>
 			
 			<div id="plus-plus" class="tab-right" onclick="$('#new-popup').toggle();" data-step="5" data-intro='And to create new files' data-position="left">
@@ -248,7 +249,7 @@
 				<i class="md-filter-list"></i>
 			</div>
 		
-			<div class="tab-right" onclick="$('#search-popup').toggle()" style="border-left:solid 1px rgb(110, 110, 110)">
+			<div class="tab-right" onclick="$('#search-popup').toggle()" style="">
 				<i class="md-search"></i>
 			</div>
 			
@@ -348,6 +349,8 @@
 			</div>
 		</div>
 		
+		<div id="mini">
+		</div>
 		
 		
 		<script src="lib/sweetalert/lib/sweet-alert.min.js"></script>
@@ -451,7 +454,7 @@
 		
 		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/theme.css'>
 		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/code-your-cloud.css'>
-		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/cobalt-cold.css'>
+		<link rel='stylesheet' type='text/css' href='lib/codemirror/theme/seti.css'>
 		
 		<link rel="stylesheet" href="lib/codemirror/addon/dialog/dialog.css" >
 		<link rel="stylesheet" href="lib/codemirror/addon/hint/show-hint.css" >
@@ -497,7 +500,7 @@
       	<script src="lib/coffee/coffee.js"></script>
       	<script src="lib/markdown/markdown.js"></script>
 		<script src="lib/tether/tether.js"></script>
-      	
+
 		<script src="js/global.js"></script>
 		<script src="js/realtime.js"></script>
 		<script src="js/frontend.js"></script>
@@ -508,6 +511,7 @@
 		<script src="js/broadcast.js"></script>
 		<script src="js/tree.js"></script>
 		<script src="js/tabs.js"></script>
+		<script src="js/mini.js"></script>
 		
 		
 		<script src = 'lib/keyboard/jwerty.js'></script>

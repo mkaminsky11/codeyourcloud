@@ -67,7 +67,6 @@ TOOLBAR
 	height: 57px;
 	margin-left: calc(100% - 53px);
 	top: calc(100% - 67px);
-	background-color: #34495e;
 	text-align: center;
 	padding-top: 10px;
 }
@@ -118,7 +117,7 @@ SIDEBAR
 }
 
 #users, #toolbar{
-	background-color: #2B2B2B;
+	background-color: #262B30;
 	z-index: 3;
 }
 #users{
@@ -190,7 +189,7 @@ SIDEBAR
 .hover-1:hover core-icon{color:#e74c3c;}.hover-2:hover core-icon{color:#E74C3C;}.hover-3:hover core-icon{	color:#2ecc71;}.hover-4:hover core-icon{color:#9b59b6;}.hover-5:hover core-icon{color:#e67e22;}.hover-6:hover core-icon{color:#C0392B;}.hover-7:hover core-icon{color:#c0392b;}.hover-8:hover core-icon{color:#f1c40f;}.hover-9:hover core-icon{color:#16a085;}.hover-10:hover core-icon{color:#27ae60;}.hover-11:hover core-icon{color:#e74c3c;}.hover-12:hover core-icon{color:#8e44ad;}.hover-13:hover core-icon{color:#f39c12;}.hover-14:hover core-icon{color:#d35400;}.hover-15:hover core-icon{color:#E74C3C;}.hover-16:hover core-icon{color:#1abc9c;}.hover-17:hover core-icon{color:#7f8c8d;}.hover-18:hover core-icon{color:#8e44ad;}.hover-19:hover core-icon{color:#e74c3c;}
 
 #side{
-	background-color: #323232;
+	background-color: #101112;
 }
 
 #side-inner hr{
@@ -361,7 +360,7 @@ div#container{
 }
 .tab-wrapper{
 	height: 40px;
-	background-color: #3A3939;
+	background-color: #262B30;
 	position: absolute;
 	top: -30px;
 	overflow: hidden;
@@ -386,23 +385,21 @@ div#container{
 	flex-wrap: wrap;
 }
 .tab-tab{
-	background-color: #272822;
-	height: 24px;
+	background-color: #1E2326;
+	height: 18px;
 	position : relative;
 	width: 116px;
 	padding: 8px;
+	border-bottom: solid thick black;
+	margin-top: 1px;
 }
 .tab-tab:first-child{
 	margin-left: 0px;
 }
-.tab-tab:not(.active){
-	border-left: solid 1px #3A3939;
-	border-bottom: solid 1px #3A3939;
-}
 
 .tab-tab h4{
   margin: 0px;
-  font-size: 16px;
+  font-size: 13px;
   width: 100px;
   overflow: hidden;
   word-break: break-all;
@@ -411,11 +408,11 @@ div#container{
   word-wrap: break-word;
   overflow: hidden;
   height: 19px;
-  font-family: 'Roboto-Thin';
-  color: #eee;
-
+  font-family: 'Roboto';
+  color: #7f8c8d;
   padding-top: 4px;
   padding-left: 5px;
+  font-weight: 300;
 }
 .tab-tab h6{
 	margin: 0;
@@ -436,10 +433,12 @@ div#container{
 }
 
 .tab-active{
-	background-color: white;
-	color: black;
-	
+	background-color: #101112;
+	color: white;
 	border-top: solid 1px #eee;
+	border-bottom: solid thick #E74C3C;
+	margin-top: -1px;
+	height: 19px;
 }
 
 .tab-active h6{
@@ -447,7 +446,7 @@ div#container{
 }
 
 .tab-active h4{
-	color: #7f8c8d;
+	color: white;
 }
 
 .CodeMirror{
@@ -657,7 +656,7 @@ div#container{
 	  position: relative;
 	  color: #F4E5E5;
 	  padding: 10px;
-	  background-color: #3A3939;
+	  background-color: transparent;
 	  text-align: center;
 	  font-family: 'Roboto-Thin';
 	  z-index: 11;
@@ -841,7 +840,7 @@ div#container{
 	outline: none;
 	border: none;
 	font-size: 15px;
-	color: #E9E7E7;
+	color: #383838;
 	background-color: white;
 	border: solid 1px #eee;
 	font-weight: 400;
@@ -885,7 +884,7 @@ FILE BROWSING TREE
 	color: #F0EFEF;
 	font-family: 'Roboto-Thin';
 	font-weight: 600;
-	font-size: 15px;
+	font-size: 13px;
 	margin-top: 7px;
 	margin-bottom: 7px;
 	overflow-wrap: break-word;
@@ -893,12 +892,12 @@ FILE BROWSING TREE
 
 .tree span {
   font-family: "Roboto";
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .tree i{
 	margin-right: 10px;
-	color: #9E9E9E;
+	color: white;
 }
 
 #tree-open{
@@ -1102,4 +1101,43 @@ LOADING ICON
 #keyboard-manager > div > h5 > span{
 	float: right;
 	color: #A39F9F;
+}
+
+/*
+MINI!	
+*/
+
+#mini{
+	position: fixed;
+	z-index: 2;
+	top: 83px;
+	right: 0;
+	width: 300px;
+	height: calc(100% - 83px);
+	background-color: #151718;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.mini-row{
+	width: 100%;
+	display: flex;
+	height: 2px;
+	margin-bottom: 2px;
+	margin-top: 2px;
+}
+
+.mini-block{
+	width: 2px;
+	background-color: white;
+}
+
+.mini-space{
+	width: 1px;
+	background-color: transparent;
+}
+
+.mini-tab{
+	width: 3px;
+	background-color: transparent;
 }
