@@ -199,7 +199,7 @@ ga('send', 'pageview');
 
 //chart
 
-
+/*
 var colors = ["#E74C3C", "#2ECC71", "#3498DB", "#9B59B6", "#E67E22", "#1ABC9C", "#34495E"];
 var color_index = 0;
 window.setInterval(function(){
@@ -214,5 +214,5 @@ window.setInterval(function(){
 		duration: 700
 	});
 }, 3000);
-
+*/
 

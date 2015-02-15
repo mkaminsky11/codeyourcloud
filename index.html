@@ -43,11 +43,10 @@
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/material.css">
 		
-        
-        <link rel="stylesheet" href="lib/select/css/select-theme-default.css" />
 		<link rel="stylesheet" href="lib/intro/introjs.min.css">
-		
 		<script src="lib/intro/intro.js"></script>
+		
+		<link href="https://cdn.jsdelivr.net/devicons/1.4.0/css/devicons.min.css" rel='stylesheet'>
 
 	</head>
 	<body>
@@ -79,14 +78,11 @@
 					<div id="nav_terminal" onclick="nav_terminal()">
 						<i class="fa fa-terminal"></i>
 					</div>
-					<div id="nav_lorem" onclick="nav_lorem()">
+					<div id="nav_lorem" onclick="nav_lorem()" style="display:none">
 						<i class="fa fa-font"></i>
 					</div>
 					<div id="nav_options" onclick="nav_options()">
 						<i class="md-settings"></i>
-					</div>
-					<div id="nav_chats" onclick="nav_chats()">
-						<i class="md-chat"></i>
 					</div>
 					
 				</div>
@@ -115,54 +111,47 @@
 				</div>
 				
 				<div id="opt" class="options" style="display:none">
-					<select id="mode-select" onchange="modeChange()">
-					
-					</select>
-					<br/>
-					<br/>
-					<select id="theme-select" onchange="themeChange()">
-					
-					</select>
-					<br/><br/>
-					
-					<input type="checkbox" id="side-nums" class="paper-checkbox" checked>  
-				    <label for="side-nums" id="side-nums-label" class="paper-label" onclick="line_number_switch()">
-				      <span></span><span class="check"></span><span class="box"></span>
-				      Line Numbers
-				    </label>  
-					
-					<br/>
-					<br/>
-
-					<input type="checkbox" id="side-wrap" class="paper-checkbox" checked>  
-				    <label for="side-wrap" id="side-wrap-label" class="paper-label" onclick="line_wrap_switch()">
-				      <span></span><span class="check"></span><span class="box"></span>
-				      Line Wrap
-				    </label> 
-					
-					<br/>
-					<br/>
-					
-					<div class="option-div">
-						<h4 style="font-family:'Roboto';font-weight:400;margin-left: 10px;color:white">Font Size</h4>
+					<div class="select-box">
+						<p>Language</p>
+						<span><i class="fa fa-caret-down"></i></span>
+						<select id="mode-select" onchange="modeChange()"></select>
 					</div>
-					<br/><br/>
-					<input class="dial" data-width="150" data-cursor=true data-fgColor="#E74C3C" data-thickness=.3 value="12" data-min="1" data-max="30">
 					
+					<div class="select-box">
+						<p>Theme</p>
+						<span><i class="fa fa-caret-down"></i></span>
+						<select id="theme-select" onchange="themeChange()"></select>
+					</div>
+					
+					<div class="select-box">
+						<p>Font Size</p>
+						<span><i class="fa fa-caret-down"></i></span>
+						<select id="font-select" onchange="fontChange()">
+						</select>
+					</div>
+
+					<div class="select-box">
+						<p>Line Numbers</p>
+						
+						<label class="check-switch" id="side-nums-label">
+						    <input type="checkbox" id="side-nums" checked>
+						    <span onclick="line_number_switch()"></span>
+						</label>	
+					</div>
+					
+					<div class="select-box">
+						<p>Line Wrap</p>
+						
+						<label class="check-switch" id="side-wrap-label">
+						    <input type="checkbox" id="side-wrap" checked>
+						    <span onclick="line_wrap_switch()"></span>
+						</label>	
+					</div>			
 				</div>
 				
 				<div id="lorem" style="display:none" class="lorem" data-lorem="6s"></div>
 				<div id="lorem-div" style="display:none" class="lorem">
 					<input id="lorem_input" value="6" onchange="generate()"/>
-				</div>
-				
-				<div class="chats chats-store" style="display:none">
-					<div class="chats-content chats-active" data-fileid="welcome">
-						
-					</div>
-				</div>
-				<div class="chats chats-bottom" style="display:none">
-					<textarea placeholder="Type something" class="chat-input chats-text"></textarea>
 				</div>
 				
 			</div>
@@ -181,8 +170,7 @@
 				
         	  </ul>
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
-	        	  
-	        	<span id="help_button" class="side-file" onclick="show_side_share()"><i class="md-person-add"></i></span>
+	        	<span id="help_button" class="side-file" onclick='$("#chat-popup").slideToggle()'><i class="md-chat"></i></span>
 	        	<span id="open_button" onclick="open_picker()" data-step="2" data-intro='This will open up the file chooser'><i class="md-folder-open"></i></span>
         	  	<span id="save_button" class="side-file" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'><i class="md-save"></i></span>
         	  	<span id="undo_button" onclick="editor_undo()"><i class="md-undo"></i></span>
@@ -213,6 +201,7 @@
 	</div>
 	
 	<div style="display:none" id="more-popup" class="popup">
+		<span onclick="show_side_share()"><i class="md-person-add"></i> Share</span>
 		<span onclick="saveAs()"><i class="md-save"></i>Save As</span>
 		<span onclick="download_file()"><i class="md-file-download"></i>Download</span>
 		<span class="side-pub" onclick="publish_html()"><i class="md-file-upload"></i>Publish</span>
@@ -291,6 +280,21 @@
 
 		<!--END MAIN-->
 		
+		<div id="chat-popup" style="display:none">
+			<div class="chats-top">
+				<h6><i class="md-close" onclick='$("#chat-popup").slideToggle()'></i></h6>
+			</div>
+			
+			<div class="chats-store">
+				<div class="chats-content chats-active" data-fileid="welcome">
+						
+				</div>
+			</div>
+			<div class="chats-bottom">
+				<textarea placeholder="Type something" class="chat-input chats-text"></textarea>
+			</div>
+		</div>
+		
 		<div class="overlay-tint" id="preview-overlay" style="display:none">
 			<div>
 				<div>
@@ -350,6 +354,8 @@
 		</div>
 		
 		<div id="mini">
+			<div id="mini-scroll"></div>
+			<div style="display:none" id="mini-insert"></div>
 		</div>
 		
 		
@@ -482,7 +488,6 @@
 		<link rel='stylesheet' type='text/css' href='lib/codemirror/addon/lint/lint.css'/>
 		
 		<script src="lib/messenger/js/messenger.js"></script>
-		<script src="lib/knob/js/jquery.knob.js"></script>
 		
 		<script src="lib/auto/acorn.js"></script>
 		<script src="lib/auto/acorn_loose.js"></script>
@@ -499,7 +504,6 @@
       	<script src="lib/big-text/big-text.js"></script>
       	<script src="lib/coffee/coffee.js"></script>
       	<script src="lib/markdown/markdown.js"></script>
-		<script src="lib/tether/tether.js"></script>
 
 		<script src="js/global.js"></script>
 		<script src="js/realtime.js"></script>

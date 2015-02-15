@@ -33,7 +33,11 @@ function mini(){
 	
 	var text = editor().getValue();
 	var array = text.split("\n");
-	var html = ""
+	var html = "";
+	
+	$(".mini-tab").remove();
+	$(".mini-block").remove();
+	$(".mini-space").remove();
 	
 	var prev = -1;
 	
@@ -76,15 +80,21 @@ function mini(){
 		html += "</div>";
 	}
 	
-	$("#mini").html(html);
+	$("#mini-insert").after(html);
 	//$("#mini").css("display","block");
 }
 
 function miniView(){
+	
 	var view = editor().doc.cm.getViewport();
 	var from = view.from;
 	var to = view.to;
 	
-	var top = $(".mini-row")[from].position().top;
-	var height = 6 * (to - from) + "px";
+	var top = $(".mini-row").eq(from).position().top + "px";
+	var height = 4 * (to - from) + "px";
+	
+	$("#mini-scroll").css("height", height);
+	$("#mini-scroll").css("top", top);
 }
+
+mini();

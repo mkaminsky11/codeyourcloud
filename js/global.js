@@ -400,7 +400,7 @@ note: not currently enabled
 var line_wrap = false;
 var line_number = true;
 
-var theme_sql = "monokai";
+var theme_sql = "seti";
 var auto_save = true;
 var auto_save_int = 30000;
 			

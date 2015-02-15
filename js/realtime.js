@@ -17,24 +17,27 @@ txtFile.onreadystatechange = function()
 		if (txtFile.status === 200) {  // file is found
 			var allText = txtFile.responseText; 
 			e.setValue(allText);
-			mini();
 		}
 	}
 }
 txtFile.send(null);
 
 add_editor(e, "welcome", true);
-
 current_file = "welcome";
 
 editor().on("beforeSelectionChange", function(cm, selection){
 	//set_color(editor().getSelection());	
 });
 editor().on("change", function(cm, change) {
-    mini();
+    window.setTimeout(function(){
+    	mini();
+    },200);
 });
 editor().setOption("autoCloseBrackets",true);
 editor().setOption("matchBrackets",true);
+$(".CodeMirror-scroll").scroll(function(){
+	  miniView();
+});
 $(".CodeMirror").css("line-height","1");
 
 //some basic things above

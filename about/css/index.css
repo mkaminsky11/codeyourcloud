@@ -52,7 +52,13 @@ body{
 	
 	*/
 	
-	background-color: #EC5343;
+	/*background-color: #EC5343;*/
+	
+	background: url("../../images/poly/3.jpg") no-repeat center center fixed; 
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
 }
 
 #quote{

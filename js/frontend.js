@@ -24,7 +24,7 @@ connection.onmessage = function (message) {
 		}
 
 		if(json.type === "get"){
-
+		
 			rec = true;
 			
 			login_sql = json.last_login;
@@ -43,20 +43,20 @@ connection.onmessage = function (message) {
 			
 			
 			try{
-				if(line_wrap === true && !$('#side-wrap').prop('checked')){
-					document.getElementById("side-wrap").toggle();
-				}
+				//if(line_wrap === true && !$('#side-wrap').prop('checked')){
+				//	document.getElementById("side-wrap").toggle();
+				//}
 				
-				line_number = to_bool(json.nums);
+				//line_number = to_bool(json.nums);
 				
-				for(var i = 0; i < editors.length; i++){
-					editors[i].editor.setOption("lineNumbers",line_number);
-				}
+				//for(var i = 0; i < editors.length; i++){
+				///	editors[i].editor.setOption("lineNumbers",line_number);
+				//}
 				
 				
-				if(line_number === false && $('#side-nums').prop('checked')){
-					document.getElementById("side-nums").toggle();
-				}
+				//if(line_number === false && $('#side-nums').prop('checked')){
+				//	document.getElementById("side-nums").toggle();
+				//}
 			}
 			catch(e){
 			}
@@ -95,8 +95,9 @@ function to_int(bool_val){
 /********
 SQL
 **********/
+
 function set_sql(){
-	if(rec){
+	/*if(rec){
 		//get the data
 		//send it
 		var ret = {};
@@ -110,7 +111,7 @@ function set_sql(){
 		ret.auto_time = auto_save_int;
 		ret.type = "set";
 		connection.send(JSON.stringify(ret));
-	}
+	}*/
 }
 function get_sql(){
 	connection.send(JSON.stringify({type:"get", id:userId}));

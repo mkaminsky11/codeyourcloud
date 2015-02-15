@@ -130,14 +130,17 @@ function addTab(title, id, welcome){
     	
     	window.setTimeout(function(){
 	    	mini();
-    	}, 300);
+    	}, 200);
     	//mini();
     });
+    
     editor().setOption("lineNumbers",line_wrap);
     editor().setOption("lineWrapping",line_number);
-    
-
     opentab(id);
+    
+    $(".CodeMirror-scroll").scroll(function(){
+	   miniView();
+	});
   }
   
 }
@@ -176,10 +179,6 @@ function opentab(id){
 		$("#title").val("Code Your Cloud");
 		$("#rename-toggle").css("display","none");
 		$("#rename_input").val("");
-		
-		if($(".chats").css("display") !== "none"){
-			nav_list();
-		}	
 	}
 	
 	//adjust things here
@@ -190,10 +189,6 @@ function opentab(id){
 		$("#title").val("Code Your Cloud");
 		$("#rename-toggle").css("display","none");
 		$("#rename_input").val("");
-		
-		if($(".chats").css("display") !== "none"){
-			nav_list();
-		}
 	}
 	else{
 		//a file
@@ -210,7 +205,7 @@ function opentab(id){
 	}
 	adjust();
 	mini();
-	
+	miniView();
 }
 
 function removetab(id){
@@ -238,8 +233,6 @@ function removetab(id){
 
 	current_file = "";
 	editors.splice(index,1);
-	  
-	$("#nav_chats").css("display","none");
 }
 
 function adjust(){
@@ -247,11 +240,10 @@ function adjust(){
 	
 	if(id === "welcome"){
 		$(".side-file").css("display","none");
-		$("#nav_chats").css("display","none");
+		$("#chat-popup").slideUp();
 	}
 	else{	
 			$(".side-file").css("display","inline-block");
-			$("#nav_chats").css("display","inline-block");
 	}
 	
 	var mode = editor().getOption("mode");
@@ -294,8 +286,8 @@ function insert_chat(message, you, photo, name, fileid){
 	if(message.trim() !== ""){
 	  var push = "<div class=\"chat-item\">";
 	  push = push + "<img height=\"30px\" width=\"30px\" src=\""+ photo +"\">";
-	  push = push + "<pre>";
-	  push = push + message + "</pre></div>";
+	  push = push + "<div><h3>"+name+"</h3><pre>";
+	  push = push + message + "</pre></div></div>";
 	  $(".chats-content[data-fileid='"+fileid+"']").html($(".chats-content[data-fileid='"+fileid+"']").html() + push);
 	  
 	  $(".chats-content[data-fileid='"+fileid+"']").animate({ scrollTop: $(".chats-content[data-fileid='"+fileid+"']")[0].scrollHeight}, 500);
