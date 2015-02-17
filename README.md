@@ -1,128 +1,159 @@
 #Code Your Cloud#
-######created by Michael Kaminsky######
-####Now available on the <a href="https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail">Chrome Store</a> (over 2400 users so far)####
-####<a href="https://codeyourcloud.com">The Project</a>####
-<p>Check out the result of the project so far here. It is now completely functional. Enjoy!</p>
+####created by Michael Kaminsky
+[Main project page](https://codeyourcloud.com)
+[Available on the Chrome web store](https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail)
+
 ![Screenshot](http://codeyourcloud.com/images/web.png)
 ====
-<h3>Goal</h3>
-<p>To allow people around the globe to collaborate on coding projects via Google Drive. It's that simple. So far, I have yet to see a website or program that accomplishes these tasks for all major programming languages. This is an attempt to change that, and it seems to be working well so far.</p>
-=====
 
-__a mobile version is in the works__
+###Goal
+To allow people around the globe to collaborate on coding projects via Google Drive. It's that simple. So far, I have yet to see a website or program that accomplishes these tasks for all major programming languages. This is an attempt to change that, and it seems to be working well so far.
+
+The change log can be seen [here](CHANGELOG.md)
+=====
 
 ###Possible Ideas###
 + run languages like Python, etc.
 + templates
-+ tutorials
 
 ###Features###
-
 + Syntax highlighting
 + Collaboration
 + Built-in color picker
 + HTML and markdown preview
 + Autocomplete
 + Javascript console
-+ Browser
 + Keyboard shortcuts
 + Preferences
 + Google Drive integration
 + Run (javascript and coffeescript only, for now)
-
++ Minimap preview
++ Search/replace
 =====
-###Supported Languages (86)###
 
-+ Javascript
+###Supported Languages###
 + APL
++ Swift
++ Text
 + Asterisk
 + C
 + C++
-+ C#
-+ Java
-+ Clojure
 + Cobol
++ C#
++ Clojure
 + CoffeeScript
 + Common Lisp
-+ CSS
-+ SCSS
-+ LESS
 + Cypher
-+ Python
 + Cython
++ CSS
++ CQL
 + D
++ Dart
++ diff
 + Django
-+ Diff
 + DTD
 + Dylan
++ EBNF
 + ECL
 + Eiffel
++ Embedded Javascript
++ Embedded Ruby
 + Erlang
-+ Fortan
-+ OCaml
++ Fortran
 + F#
 + Gas
 + Gherkin
++ GitHub Flavored Markdown
 + Go
 + Groovy
 + HAML
 + Haskell
 + Haxe
-+ JSP
-+ EJS
++ HXML
 + ASP.NET
 + HTML
 + HTTP
++ IDL
 + Jade
++ Java
++ Java Server Pages
++ JavaScript
 + JSON
-+ TypeScript
++ JSON-LD
++ Jinja2
 + Julia
++ Kotlin
++ LESS
 + LiveScript
 + Lua
 + Markdown
-+ Github Markdown
 + mIRC
-+ nginx
++ MariaDB SQL
++ Modelica
++ MS SQL
++ MySQL
++ Nginx
 + NTriples
++ Objective C
++ OCaml
 + Octave
 + Pascal
++ PEG.js
 + Perl
 + PHP
-+ PHP/HTML
-+ Pig Latin
-+ Properties
++ Pig
++ Plain Text
++ PLSQL
++ Properties files
++ Python
 + Puppet
 + Q
 + R
++ reStructuredText
++ RPM Changes
++ RPM Spec
 + Ruby
 + Rust
 + Sass
 + Scala
-+ Shell
 + Scheme
++ SCSS
++ Shell
 + Sieve
++ Slim
 + Smalltalk
 + Smarty
++ SmartyMixed
 + Solr
++ Soy
++ SPARQL
++ Spreadsheet
 + SQL
-+ mySQL
-+ sText
-+ TCL
-+ LaTex
-+ Tiki
-+ Toml
++ MariaDB
++ sTeX
++ LaTeX
++ SystemVerilog
++ Tcl
++ Textile
++ TiddlyWiki 
++ Tiki wiki
++ TOML
++ Tornado
 + Turtle
++ TypeScript
 + VB.NET
 + VBScript
 + Velocity
 + Verilog
 + XML
 + XQuery
-+ Swift
-
++ YAML
++ Z80
 =====
-###Themes###
 
+###Themes###
++ Seti
++ Code Your Cloud
 + 3024 Day
 + 3024 Night
 + Ambiance Mobile
@@ -153,32 +184,15 @@ __a mobile version is in the works__
 + Xq light
 + Xq dark
 + Neo
-
 =====
-###Resources###
-<p>These resources were used in the creation of this project. For a more detailed list, go <a href="https://codeyourcloud.com/about#lib">here</a></p>
 
-+ [CodeMirror](http://codemirror.net)
-+ [FontAwesome](http://fortawesome.github.io/Font-Awesome)
-+ [CodeMirror REPL](http://github.com/aaditmshah/codemirror-repl)
-+ [JQuery](https://jquery.com)
-+ [Node.js](http://nodejs.org/)
-+ [WebSockets](http://www.websocket.org/)
-+ [Forever](https://github.com/nodejitsu/forever)
-+ [LoremJS](https://github.com/f/loremjs)
-+ [Polymer](https://polymer-project.org)
-
-======
-###License###
-```
-The MIT License (MIT)
-
-Copyright (c) 2014 @mrmrs
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-```
-
+###License
+> The MIT License (MIT)
+> 
+> Copyright (c) 2014 @mrmrs
+> 
+> Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to  deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+> 
+> The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
