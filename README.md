@@ -1,15 +1,17 @@
 #Code Your Cloud#
 ####created by Michael Kaminsky
+
 [Main project page](https://codeyourcloud.com)
+
 [Available on the Chrome web store](https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail)
 
 ![Screenshot](http://codeyourcloud.com/images/web.png)
-====
 
 ###Goal
 To allow people around the globe to collaborate on coding projects via Google Drive. It's that simple. So far, I have yet to see a website or program that accomplishes these tasks for all major programming languages. This is an attempt to change that, and it seems to be working well so far.
 
 The change log can be seen [here](CHANGELOG.md)
+
 =====
 
 ###Possible Ideas###
@@ -29,6 +31,7 @@ The change log can be seen [here](CHANGELOG.md)
 + Run (javascript and coffeescript only, for now)
 + Minimap preview
 + Search/replace
+
 =====
 
 ###Supported Languages###
@@ -149,7 +152,7 @@ The change log can be seen [here](CHANGELOG.md)
 + XQuery
 + YAML
 + Z80
-=====
+
 
 ###Themes###
 + Seti
@@ -184,6 +187,7 @@ The change log can be seen [here](CHANGELOG.md)
 + Xq light
 + Xq dark
 + Neo
+
 =====
 
 ###License

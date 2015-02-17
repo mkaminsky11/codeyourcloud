@@ -5,6 +5,7 @@
 ###Changed
 - improved documentation
 - error pages to be as "bare bones" as possible
+- README messups
 
 ###Added
 - a change log
