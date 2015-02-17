@@ -1,108 +1,22 @@
+/*===
+* CODEYOURCLOUD
+*
+* global.js built by Michael Kaminsky
+* stores global variables
+*
+* contents
+*  editor
+*  API
+*  google drive
+*  user info
+*  library info
+===*/
 
-/*==============================
-A file to store global variables
-==============================*/
-
-var editors = []; //the codemirror editor
+var editors = []; //the codemirror editors
 var current_file = "";
-
-
-function editor(){
-	for(var i = 0; i < editors.length; i++){
-  if(editors[i].id === current_file){
-    return editors[i].editor;
-  }
- }
-}
-
-function add_editor(e, id, welcome){
-	//creates a new object to store stuff in
-	var to_push = {
-    	editor: e,
-    	id: id,
-    	welcome: welcome,
-    	title: "",
-    	ignore: false
-	};
-  
-	editors.push(to_push);
-	current_file = id;
-	e.refresh();
-}
-
-function getEditor(id){
-	//gets an editor by its file id
-	for(var i = 0; i < editors.length; i++){
-		if(editors[i].id === id){
-			return editors[i].editor;
-		}
-	}
-}
-
-function getIndex(id){
-	//gets the index of an editor with a given file id
-	for(var i = 0; i < editors.length; i++){
-		if(editors[i].id === id){
-			return i;
-		}
-	}
-}
-
-function getIgnore(id){
-	for(var i = 0; i < editors.length; i++){
-		if(editors[i].id === id){
-			return editors[i].ignore;
-		}
-	}
-}
-
-function setIgnore(id, ignore){
-	for(var i = 0; i < editors.length; i++){
-		if(editors[i].id === id){
-			editors[i].ignore = ignore;
-		}
-	}
-}
-
-function setFileTitle(id, title){
-	//first, set the h4 of the .tab-tab
-	editors[getIndex(id)].title = title;
-	$(".tab-tab[data-fileid='"+id+"']").find("h4").html(title);
-	
-	$("#tab-manager div[data-refersto='"+id+"']").html($("#tab-manager div[data-refersto='"+id+"']").html().replace("loading...", title));
-	
-	check_mode(id, title);
-	var index = getIndex(id);
-	
-	if(current_file === id){
-		$("#title").val(editors[index].title);
-	}
-	var t_t = title.toLowerCase();
-	if(t_t.indexOf("png") !== -1 || t_t.indexOf(".jpg") !== -1 || t_t.indexOf(".jpeg") !== -1 || t_t.indexOf(".tiff") !== -1 || t_t.indexOf(".gif") !== -1){
-		editors[index].image = true;
-		if(current_file === id){
-			read_image(id);
-		}
-	}
-	
-	var j = $("[data-tree-li='"+id+"'] span").html().split(">");
-	j[2] = title;
-	$("[data-tree-li='"+id+"'] span").html(j.join(">"))
-}
-
 
 var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
 var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive'];
-
-var drive_loaded = false;
-var real_loaded = false;
-var doc_real;
-var current = "";
-var text;
-var list;
-var chats;
-var binding;
-var title;
 
 var your_session_id = "";
 var your_color = "";
@@ -110,10 +24,6 @@ var your_user_id = "";
 var your_name = "";
 var your_photo = "";
 
-var chat_open = false;
-var total_chat = 0;
-
-var code;
 var logged_in = false;
 
 var converter = new Markdown.Converter();
@@ -278,51 +188,14 @@ var themes_name = ["seti","code-your-cloud","3024-day", "3024-night", "ambiance-
 
 var is_mobile = false;
 var real_mobile = false;
-
-
-var side_open_width = "25%";
-
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  	is_mobile = true;
  	real_mobile = true;
 }
-
 if(window.location.href.indexOf("?mobile=true") !== -1){
 	is_mobile = true;
 	//spoofing to test mobile
 }
-
-if(is_mobile){
-	to_mobile();
-}
-
-function to_mobile(){
-	
-	//some UI changes
-	is_mobile = true;
-	//makes the sidebar larger
-}
-
-function from_mobile(){
-	side_open_width = "25%";
-
-	//from mobile to desktop
-	is_mobile = false;
-}
-
-$( window ).resize(function() {
-  if($( window ).width() < 700){
-	  if(!is_mobile){
-		  to_mobile();
-	  }
-  }
-  else{
-	  if(is_mobile){
-		  from_mobile();
-	  }
-  }
-});
-
 
 //swipe functions for mobile
 var side_open = false;
@@ -373,39 +246,12 @@ function handleTouchMove(evt) {
     yDown = null;                                             
 };
 
-
-var current = "";
-if(window.location.href.indexOf("#") !== -1){
-	current = window.location.href.split("#")[1];
-}
-
-/*==========
-INIT
-============*/
-var all_saved = false;
-var was_error = false;
-var were_changes = false;
-var is_welcome = false;
-var clock;
-
-var init_needed = false;
-var init_loaded = false;
-var title_loaded = false;
-
-/*==========
-SQL/Get info
-
-note: not currently enabled
-==========*/
 var line_wrap = false;
 var line_number = true;
 
-var theme_sql = "seti";
+var editor_theme = "seti";
 var auto_save = true;
 var auto_save_int = 30000;
-			
-var sql_loaded = false;
-var user_loaded = false;
 			
 var sql_font = 12;
 var autoC = false;
@@ -417,24 +263,10 @@ var userUrl;
 var userId;
 
 var user_loaded = false;
-var sql_loaded = false;
        
 var total_q;
 var user_q;
 var product_q;
-
-var rec = false;
-
-var bottom_open = false;
-
-var the_console;
-
-var login_sql = 0;
-
-var mirror;
-
-var mode_select;
-var theme_select;
 
 /*=======
 MESSENGER

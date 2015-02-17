@@ -1,0 +1,74 @@
+//VARIABLES
+@flat-teal: #1ABC9C;
+@flat-dark-teal: #16A085;
+@flat-green: #2ECC71;
+@flat-dark-green: #27AE60;
+@flat-blue: #3498DB;
+@flat-dark-blue: #2980B9;
+@flat-purple: #9B59B6;
+@flat-dark-purple: #8E44AD;
+@flat-navy: #34495E;
+@flat-dark-navy: #2C3E50;
+@flat-yellow: #F1C40F;
+@flat-dark-yellow: #F39C12;
+@flat-orange: #E67E22;
+@flat-dark-orange: #D35400;
+@flat-red: #E74C3C;
+@flat-dark-red: #C0392B;
+@flat-gray: #ECF0F1;
+@flat-dark-gray: #BDC3C7;
+@flat-dark: #95A5A6; //a dark gray
+@flat-dark-dark: #7F8C8D; //a darker dark gray
+
+@seti-background: #151718;
+@seti-alt: #262B30;
+
+/**
+* BASIC FLEX STUFF
+**/
+
+.flex{
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flex;
+}
+//displays everything in a row
+.flex-row{
+	-webkit-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+}
+//aligns contents to center
+//note: use with min/max-width + min/max-height
+.flex-center{
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+
+/**
+* GENERAL
+**/
+body{
+	font-family: 'Roboto-Thin' !important;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	margin: 0;
+}
+
+*:focus{
+	outline: none;
+}
+
+.CodeMirror{
+	line-height: 1 !important; //this sometimes get overridden, hence the !importantposition: absolute;
+	height: 100% !important; //this cannot be overridden
+	width: 100%;
+	width: calc(100% - 53px);
+	margin: 0;
+	font-size:14px;
+	float:left;
+}

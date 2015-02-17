@@ -1,7 +1,23 @@
+/*===
+* CODEYOURCLOUD
+*
+* tree.js built by Michael Kaminsky
+* manages the file tree
+*
+* contents:
+*  tree
+===*/
+
+/*
+* TREE
+* manages the file tree
+*/
+
+//not yet functional
 function show_tree_open(){
 	$("#tree-open").fadeIn();
 }
-
+//don't want them to be in a random order
 function sort_by_title(a,b) {
   if (a.title < b.title)
      return -1;
@@ -9,30 +25,28 @@ function sort_by_title(a,b) {
     return 1;
   return 0;
 }
-
+//gets the contents of a folder
 function tree_folder(id, callback){
 	var ret = [];
+	//gets all the files
 	retrieveAllFilesInFolder(id, function(data){
-		var goal = data.length;
+		var goal = data.length; //how many files total
 		
 		for(var i = 0; i < data.length; i++){
 			var id_id = data[i].id;
-			
+			//for each of the files, gets the information
 			getFile(id_id, function(resp){
-				//console.log(resp);
 				var to_push = {
 					title: resp.title,
 					id: resp.id,
-					folder: (resp.mimeType === "application/vnd.google-apps.folder")	
+					folder: (resp.mimeType === "application/vnd.google-apps.folder") //is it a folder?	
 				};
-				
-				if(resp.explicitlyTrashed === true){
+				if(resp.explicitlyTrashed === true){ //if trashed, don't count
 					goal--;
 				}
 				else{
 					ret.push(to_push);
 				}
-				
 				if(ret.length === goal){
 					callback(ret.sort(sort_by_title));
 				}
@@ -40,24 +54,21 @@ function tree_folder(id, callback){
 		}
 	});
 }
-
+//sets the id of the root to by the root folder
 $(".root-tree").attr("data-tree-ul", myRootFolderId);
-
+//sets the tree contents for a folder
 function get_tree(id){
-	
+	//gets the array of files/folders, passes to callback
 	tree_folder(id, function(data){
-		var ret = "";
+		var ret = ""; //the html that will be returned
 		for(var i = 0; i < data.length; i++){
 			var title = data[i].title;
-			
-			var icon = '<i class="fa fa-align-left"></i>';
-			
+			var icon = '<i class="fa fa-align-left"></i>'; //the default
 			if(typeof title !== 'undefined'){
-				
 				var ext_info = extension(title.toLowerCase());
 				var ext = ext_info.ext;
 				var hidden = ext_info.hidden;
-				
+				//custom icons with custom colors!
 				if(ext === "jpg" || ext === "jpeg" || ext === "png" || ext === "gif" || ext === "tiff" || ext === "svg"){
 					icon = '<i class="fa fa-file-image-o" style="color:#1ABC9C"></i>';
 				}
@@ -137,14 +148,14 @@ function get_tree(id){
 					icon = "<i class='fa fa-folder'></i>";
 					to_push = "<li data-tree-li='"+data[i].id+"' class='tree-folder'><span onclick='toggle_tree_folder(\""+data[i].id+"\")'>" + icon + title + "</span><ul data-tree-ul='"+data[i].id+"' style='display:none'></ul></li>";
 				}
-				
 				ret = ret + to_push;
 			}
 		}
-		
+		//sets the html
 		$("[data-tree-ul='"+id+"']").html(ret);
+		//opens the folder
 		$("[data-tree-ul='"+id+"']").slideDown();
-
+		//removes the loading icon
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-folder");
         $("[data-tree-li='"+id+"']>span>i").removeClass("fa-circle-o-notch");
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-spin");
@@ -153,29 +164,26 @@ function get_tree(id){
 
 	});
 }
-
+//what happens when you click on a folder
 function toggle_tree_folder(id){
-	
-	if($("[data-tree-ul='"+id+"']").css("display") === "none"){
-		//show it
+	if($("[data-tree-ul='"+id+"']").css("display") === "none"){ //not yet open
+		//set loading icon
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-folder");
-                $("[data-tree-li='"+id+"']>span>i").addClass("fa-spin");
+        $("[data-tree-li='"+id+"']>span>i").addClass("fa-spin");
 		$("[data-tree-li='"+id+"']>span>i").addClass("fa-circle-o-notch");
-
+		//get information
 		get_tree(id);
-		
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-folder");
 		$("[data-tree-li='"+id+"']>span>i").addClass("fa-folder-open");
 	}
-	else{
-		//close it
+	else{ //open, close it
 		$("[data-tree-ul='"+id+"']").slideUp();
 		
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-folder-open");
 		$("[data-tree-li='"+id+"']>span>i").addClass("fa-folder");
 	}
 }
-
+//what happens when you click on a file
 function toggle_tree_file(id){
 	//if already open...
 	var found = false;
@@ -184,7 +192,6 @@ function toggle_tree_file(id){
 			found = true;
 		}
 	}
-	
 	if(found === true){
 		//already there, open it
 		opentab(id);

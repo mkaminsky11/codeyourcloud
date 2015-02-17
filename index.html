@@ -3,7 +3,6 @@
 	<head>
 		
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
 	    <meta charset="utf-8">
 	    
 	    <script>
@@ -14,10 +13,11 @@
 			ga('create', 'UA-47415821-1', 'codeyourcloud.com');
 			ga('send', 'pageview');
 		</script>
-		
 		<meta name="description" content="An in-browser code editor for Google Drive. Collaborate with your group members with ease. Take advantage of syntax highlighting, color pickers, and more">
 		<meta name="google-site-verification" content="2jBshOtCyauLPt-Tdw0HRkOOizbDnw6IJTM_4dNNLQQ" />
 		
+		
+		<script src="lib/less.min.js"></script>
 		<script src="about/flat/js/jquery-1.8.3.min.js"></script>
 		<script src="lib/velocity/velocity.min.js"></script>
 		<script src="lib/velocity/velocity.ui.min.js"></script>
@@ -319,7 +319,7 @@
 					
 					<div id="tab-manager">
 						<div data-refersto="welcome">
-							<h5>Wecome <i class="md-delete" onclick="removetab('welcome')"></i><i class="md-remove-red-eye" onclick="opentab('welcome')"></i></h5>
+							<h5><span>Wecome</span><i class="md-delete" onclick="removetab('welcome')"></i><i class="md-remove-red-eye" onclick="opentab('welcome')"></i></h5>
 						</div>
 					</div>
 					
@@ -510,12 +510,14 @@
 		<script src="js/frontend.js"></script>
 		<script src="js/drive.js"></script>
 		<script src="js/visual.js"></script>
+		<script src="js/editor.js"></script>
 		<script src="js/material.js"></script>
 		<script src="js/picker.js"></script>
 		<script src="js/broadcast.js"></script>
 		<script src="js/tree.js"></script>
 		<script src="js/tabs.js"></script>
 		<script src="js/mini.js"></script>
+		<script src="js/ready.js"></script>
 		
 		
 		<script src = 'lib/keyboard/jwerty.js'></script>

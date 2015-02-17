@@ -96,5 +96,3 @@ function miniView(){
 	$("#mini-scroll").css("height", height);
 	$("#mini-scroll").css("top", top);
 }
-
-mini();

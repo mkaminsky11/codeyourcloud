@@ -22,6 +22,8 @@ $("#svg2").css("margin-bottom", up + "px");
 //$("h1").fitText();
 $("#logos").fitText();
 
+
+
 function web(){
 	
 	$("#screen").velocity({
@@ -56,15 +58,6 @@ function mobile(){
 		}
 	});
 }
-
-/*document.getElementById("switcher").addEventListener('change',function(){
-	if(document.getElementById("switcher").checked){
-		mobile();
-	}
-	else{
-		web();
-	}
-});*/
 
 
 var ok = true;

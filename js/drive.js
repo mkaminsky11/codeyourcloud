@@ -179,3 +179,7 @@ function saveas_inserted(d) {
 	
 	addTab("loading...",d.id,false);
 }
+
+function new_file(){
+	insertNewFile(myRootFolderId);
+}

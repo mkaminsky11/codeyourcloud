@@ -90,6 +90,8 @@ body{
 	color: #363636;
 	font-family: 'Roboto';
 	z-index: 3;
+	
+	position: relative;
 }
 #logos{
 	margin-top: 10px;
