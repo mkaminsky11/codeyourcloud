@@ -14,3 +14,19 @@
 - old FlatUI files
 - survey functionality
 - lorem ipsum generator (for now)
+
+##2015-02-15
+###Changed
+- about page background
+- reworked chat messages
+- new select boxes
+- new checkboxes
+
+###Added
+- chat popup
+- minimap of code
+- custom + colored icons for file tree
+
+###Removed
+- select + tether
+- chartist
