@@ -347,24 +347,3 @@ function setFocusThickboxIframe() {
     var iframe = $("#repl-iframe")[0];
     iframe.contentWindow.focus();
 }
-
-/**
-* SIDEBAR BUTTON
-**/
-var anchor = document.querySelectorAll('#toggle_side_menu_button');
-    
-[].forEach.call(anchor, function(anchor){
-	var open = false;
-	anchor.onclick = function(event){
-		event.preventDefault();
-		toggle_side()
-		if(!open){
-			this.classList.add('close');
-			open = true;
-		}
-		else{
-			this.classList.remove('close');
-			open = false;
-		}
-	}
-}); 

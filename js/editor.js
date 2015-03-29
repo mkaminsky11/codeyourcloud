@@ -139,6 +139,7 @@ function themeChange(){
 	setTheme($("#theme-select").val());
 }
 function setTheme(theme){
+	localStorage.setItem("theme", theme);
 	for(var i = 0; i < editors.length; i++){
 		editors[i].editor.setOption("theme",theme);
 	}

@@ -10,11 +10,11 @@
 ###Goal
 To allow people around the globe to collaborate on coding projects via Google Drive. It's that simple. So far, I have yet to see a website or program that accomplishes these tasks for all major programming languages. This is an attempt to change that, and it seems to be working well so far.
 
-=====
+###Todo
++ Run Python + other languages
++ Icons in the tabs
 
-###Possible Ideas###
-+ run languages like Python, etc.
-+ templates
+=====
 
 ###Features###
 + Syntax highlighting
@@ -29,8 +29,6 @@ To allow people around the globe to collaborate on coding projects via Google Dr
 + Run (javascript and coffeescript only, for now)
 + Minimap preview
 + Search/replace
-
-=====
 
 ###Supported Languages###
 + APL

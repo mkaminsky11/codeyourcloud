@@ -65,82 +65,7 @@ function get_tree(id){
 			var title = data[i].title;
 			var icon = '<i class="fa fa-align-left"></i>'; //the default
 			if(typeof title !== 'undefined'){
-				var ext_info = extension(title.toLowerCase());
-				var ext = ext_info.ext;
-				var hidden = ext_info.hidden;
-				//custom icons with custom colors!
-				if(ext === "jpg" || ext === "jpeg" || ext === "png" || ext === "gif" || ext === "tiff" || ext === "svg"){
-					icon = '<i class="fa fa-file-image-o" style="color:#1ABC9C"></i>';
-				}
-				else if(ext === "pdf"){
-					icon = '<i class="fa fa-file-pdf-o"></i>';
-				}
-				else if(ext === "tar" || ext === "zip" || ext === "xz" || ext === "gz"){
-					icon = '<i class="fa fa-file-archive-o"></i>';
-				}
-				else if(ext === "java" || ext === "class" || ext === "jar"){
-					icon = '<i class="devicons devicons-java" style="color:#E67E22"></i>';
-				}
-				else if(ext === "rb" || ext === "ru"){
-					icon = '<i class="devicons devicons-ruby" style="color:#E74C3C"></i>';
-				}	
-				else if(ext === "scala"){
-					icon = '<i class="devicons devicons-scala" style="color:#E74C3C"></i>';
-				}	
-				else if(ext === "py"){
-					icon = '<i class="devicons devicons-python" style="color:#F1C40F"></i>';
-				}	
-				else if(ext === "go"){
-					icon = '<i class="devicons devicons-go" style="color:#3498DB"></i>';
-				}	
-				else if(ext === "md"){
-					icon = '<i class="devicons devicons-markdown" style="color:#3498DB"></i>';
-				}				
-				else if(ext === "php"){
-					icon = '<i class="devicons devicons-php" style="color:#9B59B6"></i>';
-				}
-				else if(ext === "js"){
-					icon = '<i class="devicons devicons-javascript" style="color:#F1C40F"></i>';
-				}	
-				else if(ext === "coffee"){
-					icon = '<i class="devicons devicons-coffeescript" style="color:#ECF0F1"></i>';
-				}	
-				else if(ext === "sass"){
-					icon = '<i class="devicons devicons-sass" style="color:#E74C3C"></i>';
-				}	
-				else if(ext === "less"){
-					icon = '<i class="devicons devicons-less" style="color:#3498DB"></i>';
-				}	
-				else if(ext === "css"){
-					icon = '<i class="devicons devicons-css3" style="color:#3498DB"></i>';
-				}
-				else if(ext === "html"){
-					icon = '<i class="devicons devicons-html5" style="color:#E67E22"></i>';
-				}
-				else if(ext === "swift"){
-					icon = '<i class="devicons devicons-swift" style="color:#E67E22"></i>';
-				}
-				else if(ext === "clj"){
-					icon = '<i class="devicons devicons-clojure" style="color:#2ECC71"></i>';
-				}
-				else if(ext === "pl"){
-					icon = '<i class="devicons devicons-perl" style="color:#9B59B6"></i>';
-				}
-				else if(ext === "groovy"){
-					icon = '<i class="devicons devicons-groovy" style="color:#E67E22"></i>';
-				}
-				else if(ext === "hs"){
-					icon = '<i class="devicons devicons-haskell" style="color:#E67E22"></i>';
-				}
-				else if(ext === "sh" || ext === "bat" || ext === "bash"){
-					icon = '<i class="devicons devicons-terminal"></i>';
-				}
-				else if(ext === "dart"){
-					icon = '<i class="devicons devicons-dart" style="color:#3498DB"></i>';
-				}
-				else if(title.toLowerCase().indexOf(".html") !== -1 || title.toLowerCase().indexOf(".js") !== -1){
-					icon = '<i class="fa fa-file-code-o"></i>';
-				}
+				icon = getIconByTitle(title);
 				
 				var to_push = "<li data-tree-li='" +data[i].id+ "' class='tree-file'>"+"<span onclick='toggle_tree_file(\""+data[i].id+"\")'>" + icon + title + "</span>"+"</li>";
 				
@@ -199,4 +124,85 @@ function toggle_tree_file(id){
 	else{
 		addTab("loading...", id, false);
 	}
+}
+
+function getIconByTitle(title){
+	var icon = '<i class="fa fa-align-left"></i>';
+	var ext_info = extension(title.toLowerCase());
+	var ext = ext_info.ext;
+	var hidden = ext_info.hidden;
+	//custom icons with custom colors!
+	if(ext === "jpg" || ext === "jpeg" || ext === "png" || ext === "gif" || ext === "tiff" || ext === "svg"){
+		icon = '<i class="fa fa-file-image-o" style="color:#1ABC9C"></i>';
+	}
+	else if(ext === "pdf"){
+		icon = '<i class="fa fa-file-pdf-o"></i>';
+	}
+	else if(ext === "tar" || ext === "zip" || ext === "xz" || ext === "gz"){
+		icon = '<i class="fa fa-file-archive-o"></i>';
+	}
+	else if(ext === "java" || ext === "class" || ext === "jar"){
+		icon = '<i class="devicons devicons-java" style="color:#E67E22"></i>';
+	}
+	else if(ext === "rb" || ext === "ru"){
+		icon = '<i class="devicons devicons-ruby" style="color:#E74C3C"></i>';
+	}	
+	else if(ext === "scala"){
+		icon = '<i class="devicons devicons-scala" style="color:#E74C3C"></i>';
+	}	
+	else if(ext === "py"){
+		icon = '<i class="devicons devicons-python" style="color:#F1C40F"></i>';
+	}	
+	else if(ext === "go"){
+		icon = '<i class="devicons devicons-go" style="color:#3498DB"></i>';
+	}	
+	else if(ext === "md"){
+		icon = '<i class="devicons devicons-markdown" style="color:#3498DB"></i>';
+	}				
+	else if(ext === "php"){
+		icon = '<i class="devicons devicons-php" style="color:#9B59B6"></i>';
+	}
+	else if(ext === "js"){
+		icon = '<i class="devicons devicons-javascript" style="color:#F1C40F"></i>';
+	}	
+	else if(ext === "coffee"){
+		icon = '<i class="devicons devicons-coffeescript" style="color:#ECF0F1"></i>';
+	}	
+	else if(ext === "sass"){
+		icon = '<i class="devicons devicons-sass" style="color:#E74C3C"></i>';
+	}	
+	else if(ext === "less"){
+		icon = '<i class="devicons devicons-less" style="color:#3498DB"></i>';
+	}	
+	else if(ext === "css"){
+		icon = '<i class="devicons devicons-css3" style="color:#3498DB"></i>';
+	}
+	else if(ext === "html"){
+		icon = '<i class="devicons devicons-html5" style="color:#E67E22"></i>';
+	}
+	else if(ext === "swift"){
+		icon = '<i class="devicons devicons-swift" style="color:#E67E22"></i>';
+	}
+	else if(ext === "clj"){
+		icon = '<i class="devicons devicons-clojure" style="color:#2ECC71"></i>';
+	}
+	else if(ext === "pl"){
+		icon = '<i class="devicons devicons-perl" style="color:#9B59B6"></i>';
+	}
+	else if(ext === "groovy"){
+		icon = '<i class="devicons devicons-groovy" style="color:#E67E22"></i>';
+	}
+	else if(ext === "hs"){
+		icon = '<i class="devicons devicons-haskell" style="color:#E67E22"></i>';
+	}
+	else if(ext === "sh" || ext === "bat" || ext === "bash"){
+		icon = '<i class="devicons devicons-terminal"></i>';
+	}
+	else if(ext === "dart"){
+		icon = '<i class="devicons devicons-dart" style="color:#3498DB"></i>';
+	}
+	else if(title.toLowerCase().indexOf(".html") !== -1 || title.toLowerCase().indexOf(".js") !== -1){
+		icon = '<i class="fa fa-file-code-o"></i>';
+	}
+	return icon;
 }

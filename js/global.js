@@ -94,7 +94,7 @@ var modes = [
     {name: "NTriples", mime: "text/n-triples", mode: "ntriples", ext: ["nt"]},
     {name: "Objective C", mime: "text/x-objectivec", mode: "clike", ext: ["m", "mm"]},
     {name: "OCaml", mime: "text/x-ocaml", mode: "mllike", ext: ["ml", "mli", "mll", "mly"]},
-    {name: "Octave", mime: "text/x-octave", mode: "octave", ext: ["m"]},
+    {name: "Octave", mime: "text/x-octave", mode: "octave", ext: ["mat"]},
     {name: "Pascal", mime: "text/x-pascal", mode: "pascal", ext: ["p", "pas"]},
     {name: "PEG.js", mime: "null", mode: "pegjs", ext: ["jsonld"]},
     {name: "Perl", mime: "text/x-perl", mode: "perl", ext: ["pl", "pm"]},
@@ -184,7 +184,40 @@ var themes = [
 	"Neo"
 ];
 
-var themes_name = ["seti","code-your-cloud","3024-day", "3024-night", "ambiance-mobile", "ambiance", "base16-light", "base16-dark", "blackboard", "cobalt", "eclipse", "elegant", "erlang-dark", "lesser-dark", "mbo", "mdn-like", "midnight", "monokai", "neat", "night", "paraiso-dark", "paraiso-light", "pastel-on-dark", "rubyblue", "solarized", "the-matrix", "tomorrow-night-eighties", "twilight", "vibrant-ink", "xq-light", "xq-dark", "neo"];
+var themes_name = [
+	"seti",
+	"code-your-cloud",
+	"3024-day", 
+	"3024-night", 
+	"ambiance-mobile", 
+	"ambiance", 
+	"base16-light", 
+	"base16-dark", 
+	"blackboard", 
+	"cobalt", 
+	"eclipse", 
+	"elegant", 
+	"erlang-dark", 
+	"lesser-dark", 
+	"mbo", 
+	"mdn-like", 
+	"midnight", 
+	"monokai", 
+	"neat", 
+	"night", 
+	"paraiso-dark", 
+	"paraiso-light", 
+	"pastel-on-dark", 
+	"rubyblue", 
+	"solarized", 
+	"the-matrix", 
+	"tomorrow-night-eighties", 
+	"twilight", 
+	"vibrant-ink", 
+	"xq-light", 
+	"xq-dark", 
+	"neo"
+];
 
 var is_mobile = false;
 var real_mobile = false;

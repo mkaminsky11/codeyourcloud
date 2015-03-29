@@ -22,15 +22,27 @@ function loadDrive(){
 }
 //handles result
 function handleAuth(authResult){
+	console.log("AUTH OUTPUT:");
+	console.log(authResult);
 	if (!authResult.error) {
 		logged_in = true;
 		loadClient();
 	} 
 	else {
 		//?no = true is just used for testing purposes
-		//if prevents a redirection in the event of an unauthorized user
-		if(window.location.href.indexOf("?no=true") === -1 && (authResult.error_subtype === "access_denied" || authResult.error === "immediate_failed")){
+		//it prevents a redirection in the event of an unauthorized user
+		if(window.location.href.indexOf("no=true") === -1 && authResult.status.signed_in === false){
 			window.location = "https://codeyourcloud.com/about";
+		}
+		
+		if(window.location.href.indexOf("force=true") !== -1){
+			loadClient();
+			logged_in = true;
+		}
+		
+		if(window.location.href.indexOf("output=true") !== -1){
+			console.log("error:" + authResult.error);
+			console.log("error subtype:" + authResult.error_subtype);
 		}
 	}
 }

@@ -72,4 +72,12 @@ $(document).ready(function(){
 	* INITIALIZES THE MINIMAP
 	**/
 	mini();
+	
+	/**
+	* SETUP THEME
+	**/
+	if(localStorage.getItem("theme") !== null && themes_name.indexOf(localStorage.getItem("theme")) !== -1){
+		setTheme(localStorage.getItem("theme"));
+		$("#theme-select").val(localStorage.getItem("theme"));
+	}
 });

@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		
@@ -16,8 +16,6 @@
 		<meta name="description" content="An in-browser code editor for Google Drive. Collaborate with your group members with ease. Take advantage of syntax highlighting, color pickers, and more">
 		<meta name="google-site-verification" content="2jBshOtCyauLPt-Tdw0HRkOOizbDnw6IJTM_4dNNLQQ" />
 		
-		
-		<script src="lib/less.min.js"></script>
 		<script src="about/flat/js/jquery-1.8.3.min.js"></script>
 		<script src="lib/velocity/velocity.min.js"></script>
 		<script src="lib/velocity/velocity.ui.min.js"></script>
@@ -50,6 +48,7 @@
 
 	</head>
 	<body>
+		<link rel="stylesheet" href="fonts/font.css">
 		<img id="paper-loading-spinner" style="display:none" src="images/svg/spinner.svg" height="40px" width="40px"/>
 	
 		<div id="tree-open" class="tree" style="display:none">
@@ -61,7 +60,7 @@
 			
 		<div id="side" style="display:none">
 			<div id="side-inner">
-				<div class="side-head" style="height:auto">
+				<div class="side-head flex-center" style="height:42px">
 						<div class="InputAddOn" id="rename-div">
 							<input id="title" value="code your cloud" placeholder="Title" class="InputAddOn-field" readonly="" onchange="ok_rename()"/>
 							<button class="InputAddOn-item" id="rename-toggle" onclick="toggle_rename_show()" style="display:none"><i class="md-mode-edit"></i></button>
@@ -164,17 +163,17 @@
     		</div>
         	<div class="" id="navbar-collapse-01" style="width: 99%;">
         	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">          	  	
-        	  	<button id="toggle_side_menu_button" type="button" role="button" aria-label="Toggle Navigation" class="lines-button x2">
-		          <span class="lines"></span>
-		        </button>
+        	  	<span id="toggle_side_menu_button" onclick="toggle_side()"><i class="md-menu"></i></span>
 				
         	  </ul>
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
-	        	<span id="help_button" class="side-file" onclick='$("#chat-popup").slideToggle()'><i class="md-chat"></i></span>
-	        	<span id="open_button" onclick="open_picker()" data-step="2" data-intro='This will open up the file chooser'><i class="md-folder-open"></i></span>
-        	  	<span id="save_button" class="side-file" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'><i class="md-save"></i></span>
-        	  	<span id="undo_button" onclick="editor_undo()"><i class="md-undo"></i></span>
-        	  	<span id="redo_button" onclick="editor_redo()"><i class="md-redo"></i></span>
+	        	  <div id="nav-outline">
+		        	<span id="help_button" class="side-file" onclick='$("#chat-popup").slideToggle()'><i class="md-chat"></i></span>
+		        	<span id="open_button" onclick="open_picker()" data-step="2" data-intro='This will open up the file chooser'><i class="md-folder-open"></i></span>
+	        	  	<span id="save_button" class="side-file" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'><i class="md-save"></i></span>
+	        	  	<span id="undo_button" onclick="editor_undo()"><i class="md-undo"></i></span>
+	        	  	<span id="redo_button" onclick="editor_redo()"><i class="md-redo"></i></span>
+	        	  </div>
         	  	
 			  	<div id="profile_div">
 			  		<img id="profile_pic" src="" height="30px" width="30px">
@@ -234,17 +233,18 @@
 				<i class="md-add"></i>
 			</div>
 			
-			<div class="tab-right" onclick="$('#tabs-overlay').velocity('transition.slideDownIn')">
+			<!--div class="tab-right" onclick="$('#tabs-overlay').velocity('transition.slideDownIn')">
 				<i class="md-filter-list"></i>
-			</div>
+			</div-->
 		
 			<div class="tab-right" onclick="$('#search-popup').toggle()" style="">
 				<i class="md-search"></i>
 			</div>
 			
 			<div class="tab-container">
-			
-				<span class="tab-tab tab-active" data-fileid="welcome" onclick="opentab('welcome')" style="margin-right:-2px">
+				
+				<span class="tab-tab tab-active" data-fileid="welcome" onclick="opentab('welcome')">
+					<i class="fa fa-align-left"></i>
 					<h4>Welcome</h4>
 					<h6>
 						<i class="md-close" style="float: right" onclick="removetab('welcome')"></i>
@@ -254,7 +254,7 @@
 			</div>
 		</div>
 		
-		<div class="mains" style="position: absolute;height: calc(100% - 83px);width: 100%;margin-top: 10px;background-color:white">
+		<div class="mains" style="position: absolute;height: calc(100% - 75px);width: 100%;margin-top: 4px;background-color:white">
 			<div id="image_div" style="display:none;position: absolute;width: 100%;height: 100%;top: 0;left: 0;background-color: #323232;z-index: 3;"></div>	
 			<div id ="welcome" class="codemirror-container codemirror-active" id="welcome" data-fileid="welcome"></div>
 			<span id="insert-point" style="display:none"></span>
@@ -504,6 +504,7 @@
       	<script src="lib/big-text/big-text.js"></script>
       	<script src="lib/coffee/coffee.js"></script>
       	<script src="lib/markdown/markdown.js"></script>
+      	<script src="lib/replit/repl.js" id="jsrepl-script"></script>
 
 		<script src="js/global.js"></script>
 		<script src="js/realtime.js"></script>

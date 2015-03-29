@@ -94,7 +94,8 @@ function setFileTitle(id, title){
 	//change the title in the tree view
 	var j = $("[data-tree-li='"+id+"'] span").html().split(">");
 	j[2] = title;
-	$("[data-tree-li='"+id+"'] span").html(j.join(">"))
+	$("[data-tree-li='"+id+"'] span").html(j.join(">"));
+	$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith(getIconByTitle(title));
 }
 
 /**
@@ -178,7 +179,7 @@ function addTab(title, id, welcome){
   }
   else{
 	//add a new tab
-    var base = "<span class='tab-tab' data-fileid='"+id+"' onclick='opentab(\""+id+"\")'><h4>" + title + "</h4>";
+    var base = "<span class='tab-tab' data-fileid='"+id+"' onclick='opentab(\""+id+"\")'>" + getIconByTitle(title) + "<h4>" + title + "</h4>";
     base = base + "<h6><i class='md-close' onclick='removetab(\""+id+"\")' style='float:right'></i></h6>";
     base = base + "</span>";
     $(".tab-container").html($(".tab-container").html() + base);
@@ -369,6 +370,9 @@ function adjust(){
 	else if(mode === "text/x-markdown" || mode === "gfm" || mode === "markdown"){
 		$(".side-pub").removeClass("hide"); //can publish markdown
 	}
+	//else if(mode === "text/x-python" || mode === "text/x-lua" || mode === "text/x-scheme"){
+	//	$(".side-pub").removeClass("hide");
+	//}
 }
 //insert a chat message
 function insert_chat(message, you, photo, name, fileid){
