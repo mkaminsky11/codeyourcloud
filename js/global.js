@@ -18,12 +18,6 @@ var current_file = "";
 var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
 var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive'];
 
-var your_session_id = "";
-var your_color = "";
-var your_user_id = "";
-var your_name = "";
-var your_photo = "";
-
 var logged_in = false;
 
 var converter = new Markdown.Converter();
@@ -230,76 +224,24 @@ if(window.location.href.indexOf("?mobile=true") !== -1){
 	//spoofing to test mobile
 }
 
-//swipe functions for mobile
-var side_open = false;
-
-document.addEventListener('touchstart', handleTouchStart, false);        
-document.addEventListener('touchmove', handleTouchMove, false);
-
-var xDown = null;                                                        
-var yDown = null;                                                        
-
-function handleTouchStart(evt) {                                         
-    xDown = evt.touches[0].clientX;                                      
-    yDown = evt.touches[0].clientY;                                      
-};                                                
-
-function handleTouchMove(evt) {
-    if ( ! xDown || ! yDown ) {
-        return;
-    }
-
-    var xUp = evt.touches[0].clientX;                                    
-    var yUp = evt.touches[0].clientY;
-
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
-
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-        if ( xDiff > 0 ) {
-            /* left swipe */ 
-            if(is_mobile && side_open){
-	            close_side();
-            }
-        } else {
-            /* right swipe */
-            if(is_mobile && !side_open){
-	            open_side();
-            }
-        }                       
-    } else {
-        if ( yDiff > 0 ) {
-            /* up swipe */ 
-        } else { 
-            /* down swipe */
-        }                                                                 
-    }
-    /* reset values */
-    xDown = null;
-    yDown = null;                                             
-};
-
 var line_wrap = false;
 var line_number = true;
-
 var editor_theme = "seti";
 var auto_save = true;
-var auto_save_int = 30000;
-			
+var auto_save_int = 30000;	
 var sql_font = 12;
 var autoC = false;
-
 var myRootFolderId;
 var myEmail;
 var userName;
 var userUrl;
 var userId;
-
-var user_loaded = false;
-       
+var user_loaded = false; 
 var total_q;
 var user_q;
 var product_q;
+var side_open = false;
+var developerKey = 'AIzaSyBTSFIgQkLly9v6Xuqc2Nqm-vX0jpyEbZk';
 
 /*=======
 MESSENGER

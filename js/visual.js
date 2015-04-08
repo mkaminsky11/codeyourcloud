@@ -4,31 +4,8 @@
 * visual.js built by Michael Kaminsky
 * handles google drive and realtime events like adding and remove users
 *
-* contents:
-*  lorem
 ===*/
 
-/**
-* LOREM
-* lorem ipsum generator
-**/
-var lorem_type = "s";
-function generate(){
-    $("#lorem").html("");
-    var lorem = new Lorem;
-    lorem.type = Lorem.TEXT;
-    lorem.query = document.getElementById("lorem_input").value + lorem_type;
-    lorem.createLorem(document.getElementById('lorem'));
-}
-function lorem_s(){
-	lorem_type = "s";
-}
-function lorem_w(){
-	lorem_type = "w";
-}
-function lorem_p(){
-	lorem_type = "p";
-}
 
 /**
 * RUN
@@ -184,18 +161,25 @@ function close_side(){
 			$("#side").css("display","none").css("margin-left","0px");
 		}
 	});
+	
 	$(".move").velocity({
 		marginLeft: 0
 	},{
 		duration: 500,
 		queue: false
 	});
-	$("#mini").velocity({
-		right: 0
-	},{
-		duration: 500,
-		queue: false
-	});
+	
+	if(!is_mobile){
+		$(".move").velocity({
+			width: $(".move").width() + 300
+		},{
+			duration: 500,
+			queue: false,
+			complete: function(){
+				$(".move").css("width","calc(100%)");
+			}
+		});
+	}
 }
 function open_side(){
 	side_open = true;
@@ -206,37 +190,26 @@ function open_side(){
 		duration: 500,
 		queue: false
 	});
+	
 	$(".move").velocity({
 		marginLeft: 300
 	},{
 		duration: 500,
 		queue: false
 	});
-	$("#mini").velocity({
-		right: "-300px"
-	},{
-		duration: 500,
-		queue: false
-	});
-}
+	
+	if(!is_mobile){
+		$(".move").velocity({
+			width: $(".move").width() - 300
+		},{
+			duration: 500,
+			queue: false,
+			complete: function(){
+				$(".move").css("width","calc(100% - 300px)");
+			}
+		});
+	}
 
-/**
-* DIALOGS
-**/
-function show_side_open(){
-	//the open dialog
-	close_side();
-	open_picker()
-}
-function show_side_share(){
-	//share dialog
-	close_side();
-	show_share()
-}
-function show_side_upload(){
-	//upload dialogs
-	close_side();
-	upload_picker();
 }
 
 /**

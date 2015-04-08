@@ -4,7 +4,6 @@
 		
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	    <meta charset="utf-8">
-	    
 	    <script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -15,48 +14,34 @@
 		</script>
 		<meta name="description" content="An in-browser code editor for Google Drive. Collaborate with your group members with ease. Take advantage of syntax highlighting, color pickers, and more">
 		<meta name="google-site-verification" content="2jBshOtCyauLPt-Tdw0HRkOOizbDnw6IJTM_4dNNLQQ" />
-		
 		<script src="about/flat/js/jquery-1.8.3.min.js"></script>
 		<script src="lib/velocity/velocity.min.js"></script>
 		<script src="lib/velocity/velocity.ui.min.js"></script>
-		
-		
 		<meta charset="utf-8">
     	<title>Code Your Cloud</title>
-
-	   
 		<link rel="shortcut icon" type="image/png" href="favicon.png"/>
-	    
 	    <link rel='stylesheet' type='text/css' href='lib/Font/css/font-awesome.min.css'>
-		
 		<script src="lib/loremjs/lorem.js"></script>
 		<link rel="stylesheet" href="lib/slider/files/slider.css">
 		<script src="lib/slider/files/slider.js"></script>
-		
 		<link rel="stylesheet" href="lib/messenger/css/messenger.css">
 		<link rel="stylesheet" href="lib/messenger/css/messenger-theme-air.css"
-		
 		<link rel="stylesheet" href="fonts/font.css">
 		<link rel="stylesheet" href="fonts/material/css/material-design-iconic-font.css">
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/material.css">
-		
 		<link rel="stylesheet" href="lib/intro/introjs.min.css">
 		<script src="lib/intro/intro.js"></script>
-		
 		<link href="https://cdn.jsdelivr.net/devicons/1.4.0/css/devicons.min.css" rel='stylesheet'>
 
 	</head>
 	<body>
 		<link rel="stylesheet" href="fonts/font.css">
 		<img id="paper-loading-spinner" style="display:none" src="images/svg/spinner.svg" height="40px" width="40px"/>
-	
 		<div id="tree-open" class="tree" style="display:none">
 			<ul class="root-tree"></ul>
 			<span><i class="fa fa-times"></i></span>
 		</div>
-
-	<!--SIDEBAR-->
 			
 		<div id="side" style="display:none">
 			<div id="side-inner">
@@ -68,46 +53,28 @@
 				</div>
 				
 				<div class="side-head" id="navigate">
-					<div class="active" id="nav_tree" onclick="nav_tree()">
-						<i class="md-folder-open"></i>
-					</div>
-					<div id="nav_preview" onclick="nav_preview()">
-						<i class="md-remove-red-eye"></i>
-					</div>
-					<div id="nav_terminal" onclick="nav_terminal()">
-						<i class="fa fa-terminal"></i>
-					</div>
-					<div id="nav_lorem" onclick="nav_lorem()" style="display:none">
-						<i class="fa fa-font"></i>
-					</div>
-					<div id="nav_options" onclick="nav_options()">
-						<i class="md-settings"></i>
-					</div>
-					
+					<div class="active" id="nav_tree" onclick="nav_tree()"><i class="md-folder-open"></i></div>
+					<div id="nav_preview" onclick="nav_preview()"><i class="md-remove-red-eye"></i></div>
+					<div id="nav_terminal" onclick="nav_terminal()"><i class="fa fa-terminal"></i></div>
+					<div id="nav_lorem" onclick="nav_lorem()" style="display:none"><i class="fa fa-font"></i></div>
+					<div id="nav_options" onclick="nav_options()"><i class="md-settings"></i></div>
 				</div>
-				
 				
 				<iframe style="display:none" class="preview preview-frame" id="preview"></iframe>
 				<div class="preview" style="display:none;position: absolute;bottom: 0;width: 100%;">
 					<div style="width: 100%;height:100%;display: -webkit-flex;display: flex;-webkit-flex-direction: row;flex-direction: row;">
-						<div style="padding:10px;width:calc(50% - 20px);text-align: center;color: white;padding-top: 13px;font-size: 21px;padding-bottom: 7px;">
+						<div style="padding:10px;width:calc(50% - 20px);text-align: center;color: white;padding-top: 2px;font-size: 15px;padding-bottom: 2px;">
 							<i class="md-refresh" onclick="updatePreview()"></i>
 						</div>
-						<div style="padding:10px;width:calc(50% - 20px);text-align: center;color: white;padding-top: 13px;font-size: 21px;padding-bottom: 7px;">
+						<div style="padding:10px;width:calc(50% - 20px);text-align: center;color: white;padding-top: 2px;font-size: 15px;padding-bottom: 2px;">
 							<i class="md-fullscreen" onclick="$('#preview-overlay').velocity('transition.slideDownIn')"></i>
 						</div>
 					</div>
 				</div>
 				
-				<div class="tree tree-tree">
-					<ul class="root-tree">
-						
-					</ul>
-				</div>
+				<div class="tree tree-tree"><ul class="root-tree"></ul></div>
 				
-				<div class="terminal" style="display:none">
-					<iframe src="lib/codemirror-repl/index.html" id="repl-iframe" onclick="setFocusThickboxIframe()"></iframe>
-				</div>
+				<div class="terminal" style="display:none"><iframe src="lib/codemirror-repl/index.html" id="repl-iframe" onclick="setFocusThickboxIframe()"></iframe></div>
 				
 				<div id="opt" class="options" style="display:none">
 					<div class="select-box">
@@ -131,7 +98,6 @@
 
 					<div class="select-box">
 						<p>Line Numbers</p>
-						
 						<label class="check-switch" id="side-nums-label">
 						    <input type="checkbox" id="side-nums" checked>
 						    <span onclick="line_number_switch()"></span>
@@ -140,7 +106,6 @@
 					
 					<div class="select-box">
 						<p>Line Wrap</p>
-						
 						<label class="check-switch" id="side-wrap-label">
 						    <input type="checkbox" id="side-wrap" checked>
 						    <span onclick="line_wrap_switch()"></span>
@@ -149,18 +114,13 @@
 				</div>
 				
 				<div id="lorem" style="display:none" class="lorem" data-lorem="6s"></div>
-				<div id="lorem-div" style="display:none" class="lorem">
-					<input id="lorem_input" value="6" onchange="generate()"/>
-				</div>
-				
+				<div id="lorem-div" style="display:none" class="lorem"><input id="lorem_input" value="6" onchange="generate()"/></div>
 			</div>
 		</div>
 
 		
 		<nav id="nav" class="navbar navbar-inverse nav-1 move" role="navigation">
-      		<div class="navbar-header">
-        	  	
-    		</div>
+      		<div class="navbar-header"></div>
         	<div class="" id="navbar-collapse-01" style="width: 99%;">
         	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">          	  	
         	  	<span id="toggle_side_menu_button" onclick="toggle_side()"><i class="md-menu"></i></span>
@@ -169,29 +129,21 @@
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
 	        	  <div id="nav-outline">
 		        	<span id="help_button" class="side-file" onclick='$("#chat-popup").slideToggle()'><i class="md-chat"></i></span>
-		        	<span id="open_button" onclick="open_picker()" data-step="2" data-intro='This will open up the file chooser'><i class="md-folder-open"></i></span>
+		        	<span id="open_button" onclick="picker.open()" data-step="2" data-intro='This will open up the file chooser'><i class="md-folder-open"></i></span>
 	        	  	<span id="save_button" class="side-file" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'><i class="md-save"></i></span>
 	        	  	<span id="undo_button" onclick="editor_undo()"><i class="md-undo"></i></span>
 	        	  	<span id="redo_button" onclick="editor_redo()"><i class="md-redo"></i></span>
 	        	  </div>
         	  	
-			  	<div id="profile_div">
-			  		<img id="profile_pic" src="" height="30px" width="30px">
-			  	</div>
+			  	<div id="profile_div"><img id="profile_pic" src="" height="30px" width="30px"></div>
         	  </ul>
         	</div>
       	</nav>
-	
-	
-	  	<!--END NAV-->
 
-	
-	<!--MAIN-->
-	  	
 	<div style="display:none" id="new-popup" class="popup">
 		<span onclick="$('#new-popup').toggle();new_file()">New File</span>
-		<span onclick="$('#new-popup').toggle();show_side_open();">Open File</span>
-		<span onclick="$('#new-popup').toggle();show_side_upload()">Upload File</span>
+		<span onclick="$('#new-popup').toggle();picker.open();">Open File</span>
+		<span onclick="$('#new-popup').toggle();picker.upload();">Upload File</span>
 	</div>
 	
 	<div style="display:none" id="search-popup" class="popup">
@@ -200,9 +152,9 @@
 	</div>
 	
 	<div style="display:none" id="more-popup" class="popup">
-		<span onclick="show_side_share()"><i class="md-person-add"></i> Share</span>
-		<span onclick="saveAs()"><i class="md-save"></i>Save As</span>
-		<span onclick="download_file()"><i class="md-file-download"></i>Download</span>
+		<span onclick="picker.share()"><i class="md-person-add"></i> Share</span>
+		<span onclick="picker.saveAs()"><i class="md-save"></i>Save As</span>
+		<span onclick="picker.download()"><i class="md-file-download"></i>Download</span>
 		<span class="side-pub" onclick="publish_html()"><i class="md-file-upload"></i>Publish</span>
 		<span class="side-pub">
 			<a id="side-pub-link" href="" target="_blank" style="text-decoration: none;">
@@ -225,18 +177,14 @@
 				<i class="md-more-vert"></i>
 			</div>
 			
-			<div class="tab-right" onclick="$('#mini').toggle()">
+			<div class="tab-right" onclick="mini.toggle()">
 				<i class="md-border-right"></i>
 			</div>
 			
 			<div id="plus-plus" class="tab-right" onclick="$('#new-popup').toggle();" data-step="5" data-intro='And to create new files' data-position="left">
 				<i class="md-add"></i>
 			</div>
-			
-			<!--div class="tab-right" onclick="$('#tabs-overlay').velocity('transition.slideDownIn')">
-				<i class="md-filter-list"></i>
-			</div-->
-		
+
 			<div class="tab-right" onclick="$('#search-popup').toggle()" style="">
 				<i class="md-search"></i>
 			</div>
@@ -256,8 +204,16 @@
 		
 		<div class="mains" style="position: absolute;height: calc(100% - 75px);width: 100%;margin-top: 4px;background-color:white">
 			<div id="image_div" style="display:none;position: absolute;width: 100%;height: 100%;top: 0;left: 0;background-color: #323232;z-index: 3;"></div>	
-			<div id ="welcome" class="codemirror-container codemirror-active" id="welcome" data-fileid="welcome"></div>
-			<span id="insert-point" style="display:none"></span>
+			
+			<div id="codemirror-sizer">
+				<div id ="welcome" class="codemirror-container codemirror-active" id="welcome" data-fileid="welcome"></div>
+				<span id="insert-point" style="display:none"></span>
+			</div>
+			
+			<div class="mini">
+				<!--div class="mini-scroll"></div-->
+				<div style="display:none" class="mini-insert"></div>
+			</div>
 			
 			<div id="overlay">
 				<h4>NO FILE</h4>
@@ -312,22 +268,6 @@
 			</div>
 		</div>
 		
-		<div class="overlay-tint" id="tabs-overlay" style="display:none">
-			<div>
-				<div>
-					<h2>Tab Manager</h2>
-					
-					<div id="tab-manager">
-						<div data-refersto="welcome">
-							<h5><span>Wecome</span><i class="md-delete" onclick="removetab('welcome')"></i><i class="md-remove-red-eye" onclick="opentab('welcome')"></i></h5>
-						</div>
-					</div>
-					
-					<a onclick="$('#tabs-overlay').velocity('transition.slideUpOut')" class="waves-effect waves-light paper-btn paper-btn-blue" style="position: absolute;bottom: 0px;right:10px;background-color:#3498DB">CLOSE</a>
-				</div>
-			</div>
-		</div>
-		
 		<div class="overlay-tint" id="keyboard-overlay" style="display:none">
 			<div>
 				<div>
@@ -351,11 +291,6 @@
 					<a onclick="$('#keyboard-overlay').velocity('transition.slideUpOut')" class="waves-effect waves-light paper-btn paper-btn-blue" style="position: absolute;bottom: 0px;right:10px;background-color:#3498DB">CLOSE</a>
 				</div>
 			</div>
-		</div>
-		
-		<div id="mini">
-			<div id="mini-scroll"></div>
-			<div style="display:none" id="mini-insert"></div>
 		</div>
 		
 		
@@ -504,9 +439,9 @@
       	<script src="lib/big-text/big-text.js"></script>
       	<script src="lib/coffee/coffee.js"></script>
       	<script src="lib/markdown/markdown.js"></script>
-      	<script src="lib/replit/repl.js" id="jsrepl-script"></script>
 
 		<script src="js/global.js"></script>
+		<script src="js/mobile.js"></script>
 		<script src="js/realtime.js"></script>
 		<script src="js/frontend.js"></script>
 		<script src="js/drive.js"></script>
@@ -524,7 +459,7 @@
 		<script src = 'lib/keyboard/jwerty.js'></script>
 		<script>
 			jwerty.key('ctrl+o/cmd+o', function() {
-				open_picker();
+				picker.open();
 				return false;
 			});
 			jwerty.key('ctrl+s/cmd+s', function() {

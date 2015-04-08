@@ -40,13 +40,13 @@ $(document).ready(function(){
 	});
 	editor().on("change", function(cm, change) {
 	    window.setTimeout(function(){
-	    	mini();
+	    	mini.mini();
 	    },200);
 	});
 	editor().setOption("autoCloseBrackets",true);
 	editor().setOption("matchBrackets",true);
 	$(".CodeMirror-scroll").scroll(function(){
-		  miniView();
+		  mini.view();
 	});
 	$(".CodeMirror").css("line-height","1");
 	
@@ -71,7 +71,7 @@ $(document).ready(function(){
 	/**
 	* INITIALIZES THE MINIMAP
 	**/
-	mini();
+	mini.mini();
 	
 	/**
 	* SETUP THEME

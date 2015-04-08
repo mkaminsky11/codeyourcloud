@@ -76,7 +76,6 @@ function setFileTitle(id, title){
 	editors[getIndex(id)].title = title;
 	$(".tab-tab[data-fileid='"+id+"']").find("h4").html(title);
 	//since the default is "loading"
-	$("#tab-manager div[data-refersto='"+id+"'] h5 > span").html(title);
 	//changes the mode in case the extension was changed
 	check_mode(id, title);
 	var index = getIndex(id);
@@ -198,10 +197,6 @@ function addTab(title, id, welcome){
 	var user = "<div class='users-container' data-fileid='"+id+"' style='display:none'></div>";
 	$("#users").html($("#users").html() + user);
 	
-	//add a new row in the tab manager
-	var manager = "<div data-refersto='"+id+"'><h5><span>" + title + "</span><i class='md-delete' onclick='removetab(\""+id+"\")'></i><i class='md-remove-red-eye' onclick='opentab(\""+id+"\")'></i></h5></div>";
-	$("#tab-manager").html($("#tab-manager").html() + manager);
-	
 	//actually create the new editor
     var e = CodeMirror(document.getElementById(id),{
          lineNumbers: true,
@@ -234,14 +229,14 @@ function addTab(title, id, welcome){
 	    	setIgnore(cm.id, false);
     	}
     	window.setTimeout(function(){ //update minimap
-	    	mini();
+	    	mini.mini();
     	}, 200);
     });
     editor().setOption("lineNumbers",line_wrap);
     editor().setOption("lineWrapping",line_number);
     opentab(id);
     $(".CodeMirror-scroll").scroll(function(){
-	   miniView();
+	   mini.view();
 	});
   }
   
@@ -305,8 +300,8 @@ function opentab(id){
 		$("#image_div").css("display","none");
 	}
 	adjust(); //adjust again
-	mini(); //refresh minimap
-	miniView(); //adjust the scrolling of the minimap
+	mini.mini(); //refresh minimap
+	mini.view(); //adjust the scrolling of the minimap
 }
 
 //remove a tab
@@ -322,8 +317,6 @@ function removetab(id){
 	});
 	$(".codemirror-container[data-fileid='"+id+"']").remove();
 	$(".users-container[data-fileid='"+id+"']").remove();
-	
-	$("#tab-manager div[data-refersto='"+id+"']").remove();
   
 	var index = -1;
 	for(var i = 0; i < editors.length; i++){

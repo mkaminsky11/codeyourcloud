@@ -1,43 +1,16 @@
-/*
-if integer, nothing
-meta = regular
-tag bracket -> <,>
-tag -> html, div
 
-	
-	
-=======
+var mini = {
+	displayed: false
+};
 
-editor().doc.cm.getViewport() -> {to, from}
-get whats is in viewport
-
-cm.getTokenTypeAt(pos: {line, ch})
-*/
-
-
-//next, get colors
-
-/*
-	
-CM         | MINI
----------------------
-variable -> variable	
-null -> reg
-property -> property
-
-//ex: .cm-s-3024-night span.cm-comment
-*/
-
-function mini(){
+mini.mini = function(){
 	var mode = ".cm-s-"+ editor().getOption("theme");
 	
 	var text = editor().getValue();
 	var array = text.split("\n");
 	var html = "";
 	
-	$(".mini-tab").remove();
-	$(".mini-block").remove();
-	$(".mini-space").remove();
+	$(".mini-row").remove();
 	
 	var prev = -1;
 	
@@ -80,19 +53,20 @@ function mini(){
 		html += "</div>";
 	}
 	
-	$("#mini-insert").after(html);
-	//$("#mini").css("display","block");
-}
+	$(".mini-insert").after(html);
+};
 
-function miniView(){
+mini.view = function(){
 	
-	var view = editor().doc.cm.getViewport();
-	var from = view.from;
-	var to = view.to;
-	
-	var top = $(".mini-row").eq(from).position().top + "px";
-	var height = 4 * (to - from) + "px";
-	
-	$("#mini-scroll").css("height", height);
-	$("#mini-scroll").css("top", top);
-}
+
+};
+
+mini.toggle = function(){
+	if($(".mini").css("display") === "none"){
+		$("#codemirror-sizer").css("width","calc(100% - 150px)");
+	}
+	else{
+		$("#codemirror-sizer").css("width","calc(100% - 53px)");
+	}
+	$(".mini").toggle();
+};
