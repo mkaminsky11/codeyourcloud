@@ -7,10 +7,7 @@
 ===*/
 
 $(document).ready(function(){
-	
-	/**
-	* SETS UP WELCOME EDITOR
-	**/
+	//SETS UP WELCOME EDITOR
 	var e = CodeMirror(document.getElementById("welcome"),{
 	    lineNumbers: true,
 	    mode: "text",
@@ -24,40 +21,27 @@ $(document).ready(function(){
 	txtFile.open("GET", "https://codeyourcloud.com/intro.txt", true);
 	txtFile.onreadystatechange = function()
 	{
-		if (txtFile.readyState === 4) {  // document is ready to parse.
-			if (txtFile.status === 200) {  // file is found
-				var allText = txtFile.responseText; 
-				e.setValue(allText);
-			}
+		if (txtFile.readyState === 4 && txtFile.status === 200) {  // document is ready to parse.
+			var allText = txtFile.responseText; 
+			e.setValue(allText);
 		}
 	}
 	txtFile.send(null);
 	add_editor(e, "welcome", true);
 	current_file = "welcome";
-	
-	//configures editor
-	editor().on("beforeSelectionChange", function(cm, selection){
-	});
+	editor().on("beforeSelectionChange", function(cm, selection){});
 	editor().on("change", function(cm, change) {
-	    window.setTimeout(function(){
-	    	mini.mini();
-	    },200);
+	    window.setTimeout(function(){mini.mini();},200);
 	});
 	editor().setOption("autoCloseBrackets",true);
 	editor().setOption("matchBrackets",true);
-	$(".CodeMirror-scroll").scroll(function(){
-		  mini.view();
-	});
+	$(".CodeMirror-scroll").scroll(function(){mini.view();});
 	$(".CodeMirror").css("line-height","1");
 	
-	/**
-	* CHANGES IDE BASED ON FILE TYPE
-	**/
+	//CHANGES IDE BASED ON FILE TYPE
 	adjust();
 	
-	/**
-	* MAKES SURE THAT THE OPTIONS ARE ALL OK
-	**/
+	//MAKES SURE THAT THE OPTIONS ARE ALL OK
 	line_wrap = editor().getOption("lineWrapping");
 	line_number = editor().getOption("lineNumbers");
 	if(line_wrap !== $('#side-wrap').prop('checked')){
@@ -68,14 +52,10 @@ $(document).ready(function(){
 	}
 	editor().refresh(); //so that it fits the div wall
 	
-	/**
-	* INITIALIZES THE MINIMAP
-	**/
+	//INITIALIZES THE MINIMAP
 	mini.mini();
 	
-	/**
-	* SETUP THEME
-	**/
+	//SETUP THEME
 	if(localStorage.getItem("theme") !== null && themes_name.indexOf(localStorage.getItem("theme")) !== -1){
 		setTheme(localStorage.getItem("theme"));
 		$("#theme-select").val(localStorage.getItem("theme"));
