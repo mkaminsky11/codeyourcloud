@@ -11,9 +11,19 @@ connection.onmessage = function (message) {
 		console.log(json);
 		
 		if(json.type === "pub"){
-			console.log("%cHtml published","color:#27AE60; font-size: 12px");
-			 swal("Success", "HTML published!", "success")
+			 Messenger().post({
+			  message: 'Successfully published',
+			  type: 'success',
+			  showCloseButton: true
+			});
 		}
+		else if(json.type === "error"){
+			Messenger().post({
+			  message: 'An error occured',
+			  type: 'error',
+			  showCloseButton: true
+			});
+		};
 	} catch (e) {
 		console.log(e);
 	}
@@ -40,7 +50,7 @@ function publish_html(){
 	if(editor().getOption("mode") === "text/x-markdown" || editor().getOption("mode") === "gfm"){
 		p = converter.makeHtml(p);
 	}
-	connection.send(JSON.stringify({type:"publish", id:userId, lines:p.split("\n")}));
+	connection.send(JSON.stringify({type:"publish",mode: editor().getOption("mode"), id:userId, fileId: current_file, lines:p.split("\n")}));
 }
 /*********
 LEAVE THESE ALONE FOR NOW

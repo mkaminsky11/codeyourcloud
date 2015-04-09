@@ -29,12 +29,6 @@ function retrieveAllFilesInFolder(folderId, callback) {
   retrievePageOfChildren(initialRequest, []);
 }
 
-
-
-/*================
-store google drive functions
-================*/
-
 //gets the permissions
 function getP(fileId) {
 	var request = gapi.client.drive.permissions.list({
@@ -54,11 +48,8 @@ function getP(fileId) {
 	});
 }
 
-/*=============
-NEW FILE
-============*/
 
-
+//NEW FILE
 var insert_folder_dest = ""; //the destination to insert a new file into
 
 function insertNewFile(folderId) {

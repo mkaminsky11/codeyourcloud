@@ -10,11 +10,6 @@
 *  tabs
 ===*/
 
-/*
-* EDITORS
-* manages the multiple editors
-*/
-
 //returns the editor currently shown
 function editor(){
 	for(var i = 0; i < editors.length; i++){
@@ -350,6 +345,9 @@ function adjust(){
 	$(".side-run").addClass("hide"); //can't run anything
 	$(".side-pub").addClass("hide"); //can't publish anything
 	
+	//set publish link
+	$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + userId + "/index.html"); 
+	
 	//language specific stuff
 	if(mode === "text/javascript"){
 		$(".side-run").removeClass("hide"); //can run javascript
@@ -359,6 +357,10 @@ function adjust(){
 	}
 	else if(mode === "text/html"){
 		$(".side-pub").removeClass("hide"); //can publish html
+	}
+	else if(mode === "text/x-latex" || mode === "text/x-stex"){
+		$(".side-pub").removeClass("hide");
+		$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + userId + "/" + current_file + ".pdf");
 	}
 	else if(mode === "text/x-markdown" || mode === "gfm" || mode === "markdown"){
 		$(".side-pub").removeClass("hide"); //can publish markdown

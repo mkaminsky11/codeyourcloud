@@ -123,7 +123,7 @@ var modes = [
     {name: "SQL", mime: "text/x-sql", mode: "sql", ext: ["sql"]},
     {name: "MariaDB", mime: "text/x-mariadb", mode: "sql"},
     {name: "sTeX", mime: "text/x-stex", mode: "stex"},
-    {name: "LaTeX", mime: "text/x-latex", mode: "stex", ext: ["text", "ltx"], alias: ["tex"]},
+    {name: "LaTeX", mime: "text/x-latex", mode: "stex", ext: ["text", "ltx","tex"]},
     {name: "SystemVerilog", mime: "text/x-systemverilog", mode: "verilog", ext: ["v"]},
     {name: "Tcl", mime: "text/x-tcl", mode: "tcl", ext: ["tcl"]},
     {name: "Textile", mime: "text/x-textile", mode: "textile", ext: ["textile"]},
