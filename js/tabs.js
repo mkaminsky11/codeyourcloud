@@ -13,10 +13,10 @@
 //returns the editor currently shown
 function editor(){
 	for(var i = 0; i < editors.length; i++){
-  if(editors[i].id === current_file){
-    return editors[i].editor;
-  }
- }
+		if(editors[i].id === current_file){
+			return editors[i].editor;
+  		}
+	}
 }
 //adds and editor
 function add_editor(e, id, welcome){
@@ -86,10 +86,13 @@ function setFileTitle(id, title){
 	}
 	
 	//change the title in the tree view
-	var j = $("[data-tree-li='"+id+"'] span").html().split(">");
-	j[2] = title;
-	$("[data-tree-li='"+id+"'] span").html(j.join(">"));
-	$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith(getIconByTitle(title));
+	try{
+		var j = $("[data-tree-li='"+id+"'] span").html().split(">");
+		j[2] = title;
+		$("[data-tree-li='"+id+"'] span").html(j.join(">"));
+		$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith(getIconByTitle(title));
+	}
+	catch(e){}
 }
 
 /**
@@ -341,14 +344,12 @@ function adjust(){
 	}
 	catch(e){}
 	
-	//by default..
 	$(".side-run").addClass("hide"); //can't run anything
 	$(".side-pub").addClass("hide"); //can't publish anything
 	
 	//set publish link
 	$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + userId + "/index.html"); 
 	
-	//language specific stuff
 	if(mode === "text/javascript"){
 		$(".side-run").removeClass("hide"); //can run javascript
 	}
@@ -365,9 +366,6 @@ function adjust(){
 	else if(mode === "text/x-markdown" || mode === "gfm" || mode === "markdown"){
 		$(".side-pub").removeClass("hide"); //can publish markdown
 	}
-	//else if(mode === "text/x-python" || mode === "text/x-lua" || mode === "text/x-scheme"){
-	//	$(".side-pub").removeClass("hide");
-	//}
 }
 //insert a chat message
 function insert_chat(message, you, photo, name, fileid){

@@ -50,18 +50,19 @@ picker.uploadCallback = function(data){
 };
 
 picker.download = function(){
-	var fileId = current_file;
-	var request = gapi.client.drive.files.get({
-		'fileId': fileId
-  	});
-  	request.execute(function(resp) {
-  		window.location.assign(resp.webContentLink);
-	});
-	Messenger().post({
-		message: 'File downloaded!',
-		type: 'success',
-		showCloseButton: true
-	});
+	if(current_file !== "welcome"){
+		var request = gapi.client.drive.files.get({
+			'fileId': current_file
+	  	});
+	  	request.execute(function(resp) {
+	  		window.location.assign(resp.webContentLink);
+		});
+		Messenger().post({
+			message: 'File downloaded!',
+			type: 'success',
+			showCloseButton: true
+		});
+	}
 };
 
 picker.share = function(){

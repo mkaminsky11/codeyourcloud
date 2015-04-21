@@ -248,5 +248,6 @@ MESSENGER
 ========*/
 Messenger.options = {
     extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
-    theme: 'air'
+    theme: 'air',
+    hideAfter: 10
 };

@@ -1,13 +1,48 @@
-function getFile(fileId, callback){
+var drive = {};
+
+drive.getFile = function(fileId, callback){
 	var request = gapi.client.drive.files.get({
 	    'fileId': fileId
 	  });
 	  request.execute(function(resp) {
 	    callback(resp);
 	  });
-}
+};
 
-function retrieveAllFilesInFolder(folderId, callback) {
+drive.trash = function(fileId){
+	if(fileId !== "welcome"){
+	  var request = gapi.client.drive.files.trash({
+	    'fileId': fileId
+	  });
+	  request.execute(function(resp) {
+		  if(!resp.error){
+			  removetab(fileId);
+			  get_tree(myRootFolderId);
+		  }
+	  });	
+	}
+};
+
+drive.getContentOfFile = function(theID, callback){ //gets the content of the file
+    gapi.client.request({'path': '/drive/v2/files/'+theID,'method': 'GET',callback: function ( theResponseJS, theResponseTXT ) {
+        var myToken = gapi.auth.getToken();
+		var myXHR   = new XMLHttpRequest();
+        myXHR.open('GET', theResponseJS.downloadUrl, true );
+        myXHR.setRequestHeader('Authorization', 'Bearer ' + myToken.access_token );
+        myXHR.onreadystatechange = function( theProgressEvent ) {
+            if (myXHR.readyState == 4) {
+                if ( myXHR.status == 200 ) {
+                	code = myXHR.response;
+                    callback(code);
+			   	}
+            }
+        }
+        myXHR.send();
+        }
+    });
+};
+
+drive.retrieveAllFilesInFolder = function(folderId, callback) {
   var retrievePageOfChildren = function(request, result) {
     request.execute(function(resp) {
       result = result.concat(resp.items);
@@ -27,7 +62,7 @@ function retrieveAllFilesInFolder(folderId, callback) {
       'folderId' : folderId
     });
   retrievePageOfChildren(initialRequest, []);
-}
+};
 
 //gets the permissions
 function getP(fileId) {
@@ -74,6 +109,10 @@ function fileInserted(d) {
 	
 	//great, now add the tab
 	addTab("loading...",d.id,false);
+	
+	if(insert_folder_dest === myRootFolderId){
+		get_tree(myRootFolderId);
+	}
 }
 function insertFileIntoFolder(folderId, fileId) {
   var body = {'id': folderId};

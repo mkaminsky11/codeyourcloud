@@ -22,44 +22,6 @@ $("#svg2").css("margin-bottom", up + "px");
 //$("h1").fitText();
 $("#logos").fitText();
 
-
-
-function web(){
-	
-	$("#screen").velocity({
-		opacity: 0
-	}, { 
-		duration: 500,
-		complete: function(){
-			$("#screen").attr("src","images/web_record.gif");
-			$("#screen").css("width","80%");
-			$("#screen").css("left","10%");
-			
-			$("#screen").velocity({
-				opacity: 1
-			}, { duration: 500 });
-		}
-	});
-}
-
-function mobile(){
-	$("#screen").velocity({
-		opacity: 0
-	}, { 
-		duration: 500,
-		complete: function(){
-			$("#screen").attr("src","images/mobile.png");
-			$("#screen").css("width","50%");
-			$("#screen").css("left","25%");
-			
-			$("#screen").velocity({
-				opacity: 1
-			}, { duration: 500 });
-		}
-	});
-}
-
-
 var ok = true;
 
 /*******
@@ -187,25 +149,3 @@ function redirect(){
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-47415821-1', 'codeyourcloud.com');
 ga('send', 'pageview');
-
-
-
-//chart
-
-/*
-var colors = ["#E74C3C", "#2ECC71", "#3498DB", "#9B59B6", "#E67E22", "#1ABC9C", "#34495E"];
-var color_index = 0;
-window.setInterval(function(){
-	color_index++;
-	if(color_index >= colors.length){
-		color_index = color_index - colors.length;
-	}
-
-	$("#main").velocity({
-		backgroundColor: colors[color_index]
-	},{
-		duration: 700
-	});
-}, 3000);
-*/
-

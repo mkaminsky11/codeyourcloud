@@ -1,4 +1,155 @@
+.select-box{
+	padding: 5px;
+	display: block;
+	height: 38px;
+}
 
+.select-box > p{
+	margin: 0;
+	float: left;
+	color: #d4cfc9;
+	font-weight: 400;
+	font-family: "Roboto";
+	font-size: 15px;
+	margin-top: 9px;
+}
+
+.select-box > select{
+	text-decoration: none;
+	-webkit-appearance: none;
+	background-color: transparent;
+	border: 1px solid #555;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	width: 120px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: 12px;
+	font-weight: 200;
+	color: #606060;
+	line-height: 34px;
+	padding: 0 40px 0 15px;
+	float: right;
+	/* display: block; */
+	text-decoration: none;
+	z-index: 0;
+	position: relative;
+	margin: 0;
+}
+
+.select-box > span{
+	position: absolute;
+	right: 22px;
+	margin-top: 6px;
+	color: #606060;
+}
+
+.select-box > .check-switch{
+	float: right;
+	margin-top: 6px;
+}
+
+.check-switch {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+.check-switch input {
+    opacity: 0;
+    position: absolute;
+}
+
+.check-switch input + span {
+    position: relative;
+    display: inline-block;
+    width: 1.65em;
+    height: 1em;
+    background: white;
+    box-shadow: inset 0 0 0 0.0625em #e9e9e9;
+    border-radius: 0.5em;
+    vertical-align: -0.15em;
+    transition: all 0.40s cubic-bezier(.17,.67,.43,.98);
+}
+
+.check-switch:active input + span,
+.check-switch input + span:active {
+    box-shadow: inset 0 0 0 0.73em #e9e9e9;
+}
+
+.check-switch input + span:after {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 0.875em;
+    height: 0.875em;
+    border-radius: 0.4375em;
+    top: 0.0625em;
+    left: 0.0625em;
+    background: white;
+    box-shadow: inset 0 0 0 0.03em rgba(0,0,0,0.1),
+                0 0 0.05em rgba(0,0,0,0.05),
+                0 0.1em 0.2em rgba(0,0,0,0.2);
+    transition: all 0.25s ease-out;
+}
+
+.check-switch:active input + span:after,
+.check-switch input + span:active:after {
+    width: 1.15em;
+}
+
+.check-switch input:checked + span {
+    box-shadow: inset 0 0 0 0.73em #E74C3C;
+}
+
+.check-switch input:checked + span:after {
+    left: 0.7125em;
+}
+
+.check-switch:active input:checked + span:after,
+.check-switch input:checked + span:active:after {
+    left: 0.4375em;
+}
+
+/* accessibility styles */
+.check-switch input:focus + span:after {
+    box-shadow: inset 0 0 0 0.03em rgba(0,0,0,0.15),
+                0 0 0.05em rgba(0,0,0,0.08),
+                0 0.1em 0.2em rgba(0,0,0,0.3);
+    background: #fff;
+}
+
+.check-switch input:focus + span {
+    box-shadow: inset 0 0 0 0.0625em #dadada;
+}
+
+.check-switch input:focus:checked + span {
+    box-shadow: inset 0 0 0 0.73em #E74C3C;
+}
+
+/* reset accessibility style on hover */
+.check-switch:hover input:focus + span:after {
+    box-shadow: inset 0 0 0 0.03em rgba(0,0,0,0.1),
+                0 0 0.05em rgba(0,0,0,0.05),
+                0 0.1em 0.2em rgba(0,0,0,0.2);
+    background: #fff;
+}
+
+.check-switch:hover input:focus + span {
+    box-shadow: inset 0 0 0 0.0625em #e9e9e9;
+}
+
+.check-switch:hover input:focus:checked + span {
+    box-shadow: inset 0 0 0 0.73em #E74C3C;
+}
 
 /*
 FROM MATERIALIZECSS.COM

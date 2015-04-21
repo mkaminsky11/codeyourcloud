@@ -41,16 +41,17 @@ $("#custom").spectrum({
     move: function(tinycolor) { //TODO: this needs alot of work
 		var color = tinycolor.toHexString();
 		//insert this
-		var before = editor().getDoc().getCursor();
+		var before = editor().getDoc().getCursor("from");
 		if(editor().getDoc().somethingSelected()){
 			editor().getDoc().replaceSelection(color);
+			var after = editor().getDoc().getCursor("to");
+			editor().getDoc().setSelection(before, after);
 		}
 		else{
 			editor().getDoc().replaceRange(""+color, before);
+			var after = editor().getDoc().getCursor();
+			editor().getDoc().setSelection(before, after);
 		}
-		var after = editor().getDoc().getCursor();
-		//else{
-		editor().getDoc().setSelection(before, after);
   		//}
     },
     beforeShow: function(tinycolor) { 
@@ -292,24 +293,10 @@ function nav_tree(){
 * IMAGES
 * if an image opened
 **/
-function read_image(file_id_id){
-	var index = getIndex(file_id_id);
-	if(editors[index].image !== true && editors[index].image){
-		//just open it
-		$("#image_div").css("display", "flex");
-		$("#image_div").html("<img src='" + editors[index].image + "'>");
-	}	
-	else{
-		getFile(file_id_id, function(resp){
-			console.log(resp);
-			var url = resp.thumbnailLink;
-
-			editors[index].image = url;		
-
-			$("#image_div").css("display","flex");
-			$("#image_div").html("<img src='" + url  + "'>");
-		});
-	}
+function read_image(file_id){
+	//https://doc-0o-34-docs.googleusercontent.com/docs/securesc/5bfhdfjhb08jjkevjs6gmvs27afnj8mn/5uus0edh2velrig75kjpkdj6ltg7kmum/1429380000000/09572991516856320887/09572991516856320887/0ByWSHHBN-zyoeE1lX29JSzBFdFE
+	//?e=download&gd=true
+	console.log(file_id);
 }
 
 /**

@@ -29,13 +29,13 @@ function sort_by_title(a,b) {
 function tree_folder(id, callback){
 	var ret = [];
 	//gets all the files
-	retrieveAllFilesInFolder(id, function(data){
+	drive.retrieveAllFilesInFolder(id, function(data){
 		var goal = data.length; //how many files total
 		
 		for(var i = 0; i < data.length; i++){
 			var id_id = data[i].id;
 			//for each of the files, gets the information
-			getFile(id_id, function(resp){
+			drive.getFile(id_id, function(resp){
 				var to_push = {
 					title: resp.title,
 					id: resp.id,
