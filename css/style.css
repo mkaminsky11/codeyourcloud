@@ -218,8 +218,8 @@ SIDEBAR
 	border-bottom-right-radius: 6px;
 }
 #rename-div input:read-only {
-	color: #b8b8b8;
-	background-color: rgba(169, 169, 169, 0.07);
+	color: #f8f8f8;
+	background-color: rgba(224, 224, 224, 0.91);
 }
 .InputAddOn {
   display: flex;
@@ -331,14 +331,12 @@ SIDEBAR
 	overflow-x: hidden;
 	overflow-y: auto;
 	width: 100%;
-	
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
 	display: -moz-flex;
 	display: -webkit-flex;
 	display: flex;
-	
 	-webkit-flex-wrap: wrap;
 	flex-wrap: wrap;
 }
@@ -359,23 +357,23 @@ SIDEBAR
 }
 
 .tab-tab h4{
-  margin: 0px;
-  font-size: 13px;
-  width: 83px;
-  overflow: hidden;
-  word-break: break-all;
-  text-overflow: ellipsis;
-  float: left;
-  word-wrap: break-word;
-  overflow: hidden;
-  height: 17px;
-  font-family: 'Roboto';
-  color: white;
-  padding-top: 4px;
-  padding-left: 5px;
-  font-weight: 300;
-  position: relative;
-  margin-left: 19px;
+	margin: 0px;
+	font-size: 13px;
+	width: 83px;
+	overflow: hidden;
+	word-break: break-all;
+	text-overflow: ellipsis;
+	float: left;
+	word-wrap: break-word;
+	overflow: hidden;
+	height: 17px;
+	font-family: 'Roboto';
+	color: white;
+	padding-top: 4px;
+	padding-left: 5px;
+	font-weight: 300;
+	position: relative;
+	margin-left: 19px;
 }
 .tab-tab h6{
 	margin: 0;
@@ -399,47 +397,38 @@ SIDEBAR
 	font-size: 10px;
 	top: 9px;
 }
-
 .tab-active{	
 	background-color: rgb(249, 246, 246);
 	border-right: none;
 }
-
 .tab-active h6{
 	color: #f36c60;
 }
-
 .tab-active h4{
 	color: black;
 }
-
 .CodeMirror{
 	line-height: 1 !important;
 }
-
 .users-container{
 	height: 100%;
 	width: 100%;
 	-webkit-overflow-scrolling: touch;
 	overflow: visible;
 }
-
 #overlay{
 	background-color: #ECF0F1;
 	z-index: 1;
 }
-
 #overlay h4{
 	text-align: center;
 	text-transform: uppercase;
 	margin-top: 14px;
 	color: #DADEDF;
 }
-
 .codemirror-container{
 	z-index: 2;
 }
-
 #profile_pic{
 	 float:left;
 	 margin-right:5px;
@@ -447,16 +436,12 @@ SIDEBAR
 	border: none;
 	 margin-top: 1px;
 }
-
-
 .mode-li, .theme-li{
 	border: solid 1px #eee !important;
 }
-
 .mains .CodeMirror{
 	height: 100% !important;
 }
-
 #toggle_side_menu_button{
 	color: #bdc3c7;
 	border-radius: 3px;
@@ -466,11 +451,9 @@ SIDEBAR
 	margin-left: 0px;
 	font-size: 25px;
 }
-
 #toggle_side_menu_button > i{
 	  color: #E74C3C;
 }
-
 #nav{
 	height: 42px;
 	margin-bottom: 29px;
@@ -491,7 +474,6 @@ SIDEBAR
 	  padding-left: 12px;
 	  float: right;
 }
-
 .popup{
 	position: absolute;
 	z-index: 90;
@@ -502,8 +484,6 @@ SIDEBAR
 	-webkit-box-shadow: 0 0 9px #4A4A4A;
   	box-shadow: 0 0 9px #4A4A4A;
 }
-
-
 .popup span{
 	  display: block;
 	  padding: 7px;
@@ -516,7 +496,6 @@ SIDEBAR
 	  padding-top: 10px;
 	  padding-bottom: 10px;
 }
-
 .popup a{
 	color: #5E5B5B !important;
 }
@@ -528,27 +507,22 @@ SIDEBAR
 .popup span:hover{
 	background-color: #eee;
 }
-
 #new-popup{
 	right: 42px;
 	top: 80px;
 }
-
 #search-popup{
 	right: 126px;
 	top: 80px;
 }
-
 #more-popup{
 	right: 10px;
 	top: 80px;
 }
-
 #navigate{
 	height: 33px;
 	min-height: 0;
 }
-
 #navigate div{
 	color: #9e9e9e;
 	width: 20%;

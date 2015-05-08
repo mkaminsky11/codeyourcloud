@@ -7,6 +7,10 @@
 ===*/
 
 $(document).ready(function(){
+	
+	console.log("Greetings, developer! Have you checked out Code Your Cloud on Github yet? You should. https://github.com/mkaminsky11/codeyourcloud");
+	
+	
 	//SETS UP WELCOME EDITOR
 	var e = CodeMirror(document.getElementById("welcome"),{
 	    lineNumbers: true,
@@ -33,7 +37,7 @@ $(document).ready(function(){
 	editor().on("change", function(cm, change) {
 	    window.setTimeout(function(){mini.mini();},200);
 	});
-	editor().setOption("autoCloseBrackets",true);
+	editor().setOption("autoCloseBrackets",true); //TODO: make this optional
 	editor().setOption("matchBrackets",true);
 	$(".CodeMirror-scroll").scroll(function(){mini.view();});
 	$(".CodeMirror").css("line-height","1");

@@ -5,9 +5,9 @@ var xDown = null;
 var yDown = null;                                                        
 
 function handleTouchStart(evt) {                                         
-    xDown = evt.touches[0].clientX;                                      
-    yDown = evt.touches[0].clientY;                                      
-};                                                
+    xDown = evt.touches[0].clientX;           
+    yDown = evt.touches[0].clientY;                                     
+};               
 
 function handleTouchMove(evt) {
     if ( ! xDown || ! yDown ) {

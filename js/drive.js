@@ -1,5 +1,5 @@
 var drive = {};
-
+//most of these are from Google's website
 drive.getFile = function(fileId, callback){
 	var request = gapi.client.drive.files.get({
 	    'fileId': fileId
@@ -198,18 +198,56 @@ function insert_saveas(content, title, folderId){
 	insertFile(blob, folderId, saveas_inserted);
 }
 
-function saveas_inserted(d) {
+function saveas_inserted(inserted_file) {
 	//called once file inserted
 	var folder_id = save_as_destination;
-    renameFile(d.id, $("#saveas-input").val());
+    renameFile(inserted_file.id, $("#saveas-input").val());
 	if(folder_id !== myRootFolderId){	
-		insertFileIntoFolder(folder_id, d.id);
-		removeFileFromFolder(d.parents[0].id,d.id);
+		insertFileIntoFolder(folder_id, inserted_file.id);
+		removeFileFromFolder(inserted_file.parents[0].id,inserted_file.id);
 	}
 	
-	addTab("loading...",d.id,false);
+	addTab("loading...",inserted_file.id,false);
 }
 
 function new_file(){
 	insertNewFile(myRootFolderId);
+}
+
+drive.updateFile = function(fileId, fileMetadata, fileData, callback) { //is the callback necessary?
+  const boundary = '-------314159265358979323846';
+  const delimiter = "\r\n--" + boundary + "\r\n";
+  const close_delim = "\r\n--" + boundary + "--";
+
+  var reader = new FileReader();
+  reader.readAsBinaryString(fileData);
+  reader.onload = function(e) {
+    var contentType = fileData.type || 'application/octet-stream';
+    var base64Data = btoa(reader.result);
+
+    var multipartRequestBody =
+        delimiter +
+        'Content-Type: application/json\r\n\r\n' +
+        JSON.stringify(fileMetadata) +
+        delimiter +
+        'Content-Type: ' + contentType + '\r\n' +
+        'Content-Transfer-Encoding: base64\r\n' +
+        '\r\n' +
+        base64Data +
+        close_delim;
+
+    var request = gapi.client.request({
+        'path': '/upload/drive/v2/files/' + fileId,
+        'method': 'PUT',
+        'params': {'uploadType': 'multipart', 'alt': 'json'},
+        'headers': {
+          'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
+        },
+        'body': multipartRequestBody});
+    if (!callback) {
+      callback = function(file) {
+      };
+    }
+    request.execute(callback);
+  }
 }

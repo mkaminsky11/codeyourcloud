@@ -32,15 +32,15 @@ Wecome!
 ========
 OPENING A FILE
 ========
-a) click the Google Drive icon near the top-right corner
+a) click the folder icon in the top-right corner
 	
 		-or-
 		
-b) open the sidebar and select "open"
+b) open the sidebar (using the button in the top-left corner), and use the file tree to open the file you want.
 
 ========
 RENAMING A FILE
 ========
 1) open the file
-2) open the sidebar, and click on the blue pencil icon
+2) open the sidebar, and click on the pencil icon
 3) change the text field to the desired title
