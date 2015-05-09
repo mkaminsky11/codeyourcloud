@@ -1,13 +1,6 @@
 /*===
 * CODEYOURCLOUD
-*
-* tabs.js built by Michael Kaminsky
 * manages the tabs and their editors
-*
-* contents:
-*  editors
-*  communications
-*  tabs
 ===*/
 
 //returns the editor currently shown
@@ -18,14 +11,13 @@ function editor(){
   		}
 	}
 }
-//adds and editor
 function add_editor(e, id, welcome){
 	var to_push = {
-    	editor: e,
+    	editor: e, //the editor instance itself
     	id: id,
-    	welcome: welcome,
+    	welcome: welcome, //is it the welcome screen?
     	title: "",
-    	ignore: false
+    	ignore: false //should the next change be ignored (prevent change loop)
 	};
   
 	editors.push(to_push);
@@ -65,31 +57,30 @@ function setIgnore(id, ignore){
 		}
 	}
 }
-//sets the title (duh)
 function setFileTitle(id, title){
-	//first, set the h4 of the .tab-tab
 	editors[getIndex(id)].title = title;
 	$(".tab-tab[data-fileid='"+id+"']").find("h4").html(title);
-	//since the default is "loading"
-	//changes the mode in case the extension was changed
 	check_mode(id, title);
 	var index = getIndex(id);
 	if(current_file === id){ //if this is the file being show, you should change the title input
 		$("#title").val(editors[index].title);
 	}
 	var ext = extension(title.toLowerCase());
-	if(ext === "png" || ext === "jpg" || ext === "jpeg" || ext === "gif" || ext === "tif"){ //if it is now an image
-		editors[index].image = true; //yes, it is in fact an image
-		if(current_file === id){ //if if is the one being displayed
-			read_image(id); //display it as an image
+	if(images.isImage(ext)){
+		editors[index].image = true;
+		
+		//TODO: work on this
+		
+		if(current_file === id){
+			images.init(id); //display it as an image
 		}
 	}
 	
 	//change the title in the tree view
 	try{
-		var j = $("[data-tree-li='"+id+"'] span").html().split(">");
-		j[2] = title;
-		$("[data-tree-li='"+id+"'] span").html(j.join(">"));
+		var inner_html = $("[data-tree-li='"+id+"'] span").html().split(">");
+		html[2] = title;
+		$("[data-tree-li='"+id+"'] span").html(inner_html.join(">"));
 		$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith(getIconByTitle(title));
 	}
 	catch(e){}
@@ -103,9 +94,10 @@ function setFileTitle(id, title){
 window.addEventListener("message", receiveMessage, false);
 function receiveMessage(event){
   if(event.data !== "!_{h:''}"){
+	  
   	var json = JSON.parse(event.data);
   	if(typeof json.s === 'undefined'){ //this makes sure that only the intended messages are getting in. There are some "background" ones
-	  	var id = json.currentfile; //which file is this referring to?
+	  	var id = json.currentfile;
 	  	
 	  	if(json.type === "text"){ //sets the text
 		  	getEditor(id).setValue(json.value);
@@ -114,9 +106,6 @@ function receiveMessage(event){
 	  	else if(json.type === "title"){ //sets the title
 		  	setFileTitle(id, json.title);
 		}
-	  	else if(json.type === "saved"){ //it has been saved
-		  	//TODO: send a message to user
-	  	}
 	  	else if(json.type === "insert_text"){ //text has been inserted
 	  		setIgnore(id, true); //ignore the second one (realtime problems)
 		  	getEditor(id).replaceRange(json.text, getEditor(id).posFromIndex(json.point)); //implement change
@@ -150,14 +139,8 @@ function sendData(data, fileid){
 	document.getElementById("iframe-" + fileid).contentWindow.postMessage(JSON.stringify(data), "*");
 }
 
-/**
-* TABS
-* manages the tabs themselves
-**/
-
-//adds a new tab
 function addTab(title, id, welcome){
-  if(title === "loading..."){ //this will only be true if the editor is now the welcome tab
+  if(title === "loading..."){ //this will only be true if the editor is not the welcome tab
 	show_loading_spinner();
   }
 
@@ -206,7 +189,6 @@ function addTab(title, id, welcome){
     });
     e.id = id;
 
-	//add the editor to "editors"
     add_editor(e, id, welcome);
     current_file = id; //open it up
     //configure the editor
@@ -262,11 +244,10 @@ function opentab(id){
 	$(".chats-content[data-fileid='"+id+"']").css("display","block");
 	$(".chats-content[data-fileid='"+id+"']").addClass("chats-active");
   
-	//TODO: fix this
 	$(".CodeMirror").css("font-size","12px");
 	current_file = id;
   
-	try{
+	try{ //?
 		editor().refresh(); //try to refresh it
 	}
 	catch(e){
@@ -291,15 +272,13 @@ function opentab(id){
 		$("#rename-toggle").css("display","inline-block");
 		$("#rename_input").val(editors[index].title);
 	}
+	
 	if(editors[index].image){
-		read_image(id);	
+		//TODO: fix this
+		images.init(id);	
 	}
-	else{
-		$("#image_div").css("display","none");
-	}
-	adjust(); //adjust again
+	adjust();
 	mini.mini(); //refresh minimap
-	mini.view(); //adjust the scrolling of the minimap
 }
 
 //remove a tab

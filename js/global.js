@@ -209,9 +209,6 @@ var userName;
 var userUrl;
 var userId;
 var user_loaded = false; 
-var total_q;
-var user_q;
-var product_q;
 var side_open = false;
 var developerKey = 'AIzaSyBTSFIgQkLly9v6Xuqc2Nqm-vX0jpyEbZk';
 

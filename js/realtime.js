@@ -18,62 +18,56 @@
 **/
 
 function loadDrive(){
-	gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate': true},handleAuth);
-}
-//handles result
-function handleAuth(authResult){
-	console.log(authResult);
-	if (!authResult.error) {
-		logged_in = true;
-		loadClient();
-	} 
-	else {
-		//?no = true is just used for testing purposes
-		//it prevents a redirection in the event of an unauthorized user
-		if(window.location.href.indexOf("no=true") === -1 && authResult.status.signed_in === false){
-			window.location = "https://codeyourcloud.com/about";
-		}
-		
-		if(window.location.href.indexOf("force=true") !== -1){
-			loadClient();
+	gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate': true}, function(authResult){
+		if (!authResult.error) {
 			logged_in = true;
+			loadClient();
+		} 
+		else {
+			//?no = true is just used for testing purposes
+			//it prevents a redirection in the event of an unauthorized user
+			if(window.location.href.indexOf("no=true") === -1 && authResult.status.signed_in === false){
+				window.location = "https://codeyourcloud.com/about";
+			}
+			
+			if(window.location.href.indexOf("force=true") !== -1){
+				loadClient();
+				logged_in = true;
+			}
+			
+			if(window.location.href.indexOf("output=true") !== -1){
+				console.log("error:" + authResult.error);
+				console.log("error subtype:" + authResult.error_subtype);
+			}
 		}
-		
-		if(window.location.href.indexOf("output=true") !== -1){
-			console.log("error:" + authResult.error);
-			console.log("error subtype:" + authResult.error_subtype);
-		}
-	}
+	});
 }
 function loadClient() {
-	gapi.client.load('drive', 'v2', load_drive);
-}
-function load_drive(){
-	//this need to be refreshed every 55 minutes
-	setInterval(function(){
-		refreshToken();
-	},3000000);
-	get_info();
-	
-	
-	var url = window.location.href;
-	var query = window.location.href.split("?")[1];
-	if(url.indexOf("%22action%22:%22open") !== -1){
-		//need to open a file
-		var query_id = query.split("%22")[3];
-		addTab("loading...",query_id,false);
+	gapi.client.load('drive', 'v2', function(){
+		//this need to be refreshed every 55 minutes
+		setInterval(function(){
+			refreshToken();
+		},3000000);
+		get_info();
 		
-	}
-	else if(url.indexOf("%22action%22:%22create%22") !== -1){
-		//need to create new file
-		var query_folder_id = query.split("%22")[3];
-		insertNewFile(query_folder_id);
-	}
+		
+		var url = window.location.href;
+		var query = window.location.href.split("?")[1];
+		if(url.indexOf("%22action%22:%22open") !== -1){
+			//need to open a file
+			var query_id = query.split("%22")[3];
+			addTab("loading...",query_id,false);
+			
+		}
+		else if(url.indexOf("%22action%22:%22create%22") !== -1){
+			//need to create new file
+			var query_folder_id = query.split("%22")[3];
+			insertNewFile(query_folder_id);
+		}
+	});
 }
 function refreshToken() {
-	gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate':true},function(result){
-		
-	});
+	gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate':true},function(result){});
 }
 
 function get_info(){
@@ -102,7 +96,7 @@ function get_info(){
             }
             
             if(typeof tempUrl === 'undefined'){
-			//get the user profile, unless there is none
+				//get the user profile, unless there is none
 	            userUrl = "https://codeyourcloud.com/images/other/none.jpg";
 	            tempUrl = "https://codeyourcloud.com/images/other/none.jpg";
             }
@@ -122,13 +116,7 @@ function get_info(){
             
         }
         catch(e){}
-        
-        //gets user storage information
-		//not currently used by anything, but...
-        total_q = resp.quotaBytesTotal;
-        user_q = resp.quotaBytesUsedAggregate;
-        product_q = Math.round(user_q/total_q * 100);
-        
+                
         //initializes the tree view once the foot folder id is loaded
         $(".root-tree").attr("data-tree-ul", myRootFolderId);
         get_tree(myRootFolderId);

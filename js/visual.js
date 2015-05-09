@@ -2,21 +2,17 @@
 * CODEYOURCLOUD
 *
 * visual.js built by Michael Kaminsky
-* handles google drive and realtime events like adding and remove users
-*
 ===*/
 
 
-/**
-* RUN
-* running code
-**/
+
+//running code
 function run(){
 	var code_before_replace = editor().getValue();
 	if(editor().getOption("mode") === "text/x-coffeescript"){
 		code_before_replace = CoffeeScript.compile(code_before_replace, { bare: true });
 	}
-	var find = 'console.log';
+	var find = 'console.log'; //not console.log, but print
 	var re = new RegExp(find, 'g');
 	code_before_replace = code_before_replace.replace(re, 'print');
 	
@@ -25,10 +21,9 @@ function run(){
 }
 
 
-/**
-* COLOR
-* color picker
-**/
+/*
+* COLOR PICKER
+*/
 function show_color(){
 	$("#colorModal").modal('show');
 }
@@ -61,7 +56,7 @@ $("#custom").spectrum({
 });
 
 function set_color(string){
-	if(/^#[0-9A-F]{6}$/i.test(string)){
+	if(/^#[0-9A-F]{6}$/i.test(string)){ //is hex
 		$("#custom").spectrum("set",string);
 	}
 }
@@ -271,9 +266,6 @@ function nav_options(){
 		$(".tree-tree").css("display","none");
 	}
 }
-function nav_chats(){
-	
-}
 function nav_tree(){
 	if($("#nav_tree").hasClass("active")){
 		//already there
@@ -287,16 +279,6 @@ function nav_tree(){
 		$(".options").css("display","none");
 		$(".tree-tree").css("display","block");
 	}
-}
-
-/**
-* IMAGES
-* if an image opened
-**/
-function read_image(file_id){
-	//https://doc-0o-34-docs.googleusercontent.com/docs/securesc/5bfhdfjhb08jjkevjs6gmvs27afnj8mn/5uus0edh2velrig75kjpkdj6ltg7kmum/1429380000000/09572991516856320887/09572991516856320887/0ByWSHHBN-zyoeE1lX29JSzBFdFE
-	//?e=download&gd=true
-	console.log(file_id);
 }
 
 /**
