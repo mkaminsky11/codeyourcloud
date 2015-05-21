@@ -4,8 +4,6 @@
 * tree.js built by Michael Kaminsky
 * manages the file tree
 *
-* contents:
-*  tree
 ===*/
 
 /*
@@ -36,10 +34,11 @@ function tree_folder(id, callback){
 			var id_id = data[i].id;
 			//for each of the files, gets the information
 			drive.getFile(id_id, function(resp){
+				
 				var to_push = {
 					title: resp.title,
 					id: resp.id,
-					folder: (resp.mimeType === "application/vnd.google-apps.folder") //is it a folder?	
+					folder: (resp.mimeType === "application/vnd.google-apps.folder") //is it a folder?
 				};
 				if(resp.explicitlyTrashed === true){ //if trashed, don't count
 					goal--;
@@ -201,8 +200,8 @@ function getIconByTitle(title){
 	else if(ext === "dart"){
 		icon = '<i class="devicons devicons-dart" style="color:#3498DB"></i>';
 	}
-	else if(title.toLowerCase().indexOf(".html") !== -1 || title.toLowerCase().indexOf(".js") !== -1){
-		icon = '<i class="fa fa-file-code-o"></i>';
-	}
+	//else if(title.toLowerCase().indexOf(".html") !== -1 || title.toLowerCase().indexOf(".js") !== -1){
+	//	icon = '<i class="fa fa-file-code-o"></i>';
+	//}
 	return icon;
 }

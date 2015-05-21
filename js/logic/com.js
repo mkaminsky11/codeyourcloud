@@ -13,7 +13,6 @@ function receiveMessage(event){
 	  	save();
   	}
   	else if(json.type === "newchat"){
-  		console.log("new");
 	  	makeChat(json.message, json.name, json.id, json.photo);
   	}
   	else if(json.type === "text"){

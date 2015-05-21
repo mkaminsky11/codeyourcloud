@@ -1,6 +1,5 @@
 
 function getContentOfFile(theID, model){ //gets the content of the file
-	console.log("init");
     gapi.client.request({'path': '/drive/v2/files/'+theID,'method': 'GET',callback: function ( theResponseJS, theResponseTXT ) {
         var myToken = gapi.auth.getToken();
 		var myXHR   = new XMLHttpRequest();

@@ -50,11 +50,9 @@ var userJoin = function(doc){
 };
 
 function loaded_realtime(doc){
-	console.log("loaded");
 	doc_real = doc;
 	if((!init_needed || (init_needed && init_loaded)) && typeof doc !== 'undefined'){
 		
-		console.log("inner");
 		
 		setValue(doc_real.getModel().getRoot().get("text").getText());
 		
@@ -144,5 +142,4 @@ function makeChat(message,name,id,photo){
 	
 	var make = [m, name, id, photo];
 	chats.push(make);
-	console.log("push");
 }

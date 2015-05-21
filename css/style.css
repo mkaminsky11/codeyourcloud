@@ -1,11 +1,12 @@
 /*
-BASICS
-========
+* BASICS
 */
 
+/*
 *:focus{
 	outline: none !important;
 }
+*/
 
 body{
 	font-family: 'Roboto-Thin' !important;
@@ -64,9 +65,9 @@ body{
 	padding-left:0;
 }
 
-/*==========
-TOOLBAR
-=========*/
+/*
+* TOOLBAR
+*/
 #toolbar{
 	position: absolute;
 	float: right;
@@ -103,8 +104,7 @@ TOOLBAR
 }
 
 /*
-SIDEBAR
-=========
+* SIDEBAR
 */
 
 #side{
@@ -188,6 +188,10 @@ SIDEBAR
 	justify-content: center;
 	align-items: center;
 }
+
+/*
+* RENAME
+*/
 #rename-div{
 	width: 90%;
 	height: 30px;
@@ -246,7 +250,9 @@ SIDEBAR
 #spinner-font{
 	width: 300px;
 }
-
+/*
+* NAVIGATION	
+*/
 #container{
 	height:100% !important;
 	width: 100% !important;
@@ -316,6 +322,9 @@ SIDEBAR
     text-transform: uppercase;
     font-family: 'Roboto-Black';
 }
+/*
+* TABS
+*/
 .tab-wrapper{
 	height: 34px;
 	background-color: #262B30;
@@ -595,8 +604,9 @@ SIDEBAR
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	
-	
-	/*0 0 9px rgba(74, 74, 74, 0.46)*/
+	-moz-box-shadow: 0 0 9px #4A4A4A;
+	-webkit-box-shadow: 0 0 9px #4A4A4A;
+  	box-shadow: 0 0 9px #4A4A4A;
 }
 
 .chat-input{
@@ -975,4 +985,24 @@ MINI!
 .mini-tab{
 	width: 3px;
 	background-color: transparent;
+}
+
+/*
+* BROADCAST
+*/
+#broadcast{
+	position: fixed;
+	z-index: 99;
+	right: 0;
+	bottom: 0;
+	padding: 10px;
+	background-color: rgba(71, 71, 71, 0.46);
+	border-top-left-radius: 5px;
+}
+#broadcast > i{
+	float: right;
+	margin-right: 8px;
+	color: white;
+	border: solid 2px rgba(255, 255, 255, 0.55);
+	border-radius: 3px;
 }

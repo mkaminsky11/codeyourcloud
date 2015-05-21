@@ -41,7 +41,6 @@ EVENTS
 var onChange = function(event){
 	//text changed
 	if(!event.isLocal){
-		console.log(event);
 		if(event.type === "text_inserted"){
 			var insert_point = editor.posFromIndex(event.index);
 			editor.replaceRange(event.text, insert_point);
@@ -83,7 +82,6 @@ var userLeft = function(doc){
 };
 
 var userJoin = function(doc){
-	console.log("join");
 	var col = doc.collaborator;
 	if(!col.isMe){
 		insertUser(col.userName,col.color,col.photoUrl,col.sessionId);

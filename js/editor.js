@@ -139,6 +139,9 @@ function themeChange(){
 	setTheme($("#theme-select").val());
 }
 function setTheme(theme){
+	
+	//$(".mini").css("background-color",$(".CodeMirror").css("background-color"));
+	
 	localStorage.setItem("theme", theme);
 	for(var i = 0; i < editors.length; i++){
 		editors[i].editor.setOption("theme",theme);
