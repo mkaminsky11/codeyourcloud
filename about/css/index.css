@@ -199,7 +199,7 @@ paper-button{
 	-webkit-transition-duration: 0.5s;
 	transition-property: border;
 	transition-duration: 0.5s;
-	border: 2px solid gray;
+	border: 2px solid #dbdada;
 }
 #switch{
 	margin: 0;
@@ -299,4 +299,8 @@ position: absolute !important;
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.2);
+}
+
+#svg2{
+	box-shadow: rgba(0, 0, 0, 0.48) 5px 4px 5px;
 }

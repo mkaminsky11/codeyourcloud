@@ -131,6 +131,12 @@ function get_info(){
 function insertUser(name, color, photo, id, fileid){
 	var new_user = "<img class=\"user-photo\" id=\"img_" + id + "\" src=\""+ photo +"\" height=\"53px\" width=\"53px\" style=\"border:solid 4px "+ color +"\">";
 	$(".users-container[data-fileid='"+fileid+"']").html( $(".users-container[data-fileid='"+fileid+"']").html() + new_user);
+	
+	Messenger().post({
+		message: name + " joined",
+		type: 'info',
+		showCloseButton: true
+	});
 }
 function removeUser(id, fileid){
 	try{

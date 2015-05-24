@@ -97,7 +97,7 @@
 						<p>Line Numbers</p>
 						<label class="check-switch" id="side-nums-label">
 						    <input type="checkbox" id="side-nums" checked>
-						    <span onclick="line_number_switch()"></span>
+						    <span onclick="lineNumber()"></span>
 						</label>	
 					</div>
 					
@@ -105,7 +105,7 @@
 						<p>Line Wrap</p>
 						<label class="check-switch" id="side-wrap-label">
 						    <input type="checkbox" id="side-wrap" checked>
-						    <span onclick="line_wrap_switch()"></span>
+						    <span onclick="lineWrap()"></span>
 						</label>	
 					</div>			
 				</div>
@@ -128,8 +128,8 @@
 		        	<span id="help_button" class="side-file" onclick='$("#chat-popup").slideToggle()'><i class="md-chat"></i></span>
 		        	<span id="open_button" onclick="picker.open()" data-step="2" data-intro='This will open up the file chooser'><i class="md-folder-open"></i></span>
 	        	  	<span id="save_button" class="side-file" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'><i class="md-save"></i></span>
-	        	  	<span id="undo_button" onclick="editor_undo()"><i class="md-undo"></i></span>
-	        	  	<span id="redo_button" onclick="editor_redo()"><i class="md-redo"></i></span>
+	        	  	<span id="undo_button" onclick="editorUndo()"><i class="md-undo"></i></span>
+	        	  	<span id="redo_button" onclick="editorRedo()"><i class="md-redo"></i></span>
 	        	  </div>
         	  	
 			  	<div id="profile_div"><img id="profile_pic" src="" height="30px" width="30px"></div>

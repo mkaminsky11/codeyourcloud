@@ -60,7 +60,7 @@ function setIgnore(id, ignore){
 function setFileTitle(id, title){
 	editors[getIndex(id)].title = title;
 	$(".tab-tab[data-fileid='"+id+"']").find("h4").html(title);
-	check_mode(id, title);
+	checkMode(id, title);
 	var index = getIndex(id);
 	if(current_file === id){ //if this is the file being show, you should change the title input
 		$("#title").val(editors[index].title);
@@ -356,6 +356,23 @@ function insert_chat(message, you, photo, name, fileid){
 	  $(".chats-content[data-fileid='"+fileid+"']").html($(".chats-content[data-fileid='"+fileid+"']").html() + push);
 	  
 	  $(".chats-content[data-fileid='"+fileid+"']").animate({ scrollTop: $(".chats-content[data-fileid='"+fileid+"']")[0].scrollHeight}, 500);
+
+	  if(you === false){
+		if(message.length > 10){
+		  	Messenger().post({
+				message: (name + ':' + message.slice(0, 10) + '...'),
+				type: 'success',
+				showCloseButton: true
+			});
+		}
+		else{
+			Messenger().post({
+				message: (name + ':' + message),
+				type: 'success',
+				showCloseButton: true
+			});
+		}
+	  }
 	}
 }
 //send a chat message

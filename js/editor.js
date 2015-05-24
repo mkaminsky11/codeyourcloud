@@ -1,12 +1,3 @@
-/*===
-* CODEYOURCLOUD
-*
-* editor.js built by Michael Kaminsky
-* manages the editor + options
-*
-* contents:
-===*/
-
 /**
 * FIND/REPLACE
 * find and replace for editors
@@ -45,28 +36,25 @@ function setMode(id,mode){
 		editors[index].editor.setOption("lint",CodeMirror.lint.javascript);
 		startTern(index);
 	}
-	else if(mode === "text/x-coffeescript"){
-	}
 	else if(mode === "text/html"){
-		startHtml(index);
-	}
-	else if(mode === "text/x-markdown" || mode === "gfm"){
+		editors[index].editor.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
+		editors[index].editor.on("inputRead", function(cm, change){
+			if(change.text[0] === "/" || change.text[0] === "<"){
+				CodeMirror.showHint(editors[index].editor, CodeMirror.hint.html);	
+			}
+		});
 	}
 	else if(mode === "text/css"){
 		editors[index].editor.setOption("gutters",["CodeMirror-lint-markers"]);
 		editors[index].editor.setOption("lint",CodeMirror.lint.css);
-		startCss(index);
+		editors[index].editor.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
 	}
 	else if(mode === "application/json"){
 		editors[index].editor.setOption("gutters",["CodeMirror-lint-markers"]);
 		editors[index].editor.setOption("lint",CodeMirror.lint.json);
 	}
-	else if(mode === "text/x-python"){
-		startPython(index);
-	}
-	else if(mode === "text/x-sql"){
-		startSql(index);
-	}
+	else if(mode === "text/x-python"){editors[index].editor.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});}
+	else if(mode === "text/x-sql"){editors[index].editor.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});}
 	editors[index].editor.setOption("mode", mode); //finally, set the mode
 	
 	adjust(); //adjust the ide
@@ -76,27 +64,23 @@ function extension(fileName){
 	var ext = "txt";
 	var hidden = false;
 	
-	if(fileName.charAt(0) === "."){
-		hidden = true;
-	} else {
-		var array = fileName.split(".");
-		ext = array[array.length - 1];
+	if(fileName.charAt(0) === "."){hidden = true;} 
+	else{
+		ext = fileName.split(".").reverse()[0]
 	}
 	return {ext: ext, hidden: hidden}; //hidden like .DS_STORE or .vimrc
 }
 //get the mode for a given filename
-function check_mode(id, fileName){
+function checkMode(id, fileName){
 	var ext_info = extension(fileName);
-	var hidden = ext_info.hidden;
-	var ext = ext_info.ext;
 	var mode_to_use = "text"; //default
-	if(hidden === false){
+	if(ext_info.hidden === false){
 		for(var i = 0; i < modes.length; i++){
 			var possible_mime = modes[i].mime;
 			var exts = modes[i].ext;
 			
 			try{
-				if(exts.indexOf(ext) !== -1){
+				if(exts.indexOf(ext_info.ext) !== -1){
 					mode_to_use = possible_mime;
 				}
 			}
@@ -111,21 +95,17 @@ function modeChange(){
 }
 //populates the mode select
 for(var i = 0; i < modes.length; i++){
-	var name = modes[i].name;
-	var the_mode = modes[i].mime;
-	
-	var sel = "<option value='"+the_mode+"'>"+name+"</option>";
-	$("#mode-select").html($("#mode-select").html() + sel);
+	$("#mode-select").html($("#mode-select").html() + "<option value='"+modes[i].mime+"'>"+modes[i].name+"</option>");
 }
 
 
 /**
 * UNDO/REDO
 **/
-function editor_undo() {
+function editorUndo() {
 	editor().getDoc().undo();
 }
-function editor_redo() {
+function editorRedo() {
 	editor().getDoc().redo();
 }
 
@@ -138,10 +118,8 @@ function editor_redo() {
 function themeChange(){
 	setTheme($("#theme-select").val());
 }
-function setTheme(theme){
-	
-	//$(".mini").css("background-color",$(".CodeMirror").css("background-color"));
-	
+function setTheme(theme){	
+	//$(".mini").css("background-color",$(".CodeMirror").css("background-color"));	
 	localStorage.setItem("theme", theme);
 	for(var i = 0; i < editors.length; i++){
 		editors[i].editor.setOption("theme",theme);
@@ -149,12 +127,8 @@ function setTheme(theme){
 	editor_theme = theme;
 }
 //populates theme select
-for(var j = 0; j < themes.length; j++){
-	var the_name = themes[j];
-	var the_theme = the_name.split(" ").join("-").toLowerCase();
-	
-	var sel = "<option value='"+the_theme+"'>"+the_name+"</option>";
-	$("#theme-select").html($("#theme-select").html() + sel);
+for(var j = 0; j < themes.length; j++){	
+	$("#theme-select").html($("#theme-select").html() + "<option value='"+themes[j].split(" ").join("-").toLowerCase()+"'>"+themes[j]+"</option>");
 }
 
 /**
@@ -167,8 +141,7 @@ function fontChange(){
 
 //populates the font select
 for(var k = 2; k <= 30; k++){
-	var sel = "<option value='" + k + "'>" + k + "</option>";
-	$("#font-select").html($("#font-select").html() + sel);
+	$("#font-select").html($("#font-select").html() + "<option value='" + k + "'>" + k + "</option>");
 }
 
 //sets default settings
@@ -180,7 +153,7 @@ $("#font-select").val("12");
 * OPTIONS
 * line numbers, line wrap, font size
 **/
-function line_number_switch() {
+function lineNumber() {
 	if(line_number){
 		for(var i = 0; i < editors.length; i++){
 			editors[i].editor.setOption("lineNumbers",false);
@@ -194,7 +167,7 @@ function line_number_switch() {
 		line_number = true;
 	}
 }
-function line_wrap_switch() {
+function lineWrap() {
 	if(editor().getOption("lineWrapping")){
 		for(var i = 0; i < editors.length; i++){
 			editors[i].editor.setOption("lineWrapping",false);
@@ -229,28 +202,6 @@ function getHint(){
 	else if(editor().getOption("mode") === "text/x-sql"){
 		CodeMirror.showHint(editor(), CodeMirror.hint.sql);
 	}
-}
-
-//HTML
-function startHtml(index){
-	editors[index].editor.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
-	editors[index].editor.on("inputRead", function(cm, change){
-		if(change.text[0] === "/" || change.text[0] === "<"){
-			CodeMirror.showHint(editors[index].editor, CodeMirror.hint.html);	
-		}
-	});
-}
-//CSS
-function startCss(index){
-	editors[index].editor.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
-}
-//SQL
-function startSql(index){
-	editors[index].editor.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
-}
-//PYTHON
-function startPython(index){
-	editors[index].editor.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});
 }
 //JAVASCRIPT
 function getURL(url, c) {
