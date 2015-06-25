@@ -145,8 +145,8 @@ for(var k = 2; k <= 30; k++){
 }
 
 //sets default settings
-$("#mode-select").val("text");
-$("#theme-select").val("seti");
+$("#mode-select").val("text/plain");
+$("#theme-select").val("monokai");
 $("#font-select").val("12");
 
 /**

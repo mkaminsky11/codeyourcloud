@@ -992,17 +992,18 @@ MINI!
 */
 #broadcast{
 	position: fixed;
-	z-index: 99;
-	right: 0;
-	bottom: 0;
-	padding: 10px;
-	background-color: rgba(71, 71, 71, 0.46);
-	border-top-left-radius: 5px;
+    z-index: 99;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    background-color: rgba(251, 251, 251, 0.87);
+    border-top-left-radius: 3px;
 }
 #broadcast > i{
 	float: right;
-	margin-right: 8px;
-	color: white;
-	border: solid 2px rgba(255, 255, 255, 0.55);
-	border-radius: 3px;
+    color: #8E6F6F;
+    margin-top: 2px;
+}
+#donate{
+	float: left;
 }
