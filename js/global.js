@@ -27,7 +27,7 @@ var modes = CodeMirror.modeInfo;
 
 for(var i = 0; i < modes.length; i++){
 	var _mode_name = modes[i].mode;
-	console.log("loading " + _mode_name);
+	//console.log("loading " + _mode_name);
 	if(_mode_name !== "null"){
 		var url = "https://codeyourcloud.com/lib/codemirror/mode/" + _mode_name + "/" + _mode_name + ".js";
 	    jQuery.ajax({
