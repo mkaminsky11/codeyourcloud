@@ -53,58 +53,63 @@ function loaded_realtime(doc){
 	doc_real = doc;
 	if((!init_needed || (init_needed && init_loaded)) && typeof doc !== 'undefined'){
 		
-		
-		setValue(doc_real.getModel().getRoot().get("text").getText());
-		
-		text = doc.getModel().getRoot().get("text");
-		text.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, onChange);
-		text.addEventListener(gapi.drive.realtime.EventType.TEXT_DELETED, onChange);
+		_readFile(current_file, function(_text){
+			
+			
+			text = doc.getModel().getRoot().get("text");
+			text.setText(_text);
+			setValue(text.getText());
+			text.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, onChange);
+			text.addEventListener(gapi.drive.realtime.EventType.TEXT_DELETED, onChange);
 
 		
-		chats = doc.getModel().getRoot().get("chat");
-		chats.addEventListener(gapi.drive.realtime.EventType.VALUES_ADDED, newChat);
-		
-		doc.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_LEFT, userLeft);
-		doc.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_JOINED, userJoin);
-		
-		
-		var col = doc_real.getCollaborators();
-		for(var i = 0; i < col.length; i++){
-			if(col[i].isMe){
-				your_session_id = col[i].sessionId;
-				your_color = col[i].color;
-				your_user_id = col[i].userId;
-				your_name = col[i].displayName;
-				your_photo = col[i].photoUrl;
-				
-				sendData({
-					type: "info_realtime",
-					session: your_session_id,
-					color: your_color,
-					id: your_user_id,
-					name: your_name,
-					photo: your_photo,
-					currentfile: current_file
-				});
+			chats = doc.getModel().getRoot().get("chat");
+			chats.addEventListener(gapi.drive.realtime.EventType.VALUES_ADDED, newChat);
+			
+			doc.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_LEFT, userLeft);
+			doc.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_JOINED, userJoin);
+			
+			
+			var col = doc_real.getCollaborators();
+			for(var i = 0; i < col.length; i++){
+				if(col[i].isMe){
+					your_session_id = col[i].sessionId;
+					your_color = col[i].color;
+					your_user_id = col[i].userId;
+					your_name = col[i].displayName;
+					your_photo = col[i].photoUrl;
+					
+					sendData({
+						type: "info_realtime",
+						session: your_session_id,
+						color: your_color,
+						id: your_user_id,
+						name: your_name,
+						photo: your_photo,
+						currentfile: current_file
+					});
+				}
+				else{
+					insertUser(col[i].displayName, col[i].color, col[i].photoUrl, col[i].sessionId, col[i]);
+				}
 			}
-			else{
-				insertUser(col[i].displayName, col[i].color, col[i].photoUrl, col[i].sessionId, col[i]);
+	
+			var chats_so_far = chats.asArray();
+			for(var a = 0; a < chats_so_far.length; a++){
+				if(chats_so_far[a][2] === your_user_id){
+					//written by you
+					insertChat(chats_so_far[a][0], chats_so_far[a][1], true, chats_so_far[a][3], false);
+				}
+				else{
+					//written by someone else
+					insertChat(chats_so_far[a][0], chats_so_far[a][1], false, chats_so_far[a][3], false);
+				}
 			}
-		}
-
-		var chats_so_far = chats.asArray();
-		for(var a = 0; a < chats_so_far.length; a++){
-			if(chats_so_far[a][2] === your_user_id){
-				//written by you
-				insertChat(chats_so_far[a][0], chats_so_far[a][1], true, chats_so_far[a][3], false);
-			}
-			else{
-				//written by someone else
-				insertChat(chats_so_far[a][0], chats_so_far[a][1], false, chats_so_far[a][3], false);
-			}
-		}
+			
+			loaded_title(doc);
+		});
 		
-		loaded_title(doc);
+		//setValue(doc_real.getModel().getRoot().get("text").getText());
 	}
 }
 

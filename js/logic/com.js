@@ -1,5 +1,7 @@
 window.addEventListener("message", receiveMessage, false);
 
+var _change = 0;
+
 function receiveMessage(event){
   if(event.data !== "!_{h:''}"){
   	var json = JSON.parse(event.data);

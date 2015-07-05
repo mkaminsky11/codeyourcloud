@@ -24,6 +24,25 @@ function getContentOfFile(theID, model){ //gets the content of the file
     });
 }
 
+function _readFile(theID, callback){ //gets the content of the file
+    gapi.client.request({'path': '/drive/v2/files/'+theID,'method': 'GET',callback: function ( theResponseJS, theResponseTXT ) {
+        var myToken = gapi.auth.getToken();
+		var myXHR   = new XMLHttpRequest();
+        myXHR.open('GET', theResponseJS.downloadUrl, true );
+        myXHR.setRequestHeader('Authorization', 'Bearer ' + myToken.access_token );
+        myXHR.onreadystatechange = function( theProgressEvent ) {
+            if (myXHR.readyState == 4) {
+                if ( myXHR.status == 200 ) {
+                	code = myXHR.response;
+                	callback(code);
+			   	}
+            }
+        }
+        myXHR.send();
+        }
+    });
+}
+
 function getTitle(fileId, model){
 	var request = gapi.client.drive.files.get({
     'fileId': fileId
