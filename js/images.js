@@ -11,9 +11,11 @@ images.init = function(id){
 }
 
 images.isImage = function(ext){
-	ext = ext.toLowerCase();
-	if(images.ext.indexOf(ext) !== -1){
-		return true;
-	}
+	try{
+		ext = ext.toLowerCase();
+		if(images.ext.indexOf(ext) !== -1){
+			return true;
+		}
+	}catch(e){}
 	return false;
 };

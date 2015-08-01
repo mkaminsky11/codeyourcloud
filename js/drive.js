@@ -1,4 +1,96 @@
 var drive = {};
+drive.loaded = false;
+drive.logged_in = false;
+drive.client_id = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
+drive.scopes = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive'];
+drive.root = null;
+drive.email = null;
+drive.username = null;
+drive.url = null;
+drive.id = null;
+
+drive.load = function(){
+	gapi.auth.authorize({'client_id': drive.client_id, 'scope': drive.scopes.join(' '), 'immediate': true}, function(authResult){
+		drive.loaded = true;
+		if (!authResult.error) {
+			drive.logged_in = true;	} 
+		else {
+			
+		}
+		
+		if(sky.loaded === true){
+			init();
+		}
+	});
+}
+
+drive.loadClient = function() {
+	gapi.client.load('drive', 'v2', function(){
+		//this need to be refreshed every 55 minutes
+		setInterval(function(){
+			drive.refresh();
+		},3000000);
+		
+		drive.getInfo();
+		var url = window.location.href;
+		var query = window.location.href.split("?")[1];
+		if(url.indexOf("%22action%22:%22open") !== -1){
+			//need to open a file
+			var query_id = query.split("%22")[3];
+			addTab("loading...",query_id,false);
+			
+		}
+		else if(url.indexOf("%22action%22:%22create%22") !== -1){
+			//need to create new file
+			var query_folder_id = query.split("%22")[3];
+			insertNewFile(query_folder_id);
+		}
+	});
+}
+
+drive.refresh = function() {
+	gapi.auth.authorize({'client_id': drive.client_id, 'scope': drive.scopes.join(' '), 'immediate':true},function(result){});
+}
+
+drive.getInfo = function(){
+    var request = gapi.client.drive.about.get();
+    request.execute(function(resp) {
+        drive.root = resp.rootFolderId;
+        try{
+        	drive.email = resp.user.emailAddress;
+        }
+        catch(e){
+	        drive.email = "error:unable to fetch email";
+        }
+        drive.username = resp.name;
+        try{
+            drive.url = resp.user.picture.url;
+            var tempUrl = drive.url;
+            if(tempUrl.indexOf("https://") === -1){
+	            tempUrl = "https:" + tempUrl;
+            }
+            if(typeof tempUrl === 'undefined'){
+	            drive.url = "https://codeyourcloud.com/images/other/none.jpg";
+	            tempUrl = "https://codeyourcloud.com/images/other/none.jpg";
+            }
+            $("#profile_pic").attr("src",tempUrl);
+            
+        }
+        catch(e){ //fortunately, got the default image
+	        drive.url = "https://codeyourcloud.com/images/other/none.jpg";
+	        $("#profile_pic").attr("src",drive.url);
+        }
+        try{
+            drive.id = resp.user.permissionId;
+            $("#side-pub-link").attr("href", "https://codeyourcloud.com/pub/"+drive.id+"/index.html");
+            
+        }
+        catch(e){}
+        $(".root-tree").attr("data-tree-ul", drive.root);
+        get_tree(drive.root);
+    });
+}
+
 //most of these are from Google's website
 drive.getFile = function(fileId, callback){
 	var request = gapi.client.drive.files.get({
@@ -10,17 +102,15 @@ drive.getFile = function(fileId, callback){
 };
 
 drive.trash = function(fileId){
-	if(fileId !== "welcome"){
-	  var request = gapi.client.drive.files.trash({
-	    'fileId': fileId
-	  });
-	  request.execute(function(resp) {
-		  if(!resp.error){
-			  removetab(fileId);
-			  get_tree(myRootFolderId);
-		  }
-	  });	
-	}
+	var request = gapi.client.drive.files.trash({
+		'fileId': fileId
+	});
+	request.execute(function(resp) {
+		if(!resp.error){
+			removetab(fileId);
+			get_tree(drive.root);
+		}
+	});
 };
 
 drive.getContentOfFile = function(theID, callback){ //gets the content of the file
@@ -72,7 +162,7 @@ function getP(fileId) {
 	request.execute(function(resp) {
 		var ret = false;
 		for(var i = 0; i < resp.items.length; i++){
-			if(resp.items[i].id === userId || resp.items[i].id === "anyone" || resp.items[i].id === "anyoneWithLink" || resp.items[i].emailAddress === myEmail){
+			if(resp.items[i].id === drive.id || resp.items[i].id === "anyone" || resp.items[i].id === "anyoneWithLink" || resp.items[i].emailAddress === drive.email){
 				ret = true;
 			}
 		}
@@ -102,7 +192,7 @@ function insertNewFile(folderId) {
 function fileInserted(d) {
 	//this function is triggered once the file is inserted
 	//if it's not the defalt, move it to the correct place
-	if(insert_folder_dest !== myRootFolderId){	
+	if(insert_folder_dest !== drive.root){	
 		insertFileIntoFolder(insert_folder_dest, d.id);
 		removeFileFromFolder(d.parents[0].id,d.id);
 	}
@@ -110,8 +200,8 @@ function fileInserted(d) {
 	//great, now add the tab
 	addTab("loading...",d.id,false);
 	
-	if(insert_folder_dest === myRootFolderId){
-		get_tree(myRootFolderId);
+	if(insert_folder_dest === drive.root){
+		get_tree(drive.root);
 	}
 }
 function insertFileIntoFolder(folderId, fileId) {
@@ -200,18 +290,15 @@ function insert_saveas(content, title, folderId){
 
 function saveas_inserted(inserted_file) {
 	//called once file inserted
-	var folder_id = save_as_destination;
-    renameFile(inserted_file.id, $("#saveas-input").val());
-	if(folder_id !== myRootFolderId){	
+	var folder_id = picker.saveDest;
+    renameFile(inserted_file.id, $("#file-name").val());
+    $("#file-name").val("");
+	if(folder_id !== drive.root){	
 		insertFileIntoFolder(folder_id, inserted_file.id);
 		removeFileFromFolder(inserted_file.parents[0].id,inserted_file.id);
 	}
 	
 	addTab("loading...",inserted_file.id,false);
-}
-
-function new_file(){
-	insertNewFile(myRootFolderId);
 }
 
 drive.updateFile = function(fileId, fileMetadata, fileData, callback) { //is the callback necessary?

@@ -101,6 +101,9 @@ body{
 	z-index: 10;
 	top: calc(50% - 14px);
 	left: calc(50% - 14px);
+	background-color: rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 8px;
 }
 
 /*
@@ -222,7 +225,7 @@ body{
 	border-bottom-right-radius: 6px;
 }
 #rename-div input:read-only {
-	color: #f8f8f8;
+	color: #545454;
 	background-color: rgba(224, 224, 224, 0.91);
 }
 .InputAddOn {
@@ -910,6 +913,10 @@ LOADING ICON
 	border: none;
 }
 
+.overlay-tint h2{
+	font-size: 16px;	
+}
+
 
 #keyboard-manager{
 	overflow-x: hidden;
@@ -917,6 +924,7 @@ LOADING ICON
 	width: 100%;
 	position: relative;
 	height: calc(100% - 100px);
+	margin-bottom: 40px;
 }
 
 #keyboard-manager > div{
@@ -930,12 +938,20 @@ LOADING ICON
 #keyboard-manager > div > h5{
 	margin: 0;
 	color: rgb(77, 75, 75);
-	font-size: 20px;
+	font-size: 16px;
 }
 
 #keyboard-manager > div > h5 > span{
 	float: right;
 	color: #A39F9F;
+}
+
+.normal-input{
+	font-size: 15px;
+    padding: 8px;
+    border: solid thin #eee;
+    border-radius: 5px;
+    outline: none !important;
 }
 
 /*

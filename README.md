@@ -3,12 +3,13 @@
 
 + [Main project page](https://codeyourcloud.com)
 + [Chrome web store](https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail)
-+ [Changelog](CHANGELOG.md)
 
 ![Screenshot](http://codeyourcloud.com/images/web.png)
 
+####Now supports [OneDrive](https://onedrive.live.com/)!
+
 ###Goal
-To allow people around the globe to collaborate on coding projects via Google Drive. It's that simple. So far, I have yet to see a website or program that accomplishes these tasks for all major programming languages. This is an attempt to change that, and it seems to be working well so far.
+To allow people around the globe to collaborate on coding projects via Google Drive and OneDrive. It's that simple. So far, I have yet to see a website or program that accomplishes these tasks for all major programming languages. This is an attempt to change that, and it seems to be working well so far.
 
 ###Todo
 + Run Python + other languages
@@ -25,7 +26,7 @@ To allow people around the globe to collaborate on coding projects via Google Dr
 + Javascript console
 + Keyboard shortcuts
 + Preferences
-+ Google Drive integration
++ Google Drive and OneDrive integration
 + Run (javascript and coffeescript only, for now)
 + Minimap preview
 + Search/replace

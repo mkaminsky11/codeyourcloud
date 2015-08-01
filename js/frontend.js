@@ -50,7 +50,13 @@ function publish_html(){
 	if(editor().getOption("mode") === "text/x-markdown" || editor().getOption("mode") === "gfm"){
 		p = converter.makeHtml(p);
 	}
-	connection.send(JSON.stringify({type:"publish",mode: editor().getOption("mode"), id:userId, fileId: current_file, lines:p.split("\n")}));
+	
+	if(cloud_use === "drive"){
+		connection.send(JSON.stringify({type:"publish",mode: editor().getOption("mode"), id:drive.id, fileId: current_file, lines:p.split("\n")}));
+	}
+	else if(cloud_use === "sky"){
+		connection.send(JSON.stringify({type:"publish",mode: editor().getOption("mode"), id:sky.id, fileId: current_file, lines:p.split("\n")}));
+	}
 }
 /*********
 LEAVE THESE ALONE FOR NOW

@@ -77,13 +77,10 @@ function setFileTitle(id, title){
 	}
 	
 	//change the title in the tree view
-	try{
-		var inner_html = $("[data-tree-li='"+id+"'] span").html().split(">");
-		html[2] = title;
-		$("[data-tree-li='"+id+"'] span").html(inner_html.join(">"));
-		$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith(getIconByTitle(title));
-	}
-	catch(e){}
+	var inner_html = $("[data-tree-li='"+id+"'] span").html().split(">");
+	inner_html[2] = title;
+	$("[data-tree-li='"+id+"'] span").html(inner_html.join(">"));
+	$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith(getIconByTitle(title));
 }
 
 /**
@@ -165,10 +162,16 @@ function addTab(title, id, welcome){
     $(".tab-container").html($(".tab-container").html() + base);
     
     //add a new codemirror
-    var codemirror = "<div class='codemirror-container' id='"+id+"' data-fileid='"+id+"' style='display:none'><iframe src='https://codeyourcloud.com/js/logic/logic.html?id="+id+"' style='display:none' id='iframe-"+id+"'></iframe></div>";
+    var codemirror = "<div class='codemirror-container' id='"+id+"' data-fileid='"+id+"' style='display:none'><iframe src='https://codeyourcloud.com/js/logic/logic.html?id="+id+"' style='display:none' id='iframe-"+id+"'></iframe></div>"; 
+    if(cloud_use === "sky"){
+	        codemirror = "<div class='codemirror-container' id='"+id+"' data-fileid='"+id+"' style='display:none'></div>";
+    }
     $("#insert-point").after(codemirror);
-    var chat = "<div class='chats-content' data-fileid='"+id+"' style='display:none'></div>";
     
+    var chat = "<div class='chats-content' data-fileid='"+id+"' style='display:none'></div>";
+    if(cloud_use === "sky"){
+	    chat = "";
+    }
     //add a div to store the chat messages in each of the locations (there may be multiple)
     $(".chats-store").each(function(index){
 	    $(this).html(chat + $(this).html());
@@ -176,6 +179,9 @@ function addTab(title, id, welcome){
     
     //add a new div to store user pictures
 	var user = "<div class='users-container' data-fileid='"+id+"' style='display:none'></div>";
+	if(cloud_use === "sky"){
+		user = "";
+	}
 	$("#users").html($("#users").html() + user);
 	
 	//actually create the new editor
@@ -185,7 +191,9 @@ function addTab(title, id, welcome){
          theme: editor_theme,
          lineWrapping: true, 
          indentUnit: 4, 
-         indentWithTabs: true
+         indentWithTabs: true,
+         foldGutter: true,
+		 gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
     });
     e.id = id;
 
@@ -198,16 +206,21 @@ function addTab(title, id, welcome){
     editor().setOption("autoCloseBrackets",true);
     editor().setOption("matchBrackets",true);
     editor().on("change", function(cm, change) {
-    	if(!getIgnore(cm.id)){ //if this input is not to be ignored...
-	    	sendData({
-		    	type: "text",
-		    	text: cm.getValue()
-	    	},cm.id);
-    	
-    	}
-    	else{
-	    	setIgnore(cm.id, false);
-    	}
+	    if(cloud_use === "drive"){
+	    	if(!getIgnore(cm.id)){ //if this input is not to be ignored...
+		    	sendData({
+			    	type: "text",
+			    	text: cm.getValue()
+		    	},cm.id);
+	    	}
+	    	else{
+		    	setIgnore(cm.id, false);
+	    	}
+	    }
+	    else if(cloud_use === "sky"){
+		    
+	    }
+	    
     	window.setTimeout(function(){ //update minimap
 	    	mini.mini();
     	}, 200);
@@ -218,6 +231,19 @@ function addTab(title, id, welcome){
     $(".CodeMirror-scroll").scroll(function(){
 	   mini.view();
 	});
+	
+	if(cloud_use === "sky"){
+		//getEditor(id).setValue(json.value);
+		//hide_loading_spinner();
+		//setFileTitle(id, json.title);
+		sky.getFile(id, function(data){
+			hide_loading_spinner();
+			setFileTitle(id, data.name);
+		});
+		sky.getContentOfFile(id, function(res){
+			getEditor(id).setValue(res);
+		});
+	}
   }
   
 }
@@ -327,7 +353,12 @@ function adjust(){
 	$(".side-pub").addClass("hide"); //can't publish anything
 	
 	//set publish link
-	$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + userId + "/index.html"); 
+	if(cloud_use === "drive"){
+		$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + drive.id + "/index.html"); 
+	}
+	else if(cloud_use === "sky"){
+		$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + sky.id + "/index.html"); 
+	}
 	
 	if(mode === "text/javascript"){
 		$(".side-run").removeClass("hide"); //can run javascript
@@ -340,11 +371,17 @@ function adjust(){
 	}
 	else if(mode === "text/x-latex" || mode === "text/x-stex"){
 		$(".side-pub").removeClass("hide");
-		$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + userId + "/" + current_file + ".pdf");
+		if(cloud_use === "drive"){
+			$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + drive.id + "/" + current_file + ".pdf");
+		}
+		else if(cloud_use === "sky"){
+			$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + sky.id + "/" + current_file + ".pdf");
+		}
 	}
 	else if(mode === "text/x-markdown" || mode === "gfm" || mode === "markdown"){
 		$(".side-pub").removeClass("hide"); //can publish markdown
 	}
+	editor().setOption("gutters", ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]);
 }
 //insert a chat message
 function insert_chat(message, you, photo, name, fileid){
@@ -381,9 +418,9 @@ function sendChat(){
 	sendData({
 		type: "newchat",
 		message: message,
-		name: userName,
-		id: userId,
-		photo: userUrl
+		name: drive.username,
+		id: drive.id,
+		photo: drive.url
 	}, current_file);
 	
 	$(".chat-input").val("");

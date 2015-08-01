@@ -12,7 +12,7 @@
 			ga('create', 'UA-47415821-1', 'codeyourcloud.com');
 			ga('send', 'pageview');
 		</script>
-		<meta name="description" content="An collaborative in-browser code editor for Google Drive">
+		<meta name="description" content="An collaborative in-browser code editor for Google Drive and OneDrive">
 		<meta name="google-site-verification" content="2jBshOtCyauLPt-Tdw0HRkOOizbDnw6IJTM_4dNNLQQ" />
 		<script src="about/flat/js/jquery-1.8.3.min.js"></script>
 		<script src="lib/velocity/velocity.min.js"></script>
@@ -150,7 +150,7 @@
 	
 	<div style="display:none" id="more-popup" class="popup">
 		<span onclick="drive.trash(current_file)"><i class="md-delete"></i> Trash</span>
-		<span onclick="picker.share()"><i class="md-person-add"></i> Share</span>
+		<span onclick="picker.share()" id="share-button"><i class="md-person-add"></i> Share</span>
 		<span onclick="picker.saveAs()"><i class="md-save"></i>Save As</span>
 		<span onclick="picker.download()"><i class="md-file-download"></i>Download</span>
 		<span class="side-pub" onclick="publish_html()"><i class="md-file-upload"></i>Publish</span>
@@ -161,7 +161,7 @@
 		</span>
 		<span class="side-run" onclick="run()"><i class="md-play-arrow"></i>Run</span>
 		<span>
-			<a href="https://accounts.google.com/logout" style="text-decoration: none;">
+			<a href="https://accounts.google.com/logout" style="text-decoration: none;" id="log-out">
 				<i class="md-exit-to-app"></i>Log Out
 			</a>
 		</span>
@@ -248,6 +248,40 @@
 				<textarea placeholder="Type something" class="chat-input chats-text"></textarea>
 			</div>
 		</div>
+
+		<div class="overlay-tint" id="saveas-overlay" style="display:none">
+			<div>
+				<div style="height:auto !important; margin-bottom: 40px">
+					<input type="text" id="file-name" style="font-size: 15px" value="" placeholder="Name of new file" class="normal-input">
+					<h5 style="margin: 8px">Next, you will choose a location to save this file</h5>
+					
+					<div style="width:calc(100% - 20px);position: absolute; bottom: 10px; right: 10px; display: -webkit-flex;display: flex;-webkit-flex-direction: row;flex-direction: row;-webkit-flex-wrap: wrap;flex-wrap: wrap;justify-content: flex-end;">
+						
+						<a class="waves-effect waves-dark paper-btn-flat" style="margin-right: 5px;align-self: flex-end;" onclick="picker.saveAsClicked()"> CONTINUE</a>
+					
+						<a onclick="$('#saveas-overlay').velocity('transition.slideUpOut');$('#file-name').val('')" class="waves-effect waves-light paper-btn paper-btn-blue" style="background-color:#3498DB;align-self: flex-end;">CLOSE</a>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="overlay-tint" id="upload-overlay" style="display:none">
+			<div>
+				<div style="height:auto !important; margin-bottom: 40px">
+					<input type="file" id="file" style="font-size: 15px">
+					<h5 style="margin: 8px">Next, you will choose a location to upload this file</h5>
+					
+					<div style="width:calc(100% - 20px);position: absolute; bottom: 10px; right: 10px; display: -webkit-flex;display: flex;-webkit-flex-direction: row;flex-direction: row;-webkit-flex-wrap: wrap;flex-wrap: wrap;justify-content: flex-end;">
+						
+						<a class="waves-effect waves-dark paper-btn-flat" style="margin-right: 5px;align-self: flex-end;" onclick="$('#upload-overlay').velocity('transition.slideUpOut');sky.upload()"> CONTINUE</a>
+					
+						<a onclick="$('#upload-overlay').velocity('transition.slideUpOut');$('#file').val('')" class="waves-effect waves-light paper-btn paper-btn-blue" style="background-color:#3498DB;align-self: flex-end;">CLOSE</a>
+					
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		<div class="overlay-tint" id="preview-overlay" style="display:none">
 			<div>
@@ -268,7 +302,7 @@
 		
 		<div class="overlay-tint" id="keyboard-overlay" style="display:none">
 			<div>
-				<div>
+				<div style="height: auto !important;">
 					<h2>Keyboard Shortcuts</h2>
 					
 					<div id="keyboard-manager">
@@ -281,7 +315,7 @@
 						<div>
 							<h5>Ctrl + O, &#8984; + O <span>Open</span></h5>
 						</div>
-						<div>
+						<div style="border: none !important">
 							<h5>Ctrl + F, &#8984; + F <span>Find</span></h5>
 						</div>
 					</div>
@@ -374,13 +408,32 @@
 		<script src="lib/auto/comment.js"></script>
 		<script src="lib/auto/infer.js"></script>
 		<script src="lib/auto/doc_comment.js"></script>
+		
+		
+		<script src="lib/codemirror/addon/fold/brace-fold.js"></script>
+		<script src="lib/codemirror/addon/fold/comment-fold.js"></script>
+		<script src="lib/codemirror/addon/fold/foldcode.js"></script>
+		<script src="lib/codemirror/addon/fold/foldgutter.js"></script>
+		<script src="lib/codemirror/addon/fold/indent-fold.js"></script>
+		<script src="lib/codemirror/addon/fold/markdown-fold.js"></script>
+		<script src="lib/codemirror/addon/fold/xml-fold.js"></script>
+		
+		<link rel="stylesheet" href="lib/codemirror/addon/fold/foldgutter.css">
       
       	<script src="lib/coffee/coffee.js"></script>
       	<script src="lib/markdown/markdown.js"></script>
+      	
+      	<script>
+	      	var _sky = false;
+	      	if(document.location.href.indexOf("skydrive=true") !== -1){
+		      	_sky = true;
+	      	}
+	    </script>
 
 		<script src="js/global.js"></script>
 		<script src="js/images.js"></script>
 		<script src="js/mobile.js"></script>
+		<script src="js/sky.js"></script>
 		<script src="js/realtime.js"></script>
 		<script src="js/frontend.js"></script>
 		<script src="js/drive.js"></script>
@@ -393,6 +446,36 @@
 		<script src="js/tabs.js"></script>
 		<script src="js/mini.js"></script>
 		<script src="js/ready.js"></script>
+		
+		<!--
+		check for Google Drive
+			yes
+				has ?skydrive=true ?
+					yes
+						check for skydrive
+							yes
+								load skydrive
+							no
+								/about
+					no
+						load drive
+			no
+				has ?skydrive=true ?
+					yes
+						check for skydrive
+							yes
+								load skydrive
+							no
+								/about
+					no
+						/about	
+		
+		-----
+		
+		just for drive
+		
+		drive.js
+		-->
 		
 		
 		<script src = 'lib/keyboard/jwerty.js'></script>
@@ -420,6 +503,7 @@
 			});
 		</script>
 		
+		<script type="text/javascript" src="https://js.live.net/v5.0/wl.js" onload="loadSky()"></script>
 		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=loadDrive"></script>
 		
 

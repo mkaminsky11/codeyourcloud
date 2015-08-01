@@ -25,36 +25,52 @@ function sort_by_title(a,b) {
 }
 //gets the contents of a folder
 function tree_folder(id, callback){
-	var ret = [];
-	//gets all the files
-	drive.retrieveAllFilesInFolder(id, function(data){
-		var goal = data.length; //how many files total
-		
-		for(var i = 0; i < data.length; i++){
-			var id_id = data[i].id;
-			//for each of the files, gets the information
-			drive.getFile(id_id, function(resp){
-				
+	if(cloud_use === "drive"){
+		var ret = [];
+		//gets all the files
+		drive.retrieveAllFilesInFolder(id, function(data){
+			var goal = data.length; //how many files total
+			
+			for(var i = 0; i < data.length; i++){
+				var id_id = data[i].id;
+				//for each of the files, gets the information
+				drive.getFile(id_id, function(resp){
+					
+					var to_push = {
+						title: resp.title,
+						id: resp.id,
+						folder: (resp.mimeType === "application/vnd.google-apps.folder") //is it a folder?
+					};
+					if(resp.explicitlyTrashed === true){ //if trashed, don't count
+						goal--;
+					}
+					else{
+						ret.push(to_push);
+					}
+					if(ret.length === goal){
+						callback(ret.sort(sort_by_title));
+					}
+				});
+			}
+		});
+	}
+	else if(cloud_use === "sky"){
+		var ret = [];
+		sky.retrieveAllFilesInFolder(id, function(data){
+			for(var i = 0; i < data.length; i++){
 				var to_push = {
-					title: resp.title,
-					id: resp.id,
-					folder: (resp.mimeType === "application/vnd.google-apps.folder") //is it a folder?
+					title: data[i].name,
+					id: data[i].id,
+					folder: (data[i].id.indexOf("folder") === 0)
 				};
-				if(resp.explicitlyTrashed === true){ //if trashed, don't count
-					goal--;
-				}
-				else{
-					ret.push(to_push);
-				}
-				if(ret.length === goal){
-					callback(ret.sort(sort_by_title));
-				}
-			});
-		}
-	});
+				ret.push(to_push);
+			}
+			callback(ret.sort(sort_by_title));
+		});
+	}
 }
 //sets the id of the root to by the root folder
-$(".root-tree").attr("data-tree-ul", myRootFolderId);
+$(".root-tree").attr("data-tree-ul", drive.root);
 //sets the tree contents for a folder
 function get_tree(id){
 	//gets the array of files/folders, passes to callback
@@ -75,6 +91,7 @@ function get_tree(id){
 				ret = ret + to_push;
 			}
 		}
+		
 		//sets the html
 		$("[data-tree-ul='"+id+"']").html(ret);
 		//opens the folder

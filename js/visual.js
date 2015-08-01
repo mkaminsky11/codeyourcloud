@@ -123,9 +123,11 @@ function hide_top_rename(){
 function toggle_rename_show(){
 	if($('#title').attr('readonly')){
 		//if disabled
+		$("#rename-toggle").html('<i class="md-check"></i>'); //switch to check
 		show_top_rename();
 	}
 	else{
+		$("#rename-toggle").html('<i class="md-mode-edit"></i>'); //switch back
 		hide_top_rename();
 		ok_rename();
 	}

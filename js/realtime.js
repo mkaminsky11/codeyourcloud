@@ -1,14 +1,5 @@
 /*===
 * CODEYOURCLOUD
-*
-* realtime.js built by Michael Kaminsky
-* handles google drive and realtime events like adding and remove users
-*
-* contents:
-*  authorization 
-*  users
-*  saving
-*  renaming
 ===*/
 
 
@@ -17,115 +8,68 @@
 * authorizes the user
 **/
 
+var _init = false;
+
 function loadDrive(){
-	gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate': true}, function(authResult){
-		if (!authResult.error) {
-			logged_in = true;
-			loadClient();
-		} 
-		else {
-			//?no = true is just used for testing purposes
-			//it prevents a redirection in the event of an unauthorized user
-			if(window.location.href.indexOf("no=true") === -1 && authResult.status.signed_in === false){
-				window.location = "https://codeyourcloud.com/about";
-			}
-			
-			if(window.location.href.indexOf("force=true") !== -1){
-				loadClient();
-				logged_in = true;
-			}
-			
-			if(window.location.href.indexOf("output=true") !== -1){
-				console.log("error:" + authResult.error);
-				console.log("error subtype:" + authResult.error_subtype);
-			}
-		}
-	});
-}
-function loadClient() {
-	gapi.client.load('drive', 'v2', function(){
-		//this need to be refreshed every 55 minutes
-		setInterval(function(){
-			refreshToken();
-		},3000000);
-		get_info();
-		
-		
-		var url = window.location.href;
-		var query = window.location.href.split("?")[1];
-		if(url.indexOf("%22action%22:%22open") !== -1){
-			//need to open a file
-			var query_id = query.split("%22")[3];
-			addTab("loading...",query_id,false);
-			
-		}
-		else if(url.indexOf("%22action%22:%22create%22") !== -1){
-			//need to create new file
-			var query_folder_id = query.split("%22")[3];
-			insertNewFile(query_folder_id);
-		}
-	});
-}
-function refreshToken() {
-	gapi.auth.authorize({'client_id': CLIENT_ID, 'scope': SCOPES.join(' '), 'immediate':true},function(result){});
+	drive.load();
 }
 
-function get_info(){
-	//gets info about the user
-    var request = gapi.client.drive.about.get();
-    request.execute(function(resp) {
-        myRootFolderId = resp.rootFolderId;
-        try{
-	        //if this fails, probably unauthorized
-        	myEmail = resp.user.emailAddress;
-        }
-        catch(e){
-	        myEmail = "error:unable to fetch email"; //just letting you know...
-        }
-        
-        userName = resp.name;
-        try{
-	        //this has been known to fail occassionally
-            userUrl = resp.user.picture.url;
-            
-            var tempUrl = userUrl;
-            
-            if(tempUrl.indexOf("https://") === -1){
-	            //no https
-	            tempUrl = "https:" + tempUrl;
-            }
-            
-            if(typeof tempUrl === 'undefined'){
-				//get the user profile, unless there is none
-	            userUrl = "https://codeyourcloud.com/images/other/none.jpg";
-	            tempUrl = "https://codeyourcloud.com/images/other/none.jpg";
-            }
-            
-            $("#profile_pic").attr("src",tempUrl);
-            
-        }
-        catch(e){ //fortunately, got the default image
-	        userUrl = "https://codeyourcloud.com/images/other/none.jpg";
-	        $("#profile_pic").attr("src",userUrl);
-        }
-        
-        try{
-	        //this is the link for published html files
-            userId = resp.user.permissionId;
-            $("#side-pub-link").attr("href", "https://codeyourcloud.com/pub/"+userId+"/index.html");
-            
-        }
-        catch(e){}
-                
-        //initializes the tree view once the foot folder id is loaded
-        $(".root-tree").attr("data-tree-ul", myRootFolderId);
-        get_tree(myRootFolderId);
-    });
+
+function loadSky(){
+	sky.load();
 }
-/**
-* USERS
-* adds and removes user pictures
-**/
+
+function init(){
+	if(_init === false){
+		_init = true;
+		//decide wether to load sky or drive
+		//keep it basic for now...
+		cloud_use = "drive";
+		if(window.location.href.indexOf("?sky=true") !== -1 || window.location.href.indexOf("#access_token=") !== -1){
+			//some indication of sky
+			if(sky.logged_in === true){
+				//ok...load sky, I guess
+				cloud_use = "sky";
+			}
+			else{
+				window.location = "https://codeyourcloud.com/about";
+			}
+		}
+		else if(window.location.href.indexOf("?drive=true") !== -1 || window.location.href.indexOf("%22action%22:%22") !== -1 || window.location.href.indexOf("#state=/profile&access_token=") !== -1){
+			//indication of drive
+			if(drive.logged_in === true){
+				//all good!
+			}
+			else{
+				window.location = "https://codeyourcloud.com/about";
+			}
+		}
+		else{
+			//no indication
+			if(drive.logged_in === true && sky.logged_in === false){
+				//all good!
+			}
+			else if(drive.logged_in === false && sky.logged_in === true){
+				cloud_use = "sky";
+			}
+			else if(drive.logged_in === true && sky.logged_in === true){
+				//all good! -> prioritize drive
+			}
+			else{
+				window.location = "https://codeyourcloud.com/about";
+			}
+		}
+		
+		
+		if(cloud_use === "drive"){
+			drive.loadClient();
+		}
+		else{
+			sky.loadClient();
+		}
+	}
+}
+
 
 //insert a new collaborating user
 function insertUser(name, color, photo, id, fileid){
@@ -157,30 +101,47 @@ function save(){
 	if(current_file !== "welcome"){
 		var content = editor().getValue();
 		if(typeof content !== "undefined"){ //if nothing is "null"
-	        var contentArray = new Array(content.length);
-	        for (var i = 0; i < contentArray.length; i++) {
-	            contentArray[i] = content.charCodeAt(i);
-	        }
-	        var byteArray = new Uint8Array(contentArray);
-	        var blob = new Blob([byteArray], {type: 'text/plain'}); //this is the only way I could get this to work
-	        var request = gapi.client.drive.files.get({'fileId': current_file});//gets the metadata, which is left alone
-	
-	        
-	        request.execute(function(resp) {
-	            drive.updateFile(current_file,resp,blob, function(resp){
-		          Messenger().post({
-						message: 'File saved!',
-						type: 'success',
-						showCloseButton: true
-					});
+			if(cloud_use === "drive"){
+		        var contentArray = new Array(content.length);
+		        for (var i = 0; i < contentArray.length; i++) {
+		            contentArray[i] = content.charCodeAt(i);
+		        }
+		        var byteArray = new Uint8Array(contentArray);
+		        var blob = new Blob([byteArray], {type: 'text/plain'}); //this is the only way I could get this to work
+		        var request = gapi.client.drive.files.get({'fileId': current_file});//gets the metadata, which is left alone
+		
+		        
+		        request.execute(function(resp) {
+		            drive.updateFile(current_file,resp,blob, function(resp){
+			        });
 		        });
-	        });
+		    }
+		    else if(cloud_use === "sky"){
+			    sky.updateFile(current_file, content, function(){
+			    });
+		    }
 	    }
 	}
 }
 
-function saveAs(){
-	showSaveAsPicker();
+function trash(){
+	if(current_file !== "welcome"){
+		if(cloud_use === "drive"){
+			drive.trash(current_file);
+		}
+		else if(cloud_use === "sky"){
+			sky.trash(current_file);
+		}
+	}
+}
+
+function new_file(){
+	if(cloud_use === "drive"){
+		insertNewFile(drive.root);
+	}
+	else if(cloud_use === "sky"){
+		sky.insertNewFile(sky.upload_location, (new Date()).getTime()+".txt", "");
+	}
 }
 
 /**
@@ -189,8 +150,13 @@ function saveAs(){
 **/
 function ok_rename(){
 	setFileTitle(current_file, $("#title").val());
-	sendData({
-		type: "title",
-		title: $("#title").val()
-	}, current_file);
+	if(cloud_use === "drive"){
+		sendData({
+			type: "title",
+			title: $("#title").val()
+		}, current_file);
+	}
+	else if(cloud_use === "sky"){
+		sky.renameFile(current_file, $("#title").val());
+	}
 }

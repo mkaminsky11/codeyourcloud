@@ -18,7 +18,9 @@ $(document).ready(function(){
 	    theme: "seti",
 	    lineWrapping: true, 
 	    indentUnit: 4, 
-	    indentWithTabs: true
+	    indentWithTabs: true,
+	    foldGutter: true,
+		gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
 	});
 	//sets the introduction text
 	var txtFile = new XMLHttpRequest();

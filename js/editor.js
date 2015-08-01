@@ -78,17 +78,17 @@ function checkMode(id, fileName){
 		for(var i = 0; i < modes.length; i++){
 			var possible_mime = modes[i].mime;
 			var exts = modes[i].ext;
-			
-			try{
-				if(exts.indexOf(ext_info.ext) !== -1){
+			//try{
+				if((exts && exts.indexOf(ext_info.ext) !== -1) || (modes[i].alias && modes[i].alias.indexOf(ext_info.ext) !== -1)){
 					mode_to_use = possible_mime;
 				}
-			}
-			catch(e){}
+			//}
+			//catch(e){}
 		}
 	}
 	setMode(id,mode_to_use);
 }
+
 //function called when mode select changed
 function modeChange(){
 	setMode(current_file,$("#mode-select").val());

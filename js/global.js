@@ -1,33 +1,16 @@
 /*===
 * CODEYOURCLOUD
-*
-* global.js built by Michael Kaminsky
-* stores global variables
-*
-* contents
-*  editor
-*  API
-*  google drive
-*  user info
-*  library info
 ===*/
 
 var editors = []; //the codemirror editors
 var current_file = "";
 
-var CLIENT_ID = '953350323460-0i28dhkj1hljs8m9ggvm3fbiv79cude6.apps.googleusercontent.com';
-var SCOPES = ['https://www.googleapis.com/auth/drive.install','https://www.googleapis.com/auth/drive'];
-
-var logged_in = false;
-
 var converter = new Markdown.Converter();
 
 //[name, codemirror code, file extensions seperated by | ]
 var modes = CodeMirror.modeInfo;
-
 for(var i = 0; i < modes.length; i++){
 	var _mode_name = modes[i].mode;
-	//console.log("loading " + _mode_name);
 	if(_mode_name !== "null"){
 		var url = "https://codeyourcloud.com/lib/codemirror/mode/" + _mode_name + "/" + _mode_name + ".js";
 	    jQuery.ajax({
@@ -82,7 +65,6 @@ for(var i = 0; i < themes.length; i++){
 }
 
 var themes_name = themes;
-
 var is_mobile = false;
 var real_mobile = false;
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -94,6 +76,7 @@ if(window.location.href.indexOf("?mobile=true") !== -1){
 	//spoofing to test mobile
 }
 
+
 var line_wrap = false;
 var line_number = true;
 var editor_theme = "seti";
@@ -101,14 +84,11 @@ var auto_save = true;
 var auto_save_int = 30000;	
 var sql_font = 12;
 var autoC = false;
-var myRootFolderId;
-var myEmail;
-var userName;
-var userUrl;
-var userId;
-var user_loaded = false; 
 var side_open = false;
 var developerKey = 'AIzaSyBTSFIgQkLly9v6Xuqc2Nqm-vX0jpyEbZk';
+
+
+var cloud_use = null; //sky|drive
 
 /*=======
 MESSENGER
@@ -118,3 +98,15 @@ Messenger.options = {
     theme: 'air',
     hideAfter: 10
 };
+
+function infoFromUrl() {
+  if (window.location.hash) {
+    var authResponse = window.location.hash.substring(1);
+    var authInfo = JSON.parse(
+      '{"' + authResponse.replace(/&/g, '","').replace(/=/g, '":"') + '"}',
+      function(key, value) { return key === "" ? value : decodeURIComponent(value); });
+    return authInfo;
+  }
+  else {
+  }
+}

@@ -5,12 +5,33 @@ picker.purge = function(){
 };
 
 picker.open = function(){
-    picker.purge();
-	gapi.load('picker', {'callback': picker.createOpen});	
+    if(cloud_use === "drive"){
+    	picker.purge();
+		gapi.load('picker', {'callback': picker.createOpen});	
+	}
+	else if(cloud_use === "sky"){
+		WL.fileDialog({
+	        mode: "open",
+	        select: "single"
+	    }).then(
+	        function (response) {
+	            var selected = null;
+	            if (response.data.files.length > 0) {
+	            	selected = response.data.files[0].id;                            
+	            }
+	            
+	            if(selected !== null){
+		            addTab("loading...",selected,false);
+	            }
+	        },
+	        function (responseFailed) {
+	        }
+	    );
+	}
 };
 
 picker.createOpen = function(){
-	var f = new google.picker.DocsView(google.picker.ViewId.FOLDERS).setParent(myRootFolderId).setSelectFolderEnabled(false);
+	var f = new google.picker.DocsView(google.picker.ViewId.FOLDERS).setParent(drive.root).setSelectFolderEnabled(false);
 	var s  = new google.picker.DocsView().setSelectFolderEnabled(false).setOwnedByMe(false);
 	var _picker = new google.picker.PickerBuilder().setOAuthToken(gapi.auth.getToken().access_token).setAppId('953350323460').addViewGroup(f).addViewGroup(s).addViewGroup(new google.picker.ViewGroup(google.picker.ViewId.RECENTLY_PICKED)).setOrigin(window.location.protocol + '//' + window.location.host).setDeveloperKey(developerKey).setCallback(picker.openCallback).build();
 	_picker.setVisible(true);
@@ -30,8 +51,13 @@ picker.openCallback = function(data) {
 
 picker.uploadDestination = "";
 picker.upload = function(){
-	picker.purge();
-	gapi.load('picker', {'callback': picker.createUpload});
+	if(cloud_use === "drive"){
+		picker.purge();
+		gapi.load('picker', {'callback': picker.createUpload});
+	}
+	else if(cloud_use === "sky"){
+		$('#upload-overlay').velocity('transition.slideDownIn');
+	}
 };
 
 picker.createUpload = function(){
@@ -51,19 +77,44 @@ picker.uploadCallback = function(data){
 
 picker.download = function(){
 	if(current_file !== "welcome"){
-		var request = gapi.client.drive.files.get({
-			'fileId': current_file
-	  	});
-	  	request.execute(function(resp) {
-	  		window.location.assign(resp.webContentLink);
-		});
-		Messenger().post({
-			message: 'File downloaded!',
-			type: 'success',
-			showCloseButton: true
-		});
+		if(cloud_use === "drive"){
+			var request = gapi.client.drive.files.get({
+				'fileId': current_file
+		  	});
+		  	request.execute(function(resp) {
+		  		window.location.assign(resp.webContentLink);
+			});
+			Messenger().post({
+				message: 'File downloaded!',
+				type: 'success',
+				showCloseButton: true
+			});
+		}
+		else if(cloud_use === "sky"){
+			sky.getFile(current_file, function(res){
+				saveFile(res.source);
+			});
+		}
 	}
 };
+
+function saveFile(url) {
+  // Get file name from url.
+  var filename = url.substring(url.lastIndexOf("/") + 1).split("?")[0];
+  var xhr = new XMLHttpRequest();
+  xhr.responseType = 'blob';
+  xhr.onload = function() {
+    var a = document.createElement('a');
+    a.href = window.URL.createObjectURL(xhr.response); // xhr.response is a blob
+    a.download = filename; // Set the file name.
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    delete a;
+  };
+  xhr.open('GET', url);
+  xhr.send();
+}
 
 picker.share = function(){
 	if(current_file !== "welcome"){
@@ -80,12 +131,29 @@ picker.share = function(){
 picker.saveDest = "";
 
 picker.saveAs = function(){
-	picker.purge();
-	gapi.load('picker', {'callback': picker.createSaveAs});
+	if(cloud_use === "drive"){
+		$("#file-name").val($("#title").val());
+		$('#saveas-overlay').velocity('transition.slideDownIn');
+	}
+	else if(cloud_use === "sky"){
+		$("#file-name").val($("#title").val());
+		$('#saveas-overlay').velocity('transition.slideDownIn');
+	}
 };
 
+picker.saveAsClicked = function(){
+	$('#saveas-overlay').velocity('transition.slideUpOut');
+	if(cloud_use === "drive"){
+		picker.purge();
+		gapi.load('picker', {'callback': picker.createSaveAs});
+	}
+	else if(cloud_use === "sky"){
+		sky.saveAs();
+	}
+}
+
 picker.createSaveAs = function(){
-	var docsView = new google.picker.DocsView().setIncludeFolders(true) .setMimeTypes('application/vnd.google-apps.folder').setSelectFolderEnabled(true).setParent(myRootFolderId);
+	var docsView = new google.picker.DocsView().setIncludeFolders(true) .setMimeTypes('application/vnd.google-apps.folder').setSelectFolderEnabled(true).setParent(drive.root);
 	var _picker = new google.picker.PickerBuilder().setOAuthToken(gapi.auth.getToken().access_token).setAppId('953350323460').addView(docsView).setOrigin(window.location.protocol + '//' + window.location.host).setDeveloperKey(developerKey).setCallback(picker.saveAsCallback).build(); 
 	_picker.setVisible(true);
 	picker.purge();
@@ -96,7 +164,8 @@ picker.saveAsCallback = function(data) {
 	if (data.action === google.picker.Action.PICKED || data.action === "picked") {
 		for(i = 0; i < data.docs.length; i++){
 			picker.saveDest = data.docs[0].id;
-			insert_saveas(editor().getValue(), "Untitled.txt", picker.saveDest);
+			var file_name = $("#file-name").val();
+			insert_saveas(editor().getValue(), file_name, picker.saveDest);
 		}
     }
     picker.purge();
