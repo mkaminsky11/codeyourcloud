@@ -47,7 +47,8 @@ body{
 #codemirror-sizer{
 	position: relative;
 	height: 100%;
-	width: calc(100% - 150px);
+	/*width: calc(100% - 150px);*/
+	width: 100%;
 	z-index: 2;
 	float: left;
 }
@@ -958,7 +959,7 @@ LOADING ICON
 MINI!	
 */
 
-.mini{
+/*.mini{
 	position: relative;
 	z-index: 4;
 	right: 0;
@@ -1001,7 +1002,7 @@ MINI!
 .mini-tab{
 	width: 3px;
 	background-color: transparent;
-}
+}*/
 
 /*
 * BROADCAST

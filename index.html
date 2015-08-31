@@ -175,9 +175,9 @@
 				<i class="md-more-vert"></i>
 			</div>
 			
-			<div class="tab-right" onclick="mini.toggle()">
+			<!--div class="tab-right" onclick="mini.toggle()">
 				<i class="md-border-right"></i>
-			</div>
+			</div-->
 			
 			<div id="plus-plus" class="tab-right" onclick="$('#new-popup').toggle();" data-step="5" data-intro='And to create new files' data-position="left">
 				<i class="md-add"></i>
@@ -208,10 +208,9 @@
 				<span id="insert-point" style="display:none"></span>
 			</div>
 			
-			<div class="mini">
-				<!--div class="mini-scroll"></div-->
+			<!--div class="mini">
 				<div style="display:none" class="mini-insert"></div>
-			</div>
+			</div-->
 			
 			<div id="overlay">
 				<h4>NO FILE</h4>
@@ -418,6 +417,9 @@
 		<script src="lib/codemirror/addon/fold/markdown-fold.js"></script>
 		<script src="lib/codemirror/addon/fold/xml-fold.js"></script>
 		
+		<script src="lib/codemirror/addon/minimap/minimap.js"></script>
+		<link rel="stylesheet" href="lib/codemirror/addon/minimap/minimap.css">
+		
 		<link rel="stylesheet" href="lib/codemirror/addon/fold/foldgutter.css">
       
       	<script src="lib/coffee/coffee.js"></script>
@@ -444,7 +446,7 @@
 		<script src="js/broadcast.js"></script>
 		<script src="js/tree.js"></script>
 		<script src="js/tabs.js"></script>
-		<script src="js/mini.js"></script>
+		<!--script src="js/mini.js"></script-->
 		<script src="js/ready.js"></script>
 		
 		<!--

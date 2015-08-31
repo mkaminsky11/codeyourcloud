@@ -20,7 +20,8 @@ $(document).ready(function(){
 	    indentUnit: 4, 
 	    indentWithTabs: true,
 	    foldGutter: true,
-		gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+		gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+		minimap: true
 	});
 	//sets the introduction text
 	var txtFile = new XMLHttpRequest();
@@ -37,7 +38,7 @@ $(document).ready(function(){
 	current_file = "welcome";
 	editor().on("beforeSelectionChange", function(cm, selection){});
 	editor().on("change", function(cm, change) {
-	    window.setTimeout(function(){mini.mini();},200);
+	    //window.setTimeout(function(){mini.mini();},200);
 	});
 	editor().setOption("autoCloseBrackets",true); //TODO: make this optional
 	editor().setOption("matchBrackets",true);
@@ -59,7 +60,8 @@ $(document).ready(function(){
 	editor().refresh(); //so that it fits the div wall
 	
 	//INITIALIZES THE MINIMAP
-	mini.mini();
+	
+	//mini.mini();
 	//$(".mini").css("background-color",$(".CodeMirror").css("background-color"));
 	
 	//SETUP THEME

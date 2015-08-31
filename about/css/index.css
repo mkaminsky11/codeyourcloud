@@ -35,10 +35,10 @@ body{
 	padding-top: 10px;
 	width: calc(100% - 60px);
 	padding-bottom: 0px;
-	/*background-image: linear-gradient(148deg, #3F4FC7, #C15454);*/
-	background-color: #F44336;
+	background-image: linear-gradient(182deg, #F44336, #FFD53B);
 }
 #quote{
+	margin-top: 50px;
 	text-align: center;
 	font-family: 'Baron';
 	color: #F9F9F9;

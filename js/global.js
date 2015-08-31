@@ -26,8 +26,10 @@ var themes = [
 	"3024-day.css",
 	"ambiance-mobile.css",
 	"blackboard.css",
+	"dracula.css",
 	"eclipse.css",
 	"lesser-dark.css",
+	"material.css",
 	"mdn-like.css",
 	"neat.css",
 	"paraiso-dark.css",
@@ -43,6 +45,7 @@ var themes = [
 	"midnight.css",
 	"neo.css",
 	"paraiso-light.css",
+	"seti.css",
 	"solarized.css",
 	"tomorrow-night-eighties.css",
 	"vibrant-ink.css",
@@ -57,6 +60,7 @@ var themes = [
 	"pastel-on-dark.css",
 	"the-matrix.css",
 	"ttcn.css",
+	"yeti.css",
 	"xq-dark.css"
 ];
 for(var i = 0; i < themes.length; i++){

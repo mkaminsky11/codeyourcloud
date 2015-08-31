@@ -193,7 +193,8 @@ function addTab(title, id, welcome){
          indentUnit: 4, 
          indentWithTabs: true,
          foldGutter: true,
-		 gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+		 gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+		 minimap: true
     });
     e.id = id;
 
@@ -220,16 +221,11 @@ function addTab(title, id, welcome){
 	    else if(cloud_use === "sky"){
 		    
 	    }
-	    
-    	window.setTimeout(function(){ //update minimap
-	    	mini.mini();
-    	}, 200);
     });
     editor().setOption("lineNumbers",line_wrap);
     editor().setOption("lineWrapping",line_number);
     opentab(id);
     $(".CodeMirror-scroll").scroll(function(){
-	   mini.view();
 	});
 	
 	if(cloud_use === "sky"){
@@ -304,7 +300,6 @@ function opentab(id){
 		images.init(id);	
 	}
 	adjust();
-	mini.mini(); //refresh minimap
 }
 
 //remove a tab
