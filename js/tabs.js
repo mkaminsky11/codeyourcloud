@@ -158,7 +158,7 @@ function addTab(title, id, welcome){
   else{
 	//add a new tab
     var base = "<span class='tab-tab' data-fileid='"+id+"' onclick='opentab(\""+id+"\")'>" + tree.getIconByTitle(title) + "<h4>" + title + "</h4>";
-    base = base + "<h6><i class='zmdi zmdi-close' onclick='removetab(\""+id+"\")' style='float:right'></i></h6>";
+    base = base + "<h6><span class='context-click' data-fileid='"+id+"'><i class='zmdi zmdi-caret-down'></i></span><i class='zmdi zmdi-close' onclick='removetab(\""+id+"\")'></i></h6>";
     base = base + "</span>";
     $(".tab-container").html($(".tab-container").html() + base);
     

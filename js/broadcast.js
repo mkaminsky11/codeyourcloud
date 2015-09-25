@@ -24,7 +24,7 @@ broadcast.init = function(){
 		else{
 			localStorage.setItem("cyc-donate", val - 1);
 			if(Math.floor(Math.random() * 10) === 5){
-				$("#broadcast #ad").css("display","block");
+				//$("#broadcast #ad").css("display","block");
 			}
 		}
 	}	

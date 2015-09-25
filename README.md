@@ -20,6 +20,7 @@ To allow people around the globe to collaborate on coding projects via Google Dr
 	+ open(?)
 	+ duplicate(?)
 + Not saved icon indicator
+
 =====
 
 ###Features###

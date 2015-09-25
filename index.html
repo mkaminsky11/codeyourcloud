@@ -35,11 +35,9 @@
 	<body>
 		<link rel="stylesheet" href="fonts/font.css">
 		<img id="paper-loading-spinner" style="display:none" src="images/svg/spinner.svg" height="40px" width="40px"/>
-		<div id="tree-open" class="tree" style="display:none">
-			<ul class="root-tree"></ul>
-			<span><i class="fa fa-times"></i></span>
-		</div>
-			
+		
+		<div id="bottom"></div>
+		
 		<div id="side" style="display:none">
 			<div id="side-inner">
 				<div class="side-head flex-center" style="height:42px">
@@ -136,67 +134,66 @@
         	  </ul>
         	</div>
       	</nav>
-
-	<div style="display:none" id="new-popup" class="popup">
-		<span onclick="$('#new-popup').toggle();new_file()">New File</span>
-		<span onclick="$('#new-popup').toggle();picker.open();">Open File</span>
-		<span onclick="$('#new-popup').toggle();picker.upload();">Upload File</span>
-	</div>
-	
-	<div style="display:none" id="search-popup" class="popup">
-		<span onclick="$('#search-popup').toggle();find()">Find</span>
-		<span onclick="$('#search-popup').toggle();replace()">Replace</span>
-	</div>
-	
-	<div style="display:none" id="more-popup" class="popup">
-		<span onclick="drive.trash(current_file)"><i class="zmdi zmdi-delete"></i> Trash</span>
-		<span onclick="picker.share()" id="share-button"><i class="zmdi zmdi-account-add"></i> Share</span>
-		<span onclick="picker.saveAs()"><i class="zmdi zmdi-floppy"></i>Save As</span>
-		<span onclick="picker.download()"><i class="zmdi zmdi-download"></i>Download</span>
-		<span class="side-pub" onclick="publish_html()"><i class="zmdi zmdi-upload"></i>Publish</span>
-		<span class="side-pub">
-			<a id="side-pub-link" href="" target="_blank" style="text-decoration: none;">
-				<i class="zmdi zmdi-link"></i>Go to Site
-			</a>
-		</span>
-		<span class="side-run" onclick="run()"><i class="zmdi zmdi-play"></i>Run</span>
-		<span>
-			<a href="https://accounts.google.com/logout" style="text-decoration: none;" id="log-out">
-				<i class="zmdi zmdi-square-right"></i>Log Out
-			</a>
-		</span>
-	</div>
 	
 	  	
-	<div style="width:100%;height:100%;position:fixed;z-index: 0;" class="move">
+	<div style="width:100%;height:calc(100% - 15px);position:fixed;z-index: 0;" class="move">
 		
 		<div class="tab-wrapper" data-step="4" data-intro='This allows you to switch between files using tabs' data-position="bottom">
-			<div class="tab-right" style="" onclick="$('#more-popup').toggle()">
-				<i class="zmdi zmdi-more-vert"></i>
+			
+			<div class="tab-container">
+				<span class="tab-tab tab-active" data-fileid="welcome" onclick="opentab('welcome')">
+					<i class="fa fa-align-left"></i>
+					<h4>Welcome</h4>
+					<h6>
+						<i class="zmdi zmdi-close" onclick="removetab('welcome')"></i>
+					</h6>
+				</span>
+			</div>
+			
+			<div class="tab-right" onclick="$('#search-popup').toggle()" style="">
+				<i class="zmdi zmdi-search"></i>
+				
+					<div style="display:none" id="search-popup" class="popup">
+        		<span onclick="$('#search-popup').toggle();find()">Find</span>
+        		<span onclick="$('#search-popup').toggle();replace()">Replace</span>
+        	</div>
+			</div>
+			
+			<div id="plus-plus" class="tab-right" onclick="$('#new-popup').toggle();" data-step="5" data-intro='And to create new files' data-position="left">
+				<i class="zmdi zmdi-plus"></i>
+				
+					<div style="display:none" id="new-popup" class="popup">
+        		<span onclick="$('#new-popup').toggle();new_file()">New File</span>
+        		<span onclick="$('#new-popup').toggle();picker.open();">Open File</span>
+        		<span onclick="$('#new-popup').toggle();picker.upload();">Upload File</span>
+        	</div>
 			</div>
 			
 			<div class="tab-right" onclick="toggle_minimap()">
 				<i class="zmdi zmdi-border-right"></i>
 			</div>
 			
-			<div id="plus-plus" class="tab-right" onclick="$('#new-popup').toggle();" data-step="5" data-intro='And to create new files' data-position="left">
-				<i class="zmdi zmdi-plus"></i>
-			</div>
-
-			<div class="tab-right" onclick="$('#search-popup').toggle()" style="">
-				<i class="zmdi zmdi-search"></i>
-			</div>
-			
-			<div class="tab-container">
+		  <div class="tab-right" style="" onclick="$('#more-popup').toggle()">
+				<i class="zmdi zmdi-more-vert"></i>
 				
-				<span class="tab-tab tab-active" data-fileid="welcome" onclick="opentab('welcome')">
-					<i class="fa fa-align-left"></i>
-					<h4>Welcome</h4>
-					<h6>
-						<i class="zmdi zmdi-close" style="float: right" onclick="removetab('welcome')"></i>
-					</h6>
-				</span>
-				
+					<div style="display:none" id="more-popup" class="popup">
+      		<span onclick="drive.trash(current_file)"><i class="zmdi zmdi-delete"></i> Delete</span>
+      		<span onclick="picker.share()" id="share-button"><i class="zmdi zmdi-account-add"></i> Share</span>
+      		<span onclick="picker.saveAs()"><i class="zmdi zmdi-floppy"></i>Save As</span>
+      		<span onclick="picker.download()"><i class="zmdi zmdi-download"></i>Download</span>
+      		<span class="side-pub" onclick="publish_html()"><i class="zmdi zmdi-upload"></i>Publish</span>
+      		<span class="side-pub">
+      			<a id="side-pub-link" href="" target="_blank" style="text-decoration: none;">
+      				<i class="zmdi zmdi-link"></i>Go to Site
+      			</a>
+      		</span>
+      		<span class="side-run" onclick="run()"><i class="zmdi zmdi-play"></i>Run</span>
+      		<span>
+      			<a href="https://accounts.google.com/logout" style="text-decoration: none;" id="log-out">
+      				<i class="zmdi zmdi-square-right"></i>Log Out
+      			</a>
+      		</span>
+      	</div>
 			</div>
 		</div>
 		
@@ -343,10 +340,47 @@
 		</div>
 		
 		<!--context menu-->
-		<div id="context" class="popup">
-			<span onclick="$('#new-popup').toggle();new_file()">New File</span>
-			<span onclick="$('#new-popup').toggle();picker.open();">Open File</span>
-			<span onclick="$('#new-popup').toggle();picker.upload();">Upload File</span>
+		<!--
+		Trash
+		Save
+		Save As
+		Share
+		Close
+		Rename
+		Download
+		.. 
+		.. 
+		.. 
+		if a folder:
+		- no Save
+		- no Saveas
+		- no Close
+		- add new file
+		
+		TODO: copy + paste + cut
+		-->
+		<div id="context" class="popup context-menu">
+			<span onclick="" class="context-menu__item">
+			  <a class="context-menu__link" onclick="context.trash()">Delete</a>
+		  </span>
+			<span onclick="" class="context-menu__item">
+			  <a class="context-menu__link" onclick="context.save()">Save</a>
+			</span>
+			<span onclick="" class="context-menu__item">
+			  <a class="context-menu__link" onclick="context.saveas()">Save As</a>
+			</span>
+			<span onclick="" class="context-menu__item">
+			  <a class="context-menu__link" onclick="context.share()">Share</a>
+			</span>
+			<span onclick="" class="context-menu__item">
+			  <a class="context-menu__link" onclick="context.close()">Close</a>
+			</span>
+			<span onclick="" class="context-menu__item">
+			  <a class="context-menu__link" onclick="context.rename()">Rename</a>
+			</span>
+			<span onclick="" class="context-menu__item">
+			  <a class="context-menu__link" onclick="context.download()">Download</a>
+			</span>
 		</div>
 		
 		<script src="lib/codemirror/lib/codemirror.js"></script>
@@ -443,6 +477,7 @@
 	    </script>
 
 		<script src="js/global.js"></script>
+		<script src="js/context.js"></script>
 		<script src="js/images.js"></script>
 		<script src="js/mobile.js"></script>
 		<script src="js/sky.js"></script>
@@ -457,36 +492,6 @@
 		<script src="js/tree.js"></script>
 		<script src="js/tabs.js"></script>
 		<script src="js/ready.js"></script>
-		
-		<!--
-		check for Google Drive
-			yes
-				has ?skydrive=true ?
-					yes
-						check for skydrive
-							yes
-								load skydrive
-							no
-								/about
-					no
-						load drive
-			no
-				has ?skydrive=true ?
-					yes
-						check for skydrive
-							yes
-								load skydrive
-							no
-								/about
-					no
-						/about	
-		
-		-----
-		
-		just for drive
-		
-		drive.js
-		-->
 		
 		
 		<script src = 'lib/keyboard/jwerty.js'></script>

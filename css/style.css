@@ -90,10 +90,9 @@ body{
 */
 
 #side{
-	height: 100%;
+	height: calc(100% - 15px);
 	width: 300px;
 	margin-left: -300px;
-	
 	z-index: 90;
 	position: absolute;
 	overflow-x: hidden;
@@ -300,29 +299,29 @@ body{
 	background-color: #212121;
 	position: absolute;
 	top: -30px;
-	overflow: hidden;
-	display: inline-block;
+	overflow: visible;
+	display: flex;
 	width: 100%;
 }
 .tab-container{
+  flex: 1;
 	height: 100%;
-	position: absolute;
-	overflow-x: hidden;
-	overflow-y: auto;
-	width: 100%;
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -moz-flex;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-wrap: wrap;
-	flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* width: 100%; */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .tab-tab{
     height: 22px;
     position: relative;
-    width: 116px;
+    width: 120px;
     padding: 8px;
     margin-right: 0 !important;
     padding-top: 3px;
@@ -359,7 +358,19 @@ body{
 	width: calc(100% - 11px);
 	z-index: 0;
 	position: absolute;
-	margin-top: 4px;
+	margin-top: 6px;
+	text-align: right;
+}
+.tab-tab h6>i{
+  margin-left: 3px;
+  margin-right: 3px;
+  color: #ccc;
+}
+.tab-tab .zmdi-close{
+  
+}
+.tab-tab .zmdi-caret-down{
+  font-size: 16px;
 }
 .tab-tab:hover{
 	display: inline-block !important;
@@ -371,13 +382,14 @@ body{
 	position: absolute;
 	font-size: 10px;
 	top: 13px;
+	color: white;
 }
 .tab-active{	
 	background-color: rgb(47, 46, 46);
 	border-right: none;
 }
 .tab-active h6{
-	color: #f36c60;
+	/*color: #f36c60;*/
 }
 .tab-active h4{
 	color: #ccc;
@@ -450,6 +462,7 @@ body{
 	  padding-right: 12px;
 	  padding-left: 12px;
 	  float: right;
+	  overflow: visible;
 }
 .popup{
 	position: absolute;
@@ -458,19 +471,23 @@ body{
 	border-radius: 2px;
 	-moz-box-shadow: 0 0 9px #4A4A4A;
 	-webkit-box-shadow: 0 0 9px #4A4A4A;
-  	box-shadow: 0 0 9px #4A4A4A;
+  box-shadow: 0 0 9px #4A4A4A;
+  right: 5px;
+  top: 35px;
 }
 .popup span{
 	  display: block;
-	  padding: 7px;
-	  padding-left: 18px;
-	  font-family: 'Roboto';
-	  padding-right: 18px;
-	  font-size: 14px;
-	  color: #5E5B5B;
-	  border-bottom: none;
-	  padding-top: 10px;
-	  padding-bottom: 10px;
+    padding: 7px;
+    padding-left: 14px;
+    font-family: 'Roboto';
+    padding-right: 18px;
+    font-size: 14px;
+    color: #5E5B5B;
+    border-bottom: none;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-align: left;
+    width: 80px;
 }
 .popup a{
 	color: #5E5B5B !important;
@@ -482,18 +499,6 @@ body{
 
 .popup span:hover{
 	background-color: #eee;
-}
-#new-popup{
-	right: 42px;
-	top: 80px;
-}
-#search-popup{
-	right: 126px;
-	top: 80px;
-}
-#more-popup{
-	right: 10px;
-	top: 80px;
 }
 #navigate{
 	height: 33px;
@@ -523,7 +528,7 @@ body{
 	background-color: white;
 	margin-top: 0px;
 	border: none;
-	height: calc(100% - 79px);
+	height: calc(100% - 84px);
 }
 
 .terminal > * {
@@ -688,7 +693,7 @@ FILE BROWSING TREE
 	-webkit-padding-start: 10px !important;
 }
 .tree li{
-	color: #F0EFEF;
+	color: #C8CDCF;
 	font-family: 'Roboto-Thin';
 	font-weight: 600;
 	font-size: 13px;
@@ -705,7 +710,7 @@ FILE BROWSING TREE
 
 .tree i{
 	margin-right: 10px;
-	color: white;
+	color: #C8CDCF;
 }
 
 .tree .devicons{
@@ -715,7 +720,7 @@ FILE BROWSING TREE
 
 .tree-folder > span{
 	font-weight: 600;
-	color: white;
+	color: #C8CDCF;
 }
 
 .tree-file > span {
@@ -748,7 +753,7 @@ FILE BROWSING TREE
 	color: #E74C3C !important;
 }
 .tree .fa-spin{
-	color: #E74C3C;
+	color: #FF8F00;
 }
 
 #image_div{
@@ -823,10 +828,6 @@ LOADING ICON
   0% { transform: rotate(0deg) }
   20% { transform: rotate(-45deg) }
   100% { transform: rotate(360deg) }
-}
-
-.tab-right:last-child{
-	border-left: solid 1px white;
 }
 
 
@@ -952,14 +953,29 @@ LOADING ICON
 	border-radius: 3px;
 }
 
+
+#bottom{
+  position: absolute;
+  background-color: #2F2E2E;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 15px;
+}
+
 /*
 * CONTEXT
 */
 
 #context{
 	display: none;
+	width: 115px;
 }
 
-.context-active{
-	display: block;
+.context-menu--active{
+	display: block !important;
+}
+
+.context-click{
+  padding: 3px;
 }
