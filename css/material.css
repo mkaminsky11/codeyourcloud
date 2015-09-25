@@ -107,7 +107,7 @@
 }
 
 .check-switch input:checked + span {
-    box-shadow: inset 0 0 0 0.73em #E74C3C;
+    box-shadow: inset 0 0 0 0.73em #FF8F00;
 }
 
 .check-switch input:checked + span:after {

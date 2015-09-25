@@ -15,8 +15,6 @@ function run(){
 	var find = 'console.log'; //not console.log, but print
 	var re = new RegExp(find, 'g');
 	code_before_replace = code_before_replace.replace(re, 'print');
-	
-	
 	document.getElementById('repl-iframe').contentWindow.eval(code_before_replace);
 }
 
@@ -113,21 +111,21 @@ function hide_loading_spinner(){
 * toggle rename
 **/
 function show_top_rename(){
+	$("#rename-toggle").html('<i class="zmdi zmdi-check"></i>'); //switch to check
 	$('#title').attr('readonly', false);
 }
 
 function hide_top_rename(){
+	$("#rename-toggle").html('<i class="zmdi zmdi-edit"></i>'); //switch back
 	$('#title').attr('readonly', true);
 }
 
 function toggle_rename_show(){
 	if($('#title').attr('readonly')){
 		//if disabled
-		$("#rename-toggle").html('<i class="md-check"></i>'); //switch to check
 		show_top_rename();
 	}
 	else{
-		$("#rename-toggle").html('<i class="md-mode-edit"></i>'); //switch back
 		hide_top_rename();
 		ok_rename();
 	}
@@ -150,6 +148,8 @@ function toggle_side(){
 
 function close_side(){
 	side_open = false;
+	$("#toggle_side_menu_button > i").removeClass("fa-circle-o");
+	$("#toggle_side_menu_button > i").addClass("fa-dot-circle-o");
 	$("#side").velocity({
 		marginLeft: -300
 	},{
@@ -181,6 +181,8 @@ function close_side(){
 }
 function open_side(){
 	side_open = true;
+	$("#toggle_side_menu_button > i").addClass("fa-circle-o");
+	$("#toggle_side_menu_button > i").removeClass("fa-dot-circle-o");
 	$("#side").css("display","block").css("margin-left","-300px");
 	$("#side").velocity({
 		marginLeft: 0
@@ -280,6 +282,13 @@ function nav_tree(){
 		$(".lorem").css("display","none");
 		$(".options").css("display","none");
 		$(".tree-tree").css("display","block");
+	}
+}
+
+function toggle_minimap(){
+	minimap = !minimap;
+	for(var i = 0; i < editors.length; i++){
+		editors[i].editor.setOption("minimap", minimap);
 	}
 }
 

@@ -1,13 +1,3 @@
-/*
-* BASICS
-*/
-
-/*
-*:focus{
-	outline: none !important;
-}
-*/
-
 body{
 	font-family: 'Roboto-Thin' !important;
 	overflow-x: hidden;
@@ -33,7 +23,7 @@ body{
 	margin-left: calc(100% - 53px);
 	overflow-y: auto;
 	overflow-x: hidden;
-	background-color: #2C3E50;
+	background-color: #212121;
 }
 .codemirror-container{
     position: relative;
@@ -53,10 +43,6 @@ body{
 	float: left;
 }
 
-.navbar{
-	border-radius:0px;
-	z-index:9;
-}
 #overlay{
 	height:100%;
 	width:100%;
@@ -69,7 +55,8 @@ body{
 /*
 * TOOLBAR
 */
-#toolbar{
+
+.toolbar{
 	position: absolute;
 	float: right;
 	width: 53px;
@@ -79,18 +66,9 @@ body{
 	text-align: center;
 	padding-top: 10px;
 }
-#toolbar > span{
+.toolbar > span{
 	color: #eee;
 	font-size: 22px;
-}
-
-.toolbar-a{
-	color: #ecf0f1;
-	display:block;
-	margin-top: 5px;
-}
-.toolbar-a:hover{
-	color:#2ecc71;
 }
 
 .btn:focus {
@@ -123,17 +101,15 @@ body{
 	left: 0;
 }
 
-.nav-1{
-	background-color:rgb(249, 246, 246);
-}
-
-#users, #toolbar{
-	background-color: #262B30;
+#users, .toolbar{
+	background-color: #212121;
 	z-index: 3;
 }
+
 #users{
 	overflow: visible;
 }
+
 #side-inner{
     height: calc(100%);
     margin-top: 0px;
@@ -150,7 +126,7 @@ body{
 }
 
 #side{
-	background-color: #262B30;
+	background-color: #212121;
 }
 
 #side-inner hr{
@@ -163,13 +139,9 @@ body{
    display: flex;
    -webkit-flex-direction: row;
    flex-direction: row;
-	
-	padding: 0px;
-	text-align: center;
-	color: #212121;
-	
-	background-color: #F9F6F6;
-	border-right: solid 1px #B2B2B2;
+   padding: 0px;
+   text-align: center;
+   color: #212121;
 }
 .side-head>h6, .side-head>h6:hover{
 	color: #424242;
@@ -205,29 +177,23 @@ body{
 	font-weight: 400;
 	font-size: 13px;
 	padding-left: 11px;
-	border-radius: 0px;
-	background-color: rgba(169, 169, 169, 0.02);
+	border-radius: 6px;
+	background-color: #424242;
+	color: #E0E0E0;
 	border: none;
-	color: #b8b8b8;
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border: solid thin rgba(192, 189, 189, 0.36);
 }
 #rename-div > button{
 	font-size: 20px;
 	box-shadow: none;
-	background-color: rgba(169, 169, 169, 0.07);
 	border: none;
-	color: rgb(97, 95, 95);
-	border-radius: 0px;
-	border: solid thin rgba(192, 189, 189, 0.36);
 	border-left: none;
 	border-top-right-radius: 6px;
 	border-bottom-right-radius: 6px;
+	background-color: #C0C0C0;
+	color: rgb(41, 39, 39);
 }
 #rename-div input:read-only {
-	color: #545454;
-	background-color: rgba(224, 224, 224, 0.91);
+	color: #8A8989;
 }
 .InputAddOn {
   display: flex;
@@ -289,8 +255,7 @@ body{
 	padding-top: 4px;
 	padding-left: 11px;
 	padding-right: 12px;
-	color: #E76658;
-	border-right: solid 1px #E74C3C;
+	color: #D0D0D0;
 }
 
 .navbar span:last-child{
@@ -303,14 +268,15 @@ body{
 }
 
 #nav-outline{
-	border: solid 1px #E74C3C;
+	border: none;
+	padding: 1px;
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
 	display: -moz-flex;
 	display: -webkit-flex;
 	display: flex;
-	
+	background-color: #212121;
 	height: 29px;
 	margin-top: 5px;
 	margin-right: 9px;
@@ -331,7 +297,7 @@ body{
 */
 .tab-wrapper{
 	height: 34px;
-	background-color: #262B30;
+	background-color: #212121;
 	position: absolute;
 	top: -30px;
 	overflow: hidden;
@@ -354,16 +320,12 @@ body{
 	flex-wrap: wrap;
 }
 .tab-tab{
-	background-color: #BDC3C7;
-	height: 18px;
-	position : relative;
-	width: 116px;
-	padding: 8px;
-	margin-right: 0 !important;
-	padding-top: 3px;
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-top: solid thin rgb(240, 232, 232);
+    height: 22px;
+    position: relative;
+    width: 116px;
+    padding: 8px;
+    margin-right: 0 !important;
+    padding-top: 3px;
 }
 .tab-tab:first-child{
 	margin-left: 0px;
@@ -371,22 +333,22 @@ body{
 
 .tab-tab h4{
 	margin: 0px;
-	font-size: 13px;
-	width: 83px;
-	overflow: hidden;
-	word-break: break-all;
-	text-overflow: ellipsis;
-	float: left;
-	word-wrap: break-word;
-	overflow: hidden;
-	height: 17px;
-	font-family: 'Roboto';
-	color: white;
-	padding-top: 4px;
-	padding-left: 5px;
-	font-weight: 300;
-	position: relative;
-	margin-left: 19px;
+    font-size: 12px;
+    width: 83px;
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    float: left;
+    word-wrap: break-word;
+    overflow: hidden;
+    height: 17px;
+    font-family: 'Roboto';
+    color: white;
+    padding-top: 7px;
+    padding-left: 5px;
+    font-weight: 300;
+    position: relative;
+    margin-left: 14px;
 }
 .tab-tab h6{
 	margin: 0;
@@ -408,17 +370,17 @@ body{
 .tab-tab>i{
 	position: absolute;
 	font-size: 10px;
-	top: 9px;
+	top: 13px;
 }
 .tab-active{	
-	background-color: rgb(249, 246, 246);
+	background-color: rgb(47, 46, 46);
 	border-right: none;
 }
 .tab-active h6{
 	color: #f36c60;
 }
 .tab-active h4{
-	color: black;
+	color: #ccc;
 }
 .CodeMirror{
 	line-height: 1 !important;
@@ -460,16 +422,18 @@ body{
 	border-radius: 3px;
 	width: 45px;
 	height: 34px;
-	margin-top: 8px;
-	margin-left: 0px;
 	font-size: 25px;
 }
 #toggle_side_menu_button > i{
-	  color: #E74C3C;
+	  color: #FF8F00;
+	  font-size: 18px;
 }
 #nav{
 	height: 42px;
 	margin-bottom: 29px;
+	background-color: rgb(47, 46, 46);
+	border-radius:0px;
+	z-index:9;
 }
 .nav{
 	margin: 0;
@@ -492,7 +456,6 @@ body{
 	z-index: 90;
 	background-color: white;
 	border-radius: 2px;
-	
 	-moz-box-shadow: 0 0 9px #4A4A4A;
 	-webkit-box-shadow: 0 0 9px #4A4A4A;
   	box-shadow: 0 0 9px #4A4A4A;
@@ -545,9 +508,9 @@ body{
 	margin-top: 1px;
 }
 #navigate .active{
-	background-color:#262B30;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
+	color: #FF8F00;
 }
 
 .side-item a{
@@ -560,7 +523,7 @@ body{
 	background-color: white;
 	margin-top: 0px;
 	border: none;
-	height: calc(100% - 94px);
+	height: calc(100% - 79px);
 }
 
 .terminal > * {
@@ -956,55 +919,6 @@ LOADING ICON
 }
 
 /*
-MINI!	
-*/
-
-/*.mini{
-	position: relative;
-	z-index: 4;
-	right: 0;
-	width: 150px;
-	height: 100%;
-	background-color: #151718;
-	overflow: scroll;
-	overflow-x: hidden;
-	float: right;
-}
-
-.mini-scroll{
-	background-color: rgba(255,255,255,0.2);
-	position: absolute;
-	left: 0px;
-	width: 100%;
-	z-index: 2;
-	top: 0px;
-	height: 200px;
-}
-
-.mini-row{
-	width: 100%;
-	display: flex;
-	height: 2px;
-	margin-bottom: 2px;
-	margin-top: 2px;
-}
-
-.mini-block{
-	width: 2px;
-	background-color: white;
-}
-
-.mini-space{
-	width: 1px;
-	background-color: transparent;
-}
-
-.mini-tab{
-	width: 3px;
-	background-color: transparent;
-}*/
-
-/*
 * BROADCAST
 */
 #broadcast{
@@ -1023,4 +937,29 @@ MINI!
 }
 #donate{
 	float: left;
+}
+
+#ad h4{
+	margin: 0;
+	font-size: 12px;
+}
+
+#ad button{
+	margin-top: 5px;
+	border: none;
+	background-color: #eee;
+	border: solid thin gray;
+	border-radius: 3px;
+}
+
+/*
+* CONTEXT
+*/
+
+#context{
+	display: none;
+}
+
+.context-active{
+	display: block;
 }

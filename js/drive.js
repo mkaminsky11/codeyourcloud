@@ -12,7 +12,8 @@ drive.id = null;
 drive.load = function(){
 	gapi.auth.authorize({'client_id': drive.client_id, 'scope': drive.scopes.join(' '), 'immediate': true}, function(authResult){
 		drive.loaded = true;
-		if (!authResult.error) {
+		console.log(authResult);
+		if (authResult.status.signed_in === true) {
 			drive.logged_in = true;	} 
 		else {
 			

@@ -3,34 +3,36 @@
 * find and replace for editors
 **/
 
+var manager = {};
+manager.setSaveState = function(id, state){
+	if(state === false){
+		$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith("<i class=\"fa fa-circle\" style=\"color:#FF9000\"></i>");
+	}
+	else{
+		$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith($(".tab-tab[data-fileid='"+id+"']").attr("data-icon"));
+	}
+}
+
 function find(){
 	CodeMirror.commands["findNext"](editor());
 }
+
 function replace(){
 	CodeMirror.commands["replace"](editor());
 }
 
-/**
-* MODES
-* change the mode
-**/
 
-function setMode(id,mode){
-	try{ //update the select
+manager.setMode = function(id,mode){
+	try{
 		if(mode !== $("#mode-select").val()){
 			$("#mode-select").val(mode);
 		}
 	}
 	catch(e){}
-
-	//sets default codemirror options
-	//gutters + lints
 	var index = getIndex(id);
 	editors[index].editor.setOption("extraKeys", {});
 	editors[index].editor.setOption("gutters",["CodeMirror-linenumbers"]);
 	editors[index].editor.setOption("lint",false);
-
-
 	if(mode === "text/javascript"){
 		editors[index].editor.setOption("gutters",["CodeMirror-lint-markers"]);
 		editors[index].editor.setOption("lint",CodeMirror.lint.javascript);
@@ -56,52 +58,40 @@ function setMode(id,mode){
 	else if(mode === "text/x-python"){editors[index].editor.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});}
 	else if(mode === "text/x-sql"){editors[index].editor.setOption("extraKeys", {"Ctrl-Space": "autocomplete"});}
 	editors[index].editor.setOption("mode", mode); //finally, set the mode
-	
-	adjust(); //adjust the ide
+	adjust();
 }
-//gets the extension of a file
-function extension(fileName){
+
+manager.extension = function(fileName){
 	var ext = "txt";
 	var hidden = false;
-	
 	if(fileName.charAt(0) === "."){hidden = true;} 
-	else{
-		ext = fileName.split(".").reverse()[0]
-	}
+	else{ext = fileName.split(".").reverse()[0]}
 	return {ext: ext, hidden: hidden}; //hidden like .DS_STORE or .vimrc
 }
-//get the mode for a given filename
-function checkMode(id, fileName){
-	var ext_info = extension(fileName);
+
+manager.checkMode = function(id, fileName){
+	var ext_info = manager.extension(fileName);
 	var mode_to_use = "text"; //default
 	if(ext_info.hidden === false){
 		for(var i = 0; i < modes.length; i++){
 			var possible_mime = modes[i].mime;
 			var exts = modes[i].ext;
-			//try{
-				if((exts && exts.indexOf(ext_info.ext) !== -1) || (modes[i].alias && modes[i].alias.indexOf(ext_info.ext) !== -1)){
-					mode_to_use = possible_mime;
-				}
-			//}
-			//catch(e){}
+			if((exts && exts.indexOf(ext_info.ext) !== -1) || (modes[i].alias && modes[i].alias.indexOf(ext_info.ext) !== -1)){
+				mode_to_use = possible_mime;
+			}
 		}
 	}
-	setMode(id,mode_to_use);
+	manager.setMode(id,mode_to_use);
 }
 
-//function called when mode select changed
 function modeChange(){
-	setMode(current_file,$("#mode-select").val());
+	manager.setMode(current_file,$("#mode-select").val());
 }
 //populates the mode select
 for(var i = 0; i < modes.length; i++){
 	$("#mode-select").html($("#mode-select").html() + "<option value='"+modes[i].mime+"'>"+modes[i].name+"</option>");
 }
 
-
-/**
-* UNDO/REDO
-**/
 function editorUndo() {
 	editor().getDoc().undo();
 }

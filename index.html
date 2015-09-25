@@ -20,13 +20,13 @@
 		<meta charset="utf-8">
     	<title>Code Your Cloud</title>
 		<link rel="shortcut icon" type="image/png" href="favicon.png"/>
-	    <link rel='stylesheet' type='text/css' href='lib/Font/css/font-awesome.min.css'>
+	    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
 		<link rel="stylesheet" href="lib/slider/files/slider.css">
 		<script src="lib/slider/files/slider.js"></script>
 		<link rel="stylesheet" href="lib/messenger/css/messenger.css">
 		<link rel="stylesheet" href="lib/messenger/css/messenger-theme-air.css"
 		<link rel="stylesheet" href="fonts/font.css">
-		<link rel="stylesheet" href="fonts/material/css/material-design-iconic-font.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/material.css">
 		<link href="https://cdn.jsdelivr.net/devicons/1.4.0/css/devicons.min.css" rel='stylesheet'>
@@ -45,26 +45,26 @@
 				<div class="side-head flex-center" style="height:42px">
 						<div class="InputAddOn" id="rename-div">
 							<input id="title" value="code your cloud" placeholder="Title" class="InputAddOn-field" readonly="" onchange="ok_rename()"/>
-							<button class="InputAddOn-item" id="rename-toggle" onclick="toggle_rename_show()" style="display:none"><i class="md-mode-edit"></i></button>
+							<button class="InputAddOn-item" id="rename-toggle" onclick="toggle_rename_show()" style="display:none"><i class="zmdi zmdi-edit"></i></button>
 						</div>
 				</div>
 				
-				<div class="side-head" id="navigate">
-					<div class="active" id="nav_tree" onclick="nav_tree()"><i class="md-folder-open"></i></div>
-					<div id="nav_preview" onclick="nav_preview()"><i class="md-remove-red-eye"></i></div>
+				<div class="side-head" id="navigate" style="border-bottom: solid thin #424242">
+					<div class="active" id="nav_tree" onclick="nav_tree()"><i class="zmdi zmdi-folder-outline"></i></div>
+					<div id="nav_preview" onclick="nav_preview()"><i class="zmdi zmdi-eye"></i></div>
 					<div id="nav_terminal" onclick="nav_terminal()"><i class="fa fa-terminal"></i></div>
 					<div id="nav_lorem" onclick="nav_lorem()" style="display:none"><i class="fa fa-font"></i></div>
-					<div id="nav_options" onclick="nav_options()"><i class="md-settings"></i></div>
+					<div id="nav_options" onclick="nav_options()"><i class="zmdi zmdi-settings"></i></div>
 				</div>
 				
 				<iframe style="display:none" class="preview preview-frame" id="preview"></iframe>
 				<div class="preview" style="display:none;position: absolute;bottom: 0;width: 100%;">
 					<div style="width: 100%;height:100%;display: -webkit-flex;display: flex;-webkit-flex-direction: row;flex-direction: row;">
 						<div style="padding:10px;width:calc(50% - 20px);text-align: center;color: white;padding-top: 2px;font-size: 15px;padding-bottom: 2px;">
-							<i class="md-refresh" onclick="updatePreview()"></i>
+							<i class="zmdi zmdi-refresh" onclick="updatePreview()"></i>
 						</div>
 						<div style="padding:10px;width:calc(50% - 20px);text-align: center;color: white;padding-top: 2px;font-size: 15px;padding-bottom: 2px;">
-							<i class="md-fullscreen" onclick="$('#preview-overlay').velocity('transition.slideDownIn')"></i>
+							<i class="zmdi zmdi-fullscreen" onclick="$('#preview-overlay').velocity('transition.slideDownIn')"></i>
 						</div>
 					</div>
 				</div>
@@ -120,16 +120,16 @@
       		<div class="navbar-header"></div>
         	<div class="" id="navbar-collapse-01" style="width: 99%;">
         	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">          	  	
-        	  	<span id="toggle_side_menu_button" onclick="toggle_side()"><i class="md-menu"></i></span>
+        	  	<span id="toggle_side_menu_button" onclick="toggle_side()"><i class="fa fa-dot-circle-o"></i></span>
 				
         	  </ul>
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
 	        	  <div id="nav-outline">
-		        	<span id="help_button" class="side-file" onclick='$("#chat-popup").slideToggle()'><i class="md-chat"></i></span>
-		        	<span id="open_button" onclick="picker.open()" data-step="2" data-intro='This will open up the file chooser'><i class="md-folder-open"></i></span>
-	        	  	<span id="save_button" class="side-file" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'><i class="md-save"></i></span>
-	        	  	<span id="undo_button" onclick="editorUndo()"><i class="md-undo"></i></span>
-	        	  	<span id="redo_button" onclick="editorRedo()"><i class="md-redo"></i></span>
+		        	<span id="help_button" class="side-file" onclick='$("#chat-popup").slideToggle()'><i class="zmdi zmdi-comments"></i></span>
+		        	<span id="open_button" onclick="picker.open()" data-step="2" data-intro='This will open up the file chooser'><i class="zmdi zmdi-folder-outline"></i></span>
+	        	  	<span id="save_button" class="side-file" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'><i class="zmdi zmdi-floppy"></i></span>
+	        	  	<span id="undo_button" onclick="editorUndo()"><i class="zmdi zmdi-undo"></i></span>
+	        	  	<span id="redo_button" onclick="editorRedo()"><i class="zmdi zmdi-redo"></i></span>
 	        	  </div>
         	  	
 			  	<div id="profile_div"><img id="profile_pic" src="" height="30px" width="30px"></div>
@@ -149,20 +149,20 @@
 	</div>
 	
 	<div style="display:none" id="more-popup" class="popup">
-		<span onclick="drive.trash(current_file)"><i class="md-delete"></i> Trash</span>
-		<span onclick="picker.share()" id="share-button"><i class="md-person-add"></i> Share</span>
-		<span onclick="picker.saveAs()"><i class="md-save"></i>Save As</span>
-		<span onclick="picker.download()"><i class="md-file-download"></i>Download</span>
-		<span class="side-pub" onclick="publish_html()"><i class="md-file-upload"></i>Publish</span>
+		<span onclick="drive.trash(current_file)"><i class="zmdi zmdi-delete"></i> Trash</span>
+		<span onclick="picker.share()" id="share-button"><i class="zmdi zmdi-account-add"></i> Share</span>
+		<span onclick="picker.saveAs()"><i class="zmdi zmdi-floppy"></i>Save As</span>
+		<span onclick="picker.download()"><i class="zmdi zmdi-download"></i>Download</span>
+		<span class="side-pub" onclick="publish_html()"><i class="zmdi zmdi-upload"></i>Publish</span>
 		<span class="side-pub">
 			<a id="side-pub-link" href="" target="_blank" style="text-decoration: none;">
-				<i class="md-link"></i>Go to Site
+				<i class="zmdi zmdi-link"></i>Go to Site
 			</a>
 		</span>
-		<span class="side-run" onclick="run()"><i class="md-play-arrow"></i>Run</span>
+		<span class="side-run" onclick="run()"><i class="zmdi zmdi-play"></i>Run</span>
 		<span>
 			<a href="https://accounts.google.com/logout" style="text-decoration: none;" id="log-out">
-				<i class="md-exit-to-app"></i>Log Out
+				<i class="zmdi zmdi-square-right"></i>Log Out
 			</a>
 		</span>
 	</div>
@@ -172,19 +172,19 @@
 		
 		<div class="tab-wrapper" data-step="4" data-intro='This allows you to switch between files using tabs' data-position="bottom">
 			<div class="tab-right" style="" onclick="$('#more-popup').toggle()">
-				<i class="md-more-vert"></i>
+				<i class="zmdi zmdi-more-vert"></i>
 			</div>
 			
-			<!--div class="tab-right" onclick="mini.toggle()">
-				<i class="md-border-right"></i>
-			</div-->
+			<div class="tab-right" onclick="toggle_minimap()">
+				<i class="zmdi zmdi-border-right"></i>
+			</div>
 			
 			<div id="plus-plus" class="tab-right" onclick="$('#new-popup').toggle();" data-step="5" data-intro='And to create new files' data-position="left">
-				<i class="md-add"></i>
+				<i class="zmdi zmdi-plus"></i>
 			</div>
 
 			<div class="tab-right" onclick="$('#search-popup').toggle()" style="">
-				<i class="md-search"></i>
+				<i class="zmdi zmdi-search"></i>
 			</div>
 			
 			<div class="tab-container">
@@ -193,7 +193,7 @@
 					<i class="fa fa-align-left"></i>
 					<h4>Welcome</h4>
 					<h6>
-						<i class="md-close" style="float: right" onclick="removetab('welcome')"></i>
+						<i class="zmdi zmdi-close" style="float: right" onclick="removetab('welcome')"></i>
 					</h6>
 				</span>
 				
@@ -223,8 +223,8 @@
 			</div>
 			
 			
-			<div id="toolbar" data-step="7" data-intro='You even get a color picker!' data-position="left">
-				<span onclick="$('#keyboard-overlay').velocity('transition.slideDownIn')"><i class="md-keyboard"></i></span>
+			<div class="toolbar" data-step="7" data-intro='You even get a color picker!' data-position="left">
+				<span onclick="$('#keyboard-overlay').velocity('transition.slideDownIn')"><i class="zmdi zmdi-keyboard"></i></span>
 				<input type='text' id="custom"/>
 			</div>
 		</div>
@@ -235,7 +235,7 @@
 		
 		<div id="chat-popup" style="display:none">
 			<div class="chats-top">
-				<h6><i class="md-close" onclick='$("#chat-popup").slideToggle()'></i></h6>
+				<h6><i class="zmdi zmdi-close" onclick='$("#chat-popup").slideToggle()'></i></h6>
 			</div>
 			
 			<div class="chats-store">
@@ -289,7 +289,7 @@
 					
 					<div style="width:calc(100% - 20px);position: absolute; bottom: 10px; right: 10px; display: -webkit-flex;display: flex;-webkit-flex-direction: row;flex-direction: row;-webkit-flex-wrap: wrap;flex-wrap: wrap;justify-content: flex-end;">
 						
-						<a class="waves-effect waves-dark paper-btn-flat" style="margin-right: 5px;align-self: flex-end;" onclick="updatePreview()"><i class="md-refresh" style="margin-right: 5px;align-self: flex-end;"></i> REFRESH</a>
+						<a class="waves-effect waves-dark paper-btn-flat" style="margin-right: 5px;align-self: flex-end;" onclick="updatePreview()"><i class="zmdi zmdi-refresh" style="margin-right: 5px;align-self: flex-end;"></i> REFRESH</a>
 					
 						<a onclick="$('#preview-overlay').velocity('transition.slideUpOut')" class="waves-effect waves-light paper-btn paper-btn-blue" style="background-color:#3498DB;align-self: flex-end;">CLOSE</a>
 					
@@ -325,6 +325,11 @@
 		</div>
 		
 		<div id="broadcast" style="display:none">
+			<div id="ad" style="display:none">
+				<h4>Would you be ok with ads on this site?</h4>
+				<button onclick="broadcast.ad_ok()">YES</button>
+				<button onclick="broadcast.ad_no()">NO</button>
+			</div>
 			<div id="donate" style="display:none">
 				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
@@ -334,15 +339,20 @@
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 			</div>
-			<i class="md md-close" onclick="$('#broadcast').css('display','none')"></i>
+			<i class="md zmdi zmdi-close" onclick="$('#broadcast').css('display','none')"></i>
+		</div>
+		
+		<!--context menu-->
+		<div id="context" class="popup">
+			<span onclick="$('#new-popup').toggle();new_file()">New File</span>
+			<span onclick="$('#new-popup').toggle();picker.open();">Open File</span>
+			<span onclick="$('#new-popup').toggle();picker.upload();">Upload File</span>
 		</div>
 		
 		<script src="lib/codemirror/lib/codemirror.js"></script>
 		<link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
 		
 		<script src="lib/codemirror/mode/meta.js"></script>
-			   
-			   
 		
 		
 		<link rel="stylesheet" href="lib/codemirror/addon/dialog/dialog.css" >
@@ -446,7 +456,6 @@
 		<script src="js/broadcast.js"></script>
 		<script src="js/tree.js"></script>
 		<script src="js/tabs.js"></script>
-		<!--script src="js/mini.js"></script-->
 		<script src="js/ready.js"></script>
 		
 		<!--

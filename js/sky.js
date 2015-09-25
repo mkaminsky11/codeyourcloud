@@ -20,6 +20,7 @@ sky.load = function(){
 	});
 	
 	WL.getLoginStatus(function(response) {
+		console.log(response);
 		//response.status
 		sky.loaded = true;
 		if(response.status === "connected"){
@@ -126,7 +127,7 @@ sky.updateFile = function(id, body, callback){
     var xhr = new XMLHttpRequest();
     xhr.open('PUT', url);
     xhr.onload = function () {
-        callback();
+        callback(xhr.response);
     };
     xhr.onerror = function (error) {
     };

@@ -11,6 +11,8 @@
 * manages the file tree
 */
 
+var tree = {};
+
 //not yet functional
 function show_tree_open(){
 	$("#tree-open").fadeIn();
@@ -80,7 +82,7 @@ function get_tree(id){
 			var title = data[i].title;
 			var icon = '<i class="fa fa-align-left"></i>'; //the default
 			if(typeof title !== 'undefined'){
-				icon = getIconByTitle(title);
+				icon = tree.getIconByTitle(title);
 				
 				var to_push = "<li data-tree-li='" +data[i].id+ "' class='tree-file'>"+"<span onclick='toggle_tree_file(\""+data[i].id+"\")'>" + icon + title + "</span>"+"</li>";
 				
@@ -142,9 +144,9 @@ function toggle_tree_file(id){
 	}
 }
 
-function getIconByTitle(title){
+tree.getIconByTitle = function(title){
 	var icon = '<i class="fa fa-align-left"></i>';
-	var ext_info = extension(title.toLowerCase());
+	var ext_info = manager.extension(title.toLowerCase());
 	var ext = ext_info.ext;
 	var hidden = ext_info.hidden;
 	//custom icons with custom colors!
@@ -217,8 +219,9 @@ function getIconByTitle(title){
 	else if(ext === "dart"){
 		icon = '<i class="devicons devicons-dart" style="color:#3498DB"></i>';
 	}
-	//else if(title.toLowerCase().indexOf(".html") !== -1 || title.toLowerCase().indexOf(".js") !== -1){
-	//	icon = '<i class="fa fa-file-code-o"></i>';
-	//}
 	return icon;
+}
+
+tree.getClassFromIcon = function(icon_html){
+	return icon_html;
 }

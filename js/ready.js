@@ -59,11 +59,6 @@ $(document).ready(function(){
 	}
 	editor().refresh(); //so that it fits the div wall
 	
-	//INITIALIZES THE MINIMAP
-	
-	//mini.mini();
-	//$(".mini").css("background-color",$(".CodeMirror").css("background-color"));
-	
 	//SETUP THEME
 	if(localStorage.getItem("theme") !== null && themes_name.indexOf(localStorage.getItem("theme")) !== -1){
 		setTheme(localStorage.getItem("theme"));

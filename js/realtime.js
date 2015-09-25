@@ -32,7 +32,10 @@ function init(){
 				cloud_use = "sky";
 			}
 			else{
-				window.location = "https://codeyourcloud.com/about";
+				console.log("redirect for skydrive");
+				if(window.location.href.indexOf("no=true") === -1){
+					window.location = "https://codeyourcloud.com/about";
+				}
 			}
 		}
 		else if(window.location.href.indexOf("?drive=true") !== -1 || window.location.href.indexOf("%22action%22:%22") !== -1 || window.location.href.indexOf("#state=/profile&access_token=") !== -1){
@@ -41,7 +44,10 @@ function init(){
 				//all good!
 			}
 			else{
-				window.location = "https://codeyourcloud.com/about";
+				console.log("redirect for drive");
+				if(window.location.href.indexOf("no=true") === -1){
+					window.location = "https://codeyourcloud.com/about";
+				}
 			}
 		}
 		else{
@@ -56,7 +62,10 @@ function init(){
 				//all good! -> prioritize drive
 			}
 			else{
-				window.location = "https://codeyourcloud.com/about";
+				console.log("redirect for none");
+				if(window.location.href.indexOf("no=true") === -1){
+					window.location = "https://codeyourcloud.com/about";
+				}
 			}
 		}
 		
@@ -113,11 +122,13 @@ function save(){
 		        
 		        request.execute(function(resp) {
 		            drive.updateFile(current_file,resp,blob, function(resp){
+			            manager.setSaveState(resp.id, true)
 			        });
 		        });
 		    }
 		    else if(cloud_use === "sky"){
-			    sky.updateFile(current_file, content, function(){
+			    sky.updateFile(current_file, content, function(resp){
+				    console.log(resp);
 			    });
 		    }
 	    }

@@ -13,8 +13,13 @@ To allow people around the globe to collaborate on coding projects via Google Dr
 
 ###Todo
 + Run Python + other languages
-+ Icons in the tabs
-
++ Context menu on sidebar and tabs
+	+ new
+	+ delete
+	+ rename
+	+ open(?)
+	+ duplicate(?)
++ Not saved icon indicator
 =====
 
 ###Features###

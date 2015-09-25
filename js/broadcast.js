@@ -19,10 +19,13 @@ broadcast.init = function(){
 		else if(val === "0"){
 			$("#broadcast #donate").css("display","block");
 			broadcast.show();
-			localStorage.setItem("cyc-donate", 20); //countdown!
+			localStorage.setItem("cyc-donate", 15); //countdown!
 		}
 		else{
 			localStorage.setItem("cyc-donate", val - 1);
+			if(Math.floor(Math.random() * 10) === 5){
+				$("#broadcast #ad").css("display","block");
+			}
 		}
 	}	
 };
@@ -31,3 +34,10 @@ broadcast.show = function(){
 	$("#broadcast").css("opacity",0).css("display","block");
 	$("#broadcast").velocity("transition.fadeIn");	
 };
+
+broadcast.ad_ok = function(){
+	connection.send(JSON.stringify({type:"survey",vote:"yes"}));
+}
+broadcast.ad_no = function(){
+	connection.send(JSON.stringify({type:"survey",vote:"no"}));
+}

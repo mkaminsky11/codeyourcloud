@@ -60,12 +60,12 @@ function setIgnore(id, ignore){
 function setFileTitle(id, title){
 	editors[getIndex(id)].title = title;
 	$(".tab-tab[data-fileid='"+id+"']").find("h4").html(title);
-	checkMode(id, title);
+	manager.checkMode(id, title);
 	var index = getIndex(id);
 	if(current_file === id){ //if this is the file being show, you should change the title input
 		$("#title").val(editors[index].title);
 	}
-	var ext = extension(title.toLowerCase());
+	var ext = manager.extension(title.toLowerCase());
 	if(images.isImage(ext)){
 		editors[index].image = true;
 		
@@ -80,7 +80,8 @@ function setFileTitle(id, title){
 	var inner_html = $("[data-tree-li='"+id+"'] span").html().split(">");
 	inner_html[2] = title;
 	$("[data-tree-li='"+id+"'] span").html(inner_html.join(">"));
-	$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith(getIconByTitle(title));
+	$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith(tree.getIconByTitle(title));
+	$(".tab-tab[data-fileid='"+id+"']").attr("data-icon", tree.getClassFromIcon(tree.getIconByTitle(title)));
 }
 
 /**
@@ -156,8 +157,8 @@ function addTab(title, id, welcome){
   }
   else{
 	//add a new tab
-    var base = "<span class='tab-tab' data-fileid='"+id+"' onclick='opentab(\""+id+"\")'>" + getIconByTitle(title) + "<h4>" + title + "</h4>";
-    base = base + "<h6><i class='md-close' onclick='removetab(\""+id+"\")' style='float:right'></i></h6>";
+    var base = "<span class='tab-tab' data-fileid='"+id+"' onclick='opentab(\""+id+"\")'>" + tree.getIconByTitle(title) + "<h4>" + title + "</h4>";
+    base = base + "<h6><i class='zmdi zmdi-close' onclick='removetab(\""+id+"\")' style='float:right'></i></h6>";
     base = base + "</span>";
     $(".tab-container").html($(".tab-container").html() + base);
     
@@ -167,6 +168,7 @@ function addTab(title, id, welcome){
 	        codemirror = "<div class='codemirror-container' id='"+id+"' data-fileid='"+id+"' style='display:none'></div>";
     }
     $("#insert-point").after(codemirror);
+    $(".tab-tab[data-fileid='"+id+"']").attr("data-icon", tree.getClassFromIcon(tree.getIconByTitle(title)));
     
     var chat = "<div class='chats-content' data-fileid='"+id+"' style='display:none'></div>";
     if(cloud_use === "sky"){
@@ -194,7 +196,7 @@ function addTab(title, id, welcome){
          indentWithTabs: true,
          foldGutter: true,
 		 gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-		 minimap: true
+		 minimap: minimap
     });
     e.id = id;
 
@@ -207,6 +209,7 @@ function addTab(title, id, welcome){
     editor().setOption("autoCloseBrackets",true);
     editor().setOption("matchBrackets",true);
     editor().on("change", function(cm, change) {
+	    manager.setSaveState(cm.id, false);
 	    if(cloud_use === "drive"){
 	    	if(!getIgnore(cm.id)){ //if this input is not to be ignored...
 		    	sendData({
@@ -280,19 +283,20 @@ function opentab(id){
 		$("#rename_input").val("");
 	}
 	
-	//adjust things here
 	var index = getIndex(id);
 	if(editors[index].welcome){
 		//default
 		$("#title").val("Code Your Cloud");
 		$("#rename-toggle").css("display","none");
-		$("#rename_input").val("");
+		$("#title").css("border-top-right-radius","6px").css("border-bottom-right-radius","6px");
+		//switch #title to readonly
+		hide_top_rename();
 	}
 	else{
 		//a file
 		$("#title").val(editors[index].title);
 		$("#rename-toggle").css("display","inline-block");
-		$("#rename_input").val(editors[index].title);
+		$("#title").css("border-top-right-radius","0px").css("border-bottom-right-radius","0px");
 	}
 	
 	if(editors[index].image){
