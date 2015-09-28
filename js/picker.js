@@ -75,11 +75,11 @@ picker.uploadCallback = function(data){
     return false;
 };
 
-picker.download = function(){
-	if(current_file !== "welcome"){
+picker.download = function(id){
+	if(id !== "welcome"){
 		if(cloud_use === "drive"){
 			var request = gapi.client.drive.files.get({
-				'fileId': current_file
+				'fileId': id
 		  	});
 		  	request.execute(function(resp) {
 		  		window.location.assign(resp.webContentLink);
@@ -91,7 +91,7 @@ picker.download = function(){
 			});
 		}
 		else if(cloud_use === "sky"){
-			sky.getFile(current_file, function(res){
+			sky.getFile(id, function(res){
 				saveFile(res.source);
 			});
 		}
@@ -116,13 +116,13 @@ function saveFile(url) {
   xhr.send();
 }
 
-picker.share = function(){
-	if(current_file !== "welcome"){
+picker.share = function(id){
+	if(id !== "welcome"){
 		picker.purge();
 		gapi.load('drive-share', function() {
 			picker.purge();
 		    var s = new gapi.drive.share.ShareClient('953350323460')
-		    s.setItemIds(current_file)
+		    s.setItemIds(id)
 		    s.showSettingsDialog();
 		});
 	}

@@ -1,5 +1,31 @@
 var context = {};
 
+
+/*CLICK FUNCTIONS*/
+
+
+context.trash = function(){
+  manager.trash($(context.taskItemInContext).attr("data-fileid"));
+}
+
+context.save = function(){
+  manager.save($(context.taskItemInContext).attr("data-fileid"));
+}
+
+context.share = function(){
+  picker.share($(context.taskItemInContext).attr("data-fileid"));
+}
+
+context.download = function(){
+  picker.download($(context.taskItemInContext).attr("data-fileid"));
+}
+
+context.close = function(){
+  manager.removeTab($(context.taskItemInContext).attr("data-fileid"));
+}
+
+/*BACKBONE*/
+
 context.clickInsideElement = function(e, className) {
   var el = e.srcElement || e.target;
   if ( el.classList.contains(className) ) {
@@ -60,6 +86,7 @@ context.init = function() {
 
 context.contextListener = function() {
   document.addEventListener( "click", function(e) {
+    //list to click within caret
     context.taskItemInContext = context.clickInsideElement( e, context.taskItemClassName );
     if (context.taskItemInContext ) {
       e.preventDefault();
@@ -68,6 +95,11 @@ context.contextListener = function() {
     } else {
       context.taskItemInContext = null;
       context.toggleMenuOff();
+      //now, check if need to open
+      var tab_tab = context.clickInsideElement(e, "tab-tab");
+      if(tab_tab){
+        manager.openTab($(tab_tab).attr("data-fileid"));
+      }
     }
   });
 }
@@ -75,6 +107,7 @@ context.contextListener = function() {
 
 context.clickListener = function() {
   document.addEventListener( "click", function(e) {
+    //listen to click within context menu
     var clickeElIsLink = context.clickInsideElement( e, context.contextMenuLinkClassName );
     if (clickeElIsLink) {
       e.preventDefault();
@@ -126,9 +159,9 @@ context.toggleMenuOff = function() {
 
 
 context.positionMenu = function(e) {
-  context.clickCoords = context.getPosition(e);
-  context.clickCoordsX = context.clickCoords.x;
-  context.clickCoordsY = context.clickCoords.y;
+  context.clickCoords = context.taskItemInContext.getBoundingClientRect();
+  context.clickCoordsX = context.clickCoords.left + context.clickCoords.width - 25;
+  context.clickCoordsY = context.clickCoords.top + context.clickCoords.height + 10;
 
   context.menuWidth = context.menu.offsetWidth + 4;
   context.menuHeight = context.menu.offsetHeight + 4;

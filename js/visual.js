@@ -285,13 +285,6 @@ function nav_tree(){
 	}
 }
 
-function toggle_minimap(){
-	minimap = !minimap;
-	for(var i = 0; i < editors.length; i++){
-		editors[i].editor.setOption("minimap", minimap);
-	}
-}
-
 /**
 * REPL
 * javascript repl

@@ -101,51 +101,6 @@ function removeUser(id, fileid){
 	}
 }
 
-
-/**
-* SAVING
-* save and save as
-**/
-function save(){
-	if(current_file !== "welcome"){
-		var content = editor().getValue();
-		if(typeof content !== "undefined"){ //if nothing is "null"
-			if(cloud_use === "drive"){
-		        var contentArray = new Array(content.length);
-		        for (var i = 0; i < contentArray.length; i++) {
-		            contentArray[i] = content.charCodeAt(i);
-		        }
-		        var byteArray = new Uint8Array(contentArray);
-		        var blob = new Blob([byteArray], {type: 'text/plain'}); //this is the only way I could get this to work
-		        var request = gapi.client.drive.files.get({'fileId': current_file});//gets the metadata, which is left alone
-		
-		        
-		        request.execute(function(resp) {
-		            drive.updateFile(current_file,resp,blob, function(resp){
-			            manager.setSaveState(resp.id, true)
-			        });
-		        });
-		    }
-		    else if(cloud_use === "sky"){
-			    sky.updateFile(current_file, content, function(resp){
-				    console.log(resp);
-			    });
-		    }
-	    }
-	}
-}
-
-function trash(){
-	if(current_file !== "welcome"){
-		if(cloud_use === "drive"){
-			drive.trash(current_file);
-		}
-		else if(cloud_use === "sky"){
-			sky.trash(current_file);
-		}
-	}
-}
-
 function new_file(){
 	if(cloud_use === "drive"){
 		insertNewFile(drive.root);

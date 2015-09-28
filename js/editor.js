@@ -4,6 +4,130 @@
 **/
 
 var manager = {};
+
+
+manager.trash = function(id){
+	if(id !== "welcome"){
+		if(cloud_use === "drive"){
+			drive.trash(id);
+		}
+		else if(cloud_use === "sky"){
+			sky.trash(id);
+		}
+	}
+}
+
+manager.save = function(id){
+	if(id !== "welcome"){
+		var content = getEditor(id).getValue()
+		if(typeof content !== "undefined"){ //if nothing is "null"
+			if(cloud_use === "drive"){
+		        var contentArray = new Array(content.length);
+		        for (var i = 0; i < contentArray.length; i++) {
+		            contentArray[i] = content.charCodeAt(i);
+		        }
+		        var byteArray = new Uint8Array(contentArray);
+		        var blob = new Blob([byteArray], {type: 'text/plain'});
+		        var request = gapi.client.drive.files.get({'fileId': id});
+		        //gets the metadata, which is left alone
+		        request.execute(function(resp) {
+		            drive.updateFile(id,resp,blob, function(resp){
+			            manager.setSaveState(resp.id, true)
+			        });
+		        });
+		    }
+		    else if(cloud_use === "sky"){
+			    sky.updateFile(id, content, function(resp){
+				    console.log(resp);
+			    });
+		    }
+	    }
+	}
+}
+
+manager.removeTab = function(id){
+	hide_loading_spinner();	//nothing should be loading anymore
+	//remove the tab div with style!
+	$(".tab-tab[data-fileid='"+id+"']").velocity("transition.slideUpOut",{
+		duration: 400,
+		drag: true,
+		complete: function(){
+			$(".tab-tab[data-fileid='"+id+"']").remove();
+		}
+	});
+	$(".codemirror-container[data-fileid='"+id+"']").remove();
+	$(".users-container[data-fileid='"+id+"']").remove();
+  
+	var index = -1;
+	for(var i = 0; i < editors.length; i++){
+		if(editors[i].id === id){
+			index = i;
+		}
+	}
+
+	current_file = "";
+	editors.splice(index,1);
+}
+
+manager.openTab = function(id){
+	//remove .active from the current .active tab
+	$(".tab-active").removeClass("tab-active");
+	$(".tab-tab[data-fileid='"+id+"']").addClass("tab-active");
+	//remove .active from the current .active edtiro
+	$(".codemirror-active").css("display","none");
+	$(".codemirror-active").removeClass("codemirror-active");
+	//add .active to the editor to be opened
+	$(".codemirror-container[data-fileid='"+id+"']").css("display","block");
+	$(".codemirror-container[data-fileid='"+id+"']").addClass("codemirror-active");
+	//remove .active from the current .active users container
+	$(".users-container-active").css("display","none");
+	$(".users-container-active").removeClass("users-container-active");
+	//add .active
+	$(".users-container[data-fileid='"+id+"']").css("display","block");
+	$(".users-container[data-fileid='"+id+"']").addClass("users-container-active");
+	//same with chats
+	$(".chats-active").css("display","none");
+	$(".chats-active").removeClass("chats-active");
+	$(".chats-content[data-fileid='"+id+"']").css("display","block");
+	$(".chats-content[data-fileid='"+id+"']").addClass("chats-active");
+  
+	$(".CodeMirror").css("font-size","12px");
+	current_file = id;
+  
+	try{ //?
+		editor().refresh(); //try to refresh it
+	}
+	catch(e){
+		//otherwise, a file isn't open
+		//set everything to the default
+		$("#title").val("Code Your Cloud");
+		$("#rename-toggle").css("display","none");
+		$("#rename_input").val("");
+	}
+	
+	var index = getIndex(id);
+	if(editors[index].welcome){
+		//default
+		$("#title").val("Code Your Cloud");
+		$("#rename-toggle").css("display","none");
+		$("#title").css("border-top-right-radius","6px").css("border-bottom-right-radius","6px");
+		//switch #title to readonly
+		hide_top_rename();
+	}
+	else{
+		//a file
+		$("#title").val(editors[index].title);
+		$("#rename-toggle").css("display","inline-block");
+		$("#title").css("border-top-right-radius","0px").css("border-bottom-right-radius","0px");
+	}
+	
+	if(editors[index].image){
+		//TODO: fix this
+		images.init(id);	
+	}
+	adjust();
+}
+
 manager.setSaveState = function(id, state){
 	if(state === false){
 		$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith("<i class=\"fa fa-circle\" style=\"color:#FF9000\"></i>");
@@ -109,7 +233,6 @@ function themeChange(){
 	setTheme($("#theme-select").val());
 }
 function setTheme(theme){	
-	//$(".mini").css("background-color",$(".CodeMirror").css("background-color"));	
 	localStorage.setItem("theme", theme);
 	for(var i = 0; i < editors.length; i++){
 		editors[i].editor.setOption("theme",theme);
@@ -169,6 +292,13 @@ function lineWrap() {
 			editors[i].editor.setOption("lineWrapping",true);
 		}
 		line_wrap = true;
+	}
+}
+
+function toggleMinimap(){
+	minimap = !minimap;
+	for(var i = 0; i < editors.length; i++){
+		editors[i].editor.setOption("minimap", minimap);
 	}
 }
 

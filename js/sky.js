@@ -38,7 +38,7 @@ sky.load = function(){
 
 sky.loadClient = function(){
 	$("#help_button").remove();
-	$("#share-button").remove();
+	$(".share-button").remove();
 	$("#log-out").attr("href", sky.logout_url);
 	sky.getInfo();
 }

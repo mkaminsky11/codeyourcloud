@@ -1,49 +1,54 @@
 .select-box{
-	padding: 5px;
-	display: block;
-	height: 38px;
+  padding: 5px;
+  display: block;
+  height: 28px;
+}
+
+.switch-box{
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .select-box > p{
 	margin: 0;
 	float: left;
-	color: #d4cfc9;
-	font-weight: 400;
-	font-family: "Roboto";
-	font-size: 12px;
-	margin-top: 11px;
+	margin-top: 7px;
+  font-family: 'Roboto';
+  font-size: 14px;
+  color: #5E5B5B;
 }
 
 .select-box > select{
 	text-decoration: none;
-	-webkit-appearance: none;
-	background-color: transparent;
-	border: 1px solid #555;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	width: 120px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	font-size: 12px;
-	font-weight: 200;
-	color: #606060;
-	line-height: 34px;
-	padding: 0 40px 0 15px;
-	float: right;
-	/* display: block; */
-	text-decoration: none;
-	z-index: 0;
-	position: relative;
-	margin: 0;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1px solid #555;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  width: 99px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 12px;
+  font-weight: 200;
+  color: #606060;
+  line-height: 27px;
+  padding: 0px 30px 0 9px;
+  float: right;
+  /* display: block; */
+  text-decoration: none;
+  z-index: 0;
+  position: relative;
+  margin: 0;
 }
 
 .select-box > span{
-	position: absolute;
-	right: 22px;
-	margin-top: 6px;
-	color: #606060;
+  position: absolute;
+  right: 22px;
+  margin-top: 8px;
+  color: #606060;
+  font-size: 12px;
 }
 
 .select-box > .check-switch{

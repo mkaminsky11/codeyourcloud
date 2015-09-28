@@ -66,4 +66,5 @@ $(document).ready(function(){
 	}
 	
 	broadcast.init();
+	context.init();
 });

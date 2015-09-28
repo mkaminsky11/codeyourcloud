@@ -137,7 +137,7 @@ function toggle_tree_file(id){
 	}
 	if(found === true){
 		//already there, open it
-		opentab(id);
+		manager.openTab(id);
 	}
 	else{
 		addTab("loading...", id, false);

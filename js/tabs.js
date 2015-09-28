@@ -153,12 +153,12 @@ function addTab(title, id, welcome){
   
   if(found){
     //already there, open it
-    opentab(id);
+    manager.openTab(id);
   }
   else{
 	//add a new tab
-    var base = "<span class='tab-tab' data-fileid='"+id+"' onclick='opentab(\""+id+"\")'>" + tree.getIconByTitle(title) + "<h4>" + title + "</h4>";
-    base = base + "<h6><span class='context-click' data-fileid='"+id+"'><i class='zmdi zmdi-caret-down'></i></span><i class='zmdi zmdi-close' onclick='removetab(\""+id+"\")'></i></h6>";
+    var base = "<span class='tab-tab' data-fileid='"+id+"'>" + tree.getIconByTitle(title) + "<h4>" + title + "</h4>";
+    base = base + "<h6><span class='context-click' data-fileid='"+id+"'><i class='zmdi zmdi-caret-down'></i></span><i class='zmdi zmdi-close' onclick='manager.removeTab(\""+id+"\")'></i></h6>";
     base = base + "</span>";
     $(".tab-container").html($(".tab-container").html() + base);
     
@@ -227,7 +227,7 @@ function addTab(title, id, welcome){
     });
     editor().setOption("lineNumbers",line_wrap);
     editor().setOption("lineWrapping",line_number);
-    opentab(id);
+    manager.openTab(id);
     $(".CodeMirror-scroll").scroll(function(){
 	});
 	
@@ -246,90 +246,7 @@ function addTab(title, id, welcome){
   }
   
 }
-//open a tab
-function opentab(id){
-	//remove .active from the current .active tab
-	$(".tab-active").removeClass("tab-active");
-	$(".tab-tab[data-fileid='"+id+"']").addClass("tab-active");
-	//remove .active from the current .active edtiro
-	$(".codemirror-active").css("display","none");
-	$(".codemirror-active").removeClass("codemirror-active");
-	//add .active to the editor to be opened
-	$(".codemirror-container[data-fileid='"+id+"']").css("display","block");
-	$(".codemirror-container[data-fileid='"+id+"']").addClass("codemirror-active");
-	//remove .active from the current .active users container
-	$(".users-container-active").css("display","none");
-	$(".users-container-active").removeClass("users-container-active");
-	//add .active
-	$(".users-container[data-fileid='"+id+"']").css("display","block");
-	$(".users-container[data-fileid='"+id+"']").addClass("users-container-active");
-	//same with chats
-	$(".chats-active").css("display","none");
-	$(".chats-active").removeClass("chats-active");
-	$(".chats-content[data-fileid='"+id+"']").css("display","block");
-	$(".chats-content[data-fileid='"+id+"']").addClass("chats-active");
-  
-	$(".CodeMirror").css("font-size","12px");
-	current_file = id;
-  
-	try{ //?
-		editor().refresh(); //try to refresh it
-	}
-	catch(e){
-		//otherwise, a file isn't open
-		//set everything to the default
-		$("#title").val("Code Your Cloud");
-		$("#rename-toggle").css("display","none");
-		$("#rename_input").val("");
-	}
-	
-	var index = getIndex(id);
-	if(editors[index].welcome){
-		//default
-		$("#title").val("Code Your Cloud");
-		$("#rename-toggle").css("display","none");
-		$("#title").css("border-top-right-radius","6px").css("border-bottom-right-radius","6px");
-		//switch #title to readonly
-		hide_top_rename();
-	}
-	else{
-		//a file
-		$("#title").val(editors[index].title);
-		$("#rename-toggle").css("display","inline-block");
-		$("#title").css("border-top-right-radius","0px").css("border-bottom-right-radius","0px");
-	}
-	
-	if(editors[index].image){
-		//TODO: fix this
-		images.init(id);	
-	}
-	adjust();
-}
 
-//remove a tab
-function removetab(id){
-	hide_loading_spinner();	//nothing should be loading anymore
-	//remove the tab div with style!
-	$(".tab-tab[data-fileid='"+id+"']").velocity("transition.slideUpOut",{
-		duration: 400,
-		drag: true,
-		complete: function(){
-			$(".tab-tab[data-fileid='"+id+"']").remove();
-		}
-	});
-	$(".codemirror-container[data-fileid='"+id+"']").remove();
-	$(".users-container[data-fileid='"+id+"']").remove();
-  
-	var index = -1;
-	for(var i = 0; i < editors.length; i++){
-		if(editors[i].id === id){
-			index = i;
-		}
-	}
-
-	current_file = "";
-	editors.splice(index,1);
-}
 //adjust based on the file
 function adjust(){
 	var id = current_file;
