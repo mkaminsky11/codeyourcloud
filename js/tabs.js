@@ -11,6 +11,9 @@ function editor(){
   		}
 	}
 }
+function title(){
+  return editors[getIndex(current_file)].title; 
+}
 function add_editor(e, id, welcome){
 	var to_push = {
     	editor: e, //the editor instance itself
@@ -57,32 +60,6 @@ function setIgnore(id, ignore){
 		}
 	}
 }
-function setFileTitle(id, title){
-	editors[getIndex(id)].title = title;
-	$(".tab-tab[data-fileid='"+id+"']").find("h4").html(title);
-	manager.checkMode(id, title);
-	var index = getIndex(id);
-	if(current_file === id){ //if this is the file being show, you should change the title input
-		$("#title").val(editors[index].title);
-	}
-	var ext = manager.extension(title.toLowerCase());
-	if(images.isImage(ext)){
-		editors[index].image = true;
-		
-		//TODO: work on this
-		
-		if(current_file === id){
-			images.init(id); //display it as an image
-		}
-	}
-	
-	//change the title in the tree view
-	var inner_html = $("[data-tree-li='"+id+"'] span").html().split(">");
-	inner_html[2] = title;
-	$("[data-tree-li='"+id+"'] span").html(inner_html.join(">"));
-	$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith(tree.getIconByTitle(title));
-	$(".tab-tab[data-fileid='"+id+"']").attr("data-icon", tree.getClassFromIcon(tree.getIconByTitle(title)));
-}
 
 /**
 * COMMUNICATIONS
@@ -92,7 +69,6 @@ function setFileTitle(id, title){
 window.addEventListener("message", receiveMessage, false);
 function receiveMessage(event){
   if(event.data !== "!_{h:''}"){
-	  
   	var json = JSON.parse(event.data);
   	if(typeof json.s === 'undefined'){ //this makes sure that only the intended messages are getting in. There are some "background" ones
 	  	var id = json.currentfile;
@@ -102,7 +78,7 @@ function receiveMessage(event){
 		  	hide_loading_spinner();
 	  	}
 	  	else if(json.type === "title"){ //sets the title
-		  	setFileTitle(id, json.title);
+		  	manager.setFileTitle(id, json.title);
 		}
 	  	else if(json.type === "insert_text"){ //text has been inserted
 	  		setIgnore(id, true); //ignore the second one (realtime problems)

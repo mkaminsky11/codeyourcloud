@@ -24,6 +24,12 @@ context.close = function(){
   manager.removeTab($(context.taskItemInContext).attr("data-fileid"));
 }
 
+context.rename = function(){
+  var current_title = $(context.taskItemInContext).parent().parent().find("h4").text();
+  var current_title = $(context.taskItemInContext).parent().parent().find("h4").text();
+  manager.rename(current_title, $(context.taskItemInContext).attr("data-fileid"));
+}
+
 /*BACKBONE*/
 
 context.clickInsideElement = function(e, className) {

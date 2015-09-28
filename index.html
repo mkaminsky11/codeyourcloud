@@ -40,13 +40,6 @@
 		
 		<div id="side" style="display:none">
 			<div id="side-inner">
-				<div class="side-head flex-center" style="height:42px">
-						<div class="InputAddOn" id="rename-div">
-							<input id="title" value="code your cloud" placeholder="Title" class="InputAddOn-field" readonly="" onchange="ok_rename()"/>
-							<button class="InputAddOn-item" id="rename-toggle" onclick="toggle_rename_show()" style="display:none"><i class="zmdi zmdi-edit"></i></button>
-						</div>
-				</div>
-				
 				<div class="side-head" id="navigate" style="border-bottom: solid thin #424242">
 					<div class="active" id="nav_tree" onclick="nav_tree()"><i class="zmdi zmdi-folder-outline"></i></div>
 					<div id="nav_preview" onclick="nav_preview()"><i class="zmdi zmdi-eye"></i></div>
@@ -183,7 +176,8 @@
 		  <div class="tab-right">
 				<i class="zmdi zmdi-more-vert" onclick="$('#more-popup').toggle()"></i>
 				
-					<div style="display:none" id="more-popup" class="popup">
+				<div style="display:none" id="more-popup" class="popup">
+				  <span onclick="manager.currentRename()"><i class="zmdi zmdi-edit"></i> Rename</span>
       		<span onclick="manager.trash(current_file)"><i class="zmdi zmdi-delete"></i> Delete</span>
       		<span onclick="picker.share(current_file)" class="share-button"><i class="zmdi zmdi-account-add"></i> Share</span>
       		<span onclick="picker.saveAs()"><i class="zmdi zmdi-floppy"></i>Save As</span>
@@ -362,20 +356,23 @@
 		TODO: copy + paste + cut
 		-->
 		<div id="context" class="popup context-menu">
-			<span onclick="" class="context-menu__item">
-			  <a class="context-menu__link" onclick="context.trash()"><i class="zmdi zmdi-delete"></i>Delete</a>
+		  <span onclick="" class="context-menu__item">
+			  <a class="context-menu__link" onclick="context.rename()"><i class="zmdi zmdi-edit"></i> Rename</a>
 		  </span>
 			<span onclick="" class="context-menu__item">
-			  <a class="context-menu__link" onclick="context.save()"><i class="zmdi zmdi-floppy"></i>Save</a>
+			  <a class="context-menu__link" onclick="context.trash()"><i class="zmdi zmdi-delete"></i> Delete</a>
+		  </span>
+			<span onclick="" class="context-menu__item">
+			  <a class="context-menu__link" onclick="context.save()"><i class="zmdi zmdi-floppy"></i> Save</a>
 			</span>
 			<span onclick="" class="context-menu__item share-button">
-			  <a class="context-menu__link" onclick="context.share()"><i class="zmdi zmdi-account-add"></i>Share</a>
+			  <a class="context-menu__link" onclick="context.share()"><i class="zmdi zmdi-account-add"></i> Share</a>
 			</span>
 			<span onclick="" class="context-menu__item">
-			  <a class="context-menu__link" onclick="context.download()"><i class="zmdi zmdi-download"></i>Download</a>
+			  <a class="context-menu__link" onclick="context.download()"><i class="zmdi zmdi-download"></i> Download</a>
 			</span>
 			<span onclick="" class="context-menu__item">
-			  <a class="context-menu__link" onclick="context.close()"><i class="zmdi zmdi-close"></i>Close</a>
+			  <a class="context-menu__link" onclick="context.close()"><i class="zmdi zmdi-close"></i> Close</a>
 			</span>
 		</div>
 		
@@ -389,10 +386,7 @@
 		<link rel="stylesheet" href="lib/codemirror/addon/hint/show-hint.css" >
 		<link rel="stylesheet" href="lib/codemirror/addon/tern/tern.css" >
 		<script src="lib/codemirror/addon/comment/comment.js" ></script>
-		
-		<script src="lib/codemirror/addon/comment/comment.js"></script>
 		<script src="lib/codemirror/addon/dialog/dialog.js"></script>
-		<link rel="stylesheet" href="lib/codemirror/addon/dialog/dialog.css">
 		
 		<script src="lib/codemirror/addon/edit/closebrackets.js"></script>
 		<script src="lib/codemirror/addon/edit/closetag.js"></script>
@@ -430,6 +424,7 @@
 		<link rel="stylesheet" href="lib/codemirror/addon/tern/tern.css">
 		
 		<script src="lib/codemirror/addon/search/match-highlighter.js"></script>
+		<script src="lib/codemirror/addon/scroll/annotatescrollbar.js"></script>
 		<script src="lib/codemirror/addon/search/matchesonscrollbar.js"></script>
 		<script src="lib/codemirror/addon/search/search.js"></script>
 		<script src="lib/codemirror/addon/search/searchcursor.js"></script>

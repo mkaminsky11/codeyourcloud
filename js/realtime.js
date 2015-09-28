@@ -13,12 +13,9 @@ var _init = false;
 function loadDrive(){
 	drive.load();
 }
-
-
 function loadSky(){
 	sky.load();
 }
-
 function init(){
 	if(_init === false){
 		_init = true;
@@ -107,22 +104,5 @@ function new_file(){
 	}
 	else if(cloud_use === "sky"){
 		sky.insertNewFile(sky.upload_location, (new Date()).getTime()+".txt", "");
-	}
-}
-
-/**
-* RENAMING
-* renames the file
-**/
-function ok_rename(){
-	setFileTitle(current_file, $("#title").val());
-	if(cloud_use === "drive"){
-		sendData({
-			type: "title",
-			title: $("#title").val()
-		}, current_file);
-	}
-	else if(cloud_use === "sky"){
-		sky.renameFile(current_file, $("#title").val());
 	}
 }

@@ -16,6 +16,48 @@ manager.trash = function(id){
 		}
 	}
 }
+manager.renameId = null;
+manager.rename = function(current_title, id){
+  manager.renameId = id;
+  editor().openDialog('Rename: <input type="text" style="width: 10em" class="CodeMirror-search-field" value="'+current_title+'"/>', function(new_title){
+    manager.setFileTitle(manager.renameId, new_title);
+    if(cloud_use === "drive"){
+      sendData({
+        type: "title",
+        title: new_title
+      }, manager.renameId);
+    }
+    else if(cloud_use === "sky"){
+      sky.renameFile(manager.renameId, new_title);
+    }
+  }, {});
+}
+manager.currentRename = function(){
+  manager.rename(title(), current_file);
+}
+manager.setFileTitle = function(id, title){
+	editors[getIndex(id)].title = title;
+	$(".tab-tab[data-fileid='"+id+"']").find("h4").html(title);
+	manager.checkMode(id, title);
+	var index = getIndex(id);
+	var ext = manager.extension(title.toLowerCase());
+	if(images.isImage(ext)){
+		editors[index].image = true;
+		
+		//TODO: work on this
+		
+		if(current_file === id){
+			images.init(id); //display it as an image
+		}
+	}
+	
+	//change the title in the tree view
+	var inner_html = $("[data-tree-li='"+id+"'] span").html().split(">");
+	inner_html[2] = title;
+	$("[data-tree-li='"+id+"'] span").html(inner_html.join(">"));
+	$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith(tree.getIconByTitle(title));
+	$(".tab-tab[data-fileid='"+id+"']").attr("data-icon", tree.getClassFromIcon(tree.getIconByTitle(title)));
+}
 
 manager.save = function(id){
 	if(id !== "welcome"){
@@ -100,27 +142,9 @@ manager.openTab = function(id){
 	catch(e){
 		//otherwise, a file isn't open
 		//set everything to the default
-		$("#title").val("Code Your Cloud");
-		$("#rename-toggle").css("display","none");
-		$("#rename_input").val("");
 	}
 	
 	var index = getIndex(id);
-	if(editors[index].welcome){
-		//default
-		$("#title").val("Code Your Cloud");
-		$("#rename-toggle").css("display","none");
-		$("#title").css("border-top-right-radius","6px").css("border-bottom-right-radius","6px");
-		//switch #title to readonly
-		hide_top_rename();
-	}
-	else{
-		//a file
-		$("#title").val(editors[index].title);
-		$("#rename-toggle").css("display","inline-block");
-		$("#title").css("border-top-right-radius","0px").css("border-bottom-right-radius","0px");
-	}
-	
 	if(editors[index].image){
 		//TODO: fix this
 		images.init(id);	

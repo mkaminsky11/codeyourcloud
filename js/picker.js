@@ -132,11 +132,11 @@ picker.saveDest = "";
 
 picker.saveAs = function(){
 	if(cloud_use === "drive"){
-		$("#file-name").val($("#title").val());
+		$("#file-name").val(title());
 		$('#saveas-overlay').velocity('transition.slideDownIn');
 	}
 	else if(cloud_use === "sky"){
-		$("#file-name").val($("#title").val());
+		$("#file-name").val(title());
 		$('#saveas-overlay').velocity('transition.slideDownIn');
 	}
 };
