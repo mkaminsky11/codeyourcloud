@@ -83,12 +83,12 @@ function get_tree(id){
 			var icon = '<i class="fa fa-align-left"></i>'; //the default
 			if(typeof title !== 'undefined'){
 				icon = tree.getIconByTitle(title);
-				
-				var to_push = "<li data-tree-li='" +data[i].id+ "' class='tree-file'>"+"<span onclick='toggle_tree_file(\""+data[i].id+"\")'>" + icon + title + "</span>"+"</li>";
+				var caret = "";//"<span class='context-click' data-fileid='"+data[i].id+"'><i class='zmdi zmdi-caret-down'></i></span>";
+				var to_push = "<li data-tree-li='" +data[i].id+ "' class='tree-file'>"+"<span onclick='toggle_tree_file(\""+data[i].id+"\")'>" + icon + title + caret + "</span>"+"</li>";
 				
 				if(data[i].folder === true){
 					icon = "<i class='fa fa-folder'></i>";
-					to_push = "<li data-tree-li='"+data[i].id+"' class='tree-folder'><span onclick='toggle_tree_folder(\""+data[i].id+"\")'>" + icon + title + "</span><ul data-tree-ul='"+data[i].id+"' style='display:none'></ul></li>";
+					to_push = "<li data-tree-li='"+data[i].id+"' class='tree-folder'><span onclick='toggle_tree_folder(\""+data[i].id+"\")'>" + icon + title + caret + "</span><ul data-tree-ul='"+data[i].id+"' style='display:none'></ul></li>";
 				}
 				ret = ret + to_push;
 			}

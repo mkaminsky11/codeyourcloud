@@ -41,16 +41,6 @@ manager.setFileTitle = function(id, title){
 	manager.checkMode(id, title);
 	var index = getIndex(id);
 	var ext = manager.extension(title.toLowerCase());
-	if(images.isImage(ext)){
-		editors[index].image = true;
-		
-		//TODO: work on this
-		
-		if(current_file === id){
-			images.init(id); //display it as an image
-		}
-	}
-	
 	//change the title in the tree view
 	var inner_html = $("[data-tree-li='"+id+"'] span").html().split(">");
 	inner_html[2] = title;
@@ -136,18 +126,12 @@ manager.openTab = function(id){
 	$(".CodeMirror").css("font-size","12px");
 	current_file = id;
   
-	try{ //?
-		editor().refresh(); //try to refresh it
+	try{
+		editor().refresh(); 
 	}
 	catch(e){
 		//otherwise, a file isn't open
 		//set everything to the default
-	}
-	
-	var index = getIndex(id);
-	if(editors[index].image){
-		//TODO: fix this
-		images.init(id);	
 	}
 	adjust();
 }

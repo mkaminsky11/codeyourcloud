@@ -98,6 +98,7 @@ context.contextListener = function() {
       e.preventDefault();
       context.toggleMenuOn();
       context.positionMenu(e);
+	  context.setId($(context.taskItemInContext).attr("data-fileid"));
     } else {
       context.taskItemInContext = null;
       context.toggleMenuOff();
@@ -116,7 +117,7 @@ context.clickListener = function() {
     //listen to click within context menu
     var clickeElIsLink = context.clickInsideElement( e, context.contextMenuLinkClassName );
     if (clickeElIsLink) {
-      e.preventDefault();
+      //e.preventDefault();
       context.menuItemListener( clickeElIsLink );
     } else {
       if(context.clickInsideElement( e, context.taskItemClassName )){
@@ -190,4 +191,8 @@ context.positionMenu = function(e) {
 
 context.menuItemListener = function( link ) {
     context.toggleMenuOff();
+}
+
+context.setId = function(id){
+	$(".side-drive-context-link").attr("href","https://drive.google.com/file/d/" + id + "/view?usp=drivesdk");
 }

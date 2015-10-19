@@ -34,7 +34,7 @@ $(document).ready(function(){
 		}
 	}
 	txtFile.send(null);
-	add_editor(e, "welcome", true);
+	addEditor(e, "welcome", true);
 	current_file = "welcome";
 	editor().on("beforeSelectionChange", function(cm, selection){});
 	editor().on("change", function(cm, change) {

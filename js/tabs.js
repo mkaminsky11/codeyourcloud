@@ -3,6 +3,10 @@
 * manages the tabs and their editors
 ===*/
 
+//resp.alternateLink
+//TODO: ^ + alert if quit without save
+
+
 //returns the editor currently shown
 function editor(){
 	for(var i = 0; i < editors.length; i++){
@@ -14,7 +18,7 @@ function editor(){
 function title(){
   return editors[getIndex(current_file)].title; 
 }
-function add_editor(e, id, welcome){
+function addEditor(e, id, welcome){
 	var to_push = {
     	editor: e, //the editor instance itself
     	id: id,
@@ -128,14 +132,12 @@ function addTab(title, id, welcome){
   }
   
   if(found){
-    //already there, open it
     manager.openTab(id);
   }
   else{
 	//add a new tab
     var base = "<span class='tab-tab' data-fileid='"+id+"'>" + tree.getIconByTitle(title) + "<h4>" + title + "</h4>";
-    base = base + "<h6><span class='context-click' data-fileid='"+id+"'><i class='zmdi zmdi-caret-down'></i></span><i class='zmdi zmdi-close' onclick='manager.removeTab(\""+id+"\")'></i></h6>";
-    base = base + "</span>";
+    base = base + "<h6><span class='context-click' data-fileid='"+id+"'><i class='zmdi zmdi-caret-down'></i></span><i class='zmdi zmdi-close' onclick='manager.removeTab(\""+id+"\")'></i></h6><span>";
     $(".tab-container").html($(".tab-container").html() + base);
     
     //add a new codemirror
@@ -176,7 +178,7 @@ function addTab(title, id, welcome){
     });
     e.id = id;
 
-    add_editor(e, id, welcome);
+    addEditor(e, id, welcome);
     current_file = id; //open it up
     //configure the editor
     editor().on("beforeSelectionChange", function(cm, selection){
@@ -208,9 +210,6 @@ function addTab(title, id, welcome){
 	});
 	
 	if(cloud_use === "sky"){
-		//getEditor(id).setValue(json.value);
-		//hide_loading_spinner();
-		//setFileTitle(id, json.title);
 		sky.getFile(id, function(data){
 			hide_loading_spinner();
 			setFileTitle(id, data.name);
@@ -246,10 +245,11 @@ function adjust(){
 	
 	//set publish link
 	if(cloud_use === "drive"){
-		$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + drive.id + "/index.html"); 
+		$(".side-pub-link").attr("href","https://codeyourcloud.com/pub/" + drive.id + "/index.html"); 
+		$(".side-drive-link").attr("href","https://drive.google.com/file/d/" + current_file + "/view?usp=drivesdk");
 	}
 	else if(cloud_use === "sky"){
-		$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + sky.id + "/index.html"); 
+		$(".side-pub-link").attr("href","https://codeyourcloud.com/pub/" + sky.id + "/index.html"); 
 	}
 	
 	if(mode === "text/javascript"){
@@ -264,10 +264,10 @@ function adjust(){
 	else if(mode === "text/x-latex" || mode === "text/x-stex"){
 		$(".side-pub").removeClass("hide");
 		if(cloud_use === "drive"){
-			$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + drive.id + "/" + current_file + ".pdf");
+			$(".side-pub-link").attr("href","https://codeyourcloud.com/pub/" + drive.id + "/" + current_file + ".pdf");
 		}
 		else if(cloud_use === "sky"){
-			$("#side-pub-link").attr("href","https://codeyourcloud.com/pub/" + sky.id + "/" + current_file + ".pdf");
+			$(".side-pub-link").attr("href","https://codeyourcloud.com/pub/" + sky.id + "/" + current_file + ".pdf");
 		}
 	}
 	else if(mode === "text/x-markdown" || mode === "gfm" || mode === "markdown"){

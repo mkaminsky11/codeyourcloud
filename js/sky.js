@@ -76,7 +76,8 @@ sky.getInfo = function(){
 		});
 		
 		try{
-			$("#side-pub-link").attr("href", "https://codeyourcloud.com/pub/"+sky.id+"/index.html");
+			$(".side-pub-link").attr("href", "https://codeyourcloud.com/pub/"+sky.id+"/index.html");
+			$(".side-drive").css("display","none");
 		}
 		catch(e){}
 		

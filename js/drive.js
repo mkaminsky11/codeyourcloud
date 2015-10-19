@@ -83,7 +83,7 @@ drive.getInfo = function(){
         }
         try{
             drive.id = resp.user.permissionId;
-            $("#side-pub-link").attr("href", "https://codeyourcloud.com/pub/"+drive.id+"/index.html");
+            $(".side-pub-link").attr("href", "https://codeyourcloud.com/pub/"+drive.id+"/index.html");
             
         }
         catch(e){}
