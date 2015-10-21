@@ -120,7 +120,7 @@ context.clickListener = function() {
       //e.preventDefault();
       context.menuItemListener( clickeElIsLink );
     } else {
-      if(context.clickInsideElement( e, context.taskItemClassName )){
+      if(context.clickInsideElement( e, context.taskItemInContext )){
         
       }
       else{

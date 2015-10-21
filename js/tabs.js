@@ -228,9 +228,11 @@ function adjust(){
 	if(id === "welcome"){ //default
 		$(".side-file").css("display","none"); //nothing file-specific should be shown
 		$("#chat-popup").slideUp(); //can't chat in the welcome message
+		$("#share-button").css("display","none");
 	}
 	else{	
 			$(".side-file").css("display","inline-block");
+			$("#share-button").css("display","inline-block");
 	}
 	var mode = editor().getOption("mode");
 	try{	
@@ -240,8 +242,8 @@ function adjust(){
 	}
 	catch(e){}
 	
-	$(".side-run").addClass("hide"); //can't run anything
-	$(".side-pub").addClass("hide"); //can't publish anything
+	$(".side-run").css("display","none"); //can't run anything
+	$(".side-pub").css("display","none"); //can't publish anything
 	
 	//set publish link
 	if(cloud_use === "drive"){
@@ -253,16 +255,16 @@ function adjust(){
 	}
 	
 	if(mode === "text/javascript"){
-		$(".side-run").removeClass("hide"); //can run javascript
+		$(".side-run").css("display","inline-block"); //can run javascript
 	}
 	else if(mode === "text/x-coffeescript"){
-		$(".side-run").removeClass("hide"); //can run coffeescript
+		$(".side-run").css("display","inline-block"); //can run coffeescript
 	}
 	else if(mode === "text/html"){
-		$(".side-pub").removeClass("hide"); //can publish html
+		$(".side-pub").css("display","inline-block");; //can publish html
 	}
 	else if(mode === "text/x-latex" || mode === "text/x-stex"){
-		$(".side-pub").removeClass("hide");
+		$(".side-pub").css("display","inline-block");;
 		if(cloud_use === "drive"){
 			$(".side-pub-link").attr("href","https://codeyourcloud.com/pub/" + drive.id + "/" + current_file + ".pdf");
 		}
@@ -271,7 +273,7 @@ function adjust(){
 		}
 	}
 	else if(mode === "text/x-markdown" || mode === "gfm" || mode === "markdown"){
-		$(".side-pub").removeClass("hide"); //can publish markdown
+		$(".side-pub").css("display","inline-block"); //can publish markdown
 	}
 	editor().setOption("gutters", ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]);
 }

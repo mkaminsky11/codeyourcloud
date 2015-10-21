@@ -108,7 +108,7 @@ drive.trash = function(fileId){
 	});
 	request.execute(function(resp) {
 		if(!resp.error){
-			removetab(fileId);
+			manager.removeTab(fileId);
 			get_tree(drive.root);
 		}
 	});

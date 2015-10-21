@@ -45,7 +45,6 @@
 					<div id="nav_preview" onclick="nav_preview()"><i class="zmdi zmdi-eye"></i></div>
 					<div id="nav_terminal" onclick="nav_terminal()"><i class="fa fa-terminal"></i></div>
 					<div id="nav_lorem" onclick="nav_lorem()" style="display:none"><i class="fa fa-font"></i></div>
-					<div id="nav_options" onclick="nav_options()"><i class="zmdi zmdi-settings"></i></div>
 				</div>
 				
 				<iframe style="display:none" class="preview preview-frame" id="preview"></iframe>
@@ -63,8 +62,66 @@
 				<div class="tree tree-tree"><ul class="root-tree"></ul></div>
 				
 				<div class="terminal" style="display:none"><iframe src="lib/codemirror-repl/index.html" id="repl-iframe" onclick="setFocusThickboxIframe()"></iframe></div>
+			</div>
+		</div>
+
+		
+		<nav id="nav" class="navbar navbar-inverse nav-1 move" role="navigation">
+      		<div class="navbar-header"></div>
+        	<div class="" id="navbar-collapse-01" style="width: 99%;">
+        	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">          	  	
+        	  	<span id="toggle_side_menu_button" onclick="toggle_side()"><i class="fa fa-dot-circle-o"></i></span>
 				
-				<div id="opt" class="options" style="display:none">
+        	  </ul>
+        	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
+	        	  <div id="nav-outline">
+		        	<span id="help_button" class="side-file" onclick='$("#chat-popup").slideToggle()'><i class="zmdi zmdi-comments"></i></span>
+		        	<span id="open_button" onclick="picker.open()" data-step="2" data-intro='This will open up the file chooser'><i class="zmdi zmdi-folder-outline"></i></span>
+	        	  	<span id="save_button" class="side-file" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'><i class="zmdi zmdi-floppy"></i></span>
+	        	  	<span id="undo_button" onclick="editorUndo()"><i class="zmdi zmdi-undo"></i></span>
+	        	  	<span id="redo_button" onclick="editorRedo()"><i class="zmdi zmdi-redo"></i></span>
+	        	  </div>
+        	  	
+			  	<div id="profile_div"><img id="profile_pic" src="" height="30px" width="30px"></div>
+        	  </ul>
+        	</div>
+      	</nav>
+	
+	  	
+	<div style="width:100%;height:calc(100% - 15px);position:fixed;z-index: 0;" class="move">
+		<div class="tab-wrapper" data-step="4" data-intro='This allows you to switch between files using tabs' data-position="bottom">
+			<div class="tab-container">
+				<span class="tab-tab tab-active" data-fileid="welcome" onclick="manager.openTab('welcome')">
+					<i class="fa fa-align-left"></i>
+					<h4>Welcome</h4>
+					<h6>
+						<i class="zmdi zmdi-close" onclick="manager.removeTab('welcome')"></i>
+					</h6>
+				</span>
+			</div>
+			
+			<div class="tab-right" style="">
+				<i class="zmdi zmdi-search" onclick="$('#search-popup').toggle()"></i>
+				
+					<div style="display:none" id="search-popup" class="popup">
+        		<span onclick="find()">Find</span>
+        		<span onclick="replace()">Replace</span>
+        	</div>
+			</div>
+			
+			<div id="plus-plus" class="tab-right">
+				<i class="zmdi zmdi-plus" onclick="$('#new-popup').toggle();"></i>
+				
+					<div style="display:none" id="new-popup" class="popup">
+        		<span onclick="new_file()">New File</span>
+        		<span onclick="picker.open();">Open File</span>
+        		<span onclick="icker.upload();">Upload File</span>
+        	</div>
+			</div>
+			
+			<div class="tab-right">
+			  <i class="zmdi zmdi-settings" onclick="$('#setting-popup').toggle()"></i>
+			  <div style="display:none" id="setting-popup" class="popup">
 					<div class="select-box">
 						<p>Language</p>
 						<span><i class="fa fa-caret-down"></i></span>
@@ -98,95 +155,45 @@
 						    <input type="checkbox" id="side-wrap" checked>
 						    <span onclick="lineWrap()"></span>
 						</label>	
-					</div>			
-				</div>
-				
-				<div id="lorem" style="display:none" class="lorem" data-lorem="6s"></div>
-				<div id="lorem-div" style="display:none" class="lorem"><input id="lorem_input" value="6" onchange="generate()"/></div>
-			</div>
-		</div>
-
-		
-		<nav id="nav" class="navbar navbar-inverse nav-1 move" role="navigation">
-      		<div class="navbar-header"></div>
-        	<div class="" id="navbar-collapse-01" style="width: 99%;">
-        	  <ul class="nav navbar-nav n-l" style="display: flex;float:left">          	  	
-        	  	<span id="toggle_side_menu_button" onclick="toggle_side()"><i class="fa fa-dot-circle-o"></i></span>
-				
-        	  </ul>
-        	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
-	        	  <div id="nav-outline">
-		        	<span id="help_button" class="side-file" onclick='$("#chat-popup").slideToggle()'><i class="zmdi zmdi-comments"></i></span>
-		        	<span id="open_button" onclick="picker.open()" data-step="2" data-intro='This will open up the file chooser'><i class="zmdi zmdi-folder-outline"></i></span>
-	        	  	<span id="save_button" class="side-file" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'><i class="zmdi zmdi-floppy"></i></span>
-	        	  	<span id="undo_button" onclick="editorUndo()"><i class="zmdi zmdi-undo"></i></span>
-	        	  	<span id="redo_button" onclick="editorRedo()"><i class="zmdi zmdi-redo"></i></span>
-	        	  </div>
-        	  	
-			  	<div id="profile_div"><img id="profile_pic" src="" height="30px" width="30px"></div>
-        	  </ul>
-        	</div>
-      	</nav>
-	
-	  	
-	<div style="width:100%;height:calc(100% - 15px);position:fixed;z-index: 0;" class="move">
-		<div class="tab-wrapper" data-step="4" data-intro='This allows you to switch between files using tabs' data-position="bottom">
-			<div class="tab-container">
-				<span class="tab-tab tab-active" data-fileid="welcome" onclick="opentab('welcome')">
-					<i class="fa fa-align-left"></i>
-					<h4>Welcome</h4>
-					<h6>
-						<i class="zmdi zmdi-close" onclick="removetab('welcome')"></i>
-					</h6>
-				</span>
-			</div>
-			
-			<div class="tab-right" onclick="$('#search-popup').toggle()" style="">
-				<i class="zmdi zmdi-search"></i>
-				
-					<div style="display:none" id="search-popup" class="popup">
-        		<span onclick="$('#search-popup').toggle();find()">Find</span>
-        		<span onclick="$('#search-popup').toggle();replace()">Replace</span>
-        	</div>
-			</div>
-			
-			<div id="plus-plus" class="tab-right" onclick="$('#new-popup').toggle();" data-step="5" data-intro='And to create new files' data-position="left">
-				<i class="zmdi zmdi-plus"></i>
-				
-					<div style="display:none" id="new-popup" class="popup">
-        		<span onclick="$('#new-popup').toggle();new_file()">New File</span>
-        		<span onclick="$('#new-popup').toggle();picker.open();">Open File</span>
-        		<span onclick="$('#new-popup').toggle();picker.upload();">Upload File</span>
-        	</div>
+					</div>
+					
+					<div class="select-box">
+					  <p>Minimap</p>
+					  <label class="check-switch" id="side-minimap-label">
+					    <input type="checkbox" id="side-minimap" checked>
+					    <span onclick="toggleMinimap()"></span>
+					  </label>
+					</div>
+			  </div>
 			</div>
 
 			
-			<div class="tab-right" style="" onclick="$('#more-popup').toggle()">
-			<i class="zmdi zmdi-more-vert"></i>	
-			<div style="display:none" id="more-popup" class="popup">
-				<span onclick="drive.trash(current_file)"><i class="zmdi zmdi-delete"></i> Delete</span>
-				<span onclick="picker.share()" id="share-button"><i class="zmdi zmdi-account-add"></i> Share</span>
-				<span onclick="picker.saveAs()"><i class="zmdi zmdi-floppy"></i>Save As</span>
-				<span onclick="picker.download()"><i class="zmdi zmdi-download"></i>Download</span>
-				<span class="side-pub" onclick="publish_html()"><i class="zmdi zmdi-upload"></i>Publish</span>
-				<span class="side-pub">
-					<a class="side-pub-link" href="" target="_blank" style="text-decoration: none;">
-						<i class="zmdi zmdi-link"></i>Go to Site
-					</a>
-				</span>
-				<span class="side-drive side-file">
-					<a class="side-drive-link" href="" target="_blank" style="text-decoration:none">
-						<i class="zmdi zmdi-google-drive"></i>Open in Google Drive
-					</a>
-				</span>
-				<span class="side-run" onclick="run()"><i class="zmdi zmdi-play"></i>Run</span>
-				<span>
-					<a href="https://accounts.google.com/logout" style="text-decoration: none;" id="log-out">
-						<i class="zmdi zmdi-square-right"></i>Log Out
-					</a>
-				</span>
-			</div>
-		</div>
+			<div class="tab-right">
+  			<i class="zmdi zmdi-more-vert" onclick="$('#more-popup').toggle()"></i>	
+  			<div style="display:none" id="more-popup" class="popup">
+  				<span onclick="drive.trash(current_file)"><i class="zmdi zmdi-delete"></i> Delete</span>
+  				<span onclick="picker.share()" id="share-button"><i class="zmdi zmdi-account-add"></i> Share</span>
+  				<span onclick="picker.saveAs()"><i class="zmdi zmdi-floppy"></i>Save As</span>
+  				<span onclick="picker.download()"><i class="zmdi zmdi-download"></i>Download</span>
+  				<span class="side-pub" onclick="publish_html()"><i class="zmdi zmdi-upload"></i>Publish</span>
+  				<span class="side-pub">
+  					<a class="side-pub-link" href="" target="_blank" style="text-decoration: none;">
+  						<i class="zmdi zmdi-link"></i>Go to Site
+  					</a>
+  				</span>
+  				<span class="side-drive side-file">
+  					<a class="side-drive-link" href="" target="_blank" style="text-decoration:none">
+  						<i class="zmdi zmdi-google-drive"></i>Open in Google Drive
+  					</a>
+  				</span>
+  				<span class="side-run" onclick="run()"><i class="zmdi zmdi-play"></i>Run</span>
+  				<span>
+  					<a href="https://accounts.google.com/logout" style="text-decoration: none;" id="log-out">
+  						<i class="zmdi zmdi-square-right"></i>Log Out
+  					</a>
+  				</span>
+  			</div>
+  		</div>
 		</div>
 		
 		<div class="mains" style="position: absolute;height: calc(100% - 75px);width: 100%;margin-top: 4px;background-color:white">

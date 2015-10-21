@@ -302,7 +302,6 @@ function lineWrap() {
 		line_wrap = true;
 	}
 }
-
 function toggleMinimap(){
 	minimap = !minimap;
 	for(var i = 0; i < editors.length; i++){

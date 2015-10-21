@@ -136,7 +136,7 @@ sky.updateFile = function(id, body, callback){
 }
 
 sky.trash = function(id){
-	removetab(id);
+	manager.removeTab(id);
 	get_tree(sky.root);
 	WL.api({
     	path: id,
