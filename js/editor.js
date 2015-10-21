@@ -5,6 +5,14 @@
 
 var manager = {};
 
+manager.allSaved = function(){
+	for(var i = 0; i < editors.length; i++){
+		if(editors[i].saved === false){
+			return false;
+		}
+	}
+	return true;
+}
 
 manager.trash = function(id){
 	if(id !== "welcome"){
@@ -78,6 +86,18 @@ manager.save = function(id){
 }
 
 manager.removeTab = function(id){
+	if(editors[getIndex(id)].saved === false){
+		if (confirm('You have unsaved work. Do you really want to close this file?')) {
+		    manager.reallyRemove(id);
+		} else {
+		}
+	}
+	else{
+		manager.reallyRemove(id);
+	}
+}
+
+manager.reallyRemove = function(id){
 	hide_loading_spinner();	//nothing should be loading anymore
 	//remove the tab div with style!
 	$(".tab-tab[data-fileid='"+id+"']").velocity("transition.slideUpOut",{
@@ -89,14 +109,14 @@ manager.removeTab = function(id){
 	});
 	$(".codemirror-container[data-fileid='"+id+"']").remove();
 	$(".users-container[data-fileid='"+id+"']").remove();
-  
+	 
 	var index = -1;
 	for(var i = 0; i < editors.length; i++){
 		if(editors[i].id === id){
 			index = i;
 		}
 	}
-
+	
 	current_file = "";
 	editors.splice(index,1);
 }
@@ -137,6 +157,7 @@ manager.openTab = function(id){
 }
 
 manager.setSaveState = function(id, state){
+	editors[getIndex(id)].saved = state;
 	if(state === false){
 		$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith("<i class=\"fa fa-circle\" style=\"color:#FF9000\"></i>");
 	}
@@ -274,60 +295,51 @@ $("#font-select").val("12");
 * OPTIONS
 * line numbers, line wrap, font size
 **/
-function lineNumber() {
-	if(line_number){
-		for(var i = 0; i < editors.length; i++){
-			editors[i].editor.setOption("lineNumbers",false);
-		}
-		line_number = false;
-	}
-	else{
-		for(var i = 0; i < editors.length; i++){
-			editors[i].editor.setOption("lineNumbers",true);
-		}
-		line_number = true;
-	}
-}
-function lineWrap() {
-	if(editor().getOption("lineWrapping")){
-		for(var i = 0; i < editors.length; i++){
-			editors[i].editor.setOption("lineWrapping",false);
-		}
-		line_wrap = false;
-	}	
-	else{
-		for(var i = 0; i < editors.length; i++){
-			editors[i].editor.setOption("lineWrapping",true);
-		}
-		line_wrap = true;
-	}
-}
-function toggleMinimap(){
-	minimap = !minimap;
+
+var settings = {};
+settings.lineNumber = function(){
+	this.state.lineNumber = !this.state.lineNumber;
 	for(var i = 0; i < editors.length; i++){
-		editors[i].editor.setOption("minimap", minimap);
+		editors[i].editor.setOption("lineNumbers", this.state.lineNumber);
+	}	
+}
+
+settings.lineWrap = function(){
+	this.state.lineWrap = !this.state.lineWrap;
+	for(var i = 0; i < editors.length; i++){
+		editors[i].editor.setOption("lineWrapping", this.state.lineWrap);
+	}	
+}
+
+settings.minimap = function(){
+	this.state.minimap = !this.state.minimap;
+	for(var i = 0; i < editors.length; i++){
+		editors[i].editor.setOption("minimap", this.state.minimap);
 	}
 }
+
+settings.state = {
+	lineNumber: true,
+	lineWrap: true,
+	minimap: true
+};
 
 /**
 * HINTS
 * hints and autocomplete
 **/
 function getHint(){
-	if(editor().getOption("mode") === "text/javascript"){
-		server.updateArgHints(editor());
-	}
-	else if(editor().getOption("mode") === "text/css"){
-		CodeMirror.showHint(editor(), CodeMirror.hint.css);
-	}
-	else if(editor().getOption("mode") === "text/html"){
-		CodeMirror.showHint(editor(), CodeMirror.hint.html);
-	}
-	else if(editor().getOption("mode") === "text/x-python"){
-		CodeMirror.showHint(editor(), CodeMirror.hint.python);
-	}
-	else if(editor().getOption("mode") === "text/x-sql"){
-		CodeMirror.showHint(editor(), CodeMirror.hint.sql);
+	switch(editor().getOption("mode")){
+		case "text/javascript":
+			server.updateArgHints(editor());
+		case "text/css":
+			CodeMirror.showHint(editor(), CodeMirror.hint.css);
+		case "text/html":
+			CodeMirror.showHint(editor(), CodeMirror.hint.html);
+		case "text/x-python":
+			CodeMirror.showHint(editor(), CodeMirror.hint.python);
+		case "text/x-sql":
+			CodeMirror.showHint(editor(), CodeMirror.hint.sql);
 	}
 }
 //JAVASCRIPT

@@ -77,7 +77,7 @@
 	        	  <div id="nav-outline">
 		        	<span id="help_button" class="side-file" onclick='$("#chat-popup").slideToggle()'><i class="zmdi zmdi-comments"></i></span>
 		        	<span id="open_button" onclick="picker.open()" data-step="2" data-intro='This will open up the file chooser'><i class="zmdi zmdi-folder-outline"></i></span>
-	        	  	<span id="save_button" class="side-file" onclick="save()" data-step="3" data-intro='You can also save the file you are working on'><i class="zmdi zmdi-floppy"></i></span>
+	        	  	<span id="save_button" class="side-file" onclick="manager.save(current_file)" data-step="3" data-intro='You can also save the file you are working on'><i class="zmdi zmdi-floppy"></i></span>
 	        	  	<span id="undo_button" onclick="editorUndo()"><i class="zmdi zmdi-undo"></i></span>
 	        	  	<span id="redo_button" onclick="editorRedo()"><i class="zmdi zmdi-redo"></i></span>
 	        	  </div>
@@ -145,7 +145,7 @@
 						<p>Line Numbers</p>
 						<label class="check-switch" id="side-nums-label">
 						    <input type="checkbox" id="side-nums" checked>
-						    <span onclick="lineNumber()"></span>
+						    <span onclick="settings.lineNumber()"></span>
 						</label>	
 					</div>
 					
@@ -153,7 +153,7 @@
 						<p>Line Wrap</p>
 						<label class="check-switch" id="side-wrap-label">
 						    <input type="checkbox" id="side-wrap" checked>
-						    <span onclick="lineWrap()"></span>
+						    <span onclick="settings.lineWrap()"></span>
 						</label>	
 					</div>
 					
@@ -161,7 +161,7 @@
 					  <p>Minimap</p>
 					  <label class="check-switch" id="side-minimap-label">
 					    <input type="checkbox" id="side-minimap" checked>
-					    <span onclick="toggleMinimap()"></span>
+					    <span onclick="settings.minimap()"></span>
 					  </label>
 					</div>
 			  </div>
@@ -512,7 +512,7 @@
 			});
 			jwerty.key('ctrl+s/cmd+s', function() {
 				if(current_file !== "welcome"){
-					save();
+					manager.save(current_file);
 				}
 				else{
 					saveAs();

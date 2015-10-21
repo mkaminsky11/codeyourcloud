@@ -81,15 +81,12 @@ if(window.location.href.indexOf("?mobile=true") !== -1){
 }
 
 
-var line_wrap = false;
-var line_number = true;
 var editor_theme = "seti";
 var auto_save = true;
 var auto_save_int = 30000;	
 var sql_font = 12;
 var autoC = false;
 var side_open = false;
-var minimap = true;
 var developerKey = 'AIzaSyBTSFIgQkLly9v6Xuqc2Nqm-vX0jpyEbZk';
 
 

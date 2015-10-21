@@ -20,11 +20,12 @@ function title(){
 }
 function addEditor(e, id, welcome){
 	var to_push = {
-    	editor: e, //the editor instance itself
+    	editor: e,
     	id: id,
-    	welcome: welcome, //is it the welcome screen?
+    	welcome: welcome,
     	title: "",
-    	ignore: false //should the next change be ignored (prevent change loop)
+    	ignore: false, //should the next change be ignored (prevent change loop)
+    	saved: true
 	};
   
 	editors.push(to_push);
@@ -77,11 +78,12 @@ function receiveMessage(event){
   	if(typeof json.s === 'undefined'){ //this makes sure that only the intended messages are getting in. There are some "background" ones
 	  	var id = json.currentfile;
 	  	
-	  	if(json.type === "text"){ //sets the text
+	  	if(json.type === "text"){
 		  	getEditor(id).setValue(json.value);
+		  	editors[getIndex(id)].saved = true;
 		  	hide_loading_spinner();
 	  	}
-	  	else if(json.type === "title"){ //sets the title
+	  	else if(json.type === "title"){ 
 		  	manager.setFileTitle(id, json.title);
 		}
 	  	else if(json.type === "insert_text"){ //text has been inserted
@@ -118,10 +120,9 @@ function sendData(data, fileid){
 }
 
 function addTab(title, id, welcome){
-  if(title === "loading..."){ //this will only be true if the editor is not the welcome tab
+  if(title === "loading..."){
 	show_loading_spinner();
   }
-
   //check to see if it already exists
   //don't want to make a copy
   var found = false;
@@ -130,17 +131,13 @@ function addTab(title, id, welcome){
       found = true; 
     }
   }
-  
   if(found){
     manager.openTab(id);
   }
   else{
-	//add a new tab
     var base = "<span class='tab-tab' data-fileid='"+id+"'>" + tree.getIconByTitle(title) + "<h4>" + title + "</h4>";
     base = base + "<h6><span class='context-click' data-fileid='"+id+"'><i class='zmdi zmdi-caret-down'></i></span><i class='zmdi zmdi-close' onclick='manager.removeTab(\""+id+"\")'></i></h6><span>";
     $(".tab-container").html($(".tab-container").html() + base);
-    
-    //add a new codemirror
     var codemirror = "<div class='codemirror-container' id='"+id+"' data-fileid='"+id+"' style='display:none'><iframe src='https://codeyourcloud.com/js/logic/logic.html?id="+id+"' style='display:none' id='iframe-"+id+"'></iframe></div>"; 
     if(cloud_use === "sky"){
 	        codemirror = "<div class='codemirror-container' id='"+id+"' data-fileid='"+id+"' style='display:none'></div>";
@@ -149,38 +146,30 @@ function addTab(title, id, welcome){
     $(".tab-tab[data-fileid='"+id+"']").attr("data-icon", tree.getClassFromIcon(tree.getIconByTitle(title)));
     
     var chat = "<div class='chats-content' data-fileid='"+id+"' style='display:none'></div>";
-    if(cloud_use === "sky"){
-	    chat = "";
-    }
-    //add a div to store the chat messages in each of the locations (there may be multiple)
+    if(cloud_use === "sky"){chat = ""}
     $(".chats-store").each(function(index){
 	    $(this).html(chat + $(this).html());
 	 });
-    
-    //add a new div to store user pictures
 	var user = "<div class='users-container' data-fileid='"+id+"' style='display:none'></div>";
-	if(cloud_use === "sky"){
-		user = "";
-	}
+	if(cloud_use === "sky"){user = ""}
 	$("#users").html($("#users").html() + user);
 	
 	//actually create the new editor
     var e = CodeMirror(document.getElementById(id),{
-         lineNumbers: true,
+         lineNumbers: settings.state.lineNumber,
          mode: "text",
          theme: editor_theme,
-         lineWrapping: true, 
+         lineWrapping: settings.state.lineWrap, 
          indentUnit: 4, 
          indentWithTabs: true,
          foldGutter: true,
 		 gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-		 minimap: minimap
+		 minimap: settings.state.minimap
     });
     e.id = id;
 
     addEditor(e, id, welcome);
-    current_file = id; //open it up
-    //configure the editor
+    current_file = id;
     editor().on("beforeSelectionChange", function(cm, selection){
       set_color(editor().getSelection());	
     });
@@ -203,8 +192,8 @@ function addTab(title, id, welcome){
 		    
 	    }
     });
-    editor().setOption("lineNumbers",line_wrap);
-    editor().setOption("lineWrapping",line_number);
+    editor().setOption("lineNumbers",settings.state.lineWrap);
+    editor().setOption("lineWrapping",settings.state.lineNumber);
     manager.openTab(id);
     $(".CodeMirror-scroll").scroll(function(){
 	});
