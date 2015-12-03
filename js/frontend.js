@@ -1,3 +1,63 @@
+var connect = {
+	snippets: {}
+};
+connect.init = function(){
+	
+};
+connect.snippets.getSnippets = function(callback){
+	$.ajax("https://codeyourcloud.com/snippets",{
+		method: "GET",
+		success: function(data, textStatus, jqXHR){
+			callback(data.snippets);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			throw errorThrown;
+		}
+	});
+};
+connect.snippets.addSnippets = function(info, callback){
+	$.ajax("https://codeyourcloud.com/snippets/add",{
+		method: "POST",
+		data: info,
+		success: function(data, textStatus, jqXHR){
+			callback(data);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			throw errorThrown;
+		}
+	});
+};
+connect.snippets.removeSnippet = function(id, callback){
+	$.ajax("https://codeyourcloud.com/snippets/remove",{
+		method: "POST",
+		data: {
+			id: id	
+		},
+		success: function(data, textStatus, jqXHR){
+			callback(data);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			throw errorThrown;
+		}
+	});
+};
+connect.snippets.changeSnippet = function(id, info, callback){
+	info.id = id;
+	$.ajax("https://codeyourcloud.com/snippets/change",{
+		method: "POST",
+		data: info,
+		success: function(data, textStatus, jqXHR){
+			callback(data);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			throw errorThrown;
+		}
+	});
+};
+
+
+
+
 var connection = new WebSocket('wss://codeyourcloud.com:8080');
 connection.onopen = function () {
 	console.log("%cThe websocket has opened", "color:#27AE60; font-size: 12px");

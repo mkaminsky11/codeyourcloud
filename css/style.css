@@ -574,7 +574,15 @@ body, html{
 .chat-item > img{
 	  margin-right: 1em;
 	  border-radius: 5px;
-	  border: solid 2px rgb(244, 244, 244)
+	  border: solid 2px rgb(244, 244, 244);
+}
+.chat-item > img.you{
+	  margin-right: 1em;
+}
+.chat-item > img.me{
+	  margin-left: 1em;
+	  border-radius: 5px;
+	  border: solid 2px rgb(244, 244, 244);
 }
 .chat-item > div{
 	-webkit-flex: 1;
@@ -641,8 +649,15 @@ body, html{
 	margin: 0;
 }
 .chats-top i {
-	float: right;
-	font-size; 15px;
+    background-color: #F5F5F5;
+    padding: 4px;
+    border-radius: 50%;
+    padding-left: 7px;
+    color: #212121;
+    padding-right: 7px;
+    float: right;
+    font-size: 13px;
+    margin-right: 3px;
 }
 
 

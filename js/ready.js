@@ -51,6 +51,7 @@ $(document).ready(function(){
 		$("#theme-select").val(localStorage.getItem("theme"));
 	}
 	broadcast.init();
+	connect.init();
 	context.init();
 	window.onbeforeunload = function(){
 		if(manager.allSaved() === false){

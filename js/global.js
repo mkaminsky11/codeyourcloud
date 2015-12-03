@@ -1,3 +1,5 @@
+
+
 /*===
 * CODEYOURCLOUD
 ===*/
@@ -98,7 +100,7 @@ MESSENGER
 Messenger.options = {
     extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
     theme: 'air',
-    hideAfter: 10
+    hideAfter: 5
 };
 
 function infoFromUrl() {

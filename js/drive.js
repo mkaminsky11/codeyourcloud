@@ -98,7 +98,16 @@ drive.getFile = function(fileId, callback){
 	    'fileId': fileId
 	  });
 	  request.execute(function(resp) {
-	    callback(resp);
+		  if(resp.code === 403 || resp.code === "403"){
+			  //exponential backoff
+			  var sleep = (Math.pow(2,1)*1000) + (Math.round(Math.random() * 1000));
+			  window.setTimeout(function(){
+				  drive.getFile(fileId, callback);
+			  },sleep);
+		  }
+		  else{
+			callback(resp);
+		  }
 	  });
 };
 

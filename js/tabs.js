@@ -109,7 +109,7 @@ function receiveMessage(event){
 	  		if(temp_photo.indexOf("https://") === -1){
 		  		temp_photo = "https:" + temp_photo;
 	  		}
-	  		insert_chat(json.message, json.you, temp_photo, json.name, json.currentfile);
+	  		insertChat(json.message, json.you, temp_photo, json.name, json.currentfile, json.is_new);
 	  	}
   	}
   }
@@ -267,32 +267,31 @@ function adjust(){
 	editor().setOption("gutters", ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]);
 }
 //insert a chat message
-function insert_chat(message, you, photo, name, fileid){
+function insertChat(message, you, photo, name, fileid, is_new){
 	if(message.trim() !== ""){
-	  var push = "<div class=\"chat-item\">";
-	  push = push + "<img height=\"30px\" width=\"30px\" src=\""+ photo +"\">";
-	  push = push + "<div><h3>"+name+"</h3><pre>";
-	  push = push + message + "</pre></div></div>";
-	  $(".chats-content[data-fileid='"+fileid+"']").html($(".chats-content[data-fileid='"+fileid+"']").html() + push);
-	  
-	  $(".chats-content[data-fileid='"+fileid+"']").animate({ scrollTop: $(".chats-content[data-fileid='"+fileid+"']")[0].scrollHeight}, 500);
+		var push = "<div class=\"chat-item\">";
+		push = push + "<img height=\"30px\" width=\"30px\" src=\""+ photo +"\">";
+		push = push + "<div><h3>"+name+"</h3><pre>";
+		push = push + message + "</pre></div></div>";
+		$(".chats-content[data-fileid='"+fileid+"']").html($(".chats-content[data-fileid='"+fileid+"']").html() + push);
+		$(".chats-content[data-fileid='"+fileid+"']").animate({ scrollTop: $(".chats-content[data-fileid='"+fileid+"']")[0].scrollHeight}, 500);
 
-	  if(you === false){
-		if(message.length > 10){
-		  	Messenger().post({
-				message: (name + ':' + message.slice(0, 10) + '...'),
-				type: 'success',
-				showCloseButton: true
-			});
+		if(you === false && is_new === true){
+			if(message.length > 10){
+				Messenger().post({
+					message: (name + ':' + message.slice(0, 10) + '...'),
+					type: 'success',
+					showCloseButton: true
+				});
+			}
+			else{
+				Messenger().post({
+					message: (name + ':' + message),
+					type: 'success',
+					showCloseButton: true
+				});
+			}
 		}
-		else{
-			Messenger().post({
-				message: (name + ':' + message),
-				type: 'success',
-				showCloseButton: true
-			});
-		}
-	  }
 	}
 }
 //send a chat message

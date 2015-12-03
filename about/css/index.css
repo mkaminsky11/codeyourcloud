@@ -312,3 +312,11 @@ position: absolute !important;
 	-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
+
+.text{
+	text-align: center;
+    font-family: "Roboto";
+    color: #212121;
+	margin-right: 100px;
+    margin-left: 100px;
+}
