@@ -16,7 +16,7 @@
   overflow: hidden !important;
   height: 2px !important;
   margin-top: 0px !important;
-  margin-bottom: 0px !important;
+  margin-bottom: 1px !important;
   font-size:2px !important;
 }
 .CodeMirror-minimap-line > div, .CodeMirror-minimap-line > span > span, {

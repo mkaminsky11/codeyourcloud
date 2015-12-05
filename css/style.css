@@ -27,6 +27,7 @@ body, html{
 	overflow-x: hidden;
 	background-color: #212121;
 }
+
 .codemirror-container{
     position: relative;
     height: 100%;
@@ -80,7 +81,7 @@ body, html{
 	font-size: 22px;
 }
 
-.btn:focus {
+*:focus {
   outline: none;
 }
 
@@ -99,14 +100,16 @@ body, html{
 */
 
 #side{
-	height: calc(100% - 15px);
+	height: calc(100% - 0px);
 	width: 300px;
 	margin-left: -300px;
 	z-index: 90;
 	position: absolute;
-	overflow-x: hidden;
 	top: 0;
 	left: 0;
+	margin-top: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #users, .toolbar{
@@ -116,13 +119,6 @@ body, html{
 
 #users{
 	overflow: visible;
-}
-
-#side-inner{
-    height: calc(100%);
-    margin-top: 0px;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
 #side-inner hr{
@@ -926,15 +922,37 @@ LOADING ICON
     bottom: 0;
     padding: 10px;
     background-color: rgba(251, 251, 251, 0.87);
-    border-top-left-radius: 3px;
+    width: calc(100% - 22px);
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-right: 12px;
 }
-#broadcast > i{
-	float: right;
-    color: #8E6F6F;
-    margin-top: 2px;
+#broadcast p{
+	margin: 0;
+	font-weight: 500;
+    font-size: 15px;
+    font-family: "Roboto";
+    color: #2D2B2B;
+    margin-right: 5px;
 }
 #donate{
-	float: left;
+	text-align: center;
+	display: flex;
+	display: -ms-flex;
+	display: -moz-flex;
+	display: -webkit-flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+#donate > *{
+	display: inline-block;
+}
+#broadcast > i{
+	color: #212121;
+    position: absolute;
+    right: 5px;
+    top: 12px;
 }
 
 #ad h4{
@@ -948,16 +966,6 @@ LOADING ICON
 	background-color: #eee;
 	border: solid thin gray;
 	border-radius: 3px;
-}
-
-
-#bottom{
-  position: absolute;
-  background-color: #2F2E2E;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 15px;
 }
 
 /*
@@ -976,17 +984,18 @@ LOADING ICON
   top: 35px;
 }
 .popup>span{
-	  display: block;
-    padding: 7px;
-    padding-left: 14px;
+	display: block;
+    padding: 8px;
+    padding-left: 16px;
     font-family: 'Roboto';
-    padding-right: 18px;
-    font-size: 14px;
-    color: #5E5B5B;
+    padding-right: 19px;
+    font-size: 13px;
+    color: #383535;
     border-bottom: none;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     text-align: left;
+    width: 79px;
     width: 80px;
 }
 .popup a{
@@ -1020,4 +1029,16 @@ LOADING ICON
 
 .context-click{
   padding: 3px;
+}
+
+#beta-side{
+	width: 53px;
+	height: calc(100% - 47px);
+	float:right;
+	position:absolute;
+	margin-left: calc(100% - 53px);
+	overflow-y: auto;
+	overflow-x: hidden;
+	background-color: #212121;
+	z-index: 9;
 }

@@ -2,7 +2,11 @@ var connect = {
 	snippets: {}
 };
 connect.init = function(){
-	
+	if(getParameterByName("beta") !== ""){
+		//not beta things
+		 $(".beta").css("display","block");
+		 $("#users").css("display","none");
+	}	
 };
 connect.snippets.getSnippets = function(callback){
 	$.ajax("https://codeyourcloud.com/snippets",{

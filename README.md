@@ -1,21 +1,21 @@
 #Code Your Cloud#
-####created by Michael Kaminsky
 
-+ [Main project page](https://codeyourcloud.com)
-+ [Chrome web store](https://chrome.google.com/webstore/detail/code-your-cloud/minllhicnmfckcofjencopnknkekjail)
+[Main project page](https://codeyourcloud.com) | [About](https://codeyourcloud.com/about) | [Google+](https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts)
+
+**Created by [Michael Kaminsky](https://mkaminsky11.github.io)**
+
+The goal of this project is to allow people around the globe to collaborate on coding projects via Google Drive and OneDrive. It's that simple.
+
+#### Recent Updates
++ Now supports [OneDrive](https://onedrive.live.com/)
 
 ![Screenshot](http://codeyourcloud.com/images/web.png)
-
-####Now supports [OneDrive](https://onedrive.live.com/)!
-
-###Goal
-To allow people around the globe to collaborate on coding projects via Google Drive and OneDrive. It's that simple. So far, I have yet to see a website or program that accomplishes these tasks for all major programming languages. This is an attempt to change that, and it seems to be working well so far.
 
 ###Todo
 + Run Python + other languages
 + Copy files
 + Context menu in sidebar
-+ Warning when closing without saving changes
++ ~~Warning when closing without saving changes~~DONE!
 
 =====
 
@@ -29,7 +29,7 @@ To allow people around the globe to collaborate on coding projects via Google Dr
 + Keyboard shortcuts
 + Preferences
 + Google Drive and OneDrive integration
-+ Run (javascript and coffeescript only, for now)
++ Run (javascript and Coffeescript only, for now)
 + Minimap preview
 + Search/replace
 
@@ -190,10 +190,10 @@ To allow people around the globe to collaborate on coding projects via Google Dr
 =====
 
 ###License
-The MIT License (MIT) 
-Copyright (c) 2015 Michael Kaminsky
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to  deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+>The MIT License (MIT) 
+>Copyright (c) 2015 Michael Kaminsky
+>
+>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to  deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+>
+>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
