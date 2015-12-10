@@ -13,7 +13,7 @@ $(document).ready(function(){
 	    indentWithTabs: true,
 	    foldGutter: true,
 		gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-		minimap: true
+		minimap: (getParameterByName("minimap") === "")
 	});
 	//sets the introduction text
 	var txtFile = new XMLHttpRequest();
@@ -31,7 +31,6 @@ $(document).ready(function(){
 	editor().on("beforeSelectionChange", function(cm, selection){});
 	editor().setOption("autoCloseBrackets",true); //TODO: make this optional
 	editor().setOption("matchBrackets",true);
-	$(".CodeMirror-scroll").scroll(function(){mini.view();});
 	$(".CodeMirror").css("line-height","1");
 	//CHANGES IDE BASED ON FILE TYPE
 	adjust();

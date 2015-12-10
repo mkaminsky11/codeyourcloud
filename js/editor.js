@@ -108,7 +108,7 @@ manager.reallyRemove = function(id){
 		}
 	});
 	$(".codemirror-container[data-fileid='"+id+"']").remove();
-	$(".users-container[data-fileid='"+id+"']").remove();
+	//$(".users-container[data-fileid='"+id+"']").remove();
 	 
 	var index = -1;
 	for(var i = 0; i < editors.length; i++){
@@ -132,16 +132,20 @@ manager.openTab = function(id){
 	$(".codemirror-container[data-fileid='"+id+"']").css("display","block");
 	$(".codemirror-container[data-fileid='"+id+"']").addClass("codemirror-active");
 	//remove .active from the current .active users container
-	$(".users-container-active").css("display","none");
-	$(".users-container-active").removeClass("users-container-active");
+	//$(".users-container-active").css("display","none");
+	//$(".users-container-active").removeClass("users-container-active");
 	//add .active
-	$(".users-container[data-fileid='"+id+"']").css("display","block");
-	$(".users-container[data-fileid='"+id+"']").addClass("users-container-active");
+	//$(".users-container[data-fileid='"+id+"']").css("display","block");
+	//$(".users-container[data-fileid='"+id+"']").addClass("users-container-active");
 	//same with chats
 	$(".chats-active").css("display","none");
+	$(".chats-active-people").css("display","none");
 	$(".chats-active").removeClass("chats-active");
+	$(".chats-active-people").removeClass("chats-active-people");
 	$(".chats-content[data-fileid='"+id+"']").css("display","block");
+	$(".chats-people[data-fileid='"+id+"']").css("display","block");
 	$(".chats-content[data-fileid='"+id+"']").addClass("chats-active");
+	$(".chats-people[data-fileid='"+id+"']").addClass("chats-active-people");
   
 	$(".CodeMirror").css("font-size","12px");
 	current_file = id;

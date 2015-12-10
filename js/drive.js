@@ -10,19 +10,28 @@ drive.url = null;
 drive.id = null;
 
 drive.load = function(){
-	gapi.auth.authorize({'client_id': drive.client_id, 'scope': drive.scopes.join(' '), 'immediate': true}, function(authResult){
-		drive.loaded = true;
-		console.log(authResult);
-		if (authResult.status.signed_in === true) {
-			drive.logged_in = true;	} 
-		else {
-			
-		}
-		
-		if(sky.loaded === true){
-			init();
-		}
-	});
+  gapi.client.setApiKey(developerKey);
+  window.setTimeout(function(){
+  	gapi.auth.authorize({'client_id': drive.client_id, 'scope': drive.scopes.join(' '), 'immediate': true}, function(authResult){
+  		drive.loaded = true;
+  		console.log(authResult);
+  		
+  		if(window.location.href.indexOf("output=true") !== -1){
+  			$("#output-overlay").css("display","block");
+  			$("#output-output").html(JSON.stringify(authResult));
+  		}
+  		
+  		if (authResult.status.signed_in === true) {
+  			drive.logged_in = true;	} 
+  		else {
+  			
+  		}
+  		
+  		if(sky.loaded === true){
+  			init();
+  		}
+  	});
+  },1);
 }
 
 drive.loadClient = function() {

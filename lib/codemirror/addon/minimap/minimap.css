@@ -19,6 +19,9 @@
   margin-bottom: 1px !important;
   font-size:2px !important;
 }
+.CodeMirror-minimap-line .cm-null{
+	background-color: white;
+}
 .CodeMirror-minimap-line > div, .CodeMirror-minimap-line > span > span, {
   height: 100%;
   position: relative;

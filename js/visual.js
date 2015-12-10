@@ -25,7 +25,7 @@ function run(){
 function show_color(){
 	$("#colorModal").modal('show');
 }
-$("#custom").spectrum({
+$("#color").spectrum({
 	preferredFormat: "hex",
     showInput: true,
     clickoutFiresChange: true,

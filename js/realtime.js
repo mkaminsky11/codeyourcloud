@@ -79,8 +79,8 @@ function init(){
 
 //insert a new collaborating user
 function insertUser(name, color, photo, id, fileid){
-	var new_user = "<img class=\"user-photo\" id=\"img_" + id + "\" src=\""+ photo +"\" height=\"53px\" width=\"53px\" style=\"border:solid 4px "+ color +"\">";
-	$(".users-container[data-fileid='"+fileid+"']").html( $(".users-container[data-fileid='"+fileid+"']").html() + new_user);
+	/*var new_user = "<img class=\"user-photo\" id=\"img_" + id + "\" src=\""+ photo +"\" height=\"53px\" width=\"53px\" style=\"border:solid 4px "+ color +"\">";
+	$(".users-container[data-fileid='"+fileid+"']").html( $(".users-container[data-fileid='"+fileid+"']").html() + new_user);*/
 	
 	Messenger().post({
 		message: name + " joined",
@@ -89,13 +89,13 @@ function insertUser(name, color, photo, id, fileid){
 	});
 }
 function removeUser(id, fileid){
-	try{
+	/*try{
 		$(".users-container[data-fileid='"+fileid+"']").find("#img_" + id).slideUp("slow",function(){
 			$(".users-container[data-fileid='"+fileid+"']").find("#img_" + id).remove();
 		});
 	}
 	catch(e){
-	}
+	}*/
 }
 
 function new_file(){

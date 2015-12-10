@@ -3,7 +3,9 @@ broadcast.init = function(){
 	//github already shown...
 	var val = localStorage.getItem("cyc-donate")
 	if(val === null){
-		localStorage.setItem("cyc-donate", 0)
+		localStorage.setItem("cyc-donate", 0);
+		$("#broadcast #donate").css("display","flex");
+		broadcast.show();
 	}
 	else if(val === "0"){
 		$("#broadcast #donate").css("display","flex");
@@ -12,9 +14,6 @@ broadcast.init = function(){
 	}
 	else{
 		localStorage.setItem("cyc-donate", val - 1);
-		if(Math.floor(Math.random() * 10) === 5){
-			//$("#broadcast #ad").css("display","block");
-		}
 	}	
 };
 
@@ -23,6 +22,14 @@ broadcast.show = function(){
 	window.setTimeout(function(){
 		$("#broadcast").velocity("transition.bounceUpIn");
 	}, 500);
+};
+
+broadcast.close = function(){
+	$("#broadcast").velocity("transition.bounceDownOut",{
+		complete: function(){
+			$("#broadcast").css("display","none");
+		}
+	});
 };
 
 broadcast.ad_ok = function(){

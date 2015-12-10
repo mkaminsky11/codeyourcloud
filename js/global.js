@@ -88,7 +88,7 @@ var sql_font = 12;
 var autoC = false;
 var side_open = false;
 var developerKey = 'AIzaSyBTSFIgQkLly9v6Xuqc2Nqm-vX0jpyEbZk';
-
+//var devkey2 = 'AIzaSyBNRzJxgoE2Pd1VVem728oFkxsGVR52lXg';
 
 var cloud_use = null; //sky|drive
 

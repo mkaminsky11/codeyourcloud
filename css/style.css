@@ -10,7 +10,7 @@ body, html{
 .CodeMirror{
 	position: absolute;
 	height: 100%;
-	width: calc(100% - 53px);
+	width: calc(100%);
 	margin: 0;
 	font-size:14px;
 	float:left;
@@ -19,7 +19,7 @@ body, html{
 }
 #users{
 	width: 53px;
-	height: calc(100% - 47px);
+	height: 100%;
 	float:right;
 	position:absolute;
 	margin-left: calc(100% - 53px);
@@ -29,13 +29,13 @@ body, html{
 }
 
 .codemirror-container{
-    position: relative;
-    height: 100%;
-    width: 100%;
-    margin: 0px;
-    float: right;
-    padding-bottom: -30px;
-    display: inline-block;
+    	position: relative;
+    	height: 100%;
+    	width: calc(100%);
+    	margin: 0px;
+    	margin-right: 0px;
+    	float: right;
+    	display: inline-block;
 }
 .codemirror-image{
 	width: 100%;
@@ -47,7 +47,6 @@ body, html{
 #codemirror-sizer{
 	position: relative;
 	height: 100%;
-	/*width: calc(100% - 150px);*/
 	width: 100%;
 	z-index: 2;
 	float: left;
@@ -67,14 +66,14 @@ body, html{
 */
 
 .toolbar{
-  position: absolute;
-  float: right;
-  width: 53px;
-  height: 37px;
-  margin-left: calc(100% - 53px);
-  top: calc(100% - 47px);
-  text-align: center;
-  padding-top: 10px;
+  	position: absolute;
+  	float: right;
+  	width: 53px;
+  	height: 37px;
+  	margin-left: calc(100% - 53px);
+  	top: calc(100% - 47px);
+  	text-align: center;
+  	padding-top: 10px;
 }
 .toolbar > span{
 	color: #eee;
@@ -82,7 +81,7 @@ body, html{
 }
 
 *:focus {
-  outline: none;
+  	outline: none;
 }
 
 #paper-loading-spinner{
@@ -91,8 +90,8 @@ body, html{
 	top: calc(50% - 14px);
 	left: calc(50% - 14px);
 	background-color: rgba(0,0,0,0.1);
-    padding: 20px;
-    border-radius: 8px;
+    	padding: 20px;
+    	border-radius: 8px;
 }
 
 /*
@@ -108,8 +107,8 @@ body, html{
 	top: 0;
 	left: 0;
 	margin-top: 0px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    	overflow-y: auto;
+    	overflow-x: hidden;
 }
 
 #users, .toolbar{
@@ -139,13 +138,13 @@ body, html{
 	border: none;
 }
 .side-head{
-   display: -webkit-flex;
-   display: flex;
-   -webkit-flex-direction: row;
-   flex-direction: row;
-   padding: 0px;
-   text-align: center;
-   color: #212121;
+   	display: -webkit-flex;
+   	display: flex;
+   	-webkit-flex-direction: row;
+   	flex-direction: row;
+   	padding: 0px;
+   	text-align: center;
+   	color: #212121;
 }
 .side-head>h6, .side-head>h6:hover{
 	color: #424242;
@@ -200,10 +199,10 @@ body, html{
 	color: #8A8989;
 }
 .InputAddOn {
-  display: flex;
+  	display: flex;
 }
 .InputAddOn-field {
-  flex: 1;
+  	flex: 1;
 }
 #side-inner>div>h6>span{
 	float: right;
@@ -260,6 +259,7 @@ body, html{
 	padding-left: 11px;
 	padding-right: 12px;
 	color: #D0D0D0;
+	position: relative;
 }
 
 .navbar span:last-child{
@@ -269,6 +269,20 @@ body, html{
 .navbar{
 	display: flex;
 	display: -webkit-box;
+}
+
+#help_button > span{
+	position: absolute;
+	top: -5px;
+	font-family: "Roboto";
+	font-size: 9px;
+	padding: 3px;
+	background-color: #D82020;
+	border-radius: 8px;
+	min-width: 10px;
+	text-align: center;
+	color: white;
+	right: 0px;
 }
 
 #nav-outline{
@@ -289,12 +303,12 @@ body, html{
 
 .search-nothing{
 	height: 90%;
-    width: 100%;
-    padding-top: 40px;
-    text-align: center;
-    color: gray;
-    text-transform: uppercase;
-    font-family: 'Roboto-Black';
+	width: 100%;
+	padding-top: 40px;
+	text-align: center;
+	color: gray;
+	text-transform: uppercase;
+	font-family: 'Roboto-Black';
 }
 /*
 * TABS
@@ -309,47 +323,48 @@ body, html{
 	width: 100%;
 }
 .tab-container{
-  flex: 1;
+	flex: 1;
 	height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  /* width: 100%; */
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -moz-flex;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
+	overflow-x: hidden;
+	overflow-y: auto;
+	/* width: 100%; */
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 .tab-tab{
-    height: 22px;
-    position: relative;
-    width: 120px;
-    padding: 8px;
-    margin-right: 0 !important;
-    padding-top: 3px;
+    	height: 22px;
+    	position: relative;
+    	width: 120px;
+    	padding: 8px;
+    	margin-right: 0 !important;
+    	padding-top: 3px;
 }
 .tab-tab:first-child{
 	margin-left: 0px;
 }
 
 .tab-tab h4{
-    margin: 0px;
-    font-size: 12px;
-    width: 82px;
-    overflow: hidden;
-    text-overflow: clip;
-    float: left;
-    overflow: hidden;
-    font-family: 'Roboto';
-    color: white;
-    padding-top: 7px;
-    padding-left: 5px;
-    font-weight: 300;
-    position: relative;
-    margin-left: 14px;
+    	margin: 0px;
+    	font-size: 12px;
+    	width: 82px;
+    	overflow: hidden;
+    	text-overflow: clip;
+    	float: left;
+	overflow: hidden;
+ 	font-family: 'Roboto';
+ 	color: white;
+ 	padding-top: 7px;
+ 	padding-left: 5px;
+ 	font-weight: 300;
+	position: relative;
+	margin-left: 14px;
+	height: 20px;
 }
 .tab-tab h6{
 	margin: 0;
@@ -372,7 +387,7 @@ body, html{
   
 }
 .tab-tab .zmdi-caret-down{
-  font-size: 16px;
+  	font-size: 16px;
 }
 .tab-tab:hover{
 	display: inline-block !important;
@@ -425,6 +440,22 @@ body, html{
 	border: none;
 	 margin-top: 1px;
 }
+#cloud_type{
+	/* padding-top: 7px; */
+    	background-color: white;
+    	padding: 7px;
+    	/* padding-bottom: 7px; */
+    	height: 17px;
+    	margin-bottom: 12px;
+    	margin-top: 5px;
+    	padding-bottom: 8px;
+    	/* width: 25px; */
+    	padding-top: 5px;
+    	border-radius: 50%;
+}
+#cloud_type > i{
+	
+}
 .mode-li, .theme-li{
 	border: solid 1px #eee !important;
 }
@@ -453,21 +484,21 @@ body, html{
 	margin: 0;
 }
 .tab-right{
-  position: relative;
-  color: #F4E5E5;
-  padding: 0px;
-  background-color: transparent;
-  text-align: center;
-  font-family: 'Roboto-Thin';
-  z-index: 11;
-  font-size: 17px;
-  float: right;
-  overflow: visible;
+  	position: relative;
+  	color: #F4E5E5;
+  	padding: 0px;
+  	background-color: transparent;
+  	text-align: center;
+  	font-family: 'Roboto-Thin';
+  	z-index: 11;
+  	font-size: 17px;
+  	float: right;
+  	overflow: visible;
 }
 .tab-right > i{
-  padding: 8px;
-  padding-left: 12px;
-  padding-right: 12px;
+  	padding: 8px;
+  	padding-left: 12px;
+  	padding-right: 12px;
 }
 
 #navigate{
@@ -491,7 +522,6 @@ body, html{
 .side-item a{
 	text-decoration: none;
 }
-
 .terminal{
 	display: block;
 	width: 100%;
@@ -500,12 +530,9 @@ body, html{
 	border: none;
 	height: calc(100% - 42px);
 }
-
 .terminal > * {
 	height: 100%;
 }
-
-
 #opt{
 	display: block;
 	position: absolute;
@@ -534,27 +561,35 @@ body, html{
 	width: 44px !important;
 	height: 44px !important;
 }
-
 #chat-popup{
 	position: fixed;
-	width: 300px;
+	width: 350px;
 	bottom: 0px;
-	right: 17px;
-	z-index: 5;
+	right: 5px;
+	z-index: 90;
 	background-color: white;
-	height: 400px;
+	height: 430px;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
-	
 	-moz-box-shadow: 0 0 9px #4A4A4A;
 	-webkit-box-shadow: 0 0 9px #4A4A4A;
   	box-shadow: 0 0 9px #4A4A4A;
+	transition: width 0.5s, height 0.5s, right 0.5s, bottom 0.5s, border-radius 0.5s, z-index 0.5s;
+	-webkit-transition: width 0.5s, height 0.5s, right 0.5s, bottom 0.5s, border-radius 0.5s, z-index 0.5s;
 }
-
+#chat-popup.chat-fullscreen{
+	width: 100%;
+	height: 100%;
+	right: 0;
+	bottom: 0;
+	border-radius: 0;
+	z-index: 90;
+	transition: width 0.5s, height 0.5s, right 0.5s, bottom 0.5s, border-radius 0.5s, z-index 0.5s;
+	-webkit-transition: width 0.5s, height 0.5s, right 0.5s, bottom 0.5s, border-radius 0.5s, z-index 0.5s;
+}
 .chat-input{
 
 }
-
 .chat-item{
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -565,20 +600,19 @@ body, html{
 	margin-left: 7px;
 	margin-right: 7px;
 	padding: 5px;
-	border-bottom: solid 1px #eee;
 }
 .chat-item > img{
-	  margin-right: 1em;
-	  border-radius: 5px;
-	  border: solid 2px rgb(244, 244, 244);
+	margin-right: 1em;
+	border-radius: 50%;
+	border: solid 2px rgb(244, 244, 244);
 }
 .chat-item > img.you{
-	  margin-right: 1em;
+	margin-right: 1em;
 }
 .chat-item > img.me{
-	  margin-left: 1em;
-	  border-radius: 5px;
-	  border: solid 2px rgb(244, 244, 244);
+	margin-left: 1em;
+	border-radius: 5px;
+	border: solid 2px rgb(244, 244, 244);
 }
 .chat-item > div{
 	-webkit-flex: 1;
@@ -592,6 +626,8 @@ body, html{
 	text-overflow: ellipsis;
 	width: 100%;
 	overflow: hidden;
+	font-family: "Roboto";
+	font-weight: 600;
 }
 .chat-item > div > pre{
   	margin: 0 0 15px;
@@ -600,18 +636,19 @@ body, html{
   	width: 100%;
   	white-space: pre-wrap;
   	font-family: "Roboto";
-  	font-size: 12px;}
-
+  	font-size: 12px;
+}
 .chats-bottom{
 	width: 100%;
 	position: absolute;
-	height: 50px;
+	height: 70px;
 	bottom: 0px;
-	background-color: transparent;
+	background-color: #eee;
+	border-top: solid thin #CEC8C8;
 }
 .chats-text{
-	width: calc(100% - 20px);
-	height: calc(100% - 20px);
+	width: calc(100% - 28px);
+	height: calc(100% - 28px);
 	padding: 10px;
 	resize: none;
 	outline: none;
@@ -619,9 +656,12 @@ body, html{
 	font-size: 13px;
 	color: #383838;
 	background-color: white;
-	border-top: solid 1px #eee;
 	font-weight: 400;
 	font-family: "Roboto";
+	margin-left: 3px;
+	margin-top: 3px;
+	border-radius: 2px;
+	border: solid thin #CEC8C8;
 }
 .chats-store{
 	position: absolute;
@@ -629,9 +669,8 @@ body, html{
 	overflow: scroll;
 	overflow-x: hidden;
 	-webkit-overflow-scrolling: touch;
-	
-	top: 30px;
-	height: calc(100% - 80px);
+	top: 60px;
+	height: calc(100% - 100px);
 }
 .chats-top{
 	position: absolute;
@@ -641,34 +680,49 @@ body, html{
 	width: calc(100% - 10px);
 	border-bottom: solid 1px #eee;
 }
+.chats-users{
+	position: absolute;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 100%;
+	height: 20px;
+	border-bottom: solid 1px #eee;
+	top: 30px;
+	overflow: hidden;
+}
+.chats-users > div{
+	width: auto;
+	height: 100%;
+	overflow: hidden;
+}
+.chats-users img{
+	margin-left: 1px;
+	margin-right: 1px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+}
 .chats-top > h6{
 	margin: 0;
 }
 .chats-top i {
-    background-color: #F5F5F5;
-    padding: 4px;
-    border-radius: 50%;
-    padding-left: 7px;
-    color: #212121;
-    padding-right: 7px;
-    float: right;
-    font-size: 13px;
-    margin-right: 3px;
+    	padding: 4px;
+    	border-radius: 50%;
+    	padding-left: 7px;
+    	color: #212121;
+    	padding-right: 7px;
+    	float: right;
+    	font-size: 13px;
+    	margin-right: 3px;
 }
-
-
-
 .hide{
 	display: none !important;
 }
-
-
 /*
-FILE BROWSING TREE
-=================	
+FILE BROWSING TREE	
 */
-
-
 .tree-tree{
 	overflow: auto;
 	height: calc(100% - 34px);
@@ -681,18 +735,16 @@ FILE BROWSING TREE
 	color: #C8CDCF;
 	font-family: 'Roboto-Thin';
 	font-weight: 600;
-	font-size: 13px;
-	margin-top: 7px;
-	margin-bottom: 7px;
+	font-size: 11px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	overflow-wrap: break-word;
 }
-
 .tree span {
-  font-family: "Roboto";
-  font-weight: 400;
-  color: #C8CDCF;
+  	font-family: "Roboto";
+  	font-weight: 400;
+  	color: #C8CDCF;
 }
-
 .tree i{
 	margin-right: 10px;
 	color: #C8CDCF;
@@ -707,7 +759,7 @@ FILE BROWSING TREE
 }
 
 .tree .devicons{
-	font-size: 17px;
+	font-size: 14px;
 	margin-right: 5px;
 }
 
@@ -717,14 +769,13 @@ FILE BROWSING TREE
 }
 
 .tree-file > span {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 #tree-open{
 	overflow: scroll;
 	position: fixed;
 	width: 180px;
-	/* padding: 10px; */
 	right: 10px;
 	top: 43px;
 	height: 200px;
@@ -740,7 +791,7 @@ FILE BROWSING TREE
 	position: absolute;
 	top: 5px;
 	left: 5px;
-	font-size: 16px;
+	font-size: 11px;
 }
 #tree-open>span>i{
 	color: #E74C3C !important;
@@ -778,9 +829,8 @@ FILE BROWSING TREE
 
 #profile_div > i{
 	float: right;
-    margin-top: 12px;
-    
-    color: #bdc3c7;
+    	margin-top: 12px;
+    	color: #bdc3c7;
 }
 
 #profile_div > img{
@@ -792,38 +842,32 @@ LOADING ICON
 =======*/
 
 #paper-loading-spinner {
-  -webkit-animation: spinning-cog 1.3s infinite ease;
-  -moz-animation: spinning-cog 1.3s infinite ease;
-  -ms-animation: spinning-cog 1.3s infinite ease;
-  -o-animation: spinning-cog 1.3s infinite ease;
-  animation: spinning-cog 1.3s infinite ease;
+  	-webkit-animation: spinning-cog 1.3s infinite ease;
+  	-moz-animation: spinning-cog 1.3s infinite ease;
+  	-ms-animation: spinning-cog 1.3s infinite ease;
+  	-o-animation: spinning-cog 1.3s infinite ease;
+  	animation: spinning-cog 1.3s infinite ease;
 }
-
 @-webkit-keyframes spinning-cog {
-  0% { -webkit-transform: rotate(0deg) }
-  20% { -webkit-transform: rotate(-45deg) }
-  100% { -webkit-transform: rotate(360deg) }
+  	0% { -webkit-transform: rotate(0deg) }
+  	20% { -webkit-transform: rotate(-45deg) }
+  	100% { -webkit-transform: rotate(360deg) }
 }
-
 @-moz-keyframes spinning-cog {
-  0% { -moz-transform: rotate(0deg) }
-  20% { -moz-transform: rotate(-45deg) }
-  100% { -moz-transform: rotate(360deg) }
+  	0% { -moz-transform: rotate(0deg) }
+  	20% { -moz-transform: rotate(-45deg) }
+  	100% { -moz-transform: rotate(360deg) }
 }
-
 @-o-keyframes spinning-cog {
-  0% { -o-transform: rotate(0deg) }
-  20% { -o-transform: rotate(-45deg) }
-  100% { -o-transform: rotate(360deg) }
+  	0% { -o-transform: rotate(0deg) }
+  	20% { -o-transform: rotate(-45deg) }
+  	100% { -o-transform: rotate(360deg) }
 }
-
 @keyframes spinning-cog {
-  0% { transform: rotate(0deg) }
-  20% { transform: rotate(-45deg) }
-  100% { transform: rotate(360deg) }
+  	0% { transform: rotate(0deg) }
+  	20% { transform: rotate(-45deg) }
+  	100% { transform: rotate(360deg) }
 }
-
-
 .select-target{
 	margin-left: 10px;
 	font-family: "Roboto";
@@ -835,8 +879,7 @@ LOADING ICON
 	width: 100%;
 	height: 100%;
 	top: 0;
-	left: 0;
-	
+	left: 0;	
 	z-index: 99;
 }
 
@@ -844,7 +887,6 @@ LOADING ICON
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -856,10 +898,8 @@ LOADING ICON
 	-moz-box-shadow: 0 0 9px #4A4A4A;
 	-webkit-box-shadow: 0 0 9px #4A4A4A;
   	box-shadow: 0 0 9px #4A4A4A;
-  	
   	border-radius: 2px;
   	position: relative;
-  	
   	width: 90%;
   	height: 90%;
 }
@@ -875,6 +915,9 @@ LOADING ICON
 	font-size: 16px;	
 }
 
+.overlay-tint pre{
+	overflow-wrap: break-word;
+}
 
 #keyboard-manager{
 	overflow-x: hidden;
@@ -906,10 +949,10 @@ LOADING ICON
 
 .normal-input{
 	font-size: 15px;
-    padding: 8px;
-    border: solid thin #eee;
-    border-radius: 5px;
-    outline: none !important;
+    	padding: 8px;
+    	border: solid thin #eee;
+    	border-radius: 5px;
+    	outline: none !important;
 }
 
 /*
@@ -1039,6 +1082,6 @@ LOADING ICON
 	margin-left: calc(100% - 53px);
 	overflow-y: auto;
 	overflow-x: hidden;
-	background-color: #212121;
+	background-color: #2F2E2E;
 	z-index: 9;
 }

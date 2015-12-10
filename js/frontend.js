@@ -1,12 +1,8 @@
 var connect = {
-	snippets: {}
+	snippets: {},
+	chat: {}
 };
-connect.init = function(){
-	if(getParameterByName("beta") !== ""){
-		//not beta things
-		 $(".beta").css("display","block");
-		 $("#users").css("display","none");
-	}	
+connect.init = function(){	
 };
 connect.snippets.getSnippets = function(callback){
 	$.ajax("https://codeyourcloud.com/snippets",{
@@ -58,6 +54,24 @@ connect.snippets.changeSnippet = function(id, info, callback){
 		}
 	});
 };
+connect.chat.insertUser = function(json, photo){
+	console.log(json);
+	var id = json.currentfile;
+	var session = json.session;
+	var num = $(".chats-people[data-fileid='" + id + "'] img").length;
+	if(num < 14){
+		//add it!
+		$(".chats-people[data-fileid='" + id + "']").append("<img src=\"" + photo + "\" data-sessionid=\"" + session + "\">");
+	}
+};
+
+connect.chat.removeUser = function(json){
+	$(".chats-people[data-fileid='" + json.currentfile + "'] img[data-sessionid='" + json.session + "']").remove();
+};
+
+
+
+
 
 
 

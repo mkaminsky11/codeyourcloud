@@ -18,9 +18,9 @@
 		<script src="lib/velocity/velocity.min.js"></script>
 		<script src="lib/velocity/velocity.ui.min.js"></script>
 		<meta charset="utf-8">
-    	<title>Code Your Cloud</title>
+    		<title>Code Your Cloud</title>
 		<link rel="shortcut icon" type="image/png" href="favicon.png"/>
-	    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+	    	<link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
 		<link rel="stylesheet" href="lib/slider/files/slider.css">
 		<script src="lib/slider/files/slider.js"></script>
 		<link rel="stylesheet" href="lib/messenger/css/messenger.css">
@@ -68,7 +68,9 @@
         	  </ul>
         	  <ul class="nav navbar-nav navbar-right n-r" style="display: flex;float:right">
 	        	  <div id="nav-outline">
-		        	<span id="help_button" class="side-file" onclick='$("#chat-popup").slideToggle()'><i class="zmdi zmdi-comments"></i></span>
+		        	<span id="help_button" class="side-file" onclick='$("#chat-popup").slideToggle()'><i class="zmdi zmdi-comments"></i>
+		        		<span style="display:none">0</span>
+		        	</span>
 		        	<span id="open_button" onclick="picker.open()"><i class="zmdi zmdi-folder-outline"></i></span>
 	        	  	<span id="save_button" class="side-file" onclick="manager.save(current_file)"><i class="zmdi zmdi-floppy"></i></span>
 	        	  	<span id="undo_button" onclick="editorUndo()"><i class="zmdi zmdi-undo"></i></span>
@@ -76,6 +78,7 @@
 	        	  </div>
         	  	
 			  	<div id="profile_div"><img id="profile_pic" src="" height="30px" width="30px"></div>
+			  	<!--span id="cloud_type"><i class="zmdi zmdi-google-drive" style="color: #ECD83C;"></i></span-->
         	  </ul>
         	</div>
       	</nav>
@@ -93,23 +96,28 @@
 				</span>
 			</div>
 			
+			<div class="tab-right">
+				<i class="zmdi zmdi-palette" onclick="$('#color-popup').toggle()"></i>
+				<div style="display:none;width:49px;border-radius:0px" id="color-popup" class="popup">
+					<input type="text" id="color">
+				</div>
+			</div>
+			
 			<div class="tab-right" style="">
 				<i class="zmdi zmdi-search" onclick="$('#search-popup').toggle()"></i>
-				
-					<div style="display:none" id="search-popup" class="popup">
-        		<span onclick="find()">Find</span>
-        		<span onclick="replace()">Replace</span>
-        	</div>
+				<div style="display:none" id="search-popup" class="popup">
+        				<span onclick="find()">Find</span>
+        				<span onclick="replace()">Replace</span>
+        			</div>
 			</div>
 			
 			<div id="plus-plus" class="tab-right">
 				<i class="zmdi zmdi-plus" onclick="$('#new-popup').toggle();"></i>
-				
-					<div style="display:none" id="new-popup" class="popup">
-        		<span onclick="new_file()">New File</span>
-        		<span onclick="picker.open();">Open File</span>
-        		<span onclick="icker.upload();">Upload File</span>
-        	</div>
+				<div style="display:none" id="new-popup" class="popup">
+        				<span onclick="new_file()">New File</span>
+        				<span onclick="picker.open();">Open File</span>
+        				<span onclick="picker.upload();">Upload File</span>
+        			</div>
 			</div>
 			
 			<div class="tab-right">
@@ -134,7 +142,7 @@
 						</select>
 					</div>
 
-					<div class="select-box">
+					<div class="select-box select-box-small">
 						<p>Line Numbers</p>
 						<label class="check-switch" id="side-nums-label">
 						    <input type="checkbox" id="side-nums" checked>
@@ -142,7 +150,7 @@
 						</label>	
 					</div>
 					
-					<div class="select-box">
+					<div class="select-box select-box-small">
 						<p>Line Wrap</p>
 						<label class="check-switch" id="side-wrap-label">
 						    <input type="checkbox" id="side-wrap" checked>
@@ -150,7 +158,7 @@
 						</label>	
 					</div>
 					
-					<div class="select-box">
+					<div class="select-box select-box-small">
 					  <p>Minimap</p>
 					  <label class="check-switch" id="side-minimap-label">
 					    <input type="checkbox" id="side-minimap" checked>
@@ -197,28 +205,29 @@
 				<span id="insert-point" style="display:none"></span>
 			</div>
 			
-			<!--div class="mini">
-				<div style="display:none" class="mini-insert"></div>
-			</div-->
-			
 			<div id="overlay">
 				<h4>NO FILE</h4>
 				<h4><i class="fa fa-question"></i></h4>
 				<h4>SELECTED</h4>
 			</div>
 			
-			<div id="users">
+			<!--div id="users" style="display:none">
 				<div class="users-container users-container-active" data-fileid="welcome"></div>
 			</div>
 			
 			<div class="beta" id="beta-side" style="display:none">
-					
-			</div>
+					<span>
+						<i class="zmdi zmdi-chat"></i>
+					</span>
+					<span>
+						<i class="zmdi zmdi-code"></i>
+					</span>
+			</div-->
 			
 			
-			<div class="toolbar">
+			<!--div class="toolbar">
 				<input type='text' id="custom"/>
-			</div>
+			</div-->
 		</div>
 		</div>
 		
@@ -227,9 +236,16 @@
 		
 		<div id="chat-popup" style="display:none">
 			<div class="chats-top">
-				<h6><i class="zmdi zmdi-close" onclick='$("#chat-popup").slideToggle()'></i></h6>
+				<h6>
+					<i class="zmdi zmdi-close" onclick='$("#chat-popup").slideToggle()'></i>
+					<i class="zmdi zmdi-fullscreen" onclick='$("#chat-popup").toggleClass("chat-fullscreen")'></i>
+				</h6>
 			</div>
-			
+			<div class="chats-users">
+				<div class="chats-people chats-active-people" data-fileid="welcome">
+				
+				</div>
+			</div>
 			<div class="chats-store">
 				<div class="chats-content chats-active" data-fileid="welcome">
 						
@@ -253,6 +269,15 @@
 						<a onclick="$('#saveas-overlay').velocity('transition.slideUpOut');$('#file-name').val('')" class="waves-effect waves-light paper-btn paper-btn-blue" style="background-color:#3498DB;align-self: flex-end;">CLOSE</a>
 					
 					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="overlay-tint" id="output-overlay" style="display:none">
+			<div>
+				<div>
+					<pre id="output-output">
+					</pre>
 				</div>
 			</div>
 		</div>
@@ -330,41 +355,42 @@
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHPwYJKoZIhvcNAQcEoIIHMDCCBywCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYBFSSYM2GAfUKCmcYyDnqzkpP/WwSpaXupWncqqbJRlXDr/xk3GSXsQfzFggnlCZHGE3AfgklTiSPbsBSiua0D7ih0fMs5nyvlnHb5OJkrdqGDwZyS+YQTulbT8cs2oTHH5c8JPff2ww4g+1QrHlLwFYgHdK9OpS9MGPBdsqnwfhTELMAkGBSsOAwIaBQAwgbwGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIYPYfyErMSfuAgZiXS2aUlxYyQw1fkm+ipjB2jrx2Pniy+3X7Xgb7Bo0oRgktfMPjaqKc5dQ0sM0h2oCb9N2xCE25tXDy8TA4pClB2DPp0s1Rk06Jf4/POIpZSj39l+P5UpE3o154/ci2zB3DWjHq/seq6XvneHWhBDVNGhZhMnfrl27QfkVQwM5wx8qtAN4XtzBeWoiNdzOnjnnFAWZFyIeT0aCCA4cwggODMIIC7KADAgECAgEAMA0GCSqGSIb3DQEBBQUAMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTAeFw0wNDAyMTMxMDEzMTVaFw0zNTAyMTMxMDEzMTVaMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAwUdO3fxEzEtcnI7ZKZL412XvZPugoni7i7D7prCe0AtaHTc97CYgm7NsAtJyxNLixmhLV8pyIEaiHXWAh8fPKW+R017+EmXrr9EaquPmsVvTywAAE1PMNOKqo2kl4Gxiz9zZqIajOm1fZGWcGS0f5JQ2kBqNbvbg2/Za+GJ/qwUCAwEAAaOB7jCB6zAdBgNVHQ4EFgQUlp98u8ZvF71ZP1LXChvsENZklGswgbsGA1UdIwSBszCBsIAUlp98u8ZvF71ZP1LXChvsENZklGuhgZSkgZEwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADgYEAgV86VpqAWuXvX6Oro4qJ1tYVIT5DgWpE692Ag422H7yRIr/9j/iKG4Thia/Oflx4TdL+IFJBAyPK9v6zZNZtBgPBynXb048hsP16l2vi0k5Q2JKiPDsEfBhGI+HnxLXEaUWAcVfCsQFvd2A1sxRr67ip5y2wwBelUecP3AjJ+YcxggGaMIIBlgIBATCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwCQYFKw4DAhoFAKBdMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE1MDYwMTE5MDM1OFowIwYJKoZIhvcNAQkEMRYEFBsLj5r0UzNc80hpDhdYqz6gU4rLMA0GCSqGSIb3DQEBAQUABIGAAi3apGOEcsfbQkY+sun9x0Rxu0NvWb7wJUA+/zbCzS6+dX9Pz/PC++M2r4BXZdhAfaqf6/eeBwUuvrDpBGPyfRzRArph0EsuKcnPpYUfSSMMj6ph52l4fhwcGGWXJvBEmM97lMtW3IhGwX/WOzurfdfKN1lCJCNKkg/hdMwAFSA=-----END PKCS7-----
 ">
-<input type="image" src="images/buttons/donate_small.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" width="100">
+  <button name="submit" style="
+      color: white;
+      background-color: #ff9800;
+      border: none;
+      font-size: 13px;
+      padding: 4px;
+      border-radius: 2px;
+      font-family: &quot;Roboto&quot;;
+      font-weight: bold;
+  "><i class="zmdi zmdi-paypal"></i> Donate</button>
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
-				<a href="https://github.com/mkaminsky11/codeyourcloud" target="_blank"><img src="images/buttons/star_small.png" width="100" height="26"></a>
+			<a href="https://github.com/mkaminsky11/codeyourcloud" target="_blank" style="
+			  text-decoration: none;
+			  color: white;
+        background-color: #313030;
+        border: none;
+        font-size: 13px;
+        padding: 4px;
+        border-radius: 2px;
+        font-family: &quot;Roboto&quot;;
+        font-weight: bold;
+			">
+			  <i class="zmdi zmdi-github"></i> Star
+			</a>
 
 			</div>
-			<i class="md zmdi zmdi-close" onclick="$('#broadcast').css('display','none')"></i>
+			<i class="md zmdi zmdi-close" onclick="broadcast.close()"></i>
 		</div>
 		
 		<!--context menu-->
-		<!--
-		Trash
-		Save
-		Save As
-		Share
-		Close
-		Rename
-		Download
-		Preview
-		.. 
-		.. 
-		.. 
-		if a folder:
-		- no Save
-		- no Saveas
-		- no Close
-		- add new file
-		
-		TODO: copy + paste + cut
-		-->
 		<div id="context" class="popup context-menu">
 			<span onclick="" class="context-menu__item">
 			  <a class="context-menu__link" onclick="context.trash()">Delete</a>
-		  </span>
+		  	</span>
 			<span onclick="" class="context-menu__item">
 			  <a class="context-menu__link" onclick="context.save()">Save</a>
 			</span>

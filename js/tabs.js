@@ -3,10 +3,6 @@
 * manages the tabs and their editors
 ===*/
 
-//resp.alternateLink
-//TODO: ^ + alert if quit without save
-
-
 //returns the editor currently shown
 function editor(){
 	for(var i = 0; i < editors.length; i++){
@@ -20,12 +16,12 @@ function title(){
 }
 function addEditor(e, id, welcome){
 	var to_push = {
-    	editor: e,
-    	id: id,
-    	welcome: welcome,
-    	title: "",
-    	ignore: false, //should the next change be ignored (prevent change loop)
-    	saved: true
+    		editor: e,
+    		id: id,
+    		welcome: welcome,
+    		title: "",
+    		ignore: false, //should the next change be ignored (prevent change loop)
+    		saved: true
 	};
   
 	editors.push(to_push);
@@ -99,10 +95,10 @@ function receiveMessage(event){
 	  		if(temp_photo.indexOf("https://") === -1){ //sometimes comes back as //blah.com/example.png
 		  		temp_photo = "https:" + temp_photo;
 	  		}
-		  	insertUser(json.name, json.color, temp_photo, json.session, json.currentfile);
+	  		connect.chat.insertUser(json, temp_photo);
 	  	}
 	  	else if(json.type === "delete_user"){ //a user left
-		  	removeUser(json.id, json.currentfile);
+	  		connect.chat.removeUser(json);
 	  	}
 	  	else if(json.type === "insert_chat"){ //a chat message was recieved
 		  	var temp_photo = json.photo;
@@ -146,13 +142,15 @@ function addTab(title, id, welcome){
     $(".tab-tab[data-fileid='"+id+"']").attr("data-icon", tree.getClassFromIcon(tree.getIconByTitle(title)));
     
     var chat = "<div class='chats-content' data-fileid='"+id+"' style='display:none'></div>";
+    var _chat = "<div class='chats-people' data-fileid='"+id+"' style='display:none'></div>";
+    $(".chats-users").append(_chat);
     if(cloud_use === "sky"){chat = ""}
     $(".chats-store").each(function(index){
 	    $(this).html(chat + $(this).html());
 	 });
-	var user = "<div class='users-container' data-fileid='"+id+"' style='display:none'></div>";
-	if(cloud_use === "sky"){user = ""}
-	$("#users").html($("#users").html() + user);
+	//var user = "<div class='users-container' data-fileid='"+id+"' style='display:none'></div>";
+	//if(cloud_use === "sky"){user = ""}
+	//$("#users").html($("#users").html() + user);
 	
 	//actually create the new editor
     var e = CodeMirror(document.getElementById(id),{
@@ -277,19 +275,9 @@ function insertChat(message, you, photo, name, fileid, is_new){
 		$(".chats-content[data-fileid='"+fileid+"']").animate({ scrollTop: $(".chats-content[data-fileid='"+fileid+"']")[0].scrollHeight}, 500);
 
 		if(you === false && is_new === true){
-			if(message.length > 10){
-				Messenger().post({
-					message: (name + ':' + message.slice(0, 10) + '...'),
-					type: 'success',
-					showCloseButton: true
-				});
-			}
-			else{
-				Messenger().post({
-					message: (name + ':' + message),
-					type: 'success',
-					showCloseButton: true
-				});
+			if($("#help_button span").css("display") === "none"){
+				//not opened
+				var _curr = parseInt($("#help_button span").html());
 			}
 		}
 	}

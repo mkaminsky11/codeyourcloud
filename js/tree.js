@@ -73,7 +73,6 @@ function tree_folder(id, callback){
 $(".root-tree").attr("data-tree-ul", drive.root);
 //sets the tree contents for a folder
 function get_tree(id){
-	console.log(id);
 	//gets the array of files/folders, passes to callback
 	tree_folder(id, function(data){
 		var ret = ""; //the html that will be returned
@@ -92,18 +91,15 @@ function get_tree(id){
 				ret = ret + to_push;
 			}
 		}
-		
 		//sets the html
 		$("[data-tree-ul='"+id+"']").html(ret);
 		//opens the folder
 		$("[data-tree-ul='"+id+"']").slideDown();
 		//removes the loading icon
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-folder");
-        $("[data-tree-li='"+id+"']>span>i").removeClass("fa-circle-o-notch");
+        	$("[data-tree-li='"+id+"']>span>i").removeClass("fa-circle-o-notch");
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-spin");
-        $("[data-tree-li='"+id+"']>span>i").addClass("fa-folder-open");
-        
-
+        	$("[data-tree-li='"+id+"']>span>i").addClass("fa-folder-open");
 	});
 }
 //what happens when you click on a folder
@@ -111,7 +107,7 @@ function toggle_tree_folder(id){
 	if($("[data-tree-ul='"+id+"']").css("display") === "none"){ //not yet open
 		//set loading icon
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-folder");
-        $("[data-tree-li='"+id+"']>span>i").addClass("fa-spin");
+        	$("[data-tree-li='"+id+"']>span>i").addClass("fa-spin");
 		$("[data-tree-li='"+id+"']>span>i").addClass("fa-circle-o-notch");
 		//get information
 		get_tree(id);
@@ -120,7 +116,6 @@ function toggle_tree_folder(id){
 	}
 	else{ //open, close it
 		$("[data-tree-ul='"+id+"']").slideUp();
-		
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-folder-open");
 		$("[data-tree-li='"+id+"']>span>i").addClass("fa-folder");
 	}
