@@ -154,15 +154,17 @@ function addTab(title, id, welcome){
 	
 	//actually create the new editor
     var e = CodeMirror(document.getElementById(id),{
-         lineNumbers: settings.state.lineNumber,
-         mode: "text",
-         theme: editor_theme,
-         lineWrapping: settings.state.lineWrap, 
-         indentUnit: 4, 
-         indentWithTabs: true,
-         foldGutter: true,
-		 gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-		 minimap: settings.state.minimap
+        lineNumbers: settings.state.lineNumbers,
+        mode: "text",
+        theme: settings.state.theme,
+        lineWrapping: settings.state.lineWrap, 
+        indentUnit: 4,
+        indentWithTabs: true,
+        foldGutter: true,
+		    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+		    minimap: settings.state.minimap,
+		    autoCloseBrackets: true,
+		    matchBrackets: true
     });
     e.id = id;
 
@@ -171,8 +173,6 @@ function addTab(title, id, welcome){
     editor().on("beforeSelectionChange", function(cm, selection){
       set_color(editor().getSelection());	
     });
-    editor().setOption("autoCloseBrackets",true);
-    editor().setOption("matchBrackets",true);
     editor().on("change", function(cm, change) {
 	    manager.setSaveState(cm.id, false);
 	    if(cloud_use === "drive"){
@@ -190,8 +190,6 @@ function addTab(title, id, welcome){
 		    
 	    }
     });
-    editor().setOption("lineNumbers",settings.state.lineWrap);
-    editor().setOption("lineWrapping",settings.state.lineNumber);
     manager.openTab(id);
     $(".CodeMirror-scroll").scroll(function(){
 	});

@@ -35,9 +35,10 @@ function comment(){
 	var name = strip(document.getElementById("comment_name").value);
 	var mail = strip(document.getElementById("comment_mail").value);
 	var text = strip(document.getElementById("comment_comment").value);
+	var agree = $("#agree-checkbox").prop("checked");
 
 	
-	connection.send(JSON.stringify({type: "comment", sender: name, email: mail, comment: text}));
+	connection.send(JSON.stringify({type: "comment", sender: name, email: mail, comment: text, agree: agree}));
 	document.getElementById("comment_name").value = "";
 	document.getElementById("comment_mail").value = "";
 	document.getElementById("comment_comment").value = "";

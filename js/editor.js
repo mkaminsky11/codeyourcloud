@@ -1,10 +1,4 @@
-/**
-* FIND/REPLACE
-* find and replace for editors
-**/
-
 var manager = {};
-
 manager.allSaved = function(){
 	for(var i = 0; i < editors.length; i++){
 		if(editors[i].saved === false){
@@ -13,7 +7,6 @@ manager.allSaved = function(){
 	}
 	return true;
 }
-
 manager.trash = function(id){
 	if(id !== "welcome"){
 		if(cloud_use === "drive"){
@@ -56,7 +49,6 @@ manager.setFileTitle = function(id, title){
 	$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith(tree.getIconByTitle(title));
 	$(".tab-tab[data-fileid='"+id+"']").attr("data-icon", tree.getClassFromIcon(tree.getIconByTitle(title)));
 }
-
 manager.save = function(id){
 	if(id !== "welcome"){
 		var content = getEditor(id).getValue()
@@ -84,7 +76,6 @@ manager.save = function(id){
 	    }
 	}
 }
-
 manager.removeTab = function(id){
 	if(editors[getIndex(id)].saved === false){
 		if (confirm('You have unsaved work. Do you really want to close this file?')) {
@@ -96,7 +87,6 @@ manager.removeTab = function(id){
 		manager.reallyRemove(id);
 	}
 }
-
 manager.reallyRemove = function(id){
 	hide_loading_spinner();	//nothing should be loading anymore
 	//remove the tab div with style!
@@ -108,15 +98,12 @@ manager.reallyRemove = function(id){
 		}
 	});
 	$(".codemirror-container[data-fileid='"+id+"']").remove();
-	//$(".users-container[data-fileid='"+id+"']").remove();
-	 
 	var index = -1;
 	for(var i = 0; i < editors.length; i++){
 		if(editors[i].id === id){
 			index = i;
 		}
 	}
-	
 	current_file = "";
 	editors.splice(index,1);
 }
@@ -131,12 +118,6 @@ manager.openTab = function(id){
 	//add .active to the editor to be opened
 	$(".codemirror-container[data-fileid='"+id+"']").css("display","block");
 	$(".codemirror-container[data-fileid='"+id+"']").addClass("codemirror-active");
-	//remove .active from the current .active users container
-	//$(".users-container-active").css("display","none");
-	//$(".users-container-active").removeClass("users-container-active");
-	//add .active
-	//$(".users-container[data-fileid='"+id+"']").css("display","block");
-	//$(".users-container[data-fileid='"+id+"']").addClass("users-container-active");
 	//same with chats
 	$(".chats-active").css("display","none");
 	$(".chats-active-people").css("display","none");
@@ -256,33 +237,9 @@ function editorRedo() {
 	editor().getDoc().redo();
 }
 
-/**
-* THEMES
-* change the theme
-**/
-
-//function called when select changed
-function themeChange(){
-	setTheme($("#theme-select").val());
-}
-function setTheme(theme){	
-	localStorage.setItem("theme", theme);
-	for(var i = 0; i < editors.length; i++){
-		editors[i].editor.setOption("theme",theme);
-	}
-	editor_theme = theme;
-}
 //populates theme select
 for(var j = 0; j < themes.length; j++){	
 	$("#theme-select").html($("#theme-select").html() + "<option value='"+themes[j].split(" ").join("-").toLowerCase()+"'>"+themes[j]+"</option>");
-}
-
-/**
-* FONTS
-* change the fonts
-**/
-function fontChange(){
-	$(".CodeMirror").css("fontSize", $("#font-select").val() +"px");	
 }
 
 //populates the font select
@@ -301,18 +258,34 @@ $("#font-select").val("12");
 **/
 
 var settings = {};
-settings.lineNumber = function(){
-	this.state.lineNumber = !this.state.lineNumber;
+
+settings.lineNumbersChange = function(){
+  settings.lineNumbers();
+  settings.change();
+};
+
+settings.lineNumbers = function(){
+	this.state.lineNumbers = !this.state.lineNumbers;
 	for(var i = 0; i < editors.length; i++){
-		editors[i].editor.setOption("lineNumbers", this.state.lineNumber);
+		editors[i].editor.setOption("lineNumbers", this.state.lineNumbers);
 	}	
 }
+
+settings.lineWrapChange = function(){
+  settings.lineWrap();
+  settings.change();
+};
 
 settings.lineWrap = function(){
 	this.state.lineWrap = !this.state.lineWrap;
 	for(var i = 0; i < editors.length; i++){
 		editors[i].editor.setOption("lineWrapping", this.state.lineWrap);
 	}	
+}
+
+settings.minimapChange = function(){
+  settings.minimap();
+  settings.change();
 }
 
 settings.minimap = function(){
@@ -322,10 +295,70 @@ settings.minimap = function(){
 	}
 }
 
+settings.theme = function(theme){
+	for(var i = 0; i < editors.length; i++){
+		editors[i].editor.setOption("theme",theme);
+	}
+	this.state.theme = theme;
+}
+
+settings.themeChange = function(){
+	settings.theme($("#theme-select").val());
+	settings.change();
+}
+
+settings.fontChange = function(){
+	settings.font(parseInt($("#font-select").val()));
+	settings.change();
+}
+
+settings.font = function(size){
+	this.state.fontSize = size;
+	$(".CodeMirror").css("fontSize", size +"px");
+}
+
+settings.init = function(){
+  connect.settings.getSettings(function(prefs){
+    //theme
+    $("#theme-select").val(prefs.theme);
+    settings.theme(prefs.theme);
+    //font
+    $("#font-select").val(prefs.fontSize);
+    settings.font(prefs.fontSize);
+    //
+    if(prefs.minimap !== settings.state.minimap){
+      $("#side-minimap").prop("checked", !$("#side-minimap").prop("checked"));
+    }
+    if(prefs.lineNumbers !== settings.state.lineNumbers){
+      $("#side-nums").prop("checked", !$("#side-nums").prop("checked"));
+    }
+    if(prefs.lineWrap !== settings.state.lineWrap){
+      $("#side-wrap").prop("checked", !$("#side-wrap").prop("checked"));
+    }
+    //
+    //
+    settings.state = prefs;
+  });    
+}
+
+settings.change = function(){
+  $.ajax("https://codeyourcloud.com/prefs/change",{
+		method: "POST",
+		data: settings.state,
+		success: function(data, textStatus, jqXHR){
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			throw errorThrown;
+		}
+	});
+}
+
 settings.state = {
-	lineNumber: true,
+	lineNumbers: true,
 	lineWrap: true,
-	minimap: true
+	minimap: false,
+	fontSize: 12,
+	theme: "monokai"
 };
 
 /**
@@ -373,5 +406,5 @@ function startTern(index){
 			"Ctrl-Q": function(cm) { server.rename(cm); }
 		})
 		editors[index].editor.on("cursorActivity", function(cm) { server.updateArgHints(editors[index].editor); });
-		});
+	});
 }

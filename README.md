@@ -7,6 +7,7 @@
 The goal of this project is to allow people around the globe to collaborate on coding projects via Google Drive and OneDrive. It's that simple.
 
 #### Recent Updates
++ Updated to [CodeMirror](http://codemirror.net/) version 5.9 ([release notes](http://codemirror.net/doc/releases.html))
 + Now supports [OneDrive](https://onedrive.live.com/)
 
 ![Screenshot](http://codeyourcloud.com/images/web.png)
@@ -15,7 +16,8 @@ The goal of this project is to allow people around the globe to collaborate on c
 + Run Python + other languages
 + Copy files
 + Context menu in sidebar
-+ ~~Warning when closing without saving changes~~DONE!
++ Minimize and beautify
++ ~~Warning when closing without saving changes~~ **DONE!**
 
 =====
 
@@ -35,14 +37,17 @@ The goal of this project is to allow people around the globe to collaborate on c
 
 ###Supported Languages###
 + APL
-+ Swift
-+ Text
++ PGP
++ ASN.1
 + Asterisk
++ Brainfuck
 + C
 + C++
 + Cobol
 + C#
 + Clojure
++ Closure Stylesheets (GSS)
++ CMake
 + CoffeeScript
 + Common Lisp
 + Cypher
@@ -53,14 +58,18 @@ The goal of this project is to allow people around the globe to collaborate on c
 + Dart
 + diff
 + Django
++ Dockerfile
 + DTD
 + Dylan
 + EBNF
 + ECL
 + Eiffel
++ Elm
 + Embedded Javascript
 + Embedded Ruby
 + Erlang
++ Factor
++ Forth
 + Fortran
 + F#
 + Gas
@@ -91,14 +100,18 @@ The goal of this project is to allow people around the globe to collaborate on c
 + Markdown
 + mIRC
 + MariaDB SQL
++ Mathematica
 + Modelica
++ MUMPS
 + MS SQL
 + MySQL
 + Nginx
++ NSIS
 + NTriples
 + Objective C
 + OCaml
 + Octave
++ Oz
 + Pascal
 + PEG.js
 + Perl
@@ -125,12 +138,13 @@ The goal of this project is to allow people around the globe to collaborate on c
 + Slim
 + Smalltalk
 + Smarty
-+ SmartyMixed
 + Solr
 + Soy
 + SPARQL
 + Spreadsheet
 + SQL
++ Squirrel
++ Swift
 + MariaDB
 + sTeX
 + LaTeX
@@ -141,51 +155,72 @@ The goal of this project is to allow people around the globe to collaborate on c
 + Tiki wiki
 + TOML
 + Tornado
++ troff
++ TTCN
++ TTCN_CFG
 + Turtle
 + TypeScript
++ Twig
 + VB.NET
 + VBScript
 + Velocity
 + Verilog
++ VHDL
 + XML
 + XQuery
 + YAML
 + Z80
++ mscgen
++ xu
++ msgenny
 
 
 ###Themes###
-+ Seti
-+ Code Your Cloud
-+ 3024 Day
-+ 3024 Night
-+ Ambiance Mobile
-+ Ambiance
-+ Base16 Light
-+ Base16 Dark
-+ Blackboard
-+ Cobalt
-+ Eclipse
-+ Elegant
-+ Erlang Dark
-+ Lesser Dark
-+ Mbo
-+ Mdn Like
-+ Midnight
-+ Monokai
-+ Neat
-+ Night
-+ Paraiso Dark
-+ Paraiso Light
-+ Pastel On Dark
-+ RubyBlue
-+ Solarized
-+ The Matrix
-+ Tomorrow Night Eighties
-+ Twilight
-+ Vibrant Ink
-+ Xq light
-+ Xq dark
-+ Neo
++ 3024 day
++ 3024 night
++ abcdef
++ ambiance
++ ambiance mobile
++ base16 dark
++ base16 light
++ bespin
++ blackboard
++ cobalt
++ colorforth
++ dracula
++ eclipse
++ elegant
++ erlang dark
++ hopscotch
++ icecoder
++ isotope
++ lesser dark
++ liquibyte
++ material
++ mbo
++ mdn like
++ midnight
++ monokai
++ neat
++ neo
++ night
++ paraiso dark
++ paraiso light
++ pastel on dark
++ railscasts
++ rubyblue
++ seti
++ solarized
++ the matrix
++ tomorrow night bright
++ tomorrow night eighties
++ ttcn
++ twilight
++ vibrant ink
++ xq dark
++ xq light
++ yeti
++ zenburn
 
 =====
 

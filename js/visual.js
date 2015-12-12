@@ -1,11 +1,3 @@
-/*===
-* CODEYOURCLOUD
-*
-* visual.js built by Michael Kaminsky
-===*/
-
-
-
 //running code
 function run(){
 	var code_before_replace = editor().getValue();
@@ -87,7 +79,7 @@ function updatePreview() {
 * chat messages
 **/
 $(".chats-text").keyup(function(event){
-    if(event.keyCode == 13){
+    if(event.keyCode == 13 && !event.shiftKey){
         sendChat();
     }
 });

@@ -24,44 +24,50 @@ for(var i = 0; i < modes.length; i++){
 
 var themes = [
 	"3024-day.css",
+	"3024-night.css",
+	"abcdef.css",
+	"ambiance.css",
 	"ambiance-mobile.css",
+	"base16-dark.css",
+	"base16-light.css",
+	"bespin.css",
 	"blackboard.css",
+	"cobalt.css",
+	"colorforth.css",
 	"dracula.css",
 	"eclipse.css",
-	"lesser-dark.css",
-	"material.css",
-	"mdn-like.css",
-	"neat.css",
-	"paraiso-dark.css",
-	"rubyblue.css",
-	"tomorrow-night-bright.css",
-	"twilight.css",
-	"xq-light.css",
-	"3024-night.css",
-	"base16-dark.css",
-	"cobalt.css",
 	"elegant.css",
+	"erlang-dark.css",
+	"hopscotch.css",
+	"icecoder.css",
+	"isotope.css",
+	"lesser-dark.css",
 	"liquibyte.css",
+	"material.css",
+	"mbo.css",
+	"mdn-like.css",
 	"midnight.css",
+	"monokai.css",
+	"neat.css",
 	"neo.css",
+	"night.css",
+	"paraiso-dark.css",
 	"paraiso-light.css",
+	"pastel-on-dark.css",
+	"railscasts.css",
+	"rubyblue.css",
 	"seti.css",
 	"solarized.css",
-	"tomorrow-night-eighties.css",
-	"vibrant-ink.css",
-	"zenburn.css",
-	"ambiance.css",
-	"base16-light.css",
-	"colorforth.css",
-	"erlang-dark.css",
-	"mbo.css",
-	"monokai.css",
-	"night.css",
-	"pastel-on-dark.css",
 	"the-matrix.css",
+	"tomorrow-night-bright.css",
+	"tomorrow-night-eighties.css",
 	"ttcn.css",
+	"twilight.css",
+	"vibrant-ink.css",
+	"xq-dark.css",
+	"xq-light.css",
 	"yeti.css",
-	"xq-dark.css"
+	"zenburn.css"
 ];
 for(var i = 0; i < themes.length; i++){
 	themes[i] = themes[i].replace(".css","");
@@ -81,7 +87,6 @@ if(window.location.href.indexOf("?mobile=true") !== -1){
 }
 
 
-var editor_theme = "seti";
 var auto_save = true;
 var auto_save_int = 30000;	
 var sql_font = 12;

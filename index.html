@@ -14,22 +14,22 @@
 		</script>
 		<meta name="description" content="An collaborative in-browser code editor for Google Drive and OneDrive">
 		<meta name="google-site-verification" content="2jBshOtCyauLPt-Tdw0HRkOOizbDnw6IJTM_4dNNLQQ" />
-		<script src="about/flat/js/jquery-2.0.3.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="lib/velocity/velocity.min.js"></script>
 		<script src="lib/velocity/velocity.ui.min.js"></script>
 		<meta charset="utf-8">
-    		<title>Code Your Cloud</title>
+    	<title>Code Your Cloud</title>
 		<link rel="shortcut icon" type="image/png" href="favicon.png"/>
-	    	<link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
-		<link rel="stylesheet" href="lib/slider/files/slider.css">
+	    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="lib/slider/files/slider.css"> <!--actually the color thing-->
 		<script src="lib/slider/files/slider.js"></script>
 		<link rel="stylesheet" href="lib/messenger/css/messenger.css">
-		<link rel="stylesheet" href="lib/messenger/css/messenger-theme-air.css"
+		<link rel="stylesheet" href="lib/messenger/css/messenger-theme-air.css">
 		<link rel="stylesheet" href="fonts/font.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/material.css">
-		<link href="https://cdn.jsdelivr.net/devicons/1.4.0/css/devicons.min.css" rel='stylesheet'>
+		<link href='https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css' rel='stylesheet'>
 
 	</head>
 	<body>
@@ -37,7 +37,7 @@
 		<img id="paper-loading-spinner" style="display:none" src="images/svg/spinner.svg" height="40px" width="40px"/>
 		
 		<div id="side" style="display:none">
-			<div class="side-head" id="navigate" style="border-bottom: solid thin #424242">
+			<div class="side-head" id="navigate">
 				<div class="active" id="nav_tree" onclick="nav_tree()"><i class="zmdi zmdi-folder-outline"></i></div>
 				<div id="nav_preview" onclick="nav_preview()"><i class="zmdi zmdi-eye"></i></div>
 				<div id="nav_terminal" onclick="nav_terminal()"><i class="fa fa-terminal"></i></div>
@@ -132,13 +132,13 @@
 					<div class="select-box">
 						<p>Theme</p>
 						<span><i class="fa fa-caret-down"></i></span>
-						<select id="theme-select" onchange="themeChange()"></select>
+						<select id="theme-select" onchange="settings.themeChange()"></select>
 					</div>
 					
 					<div class="select-box">
 						<p>Font Size</p>
 						<span><i class="fa fa-caret-down"></i></span>
-						<select id="font-select" onchange="fontChange()">
+						<select id="font-select" onchange="settings.fontChange()">
 						</select>
 					</div>
 
@@ -146,7 +146,7 @@
 						<p>Line Numbers</p>
 						<label class="check-switch" id="side-nums-label">
 						    <input type="checkbox" id="side-nums" checked>
-						    <span onclick="settings.lineNumber()"></span>
+						    <span onclick="settings.lineNumbersChange()"></span>
 						</label>	
 					</div>
 					
@@ -154,15 +154,15 @@
 						<p>Line Wrap</p>
 						<label class="check-switch" id="side-wrap-label">
 						    <input type="checkbox" id="side-wrap" checked>
-						    <span onclick="settings.lineWrap()"></span>
+						    <span onclick="settings.lineWrapChange()"></span>
 						</label>	
 					</div>
 					
 					<div class="select-box select-box-small">
 					  <p>Minimap</p>
 					  <label class="check-switch" id="side-minimap-label">
-					    <input type="checkbox" id="side-minimap" checked>
-					    <span onclick="settings.minimap()"></span>
+					    <input type="checkbox" id="side-minimap">
+					    <span onclick="settings.minimapChange()"></span>
 					  </label>
 					</div>
 			  </div>
@@ -210,24 +210,6 @@
 				<h4><i class="fa fa-question"></i></h4>
 				<h4>SELECTED</h4>
 			</div>
-			
-			<!--div id="users" style="display:none">
-				<div class="users-container users-container-active" data-fileid="welcome"></div>
-			</div>
-			
-			<div class="beta" id="beta-side" style="display:none">
-					<span>
-						<i class="zmdi zmdi-chat"></i>
-					</span>
-					<span>
-						<i class="zmdi zmdi-code"></i>
-					</span>
-			</div-->
-			
-			
-			<!--div class="toolbar">
-				<input type='text' id="custom"/>
-			</div-->
 		</div>
 		</div>
 		
@@ -342,8 +324,12 @@
 		</div>
 		
 		<div id="broadcast" style="display:none">
+			<div id="minimap-warn" style="display:none">
+				<p>It looks like you have a large file. Would you like to disable to minimap to increase performance? You can switch it back in the <i class="zmdi zmdi-settings"></i> menu.</p>
+				<button onclick="">DISABLE</button>
+			</div>
 			<div id="ad" style="display:none">
-				<h4>Would you be ok with ads on this site?</h4>
+				<p>Would you be ok with ads on this site?</p>
 				<button onclick="broadcast.ad_ok()">YES</button>
 				<button onclick="broadcast.ad_no()">NO</button>
 			</div>
@@ -351,33 +337,33 @@
 				
 				<p>Please support this free, open source, independent project</p>
 				
-				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<form style="margin-left: 5px" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
 ">
-  <button name="submit" style="
-      color: white;
-      background-color: #ff9800;
-      border: none;
-      font-size: 13px;
-      padding: 4px;
-      border-radius: 2px;
-      font-family: &quot;Roboto&quot;;
-      font-weight: bold;
-  "><i class="zmdi zmdi-paypal"></i> Donate</button>
+<button name="submit" style="
+color: white;
+background-color: #ff9800;
+border: none;
+font-size: 13px;
+padding: 4px;
+border-radius: 2px;
+font-family: &quot;Roboto&quot;;
+font-weight: bold;
+"><i class="zmdi zmdi-paypal"></i> Donate</button>
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
 			<a href="https://github.com/mkaminsky11/codeyourcloud" target="_blank" style="
-			  text-decoration: none;
-			  color: white;
-        background-color: #313030;
-        border: none;
-        font-size: 13px;
-        padding: 4px;
-        border-radius: 2px;
-        font-family: &quot;Roboto&quot;;
-        font-weight: bold;
+			text-decoration: none;
+			color: white;
+			background-color: #313030;
+			border: none;
+			font-size: 13px;
+			padding: 4px;
+			border-radius: 2px;
+			font-family: &quot;Roboto&quot;;
+			font-weight: bold;
 			">
 			  <i class="zmdi zmdi-github"></i> Star
 			</a>
@@ -425,7 +411,6 @@
 		<link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
 		
 		<script src="lib/codemirror/mode/meta.js"></script>
-		
 		
 		<link rel="stylesheet" href="lib/codemirror/addon/dialog/dialog.css" >
 		<link rel="stylesheet" href="lib/codemirror/addon/hint/show-hint.css" >

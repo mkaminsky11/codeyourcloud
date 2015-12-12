@@ -1,6 +1,7 @@
 var connect = {
 	snippets: {},
-	chat: {}
+	chat: {},
+	settings: {}
 };
 connect.init = function(){	
 };
@@ -12,7 +13,7 @@ connect.snippets.getSnippets = function(callback){
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			throw errorThrown;
-		}
+		}	
 	});
 };
 connect.snippets.addSnippets = function(info, callback){
@@ -64,16 +65,22 @@ connect.chat.insertUser = function(json, photo){
 		$(".chats-people[data-fileid='" + id + "']").append("<img src=\"" + photo + "\" data-sessionid=\"" + session + "\">");
 	}
 };
-
 connect.chat.removeUser = function(json){
 	$(".chats-people[data-fileid='" + json.currentfile + "'] img[data-sessionid='" + json.session + "']").remove();
 };
 
 
-
-
-
-
+connect.settings.getSettings = function(callback){
+	$.ajax("https://codeyourcloud.com/prefs",{
+		method: "GET",
+		success: function(data, textStatus, jqXHR){
+			callback(data.prefs);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			throw errorThrown;
+		}	
+	});
+};
 
 
 var connection = new WebSocket('wss://codeyourcloud.com:8080');

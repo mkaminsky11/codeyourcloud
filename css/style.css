@@ -29,13 +29,13 @@ body, html{
 }
 
 .codemirror-container{
-    	position: relative;
-    	height: 100%;
-    	width: calc(100%);
-    	margin: 0px;
-    	margin-right: 0px;
-    	float: right;
-    	display: inline-block;
+  position: relative;
+  height: 100%;
+  width: calc(100%);
+  margin: 0px;
+  margin-right: 0px;
+  float: right;
+  display: inline-block;
 }
 .codemirror-image{
 	width: 100%;
@@ -107,8 +107,8 @@ body, html{
 	top: 0;
 	left: 0;
 	margin-top: 0px;
-    	overflow-y: auto;
-    	overflow-x: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #users, .toolbar{
@@ -130,6 +130,7 @@ body, html{
 
 #side{
 	background-color: #212121;
+	border-right: solid 2px #131313;
 }
 
 #side-inner hr{
@@ -138,13 +139,13 @@ body, html{
 	border: none;
 }
 .side-head{
-   	display: -webkit-flex;
-   	display: flex;
-   	-webkit-flex-direction: row;
-   	flex-direction: row;
-   	padding: 0px;
-   	text-align: center;
-   	color: #212121;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  padding: 0px;
+  text-align: center;
+  color: #212121;
 }
 .side-head>h6, .side-head>h6:hover{
 	color: #424242;
@@ -315,7 +316,7 @@ body, html{
 */
 .tab-wrapper{
 	height: 34px;
-	background-color: #212121;
+	background-color: #131313;
 	position: absolute;
 	top: -30px;
 	overflow: visible;
@@ -338,24 +339,25 @@ body, html{
 	flex-wrap: wrap;
 }
 .tab-tab{
-    	height: 22px;
-    	position: relative;
-    	width: 120px;
-    	padding: 8px;
-    	margin-right: 0 !important;
-    	padding-top: 3px;
+    height: 22px;
+    position: relative;
+    width: 120px;
+    padding: 8px;
+    margin-right: 0 !important;
+   	padding-top: 3px;
+    padding-bottom: 7px;
 }
 .tab-tab:first-child{
 	margin-left: 0px;
 }
 
 .tab-tab h4{
-    	margin: 0px;
-    	font-size: 12px;
-    	width: 82px;
-    	overflow: hidden;
-    	text-overflow: clip;
-    	float: left;
+    margin: 0px;
+    font-size: 12px;
+    width: 82px;
+    overflow: hidden;
+    text-overflow: clip;
+    float: left;
 	overflow: hidden;
  	font-family: 'Roboto';
  	color: white;
@@ -978,7 +980,7 @@ LOADING ICON
     color: #2D2B2B;
     margin-right: 5px;
 }
-#donate{
+#broadcast > div{
 	text-align: center;
 	display: flex;
 	display: -ms-flex;
@@ -988,6 +990,17 @@ LOADING ICON
 	justify-content: center;
 	flex-wrap: wrap;
 }
+#broadcast button{
+	text-decoration: none;
+	color: white;
+	background-color: #313030;
+	border: none;
+	font-size: 13px;
+	padding: 4px;
+	border-radius: 2px;
+	font-family: &quot;Roboto&quot;;
+	font-weight: bold;
+}
 #donate > *{
 	display: inline-block;
 }
@@ -995,7 +1008,7 @@ LOADING ICON
 	color: #212121;
     position: absolute;
     right: 5px;
-    top: 12px;
+    top: 8px;
 }
 
 #ad h4{
@@ -1022,9 +1035,9 @@ LOADING ICON
 	border-radius: 2px;
 	-moz-box-shadow: 0 0 9px #4A4A4A;
 	-webkit-box-shadow: 0 0 9px #4A4A4A;
-  box-shadow: 0 0 9px #4A4A4A;
-  right: 5px;
-  top: 35px;
+	box-shadow: 0 0 9px #4A4A4A;
+	right: 5px;
+	top: 35px;
 }
 .popup>span{
 	display: block;

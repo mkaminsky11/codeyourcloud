@@ -34,6 +34,18 @@ drive.load = function(){
   },1);
 }
 
+drive.checkAppLogin = function(callback){
+	$.ajax("https://codeyourcloud.com/status",{
+		method: "GET",
+		success: function(data, textStatus, jqXHR){
+			callback(data.loggedIn);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			throw errorThrown;
+		}	
+	});
+}
+
 drive.loadClient = function() {
 	gapi.client.load('drive', 'v2', function(){
 		//this need to be refreshed every 55 minutes
