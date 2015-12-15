@@ -18,10 +18,15 @@ broadcast.init = function(){
 };
 
 broadcast.show = function(){
-	$("#broadcast").css("opacity",0).css("display","block");
-	window.setTimeout(function(){
-		$("#broadcast").velocity("transition.bounceUpIn");
-	}, 500);
+	if($("#broadcast").css("display") === "none"){
+		$("#broadcast").css("opacity",0).css("display","block");
+		window.setTimeout(function(){
+			$("#broadcast").velocity("transition.bounceUpIn");
+		}, 500);
+	}
+	else{
+		$("#broadcast").velocity("callout.bounce");
+	}
 };
 
 broadcast.close = function(){
@@ -31,6 +36,14 @@ broadcast.close = function(){
 		}
 	});
 };
+
+broadcast.minimapWarn = function(){
+	
+}
+
+broadcast.reset = function(){
+	$("#broadcast > div").css("display","none");
+}
 
 broadcast.ad_ok = function(){
 	connection.send(JSON.stringify({type:"survey",vote:"yes"}));

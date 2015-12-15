@@ -13,11 +13,11 @@ $(document).ready(function(){
 		mode: "text",
     	theme: settings.state.theme,
     	lineWrapping: settings.state.lineWrap, 
-    	indentUnit: 4, 
-    	indentWithTabs: true,
+    	indentUnit: settings.state.indentUnit, 
+    	indentWithTabs: settings.state.indentWithTabs,
     	foldGutter: true,
-		gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-	  minimap: settings.state.minimap
+		  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+	    minimap: settings.state.minimap
 	});
 	//sets the introduction text
 	var txtFile = new XMLHttpRequest();

@@ -244,7 +244,7 @@ for(var j = 0; j < themes.length; j++){
 
 //populates the font select
 for(var k = 2; k <= 30; k++){
-	$("#font-select").html($("#font-select").html() + "<option value='" + k + "'>" + k + "</option>");
+	$("#font-select").html($("#font-select").html() + "<option value='" + k + "'>" + k + "px</option>");
 }
 
 //sets default settings
@@ -317,6 +317,30 @@ settings.font = function(size){
 	$(".CodeMirror").css("fontSize", size +"px");
 }
 
+settings.indentUnitChange = function(){
+  settings.indentUnit(parseInt($("#indent-size-select").val()));
+  settings.change();
+}
+
+settings.indentUnit = function(size){
+  for(var i = 0; i < editors.length; i++){
+		editors[i].editor.setOption("indentUnit",size);
+	}
+  this.state.indentUnit = size;
+}
+
+settings.indentWithTabsChange = function(){
+  settings.indentWithTabs();
+  settings.change();
+}
+
+settings.indentWithTabs = function(){
+	this.state.indentWithTabs = !this.state.indentWithTabs;
+	for(var i = 0; i < editors.length; i++){
+		editors[i].editor.setOption("indentWithTabs", this.state.indentWithTabs);
+	}
+}
+
 settings.init = function(){
   connect.settings.getSettings(function(prefs){
     //theme
@@ -326,12 +350,21 @@ settings.init = function(){
     $("#font-select").val(prefs.fontSize);
     settings.font(prefs.fontSize);
     //
+    $("#indent-size-select").val(prefs.indentUnit);
+    settings.indentUnit(prefs.indentUnit);
+    //
+    if(prefs.indentWithTabs !== settings.state.indentWithTabs){
+      $("#side-indent-tabs").prop("checked", !$("#side-indent-tabs").prop("checked"));
+    }
+    //
     if(prefs.minimap !== settings.state.minimap){
       $("#side-minimap").prop("checked", !$("#side-minimap").prop("checked"));
     }
+    //
     if(prefs.lineNumbers !== settings.state.lineNumbers){
       $("#side-nums").prop("checked", !$("#side-nums").prop("checked"));
     }
+    //
     if(prefs.lineWrap !== settings.state.lineWrap){
       $("#side-wrap").prop("checked", !$("#side-wrap").prop("checked"));
     }
@@ -358,7 +391,9 @@ settings.state = {
 	lineWrap: true,
 	minimap: false,
 	fontSize: 12,
-	theme: "monokai"
+	theme: "monokai",
+	indentUnit: 4,
+	indentWithTabs: true
 };
 
 /**

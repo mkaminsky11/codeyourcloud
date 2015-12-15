@@ -141,6 +141,25 @@
 						<select id="font-select" onchange="settings.fontChange()">
 						</select>
 					</div>
+					
+					<div class="select-box">
+					  <p>Indent Size</p>
+					  <span><i class="fa fa-caret-down"></i></span>
+					  <select id="indent-size-select" onchange="settings.indentUnitChange()">
+					    <option value="1">1 char</option>
+					    <option value="2">2 chars</option>
+					    <option value="4">4 chars</option>
+					    <option value="8">8 chars</option>
+						</select>
+					</div>
+					
+					<div class="select-box select-box-small">
+						<p>Indent With Tabs</p>
+						<label class="check-switch" id="side-indent-tabs-label">
+						    <input type="checkbox" id="side-indent-tabs" checked>
+						    <span onclick="settings.indentWithTabsChange()"></span>
+						</label>	
+					</div>
 
 					<div class="select-box select-box-small">
 						<p>Line Numbers</p>
