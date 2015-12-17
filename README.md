@@ -2,7 +2,6 @@
 #Code Your Cloud#
 
 [Main project page](https://codeyourcloud.com) | [About](https://codeyourcloud.com/about) | [Google+](https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts)
-=====
 
 **Created by [Michael Kaminsky](https://mkaminsky11.github.io)**
 
