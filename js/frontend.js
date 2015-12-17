@@ -9,7 +9,7 @@ connect.snippets.getSnippets = function(callback){
 	$.ajax("https://codeyourcloud.com/snippets",{
 		method: "GET",
 		success: function(data, textStatus, jqXHR){
-			callback(data.snippets);
+			callback(data);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			throw errorThrown;

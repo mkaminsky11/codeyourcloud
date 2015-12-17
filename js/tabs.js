@@ -73,7 +73,6 @@ function receiveMessage(event){
   	var json = JSON.parse(event.data);
   	if(typeof json.s === 'undefined'){ //this makes sure that only the intended messages are getting in. There are some "background" ones
 	  	var id = json.currentfile;
-	  	
 	  	if(json.type === "text"){
 		  	getEditor(id).setValue(json.value);
 		  	editors[getIndex(id)].saved = true;
@@ -160,11 +159,12 @@ function addTab(title, id, welcome){
         lineWrapping: settings.state.lineWrap, 
         indentUnit: 4,
         indentWithTabs: true,
+        tabSize: settings.state.tabSize,
         foldGutter: true,
-		    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-		    minimap: settings.state.minimap,
-		    autoCloseBrackets: true,
-		    matchBrackets: true
+		gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+		minimap: settings.state.minimap,
+		autoCloseBrackets: true,
+		matchBrackets: true
     });
     e.id = id;
 

@@ -17,19 +17,11 @@ $(document).ready(function(){
     	indentWithTabs: settings.state.indentWithTabs,
     	foldGutter: true,
 		  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-	    minimap: settings.state.minimap
+	    minimap: settings.state.minimap,
+	    tabSize: settings.state.tabSize
 	});
 	//sets the introduction text
-	var txtFile = new XMLHttpRequest();
-	txtFile.open("GET", "https://codeyourcloud.com/intro.txt", true);
-	txtFile.onreadystatechange = function()
-	{
-		if (txtFile.readyState === 4 && txtFile.status === 200) {  // document is ready to parse.
-			var allText = txtFile.responseText; 
-			e.setValue(allText);
-		}
-	}
-	txtFile.send(null);
+	e.setValue(introText);
 	addEditor(e, "welcome", true);
 	current_file = "welcome";
 	editor().on("beforeSelectionChange", function(cm, selection){});
@@ -46,6 +38,7 @@ $(document).ready(function(){
 	broadcast.init();
 	connect.init();
 	context.init();
+	// snippets.init(); //<----later
 	
 	//===========
 	//SAVE DIALOG

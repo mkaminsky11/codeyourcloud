@@ -102,6 +102,7 @@ body, html{
 	height: calc(100% - 0px);
 	width: 300px;
 	margin-left: -300px;
+	/*margin-left: 0px;*/
 	z-index: 90;
 	position: absolute;
 	top: 0;
@@ -109,6 +110,16 @@ body, html{
 	margin-top: 0px;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.move{
+  margin-left: 0px;
+  /*margin-left: 300px;
+  width: calc(100% - 300px);*/
+}
+
+.move.is-mobile{
+  width: 100% !important;
 }
 
 #users, .toolbar{
@@ -168,7 +179,6 @@ body, html{
 	justify-content: center;
 	align-items: center;
 }
-
 /*
 * RENAME
 */
@@ -245,15 +255,55 @@ body, html{
 	border: none;
 	outline: none;
 	width: 100%;
-	height: calc(100% - 56px);
-	position: absolute;
+	height: calc(100% - 33px);
+	position: relative;
 	background-color: white;
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 	margin: 0;
 	margin-left: 0px;
+	z-index: 2;
 }
 
+
+.snippet-main{
+	padding-left: 5px;
+    padding-right: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 33px);
+    overflow-y: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.snippet-item{
+	position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 5px;
+}
+
+.nav-bottom-buttons{
+  display:none;
+  position: absolute;
+  bottom: 0;
+  right: 0px;
+  width: 61px;
+  z-index: 3;
+  height: 20px;
+  background-color: #131313;
+  padding: 7px;
+  border-top-left-radius: 2px;
+  padding-bottom: 1px;
+  text-align: center;
+}
+.nav-bottom-buttons>i{
+  color: white;
+  margin-left: 8px;
+  margin-right: 8px;
+  font-size: 16px;
+}
 .navbar span{
 	font-size: 18px;
 	padding-top: 4px;
@@ -524,7 +574,7 @@ body, html{
 .side-item a{
 	text-decoration: none;
 }
-.terminal{
+.nav-terminal{
 	display: block;
 	width: 100%;
 	background-color: white;
@@ -532,7 +582,7 @@ body, html{
 	border: none;
 	height: calc(100% - 42px);
 }
-.terminal > * {
+.nav-terminal > * {
 	height: 100%;
 }
 #opt{
@@ -573,9 +623,6 @@ body, html{
 	height: 430px;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
-	-moz-box-shadow: 0 0 9px #4A4A4A;
-	-webkit-box-shadow: 0 0 9px #4A4A4A;
-  	box-shadow: 0 0 9px #4A4A4A;
 	transition: width 0.5s, height 0.5s, right 0.5s, bottom 0.5s, border-radius 0.5s, z-index 0.5s;
 	-webkit-transition: width 0.5s, height 0.5s, right 0.5s, bottom 0.5s, border-radius 0.5s, z-index 0.5s;
 }
@@ -897,13 +944,10 @@ LOADING ICON
 .overlay-tint > div > div{
 	padding: 20px;
 	background-color: white;
-	-moz-box-shadow: 0 0 9px #4A4A4A;
-	-webkit-box-shadow: 0 0 9px #4A4A4A;
-  	box-shadow: 0 0 9px #4A4A4A;
-  	border-radius: 2px;
-  	position: relative;
-  	width: 90%;
-  	height: 90%;
+	border-radius: 2px;
+	position: relative;
+	width: 90%;
+	height: 90%;
 }
 
 .overlay-tint > div > div > iframe{
@@ -1033,9 +1077,6 @@ LOADING ICON
 	z-index: 90;
 	background-color: white;
 	border-radius: 2px;
-	-moz-box-shadow: 0 0 9px #4A4A4A;
-	-webkit-box-shadow: 0 0 9px #4A4A4A;
-	box-shadow: 0 0 9px #4A4A4A;
 	right: 5px;
 	top: 35px;
 }
@@ -1085,16 +1126,4 @@ LOADING ICON
 
 .context-click{
   padding: 3px;
-}
-
-#beta-side{
-	width: 53px;
-	height: calc(100% - 47px);
-	float:right;
-	position:absolute;
-	margin-left: calc(100% - 53px);
-	overflow-y: auto;
-	overflow-x: hidden;
-	background-color: #2F2E2E;
-	z-index: 9;
 }

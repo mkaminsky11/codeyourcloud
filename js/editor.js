@@ -251,6 +251,7 @@ for(var k = 2; k <= 30; k++){
 $("#mode-select").val("text/plain");
 $("#theme-select").val("monokai");
 $("#font-select").val("12");
+$("#indent-size-select").val("4");
 
 /**
 * OPTIONS
@@ -329,6 +330,18 @@ settings.indentUnit = function(size){
   this.state.indentUnit = size;
 }
 
+settings.tabSizeChange = function(){
+  settings.tabSize(parseInt($("#tab-size-select").val()));
+  settings.change();
+}
+
+settings.tabSize = function(size){
+  for(var i = 0; i < editors.length; i++){
+		editors[i].editor.setOption("tabSize",size);
+	}
+  this.state.tabSize = size; 
+}
+
 settings.indentWithTabsChange = function(){
   settings.indentWithTabs();
   settings.change();
@@ -349,6 +362,9 @@ settings.init = function(){
     //font
     $("#font-select").val(prefs.fontSize);
     settings.font(prefs.fontSize);
+    //
+    $("#tab-size-select").val(prefs.tabSize);
+    settings.tabSize(prefs.tabSize);
     //
     $("#indent-size-select").val(prefs.indentUnit);
     settings.indentUnit(prefs.indentUnit);
@@ -393,7 +409,8 @@ settings.state = {
 	fontSize: 12,
 	theme: "monokai",
 	indentUnit: 4,
-	indentWithTabs: true
+	indentWithTabs: true,
+	tabSize: 4
 };
 
 /**

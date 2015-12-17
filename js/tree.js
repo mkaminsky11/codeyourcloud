@@ -33,24 +33,24 @@ function tree_folder(id, callback){
 		drive.retrieveAllFilesInFolder(id, function(data){
 			var goal = data.length; //how many files total
 			for(var i = 0; i < data.length; i++){
-				var id_id = data[i].id;
-				//for each of the files, gets the information
-				drive.getFile(id_id, function(resp){
-					var to_push = {
-						title: resp.title,
-						id: resp.id,
-						folder: (resp.mimeType === "application/vnd.google-apps.folder") //is it a folder?
-					};
-					if(resp.explicitlyTrashed === true){ //if trashed, don't count
-						goal--;
-					}
-					else{
-						ret.push(to_push);
-					}
-					if(ret.length === goal){
-						callback(ret.sort(sort_by_title));
-					}
-				});
+				  var id_id = data[i].id;
+				  //for each of the files, gets the information
+  				drive.getFile(id_id, function(resp){
+  					var to_push = {
+  						title: resp.title,
+  						id: resp.id,
+  						folder: (resp.mimeType === "application/vnd.google-apps.folder") //is it a folder?
+  					};
+  					if(resp.explicitlyTrashed === true){ //if trashed, don't count
+  						goal--;
+  					}
+  					else{
+  						ret.push(to_push);
+  					}
+  					if(ret.length === goal){
+  						callback(ret.sort(sort_by_title));
+  					}
+  				});
 			}
 		});
 	}

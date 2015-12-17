@@ -85,17 +85,50 @@ if(window.location.href.indexOf("?mobile=true") !== -1){
 	is_mobile = true;
 	//spoofing to test mobile
 }
+if(is_mobile === true){
+  $(".move").addClass("is-mobile");
+}
 
-
-var auto_save = true;
-var auto_save_int = 30000;	
-var sql_font = 12;
-var autoC = false;
 var side_open = false;
 var developerKey = 'AIzaSyBTSFIgQkLly9v6Xuqc2Nqm-vX0jpyEbZk';
-//var devkey2 = 'AIzaSyBNRzJxgoE2Pd1VVem728oFkxsGVR52lXg';
-
 var cloud_use = null; //sky|drive
+
+var introText = (function () {/*
+ ________  ________  ________  _______  
+|\   ____\|\   __  \|\   ___ \|\  ___ \
+\ \  \___|\ \  \|\  \ \  \_|\ \ \   __/|
+ \ \  \    \ \  \\\  \ \  \ \\ \ \  \_|/__
+  \ \  \____\ \  \\\  \ \  \_\\ \ \  \_|\ \
+   \ \_______\ \_______\ \_______\ \_______\
+    \|_______|\|_______|\|_______|\|_______|
+          
+
+
+  ___    ___ ________  ___  ___  ________ 
+ |\  \  /  /|\   __  \|\  \|\  \|\   __  \
+ \ \  \/  / | \  \|\  \ \  \\\  \ \  \|\  \
+  \ \    / / \ \  \\\  \ \  \\\  \ \   _  _\
+   \/  /  /   \ \  \\\  \ \  \\\  \ \  \\  \|
+ __/  / /      \ \_______\ \_______\ \__\\ _\
+|\___/ /        \|_______|\|_______|\|__|\|__|
+\|___|/                                               
+                                                      
+                                                      
+ ________  ___       ________  ___  ___  ________     
+|\   ____\|\  \     |\   __  \|\  \|\  \|\   ___ \
+\ \  \___|\ \  \    \ \  \|\  \ \  \\\  \ \  \_|\ \
+ \ \  \    \ \  \    \ \  \\\  \ \  \\\  \ \  \ \\ \
+  \ \  \____\ \  \____\ \  \\\  \ \  \\\  \ \  \_\\ \
+   \ \_______\ \_______\ \_______\ \_______\ \_______\
+    \|_______|\|_______|\|_______|\|_______|\|_______|
+                                                      
+                                                      
+A free, in-browser code editor for Google Drive and OneDrive! Check us out at:
+
+	github.com/mkaminsky11/codeyourcloud.com
+	
+To get started, open a file by clicking the folder icon in the top-right corner or by opening the sidebar    
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 
 /*=======
 MESSENGER

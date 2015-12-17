@@ -20,7 +20,6 @@ function init(){
 	if(_init === false){
 		_init = true;
 		//decide wether to load sky or drive
-		//keep it basic for now...
 		drive.checkAppLogin(function(_logged_in){
 			if(_logged_in === false){
 				console.log("redirect for no app login");

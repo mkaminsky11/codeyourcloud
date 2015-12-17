@@ -1,14 +1,26 @@
+![logo](https://codeyourcloud.com/icon_128.png)
 #Code Your Cloud#
 
 [Main project page](https://codeyourcloud.com) | [About](https://codeyourcloud.com/about) | [Google+](https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts)
+
+=====
 
 **Created by [Michael Kaminsky](https://mkaminsky11.github.io)**
 
 The goal of this project is to allow people around the globe to collaborate on coding projects via Google Drive and OneDrive. It's that simple.
 
+#### Installation Notes
+**This is only the FRONTEND**. There is also a backend component which is not open-source (yet), which is used for some things like preferences and authentication. The goal of publishing this is to show others how to successfully interact with the Google Drive and OneDrive APIs.
+
+If you simply `git clone` this and open `index.html`, **it will not work**. With some simple modifications, though, such as replacing the API keys with your own, you should be able to get it functional. This is mainly intended as a teaching tool.
+
+#### The Good Parts
+If you want to see the places where all of the __magic__ happens, take a look at `js/drive.js`, `js/sky.js`, and `js/tabs.js`. Enjoy!
+
 #### Recent Updates
 + Updated to [CodeMirror](http://codemirror.net/) version 5.9 ([release notes](http://codemirror.net/doc/releases.html))
 + Now supports [OneDrive](https://onedrive.live.com/)
++ Persistant preferences via backend
 
 ![Screenshot](http://codeyourcloud.com/images/web.png)
 
@@ -18,6 +30,7 @@ The goal of this project is to allow people around the globe to collaborate on c
 + Context menu in sidebar
 + Minimize and beautify
 + ~~Warning when closing without saving changes~~ **DONE!**
++ Snippets (coming soon)
 
 =====
 

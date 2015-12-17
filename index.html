@@ -36,26 +36,36 @@
 		<link rel="stylesheet" href="fonts/font.css">
 		<img id="paper-loading-spinner" style="display:none" src="images/svg/spinner.svg" height="40px" width="40px"/>
 		
-		<div id="side" style="display:none">
+		<div id="side" style="/*display:none*/">
 			<div class="side-head" id="navigate">
-				<div class="active" id="nav_tree" onclick="nav_tree()"><i class="zmdi zmdi-folder-outline"></i></div>
-				<div id="nav_preview" onclick="nav_preview()"><i class="zmdi zmdi-eye"></i></div>
-				<div id="nav_terminal" onclick="nav_terminal()"><i class="fa fa-terminal"></i></div>
-				<div id="nav_lorem" onclick="nav_lorem()" style="display:none"><i class="fa fa-font"></i></div>
+				<div class="active" id="nav_tree" onclick="nav.nav('tree')"><i class="zmdi zmdi-folder-outline"></i></div>
+				<div id="nav_preview" onclick="nav.nav('preview')"><i class="zmdi zmdi-eye"></i></div>
+				<div id="nav_terminal" onclick="nav.nav('terminal')"><i class="fa fa-terminal"></i></div>
+				<div id="nav_snippet" onclick="nav.nav('snippet')" style="display:none"></div>
 			</div>
-			<iframe style="display:none" class="preview preview-frame" id="preview"></iframe>
-			<div class="preview" style="display:none;position: absolute;bottom: 0;width: 100%;">
-				<div style="width: 100%;height:100%;display: -webkit-flex;display: flex;-webkit-flex-direction: row;flex-direction: row;">
-					<div style="padding:10px;width:calc(50% - 20px);text-align: center;color: white;padding-top: 2px;font-size: 15px;padding-bottom: 2px;">
-						<i class="zmdi zmdi-refresh" onclick="updatePreview()"></i>
-					</div>
-					<div style="padding:10px;width:calc(50% - 20px);text-align: center;color: white;padding-top: 2px;font-size: 15px;padding-bottom: 2px;">
-						<i class="zmdi zmdi-fullscreen" onclick="$('#preview-overlay').velocity('transition.slideDownIn')"></i>
-					</div>
-				</div>
+			
+			<div class="nav-snippet snippet-main" style="display:none">
+				<i class="zmdi zmdi-plus" style="
+				    position: absolute;
+				    color: white;
+				    padding: 10px;
+				    padding-top: 6px;
+				    padding-bottom: 7px;
+				    padding-left: 10px;
+				    border-radius: 50%;
+				    background-color: #FF8F00;
+				    bottom: 7px;
+				    right: 7px;
+				" onclick="snippets.add()"></i>
 			</div>
-			<div class="tree tree-tree"><ul class="root-tree"></ul></div>			
-			<div class="terminal" style="display:none"><iframe src="lib/codemirror-repl/index.html" id="repl-iframe" onclick="setFocusThickboxIframe()"></iframe></div>
+			
+			<div class="nav-preview nav-bottom-buttons">
+				<i class="zmdi zmdi-refresh" onclick="updatePreview()"></i>
+				<i class="zmdi zmdi-fullscreen" onclick="$('#preview-overlay').velocity('transition.slideDownIn')"></i>
+			</div>
+			<iframe style="display:none" class="nav-preview preview-frame" id="preview"></iframe>
+			<div class="nav-tree tree tree-tree"><ul class="root-tree"></ul></div>			
+			<div class="nav-terminal" style="display:none"><iframe src="lib/codemirror-repl/index.html" id="repl-iframe" onclick="setFocusThickboxIframe()"></iframe></div>
 		</div>
 
 		
@@ -146,6 +156,17 @@
 					  <p>Indent Size</p>
 					  <span><i class="fa fa-caret-down"></i></span>
 					  <select id="indent-size-select" onchange="settings.indentUnitChange()">
+					    <option value="1">1 char</option>
+					    <option value="2">2 chars</option>
+					    <option value="4">4 chars</option>
+					    <option value="8">8 chars</option>
+						</select>
+					</div>
+					
+					<div class="select-box">
+					  <p>Tab Size</p>
+					  <span><i class="fa fa-caret-down"></i></span>
+					  <select id="tab-size-select" onchange="settings.tabSizeChange()">
 					    <option value="1">1 char</option>
 					    <option value="2">2 chars</option>
 					    <option value="4">4 chars</option>
@@ -264,9 +285,7 @@
 					<h5 style="margin: 8px">Next, you will choose a location to save this file</h5>
 					
 					<div style="width:calc(100% - 20px);position: absolute; bottom: 10px; right: 10px; display: -webkit-flex;display: flex;-webkit-flex-direction: row;flex-direction: row;-webkit-flex-wrap: wrap;flex-wrap: wrap;justify-content: flex-end;">
-						
 						<a class="waves-effect waves-dark paper-btn-flat" style="margin-right: 5px;align-self: flex-end;" onclick="picker.saveAsClicked()"> CONTINUE</a>
-					
 						<a onclick="$('#saveas-overlay').velocity('transition.slideUpOut');$('#file-name').val('')" class="waves-effect waves-light paper-btn paper-btn-blue" style="background-color:#3498DB;align-self: flex-end;">CLOSE</a>
 					
 					</div>
@@ -533,6 +552,7 @@ font-weight: bold;
 		<script src="js/broadcast.js"></script>
 		<script src="js/tree.js"></script>
 		<script src="js/tabs.js"></script>
+		<script src="js/snippets.js"></script>
 		<script src="js/ready.js"></script>
 		
 		
