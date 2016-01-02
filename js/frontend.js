@@ -28,14 +28,14 @@ connect.snippets.addSnippets = function(info, callback){
 		}
 	});
 };
-connect.snippets.removeSnippet = function(id, callback){
+connect.snippets.removeSnippet = function(id, i, callback){
 	$.ajax("https://codeyourcloud.com/snippets/remove",{
 		method: "POST",
 		data: {
 			id: id	
 		},
 		success: function(data, textStatus, jqXHR){
-			callback(data);
+			callback(data, i);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			throw errorThrown;

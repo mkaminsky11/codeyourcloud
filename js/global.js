@@ -8,6 +8,7 @@ var current_file = "";
 var converter = new Markdown.Converter();
 
 //[name, codemirror code, file extensions seperated by | ]
+var modeSelect = "";
 var modes = CodeMirror.modeInfo;
 for(var i = 0; i < modes.length; i++){
 	var _mode_name = modes[i].mode;
@@ -156,4 +157,8 @@ function getParameterByName(name) {
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function esc(text){
+  return $("#escape").text(text).html()
 }

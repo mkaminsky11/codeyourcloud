@@ -1,8 +1,3 @@
-/*===
-* CODEYOURCLOUD
-* manages the tabs and their editors
-===*/
-
 //returns the editor currently shown
 function editor(){
 	for(var i = 0; i < editors.length; i++){
@@ -62,10 +57,6 @@ function setIgnore(id, ignore){
 	}
 }
 
-/**
-* COMMUNICATIONS
-* allows for communication between the iframes that keep track of the individual files and the main IDE
-**/
 
 window.addEventListener("message", receiveMessage, false);
 function receiveMessage(event){
@@ -147,10 +138,6 @@ function addTab(title, id, welcome){
     $(".chats-store").each(function(index){
 	    $(this).html(chat + $(this).html());
 	 });
-	//var user = "<div class='users-container' data-fileid='"+id+"' style='display:none'></div>";
-	//if(cloud_use === "sky"){user = ""}
-	//$("#users").html($("#users").html() + user);
-	
 	//actually create the new editor
     var e = CodeMirror(document.getElementById(id),{
         lineNumbers: settings.state.lineNumbers,

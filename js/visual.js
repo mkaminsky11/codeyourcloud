@@ -1,3 +1,11 @@
+var repl = {};
+repl.send = function(send){
+	document.getElementById("repl").contentWindow.postMessage(JSON.stringify(send), '*');
+}
+repl.onmessage = function(e){
+	//console.log(JSON.parse(e.data));
+}
+
 //running code
 function run(){
 	var code_before_replace = editor().getValue();
@@ -7,7 +15,7 @@ function run(){
 	var find = 'console.log'; //not console.log, but print
 	var re = new RegExp(find, 'g');
 	code_before_replace = code_before_replace.replace(re, 'print');
-	document.getElementById('repl-iframe').contentWindow.eval(code_before_replace);
+	//document.getElementById('repl-iframe').contentWindow.eval(code_before_replace);
 }
 
 
@@ -198,6 +206,7 @@ function open_side(){
 			queue: false,
 			complete: function(){
 				$(".move").css("width","calc(100% - 300px)");
+				snippets.refreshEditors();
 			}
 		});
 	}
@@ -210,7 +219,7 @@ function open_side(){
 **/
 
 var nav = {};
-nav.possible = ["preview","terminal","tree","snippet"];
+nav.possible = ["preview","tree","snippet"];
 nav.nav = function(nav_to){
 	var nav_button = "#nav_" + nav_to;
 	if($(nav_button).hasClass("active")){
@@ -230,42 +239,9 @@ nav.nav = function(nav_to){
 			}
 		}
 	}
-}
-
-function nav_preview(){
-	if($("#nav_preview").hasClass("active")){
-		//already there
-	}
-	else{
-		$("#navigate").find(".active").removeClass("active");
-		$("#nav_preview").addClass("active");
-		$(".nav-preview").css("display","block");
-		$(".nav-terminal").css("display","none");
-		$(".nav-tree").css("display","none");
-	}
-}
-function nav_terminal(){
-	if($("#nav_terminal").hasClass("active")){
-		//already there
-	}
-	else{
-		$("#navigate").find(".active").removeClass("active");
-		$("#nav_terminal").addClass("active");
-		$(".nav-preview").css("display","none");
-		$(".nav-terminal").css("display","block");
-		$(".nav-tree").css("display","none");
-	}
-}
-function nav_tree(){
-	if($("#nav_tree").hasClass("active")){
-		//already there
-	}
-	else{
-		$("#navigate").find(".active").removeClass("active");
-		$("#nav_tree").addClass("active");
-		$(".nav-preview").css("display","none");
-		$(".nav-terminal").css("display","none");
-		$(".nav-tree").css("display","block");
+	
+	if(nav_to === "snippet"){
+	  snippets.refreshEditors();
 	}
 }
 

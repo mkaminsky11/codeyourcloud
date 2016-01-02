@@ -227,7 +227,8 @@ function modeChange(){
 }
 //populates the mode select
 for(var i = 0; i < modes.length; i++){
-	$("#mode-select").html($("#mode-select").html() + "<option value='"+modes[i].mime+"'>"+modes[i].name+"</option>");
+	modeSelect = modeSelect + "<option value='"+modes[i].mime+"'>"+modes[i].name+"</option>";
+	$("#mode-select").html(modeSelect);
 }
 
 function editorUndo() {
@@ -269,7 +270,7 @@ settings.lineNumbers = function(){
 	this.state.lineNumbers = !this.state.lineNumbers;
 	for(var i = 0; i < editors.length; i++){
 		editors[i].editor.setOption("lineNumbers", this.state.lineNumbers);
-	}	
+	}
 }
 
 settings.lineWrapChange = function(){
@@ -300,6 +301,9 @@ settings.theme = function(theme){
 	for(var i = 0; i < editors.length; i++){
 		editors[i].editor.setOption("theme",theme);
 	}
+	for(var i = 0; i < snippets.data.length; i++){
+		snippets.data[i].editor.setOption("theme",theme);
+	}
 	this.state.theme = theme;
 }
 
@@ -327,6 +331,9 @@ settings.indentUnit = function(size){
   for(var i = 0; i < editors.length; i++){
 		editors[i].editor.setOption("indentUnit",size);
 	}
+	for(var i = 0; i < snippets.data.length; i++){
+		snippets.data[i].editor.setOption("indentUnit",size);
+	}
   this.state.indentUnit = size;
 }
 
@@ -338,6 +345,9 @@ settings.tabSizeChange = function(){
 settings.tabSize = function(size){
   for(var i = 0; i < editors.length; i++){
 		editors[i].editor.setOption("tabSize",size);
+	}
+	for(var i = 0; i < snippets.data.length; i++){
+		snippets.data[i].editor.setOption("tabSize",size);
 	}
   this.state.tabSize = size; 
 }
@@ -351,6 +361,9 @@ settings.indentWithTabs = function(){
 	this.state.indentWithTabs = !this.state.indentWithTabs;
 	for(var i = 0; i < editors.length; i++){
 		editors[i].editor.setOption("indentWithTabs", this.state.indentWithTabs);
+	}
+	for(var i = 0; i < snippets.data.length; i++){
+		snippets.data[i].editor.setOption("indentWithTabs",this.state.indentWithTabs);
 	}
 }
 
