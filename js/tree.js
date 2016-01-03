@@ -129,7 +129,7 @@ function toggle_tree_file(id){
 		manager.openTab(id);
 	}
 	else{
-		addTab("loading...", id, false);
+		addTab(id, false);
 	}
 }
 

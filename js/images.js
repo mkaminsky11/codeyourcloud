@@ -7,7 +7,8 @@ images.init = function(id){
 	drive.getFile(id, function(resp){
 		//https://doc-0o-34-docs.googleusercontent.com/docs/securesc/5bfhdfjhb08jjkevjs6gmvs27afnj8mn/5uus0edh2velrig75kjpkdj6ltg7kmum/1429380000000/09572991516856320887/09572991516856320887/0ByWSHHBN-zyoeE1lX29JSzBFdFE
 		//?e=download&gd=true
-		$(".codemirror-container[data-fileid=\""+id+"\"]").append("<div class='codemirror-image'><img src='"+ images.getImageUrl(resp.downloadUrl) +"'></div>");
+		$(".codemirror-container[data-fileid=\""+id+"\"]").append("<div class='codemirror-image'></div>");
+		$(".codemirror-container[data-fileid=\""+id+"\"] .codemirror-image").css("background-image","url(\""+images.getImageUrl(resp.downloadUrl)+"\")");
 	});
 }
 

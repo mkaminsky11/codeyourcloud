@@ -10,12 +10,11 @@ The goal of this project is to allow people around the globe to collaborate on c
 ### Installation Notes
 This is only the **FRONTEND**. There is also a backend component which is not open-source (yet), which is used for some things like preferences and authentication. The goal of publishing this is to show others how to successfully interact with the Google Drive and OneDrive APIs.
 
-If you simply `git clone` this and open `index.html`, **it will not work**. With some simple modifications, though, such as replacing the API keys with your own, you should be able to get it functional. This is mainly intended as a teaching tool.
-
 ### The Good Parts
 If you want to see the places where all of the _magic_ happens, take a look at `js/drive.js`, `js/sky.js`, and `js/tabs.js`. Enjoy!
 
 ### Recent Updates
++ Can now import and export snippets
 + Open tabs now stored automatically and reloaded
 + Added ability to copy snippets to clipboard
 + Added a snippet manager (located in sidebar) which replaces the Javascript REPL
@@ -31,10 +30,10 @@ If you want to see the places where all of the _magic_ happens, take a look at `
 + Context menu in sidebar
 + Minimize and beautify
 + ~~Warning when closing without saving changes~~ **DONE!**
-+ ~~Snippets (coming soon)~~ **DONE**
++ ~~Snippets (coming soon)~~ **DONE!**
 + Fix running Javascript + Coffeescript
-+ Import and export snippets (WIP)
-+ ~~Store open tabs and reload on open~~ **DONE**
++ ~~Import and export snippets~~ **DONE!**
++ ~~Store open tabs and reload on open~~ **DONE!**
 + Custom-made color picker (WIP)
 + Chat and collaboration using our backend, so that Onedrive users can chat and collaborate as well
 + Better publishing

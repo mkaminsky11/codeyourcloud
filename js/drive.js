@@ -59,7 +59,7 @@ drive.loadClient = function() {
 		if(url.indexOf("%22action%22:%22open") !== -1){
 			//need to open a file
 			var query_id = query.split("%22")[3];
-			addTab("loading...",query_id,false);
+			addTab(query_id,false);
 			
 		}
 		else if(url.indexOf("%22action%22:%22create%22") !== -1){
@@ -229,7 +229,7 @@ function fileInserted(d) {
 	}
 	
 	//great, now add the tab
-	addTab("loading...",d.id,false);
+	addTab(d.id,false);
 	
 	if(insert_folder_dest === drive.root){
 		get_tree(drive.root);
@@ -329,7 +329,7 @@ function saveas_inserted(inserted_file) {
 		removeFileFromFolder(inserted_file.parents[0].id,inserted_file.id);
 	}
 	
-	addTab("loading...",inserted_file.id,false);
+	addTab(inserted_file.id,false);
 }
 
 drive.updateFile = function(fileId, fileMetadata, fileData, callback) { //is the callback necessary?

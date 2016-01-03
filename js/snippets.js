@@ -36,6 +36,38 @@ snippets.add = function(){
 	});
 };
 
+snippets.addCustom = function(snippet){
+	var to_push = {
+		title: snippet.title,
+		language: snippet.language,
+		content: snippet.content
+	};
+	connect.snippets.addSnippets(to_push, function(data){
+		if(data.err === false){
+			//all good
+			snippets.insert(data.data);
+		}
+	});
+};
+
+snippets.import = function(){
+	var input = document.getElementById("snippet-file");
+	file = input.files[0];
+    fr = new FileReader();
+    fr.onload = function(){
+	    try{
+	    	var json = JSON.parse(fr.result).data;
+	    	for(var i = 0; i < json.length; i++){
+		    	snippets.addCustom(json[i]);
+	    	}
+	    }
+	    catch(e){
+		    
+	    }
+	}
+    fr.readAsText(file);
+}
+
 snippets.insert = function(snippet){
   document.querySelector(".snippet-main>pre").style.display = "none";
 	var elem = document.createElement("div");

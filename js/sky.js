@@ -172,7 +172,7 @@ sky.upload = function(){
 			            }).then(
 			            	function(r){
 				            	get_tree(sky.root);
-				            	addTab("loading...",r.id,false);
+				            	addTab(r.id,false);
 			            	},
 			            	function(err){}
 			            );
@@ -189,7 +189,7 @@ sky.insertNewFile = function(upload_location, file_name, body){
     xhr.open('PUT', url);
     xhr.onload = function () {
 	    get_tree(sky.root);
-        addTab("loading...", JSON.parse(xhr.response).id, false);
+        addTab(JSON.parse(xhr.response).id, false);
     };
     xhr.onerror = function (error) {
     };
@@ -212,7 +212,7 @@ sky.saveAs = function(){
 			    xhr.open('PUT', url);
 			    xhr.onload = function () {
 				    get_tree(sky.root);
-			        addTab("loading...", JSON.parse(xhr.response).id, false);
+			        addTab(JSON.parse(xhr.response).id, false);
 			    };
 			    xhr.onerror = function (error) {
 			    };

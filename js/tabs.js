@@ -105,14 +105,11 @@ function sendData(data, fileid){
 	document.getElementById("iframe-" + fileid).contentWindow.postMessage(JSON.stringify(data), "*");
 }
 
-function addTab(title, id, welcome){
-  if(title === "loading..."){
-	show_loading_spinner();
-  }
+function addTab(id, welcome){
+  show_loading_spinner();
   //check to see if it already exists
   //don't want to make a copy
   var found = manager.isOpen(id);
-  
   if(found){
     manager.openTab(id);
   }
@@ -123,7 +120,7 @@ function addTab(title, id, welcome){
 		settings.change();	
 	}
 	
-    var base = "<span class='tab-tab' data-fileid='"+id+"'>" + tree.getIconByTitle(title) + "<h4>" + title + "</h4>";
+    var base = "<span class='tab-tab' data-fileid='"+id+"'><i class=\"fa fa-align-left\"></i><h4>loading...</h4>";
     base = base + "<h6><span class='context-click' data-fileid='"+id+"'><i class='zmdi zmdi-caret-down'></i></span><i class='zmdi zmdi-close' onclick='manager.removeTab(\""+id+"\")'></i></h6><span>";
     $(".tab-container").html($(".tab-container").html() + base);
     var codemirror = "<div class='codemirror-container' id='"+id+"' data-fileid='"+id+"' style='display:none'><iframe src='https://codeyourcloud.com/js/logic/logic.html?id="+id+"' style='display:none' id='iframe-"+id+"'></iframe></div>"; 
@@ -131,7 +128,7 @@ function addTab(title, id, welcome){
 	        codemirror = "<div class='codemirror-container' id='"+id+"' data-fileid='"+id+"' style='display:none'></div>";
     }
     $("#insert-point").after(codemirror);
-    $(".tab-tab[data-fileid='"+id+"']").attr("data-icon", tree.getClassFromIcon(tree.getIconByTitle(title)));
+    $(".tab-tab[data-fileid='"+id+"']").attr("data-icon", tree.getClassFromIcon('<i class="fa fa-align-left"></i>'));
     
     var chat = "<div class='chats-content' data-fileid='"+id+"' style='display:none'></div>";
     var _chat = "<div class='chats-people' data-fileid='"+id+"' style='display:none'></div>";
@@ -193,7 +190,6 @@ function addTab(title, id, welcome){
 		});
 	}
   }
-  
 }
 
 //adjust based on the file

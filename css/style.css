@@ -39,10 +39,15 @@ body, html{
 }
 .codemirror-image{
 	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 6;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: #131313;
 }
 #codemirror-sizer{
 	position: relative;
@@ -273,6 +278,10 @@ body, html{
   position: absolute;
   bottom: 0;
   left: 0;
+}
+#snippet-popup{
+	top: calc(100% - 156px);
+    right: 14px;
 }
 .snippet-item{
 	position: relative;
@@ -672,6 +681,7 @@ body, html{
 	width: 44px !important;
 	height: 44px !important;
 }
+
 #chat-popup{
 	position: fixed;
 	width: 350px;

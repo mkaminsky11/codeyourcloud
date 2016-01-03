@@ -417,7 +417,7 @@ settings.init = function(){
     settings.state = prefs;
     for(var i = 0; i < settings.state.tabs.length; i++){
 	    if(manager.isOpen(settings.state.tabs[i]) === false){
-		    addTab("loading...", settings.state.tabs[i], false);
+		    addTab(settings.state.tabs[i], false);
 	    }
     }
   });    

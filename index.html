@@ -46,19 +46,19 @@
 				<div id="nav_snippet" onclick="nav.nav('snippet')">
 				  <i class="fa fa-code"></i>
 				  <span style="
-              position: absolute;
-              left: 18px;
-              font-family: &quot;Roboto&quot;;
-              font-size: 11px;
-              background-color: #B72727;
-              padding: 3px;
-              border-radius: 4px;
-              color: white;
-              font-weight: 400;
-              padding-bottom: 1px;
-              padding-top: 1px;
-              top: 2px;
-          ">new</span>
+		              position: absolute;
+		              left: 18px;
+		              font-family: &quot;Roboto&quot;;
+		              font-size: 11px;
+		              background-color: #B72727;
+		              padding: 3px;
+		              border-radius: 4px;
+		              color: white;
+		              font-weight: 400;
+		              padding-bottom: 1px;
+		              padding-top: 1px;
+		              top: 2px;
+		          ">new</span>
 				</div>
 			</div>
 			
@@ -77,20 +77,48 @@
 			    z-index: 2;
 			" onclick="snippets.add()"></i>
 			
+			<i class="nav-snippet zmdi zmdi-settings" style="
+			    position: absolute;
+			    color: white;
+			    padding: 10px;
+			    padding: 6px 7px 6px;
+			    border-radius: 50%;
+			    background-color: #F57C00;
+			    bottom: 38px;
+			    right: 9px;
+			    display: none;
+			    z-index: 4;
+			    font-size: 12px;
+			" onclick="$('#snippet-popup').toggle()"></i>
+			
 			<div class="nav-snippet snippet-main" style="display:none">
 			  <pre style="
-            text-align: center;
-            font-family: &quot;Roboto&quot;;
-            color: #ABABAB;
-            font-size: 15px;
-            overflow-wrap: break-word;
-            width: 100%;
-            margin-top: 20px;
-            margin-bottom: 0px;
-        ">Click  <i class="zmdi zmdi-plus" style="
-            color: #eee;
-        "></i>  To Create A New Snippet</pre>
+	            text-align: center;
+	            font-family: &quot;Roboto&quot;;
+	            color: #ABABAB;
+	            font-size: 15px;
+	            overflow-wrap: break-word;
+	            width: 100%;
+	            margin-top: 20px;
+	            margin-bottom: 0px;
+				">Click  <i class="zmdi zmdi-plus" style="
+					color: #eee;
+				"></i>  To Create A New Snippet</pre>
 			</div>
+			
+			<div style="display:none" id="snippet-popup" class="popup">
+				<input type="file" id="snippet-file" style="
+				position: absolute;
+				opacity: 0;
+				width: 100%;
+				height: 44px;" onchange="snippets.import()">
+  				<span onclick=""><i class="zmdi zmdi-upload"></i> Import Snippets</span>
+  				<span>
+  					<a href="https://codeyourcloud.com/snippets/download" style="text-decoration: none;">
+  						<i class="zmdi zmdi-download"></i> Export Snippets
+  					</a>
+  				</span>
+  			</div>
 			
 			<i class="nav-preview zmdi zmdi-refresh" style="
 			    position: absolute;
@@ -115,7 +143,7 @@
 			    padding-left: 10px;
 			    border-radius: 50%;
 			    background-color: #F57C00;
-			    bottom: 34px;
+			    bottom: 38px;
 			    right: 9px;
 			    display: none;
 			    z-index: 4;

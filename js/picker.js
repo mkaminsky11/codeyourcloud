@@ -21,7 +21,7 @@ picker.open = function(){
 	            }
 	            
 	            if(selected !== null){
-		            addTab("loading...",selected,false);
+		            addTab(selected,false);
 	            }
 	        },
 	        function (responseFailed) {
@@ -43,7 +43,7 @@ picker.openCallback = function(data) {
 	if (data.action === google.picker.Action.PICKED) {
 		for(i = 0; i < data.docs.length; i++){
 			var fileId = data.docs[i].id;
-			addTab("loading...",fileId,false);
+			addTab(fileId,false);
 		}
     }
     picker.purge();
@@ -69,7 +69,7 @@ picker.createUpload = function(){
 picker.uploadCallback = function(data){
 	if (data.action === google.picker.Action.PICKED || data.action === "picked") {
 		var fileId = data.docs[0].id;
-		addTab("loading...",fileId,false);
+		addTab(fileId,false);
     }
     picker.purge();
     return false;
