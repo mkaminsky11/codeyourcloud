@@ -96,18 +96,18 @@ connection.onmessage = function (message) {
 		console.log(json);
 		
 		if(json.type === "pub"){
-			 Messenger().post({
+			 /*Messenger().post({
 			  message: 'Successfully published',
 			  type: 'success',
 			  showCloseButton: true
-			});
+			});*/
 		}
 		else if(json.type === "error"){
-			Messenger().post({
+			/*Messenger().post({
 			  message: 'An error occured',
 			  type: 'error',
 			  showCloseButton: true
-			});
+			});*/
 		};
 	} catch (e) {
 		console.log(e);

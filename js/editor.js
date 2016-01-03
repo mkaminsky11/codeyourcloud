@@ -7,6 +7,15 @@ manager.allSaved = function(){
 	}
 	return true;
 }
+manager.isOpen = function(id){
+	var found = false;
+	for(var i = 0; i < editors.length; i++){
+    	if(editors[i].id === id){
+    	  found = true; 
+    	}
+  	}
+  	return found;
+}
 manager.trash = function(id){
 	if(id !== "welcome"){
 		if(cloud_use === "drive"){
@@ -105,6 +114,12 @@ manager.reallyRemove = function(id){
 		}
 	}
 	current_file = "";
+	if(id !== "welcome"){
+		if(settings.state.tabs.indexOf(id) !== -1){
+			settings.state.tabs.splice(settings.state.tabs.indexOf(id), 1);
+			settings.change();
+		}
+	}
 	editors.splice(index,1);
 }
 
@@ -400,6 +415,11 @@ settings.init = function(){
     //
     //
     settings.state = prefs;
+    for(var i = 0; i < settings.state.tabs.length; i++){
+	    if(manager.isOpen(settings.state.tabs[i]) === false){
+		    addTab("loading...", settings.state.tabs[i], false);
+	    }
+    }
   });    
 }
 
@@ -423,7 +443,8 @@ settings.state = {
 	theme: "monokai",
 	indentUnit: 4,
 	indentWithTabs: true,
-	tabSize: 4
+	tabSize: 4,
+	tabs: []
 };
 
 /**

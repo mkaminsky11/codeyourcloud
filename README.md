@@ -16,8 +16,9 @@ If you simply `git clone` this and open `index.html`, **it will not work**. With
 If you want to see the places where all of the _magic_ happens, take a look at `js/drive.js`, `js/sky.js`, and `js/tabs.js`. Enjoy!
 
 ### Recent Updates
++ Open tabs now stored automatically and reloaded
 + Added ability to copy snippets to clipboard
-+ Added a snippet manager (located in siderbar) which replaces the Javascript REPL
++ Added a snippet manager (located in sidebar) which replaces the Javascript REPL
 + Updated to [CodeMirror](http://codemirror.net/) version 5.9 ([release notes](http://codemirror.net/doc/releases.html))
 + Now supports [OneDrive](https://onedrive.live.com/)
 + Persistant preferences via backend
@@ -33,10 +34,13 @@ If you want to see the places where all of the _magic_ happens, take a look at `
 + ~~Snippets (coming soon)~~ **DONE**
 + Fix running Javascript + Coffeescript
 + Import and export snippets (WIP)
-+ Store open tabs and reload on open (WIP)
++ ~~Store open tabs and reload on open~~ **DONE**
 + Custom-made color picker (WIP)
 + Chat and collaboration using our backend, so that Onedrive users can chat and collaborate as well
 + Better publishing
+
+### Long-Term Goals
++ Reduce bloat and increase speed
 
 =====
 

@@ -123,12 +123,7 @@ function toggle_tree_folder(id){
 //what happens when you click on a file
 function toggle_tree_file(id){
 	//if already open...
-	var found = false;
-	for(var i = 0; i < editors.length; i++){
-		if(editors[i].id === id){
-			found = true;
-		}
-	}
+	var found = manager.isOpen(id);
 	if(found === true){
 		//already there, open it
 		manager.openTab(id);

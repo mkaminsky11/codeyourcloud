@@ -134,11 +134,11 @@ To get started, open a file by clicking the folder icon in the top-right corner 
 /*=======
 MESSENGER
 ========*/
-Messenger.options = {
+/*Messenger.options = {
     extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
     theme: 'air',
     hideAfter: 5
-};
+};*/
 
 function infoFromUrl() {
   if (window.location.hash) {

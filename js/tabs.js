@@ -111,16 +111,18 @@ function addTab(title, id, welcome){
   }
   //check to see if it already exists
   //don't want to make a copy
-  var found = false;
-  for(var i = 0; i < editors.length; i++){
-    if(editors[i].id === id){
-      found = true; 
-    }
-  }
+  var found = manager.isOpen(id);
+  
   if(found){
     manager.openTab(id);
   }
   else{
+	//add a tab
+	if(id !== "welcome" && settings.state.tabs.indexOf(id) === -1){
+		settings.state.tabs.push(id);
+		settings.change();	
+	}
+	
     var base = "<span class='tab-tab' data-fileid='"+id+"'>" + tree.getIconByTitle(title) + "<h4>" + title + "</h4>";
     base = base + "<h6><span class='context-click' data-fileid='"+id+"'><i class='zmdi zmdi-caret-down'></i></span><i class='zmdi zmdi-close' onclick='manager.removeTab(\""+id+"\")'></i></h6><span>";
     $(".tab-container").html($(".tab-container").html() + base);

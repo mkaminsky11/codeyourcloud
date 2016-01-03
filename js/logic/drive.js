@@ -36,6 +36,12 @@ function _readFile(theID, callback){ //gets the content of the file
                 	code = myXHR.response;
                 	callback(code);
 			   	}
+			   	else{
+					var sleep = (Math.pow(2,1)*1000) + (Math.round(Math.random() * 1000));
+					  window.setTimeout(function(){
+						  	_readFile(theID, callback);
+					  },sleep);
+			   	}
             }
         }
         myXHR.send();

@@ -84,11 +84,11 @@ picker.download = function(id){
 		  	request.execute(function(resp) {
 		  		window.location.assign(resp.webContentLink);
 			});
-			Messenger().post({
+			/*Messenger().post({
 				message: 'File downloaded!',
 				type: 'success',
 				showCloseButton: true
-			});
+			});*/
 		}
 		else if(cloud_use === "sky"){
 			sky.getFile(id, function(res){
