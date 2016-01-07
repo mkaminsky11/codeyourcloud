@@ -10,16 +10,52 @@ var converter = new Markdown.Converter();
 //[name, codemirror code, file extensions seperated by | ]
 var modeSelect = "";
 var modes = CodeMirror.modeInfo;
-for(var i = 0; i < modes.length; i++){
-	var _mode_name = modes[i].mode;
-	if(_mode_name !== "null"){
-		var url = "https://codeyourcloud.com/lib/codemirror/mode/" + _mode_name + "/" + _mode_name + ".js";
+var _mode = {};
+_mode.modes = modes;
+_mode.loaded = ["xml","javascript","clike","coffeescript","css","htmlmixed","go","markdown","php","perl","python","sass","ruby","sql","null"];
+
+for(var i = 0; i < _mode.loaded.length; i++){
+	if(_mode.loaded[i] !== "null"){
+		var url = "https://codeyourcloud.com/lib/codemirror/mode/" + _mode.loaded[i] + "/" + _mode.loaded[i] + ".js";
 	    jQuery.ajax({
 	        url: url,
 	        dataType: 'script',
 	        success: function(){},
 	        async: true
 		});
+	}
+}
+
+_mode.modeLoaded = function(mode){
+	for(var i = 0; i < _mode.modes.length; i++){
+		if(_mode.modes[i].mime === mode || (_mode.modes[i].mimes && _mode.modes[i].mimes.indexOf(mode) !== -1)){
+			//found it!
+			var _mode_name = _mode.modes[i].mode;
+			if(_mode.loaded.indexOf(_mode_name) !== -1 || _mode_name === "null"){
+				return [true, _mode_name];
+			}
+			else{
+				return [false, _mode_name];
+			}
+		}
+	}
+	return [false, null];
+}
+_mode.loadMode = function(_mode_name, mode, id, callback){
+	if(_mode_name !== "null"){
+		var url = "https://codeyourcloud.com/lib/codemirror/mode/" + _mode_name + "/" + _mode_name + ".js";
+	    jQuery.ajax({
+	        url: url,
+	        dataType: 'script',
+	        success: function(){
+				_mode.loaded.push(_mode_name);
+				callback(id, mode);
+			},
+	        async: true
+		});
+	}
+	else{
+		callback(id, mode);
 	}
 }
 

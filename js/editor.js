@@ -174,14 +174,44 @@ function replace(){
 	CodeMirror.commands["replace"](editor());
 }
 
+/*
+REVISED MODE CHANGE:
+* check if mode is loaded
+* if it is, set it
+	- if not, load via ajax with onload = actuallySetMode(...)
+	- if successful
+		* check if editor still exists, set if it does
+		* add mode to list of loaded modes
+	
+*/
 
 manager.setMode = function(id,mode){
+	var res = _mode.modeLoaded(mode);
+	if(res[0] === true){
+		console.log("mode loaded...setting");
+		manager.actuallySetMode(id,mode);
+	}
+	else{
+		console.log("mode not loaded...now loading");
+		if(res[1] !== null){
+			_mode.loadMode(res[1], mode, id, function(the_id, the_mode){
+				manager.actuallySetMode(the_id, the_mode);
+			});
+		}
+		else{
+			//the mode does not exist
+		}
+	}
+};
+
+manager.actuallySetMode = function(id, mode){
 	try{
 		if(mode !== $("#mode-select").val()){
 			$("#mode-select").val(mode);
 		}
 	}
 	catch(e){}
+	
 	var index = getIndex(id);
 	editors[index].editor.setOption("extraKeys", {});
 	editors[index].editor.setOption("gutters",["CodeMirror-linenumbers"]);

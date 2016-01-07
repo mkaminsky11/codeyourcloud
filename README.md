@@ -14,6 +14,7 @@ This is only the **FRONTEND**. There is also a backend component which is not op
 If you want to see the places where all of the _magic_ happens, take a look at `js/drive.js`, `js/sky.js`, and `js/tabs.js`. Enjoy!
 
 ### Recent Updates
++ Modes dynamically loaded, instead of all at once
 + Can now import and export snippets
 + Open tabs now stored automatically and reloaded
 + Added ability to copy snippets to clipboard
@@ -34,6 +35,7 @@ If you want to see the places where all of the _magic_ happens, take a look at `
 + Fix running Javascript + Coffeescript
 + ~~Import and export snippets~~ **DONE!**
 + ~~Store open tabs and reload on open~~ **DONE!**
++ ~~Dynamically load modes~~ **DONE!**
 + Custom-made color picker (WIP)
 + Chat and collaboration using our backend, so that Onedrive users can chat and collaborate as well
 + Better publishing

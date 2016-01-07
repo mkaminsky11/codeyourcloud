@@ -53,19 +53,19 @@ snippets.addCustom = function(snippet){
 snippets.import = function(){
 	var input = document.getElementById("snippet-file");
 	file = input.files[0];
-    fr = new FileReader();
-    fr.onload = function(){
-	    try{
-	    	var json = JSON.parse(fr.result).data;
-	    	for(var i = 0; i < json.length; i++){
-		    	snippets.addCustom(json[i]);
-	    	}
-	    }
-	    catch(e){
-		    
-	    }
+	fr = new FileReader();
+	fr.onload = function(){
+		try{
+			var json = JSON.parse(fr.result).data;
+		    	for(var i = 0; i < json.length; i++){
+			    	snippets.addCustom(json[i]);
+		    	}
+		}
+		catch(e){
+			    
+		}
 	}
-    fr.readAsText(file);
+	fr.readAsText(file);
 }
 
 snippets.insert = function(snippet){
@@ -93,17 +93,23 @@ snippets.insert = function(snippet){
 	elem.querySelector("select").value = snippet.language;
 	elem.querySelector("input").value = snippet.title;
 	
+	var _mode_is_loaded = _mode.modeLoaded(snippet.language);
+	var _mode_to_load = snippet.language;
+	if(_mode_is_loaded[0] === false){
+		_mode_to_load = "text/plain";
+	}
+	
 	var editor = CodeMirror(_editor, {
-	  value: snippet.content,
-	  mode:  snippet.language,
-	  readOnly: true,
-	  lineNumbers: false,
-      theme: settings.state.theme,
-      lineWrapping: true, 
-      indentUnit: 4,
-      indentWithTabs: true,
-      tabSize: settings.state.tabSize,
-      viewPort: Infinity
+		value: snippet.content,
+		mode:  _mode_to_load,
+		readOnly: true,
+		lineNumbers: false,
+      		theme: settings.state.theme,
+      		lineWrapping: true, 
+      		indentUnit: 4,
+      		indentWithTabs: true,
+      		tabSize: settings.state.tabSize,
+      		viewPort: Infinity
 	});
 	
 	//refresh on open
@@ -118,6 +124,17 @@ snippets.insert = function(snippet){
 			}
 		})
 	});
+	
+	//load mode if needed
+	if(_mode_is_loaded[0] === false){
+		_mode.loadMode(_mode_is_loaded[1], snippet.language, snippet["_id"], function(_id, _mode_has_loaded){
+			for(var i = 0; i < snippets.data.length; i++){
+				if(snippets.data[i].snippet["_id"] === _id){
+					snippets.data[i].editor.setOption("mode",_mode_has_loaded);
+				}
+			}
+		});
+	}
 }
 
 snippets.getValue = function(_id){
@@ -207,9 +224,23 @@ snippets.delete = function(_id){
 
 snippets.languageChange = function(_id){
 	for(var i = 0; i < snippets.data.length; i++){
-      if(snippets.data[i].snippet["_id"] === _id){
-        snippets.data[i].snippet.language = snippets.data[i].elem.querySelector("select").value;
-        snippets.data[i].editor.setOption("mode", snippets.data[i].snippet.language);
-      }
-    }
+      		if(snippets.data[i].snippet["_id"] === _id){
+      		  snippets.data[i].snippet.language = snippets.data[i].elem.querySelector("select").value;
+      		  var chosenLang = snippets.data[i].snippet.language;
+      		  var _mode_is_loaded = _mode.modeLoaded(chosenLang);
+      		  
+      		  if(_mode_is_loaded[0] === false){
+          		_mode.loadMode(_mode_is_loaded[1], chosenLang, snippets.data[i].snippet["_id"], function(_id, _mode_has_loaded){
+          			for(var j = 0; j < snippets.data.length; j++){
+          				if(snippets.data[j].snippet["_id"] === _id){
+          					snippets.data[j].editor.setOption("mode",_mode_has_loaded);
+          				}
+          			}
+          		});
+      		}
+      		else{
+      		  snippets.data[i].editor.setOption("mode",chosenLang);
+      		}
+    	}
+	}
 }

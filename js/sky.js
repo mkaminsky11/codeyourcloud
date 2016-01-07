@@ -99,7 +99,7 @@ sky.retrieveAllFilesInFolder = function(id, callback){
     	path: (id + "/files"),
         method: "GET"
     }).then(function(res){
-	    callback(res.data);
+	    callback(res.data, id);
 	}, function(err){});
 };
 

@@ -30,11 +30,14 @@ function tree_folder(id, callback){
 	if(cloud_use === "drive"){
 		var ret = [];
 		//gets all the files
-		drive.retrieveAllFilesInFolder(id, function(data){
+		drive.retrieveAllFilesInFolder(id, function(data, _root){
 			var goal = data.length; //how many files total
 			for(var i = 0; i < data.length; i++){
-				  var id_id = data[i].id;
-				  //for each of the files, gets the information
+				var id_id = data[i].id;
+				//add placeholder element
+				tree_placeholder(id_id, _root);
+				
+				//for each of the files, gets the information
   				drive.getFile(id_id, function(resp){
   					var to_push = {
   						title: resp.title,
@@ -56,7 +59,7 @@ function tree_folder(id, callback){
 	}
 	else if(cloud_use === "sky"){
 		var ret = [];
-		sky.retrieveAllFilesInFolder(id, function(data){
+		sky.retrieveAllFilesInFolder(id, function(data, _root){
 			for(var i = 0; i < data.length; i++){
 				var to_push = {
 					title: data[i].name,
@@ -71,35 +74,49 @@ function tree_folder(id, callback){
 }
 //sets the id of the root to by the root folder
 $(".root-tree").attr("data-tree-ul", drive.root);
+
+function tree_placeholder(id, root){
+	var to_push = "<center style=\"display:none\" data-placeholder=\""+id+"\"></center>";
+	$("[data-tree-ul='"+root+"']").append(to_push);
+}
+
+function tree_insert(resp){
+	var ret = "";
+	var title = resp.title;
+	var icon = '<i class="fa fa-align-left"></i>';
+	var the_id = resp.id;
+	if(typeof title !== 'undefined'){
+		icon = tree.getIconByTitle(title);
+		var caret = ""; //"<span class='context-click' data-fileid='"+data[i].id+"'><i class='zmdi zmdi-caret-down'></i></span>";
+		var to_push = "<li data-tree-li='" + the_id + "' class='tree-file'>"+"<span onclick='toggle_tree_file(\""+the_id+"\")'>" + icon + title + caret + "</span>"+"</li>";
+				
+		if(resp.folder === true){
+			icon = "<i class='fa fa-folder'></i>";
+			to_push = "<li data-tree-li='"+the_id+"' class='tree-folder'><span onclick='toggle_tree_folder(\""+the_id+"\")'>" + icon + title + caret + "</span><ul data-tree-ul='"+the_id+"' style='display:none'></ul></li>";
+		}
+		ret = ret + to_push;
+	}
+	return ret;
+}
+
 //sets the tree contents for a folder
 function get_tree(id){
 	//gets the array of files/folders, passes to callback
+	$("[data-tree-ul='"+id+"']").html("");
 	tree_folder(id, function(data){
 		var ret = ""; //the html that will be returned
 		for(var i = 0; i < data.length; i++){
-			var title = data[i].title;
-			var icon = '<i class="fa fa-align-left"></i>'; //the default
-			if(typeof title !== 'undefined'){
-				icon = tree.getIconByTitle(title);
-				var caret = "";//"<span class='context-click' data-fileid='"+data[i].id+"'><i class='zmdi zmdi-caret-down'></i></span>";
-				var to_push = "<li data-tree-li='" +data[i].id+ "' class='tree-file'>"+"<span onclick='toggle_tree_file(\""+data[i].id+"\")'>" + icon + title + caret + "</span>"+"</li>";
-				
-				if(data[i].folder === true){
-					icon = "<i class='fa fa-folder'></i>";
-					to_push = "<li data-tree-li='"+data[i].id+"' class='tree-folder'><span onclick='toggle_tree_folder(\""+data[i].id+"\")'>" + icon + title + caret + "</span><ul data-tree-ul='"+data[i].id+"' style='display:none'></ul></li>";
-				}
-				ret = ret + to_push;
-			}
+			ret += tree_insert(data[i]);
 		}
 		//sets the html
-		$("[data-tree-ul='"+id+"']").html(ret);
+		$("[data-tree-ul='"+id+"']").append(ret);
 		//opens the folder
 		$("[data-tree-ul='"+id+"']").slideDown();
 		//removes the loading icon
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-folder");
-        	$("[data-tree-li='"+id+"']>span>i").removeClass("fa-circle-o-notch");
+        $("[data-tree-li='"+id+"']>span>i").removeClass("fa-circle-o-notch");
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-spin");
-        	$("[data-tree-li='"+id+"']>span>i").addClass("fa-folder-open");
+        $("[data-tree-li='"+id+"']>span>i").addClass("fa-folder-open");
 	});
 }
 //what happens when you click on a folder
