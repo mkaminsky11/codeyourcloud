@@ -28,10 +28,14 @@ function sort_by_title(a,b) {
 //gets the contents of a folder
 function tree_folder(id, callback){
 	if(cloud_use === "drive"){
-		var ret = [];
 		//gets all the files
+		var ret = 0;
 		drive.retrieveAllFilesInFolder(id, function(data, _root){
 			var goal = data.length; //how many files total
+			if(goal === 0){
+			  tree_prime(_root);
+			  callback();
+			}
 			for(var i = 0; i < data.length; i++){
 				var id_id = data[i].id;
 				//add placeholder element
@@ -39,36 +43,34 @@ function tree_folder(id, callback){
 				
 				//for each of the files, gets the information
   				drive.getFile(id_id, function(resp){
-  					var to_push = {
-  						title: resp.title,
-  						id: resp.id,
-  						folder: (resp.mimeType === "application/vnd.google-apps.folder") //is it a folder?
-  					};
   					if(resp.explicitlyTrashed === true){ //if trashed, don't count
   						goal--;
   					}
   					else{
-  						ret.push(to_push);
+  					  //add it here
+  					  ret++;
+  					  if(ret === 1){
+  					    tree_prime(_root);
+  					  }
+  					  treeInsert(resp.title, resp.id, (resp.mimeType === "application/vnd.google-apps.folder"), false, _root);
   					}
-  					if(ret.length === goal){
-  						callback(ret.sort(sort_by_title));
+  					if(ret === goal){
+  						callback(); //this is the finisher
   					}
   				});
 			}
 		});
 	}
 	else if(cloud_use === "sky"){
-		var ret = [];
 		sky.retrieveAllFilesInFolder(id, function(data, _root){
 			for(var i = 0; i < data.length; i++){
-				var to_push = {
-					title: data[i].name,
-					id: data[i].id,
-					folder: (data[i].id.indexOf("folder") === 0)
-				};
-				ret.push(to_push);
+			  //open it up!
+			  tree_prime(_root);
+			  
+			  //add it here
+			  treeInsert(data[i].name, data[i].id, (data[i].id.indexOf("folder") === 0), true, _root);
 			}
-			callback(ret.sort(sort_by_title));
+			callback(); //this is the finisher
 		});
 	}
 }
@@ -78,6 +80,23 @@ $(".root-tree").attr("data-tree-ul", drive.root);
 function tree_placeholder(id, root){
 	var to_push = "<center style=\"display:none\" data-placeholder=\""+id+"\"></center>";
 	$("[data-tree-ul='"+root+"']").append(to_push);
+}
+
+function treeInsert(title, the_id, folder, sky, root){
+  var html = tree_insert({
+    title: title,
+    id: the_id,
+    folder: folder
+  });
+  
+  if(sky === false){
+    //google drive
+    $("center[data-placeholder='"+the_id+"']").replaceWith(html);
+  }
+  else{
+    //skydrive
+    $("[data-tree-ul='"+root+"']").append(html);
+  }
 }
 
 function tree_insert(resp){
@@ -99,24 +118,26 @@ function tree_insert(resp){
 	return ret;
 }
 
+function tree_prime(id){
+  //data loading
+  //opens the folder
+	$("[data-tree-ul='"+id+"']").slideDown();
+}
+
+function tree_finish(id){
+  //data done loading
+}
+
 //sets the tree contents for a folder
 function get_tree(id){
 	//gets the array of files/folders, passes to callback
 	$("[data-tree-ul='"+id+"']").html("");
-	tree_folder(id, function(data){
-		var ret = ""; //the html that will be returned
-		for(var i = 0; i < data.length; i++){
-			ret += tree_insert(data[i]);
-		}
-		//sets the html
-		$("[data-tree-ul='"+id+"']").append(ret);
-		//opens the folder
-		$("[data-tree-ul='"+id+"']").slideDown();
+	tree_folder(id, function(){
 		//removes the loading icon
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-folder");
-        $("[data-tree-li='"+id+"']>span>i").removeClass("fa-circle-o-notch");
+    $("[data-tree-li='"+id+"']>span>i").removeClass("fa-circle-o-notch");
 		$("[data-tree-li='"+id+"']>span>i").removeClass("fa-spin");
-        $("[data-tree-li='"+id+"']>span>i").addClass("fa-folder-open");
+    $("[data-tree-li='"+id+"']>span>i").addClass("fa-folder-open");
 	});
 }
 //what happens when you click on a folder
