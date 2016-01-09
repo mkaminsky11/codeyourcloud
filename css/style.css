@@ -1,5 +1,5 @@
 body, html{
-	font-family: 'Roboto-Thin' !important;
+	font-family: 'Roboto' !important;
 	overflow-x: hidden;
 	overflow-y: hidden;
 	margin: 0;
@@ -55,12 +55,6 @@ body, html{
 	width: 100%;
 	z-index: 2;
 	float: left;
-}
-
-#overlay{
-	height:100%;
-	width:100%;
-	position:absolute;
 }
 #navbar-collapse-01{
 	padding-left:0;
@@ -495,6 +489,7 @@ body, html{
 	position: relative;
 	margin-left: 14px;
 	height: 20px;
+	z-index: 2;
 }
 .tab-tab h6{
 	margin: 0;
@@ -550,15 +545,61 @@ body, html{
 	-webkit-overflow-scrolling: touch;
 	overflow: visible;
 }
-#overlay{
-	background-color: #ECF0F1;
-	z-index: 1;
+#overlay, #loading-overlay{
+	background-color: #2F2E2E;
+	z-index: 8;
+	height:100%;
+	width:100%;
+	position:absolute;
+}
+#overlay h3{
+  text-align: center;
+  color: #DADEDF;
 }
 #overlay h4{
 	text-align: center;
-	text-transform: uppercase;
 	margin-top: 14px;
 	color: #DADEDF;
+	font-weight: 300;
+}
+#overlay > div{
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+}
+#overlay > div > div{
+  flex: 1;
+  text-align: center;
+  color: #DADEDF;
+}
+#overlay > div > div > i{
+    padding: 10px;
+    background-color: #131313;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#loading-overlay > div{
+	width: 100%;
+    height: 100%;
+    display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+    justify-content: center;
+    align-items: center;
+}
+#loading-overlay > div > div{
+	width: 90%;
+    height: 10px;
+    background-color: #131313;
+    border-radius: 5px;
+}
+#loading-overlay > div > div > span{
+	height: 10px;
+    width: 20%;
+    background-color: #FF8F00;
+    position: absolute;
+    border-radius: 5px;
 }
 .codemirror-container{
 	z-index: 2;
@@ -619,7 +660,8 @@ body, html{
   	padding: 0px;
   	background-color: transparent;
   	text-align: center;
-  	font-family: 'Roboto-Thin';
+  	font-family: 'Roboto';
+	font-weight: 300;
   	z-index: 11;
   	font-size: 17px;
   	float: right;
@@ -669,7 +711,8 @@ body, html{
 
 .option-div h4{
 	margin: 0;
-	font-family: 'Roboto-Thin';
+	font-family: 'Roboto';
+	font-weight: 300;
 	color: #9E9E9E;
 	float: left;
 }
@@ -851,7 +894,8 @@ FILE BROWSING TREE
 }
 .tree li{
 	color: #C8CDCF;
-	font-family: 'Roboto-Thin';
+	font-family: 'Roboto';
+	font-weight: 300;
 	font-weight: 600;
 	font-size: 11px;
 	margin-top: 5px;
@@ -1145,9 +1189,10 @@ LOADING ICON
 	position: absolute;
 	z-index: 90;
 	background-color: white;
-	border-radius: 2px;
+	border-radius: 1px;
 	right: 5px;
 	top: 35px;
+	border: solid 1px #E6E6E6;
 }
 .popup>span{
 	display: block;

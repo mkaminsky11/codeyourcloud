@@ -22,6 +22,7 @@ function addEditor(e, id, welcome){
 	editors.push(to_push);
 	current_file = id;
 	e.refresh();
+	$("#overlay").css("display","none")
 }
 //gets an editor by its file id
 function getEditor(id){
@@ -120,7 +121,7 @@ function addTab(id, welcome){
 		settings.change();	
 	}
 	
-    var base = "<span class='tab-tab' data-fileid='"+id+"'><i class=\"fa fa-align-left\"></i><h4>loading...</h4>";
+    var base = "<span class='tab-tab' data-fileid='"+id+"'><i class=\"fa fa-align-left\"></i><h4 onclick='manager.openTab(\""+id+"\")'>loading...</h4>";
     base = base + "<h6><span class='context-click' data-fileid='"+id+"'><i class='zmdi zmdi-caret-down'></i></span><i class='zmdi zmdi-close' onclick='manager.removeTab(\""+id+"\")'></i></h6><span>";
     $(".tab-container").html($(".tab-container").html() + base);
     var codemirror = "<div class='codemirror-container' id='"+id+"' data-fileid='"+id+"' style='display:none'><iframe src='https://codeyourcloud.com/js/logic/logic.html?id="+id+"' style='display:none' id='iframe-"+id+"'></iframe></div>"; 

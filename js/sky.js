@@ -20,6 +20,7 @@ sky.load = function(){
 	});
 	
 	WL.getLoginStatus(function(response) {
+		$("#loading-bar").css("width","50%");
 		console.log(response);
 		//response.status
 		sky.loaded = true;
@@ -37,6 +38,7 @@ sky.load = function(){
 }
 
 sky.loadClient = function(){
+	$("#loading-bar").css("width","70%");
 	$("#help_button").remove();
 	$(".share-button").remove();
 	$("#log-out").attr("href", sky.logout_url);
@@ -55,6 +57,7 @@ sky.getInfo = function(){
 		path: "me",
         method: "GET"
 	}).then(function(res){
+		$("#loading-bar").css("width","90%");
 		console.log(res);
 		sky.id = res.id;
 		sky.username = res.name;
@@ -89,6 +92,7 @@ sky.getInfo = function(){
 			sky.upload_location = res.upload_location;
 			$(".root-tree").attr("data-tree-ul", sky.root);
 			get_tree(sky.root);
+			$("#loading-overlay").css("display","none");
 		}, function(err){});
 		
 	}, function(err){});

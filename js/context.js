@@ -105,7 +105,7 @@ context.contextListener = function() {
       //now, check if need to open
       var tab_tab = context.clickInsideElement(e, "tab-tab");
       if(tab_tab){
-        manager.openTab($(tab_tab).attr("data-fileid"));
+        //manager.openTab($(tab_tab).attr("data-fileid"));
       }
     }
   });

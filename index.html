@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/style.css">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	    <meta charset="utf-8">
 	    <script>
@@ -27,16 +28,13 @@
 		<script src="lib/slider/files/slider.js"></script>
 		<!--link rel="stylesheet" href="lib/messenger/css/messenger.css"-->
 		<!--link rel="stylesheet" href="lib/messenger/css/messenger-theme-air.css"-->
-		<link rel="stylesheet" href="fonts/font.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/material.css">
 		<link href='https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css' rel='stylesheet'>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.5/clipboard.min.js"></script>
 
 	</head>
 	<body>
-		<link rel="stylesheet" href="fonts/font.css">
 		<img id="paper-loading-spinner" style="display:none" src="images/svg/spinner.svg" height="40px" width="40px"/>
 		
 		<div id="side" style="/*display:none*/">
@@ -182,9 +180,9 @@
 	<div style="width:100%;height:calc(100% - 15px);position:fixed;z-index: 0;" class="move">
 		<div class="tab-wrapper">
 			<div class="tab-container">
-				<span class="tab-tab tab-active" data-fileid="welcome" onclick="manager.openTab('welcome')">
+				<span class="tab-tab tab-active" data-fileid="welcome">
 					<i class="fa fa-align-left"></i>
-					<h4>Welcome</h4>
+					<h4 onclick="manager.openTab('welcome')">Welcome</h4>
 					<h6>
 						<i class="zmdi zmdi-close" onclick="manager.removeTab('welcome')"></i>
 					</h6>
@@ -330,10 +328,30 @@
 				<span id="insert-point" style="display:none"></span>
 			</div>
 			
-			<div id="overlay">
-				<h4>NO FILE</h4>
-				<h4><i class="fa fa-question"></i></h4>
-				<h4>SELECTED</h4>
+			<div id="loading-overlay">
+				<div>
+					<div>
+						<span style="width: 5%" id="loading-bar"></span>
+					</div>
+				</div>
+			</div>
+			
+			<div id="overlay" style="display:none">
+				<h3>Let's Get Started</h3>
+				<div>
+					<div>
+						<i class="zmdi zmdi-folder" onclick="picker.open()"></i>
+						<h4>Open a file</h4>
+					</div>
+					<div>
+						<i class="zmdi zmdi-upload" onclick="picker.upload()"></i>
+						<h4>Upload</h4>
+					</div>
+					<div>
+						<i class="zmdi zmdi-plus" onclick="new_file()"></i>
+						<h4>New file</h4>
+					</div>
+				</div>
 			</div>
 		</div>
 		</div>

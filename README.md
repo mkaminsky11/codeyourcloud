@@ -14,6 +14,7 @@ This is only the **FRONTEND**. There is also a backend component which is not op
 If you want to see the places where all of the _magic_ happens, take a look at `js/drive.js`, `js/sky.js`, and `js/tabs.js`. Enjoy!
 
 ### Recent Updates
++ Tree contents loaded asyncronously
 + Modes dynamically loaded, instead of all at once
 + Can now import and export snippets
 + Open tabs now stored automatically and reloaded
@@ -38,9 +39,11 @@ If you want to see the places where all of the _magic_ happens, take a look at `
 + ~~Dynamically load modes~~ **DONE!**
 + Custom-made color picker (WIP)
 + Chat and collaboration using our backend, so that Onedrive users can chat and collaborate as well
-+ Better publishing
++ Better publishing (WIP)
++ ~~Remove Roboto font, use websafe font~~ **KEEP IT, LOADED VIA GOOGLE FONTS**
 
 ### Long-Term Goals
++ Improve user onboarding and visual interface
 + Reduce bloat and increase speed
 
 =====

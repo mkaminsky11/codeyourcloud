@@ -13,6 +13,7 @@ drive.load = function(){
   gapi.client.setApiKey(developerKey);
   window.setTimeout(function(){
   	gapi.auth.authorize({'client_id': drive.client_id, 'scope': drive.scopes.join(' '), 'immediate': true}, function(authResult){
+		$("#loading-bar").css("width","60%");
   		drive.loaded = true;
   		console.log(authResult);
   		
@@ -48,6 +49,7 @@ drive.checkAppLogin = function(callback){
 
 drive.loadClient = function() {
 	gapi.client.load('drive', 'v2', function(){
+		$("#loading-bar").css("width","70%");
 		//this need to be refreshed every 55 minutes
 		setInterval(function(){
 			drive.refresh();
@@ -77,6 +79,7 @@ drive.refresh = function() {
 drive.getInfo = function(){
     var request = gapi.client.drive.about.get();
     request.execute(function(resp) {
+		$("#loading-bar").css("width","90%");
         drive.root = resp.rootFolderId;
         try{
         	drive.email = resp.user.emailAddress;
@@ -110,6 +113,7 @@ drive.getInfo = function(){
         catch(e){}
         $(".root-tree").attr("data-tree-ul", drive.root);
         get_tree(drive.root);
+		$("#loading-overlay").css("display","none");
     });
 }
 

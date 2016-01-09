@@ -21,6 +21,7 @@ function init(){
 		_init = true;
 		//decide wether to load sky or drive
 		drive.checkAppLogin(function(_logged_in){
+			$("#loading-bar").css("width","10%");
 			if(_logged_in === false){
 				console.log("redirect for no app login");
 				if(window.location.href.indexOf("no=true") === -1){
@@ -33,6 +34,7 @@ function init(){
 					if(sky.logged_in === true){
 						//ok...load sky, I guess
 						cloud_use = "sky";
+						$("#loading-bar").css("width","30%");
 					}
 					else{
 						console.log("redirect for skydrive");
@@ -45,6 +47,7 @@ function init(){
 					//indication of drive
 					if(drive.logged_in === true){
 						//all good!
+						$("#loading-bar").css("width","30%");
 					}
 					else{
 						console.log("redirect for drive");
@@ -57,12 +60,15 @@ function init(){
 					//no indication
 					if(drive.logged_in === true && sky.logged_in === false){
 						//all good!
+						$("#loading-bar").css("width","30%");
 					}
 					else if(drive.logged_in === false && sky.logged_in === true){
 						cloud_use = "sky";
+						$("#loading-bar").css("width","30%");
 					}
 					else if(drive.logged_in === true && sky.logged_in === true){
 						//all good! -> prioritize drive
+						$("#loading-bar").css("width","30%");
 					}
 					else{
 						console.log("redirect for none");

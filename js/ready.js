@@ -5,6 +5,7 @@
 //=============
 //INITIALIZE WELCOME EDITOR
 //============
+
 var e = CodeMirror(document.getElementById("welcome"),{
 	lineNumbers: settings.state.lineNumbers,
 	mode: "text",
@@ -20,6 +21,7 @@ var e = CodeMirror(document.getElementById("welcome"),{
 //sets the introduction text
 e.setValue(introText);
 addEditor(e, "welcome", true);
+
 current_file = "welcome";
 editor().on("beforeSelectionChange", function(cm, selection){});
 editor().setOption("autoCloseBrackets",true); //TODO: make this optional

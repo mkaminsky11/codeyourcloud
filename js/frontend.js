@@ -82,6 +82,40 @@ connect.settings.getSettings = function(callback){
 	});
 };
 
+connect.publish = function(content, mode, fileId){
+	if(mode === "text/x-markdown" || mode === "gfm"){
+		content = converter.makeHtml(content);
+	}
+	
+	var userId = null;
+	fileId = fileId.replace(/-/g, '');
+	
+	if(cloud_use === "drive"){
+		userId = drive.id;
+	}
+	else if(cloud_use === "sky"){
+		userId = sky.id;
+	}
+	
+	var info = {
+		mode: mode,
+		content: content,
+		fileId: fileId,
+		userId: userId
+	};
+	
+	$.ajax("https://codeyourcloud.com/publish",{
+		method: "POST",
+		data: info,
+		success: function(data, textStatus, jqXHR){
+			
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			throw errorThrown;
+		}	
+	});
+}
+
 
 var connection = new WebSocket('wss://codeyourcloud.com:8080');
 connection.onopen = function () {

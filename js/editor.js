@@ -98,6 +98,8 @@ manager.removeTab = function(id){
 }
 manager.reallyRemove = function(id){
 	hide_loading_spinner();	//nothing should be loading anymore
+	console.log("here1");
+	$("#overlay").css("display","block");
 	//remove the tab div with style!
 	$(".tab-tab[data-fileid='"+id+"']").velocity("transition.slideUpOut",{
 		duration: 400,
@@ -124,6 +126,7 @@ manager.reallyRemove = function(id){
 }
 
 manager.openTab = function(id){
+	$("#overlay").css("display","none");
 	//remove .active from the current .active tab
 	$(".tab-active").removeClass("tab-active");
 	$(".tab-tab[data-fileid='"+id+"']").addClass("tab-active");
