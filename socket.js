@@ -42,50 +42,40 @@ wsServer.on('request', function(request) {
 	    connection.on('message', function(message) {
 	        try{
 	        	var json = JSON.parse(message.utf8Data);	
-	        	if(json.type === "comment"){
-		        	var text = json.comment;
-		        	var name = json.sender;
-		        	var mail = json.email;
-		        	var agree = json.agree;
-		        	var output = name + "\n" + mail + "\n" + agree + "\n" + text + "\n*******************************\n";
-		        	if((name + "\n" + mail + "\n" + text).trim() !== ""){
-			        	fs.appendFile('../node/comments.txt', output, function (err) {});
+				if(json.type === "survey"){
+					var vote = json.vote + "\n";
+					fs.appendFile('../survey/ad.txt', vote, function(err){});
 				}
-			}
-			if(json.type === "survey"){
-				var vote = json.vote + "\n";
-				fs.appendFile('../survey/ad.txt', vote, function(err){});
-			}
-			if(json.type === "publish"){
-				var user_id = json.id;
-				console.log(json.mode);
-				if(json.mode === "text/html" || json.mode === "text/x-markdown" || json.mode === "gfm"){
-					//if markdown or html
-					var lines = json.lines.join("\n");
-					var dir = "pub/" + user_id;
-					if(pathOk(dir)){
-						mkdirp(dir, function (err) {});
-						fs.writeFile(dir+"/index.html", lines, function(err) {
-							if(err) {
-								console.log(err);
-							} else {
-								connection.send(JSON.stringify({type:"pub"}));
-								console.log("The file was saved!");
-							}
-						}); 
+				if(json.type === "publish"){
+					var user_id = json.id;
+					console.log(json.mode);
+					if(json.mode === "text/html" || json.mode === "text/x-markdown" || json.mode === "gfm"){
+						//if markdown or html
+						var lines = json.lines.join("\n");
+						var dir = "pub/" + user_id;
+						if(pathOk(dir)){
+							mkdirp(dir, function (err) {});
+							fs.writeFile(dir+"/index.html", lines, function(err) {
+								if(err) {
+									console.log(err);
+								} else {
+									connection.send(JSON.stringify({type:"pub"}));
+									console.log("The file was saved!");
+								}
+							}); 
+						}
 					}
-				}
-				else if(json.mode === "text/x-stex" || json.mode === "text/x-latex"){
-					//latex
-					latexToPdf(json.lines, json.id, json.fileId, function(){
-						connection.send(JSON.stringify({type:"pub"}));
-					});
-				}
-			}	
-		}
-		catch(e){
-		}
-	});
+					else if(json.mode === "text/x-stex" || json.mode === "text/x-latex"){
+						//latex
+						latexToPdf(json.lines, json.id, json.fileId, function(){
+							connection.send(JSON.stringify({type:"pub"}));
+						});
+					}
+				}	
+			}
+			catch(e){
+			}
+		});
 	connection.on('close', function(reasonCode, description){}); 
 	}
 });

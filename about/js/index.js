@@ -37,8 +37,26 @@ function comment(){
 	var text = strip(document.getElementById("comment_comment").value);
 	var agree = $("#agree-checkbox").prop("checked");
 
+	var info = {
+		name: name,
+		email: mail,
+		comment: text,
+		accept: agree
+	};
 	
-	connection.send(JSON.stringify({type: "comment", sender: name, email: mail, comment: text, agree: agree}));
+	//connection.send(JSON.stringify({type: "comment", sender: name, email: mail, comment: text, agree: agree}));
+	
+	$.ajax("https://codeyourcloud.com/comment",{
+		method: "POST",
+		data: info,
+		success: function(data, textStatus, jqXHR){
+			console.log(data);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			throw errorThrown;
+		}
+	});
+	
 	document.getElementById("comment_name").value = "";
 	document.getElementById("comment_mail").value = "";
 	document.getElementById("comment_comment").value = "";
