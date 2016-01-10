@@ -20,7 +20,8 @@ function init(){
 	if(_init === false){
 		_init = true;
 		//decide wether to load sky or drive
-		drive.checkAppLogin(function(_logged_in){
+		drive.checkAppLogin(function(_logged_in, _acct_data){
+			true_id = _acct_data.user._id;
 			$("#loading-bar").css("width","10%");
 			if(_logged_in === false){
 				console.log("redirect for no app login");
@@ -28,6 +29,7 @@ function init(){
 					window.location = "https://codeyourcloud.com/about";
 				}
 			} else {
+				
 				cloud_use = "drive";
 				if(window.location.href.indexOf("?sky=true") !== -1 || window.location.href.indexOf("#access_token=") !== -1){
 					//some indication of sky

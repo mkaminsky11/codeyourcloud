@@ -2,6 +2,8 @@
 * CODEYOURCLOUD
 ===*/
 
+var true_id = null;
+
 var editors = []; //the codemirror editors
 var current_file = "";
 

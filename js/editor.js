@@ -98,7 +98,6 @@ manager.removeTab = function(id){
 }
 manager.reallyRemove = function(id){
 	hide_loading_spinner();	//nothing should be loading anymore
-	console.log("here1");
 	$("#overlay").css("display","block");
 	//remove the tab div with style!
 	$(".tab-tab[data-fileid='"+id+"']").velocity("transition.slideUpOut",{
@@ -268,6 +267,12 @@ manager.checkMode = function(id, fileName){
 		}
 	}
 	manager.setMode(id,mode_to_use);
+}
+
+manager.publish = function(){
+	connect.publish(editor().getValue(), editor().getOption("mode"), current_file, function(data){
+			
+	});
 }
 
 function modeChange(){

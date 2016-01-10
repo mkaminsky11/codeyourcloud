@@ -101,14 +101,15 @@ connect.publish = function(content, mode, fileId){
 		mode: mode,
 		content: content,
 		fileId: fileId,
-		userId: userId
+		userId: userId,
+		type: cloud_use
 	};
 	
 	$.ajax("https://codeyourcloud.com/publish",{
 		method: "POST",
 		data: info,
 		success: function(data, textStatus, jqXHR){
-			
+			console.log(data);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			throw errorThrown;

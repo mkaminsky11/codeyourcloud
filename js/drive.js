@@ -39,7 +39,7 @@ drive.checkAppLogin = function(callback){
 	$.ajax("https://codeyourcloud.com/status",{
 		method: "GET",
 		success: function(data, textStatus, jqXHR){
-			callback(data.loggedIn);
+			callback(data.loggedIn, data);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			throw errorThrown;
@@ -107,7 +107,7 @@ drive.getInfo = function(){
         }
         try{
             drive.id = resp.user.permissionId;
-            $(".side-pub-link").attr("href", "https://codeyourcloud.com/pub/"+drive.id+"/index.html");
+            $(".side-pub-link").attr("href", "https://codeyourcloud.com/pub/"+true_id+"/index.html");
             
         }
         catch(e){}
