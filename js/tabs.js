@@ -217,12 +217,9 @@ function adjust(){
 	$(".side-pub").css("display","none"); //can't publish anything
 	
 	//set publish link
+	$(".side-pub-link").attr("href","https://codeyourcloud.com/pub/" + true_id + "/" + id.replace("-","") + ".html"); 
 	if(cloud_use === "drive"){
-		$(".side-pub-link").attr("href","https://codeyourcloud.com/pub/" + drive.id + "/index.html"); 
 		$(".side-drive-link").attr("href","https://drive.google.com/file/d/" + current_file + "/view?usp=drivesdk");
-	}
-	else if(cloud_use === "sky"){
-		$(".side-pub-link").attr("href","https://codeyourcloud.com/pub/" + sky.id + "/index.html"); 
 	}
 	
 	if(mode === "text/javascript"){
@@ -236,12 +233,7 @@ function adjust(){
 	}
 	else if(mode === "text/x-latex" || mode === "text/x-stex"){
 		$(".side-pub").css("display","inline-block");;
-		if(cloud_use === "drive"){
-			$(".side-pub-link").attr("href","https://codeyourcloud.com/pub/" + drive.id + "/" + current_file + ".pdf");
-		}
-		else if(cloud_use === "sky"){
-			$(".side-pub-link").attr("href","https://codeyourcloud.com/pub/" + sky.id + "/" + current_file + ".pdf");
-		}
+		$(".side-pub-link").attr("href","https://codeyourcloud.com/pub/" + true_id + "/" + id.replace("-","") + ".pdf"); 
 	}
 	else if(mode === "text/x-markdown" || mode === "gfm" || mode === "markdown"){
 		$(".side-pub").css("display","inline-block"); //can publish markdown

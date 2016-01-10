@@ -79,7 +79,6 @@ sky.getInfo = function(){
 		});
 		
 		try{
-			$(".side-pub-link").attr("href", "https://codeyourcloud.com/pub/"+true_id+"/index.html");
 			$(".side-drive").css("display","none");
 		}
 		catch(e){}

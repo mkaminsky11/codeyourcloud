@@ -107,7 +107,6 @@ drive.getInfo = function(){
         }
         try{
             drive.id = resp.user.permissionId;
-            $(".side-pub-link").attr("href", "https://codeyourcloud.com/pub/"+true_id+"/index.html");
             
         }
         catch(e){}

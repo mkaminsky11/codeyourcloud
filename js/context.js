@@ -168,7 +168,7 @@ context.toggleMenuOff = function() {
 context.positionMenu = function(e) {
   context.clickCoords = context.taskItemInContext.getBoundingClientRect();
   context.clickCoordsX = context.clickCoords.left + context.clickCoords.width - 25;
-  context.clickCoordsY = context.clickCoords.top + context.clickCoords.height + 10;
+  context.clickCoordsY = context.clickCoords.top + context.clickCoords.height + 0;
 
   context.menuWidth = context.menu.offsetWidth + 4;
   context.menuHeight = context.menu.offsetHeight + 4;

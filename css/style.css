@@ -1209,6 +1209,12 @@ LOADING ICON
     width: 79px;
     width: 80px;
 }
+.popup>*{
+	border-bottom: solid 1px #eee !important;
+}
+.popup>*:last-child{
+	border-bottom: none !important;
+}
 .popup a{
 	color: #5E5B5B !important;
 }

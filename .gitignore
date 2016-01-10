@@ -3,6 +3,7 @@ sail
 .htaccess
 .htaccess
 server.js
+socket.js
 ssh.js
 comments.txt
 server
