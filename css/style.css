@@ -1247,3 +1247,14 @@ LOADING ICON
 .context-click{
   padding: 3px;
 }
+
+#color-popup{
+	width: 385px !important;
+    background-color: transparent !important;
+    border-radius: 0px !important;
+    border: none !important;
+    padding: 0 !important;
+}
+#color-popup > div{
+	margin: 0 !important;
+}

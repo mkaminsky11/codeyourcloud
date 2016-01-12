@@ -25,38 +25,37 @@ function run(){
 function show_color(){
 	$("#colorModal").modal('show');
 }
-$("#color").spectrum({
-	preferredFormat: "hex",
-    showInput: true,
-    clickoutFiresChange: true,
-    showInitial: true,
-    showButtons: false,
-    move: function(tinycolor) { //TODO: this needs alot of work
-		var color = tinycolor.toHexString();
-		//insert this
-		var before = editor().getDoc().getCursor("from");
-		if(editor().getDoc().somethingSelected()){
-			editor().getDoc().replaceSelection(color);
-			var after = editor().getDoc().getCursor("to");
-			editor().getDoc().setSelection(before, after);
-		}
-		else{
-			editor().getDoc().replaceRange(""+color, before);
-			var after = editor().getDoc().getCursor();
-			editor().getDoc().setSelection(before, after);
-		}
-  		//}
-    },
-    beforeShow: function(tinycolor) { 
-    	//if something selected, set color
-    	//$("#custom").spectrum("set", colorString);
-    }
+var cj = colorjoe.rgb("color", '#113c38', [
+	'close',
+	'currentColor',
+	['fields', {space: 'RGB', limit: 255, fix: 2}],
+	'hex'
+]);
+cj.on('change', function(color) {
+	console.log(color);
+	color = color.css();
+	var before = editor().getDoc().getCursor("from");
+	if(editor().getDoc().somethingSelected()){
+		console.log("h1");
+		editor().getDoc().replaceSelection(color);
+		var after = editor().getDoc().getCursor("to");
+		editor().getDoc().setSelection(before, after);
+	}
+	else{
+		console.log("h2");
+		editor().getDoc().replaceRange(""+color, before);
+		var after = editor().getDoc().getCursor();
+		editor().getDoc().setSelection(before, after);
+	}
 });
 
 function set_color(string){
-	if(/^#[0-9A-F]{6}$/i.test(string)){ //is hex
-		$("#custom").spectrum("set",string);
-	}
+	//if hex
+	//if rgb
+	
+	//if(/^#[0-9A-F]{6}$/i.test(string)){ //is hex
+	//	$("#custom").spectrum("set",string);
+	//}
 }
 
 /**
