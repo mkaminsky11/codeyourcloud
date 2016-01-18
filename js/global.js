@@ -200,3 +200,75 @@ function getParameterByName(name) {
 function esc(text){
   return $("#escape").text(text).html()
 }
+
+String.prototype.toUnicode = function(){
+    var result = "";
+    for(var i = 0; i < this.length; i++){
+        result += "\\u" + ("000" + this[i].charCodeAt(0).toString(16)).substr(-4);
+    }
+    return result;
+};
+
+function knownCharCodeAt(str, idx) {
+  str += '';
+  var code,
+      end = str.length;
+  var surrogatePairs = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
+  while ((surrogatePairs.exec(str)) != null) {
+    var li = surrogatePairs.lastIndex;
+    if (li - 2 < idx) {
+      idx++;
+    }
+    else {
+      break;
+    }
+  }
+  if (idx >= end || idx < 0) {
+    return NaN;
+  }
+  code = str.charCodeAt(idx);
+  var hi, low;
+  if (0xD800 <= code && code <= 0xDBFF) {
+    hi = code;
+    low = str.charCodeAt(idx + 1);
+    // Go one further, since one of the "characters" is part of a surrogate pair
+    return ((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000;
+  }
+  return code;
+}
+
+function encode_utf8(s) {
+  return unescape(encodeURIComponent(s));
+}
+
+function decode_utf8(s) {
+  return decodeURIComponent(escape(s));
+}
+
+function codeToChar(text){
+	var newText = text.replace(/\\u[0-9a-z][0-9a-z][0-9a-z][0-9a-z]/g, 
+	    function($0, $1) {
+	        return String.fromCharCode(knownCharCodeAt("" + $1), 0);
+	    }
+	);
+	return newText;
+}
+
+function charToCode(text){
+	text = text.split("");
+	for(var i = 0; i < text.length; i++){
+		if(/[^\u0000-\u007F]+/g.test(text[i]) === true){
+			var item = text[i];
+			text[i] = "";
+			if(i < (text.length - 1)){
+				text[i + 1] =  item.toUnicode() + text[i +1];
+			}
+			else{
+				text = text.reverse();
+				text.push(item.toUnicode());
+				text = text.reverse();
+			}
+		}
+	}
+	return text.join("");
+}

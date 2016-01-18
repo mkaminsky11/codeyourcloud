@@ -86,17 +86,14 @@ connect.publish = function(content, mode, fileId){
 	if(mode === "text/x-markdown" || mode === "gfm"){
 		content = converter.makeHtml(content);
 	}
-	
 	var userId = null;
 	fileId = fileId.replace(/-/g, '');
-	
 	if(cloud_use === "drive"){
 		userId = drive.id;
 	}
 	else if(cloud_use === "sky"){
 		userId = sky.id;
 	}
-	
 	var info = {
 		mode: mode,
 		content: content,

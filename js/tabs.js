@@ -66,7 +66,7 @@ function receiveMessage(event){
   	if(typeof json.s === 'undefined'){ //this makes sure that only the intended messages are getting in. There are some "background" ones
 	  	var id = json.currentfile;
 	  	if(json.type === "text"){
-		  	getEditor(id).setValue(json.value);
+		  	getEditor(id).setValue(decode_utf8(json.value));
 		  	editors[getIndex(id)].saved = true;
 		  	hide_loading_spinner();
 	  	}
@@ -75,7 +75,7 @@ function receiveMessage(event){
 		}
 	  	else if(json.type === "insert_text"){ //text has been inserted
 	  		setIgnore(id, true); //ignore the second one (realtime problems)
-		  	getEditor(id).replaceRange(json.text, getEditor(id).posFromIndex(json.point)); //implement change
+		  	getEditor(id).replaceRange(decode_utf8(json.text), getEditor(id).posFromIndex(json.point)); //implement change
 		}
 	  	else if(json.type === "delete_text"){ //same as above, just delete
 	  		setIgnore(id, true);
@@ -166,7 +166,7 @@ function addTab(id, welcome){
 	    	if(!getIgnore(cm.id)){ //if this input is not to be ignored...
 		    	sendData({
 			    	type: "text",
-			    	text: cm.getValue()
+			    	text: encode_utf8(cm.getValue())
 		    	},cm.id);
 	    	}
 	    	else{
@@ -184,7 +184,7 @@ function addTab(id, welcome){
 	if(cloud_use === "sky"){
 		sky.getFile(id, function(data){
 			hide_loading_spinner();
-			setFileTitle(id, data.name);
+			manager.setFileTitle(id, data.name);
 		});
 		sky.getContentOfFile(id, function(res){
 			getEditor(id).setValue(res);

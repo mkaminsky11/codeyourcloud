@@ -2,6 +2,14 @@ window.addEventListener("message", receiveMessage, false);
 
 var _change = 0;
 
+function encode_utf8(s) {
+  return unescape(encodeURIComponent(s));
+}
+
+function decode_utf8(s) {
+  return decodeURIComponent(escape(s));
+}
+
 function receiveMessage(event){
   if(event.data !== "!_{h:''}"){
   	var json = JSON.parse(event.data);
@@ -18,11 +26,12 @@ function receiveMessage(event){
 	  	makeChat(json.message, json.name, json.id, json.photo);
   	}
   	else if(json.type === "text"){
+  	  console.log(json.text);
   		try{
-		  	text.setText(json.text);
-		}
-		catch(e){
-		}
+		  	text.setText(decode_utf8(json.text));
+  		}
+  		catch(e){
+  		}
   	}
   }
 }
@@ -39,9 +48,10 @@ function sendData(data){
 }
 
 function setValue(value){
+	console.log(value);
 	sendData({
 		type: "text",
-		value: value,
+		value: encode_utf8(value),
 		currentfile: current_file
 	});
 }
@@ -67,7 +77,7 @@ function removeUser(the_id){
 }
 
 function setText(value){
-	text.setText(value);
+	text.setText(decode_utf8(value));
 }
 
 function insertChat(the_message, the_name, is_you, the_photo, is_new){
@@ -86,7 +96,7 @@ function insert_text(point, text){
 	sendData({
 		type: "insert_text",
 		point: point,
-		text: text,
+		text: encode_utf8(text),
 		currentfile: current_file
 	});
 }

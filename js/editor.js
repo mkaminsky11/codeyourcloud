@@ -60,7 +60,7 @@ manager.setFileTitle = function(id, title){
 }
 manager.save = function(id){
 	if(id !== "welcome"){
-		var content = getEditor(id).getValue()
+		var content = charToCode(getEditor(id).getValue());
 		if(typeof content !== "undefined"){ //if nothing is "null"
 			if(cloud_use === "drive"){
 		        var contentArray = new Array(content.length);
@@ -453,6 +453,14 @@ settings.init = function(){
     //
     //
     settings.state = prefs;
+    
+    settings.state.tabs = [];
+    for(var i = 0; i < prefs.tabs.length; i++){
+	    if(prefs.tabs[i].indexOf(cloud_use + "_") === 0){
+		    settings.state.tabs.push(prefs.tabs[i].replace(cloud_use + "_"));
+	    }
+    }
+    
     for(var i = 0; i < settings.state.tabs.length; i++){
 	    if(manager.isOpen(settings.state.tabs[i]) === false){
 		    addTab(settings.state.tabs[i], false);
@@ -462,9 +470,13 @@ settings.init = function(){
 }
 
 settings.change = function(){
+	var info = settings.state;
+	for(var i = 0; i < info.tabs.length; i++){
+		info.tabs[i] = cloud_use + "_" + info.tabs[i];
+	}
   $.ajax("https://codeyourcloud.com/prefs/change",{
 		method: "POST",
-		data: settings.state,
+		data: info,
 		success: function(data, textStatus, jqXHR){
 		},
 		error: function(jqXHR, textStatus, errorThrown){

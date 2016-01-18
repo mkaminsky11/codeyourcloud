@@ -40,12 +40,12 @@ $(document).ready(function(){
 	broadcast.init();
 	connect.init();
 	context.init();
-	snippets.init(); //<----later
+	snippets.init();
+	repl.init();
 	
 	//===========
 	//SAVE DIALOG
 	//===========
-	window.onmessage = repl.onmessage;
 	window.onbeforeunload = function(){
 		if(manager.allSaved() === false){
 			return "You have unsaved work. Do you really want to quit?"

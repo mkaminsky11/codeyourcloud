@@ -19,7 +19,6 @@ function loadSky(){
 function init(){
 	if(_init === false){
 		_init = true;
-		//decide wether to load sky or drive
 		drive.checkAppLogin(function(_logged_in, _acct_data){
 			true_id = _acct_data.user._id;
 			$("#loading-bar").css("width","10%");
@@ -46,7 +45,6 @@ function init(){
 					}
 				}
 				else if(window.location.href.indexOf("?drive=true") !== -1 || window.location.href.indexOf("%22action%22:%22") !== -1 || window.location.href.indexOf("#state=/profile&access_token=") !== -1){
-					//indication of drive
 					if(drive.logged_in === true){
 						//all good!
 						$("#loading-bar").css("width","30%");
@@ -61,7 +59,6 @@ function init(){
 				else{
 					//no indication
 					if(drive.logged_in === true && sky.logged_in === false){
-						//all good!
 						$("#loading-bar").css("width","30%");
 					}
 					else if(drive.logged_in === false && sky.logged_in === true){
@@ -69,7 +66,6 @@ function init(){
 						$("#loading-bar").css("width","30%");
 					}
 					else if(drive.logged_in === true && sky.logged_in === true){
-						//all good! -> prioritize drive
 						$("#loading-bar").css("width","30%");
 					}
 					else{
@@ -79,8 +75,6 @@ function init(){
 						}
 					}
 				}
-				
-				
 				if(cloud_use === "drive"){
 					drive.loadClient();
 				}

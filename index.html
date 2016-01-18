@@ -313,6 +313,11 @@
   				</span>
   				<span class="side-run" onclick="run()"><i class="zmdi zmdi-play"></i>Run</span>
   				<span>
+  					<a href=="https://codeyourcloud.com?sky=true" style="text-decoration: none" id="swap">
+	  					<i class="zmdi zmdi-swap"></i>Switch To OneDrive
+  					</a>
+  				</span>
+  				<span>
   					<a href="https://accounts.google.com/logout" style="text-decoration: none;" id="log-out">
   						<i class="zmdi zmdi-square-right"></i>Log Out
   					</a>
@@ -514,6 +519,8 @@
 			<i class="md zmdi zmdi-close" onclick="broadcast.close()"></i>
 		</div>
 		
+		<iframe id="repl" style="display:none"></iframe>
+		
 		<!--context menu-->
 		<div id="context" class="popup context-menu">
 			<span onclick="" class="context-menu__item">
@@ -657,6 +664,7 @@
 		<script src="js/tree.js"></script>
 		<script src="js/tabs.js"></script>
 		<script src="js/snippets.js"></script>
+		<script src="js/repl.js"></script>
 		<script src="js/ready.js"></script>
 		
 		

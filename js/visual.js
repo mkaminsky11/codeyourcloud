@@ -14,7 +14,7 @@ function run(){
 	}
 	var find = 'console.log'; //not console.log, but print
 	var re = new RegExp(find, 'g');
-	code_before_replace = code_before_replace.replace(re, 'print');
+	code_before_replace = code_before_replace.replace(re, '_window_print');
 	//document.getElementById('repl-iframe').contentWindow.eval(code_before_replace);
 }
 
