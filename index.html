@@ -313,7 +313,7 @@
   				</span>
   				<span class="side-run" onclick="run()"><i class="zmdi zmdi-play"></i>Run</span>
   				<span>
-  					<a href=="https://codeyourcloud.com?sky=true" style="text-decoration: none" id="swap">
+  					<a href="https://codeyourcloud.com?sky=true" style="text-decoration: none" id="swap">
 	  					<i class="zmdi zmdi-swap"></i>Switch To OneDrive
   					</a>
   				</span>
@@ -519,7 +519,8 @@
 			<i class="md zmdi zmdi-close" onclick="broadcast.close()"></i>
 		</div>
 		
-		<iframe id="repl" style="display:none"></iframe>
+		<div class="repl" style="display:none"></div>
+		<iframe id="repl" style="display:none" src="lib/repl/index.html"></iframe>
 		
 		<!--context menu-->
 		<div id="context" class="popup context-menu">
@@ -635,7 +636,6 @@
 		
 		<script src="lib/codemirror/addon/minimap/minimap.js"></script>
 		<link rel="stylesheet" href="lib/codemirror/addon/minimap/minimap.css">
-		
 		<link rel="stylesheet" href="lib/codemirror/addon/fold/foldgutter.css">
       
       	<script src="lib/coffee/coffee.js"></script>
@@ -647,6 +647,8 @@
 		      	_sky = true;
 	      	}
 	    </script>
+	    
+	  <script src="lib/socket.io.js"></script>
 
 		<script src="js/global.js"></script>
 		<script src="js/context.js"></script>

@@ -2,11 +2,43 @@
 * CODEYOURCLOUD
 ===*/
 
+var realtime = {};
+realtime.init = function(){
+  realtime.socket = io.connect('https://codeyourcloud.com:443');
+  realtime.socket.on('message', realtime.callback);
+}
+realtime.openFile = function(id){
+  //make yourself known using cloud_use, id
+};
+realtime.insertText = function(){
+  
+};
+realtime.deleteText = function(){
+  
+};
+realtime.callback = function(data){
+  console.log(data);
+};
+realtime.send = function(data){
+	if(cloud_use === "drive"){
+	  realtime.socket.emit('send', {
+		data: data,
+		access_token: gapi.auth.getToken().access_token,
+		cloud: "drive"
+	  });
+	}
+	else if(cloud_use === "sky"){
+		WL.getLoginStatus(function(resp){
+			var _a_t = resp.session.access_token;
+			realtime.socket.emit('send', {
+				data: data,
+				access_token: _a_t,
+				cloud: "sky"
+			});
+		});
+	}
+}
 
-/**
-* AUTHORIZATION
-* authorizes the user
-**/
 
 var _init = false;
 
@@ -30,10 +62,9 @@ function init(){
 			} else {
 				
 				cloud_use = "drive";
-				if(window.location.href.indexOf("?sky=true") !== -1 || window.location.href.indexOf("#access_token=") !== -1){
+				if(window.location.href.indexOf("?sky=true") !== -1){
 					//some indication of sky
 					if(sky.logged_in === true){
-						//ok...load sky, I guess
 						cloud_use = "sky";
 						$("#loading-bar").css("width","30%");
 					}
@@ -44,7 +75,7 @@ function init(){
 						}
 					}
 				}
-				else if(window.location.href.indexOf("?drive=true") !== -1 || window.location.href.indexOf("%22action%22:%22") !== -1 || window.location.href.indexOf("#state=/profile&access_token=") !== -1){
+				else if(window.location.href.indexOf("?drive=true") !== -1 || window.location.href.indexOf("%22action%22:%22") !== -1){
 					if(drive.logged_in === true){
 						//all good!
 						$("#loading-bar").css("width","30%");
@@ -75,6 +106,7 @@ function init(){
 						}
 					}
 				}
+				
 				if(cloud_use === "drive"){
 					drive.loadClient();
 				}

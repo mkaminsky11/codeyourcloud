@@ -60,7 +60,7 @@ manager.setFileTitle = function(id, title){
 }
 manager.save = function(id){
 	if(id !== "welcome"){
-		var content = charToCode(getEditor(id).getValue());
+		var content = encode_utf8(getEditor(id).getValue());
 		if(typeof content !== "undefined"){ //if nothing is "null"
 			if(cloud_use === "drive"){
 		        var contentArray = new Array(content.length);

@@ -10,31 +10,42 @@ sky.upload_location = null;
 sky.id = null;
 sky.url = "https://codeyourcloud.com/images/other/none.jpg";
 
+sky.office = false;
+if(window.location.href.indexOf("office=true") !== -1){
+	sky.office = true;
+}
+
 
 sky.load = function(){
-	WL.init({
-		client_id: "0000000044157F3B",
-		redirect_uri: "https://codeyourcloud.com",
-		scope: ["wl.signin","wl.skydrive","wl.basic","wl.skydrive_update"],
-		response_type: "token"
-	});
-	
-	WL.getLoginStatus(function(response) {
-		$("#loading-bar").css("width","50%");
-		console.log(response);
-		//response.status
-		sky.loaded = true;
-		if(response.status === "connected"){
-			sky.logged_in = true;
-		}
-		else{
-			sky.logged_in = false;
-		}
+	if(!sky.office){
+		WL.init({
+			client_id: "0000000044157F3B",
+			redirect_uri: "https://codeyourcloud.com",
+			scope: ["wl.signin","wl.skydrive","wl.basic","wl.skydrive_update"],
+			response_type: "token"
+		});
 		
-		if(drive.loaded === true){
-			init();
-		}
-	});
+		WL.getLoginStatus(function(response) {
+			$("#loading-bar").css("width","50%");
+			console.log(response);
+			//response.status
+			sky.loaded = true;
+			if(response.status === "connected"){
+				sky.logged_in = true;
+			}
+			else{
+				sky.logged_in = false;
+			}
+			
+			if(drive.loaded === true){
+				init();
+			}
+		});
+	}
+	else{
+		//check if there is a cookie
+		//yes
+	}
 }
 
 sky.loadClient = function(){

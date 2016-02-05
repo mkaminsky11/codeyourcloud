@@ -26,7 +26,6 @@ function receiveMessage(event){
 	  	makeChat(json.message, json.name, json.id, json.photo);
   	}
   	else if(json.type === "text"){
-  	  console.log(json.text);
   		try{
 		  	text.setText(decode_utf8(json.text));
   		}
@@ -48,7 +47,6 @@ function sendData(data){
 }
 
 function setValue(value){
-	console.log(value);
 	sendData({
 		type: "text",
 		value: encode_utf8(value),

@@ -6,9 +6,9 @@ var fs = require('fs');
 var webSocketServer = require('websocket').server;
 var https = require('https');
 var options = {
-	key: fs.readFileSync("../store/www.codeyourcloud.com.key"),
-	cert: fs.readFileSync("../store/www.codeyourcloud.com.crt"),
-	ca: [fs.readFileSync("../store//www.codeyourcloud.com-geotrust.crt")]
+	key: fs.readFileSync("/etc/ssl/www.codeyourcloud.com.key"),
+	cert: fs.readFileSync("/etc/ssl/www.codeyourcloud.com.crt"),
+	ca: [fs.readFileSync("/etc/ssl/www.codeyourcloud.com-geotrust.crt")]
 };
 var server = https.createServer(options, function(req, res){
 	console.log("request");
