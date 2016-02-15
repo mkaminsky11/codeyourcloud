@@ -56,6 +56,7 @@ sky.loadClient = function(){
 	$("#swap").attr("href", "https://codeyourcloud.com?drive=true");
 	$("#swap").html( $("#swap").html().replace("Switch To OneDrive", "Switch To Google Drive") );
 	sky.getInfo();
+	settings.initTabs();
 }
 
 /*

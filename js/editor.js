@@ -422,6 +422,8 @@ settings.indentWithTabs = function(){
 
 settings.init = function(){
   connect.settings.getSettings(function(prefs){
+	settings.state = prefs;
+	
     //theme
     $("#theme-select").val(prefs.theme);
     settings.theme(prefs.theme);
@@ -450,23 +452,15 @@ settings.init = function(){
     if(prefs.lineWrap !== settings.state.lineWrap){
       $("#side-wrap").prop("checked", !$("#side-wrap").prop("checked"));
     }
-    //
-    //
-    settings.state = prefs;
-    
-    settings.state.tabs = [];
-    for(var i = 0; i < prefs.tabs.length; i++){
-	    if(prefs.tabs[i].indexOf(cloud_use + "_") === 0){
-		    settings.state.tabs.push(prefs.tabs[i].replace(cloud_use + "_"));
-	    }
-    }
-    
-    for(var i = 0; i < settings.state.tabs.length; i++){
-	    if(manager.isOpen(settings.state.tabs[i]) === false){
-		    addTab(settings.state.tabs[i], false);
-	    }
-    }
   });    
+}
+
+settings.initTabs = function(){
+    for(var i = 0; i < settings.state.tabs.length; i++){
+	    if(settings.state.tabs[i].indexOf(cloud_use) === 0 && manager.isOpen(settings.state.tabs[i]) === false){
+		    addTab(settings.state.tabs[i].replace(cloud_use + "_", ""), false);
+	    }
+    }
 }
 
 settings.change = function(){

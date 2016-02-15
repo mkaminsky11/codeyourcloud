@@ -55,6 +55,7 @@ drive.loadClient = function() {
 			drive.refresh();
 		},3000000);
 		
+		settings.initTabs();
 		drive.getInfo();
 		var url = window.location.href;
 		var query = window.location.href.split("?")[1];
