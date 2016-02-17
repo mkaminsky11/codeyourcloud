@@ -116,8 +116,8 @@ function addTab(id, welcome){
   }
   else{
 	//add a tab
-	if(id !== "welcome" && settings.state.tabs.indexOf(id) === -1){
-		settings.state.tabs.push(id);
+	if(id !== "welcome" && settings.state.tabs.indexOf(cloud_use + "_" + id) === -1){
+		settings.state.tabs.push(cloud_use + "_" + id);
 		settings.change();	
 	}
 	

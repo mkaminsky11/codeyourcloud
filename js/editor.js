@@ -116,8 +116,8 @@ manager.reallyRemove = function(id){
 	}
 	current_file = "";
 	if(id !== "welcome"){
-		if(settings.state.tabs.indexOf(id) !== -1){
-			settings.state.tabs.splice(settings.state.tabs.indexOf(id), 1);
+		if(settings.state.tabs.indexOf(cloud_use + "_" + id) !== -1){
+			settings.state.tabs.splice(settings.state.tabs.indexOf(cloud_use + "_" + id), 1);
 			settings.change();
 		}
 	}
@@ -457,17 +457,15 @@ settings.init = function(){
 
 settings.initTabs = function(){
     for(var i = 0; i < settings.state.tabs.length; i++){
-	    if(settings.state.tabs[i].indexOf(cloud_use) === 0 && manager.isOpen(settings.state.tabs[i]) === false){
-		    addTab(settings.state.tabs[i].replace(cloud_use + "_", ""), false);
+	    if(settings.state.tabs[i].indexOf(cloud_use) === 0 && manager.isOpen(settings.state.tabs[i].replace((cloud_use + "_"),"")) === false){
+			console.log(cloud_use + "_");
+		    addTab(settings.state.tabs[i].replace((cloud_use + "_"),""), false);
 	    }
     }
 }
 
 settings.change = function(){
 	var info = settings.state;
-	for(var i = 0; i < info.tabs.length; i++){
-		info.tabs[i] = cloud_use + "_" + info.tabs[i];
-	}
   $.ajax("https://codeyourcloud.com/prefs/change",{
 		method: "POST",
 		data: info,
