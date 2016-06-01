@@ -34,9 +34,6 @@
 				
 				<img src="../images/cloud_white.png" style="height: 30px; margin-top: 9px">
 				<a id="brand">Code Your Cloud</a>
-				
-				
-				</a>
 			</div>
 			
 			<!--h1>CODE YOUR CLOUD</h1-->
@@ -179,26 +176,26 @@
 		</div>
 		
 		<div class="dark-part">
-			<h4 id="quote" style="color:#4F4F4F">Contact us</h4>
-			
-			<input class="form-control input" id="comment_name" value="" placeholder="Name"/>
-      	 	<br/>
-	  	 	<input class="form-control input" id="comment_mail" value="" placeholder="Email"/>
-	  	 	<br/>
-     		<textarea class="form-control input" id="comment_comment" value="" placeholder="Comment" rows="10"></textarea>
-     		<br/>
-     		<input type="checkbox" id="agree-checkbox" class="form-checkbox" style="display:inline-block;margin-right: 5px;"><p style="display:inline-block">(<b>OPTIONAL</b>) Check to allow us to use your comments for promotional purposes. Your information will remain private.</p>
-     		<br/>
-     		
-     		<h6 id="send">
-	     		
-	     		<a onclick="comment()" class="waves-effect waves-light paper-btn paper-btn-blue" style="background-color:#2ECC71;font-size:16px"><i class="zmdi zmdi-mail-send" style="margin-right:10px"></i> SEND</a>
-	     		
-	     		<a onclick="resetForm()" class="waves-effect waves-light paper-btn paper-btn-blue" style="background-color:#E74C3C;font-size:16px"><i class="zmdi zmdi-close" style="margin-right:10px"></i> CANCEL</a>
+			<form action="https://formspree.io/hostmaster@codeyourcloud.com" method="POST">
+				<h4 id="quote" style="color:#4F4F4F">Contact us</h4>
+				
+				<input class="form-control input" id="comment_name" value="" placeholder="Name" type="text" name="name"/>
+				<br/>
+				<input class="form-control input" id="comment_mail" value="" placeholder="Email" type="email" name="email"/>
+				<br/>
+				<textarea class="form-control input" id="comment_comment" value="" placeholder="Comment" rows="10" name="comment"></textarea>
+				<br/>
+				<input type="checkbox" id="agree-checkbox" class="form-checkbox" style="display:inline-block;margin-right: 5px;" name="allow"><p style="display:inline-block">(<b>OPTIONAL</b>) Check to allow us to use your comments for promotional purposes. Your information will remain private.</p>
+				<br/>
+				
+				<h6 id="send">
+					
+					<button type="submit" class="waves-effect waves-light paper-btn paper-btn-blue" style="background-color:#2ECC71;font-size:16px"><i class="zmdi zmdi-mail-send" style="margin-right:10px"></i> SEND</button>
 
-     		</h6>
-     		
-     		<br/>
+				</h6>
+				
+				<br/>
+			</form>
 		</div>
 		
 		

@@ -98,6 +98,9 @@ function receiveMessage(event){
 	  		}
 	  		insertChat(json.message, json.you, temp_photo, json.name, json.currentfile, json.is_new);
 	  	}
+		else if(json.type === "run"){
+			console.log(json.data); //will have to print this out...
+		}
   	}
   }
 }

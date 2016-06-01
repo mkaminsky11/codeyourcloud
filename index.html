@@ -6,15 +6,15 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	    <meta charset="utf-8">
 	    <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        
-          ga('create', 'UA-47415821-1', 'auto');
-          ga('send', 'pageview');
-        
-        </script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-47415821-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 		<meta name="description" content="An collaborative in-browser code editor for Google Drive and OneDrive">
 		<meta name="google-site-verification" content="2jBshOtCyauLPt-Tdw0HRkOOizbDnw6IJTM_4dNNLQQ" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -88,7 +88,7 @@
 			    display: none;
 			    z-index: 4;
 			    font-size: 12px;
-			" onclick="$('#snippet-popup').toggle()"></i>
+			" onclick="$('.popup').css('display','none');$('#snippet-popup').toggle()"></i>
 			
 			<div class="nav-snippet snippet-main" style="display:none">
 			  <pre style="
@@ -191,14 +191,14 @@
 			</div>
 			
 			<div class="tab-right">
-				<i class="zmdi zmdi-palette" onclick="$('#color-popup').toggle()"></i>
+				<i class="zmdi zmdi-palette" onclick="$('.popup').not('#color-popup').css('display','none');$('#color-popup').toggle()"></i>
 				<div style="display:none;width:49px;border-radius:0px" id="color-popup" class="popup">
 					<div id="color"></div>
 				</div>
 			</div>
 			
 			<div class="tab-right" style="">
-				<i class="zmdi zmdi-search" onclick="$('#search-popup').toggle()"></i>
+				<i class="zmdi zmdi-search" onclick="$('.popup').not('#search-popup').css('display','none');$('#search-popup').toggle()"></i>
 				<div style="display:none" id="search-popup" class="popup">
         				<span onclick="find()">Find</span>
         				<span onclick="replace()">Replace</span>
@@ -206,7 +206,7 @@
 			</div>
 			
 			<div id="plus-plus" class="tab-right">
-				<i class="zmdi zmdi-plus" onclick="$('#new-popup').toggle();"></i>
+				<i class="zmdi zmdi-plus" onclick="$('.popup').not('#new-popup').css('display','none');$('#new-popup').toggle();"></i>
 				<div style="display:none" id="new-popup" class="popup">
         				<span onclick="new_file()">New File</span>
         				<span onclick="picker.open();">Open File</span>
@@ -215,7 +215,7 @@
 			</div>
 			
 			<div class="tab-right">
-			  <i class="zmdi zmdi-settings" onclick="$('#setting-popup').toggle()"></i>
+			  <i class="zmdi zmdi-settings" onclick="$('.popup').not('#setting-popup').css('display','none');$('#setting-popup').toggle()"></i>
 			  <div style="display:none" id="setting-popup" class="popup">
 					<div class="select-box">
 						<p>Language</p>
@@ -294,7 +294,7 @@
 
 			
 			<div class="tab-right">
-  			<i class="zmdi zmdi-more-vert" onclick="$('#more-popup').toggle()"></i>	
+  			<i class="zmdi zmdi-more-vert" onclick="$('.popup').not('#more-popup').css('display','none');$('#more-popup').toggle()"></i>	
   			<div style="display:none" id="more-popup" class="popup">
   				<span onclick="drive.trash(current_file)"><i class="zmdi zmdi-delete"></i> Delete</span>
   				<span onclick="picker.share()" id="share-button"><i class="zmdi zmdi-account-add"></i> Share</span>

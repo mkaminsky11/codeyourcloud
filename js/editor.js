@@ -52,9 +52,13 @@ manager.setFileTitle = function(id, title){
 	var index = getIndex(id);
 	var ext = manager.extension(title.toLowerCase());
 	//change the title in the tree view
-	var inner_html = $("[data-tree-li='"+id+"'] span").html().split(">");
-	inner_html[2] = title;
-	$("[data-tree-li='"+id+"'] span").html(inner_html.join(">"));
+	if($("[data-tree-li='"+id+"'] span").length === 1){
+		var inner_html = $("[data-tree-li='"+id+"'] span").html().split(">");
+		inner_html[2] = title;
+		$("[data-tree-li='"+id+"'] span").html(inner_html.join(">"));
+	}
+	console.log(title);
+	console.log(id);
 	$(".tab-tab[data-fileid='"+id+"'] > i").replaceWith(tree.getIconByTitle(title));
 	$(".tab-tab[data-fileid='"+id+"']").attr("data-icon", tree.getClassFromIcon(tree.getIconByTitle(title)));
 }
@@ -73,13 +77,15 @@ manager.save = function(id){
 		        //gets the metadata, which is left alone
 		        request.execute(function(resp) {
 		            drive.updateFile(id,resp,blob, function(resp){
-			            manager.setSaveState(resp.id, true)
+			            manager.setSaveState(resp.id, true);
+			            console.log("saved");
 			        });
 		        });
 		    }
 		    else if(cloud_use === "sky"){
 			    sky.updateFile(id, content, function(resp){
-				    console.log(resp);
+				    manager.setSaveState(resp.id, true);
+				    console.log("saved");
 			    });
 		    }
 	    }

@@ -80,6 +80,7 @@ drive.refresh = function() {
 drive.getInfo = function(){
     var request = gapi.client.drive.about.get();
     request.execute(function(resp) {
+		console.log(resp);
 		$("#loading-bar").css("width","90%");
         drive.root = resp.rootFolderId;
         try{
