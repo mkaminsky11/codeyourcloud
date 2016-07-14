@@ -297,7 +297,7 @@
   			<i class="zmdi zmdi-more-vert" onclick="$('.popup').not('#more-popup').css('display','none');$('#more-popup').toggle()"></i>	
   			<div style="display:none" id="more-popup" class="popup">
   				<span onclick="drive.trash(current_file)"><i class="zmdi zmdi-delete"></i> Delete</span>
-  				<span onclick="picker.share()" id="share-button"><i class="zmdi zmdi-account-add"></i> Share</span>
+  				<span onclick="picker.share(current_file)" id="share-button"><i class="zmdi zmdi-account-add"></i> Share</span>
   				<span onclick="picker.saveAs()"><i class="zmdi zmdi-floppy"></i>Save As</span>
   				<span onclick="picker.download()"><i class="zmdi zmdi-download"></i>Download</span>
   				<span class="side-pub" onclick="manager.publish()"><i class="zmdi zmdi-upload"></i>Publish</span>

@@ -1262,3 +1262,7 @@ LOADING ICON
 .repl{
 	
 }
+
+.close{
+	display: none !important;
+}
