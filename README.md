@@ -3,7 +3,7 @@
 
 [Main project page](https://codeyourcloud.com) | [About](https://codeyourcloud.com/about) | [Google+](https://plus.google.com/u/0/b/109834723365906365793/+Codeyourcloudeditor/posts)
 
-**Created by [Michael Kaminsky](https://mkaminsky11.github.io)**
+**Created by [Michael Kaminsky](https://mkaminsky11.github.io) and [Alex Kaminsky](https://alexkaminsky.github.io) **
 
 The goal of this project is to allow people around the globe to collaborate on coding projects via Google Drive and OneDrive. It's that simple.
 
